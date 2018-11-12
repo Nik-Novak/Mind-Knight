@@ -12,6 +12,7 @@ This is a passion project of mine since I love Mindnight so much. I am in no way
 
 *If people like this, I will port it to Mac/Linux and also continue developing a bunch more planned features*
 
+Feel free to discuss/report bugs here:
 https://discord.gg/hkS3jQT
 
 # How to get started
@@ -25,9 +26,9 @@ https://discord.gg/hkS3jQT
 ![MK help](https://image.ibb.co/idENnq/help.png)
 
 # Limitations
-* Currently only works on 5 man quick play. 6-7 man is ready, but have not gotten any games to test, so has been left out for the time being
-* No testing has been done on any other game modes than quick play, feel free to test a 5 man mainframe or blind hackers
+* Currently only tested on 5 man quick play. 6-7 man is ready, but have not gotten any games to test.
+* No testing has been done on any other game modes than quick play, mainframe and blind hackers should work...
 * The project may have bugs/kinks to iron out since it has just been released
-* Known bug: you may have to restart the server after a game returns to lobby.
+* Known bug: you may have to restart the server (.bat file) after a game returns to lobby.
 
 Have fun!
