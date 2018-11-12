@@ -39,12 +39,19 @@ function update(updatedGame){
         nameElement.html(updatedGame.players[key].Username);
         nameElement.css('color', colors[updatedGame.players[key].Color].hex);
     });
+    $('#interchangeable-css').attr('href', "css/"+updatedGame.game_found.PlayerNumber+"man.css");
+    let i=0;
+    game.game_found.MissionInfo.forEach(numPlayers=>{
+        i++;
+        $('.node-container div.round-button[index='+i+'] a.round-button').html(numPlayers);
+    });
     firstRun=false;
 }
 
 socket.on('game_start', (updatedGame)=>{
     log('game_start');
     console.log(updatedGame);
+    log(updatedGame.game_found.PlayerNumber + ' Players were detected. Loading appropriate layout');
     //TODO player # specific css selection and node naming, etc. Found in game.game_found
     update(updatedGame);
 });
@@ -100,5 +107,4 @@ function log(msg, fromServer=false){
     let logMsg = $('<li>'+(fromServer ? '[SERVER] ' : '[LOG] ') + msg.toString()+'</li>');
     $('#debug-log ul').append(logMsg);
 }
-
 

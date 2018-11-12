@@ -161,6 +161,9 @@ function log(msg){
     console.log('[LOG]',msg);
 }
 
+var opn = require('opn');
+opn('http://localhost:8080');
+
 
     
 

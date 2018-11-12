@@ -81,9 +81,9 @@
 }
 
 .player-container[index='2']{
-    left: 61%;
-    bottom: 11%;
-}
+     left: 61%;
+     bottom: 11%;
+ }
 
 .player-container[index='3']{
     left: 80%;
@@ -93,6 +93,18 @@
 .player-container[index='4']{
     left: 59%;
     bottom: 79%;
+}
+
+.player-container[index='5']{
+    display:none;
+}
+
+.player-container[index='6']{
+    display:none;
+}
+
+.player-container[index='7']{
+    display:none;
 }
 
 /*******FLIP IMAGES*******/
