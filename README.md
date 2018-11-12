@@ -1,6 +1,6 @@
-<p align="center" style="font-family: munro;">
-	Mind-Knight
-</p>
+
+# Mind-Knight
+
 
 Mind Knight is a companion app to <a href="mindnightgame.com"> </a>
 
@@ -8,11 +8,11 @@ It automatically tracks props, votes, passes, vote timing and more in a friendly
 
 It's in early development and a dew key features are still lacking.
 
-#How to use
-*Download this folder and place it wherever you like
-*Run the RUN.bat file in the main/root directory. A console window should show up with a welcoming message if done correctly
-*Now you have a choice, view the app on teh same PC or on a different device.
-**Same: open a browser and visit localhost:8080
-**Different: Open a browser on any machine on your network and visit your local IP in the welcome message
+# How to use
+* Download this folder and place it wherever you like
+* Run the RUN.bat file in the main/root directory. A console window should show up with a welcoming message if done correctly
+* Now you have a choice, view the app on teh same PC or on a different device.
+** Same: open a browser and visit localhost:8080
+** Different: Open a browser on any machine on your network and visit your local IP in the welcome message
 
 Have fun!
