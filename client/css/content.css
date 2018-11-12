@@ -1,0 +1,66 @@
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+
+#container{
+
+    position:relative;
+    background: url(../img/background.png) no-repeat center;
+
+    /* IPHONE FIX for BG cover */
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#content {
+    height:100%;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#content .title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+footer .flex-center {
+    text-align: center;
+}
+
+h1, h2{
+    margin-top: 20px;
+}
+
+
+@media(max-width:768px){
+    h1{
+        font-size: 11.25vw;
+    }
+
+    h2{
+        font-size: 5vw;
+    }
+
+    h3{
+        font-size: 3.75vw;
+    }
+
+    h5{
+        font-size: 1.875vw;
+    }
+}
+

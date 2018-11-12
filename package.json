@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server side for reading log files and updating client",
+  "main": "server.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node --trace-deprecation ."
+  },
+  "author": "Nik",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs-extra": "^7.0.1",
+    "ip": "^1.1.5",
+    "socket.io": "^2.1.1"
+  }
+}

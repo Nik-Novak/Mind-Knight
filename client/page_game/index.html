@@ -1,0 +1,288 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <title>Mind Knight</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <!-- COMMENT OUT FOR DEVELOPMENT -->
+    <base href="/page_game/">
+
+    <link href="../css/reset.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="css/content.css" rel="stylesheet">
+    <link id="interchangeable-css" href="css/5man.css" rel="stylesheet">
+    <link href="css/colour.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+<body id="page-top">
+    <div id="container">
+        <section id="content">
+            <div class="content-left">
+                <div class="advanced-options">
+                    <label><input id="option_showAdvanced" type="checkbox" checked>Advanced Stats</label>
+                </div>
+                <div id="debug-log">
+                    <div class="log-title"><p>Debug Log</p></div>
+
+                    <ul>
+                        <li>[LOG] Page loaded</li>
+                    </ul>
+                </div>
+
+                <div id="chat-log">
+                        <div class="log-title"><p>Chat Log</p></div>
+
+                        <ul>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>[Garlic]: true my gut and my heart is really stupid but i went with what i believed</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                            <li>Message 1</li>
+                            <li>Message 2</li>
+                        </ul>
+
+                </div>
+            </div>
+
+            <div class="content-center">
+                <div class="important-info">
+                    <div class="left">
+                        <p><span class="proposer">Appa</span>'s</p>
+                        <p><span class="turn-number">1st</span> turn</p>
+                    </div>
+                    <div class="center">
+                        <p>node</p>
+                        <h3 class="node-number">1</h3>
+                    </div>
+                    <div class="right">
+                        <p class="action">proposed</p>
+                        <!--<p class="action">passed hammer</p>-->
+                        <p class="targets"></p>
+                    </div>
+                </div>
+                <div class="turn-container">
+                    <div class="round-button selected" index="1"><div class="round-button-circle"><a class="round-button"></a></div></div>
+                    <div class="round-button " index="2"><div class="round-button-circle"><a class="round-button"></a></div></div>
+                    <div class="round-button " index="3"><div class="round-button-circle"><a class="round-button"></a></div></div>
+                    <div class="round-button " index="4"><div class="round-button-circle"><a class="round-button"></a></div></div>
+                    <div class="round-button " index="5"><div class="round-button-circle"><a class="round-button"></a></div></div>
+                </div>
+                <p>turn</p>
+                <div id="center-interface">
+
+                    <div class="player-container highlighted" index="0">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-check"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                            <div class="player-name"><p>Braetonix</p></div>
+                    </div>
+
+                    <div class="player-container selected highlighted" index="1">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-times"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Appa</p></div>
+                    </div>
+
+                    <div class="player-container highlighted" index="2">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-check"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Sasha</p></div>
+                    </div>
+
+                    <div class="player-container" index="3">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-times"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Tom</p></div>
+                    </div>
+
+                    <div class="player-container" index="4">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-times"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Carl</p></div>
+                    </div>
+
+                    <div class="player-container nodisp" index="5">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-check"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Appa</p></div>
+                    </div>
+
+                    <div class="player-container nodisp" index="6">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-check"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Appa</p></div>
+                    </div>
+
+                    <div class="player-container nodisp" index="7">
+                        <div class="player-img">
+                            <img src="img/skin-default.png" alt="">
+                            <i class="action-exists-icon fas fa-exclamation"></i>
+                            <i class="hammer-icon fas fa-hammer"></i>
+                            <i class="disconnect-icon fas fa-plug"></i>
+                            <i class="vote-icon fas fa-check"></i>
+                            <p class="prop-number-container"><span class="prop-number">1</span>/5</p>
+                        </div>
+                        <div class="player-name"><p>Appa</p></div>
+                    </div>
+
+                    <table class="advanced-target-container">
+                        <tr>
+                            <th class="advanced-target" colspan="2">Appa (Not yet implemented)</th>
+                        </tr>
+                        <tr>
+                            <td>Turn # this node: </td><td class="turn-number">2</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed Mission: </td><td class="prop-targets">Appa Braetonix Sasha</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed by: </td><td class="prop-proposer">Appa</td>
+                        </tr>
+                        <tr>
+                            <td>Proposal #: </td><td><span class="prop-number">3</span>/5</td>
+                        </tr>
+                        <tr>
+                            <td>Auto proposal: </td><td class="prop-auto">false</td>
+                        </tr>
+                        <tr>
+                            <td>Time spent proposing(s): </td><td class="prop-time">3</td>
+                        </tr>
+                        <tr>
+                            <td>Vote: </td><td class="vote-decision">REFUSE</td>
+                        </tr>
+                        <tr>
+                            <td>Auto vote: </td><td class="vote-auto">true</td>
+                        </tr>
+                        <tr>
+                            <td>Time spent voting(s): </td><td class="vote-time">60</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div class="button-container">
+                    <button class="help-button" onclick="alert('Coming soon');">Help</button>
+                    <button class="notes-button"><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Quick Notes</a></button>
+                </div>
+
+            </div>
+            <div class="content-right">
+                <div class="node-container">
+                    <div class="round-button " index="1"><div class="round-button-circle" status="secured"><a class="round-button">2</a></div></div>
+                    <div class="round-button " index="2"><div class="round-button-circle" status="hacked"><a class="round-button">3</a></div></div>
+                    <div class="round-button " index="3"><div class="round-button-circle" status="secured"><a class="round-button">2</a></div></div>
+                    <div class="round-button " index="4"><div class="round-button-circle" status="unknown"><a class="round-button">3</a></div></div>
+                    <div class="round-button " index="5"><div class="round-button-circle" status="unknown"><a class="round-button">3</a></div></div>
+                </div>
+
+                <div class="noderejects-container">
+                    <p>Node Teams Rejected</p>
+                    <h4><span>3</span>/5</h4>
+                </div>
+                <div class="advanced-node-container">
+                    <table class="advanced-node-container">
+                        <tr>
+                            <th colspan="2">Node #<span class="node-number">2</span></th>
+                        </tr>
+                        <tr>
+                            <td># of participants: </td><td class="node-participants-number">3</td>
+                        </tr>
+                        <tr>
+                            <td>Participants: </td><td class="node-participants">Appa Braetonix Sasha</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed by: </td><td class="node-proposer">Appa</td>
+                        </tr>
+                        <tr>
+                            <td>Proposal #: </td><td><span class="prop-number">3</span>/5</td>
+                        </tr>
+                        <tr>
+                            <td>Refused by: </td><td class="node-refusers">Carl Tom</td>
+                        </tr>
+                        <tr>
+                            <td>Result: </td><td class="node-result">HACKED</td>
+                        </tr>
+                        <tr>
+                            <td># of hackers detected: </td><td class="node-num-hackers">1</td>
+                        </tr>
+                        <tr>
+                            <td>Mission length (s): </td><td class="node-time">5</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+        <script src="/socket.io/socket.io.js"></script> <!-- This line is statically set by socket.io library, used in socket.js -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/ResetManager.js"></script>
+        <script src="js/socket.js"></script>
+        <script src="js/client.js"></script>
+    </div>
+
+<!--<footer>-->
+    <!--<div class="flex-left"> <h5></h5></div>-->
+    <!--<div class="flex-center">-->
+    <!--</div>-->
+    <!--<div class="flex-right"> <h5>Made by <a href="">Nik</a></h5></div>-->
+<!--</footer>-->
+
+</body>
+</html>

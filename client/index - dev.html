@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <title>Mind Knight</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/content.css" rel="stylesheet">
+    <link href="css/colour.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+    <div id="container">
+        <section id="content">
+            <div class="title-container">
+                <h1>Mind Knight</h1>
+                <h2>A companion tool for <a href="http://www.mindnightgame.com/">Mindnight</a></h2>
+            </div>
+            <div id="instructions-container">
+                <h3>launch mindnight to begin...</h3>
+            </div>
+        </section>
+         <button class="" onclick='simulate()'>Simulate</button>
+
+        <script src="/socket.io/socket.io.js"></script> <!-- This line is statically set by socket.io library, used in socket.js -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/socket.js"></script>
+        <script src="js/client.js"></script>
+    </div>
+<footer>
+    <div class="flex-left"> <h5></h5></div>
+    <div class="flex-center">
+        <h5>Mind Knight and its developer are not associated with NOMOON Ltd.</h5>
+    </div>
+    <div class="flex-right"> <h5>Made by <a href="">Nik</a></h5></div>
+
+</footer>
+</body>
+</html>

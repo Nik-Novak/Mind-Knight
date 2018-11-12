@@ -1,0 +1,129 @@
+/* ===========================
+--- General
+============================ */
+body{
+	background-color: #f3f3f3;
+}
+
+h1, h2, h3, h4, h5, a, p, li, label, table{
+    color: #f3f3f3;
+}
+
+th{
+    background: #cccccc;
+}
+
+tr:nth-child(even){
+    background: rgba(157,157,157,0.8);
+}
+
+tr:nth-child(odd){
+    background: rgba(103,103,103,0.8);
+}
+
+#container {
+	background: #222222 no-repeat center;
+}
+
+/* ===========================
+--- Left
+============================ */
+#content #chat-log, #debug-log{
+	background: rgba(157,157,157,0.8);
+}
+
+.log-title{
+	background: #cccccc;
+}
+
+/* ===========================
+--- Center
+============================ */
+
+.content-center .important-info .left, .content-center .important-info .right{
+    background: #2F2E2C;
+}
+
+.content-center .important-info .center{
+    background: #909090;
+}
+
+.turn-container .round-button.selected {
+    background: white;
+}
+
+.fa-exclamation{
+    color: rgb(173,132,50);
+}
+
+.fa-times{
+    color:red;
+}
+
+.fa-check{
+    color:lawngreen;
+}
+
+.fa-plug, .fa-hammer{
+    color: darkgrey;
+}
+
+.player-container.highlighted > .player-img {
+    background: linear-gradient(to top, rgba(173,132,50, 1), rgba(163,122,50, 0));
+    /*background: rgba(163,122,50, 0.7);*/
+}
+
+.player-container.selected > .player-img {
+    box-shadow: 0 0 10px 2px white;
+    /*background: rgba(163,122,50, 0.7);*/
+}
+
+.help-button:hover, .notes-button:hover{
+    background: #BcBcBc;
+}
+
+
+/* ===========================
+--- Right
+============================ */
+.node-container .round-button-circle[status='unknown']{
+	background: dimgrey;
+}
+
+.node-container .round-button-circle[status='unknown']:hover {
+	background:#595959;
+}
+
+.node-container .round-button-circle[status='secured']{
+	background: #25A165;
+}
+
+.node-container .round-button-circle[status='secured']:hover {
+	background:#159155;
+}
+
+.node-container .round-button-circle[status='hacked']{
+	background: #952C30;
+}
+
+.node-container .round-button-circle[status='hacked']:hover {
+	background:#851C20;
+}
+
+.advanced-node-container th, .advanced-target-container th{
+    background: rgba(90,90,90,1);
+}
+
+
+/* ===========================
+--- Footer
+============================ */
+
+footer p{
+	color:white;
+}
+
+/* ===========================
+--- Objview
+============================ */
+
