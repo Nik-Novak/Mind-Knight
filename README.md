@@ -14,12 +14,15 @@ This is a passion project of mine since I love Mindnight so much. I am in no way
 
 https://discord.gg/hkS3jQT
 
-# How to use
+# How to get started
 * Download this folder and place it wherever you like
 * Run the RUN.bat file in the main/root directory. A console window should show up with a welcoming message if done correctly
 * Now you have a choice, view the app on the same PC or on a different device.
   * Same: open a browser and visit localhost:8080
   * Different: Open a browser on any machine on your network and visit your local IP (shown in the welcome message)
+  
+# Help with the interface
+![MK help](/images/logo.png)
 
 # Limitations
 * Currently only works on 5 man quick play. 6-7 man is ready, but have not gotten any games to test, so has been left out for the time being
