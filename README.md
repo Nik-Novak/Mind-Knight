@@ -15,4 +15,10 @@ It's in early development and a dew key features are still lacking.
   * Same: open a browser and visit localhost:8080
   * Different: Open a browser on any machine on your network and visit your local IP in the welcome message
 
+# Limitations
+* Currently only works on 5 man quick play. 6-7 man is ready, but have not gotten any games to test, so has been left out for the time being
+* No testing has been done on any other game modes than quick play, feel free to test a 5 man mainframe or blind hackers
+* The project may have bugs/kinks to iron out since it has just been released
+* Known bug: you may have to restart the server after a game returns to lobby.
+
 Have fun!
