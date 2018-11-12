@@ -4,7 +4,7 @@
 
 Mind Knight is a companion app to [Mindnight](mindnightgame.com)
 
-It automatically tracks props, votes, passes, vote timing and more in a friendly/scalable UI. It can even connect via any device on the same network through its browser.
+It automatically tracks props, votes, passes, vote timing and more in a friendly/scalable UI. It can even connect via any device on the same network through its browser (a phone friendly layout is on the way).
 
 It's in early development and a dew key features are still lacking.
 
