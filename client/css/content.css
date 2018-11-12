@@ -37,6 +37,10 @@ html, body {
 
 }
 
+#donate{
+    margin-left: 10px;
+}
+
 footer .flex-center {
     text-align: center;
 }

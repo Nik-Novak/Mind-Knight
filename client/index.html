@@ -25,7 +25,7 @@
                 <h3>launch mindnight to begin...</h3>
             </div>
         </section>
-         <button id="#test" class="" onclick='simulate()'>Simulate (devs only)</button>
+         <button id="#test" class="nodisp" onclick='simulate()'>Simulate (devs only)</button>
 
         <script src="/socket.io/socket.io.js"></script> <!-- This line is statically set by socket.io library, used in socket.js -->
         <script src="js/jquery.min.js"></script>
@@ -33,7 +33,12 @@
         <script src="js/client.js"></script>
     </div>
 <footer>
-    <div class="flex-left"> <h5></h5></div>
+    <div class="flex-left"> <form id='donate' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="5Q4B7BZGQ3FWW" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_CA/i/scr/pixel.gif" width="1" height="1" />
+    </form></div>
     <div class="flex-center">
         <h5>Mind Knight and its developer are not associated with NOMOON Ltd.</h5>
     </div>
