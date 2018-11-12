@@ -22,7 +22,7 @@ https://discord.gg/hkS3jQT
   * Different: Open a browser on any machine on your network and visit your local IP (shown in the welcome message)
   
 # Help with the interface
-![MK help](/images/logo.png)
+![MK help](https://image.ibb.co/idENnq/help.png)
 
 # Limitations
 * Currently only works on 5 man quick play. 6-7 man is ready, but have not gotten any games to test, so has been left out for the time being
