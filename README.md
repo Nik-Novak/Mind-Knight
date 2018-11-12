@@ -15,6 +15,9 @@ This is a passion project of mine since I love Mindnight so much. I am in no way
 Feel free to discuss/report bugs here:
 https://discord.gg/hkS3jQT
 
+# Download
+https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
+
 # How to get started
 * Download this folder and place it wherever you like
 * Run the RUN.bat file in the main/root directory. A console window should show up with a welcoming message if done correctly
