@@ -15,7 +15,7 @@ This is a passion project of mine since I love Mindnight so much. I am in no way
 * Run the RUN.bat file in the main/root directory. A console window should show up with a welcoming message if done correctly
 * Now you have a choice, view the app on the same PC or on a different device.
   * Same: open a browser and visit localhost:8080
-  * Different: Open a browser on any machine on your network and visit your local IP in the welcome message
+  * Different: Open a browser on any machine on your network and visit your local IP (shown in the welcome message)
 
 # Limitations
 * Currently only works on 5 man quick play. 6-7 man is ready, but have not gotten any games to test, so has been left out for the time being
