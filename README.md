@@ -30,7 +30,7 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 ![MK help](https://image.ibb.co/idENnq/help.png)
 
 # Limitations
-* Currently only tested on 5 man quick play. 6-7 man is ready, but have not gotten any games to test.
+* Have not tested a 7 man game
 * No testing has been done on any other game modes than quick play, mainframe and blind hackers should work...
 * The project may have bugs/kinks to iron out since it has just been released
 * Known bug: you may have to restart the server (.bat file) after a game returns to lobby.
