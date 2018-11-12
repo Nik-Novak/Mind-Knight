@@ -10,6 +10,8 @@ It's in early development and a few key features are still lacking.
 
 This is a passion project of mine since I love Mindnight so much. I am in no way affiliated to the developers.
 
+*If people like this, I will port it to Mac/Linux and also continue developing a bunch more planned features*
+
 # How to use
 * Download this folder and place it wherever you like
 * Run the RUN.bat file in the main/root directory. A console window should show up with a welcoming message if done correctly
