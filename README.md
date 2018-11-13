@@ -40,5 +40,8 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * v0.0.3 
   * Fixed reference to node binaries for those that do not have Node installed.
   * Reverted localhost:8080 from being a host option. Now only works on local IP that is printed in console. 
+* v0.0.5
+  * Fixed bug with previous node hack/secure results carrying over to the next game
+  * Added version control to remind you when there is a new update for MindKnight files
 
 Have fun!
