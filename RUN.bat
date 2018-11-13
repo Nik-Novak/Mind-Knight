@@ -1,1 +1,1 @@
-PowerShell node server.js /k
+PowerShell ./node server.js /k

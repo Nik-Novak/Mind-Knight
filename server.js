@@ -89,6 +89,7 @@ gamebuilder.on('game_launch', (game)=>{
     io.sockets.emit('game_launch');
 });
 gamebuilder.on('game_menu', (game)=>{
+    game={};
     lastState = 'game_menu';
     log('game_menu detected');
     io.sockets.emit('game_menu');
