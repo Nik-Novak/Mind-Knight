@@ -14,7 +14,7 @@ var lastState;
 var lastGame;
 
 // ********* SERVER ROUTING *********
-server.listen(8080); //server.listen(8080, '192.168.1.109'); //LAN MODE
+//server.listen(8080); //server.listen(8080, '192.168.1.109'); //LAN MODE
 server.listen(8080, ip.address());
 
 for(let i=0; i<10; i++)
@@ -163,7 +163,7 @@ function log(msg){
 }
 
 var opn = require('opn');
-opn('http://localhost:8080');
+opn('http://'+ip.address()+':8080');
 
 
     
