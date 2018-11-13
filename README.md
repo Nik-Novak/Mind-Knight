@@ -30,8 +30,7 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 
 # Limitations
 * Currently only works on windows, it's pretty easy to port to Unix so if enough people want it I will. Check discord.
-* Have not tested a 7 man game
-* No testing has been done on any other game modes than quick play, mainframe and blind hackers should work...
+* Does not support 8 man games, and probably won't unless someone requests it.
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
@@ -42,5 +41,6 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * v0.0.5
   * Fixed bug with previous node hack/secure results carrying over to the next game
   * Added version control to remind you when there is a new update for MindKnight files
+  * Tested and works with up to 7 man mainframe
 
 Have fun!
