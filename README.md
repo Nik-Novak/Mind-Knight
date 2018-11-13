@@ -41,4 +41,5 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
   * Fixed reference to node binaries for those that do not have Node installed.
   * Reverted localhost:8080 from being a host option. Now only works on local IP that is printed in console. 
 * v0.0.4 Added version control, to remind you if your version is behind current release
+
 Have fun!
