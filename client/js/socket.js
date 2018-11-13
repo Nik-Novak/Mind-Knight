@@ -33,6 +33,18 @@ socket.on('game_inProgress', ()=>{
     }, 1000);
 });
 
+socket.on('version_expired', (versionData)=>{
+    console.log('Your version of MindKnight is out of date. Your version: '+versionData.local+ '  Latest: ' + versionData.current);
+    $(document).ready(()=>{
+            setTimeout(()=>{
+                if(confirm('Your version of MindKnight is out of date. Would you like to update? \nYour version: '+versionData.local+ '\n Latest: ' + versionData.current)){
+                    window.open('https://github.com/Nik-Novak/Mind-Knight#download', '_blank');
+                    window.open('https://github.com/Nik-Novak/Mind-Knight/archive/master.zip', '_blank');
+                }
+            },500);
+    });
+});
+
 socket.on('log', (message)=>{
     console.log('[SERVER LOG]',message); 
 });

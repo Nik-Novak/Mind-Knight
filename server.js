@@ -2,6 +2,7 @@ var fs = require('fs-extra');
 var express = require('express');
 const Tail = require('./custom_modules/Tail.js');
 const GameBuilder = require('./custom_modules/GameBuilder.js');
+var request = require('request');
 
 var app = express();
 var server = require('http').Server(app);
@@ -68,6 +69,8 @@ io.on('connection', (socket)=>{
 
     if(lastState)
         gamebuilder.emit(lastState, lastGame);
+
+    checkUpdate(socket);
 });
 
 io.on('disconnect', function(socket) {
@@ -157,6 +160,21 @@ function simulate(socket){
 
 // ********* MISC *********
 
+function checkUpdate(socket){
+    fs.readFile('mindknight.version', 'utf-8',(err, data) => {
+        if (err) throw err;
+        let versionURL = 'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version';
+        request(versionURL, function (error, response, body) {
+            if (body == data)
+                console.log('Your version is up to date!');
+            else {
+                console.log('Your MindKnight version is out of date. You\'re running: v'+data+', while the latest version is', body);
+                socket.emit('version_expired', {current:body, local:data});
+            }
+        });
+    });
+}
+
 
 function log(msg){
     console.log('[LOG]',msg);
@@ -165,8 +183,6 @@ function log(msg){
 var opn = require('opn');
 opn('http://'+ip.address()+':8080');
 
-
-    
 
 //TODO: Main menu detect exits game --should be done
 //TODO: refresh exclamation marks on updates --should be done
