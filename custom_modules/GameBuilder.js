@@ -19,6 +19,7 @@ class GameBuilder extends EventEmitter {
             this.emit('game_launch', this.game);
         }
         else if (line.includes('Received GlobalChatHistoryResponse')) {
+            this.game={};
             this.emit('game_menu', this.game);
         }
         //RECOGNIZE MINDNIGHT CLOSED

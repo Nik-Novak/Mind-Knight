@@ -77,7 +77,7 @@ socket.on('game_missionPhaseEnd', (updatedGame)=>{
 
 socket.on('game_menu', (updatedGame)=>{
     log('game_menu');
-    console.log(updatedGame);
+    game={};
     window.location.replace(window.location.origin);
 });
 
