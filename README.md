@@ -32,7 +32,7 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * Currently only works on windows, it's pretty easy to port to Unix so if enough people want it I will. Check discord.
 * Have not tested a 7 man game
 * No testing has been done on any other game modes than quick play, mainframe and blind hackers should work...
-* The project may have bugs/kinks to iron out since it has just been released
+* The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 * Known bug: you may have to restart the server (.bat file) after a game returns to lobby.
 
 # Changelog
