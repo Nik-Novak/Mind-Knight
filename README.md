@@ -35,4 +35,10 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * The project may have bugs/kinks to iron out since it has just been released
 * Known bug: you may have to restart the server (.bat file) after a game returns to lobby.
 
+# Changelog
+* v0.0.2 Release!
+* v0.0.3 
+  * Fixed reference to node binaries for those that do not have Node installed.
+  * Reverted localhost:8080 from being a host option. Now only works on local IP that is printed in console. 
+
 Have fun!
