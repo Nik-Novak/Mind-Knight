@@ -33,7 +33,6 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * Have not tested a 7 man game
 * No testing has been done on any other game modes than quick play, mainframe and blind hackers should work...
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
-* Known bug: you may have to restart the server (.bat file) after a game returns to lobby.
 
 # Changelog
 * v0.0.2 Release!
