@@ -83,7 +83,6 @@ io.on('disconnect', function(socket) {
 
 new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt", gamebuilder.process.bind(gamebuilder)).tail();
 
-
 // ********* Game Build *********
 //Intro page
 gamebuilder.on('game_launch', (game)=>{
@@ -93,6 +92,7 @@ gamebuilder.on('game_launch', (game)=>{
 });
 gamebuilder.on('game_menu', (game)=>{
     game={};
+    lastGame={};
     lastState = 'game_menu';
     log('game_menu detected');
     io.sockets.emit('game_menu');
@@ -134,17 +134,23 @@ gamebuilder.on('game_missionPhaseEnd', (game)=>{
 
 gamebuilder.on('game_end', (game)=>{
     lastState='game_end';
-    lastgame=undefined;
     gameStarted = false;
     log('game_end detected');
     io.sockets.emit('game_end', game);
+});
+
+gamebuilder.on('game_chatUpdate', (game)=>{
+    lastState='game_chatUpdate';
+    lastGame=game;
+    log('game_chatUpdate detected');
+    io.sockets.emit('game_chatUpdate', game);
 });
 
 
 //********* Simulate Game *********
 function simulate(socket){
     // let simFile = 'output_log_beforeGameEnd.txt'; //WORKS PERFECTLY, game 2 folder
-    let simFile = 'output_log_concise.txt';
+    let simFile = 'output_log_beforeGameEnd.txt';
     var lineReader = require('readline').createInterface({
         input: fs.createReadStream('../GameLogs/Game 6/Mindnight/'+simFile)
     });

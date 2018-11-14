@@ -58,6 +58,10 @@ class ResetManager{
         $('.node-container .round-button-circle').attr('status', 'unknown');
     }
 
+    resetChat(){
+        $('#chat-log ul').html('');
+    }
+
     resetAll(){
         this.resetPlayernames();
         this.resetPlayerHighlights();
@@ -68,5 +72,6 @@ class ResetManager{
         this.resetImportantInfo();
         this.resetNodeRejects();
         this.resetNodeStatuses();
+        this.resetChat();
     }
 }

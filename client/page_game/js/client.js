@@ -30,23 +30,34 @@ $('.turn-container div.round-button').click(turnClick); //Node click handler
 
 //TODO: add proper information on enter
 $('.player-img').hover(function(event){ //mouse enter
-    $('.advanced-target-container .prop-time').parent().addClass('nodisp');
-    $('.advanced-target-container .prop-auto').parent().addClass('nodisp');
+    showAdvancedStats(this);
+    }, (event)=>{ //mouse leave
     if(!$('#option_showAdvanced').prop('checked'))
         return;
-    let playerIndex = $(this).parent().attr('index');
+    $('.advanced-target-container').removeClass('opaque');
+});
+
+function showAdvancedStats(__this){
+    if(!$('#option_showAdvanced').prop('checked'))
+        return;
+    let playerIndex = $(__this).parent().attr('index');
     $('.advanced-target-container .advanced-target').html(coloredTextSpan(game.players[playerIndex].Username, colors[game.players[playerIndex].Color].hex));
     let propPlayerIndex = $('.player-container.selected').attr('index');
     let nodeNum = $('.node-container div.round-button.selected').attr('index');
     let turnNum = $('.turn-container .round-button.selected').attr('index')-1;
     // console.log(propPlayerIndex, nodeNum, turnNum, playerIndex);
-    // console.log(nodeNum==undefined, turnNum==undefined, playerIndex==undefined, propPlayerIndex==undefined, !game.players[propPlayerIndex].missions, !game.players[playerIndex].missions[nodeNum], !game.players[playerIndex].missions[nodeNum][turnNum], !game.players[playerIndex].missions[nodeNum][turnNum].vote_made);
-    if(nodeNum==undefined || turnNum==undefined || playerIndex==undefined || propPlayerIndex==undefined || !game.players[propPlayerIndex].missions || !game.players[playerIndex].missions[nodeNum] || !game.players[playerIndex].missions[nodeNum][turnNum] || !game.players[playerIndex].missions[nodeNum][turnNum].vote_made || !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end)
+    // console.log(nodeNum==undefined, turnNum==undefined, playerIndex==undefined, propPlayerIndex==undefined, !game.players[propPlayerIndex].missions, !game.players[propPlayerIndex].missions[nodeNum], !game.players[propPlayerIndex].missions[nodeNum][turnNum], !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_made, !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end);
+    if(nodeNum==undefined || turnNum==undefined || playerIndex==undefined || propPlayerIndex==undefined || !game.players[propPlayerIndex].missions || !game.players[propPlayerIndex].missions[nodeNum] || !game.players[propPlayerIndex].missions[nodeNum][turnNum] || !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_made || !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end)
         return;
 
-    if(playerIndex==propPlayerIndex)
+    if(playerIndex==propPlayerIndex) {
         $('.advanced-target-container .prop-time').parent().removeClass('nodisp');
         $('.advanced-target-container .prop-auto').parent().removeClass('nodisp');
+    }
+    else{
+        $('.advanced-target-container .prop-time').parent().addClass('nodisp');
+        $('.advanced-target-container .prop-auto').parent().addClass('nodisp');
+    }
     let deltaTProp = game.players[propPlayerIndex].missions[nodeNum][turnNum].deltaT;
     if(game.players[propPlayerIndex].missions[nodeNum][turnNum].Passed)
         $('.advanced-target-container .prop-type').html('before passing');
@@ -63,18 +74,15 @@ $('.player-img').hover(function(event){ //mouse enter
         $('.advanced-target-container .vote-auto').html('false');
 
     //vote-result
-    if($(this).children('i.vote-icon').hasClass('fa-check'))
+    if($(__this).children('i.vote-icon').hasClass('fa-check'))
         $('.advanced-target-container .vote-decision').html('ACCEPT');
-    else if ($(this).children('i.vote-icon').hasClass('fa-times'))
+    else if ($(__this).children('i.vote-icon').hasClass('fa-times'))
         $('.advanced-target-container .vote-decision').html('REFUSE');
     else
         $('.advanced-target-container .vote-decision').html('N/A');
     $('.advanced-target-container').addClass('opaque');
-}, (event)=>{ //mouse leave
-    if(!$('#option_showAdvanced').prop('checked'))
-        return;
-    $('.advanced-target-container').removeClass('opaque');
-});
+
+}
 
 $('.player-img').click(function(event){
     // $('.player-container.selected').removeClass('selected');
@@ -83,6 +91,8 @@ $('.player-img').click(function(event){
     let nodeNum = $('.node-container div.round-button.selected').attr('index');
     let turnNum = $('.turn-container .round-button.selected').attr('index');
     displayTurn(nodeNum, turnNum, playerIndex);
+
+    showAdvancedStats(this);
 });
 
 function displayTurn(nodeNum, turnNum, playerIndex, display=true){
@@ -123,6 +133,8 @@ function displayTurn(nodeNum, turnNum, playerIndex, display=true){
             let fromPlayer = coloredTextSpan(game.players[fromPlayerIndex].Username, colors[game.players[fromPlayerIndex].Color].hex);
             let toPlayer = coloredTextSpan(game.players[hammerPlayerIndex].Username, colors[game.players[hammerPlayerIndex].Color].hex)
             $('.important-info .right .targets').html('from ' + fromPlayer + ' to ' + toPlayer);
+            //Chat Scrolling
+            scrollToChat(turnInfo.chatIndex);
         }
         return 'pass';
     }
@@ -147,9 +159,23 @@ function displayTurn(nodeNum, turnNum, playerIndex, display=true){
         turnInfo.vote_phase_end.VotesAgainst.forEach(playerKey=>{
             $('.player-container[index='+playerKey+'] i.vote-icon').addClass('fa-times');
         });
+        //Chat Scrolling
+        scrollToChat(turnInfo.vote_phase_end.chatIndex);
     }
 
     return 'prop';
+
+}
+
+function scrollToChat(chatIndex) {
+    let scrollTo = $('.content-left ul li[index="' + chatIndex + '"]').get(0);
+    if(!scrollTo)
+        return;
+
+    console.log('SCROLL TO: ', chatIndex);
+    console.log(scrollTo)
+
+    scrollTo.scrollIntoView({block:'end', inline:'nearest', behavior:'smooth'});
 
 }
 
@@ -235,10 +261,6 @@ $('.node-container div.round-button').click(function(event){
     //exclamations
     setActionExists(nodeNum, turnNum);
 });
-
-function coloredTextSpan(text, color){
-    return '<span style="color:' + color + '">' + text + '</span> ';
-}
 
 function setActionExists(nodeNum, turnNum){
     Object.keys(game.players).forEach( playerKey=>{

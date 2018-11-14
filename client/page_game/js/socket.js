@@ -33,6 +33,7 @@ function update(updatedGame){
         return;
     //set missions
     setNodeStatuses(updatedGame);
+    setChat(updatedGame);
     //set names
     Object.keys(updatedGame.players).forEach(key => {
         let nameElement = $('.player-container[index='+key+'] .player-name p');
@@ -46,6 +47,12 @@ function update(updatedGame){
         $('.node-container div.round-button[index='+i+'] a.round-button').html(numPlayers);
     });
     firstRun=false;
+}
+
+function updateChat(msg) {
+    let header = coloredTextSpan(game.players[msg.Slot].Username, colors[game.players[msg.Slot].Color].hex).trim();
+    if($('#chat-log ul').children().last().attr('index') != msg.id)
+        $('#chat-log ul').append($( '<li index="'+msg.id+'">[<span class="header">'+header+'</span>]: '+msg.Message+'</li>' ));
 }
 
 socket.on('game_start', (updatedGame)=>{
@@ -66,6 +73,11 @@ socket.on('game_votePhaseEnd', (updatedGame)=>{
     log('game_votePhaseEnd');
     console.log(updatedGame);
     update(updatedGame);
+
+    log('game_chatUpdate'); //ToDO: remove
+    game=updatedGame;
+    let msg = game.chat[game.chat.length-1];
+    updateChat(msg);
 });
 
 socket.on('game_missionPhaseEnd', (updatedGame)=>{
@@ -79,6 +91,13 @@ socket.on('game_menu', (updatedGame)=>{
     log('game_menu');
     game={};
     window.location.replace(window.location.origin);
+});
+
+socket.on('game_chatUpdate', (updatedGame)=>{
+    log('game_chatUpdate');
+    game=updatedGame;
+    let msg = game.chat[game.chat.length-1];
+    updateChat(msg);
 });
 
 socket.on('log', (message)=>{
@@ -97,9 +116,21 @@ function setNodeStatuses(updatedGame){
     });
 }
 
+function setChat(updatedGame){
+    if(!updatedGame.chat)
+        return;
+    updatedGame.chat.forEach((msg)=>{
+        updateChat(msg);
+    });
+}
+
 function simulate(){
     console.log('requesting server simulates');
     socket.emit('simulate', 'test');
+}
+
+function coloredTextSpan(text, color){
+    return '<span style="color:' + color + '">' + text + '</span> ';
 }
 
 function log(msg, fromServer=false){

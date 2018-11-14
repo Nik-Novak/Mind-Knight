@@ -45,5 +45,9 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * v0.0.7
   * Added 8 man support
   * Added more proposal information when hovering over a player after selecting a prop to view (vote timing, proposal timing, etc)
+* v0.1.0
+  * Chat replay added, select someone's prop and it will scroll to show you the chat at the time of the prop/pass/vote
+  * Fixed advanced prop info not showing up for certain players when they hadn't made a prop that turn
+  * Fixed advanced prop info not updating when already hovering over a player
 
 Have fun!

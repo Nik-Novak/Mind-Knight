@@ -27,7 +27,18 @@ class GameBuilder extends EventEmitter {
             this.emit('game_close', this.game);
         }
 
-        //BUILD GAME OBJECT
+        else if (line.includes('Received ChatMessageReceive')) {
+            // console.log(line.substring(line.indexOf('packet:', 20) + 7));
+            let packet = JSON.parse(line.substring(line.indexOf('packet:', 20) + 7));
+            this.game.chat= this.game.chat || [];
+            packet.id=this.game.chat.length;
+            this.game.chat.push(packet);
+            this.game.players[packet.Slot].chat = this.game.players[packet.Slot].chat || [];
+            this.game.players[packet.Slot].chat.push(packet.id);
+            this.emit('game_chatUpdate', this.game);
+        }
+
+        //SEQUENTIAL BUILD GAME OBJECT
         else if (line.includes('Received GameFound')) {
             let packet = JSON.parse(line.substring(line.indexOf('packet:', 20) + 7));
             this.game.game_found = packet;
@@ -62,7 +73,9 @@ class GameBuilder extends EventEmitter {
             packet.timestamp = new Date(tmpTimestamp);
             let missionProps = this.game.players[packet.Proposer].missions[this.missionNum];
             packet.deltaT = packet.timestamp - this.game.players[packet.Proposer].missions[this.missionNum][this.game.players[packet.Proposer].missions[this.missionNum].length-1].timestamp;
-            this.game.players[packet.Proposer].missions[this.missionNum][missionProps.length-1] = Object.assign(this.game.players[packet.Proposer].missions[this.missionNum][missionProps.length-1], packet)
+            this.game.chat= this.game.chat || [];
+            packet.chatIndex = this.game.chat.length;
+            this.game.players[packet.Proposer].missions[this.missionNum][missionProps.length-1] = Object.assign(this.game.players[packet.Proposer].missions[this.missionNum][missionProps.length-1], packet);
             this.emit('game_selectPhaseEnd', this.game);
         }
         else if (line.includes('Received VotePhaseStart')) { //passed flag is set if the vote succeeded
@@ -91,6 +104,7 @@ class GameBuilder extends EventEmitter {
             packet.timestamp = new Date(tmpTimestamp);
             let missionProps = this.game.players[this.proposerNum].missions[this.missionNum];
             packet.deltaT = packet.timestamp - this.game.players[this.proposerNum].missions[this.missionNum][missionProps.length-1].vote_phase_start.timestamp;
+            packet.chatIndex = this.game.chat.length;
             this.game.players[this.proposerNum].missions[this.missionNum][missionProps.length-1].vote_phase_end = packet;
             this.game.players[this.proposerNum].missions[this.missionNum][missionProps.length-1].confirmedPropNumber = this.propNumber;
             this.propNumber++;
@@ -112,6 +126,7 @@ class GameBuilder extends EventEmitter {
             packet.timestamp = new Date(tmpTimestamp);
             packet.deltaT = packet.timestamp - this.game.missions[packet.Mission].mission_phase_start.timestamp;
             packet.propNumber = this.propNumber-1;
+            packet.chatIndex = this.game.chat.length;
             this.propNumber=1;
             this.game.missions[packet.Mission].mission_phase_end = packet;
             this.emit('game_missionPhaseEnd', this.game);
