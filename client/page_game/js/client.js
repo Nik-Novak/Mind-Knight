@@ -29,9 +29,46 @@ var turnClick = function(event){
 $('.turn-container div.round-button').click(turnClick); //Node click handler
 
 //TODO: add proper information on enter
-$('.player-img').hover((event)=>{ //mouse enter
+$('.player-img').hover(function(event){ //mouse enter
+    $('.advanced-target-container .prop-time').parent().addClass('nodisp');
+    $('.advanced-target-container .prop-auto').parent().addClass('nodisp');
     if(!$('#option_showAdvanced').prop('checked'))
         return;
+    let playerIndex = $(this).parent().attr('index');
+    $('.advanced-target-container .advanced-target').html(coloredTextSpan(game.players[playerIndex].Username, colors[game.players[playerIndex].Color].hex));
+    let propPlayerIndex = $('.player-container.selected').attr('index');
+    let nodeNum = $('.node-container div.round-button.selected').attr('index');
+    let turnNum = $('.turn-container .round-button.selected').attr('index')-1;
+    // console.log(propPlayerIndex, nodeNum, turnNum, playerIndex);
+    // console.log(nodeNum==undefined, turnNum==undefined, playerIndex==undefined, propPlayerIndex==undefined, !game.players[propPlayerIndex].missions, !game.players[playerIndex].missions[nodeNum], !game.players[playerIndex].missions[nodeNum][turnNum], !game.players[playerIndex].missions[nodeNum][turnNum].vote_made);
+    if(nodeNum==undefined || turnNum==undefined || playerIndex==undefined || propPlayerIndex==undefined || !game.players[propPlayerIndex].missions || !game.players[playerIndex].missions[nodeNum] || !game.players[playerIndex].missions[nodeNum][turnNum] || !game.players[playerIndex].missions[nodeNum][turnNum].vote_made || !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end)
+        return;
+
+    if(playerIndex==propPlayerIndex)
+        $('.advanced-target-container .prop-time').parent().removeClass('nodisp');
+        $('.advanced-target-container .prop-auto').parent().removeClass('nodisp');
+    let deltaTProp = game.players[propPlayerIndex].missions[nodeNum][turnNum].deltaT;
+    if(game.players[propPlayerIndex].missions[nodeNum][turnNum].Passed)
+        $('.advanced-target-container .prop-type').html('before passing');
+    else
+        $('.advanced-target-container .prop-type').html('proposing');
+    $('.advanced-target-container .prop-time').html(deltaTProp/1000);
+    let deltaTVote = game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_made[playerIndex].deltaT;
+    let deltaTVoteAll = game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end.deltaT;
+    $('.advanced-target-container .vote-time').html(deltaTVote/1000);
+    $('.advanced-target-container .vote-time-all').html(deltaTVoteAll/1000);
+    if(deltaTVote == 60000 || deltaTVote<1000)
+        $('.advanced-target-container .vote-auto').html('true');
+    else
+        $('.advanced-target-container .vote-auto').html('false');
+
+    //vote-result
+    if($(this).children('i.vote-icon').hasClass('fa-check'))
+        $('.advanced-target-container .vote-decision').html('ACCEPT');
+    else if ($(this).children('i.vote-icon').hasClass('fa-times'))
+        $('.advanced-target-container .vote-decision').html('REFUSE');
+    else
+        $('.advanced-target-container .vote-decision').html('N/A');
     $('.advanced-target-container').addClass('opaque');
 }, (event)=>{ //mouse leave
     if(!$('#option_showAdvanced').prop('checked'))

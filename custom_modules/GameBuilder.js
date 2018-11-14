@@ -46,6 +46,9 @@ class GameBuilder extends EventEmitter {
         }
         else if (line.includes('Received SelectPhaseStart')) {
             let packet = JSON.parse(line.substring(line.indexOf('packet:', 20) + 7));
+            packet.timestamp = line.substring(0, 19);
+            let tmpTimestamp = packet.timestamp.replace(/\./g, '-').replace(' ', 'T') + "Z";
+            packet.timestamp = new Date(tmpTimestamp);
             this.game.players[packet.Player].missions = this.game.players[packet.Player].missions || {}; //INIT
             this.game.players[packet.Player].missions[packet.Mission] = this.game.players[packet.Player].missions[packet.Mission] || []; //INIT
             packet.propNumber = this.propNumber;
@@ -54,7 +57,11 @@ class GameBuilder extends EventEmitter {
         }
         else if (line.includes('Received SelectPhaseEnd')) { //pass occurs if passed flag is set to true here
             let packet = JSON.parse(line.substring(line.indexOf('packet:', 20) + 7));
+            packet.timestamp = line.substring(0, 19);
+            let tmpTimestamp = packet.timestamp.replace(/\./g, '-').replace(' ', 'T') + "Z";
+            packet.timestamp = new Date(tmpTimestamp);
             let missionProps = this.game.players[packet.Proposer].missions[this.missionNum];
+            packet.deltaT = packet.timestamp - this.game.players[packet.Proposer].missions[this.missionNum][this.game.players[packet.Proposer].missions[this.missionNum].length-1].timestamp;
             this.game.players[packet.Proposer].missions[this.missionNum][missionProps.length-1] = Object.assign(this.game.players[packet.Proposer].missions[this.missionNum][missionProps.length-1], packet)
             this.emit('game_selectPhaseEnd', this.game);
         }
