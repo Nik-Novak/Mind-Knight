@@ -30,7 +30,6 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 
 # Limitations
 * Currently only works on windows, it's pretty easy to port to Unix so if enough people want it I will. Check discord.
-* Does not support 8 man games, and probably won't unless someone requests it.
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
