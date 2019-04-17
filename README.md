@@ -57,3 +57,5 @@ Just download the latest version from above, then delete your old files and repl
   * Added game tracking
 
 Have fun!
+
+https://www.virustotal.com/gui/file/c005449e0e80790b3a1fc6493df64a68186ffb31d5e54ed240b90538553aa873/detection
