@@ -1,8 +1,12 @@
+var path = require("path");
 var fs = require('fs-extra');
 var express = require('express');
 const Tail = require('./custom_modules/Tail.js');
 const GameBuilder = require('./custom_modules/GameBuilder.js');
+var Database = require('./custom_modules/Database.js').Database;
 var request = require('request');
+
+//const LOGPATH = "$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt";
 
 var app = express();
 var server = require('http').Server(app);
@@ -14,9 +18,14 @@ var gameStarted = false;
 var lastState;
 var lastGame;
 
+var database = new Database();
+
 // ********* SERVER ROUTING *********
 //server.listen(8080); //server.listen(8080, '192.168.1.109'); //LAN MODE
 server.listen(8080, ip.address());
+//console.log(process.env);
+
+database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/output_log.txt"));
 
 for(let i=0; i<10; i++)
     console.log('LAN MODE ENABLED, to view the app on another device in yout home/network please visit this address in your browser:', ip.address()+ ":8080");
@@ -70,7 +79,17 @@ io.on('connection', (socket)=>{
     if(lastState)
         gamebuilder.emit(lastState, lastGame);
 
-    checkUpdate(socket);
+    checkUpdate().then(versionData=>{
+        if (versionData.current == versionData.local){
+            console.log('Your version is up to date!');
+            socket.emit('version_uptodate', versionData);
+        }
+        else {
+            console.log('Your MindKnight version is out of date. You\'re running: v'+versionData.local+', while the latest version is v', versionData.current);
+            socket.emit('version_expired', versionData);
+        }
+        
+    });
 });
 
 io.on('disconnect', function(socket) {
@@ -89,6 +108,7 @@ gamebuilder.on('game_launch', (game)=>{
     lastState = 'game_launch';
     log('game_launch detected');
     io.sockets.emit('game_launch');
+    database.resetCheckpoint();
 });
 gamebuilder.on('game_menu', (game)=>{
     game={};
@@ -137,6 +157,7 @@ gamebuilder.on('game_end', (game)=>{
     gameStarted = false;
     log('game_end detected');
     io.sockets.emit('game_end', game);
+    database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/output_log.txt"));
 });
 
 gamebuilder.on('game_chatUpdate', (game)=>{
@@ -166,17 +187,15 @@ function simulate(socket){
 
 // ********* MISC *********
 
-function checkUpdate(socket){
-    fs.readFile('mindknight.version', 'utf-8',(err, data) => {
-        if (err) throw err;
-        let versionURL = 'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version';
-        request(versionURL, function (error, response, body) {
-            if (body == data)
-                console.log('Your version is up to date!');
-            else {
-                console.log('Your MindKnight version is out of date. You\'re running: v'+data+', while the latest version is', body);
-                socket.emit('version_expired', {current:body, local:data});
-            }
+function checkUpdate(){
+    return new Promise( (resolve, reject) =>{
+        fs.readFile('mindknight.version', 'utf-8',(err, local) => {
+            if (err) throw err;
+            let versionURL = 'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version';
+            request(versionURL, function (error, response, current) {
+                //console.log('('+local+ ', ' + current+')');
+                resolve({local:local, current:current});
+            });
         });
     });
 }

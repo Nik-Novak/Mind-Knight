@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "firebase": "^5.9.4",
     "fs-extra": "^7.0.1",
     "ip": "^1.1.5",
+    "npm-cli": "^0.1.0",
     "open": "0.0.5",
     "opn": "^5.4.0",
     "request": "^2.88.0",
