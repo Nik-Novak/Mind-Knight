@@ -5,8 +5,6 @@ const {
 } = require('child_process');
 var firebase = require('firebase');
 
-var serviceAccount = require("../fb/mind-knight-firebase-adminsdk-a3967-a45da2259a.json");
-
 
 class Database {
     constructor() {
