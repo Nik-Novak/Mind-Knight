@@ -25,7 +25,7 @@ var database = new Database();
 server.listen(8080, ip.address());
 //console.log(process.env);
 
-database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/output_log.txt"));
+//database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/output_log.txt"));
 
 for(let i=0; i<10; i++)
     console.log('LAN MODE ENABLED, to view the app on another device in yout home/network please visit this address in your browser:', ip.address()+ ":8080");
