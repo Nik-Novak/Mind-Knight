@@ -29,4 +29,6 @@ attrib -r UPDATE.bat
 attrib -r .git
 attrib -r 7z
 
-start RUN
+echo "UPDATE COMPLETE, STARTING UP!"
+
+RUN
