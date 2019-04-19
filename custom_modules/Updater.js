@@ -7,10 +7,14 @@ class Updater{
     
     update(){
         
-        exec('UPDATE.bat', (err, stdout, stderr) => {
+        exec('start UPDATE.bat', (err, stdout, stderr) => {
             if (err) throw err;
             log(stdout);
         });
+        
+        setTimeout(()=>{
+            process.exit();
+        }, 1000);
         
         
 //        exec('git pull', (err, stdout, stderr) => {
