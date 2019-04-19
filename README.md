@@ -55,6 +55,8 @@ Just download the latest version from above, then delete your old files and repl
   * Added version number to main screen
   * Added update link to main screen if version is out of date
   * Added game tracking
+* v0.1.1.1
+  * Hotfix for game tracking
 
 Have fun!
 
