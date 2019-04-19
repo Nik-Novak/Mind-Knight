@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <title>Mind Knight</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/content.css" rel="stylesheet">
+    <link href="css/colour.css" rel="stylesheet">
+	
+	<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="shortcut icon" href="/favicon/favicon.ico">
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body id="page-top">
+    <div id="container">
+        <section id="content">
+            <div class="title-container">
+                <h1>Mind Knight</h1>
+                <h2 id="update-msg">is updating, please wait<span id="progress">...</span></h2>
+                <h3 id="version">checking version...</h3>
+            </div>
+            <div id="instructions-container">
+                <h3>when complete, a new window is launched and you may close this one</h3>
+            </div>
+        </section>
+         <button id="#test" class="nodisp" onclick='simulate()'>Simulate (devs only)</button>
+
+        <script src="/socket.io/socket.io.js"></script> <!-- This line is statically set by socket.io library, used in socket.js -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/socket.js"></script>
+        <script src="js/client.js"></script>
+    </div>
+<footer>
+    <div class="flex-left"> <form id='donate' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="5Q4B7BZGQ3FWW" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_CA/i/scr/pixel.gif" width="1" height="1" />
+    </form></div>
+    <div class="flex-center">
+        <h5>Mind Knight and its developer are not associated with NOMOON Ltd.</h5>
+    </div>
+    <div class="flex-right"> <h5>Made by <a href="">Nik</a></h5></div>
+
+</footer>
+<script>
+    var state=0;
+    setInterval(()=>{
+        switch(state){
+            case 0:
+                $('#progress').html('');
+                break;
+            case 1:
+                $('#progress').html('.')
+                break;
+            case 2:
+                $('#progress').html('..');
+                break;
+            case 3:
+                $('#progress').html('...')
+                break;
+        }
+        state++;
+        if(state>3)
+            state=0;
+        
+    },1000);
+</script>
+</body>
+</html>

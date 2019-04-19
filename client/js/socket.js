@@ -36,13 +36,9 @@ socket.on('game_inProgress', ()=>{
 socket.on('version_expired', (versionData)=>{
     console.log('Your version of MindKnight is out of date. Your version: '+versionData.local+ '  Latest: ' + versionData.current);
     $(document).ready(()=>{
-        $('#version').html('v'+versionData.local + ' - (<a href="https://github.com/Nik-Novak/Mind-Knight" style="color:red;">UPDATE</a>)')
+        $('#version').html('v'+versionData.local + ' - (<a href="https://github.com/Nik-Novak/Mind-Knight" style="color:red;" onclick="update()">UPDATE</a>)')
             setTimeout(()=>{
-                if(confirm('Your version of MindKnight is out of date. Would you like to update? \nYour version: '+versionData.local+ '\n Latest: ' + versionData.current)){
-                    //window.open('https://github.com/Nik-Novak/Mind-Knight#download', '_blank');
-                    //window.open('https://github.com/Nik-Novak/Mind-Knight/archive/master.zip', '_blank');
-                    socket.emit('update');
-                }
+                update();
             },500);
     });
 });
@@ -60,4 +56,13 @@ socket.on('log', (message)=>{
 function simulate(){
     console.log('requesting server simulates');
     socket.emit('simulate', 'test');
+}
+
+function update(){
+    if(confirm('Your version of MindKnight is out of date. Would you like to update? \nYour version: '+versionData.local+ '\n Latest: ' + versionData.current)){
+        //window.open('https://github.com/Nik-Novak/Mind-Knight#download', '_blank');
+        //window.open('https://github.com/Nik-Novak/Mind-Knight/archive/master.zip', '_blank');
+        socket.emit('update');
+        window.location.replace(window.location.origin + '/update');
+    }
 }

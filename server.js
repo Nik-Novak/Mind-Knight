@@ -44,6 +44,10 @@ app.get('/', (req, res)=>{
     res.sendFile(__dirname + '/client/index.html');
 });
 
+app.get('/update', (req, res)=>{
+    res.sendFile(__dirname + '/client/page_update/index.html');
+});
+
 app.get('/game', (req, res)=>{
     if(!gameStarted)
         res.redirect('/');
@@ -207,10 +211,6 @@ function checkUpdate(){
             });
         });
     });
-}
-
-function autoUpdate(){
-    
 }
 
 function log(msg){
