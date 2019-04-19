@@ -39,8 +39,9 @@ socket.on('version_expired', (versionData)=>{
         $('#version').html('v'+versionData.local + ' - (<a href="https://github.com/Nik-Novak/Mind-Knight" style="color:red;">UPDATE</a>)')
             setTimeout(()=>{
                 if(confirm('Your version of MindKnight is out of date. Would you like to update? \nYour version: '+versionData.local+ '\n Latest: ' + versionData.current)){
-                    window.open('https://github.com/Nik-Novak/Mind-Knight#download', '_blank');
-                    window.open('https://github.com/Nik-Novak/Mind-Knight/archive/master.zip', '_blank');
+                    //window.open('https://github.com/Nik-Novak/Mind-Knight#download', '_blank');
+                    //window.open('https://github.com/Nik-Novak/Mind-Knight/archive/master.zip', '_blank');
+                    socket.emit('update');
                 }
             },500);
     });

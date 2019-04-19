@@ -1,0 +1,3 @@
+set gitdir=./git
+set path=%gitdir%\cmd;%path%
+git status

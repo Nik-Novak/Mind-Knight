@@ -4,6 +4,7 @@ var express = require('express');
 const Tail = require('./custom_modules/Tail.js');
 const GameBuilder = require('./custom_modules/GameBuilder.js');
 var Database = require('./custom_modules/Database.js').Database;
+var Updater = require('./custom_modules/Updater.js').Updater;
 var request = require('request');
 
 //const LOGPATH = "$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt";
@@ -19,13 +20,17 @@ var lastState;
 var lastGame;
 
 var database = new Database();
+var updater = new Updater();
 
 // ********* SERVER ROUTING *********
 //server.listen(8080); //server.listen(8080, '192.168.1.109'); //LAN MODE
 server.listen(8080, ip.address());
 //console.log(process.env);
 
+//*********TEST*****************
 //database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/output_log.txt"));
+//******************************
+
 
 for(let i=0; i<10; i++)
     console.log('LAN MODE ENABLED, to view the app on another device in yout home/network please visit this address in your browser:', ip.address()+ ":8080");
@@ -89,6 +94,10 @@ io.on('connection', (socket)=>{
             socket.emit('version_expired', versionData);
         }
         
+    });
+    
+    socket.on('update', ()=>{
+        updater.update();
     });
 });
 
@@ -200,6 +209,9 @@ function checkUpdate(){
     });
 }
 
+function autoUpdate(){
+    
+}
 
 function log(msg){
     console.log('[LOG]',msg);
