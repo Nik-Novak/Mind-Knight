@@ -1,5 +1,5 @@
 ping 127.0.0.1 -n 3 > nul
-Powershell wget https://github.com/Nik-Novak/Mind-Knight/archive/master.zip -outfile master.zip
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; [Net.ServicePointManager]::SecurityProtocol; wget https://github.com/Nik-Novak/Mind-Knight/archive/master.zip -outfile master.zip"
 echo "download done!"
 
 attrib +r master.zip

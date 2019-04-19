@@ -1,0 +1,3 @@
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; [Net.ServicePointManager]::SecurityProtocol; wget https://github.com/Nik-Novak/Mind-Knight/archive/master.zip -outfile master.zip"
+
+@pause
