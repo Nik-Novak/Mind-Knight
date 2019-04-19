@@ -25,9 +25,10 @@ class Database {
 
     uploadGame(filepath) {
         let data = this.readLogFile(filepath);
+        let tmp = data.length;
         data = data.substring(this.fileCheckpoint);
         let UUID = this.getID();
-        this.fileCheckpoint=data.length;
+        this.fileCheckpoint=tmp;
         this.uploadData(UUID, data);
     }
     
