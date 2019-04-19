@@ -36,6 +36,9 @@ Just download the latest version from above, then delete your old files and repl
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
+* v0.2.1
+  * Added separate screen for the update process
+  * Added user experience improvements to update process
 * v0.2.0
   * Automatic updater, downloads and replaces updated files
 * v0.1.1-1
