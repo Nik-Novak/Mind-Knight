@@ -36,7 +36,7 @@ socket.on('game_inProgress', ()=>{
 socket.on('version_expired', (versionData)=>{
     console.log('Your version of MindKnight is out of date. Your version: '+versionData.local+ '  Latest: ' + versionData.current);
     $(document).ready(()=>{
-        $('#version').html('v'+versionData.local + ' - (<a href="https://github.com/Nik-Novak/Mind-Knight" style="color:red;" onclick="update(null)">UPDATE</a>)')
+        $('#version').html('v'+versionData.local + ' - (<a href="#" style="color:red;" onclick="update(null)">UPDATE</a>)')
             setTimeout(()=>{
                 update(versionData);
             },500);
