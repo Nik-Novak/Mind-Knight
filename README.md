@@ -57,6 +57,8 @@ Just download the latest version from above, then delete your old files and repl
   * Added game tracking
 * v0.1.1-1
   * Hotfix for game tracking
+* v0.2.0
+  * Automatic updater, downloads and replaces updated files
 
 Have fun!
 
