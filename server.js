@@ -203,7 +203,10 @@ function simulate(socket){
 function checkUpdate(){
     return new Promise( (resolve, reject) =>{
         fs.readFile('mindknight.version', 'utf-8',(err, local) => {
-            if (err) throw err;
+            if (err) {
+                console.log('[ERROR] failed to read version file.')
+                local = 'unknown';
+            };
             let versionURL = 'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version';
             request(versionURL, function (error, response, current) {
                 //console.log('('+local+ ', ' + current+')');
