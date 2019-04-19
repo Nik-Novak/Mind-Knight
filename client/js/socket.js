@@ -45,7 +45,7 @@ socket.on('version_expired', (versionData)=>{
 
 socket.on('version_uptodate', (versionData)=>{
     $(document).ready(()=>{
-        $('#version').html('v'+versionData.local)
+        $('#version').html('v'+versionData.local + ' - (<a href="#" onclick="update(null)">force update</a>)')
     });
 });
 
