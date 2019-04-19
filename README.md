@@ -11,8 +11,8 @@ This is a passion project of mine since I love Mindnight so much. I am in no way
 
 *If people like this, I will port it to Mac/Linux(inferior peasantry) and also continue developing a bunch more planned features*
 
-Feel free to discuss/report bugs here:
-https://discord.gg/hkS3jQT
+Feel free to discuss/report bugs or request features here:
+https://discord.gg/wDjxM2u
 
 # Download
 https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
@@ -57,3 +57,5 @@ Just download the latest version from above, then delete your old files and repl
   * Added game tracking
 
 Have fun!
+
+https://www.virustotal.com/gui/file/c005449e0e80790b3a1fc6493df64a68186ffb31d5e54ed240b90538553aa873/detection
