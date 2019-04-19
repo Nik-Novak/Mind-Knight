@@ -1,16 +1,6 @@
-Powershell wget https://github.com/Nik-Novak/Mind-Knight/archive/master.zip -outfile master.zip
-echo "download done!"
-
 attrib +r master.zip
-attrib +r UPDATE.bat
 attrib +r .git
 attrib +r 7z
-for /D %%D in ("*") do (
-    if /I not "%%~nxD"==".git" if /I not "%%~nxD"=="7z" rd /S /Q "%%~D"
-)
-for %%F in ("*") do (
-    del "%%~F"
-)
 
 set zdir=./7z
 set path=%zdir%;%path%
@@ -21,7 +11,6 @@ for /d /r "Mind-Knight-master" %%i in (*) do if exist "./\%%~ni" (dir "%%i" | fi
 rd /s /q Mind-Knight-master
 
 attrib -r master.zip
-attrib -r UPDATE.bat
 attrib -r .git
 attrib -r 7z
 @pause
