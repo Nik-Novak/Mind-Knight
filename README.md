@@ -36,27 +36,29 @@ Just download the latest version from above, then delete your old files and repl
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
-* v0.0.2 Release!
-* v0.0.3 
-  * Fixed reference to node binaries for those that do not have Node installed.
-  * Reverted localhost:8080 from being a host option. Now only works on local IP that is printed in console. 
-* v0.0.5
-  * Fixed bug with previous node hack/secure results carrying over to the next game
-  * Added version control to remind you when there is a new update for MindKnight files
-  * Tested and works with up to 7 man mainframe
-* v0.0.7
-  * Added 8 man support
-  * Added more proposal information when hovering over a player after selecting a prop to view (vote timing, proposal timing, etc)
-* v0.1.0
-  * Chat replay added, select someone's prop and it will scroll to show you the chat at the time of the prop/pass/vote
-  * Fixed advanced prop info not showing up for certain players when they hadn't made a prop that turn
-  * Fixed advanced prop info not updating when already hovering over a player
+* v0.2.0
+  * Automatic updater, downloads and replaces updated files
+* v0.1.1-1
+  * Hotfix for game tracking
 * v0.1.1
   * Added version number to main screen
   * Added update link to main screen if version is out of date
   * Added game tracking
-* v0.1.1-1
-  * Hotfix for game tracking
+* v0.1.0
+  * Chat replay added, select someone's prop and it will scroll to show you the chat at the time of the prop/pass/vote
+  * Fixed advanced prop info not showing up for certain players when they hadn't made a prop that turn
+  * Fixed advanced prop info not updating when already hovering over a player
+* v0.0.7
+  * Added 8 man support
+  * Added more proposal information when hovering over a player after selecting a prop to view (vote timing, proposal timing, etc)
+* v0.0.5
+  * Fixed bug with previous node hack/secure results carrying over to the next game
+  * Added version control to remind you when there is a new update for MindKnight files
+  * Tested and works with up to 7 man mainframe
+* v0.0.3 
+  * Fixed reference to node binaries for those that do not have Node installed.
+  * Reverted localhost:8080 from being a host option. Now only works on local IP that is printed in console. 
+* v0.0.2 Release!
 
 Have fun!
 
