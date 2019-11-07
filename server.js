@@ -113,7 +113,7 @@ io.on('disconnect', function(socket) {
 // ********* TAIL *********
 //C:/Users/nnova/AppData/LocalLow/Nomoon/Mindnight/output_log.txt
 
-new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt", gamebuilder.process.bind(gamebuilder)).tail();
+new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/Player.log", gamebuilder.process.bind(gamebuilder)).tail();
 
 // ********* Game Build *********
 //Intro page
