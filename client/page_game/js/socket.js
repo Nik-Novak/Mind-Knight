@@ -73,7 +73,6 @@ socket.on('game_votePhaseEnd', (updatedGame)=>{
     log('game_votePhaseEnd');
     console.log(updatedGame);
     update(updatedGame);
-
     log('game_chatUpdate'); //ToDO: remove
     game=updatedGame;
     let msg = game.chat[game.chat.length-1];
