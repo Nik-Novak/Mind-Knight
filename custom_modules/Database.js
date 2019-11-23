@@ -21,6 +21,15 @@ class Database {
         this.firebase = firebase;
         this.fileCheckpoint = 0;
         //firebase.initializeApp(config);
+
+        // var connectedRef = this.firebase.database().ref(".info/connected");
+        // connectedRef.on("value", function(snap) {
+        // if (snap.val() === true) {
+        //     console.log(`[DEBUG] DB connected.`)
+        // } else {
+        //     console.log(`[DEBUG ERROR] No DB connection.`)
+        // }
+        // });
     }
 
     uploadGame(filepath) {
@@ -58,17 +67,46 @@ class Database {
         //        console.log(data);
         //this.firebase.ref()
 
-        this.firebase.database().ref('users/' + UUID).once('value').then(snapshot => {
-            let userdata = snapshot.val();
-            if(userdata==null || userdata.length==0)
-                userdata = [];
-            userdata.push({
-                timestamp: Date.now(),
-                data: data
-            });
-            this.firebase.database().ref('users/' + UUID).set(userdata);
-        });
+        this.firebase.database().ref('users/' + UUID).once('value').then
+        ( 
+            snapshot => {
+                //console.log(`[DEBUG] Database read successfully.`);
+                //console.log(snapshot.val())
+                let userdata = snapshot.val();
+                if(userdata==null || userdata.length==0){
+                    userdata = [];
+                    console.log(`userdata was not found for UUID ${UUID}, generating empty userdata.`)
+                }
 
+                let recordsLen = userdata.length;
+                //console.log(`[DEBUG] userdata.length - ${userdata.length}`)
+                let newData = {
+                    timestamp: Date.now(),
+                    data: data
+                }
+                // userdata.push({
+                //     timestamp: Date.now(),
+                //     data: data
+                // });
+                
+                this.firebase.database().ref('users/' + UUID + '/' + recordsLen).set(
+                    newData, 
+                    function(err){
+                        if(err)
+                            console.log(`[ERROR] ${err}`);
+                        else
+                            console.log(`[LOG] Game information successfully sent (${UUID}).`)
+                    }
+                );
+
+            }, 
+            
+            function(err){
+                console.log(err);
+            }
+        );
+
+        //console.log(`[DEBUG] end of uploadData`)
         
 //        let testdata = [
 //            {timestamp: '123',data: '1234'},

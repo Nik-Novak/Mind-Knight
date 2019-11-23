@@ -170,7 +170,7 @@ gamebuilder.on('game_end', (game)=>{
     gameStarted = false;
     log('game_end detected');
     io.sockets.emit('game_end', game);
-    database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/output_log.txt"));
+    database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log"));
 });
 
 gamebuilder.on('game_chatUpdate', (game)=>{
@@ -184,9 +184,9 @@ gamebuilder.on('game_chatUpdate', (game)=>{
 //********* Simulate Game *********
 function simulate(socket){
     // let simFile = 'output_log_beforeGameEnd.txt'; //WORKS PERFECTLY, game 2 folder
-    let simFile = 'output_log_beforeGameEnd.txt';
+    let simFile = 'output_log.txt'//'output_log_beforeGameEnd.txt';
     var lineReader = require('readline').createInterface({
-        input: fs.createReadStream('../GameLogs/Game 6/Mindnight/'+simFile)
+        input: fs.createReadStream('./sample_games/Game 6/Mindnight/'+simFile)
     });
 
     lineReader.on('line', function (line) {
