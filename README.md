@@ -27,6 +27,7 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 
 # Updating?
 Just download the latest version from above, then delete your old files and replace them!
+Or try updating on the main menu.
 
 # Help with the interface
 ![MK help](https://image.ibb.co/idENnq/help.png)
