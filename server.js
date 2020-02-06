@@ -184,7 +184,7 @@ gamebuilder.on('game_chatUpdate', (game)=>{
 //********* Simulate Game *********
 function simulate(socket){
     // let simFile = 'output_log_beforeGameEnd.txt'; //WORKS PERFECTLY, game 2 folder
-    let simFile = 'output_log.txt'//'output_log_beforeGameEnd.txt';
+    let simFile = 'output_log_beforeGameEnd.txt'//'output_log.txt'//'output_log_beforeGameEnd.txt';
     var lineReader = require('readline').createInterface({
         input: fs.createReadStream('./sample_games/Game 6/Mindnight/'+simFile)
     });

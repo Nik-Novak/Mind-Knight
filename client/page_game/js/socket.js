@@ -50,9 +50,13 @@ function update(updatedGame){
 }
 
 function updateChat(msg) {
-    let header = coloredTextSpan(game.players[msg.Slot].Username, colors[game.players[msg.Slot].Color].hex).trim();
-    if($('#chat-log ul').children().last().attr('index') != msg.id)
-        $('#chat-log ul').append($( '<li index="'+msg.id+'">[<span class="header">'+header+'</span>]: '+msg.Message+'</li>' ));
+    if(typeof(msg) == 'string')
+        $('#chat-log ul').append($( '<li>'+coloredTextSpan(msg,'#D4AF37')+'</li>' ));
+    else{
+        let header = coloredTextSpan(game.players[msg.Slot].Username, colors[game.players[msg.Slot].Color].hex).trim();
+        if($('#chat-log ul').children().last().attr('index') != msg.id)
+            $('#chat-log ul').append($( '<li index="'+msg.id+'">[<span class="header">'+header+'</span>]: '+msg.Message+'</li>' ));
+    }
 }
 
 socket.on('game_start', (updatedGame)=>{
@@ -61,6 +65,8 @@ socket.on('game_start', (updatedGame)=>{
     log(updatedGame.game_found.PlayerNumber + ' Players were detected. Loading appropriate layout');
     //TODO player # specific css selection and node naming, etc. Found in game.game_found
     update(updatedGame);
+    let initial_chatNodeSeparator = `-------------- BEGIN NODE 1 ----------------`
+    updateChat(initial_chatNodeSeparator);
 });
 
 socket.on('game_selectPhaseEnd', (updatedGame)=>{
@@ -84,6 +90,8 @@ socket.on('game_missionPhaseEnd', (updatedGame)=>{
     console.log(updatedGame);
     setNodeStatuses(updatedGame);     //set missions
     update(updatedGame);
+    let chatNodeSeparator = `-------------- BEGIN NODE ${Object.keys(updatedGame.missions).length +1 } ----------------`
+    updateChat(chatNodeSeparator);
 });
 
 socket.on('game_menu', (updatedGame)=>{
