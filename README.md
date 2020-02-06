@@ -37,6 +37,11 @@ Or try updating on the main menu.
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
+* v0.3.0-0
+  * Added node identifiers in chat to more easily figure out when a message was sent
+  * Added chat search functionality, to search for previous messages
+  * Added chat search filtering, which toggles the visibility of chat messages that don't match search query
+  * Fixed global font, allowing everyone to see the Mindnight Munro font
 * v0.2.1-10
   * Fixed a bug where number of games logged per user was capped
 * v0.2.1-9
