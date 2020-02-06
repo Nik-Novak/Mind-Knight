@@ -41,8 +41,6 @@ footer .flex-right{
     box-shadow: 0 0 3px gray;
 }
 
-
-
 .round-button a {
     display:block;
     float:left;
@@ -55,6 +53,11 @@ footer .flex-right{
     font-size:20px;
     font-weight:bold;
     text-decoration:none;
+}
+
+input.search::-webkit-search-cancel-button{
+    position:relative;
+    right:10px;    
 }
 
 
@@ -87,6 +90,32 @@ footer .flex-right{
     justify-content: center;
     border: #cccccc solid 2px;
     cursor: pointer;
+}
+
+.log-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.log-search input.search{
+    width: 80%;
+    margin-left: 10px;
+    flex: 1 1 auto;
+}
+
+.content-left .toggle-visibility {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+.content-left .clear-text {
+    margin-left: -50px;
+    width: 50px;
+    height: 32px;
 }
 
 .content-left ul{

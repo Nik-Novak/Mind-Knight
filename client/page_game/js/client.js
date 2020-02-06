@@ -5,7 +5,41 @@ console.log('INIT client.js');
 
 //****LEFT****
 $('.log-title').click(function(event){
-    let chat = $(this).next().toggle();
+    let search = $(this).next().toggle();
+    let chat = $(this).next().next().toggle();
+});
+
+$('.log-search input.search').on("change paste keyup input", function() {
+    let $chat = $('#chat-log ul');
+    $chat.children().unhighlight();
+    $chat.children('li.nodisp').removeClass('nodisp');
+    $(this).removeClass('no-match');
+    let query = $(this).val().trim();
+    if(!query)
+        return;
+    $chat.children().highlight(query);
+    let $matches = $chat.children().find('span.highlight');
+    if(!$matches.length)
+        $(this).addClass('no-match');
+    if( $('#chat-log .toggle-visibility>i').hasClass('enabled') )
+        $chat.children().not($matches.parents('#chat-log li')).addClass('nodisp');
+    
+});
+
+$('.toggle-visibility').click(function(){
+    $icon = $(this).children('i.fas');
+
+    if($icon.hasClass('fa-eye-slash')){
+        $icon.removeClass('fa-eye-slash');
+        $icon.addClass('fa-eye');
+        $icon.addClass('enabled');
+    }
+    else if($icon.hasClass('fa-eye')){
+        $icon.removeClass('fa-eye');
+        $icon.addClass('fa-eye-slash');
+        $icon.removeClass('enabled');
+    }
+    $('.log-search input.search').change();
 });
 
 //****CENTER****

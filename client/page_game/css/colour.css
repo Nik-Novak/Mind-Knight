@@ -25,6 +25,28 @@ tr:nth-child(odd){
 	background: #222222 no-repeat center;
 }
 
+input.search {
+    color: white;
+    background-color: #4F4E4C;
+}
+
+input.search::-webkit-search-cancel-button{
+    background: #eff0f1;
+}
+
+input.no-match {
+    background-color: rgba(102, 1, 1, 0.5)
+}
+
+.highlight {
+    color: #2F2E2C;
+    background-color: #FFFF88;
+}
+
+button:hover{
+    background: #BcBcBc;
+}
+
 /* ===========================
 --- Left
 ============================ */

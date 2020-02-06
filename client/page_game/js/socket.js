@@ -51,7 +51,7 @@ function update(updatedGame){
 
 function updateChat(msg) {
     if(typeof(msg) == 'string')
-        $('#chat-log ul').append($( '<li>'+coloredTextSpan(msg,'#D4AF37')+'</li>' ));
+        $('#chat-log ul').append($( '<li class="always-visible">'+coloredTextSpan(msg,'#D4AF37')+'</li>' ));
     else{
         let header = coloredTextSpan(game.players[msg.Slot].Username, colors[game.players[msg.Slot].Color].hex).trim();
         if($('#chat-log ul').children().last().attr('index') != msg.id)

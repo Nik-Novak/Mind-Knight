@@ -120,6 +120,6 @@
 
 
 
-.nodisp{
+.nodisp:not(.always-visible){
     display: none;
 }

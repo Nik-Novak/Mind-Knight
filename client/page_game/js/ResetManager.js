@@ -60,6 +60,8 @@ class ResetManager{
 
     resetChat(){
         $('#chat-log ul').html('');
+        $('.toggle-visibility>i').addClass('fa-eye-slash');
+        $('.toggle-visibility>i').removeClass('enabled');
     }
 
     resetAll(){
