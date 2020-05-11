@@ -27,7 +27,7 @@ class Database {
    */
   async getTournaments(){
     let tournaments = await this.makeRequest('/data/tournaments');
-    tournaments.map(rawTournament=>new Tournament(rawTournament));
+    tournaments = tournaments.map(rawTournament=>new Tournament(rawTournament));
     return tournaments;
   }
 

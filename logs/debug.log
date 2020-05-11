@@ -5,76 +5,398 @@ LAN MODE ENABLED, to view the app on another device in your home/network please 
 ****************************************************************************************
 
 Welcome to Mind Knight, please visit 10.0.0.134:8080 in your browser (on any device in your network). If that does not work then please try visiting address localhost:8080 on this machine.
-(node:3840) UnhandledPromiseRejectionWarning: Error: sdffvdfds
-    at Database.logTournamentGame (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\custom_modules\Database.js:208:13)
-    at test (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\server.js:322:12)
-    at C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\server.js:324:1
-    at tryCatcher (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\node_modules\portastic\node_modules\bluebird\js\main\util.js:26:23)
-    at Promise._settlePromiseFromHandler (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\node_modules\portastic\node_modules\bluebird\js\main\promise.js:510:31)
-    at Promise._settlePromiseAt (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\node_modules\portastic\node_modules\bluebird\js\main\promise.js:584:18)
-    at Async._drainQueue (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\node_modules\portastic\node_modules\bluebird\js\main\async.js:128:12)
-    at Async._drainQueues (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\node_modules\portastic\node_modules\bluebird\js\main\async.js:133:10)
-    at Immediate.Async.drainQueues (C:\Users\nnova\Documents\Random Projects\MindKnight-log\Mind-Knight\node_modules\portastic\node_modules\bluebird\js\main\async.js:15:14)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-(node:3840) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
-(node:3840) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
 Connected to DB.
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+[LOG] Client socket connected
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+[LOG] Client socket connected
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
+Your version is up to date!
 Client requested: /
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
 Client requested: /css/reset.css
-Client requested: /css/global.css
 Client requested: /css/content.css
+Client requested: /css/global.css
 Client requested: /css/colour.css
 Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-Client requested: /js/jquery.min.js
 Client requested: /js/socket.js
 Client requested: /js/navigation.js
 Client requested: /js/tooltips.js
 Client requested: /js/client.js
+Client requested: /js/jquery.min.js
 Client requested: /img/background.png
 [LOG] Client socket connected
 Your version is up to date!
 [LOG] Client socket connected
+Your version is up to date!
+saved tourny { _id: 5eb9e0d20aec232f4898d40f,
+  _type: 'StandardTournament',
+  name: 'CV 2020 Invitational',
+  created: 2020-05-08T04:00:00.000Z,
+  roster:
+   [ { _id: 5eb9e0d20aec232f4898d410,
+       playerID: 5eb78fac323bbdb330eb09ea },
+     { _id: 5eb9e0d20aec232f4898d411,
+       playerID: 5eb77fef3db8853cc8e9e1be },
+     { _id: 5eb9e0d20aec232f4898d412,
+       playerID: 5eb77270055f19b360f643f0 },
+     { _id: 5eb9e0d20aec232f4898d413,
+       playerID: 5eb78fac323bbdb330eb09eb },
+     { _id: 5eb9e0d20aec232f4898d414,
+       playerID: 5eb78fac323bbdb330eb09ec },
+     { _id: 5eb9e0d20aec232f4898d415,
+       playerID: 5eb78fad323bbdb330eb09ed },
+     { _id: 5eb9e0d20aec232f4898d416,
+       playerID: 5eb78fad323bbdb330eb09ee },
+     { _id: 5eb9e0d20aec232f4898d417,
+       playerID: 5eb78fad323bbdb330eb09ef },
+     { _id: 5eb9e0d20aec232f4898d418,
+       playerID: 5eb77731142b051e30dd3c70 },
+     { _id: 5eb9e0d20aec232f4898d419,
+       playerID: 5eb78fad323bbdb330eb09f0 },
+     { _id: 5eb9e0d20aec232f4898d41a,
+       playerID: 5eb78fad323bbdb330eb09f1 },
+     { _id: 5eb9e0d20aec232f4898d41b,
+       playerID: 5eb78fad323bbdb330eb09f2 },
+     { _id: 5eb9e0d20aec232f4898d41c,
+       playerID: 5eb78fad323bbdb330eb09f3 },
+     { _id: 5eb9e0d20aec232f4898d41d,
+       playerID: 5eb78fad323bbdb330eb09f4 },
+     { _id: 5eb9e0d20aec232f4898d41e,
+       playerID: 5eb78fae323bbdb330eb09f5 } ],
+  backup_roster:
+   [ { _id: 5eb9e0d20aec232f4898d41f,
+       playerID: 5eb9e0d20aec232f4898d40e } ],
+  days:
+   [ { _id: 5eb9e0d20aec232f4898d420,
+       date: 2020-05-10T04:00:00.000Z,
+       heats: [Array] },
+     { _id: 5eb9e0d20aec232f4898d42d,
+       date: 2020-05-11T04:00:00.000Z,
+       heats: [Array] },
+     { _id: 5eb9e0d20aec232f4898d43a,
+       date: 2020-05-12T04:00:00.000Z,
+       heats: [] },
+     { _id: 5eb9e0d20aec232f4898d43b,
+       date: 2020-05-13T04:00:00.000Z,
+       heats: [] },
+     { _id: 5eb9e0d20aec232f4898d43c,
+       date: 2020-05-17T04:00:00.000Z,
+       heats: [] } ],
+  code: '9F6DA38D',
+  __v: 0 }
+[LOG] Client socket connected
+[LOG] Client socket connected
 [LOG] Client socket connected
 Your version is up to date!
 Your version is up to date!
-[LOG] Client socket connected
 Your version is up to date!
 [LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
 Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-[LOG] Client socket connected
-[LOG] Client socket connected
-Your version is up to date!
-Your version is up to date!
-[LOG] Client socket connected
-[LOG] Client socket connected
-[LOG] Client socket connected
-Your version is up to date!
-Your version is up to date!
-Your version is up to date!
-[LOG] Client socket connected
-[LOG] Client socket connected
-Your version is up to date!
-Your version is up to date!
+Client requested: /tournaments
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/css/content.css
+Client requested: /page_tournaments/css/colour.css
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/js/client.js
+Client requested: /page_tournaments/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /favicon/favicon.ico
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /favicon/favicon.ico
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /favicon/favicon.ico
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /favicon/favicon.ico
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /favicon/favicon.ico
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /favicon/favicon.ico
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /data/identity
+Client requested: /favicon/favicon.ico
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /favicon/favicon.ico
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/content.css
+Client requested: /css/global.css
+Client requested: /css/reset.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /favicon/favicon.ico
+Client requested: /data/identity
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png
+Client requested: /tournaments/join
+Client requested: /css/materialize.min.css
+Client requested: /css/reset.css
+Client requested: /css/global.css
+Client requested: /css/content.css
+Client requested: /css/colour.css
+Client requested: /page_tournaments/page_join/css/content.css
+Client requested: /page_tournaments/page_join/css/colour.css
+Client requested: /js/materialize.min.js
+Client requested: /js/jquery.min.js
+Client requested: /js/navigation.js
+Client requested: /page_tournaments/page_join/js/identity.js
+Client requested: /page_tournaments/page_join/js/role.js
+Client requested: /page_tournaments/page_join/js/tournament.js
+Client requested: /page_tournaments/page_join/js/database.js
+Client requested: /page_tournaments/page_join/js/game.js
+Client requested: /page_tournaments/page_join/js/client.js
+Client requested: /page_tournaments/page_join/js/tooltips.js
+Client requested: /img/background.png
+Client requested: /data/tournaments
+Client requested: /data/identity
+Client requested: /favicon/favicon.ico
+Client requested: /data/games?_id=5eb8a18a3ae97e2d482445ad
+Client requested: /page_tournaments/page_join/img/mindnight-invitational.png

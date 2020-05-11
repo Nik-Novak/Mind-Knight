@@ -317,8 +317,8 @@ function log(msg){
 
 //********* Test stuff *********
 async function test(){
-  // database.test();
-  testBuildingRawGameFromDB();
+  database.test();
+  // testBuildingRawGameFromDB();
 }
 test();
 

@@ -26,6 +26,7 @@ console.log('Tournaments:', tournies);
 
 $( document).ready(function(){
   for(let i=0; i< tournies.length; i++){
+    console.log(tournies[i].data)
     let eligible = onRoster(identity, tournies[i].data.roster);
     let backup;
     if(!eligible)
@@ -64,10 +65,24 @@ $( document).ready(function(){
     tournies[i].data.nextGame = nextGamesArr[0];
     
     setInterval(function(){
-      let deltaT = new Date( nextGameDate.getTime() - new Date().getTime());
-      tournies[i].data.deltaD = deltaT.getDate() - 1;
-      tournies[i].data.deltaH = deltaT.getHours() + 5;
-      tournies[i].data.deltaM = deltaT.getMinutes();
+      let deltaT = (nextGameDate.getTime() - new Date().getTime())/1000;
+
+      // calculate (and subtract) whole days
+      var days = Math.floor(deltaT / 86400);
+      deltaT -= days * 86400;
+
+      // calculate (and subtract) whole hours
+      var hours = Math.floor(deltaT / 3600) % 24;
+      deltaT -= hours * 3600;
+
+      // calculate (and subtract) whole minutes
+      var minutes = Math.floor(deltaT / 60) % 60;
+      deltaT -= minutes * 60;
+      
+      tournies[i].data.deltaD = days;
+      deltaT -= tournies[i].data.deltaD * 86400;
+      tournies[i].data.deltaH = hours;
+      tournies[i].data.deltaM = minutes
       if(tournies[i].data.deltaD<=0 && tournies[i].data.deltaH<=0 && tournies[i].data.deltaM<=0){
         clearInterval(this);
         $(`.card[index="${i}"] .card-content #next-game-countdown`).html('');
@@ -96,7 +111,7 @@ function UTCtoEastern(date){
 
 function nextDays(tournament){
   let futureDates = [];
-  tournament.days.filter(day=>{ //discard past days
+  tournament.data.days.filter(day=>{ //discard past days
     let tournyDate = new Date(day.date);
     tournyDate.setHours(0,0,0,0);
     let today = new Date();
@@ -108,11 +123,11 @@ function nextDays(tournament){
 
 function nextGames(localPlayer, tournament){
   let futureGames = [];
-  let localRosterIndex = tournament.roster.reduce((result, value, key)=>value.playerID==localPlayer._id?key:result);
+  let localRosterIndex = tournament.data.roster.reduce((result, value, key)=>value.playerID==localPlayer._id?key:result);
   console.log(localRosterIndex);
   let days = nextDays(tournament);
   days.forEach(day=>{
-    let fullDay = tournament.days.find(d=>d.date==day);
+    let fullDay = tournament.data.days.find(d=>d.date==day);
     fullDay.heats.forEach(heat=>{
       if(heat.games.find(game=>game.player_roster_indexes.includes(localRosterIndex))){
         let gamesWMe = [];
@@ -128,7 +143,7 @@ function nextGames(localPlayer, tournament){
 
 function play(tournamentIndex){
   let tournament = tournies[tournamentIndex];
-  if(tournament.deltaD > 0 || tournament.deltaH>0 ) { //if we're anything more than 1 hr away
+  if(tournament.data.deltaD > 0 || tournament.data.deltaH>0 ) { //if we're anything more than 1 hr away
     M.Toast.dismissAll();
     M.toast({html: "It's too early to start the game!"})
     M.toast({html: 'Wait until atleast an hour away'})
