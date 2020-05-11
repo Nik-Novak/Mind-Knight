@@ -10,6 +10,10 @@
     <!-- COMMENT OUT FOR DEVELOPMENT -->
     <base href="/page_game/">
 
+    <link href="https://unpkg.com/tippy.js@5.2.1/themes/light-border.css" rel="stylesheet">
+    <link href="https://unpkg.com/tippy.js@5.2.1/themes/light.css" rel="stylesheet">
+    <link href="https://unpkg.com/tippy.js@5.2.1/themes/material.css" rel="stylesheet">
+    <link href="https://unpkg.com/tippy.js@5.2.1/themes/translucent.css" rel="stylesheet">
     <link href="../css/reset.css" rel="stylesheet">
     <link href="../css/global.css" rel="stylesheet">
     <link href="css/content.css" rel="stylesheet">
@@ -34,6 +38,7 @@
         <section id="content">
             <div class="content-left">
                 <div class="advanced-options">
+                    <label><input id="option_showTooltips" type="checkbox" checked>Tooltips</label>
                     <label><input id="option_showAdvanced" type="checkbox" checked>Advanced Stats</label>
                 </div>
                 <div id="debug-log">
@@ -283,11 +288,14 @@
 
             </div>
         </section>
+        <script src="https://unpkg.com/popper.js@1"></script>
+        <script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
         <script src="/socket.io/socket.io.js"></script> <!-- This line is statically set by socket.io library, used in socket.js -->
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.highlight.js"></script>
         <script src="js/ResetManager.js"></script>
         <script src="js/socket.js"></script>
+        <script src="js/tooltips.js"></script>
         <script src="js/client.js"></script>
     </div>
 

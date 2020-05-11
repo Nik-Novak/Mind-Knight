@@ -4,15 +4,15 @@ var socket = io.connect(window.location.origin); //connects to localhost:8080 in
 
 
 socket.on('game_launch', ()=>{
-    $('#instructions-container h3').html('game launched, awaiting main menu');
+    $('#instructions-container .instructions').html('game launched, awaiting main menu');
 });
 
 socket.on('game_menu', ()=>{
-    $('#instructions-container h3').html('ready for a game');
+    $('#instructions-container .instructions').html('ready for a game');
 });
 
 socket.on('game_close', ()=>{
-    $('#instructions-container h3').html('launch mindnight to begin...');
+    $('#instructions-container .instructions').html('launch mindnight to begin...');
 });
 
 socket.on('game_start', ()=>{
@@ -20,7 +20,7 @@ socket.on('game_start', ()=>{
 });
 
 socket.on('game_inProgress', ()=>{
-    $('#instructions-container h3').html('A game is already in progress, loading in <span id="countdown">3</span>...');
+    $('#instructions-container .instructions').html('A game is already in progress, loading in <span id="countdown">3</span>...');
     var counter = 3;
     var timer = setInterval(()=>{
         if(counter===0) {
@@ -37,6 +37,8 @@ socket.on('version_expired', (versionData)=>{
     console.log('Your version of MindKnight is out of date. Your version: '+versionData.local+ '  Latest: ' + versionData.current);
     $(document).ready(()=>{
         $('#version').html('v'+versionData.local + ' - (<a href="#" style="color:red;" onclick="update(null)">UPDATE</a>)')
+        $('#version').attr('local', versionData.local);
+        $('#version').attr('current', versionData.current);
             setTimeout(()=>{
                 update(versionData);
             },500);
@@ -45,7 +47,9 @@ socket.on('version_expired', (versionData)=>{
 
 socket.on('version_uptodate', (versionData)=>{
     $(document).ready(()=>{
-        $('#version').html('v'+versionData.local + ' - (<a href="#" onclick="update(null)">force update</a>)')
+        $('#version').html('v'+versionData.local + ' - (<a href="#" onclick="update(null)">force update</a>)');
+        $('#version').attr('local', versionData.local);
+        $('#version').attr('current', versionData.current);
     });
 });
 
@@ -56,6 +60,11 @@ socket.on('log', (message)=>{
 function simulate(){
     console.log('requesting server simulates');
     socket.emit('simulate', 'test');
+}
+
+function test(){
+    console.log('requesting server tests');
+    socket.emit('test', 'test');
 }
 
 function update(versionData){

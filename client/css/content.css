@@ -6,7 +6,6 @@ html, body {
 
 
 #container{
-
     position:relative;
     background: url(../img/background.png) no-repeat center;
 
@@ -34,7 +33,28 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
+#content #instructions-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content #instructions-container h3 {
+    margin-bottom: 15px;
+}
+
+#content .options-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#content .options-container button{
+    width: 120px;
+    margin: 5px 10px;
 }
 
 #donate{

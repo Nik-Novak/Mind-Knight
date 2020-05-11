@@ -1,4 +1,8 @@
+//@ts-check
 const { exec } = require('child_process');
+
+const Logger = require('./Logger');
+new Logger().cloneOutputToFile('./logs/debug.log', {wipe:true});
 
 class Updater{
     constructor(){

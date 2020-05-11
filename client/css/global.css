@@ -14,7 +14,7 @@ html,body{
 	height:100%;
 }
 
-body {
+body * {
 	font-family: Munro;
 }
 
@@ -27,7 +27,7 @@ button{
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    font-weight: bold;
+		font-weight: bold;
 }
 
 h1{
@@ -124,14 +124,36 @@ textarea, input , select{
     background-color: transparent;
 }
 
+
+
+/* ===========================
+--- Material Icons
+============================ */
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
 /* ===========================
 --- Content
 ============================ */
 
-#content{
-	/*padding-top: 65px; !* offset navbar 65 navbar height *!*/
-	/*padding-bottom: 152px; !* offset footer 152 footer height*!*/
-	
+#content .home-button {
+  top:20px; left:10px;
+  position: absolute;
 }
 
 #content input{
@@ -158,10 +180,6 @@ textarea, input , select{
 	height:100%;
    min-height:100%;
    position:relative;
-}
-
-#content *{
-
 }
 
 #content section{

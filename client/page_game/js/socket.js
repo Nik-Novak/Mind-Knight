@@ -1,3 +1,4 @@
+
 console.log('INIT socket.js');
 
 const colors = {
@@ -54,14 +55,13 @@ function updateChat(msg) {
         $('#chat-log ul').append($( '<li class="always-visible">'+coloredTextSpan(msg,'#D4AF37')+'</li>' ));
     else{
         let header = coloredTextSpan(game.players[msg.Slot].Username, colors[game.players[msg.Slot].Color].hex).trim();
-        if($('#chat-log ul').children().last().attr('index') != msg.id)
-            $('#chat-log ul').append($( '<li index="'+msg.id+'">[<span class="header">'+header+'</span>]: '+msg.Message+'</li>' ));
+        if($('#chat-log ul').children().last().attr('index') != msg.index)
+            $('#chat-log ul').append($( '<li index="'+msg.index+'">[<span class="header">'+header+'</span>]: '+msg.Message+'</li>' ));
     }
 }
 
 socket.on('game_start', (updatedGame)=>{
     log('game_start');
-    console.log(updatedGame);
     log(updatedGame.game_found.PlayerNumber + ' Players were detected. Loading appropriate layout');
     //TODO player # specific css selection and node naming, etc. Found in game.game_found
     update(updatedGame);
@@ -71,13 +71,11 @@ socket.on('game_start', (updatedGame)=>{
 
 socket.on('game_selectPhaseEnd', (updatedGame)=>{
     log('game_selectPhaseEnd');
-    console.log(updatedGame);
     update(updatedGame);
 });
 
 socket.on('game_votePhaseEnd', (updatedGame)=>{
     log('game_votePhaseEnd');
-    console.log(updatedGame);
     update(updatedGame);
     log('game_chatUpdate'); //ToDO: remove
     game=updatedGame;
@@ -87,11 +85,14 @@ socket.on('game_votePhaseEnd', (updatedGame)=>{
 
 socket.on('game_missionPhaseEnd', (updatedGame)=>{
     log('game_missionPhaseEnd');
-    console.log(updatedGame);
     setNodeStatuses(updatedGame);     //set missions
     update(updatedGame);
-    let chatNodeSeparator = `-------------- BEGIN NODE ${Object.keys(updatedGame.missions).length +1 } ----------------`
+    let chatNodeSeparator = `------- BEGIN NODE ${Object.keys(updatedGame.missions).length +1 } -------`
     updateChat(chatNodeSeparator);
+});
+
+socket.on('game_end', (updatedGame)=>{
+    console.log(updatedGame);
 });
 
 socket.on('game_menu', (updatedGame)=>{
@@ -136,6 +137,11 @@ function simulate(){
     socket.emit('simulate', 'test');
 }
 
+function test(){
+    console.log('requesting server tests');
+    socket.emit('test', 'test');
+}
+
 function coloredTextSpan(text, color){
     return '<span style="color:' + color + '">' + text + '</span> ';
 }
@@ -145,4 +151,3 @@ function log(msg, fromServer=false){
     let logMsg = $('<li>'+(fromServer ? '[SERVER] ' : '[LOG] ') + msg.toString()+'</li>');
     $('#debug-log ul').append(logMsg);
 }
-

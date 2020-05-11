@@ -1,0 +1,20 @@
+/* ===========================
+--- General
+============================ */
+
+
+#content .options-container .card .card-content a {
+  color: blue;
+}
+
+#content .options-container .card .card-content a:hover {
+  color: rgb(0, 110, 255);
+}
+
+#content .card .card-action .action-container:hover {
+  background-color: red;
+}
+
+#content .card .card-content p.secondary #next-game-countdown{
+  color: red;
+}

@@ -82,6 +82,13 @@ input.search::-webkit-search-cancel-button{
 
 .content-left .advanced-options{
     width: 88.5%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 12px;
+}
+
+#content .content-left .advanced-options input{
+    height:30px;
 }
 
 .log-title {

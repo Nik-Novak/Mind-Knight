@@ -8,9 +8,40 @@ body{
 h1, h2, h3, h4, h5,a{
     color: #f3f3f3;
 }
+button {
+	background-color: rgb(240, 240, 240);
+}
+button:hover:enabled {
+	background-color: rgb(200, 200, 200);
+}
 
+.tippy-tooltip.disabled-theme {
+  background-color: rgba(131,35,43, 0.5);
+  color: #EFEFEF;
+}
 
+.tippy-tooltip.disabled-theme [x-arrow] {
+	border-top: 7px solid rgba(131,35,43, 0.5); /* your color here */
+	border-right: 7px solid transparent;
+	border-left: 7px solid transparent;
+}
 
+/* Right placement tooltip arrow (arrow will be on left side of tooltip) */
+.tippy-popper[x-placement^=right] .tippy-tooltip.disabled-theme .tippy-arrow {
+	border-right: 7px solid rgba(131,35,43, 0.5); /* your color here */
+}
+/* Left placement tooltip arrow (arrow will be on right side of tooltip) */
+.tippy-popper[x-placement^=left] .tippy-tooltip.disabled-theme .tippy-arrow {
+	border-left: 7px solid rgba(131,35,43, 0.5); /* your color here */
+}
+/* Top placement tooltip arrow (arrow will be on bottom side of tooltip) */
+.tippy-popper[x-placement^=top] .tippy-tooltip.disabled-theme .tippy-arrow {
+	border-top: 7px solid rgba(131,35,43, 0.5); /* your color here */
+}
+/* Bottom placement tooltip arrow (arrow will be on top side of tooltip) */
+.tippy-popper[x-placement^=bottom] .tippy-tooltip.disabled-theme .tippy-arrow {
+	border-bottom: 7px solid rgba(131,35,43, 0.5); /* your color here */
+}
 
 /* ===========================
 --- Footer

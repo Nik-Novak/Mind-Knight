@@ -1,15 +1,21 @@
+//@ts-check
+const util = require('util')
 var path = require("path");
 var fs = require('fs-extra');
 var express = require('express');
+const portastic = require('portastic');
+const opn = require('opn');
 const Tail = require('./custom_modules/Tail.js');
 const GameBuilder = require('./custom_modules/GameBuilder.js');
 var Database = require('./custom_modules/Database.js').Database;
 var Updater = require('./custom_modules/Updater.js').Updater;
+const { readCredsFromFile } = require('./custom_modules/Creds');
 var request = require('request');
 
-//const LOGPATH = "$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt";
+// const LOGPATH = "$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt";
 
 var app = express();
+// @ts-ignore
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var ip = require('ip');
@@ -18,13 +24,28 @@ var gamebuilder = new GameBuilder();
 var gameStarted = false;
 var lastState;
 var lastGame;
+let user, localPlayer;
 
-var database = new Database();
+var database = new Database('mongodb+srv://mind-knight-oxzpw.gcp.mongodb.net/production?retryWrites=true&w=majority', {u:'client', p:readCredsFromFile('./au').client});
 var updater = new Updater();
+
+// @ts-ignore
+portastic.find({
+  min: 8080,
+  max: 8180
+})
+.then(function(ports){
+  const port = ports[0];
+
 
 // ********* SERVER ROUTING *********
 //server.listen(8080); //server.listen(8080, '192.168.1.109'); //LAN MODE
-server.listen(8080, ip.address());
+
+// ********* Overwrite console log to output to file ***********
+// new Logger().cloneOutputToFile('./logs/debug.log', { wipe:true });
+
+server.listen(port, ip.address());
+
 //console.log(process.env);
 
 //*********TEST*****************
@@ -32,22 +53,37 @@ server.listen(8080, ip.address());
 //******************************
 
 
-for(let i=0; i<10; i++)
-    console.log('LAN MODE ENABLED, to view the app on another device in yout home/network please visit this address in your browser:', ip.address()+ ":8080");
-console.log('Welcome to Mind Knight, please visit ' + ip.address() + ':8080 in your browser (on any device in your network). If that does not work then please try visiting address localhost:8080 on this machine.');
+console.log('\n*************************************** LAN MODE ***************************************');
+console.log('LAN MODE ENABLED, to view the app on another device in your home/network please visit this address in your browser:', ip.address()+ ':'+port+'');
+console.log('****************************************************************************************\n');
+console.log('Welcome to Mind Knight, please visit ' + ip.address() + ':'+port+' in your browser (on any device in your network). If that does not work then please try visiting address localhost:'+port+' on this machine.');
+// @ts-ignore
 app.use( (req, res, next)=>{ //Any url not defined (or i guess final module to be used)
     console.log('Client requested:', req.originalUrl);
     next();
 } );
 
+// @ts-ignore
 app.get('/', (req, res)=>{
     res.sendFile(__dirname + '/client/index.html');
 });
 
+// @ts-ignore
 app.get('/update', (req, res)=>{
     res.sendFile(__dirname + '/client/page_update/index.html');
 });
-
+// @ts-ignore
+app.get('/tournaments', (req, res)=>{
+  res.sendFile(__dirname + '/client/page_tournaments/index.html');
+});
+app.get('/tournaments/join', (req, res)=>{
+  res.sendFile(__dirname + '/client/page_tournaments/page_join/index.html');
+});
+// @ts-ignore
+app.get('/replays', (req, res)=>{
+    res.sendFile(__dirname + '/client/page_replays/index.html');
+});
+// @ts-ignore
 app.get('/game', (req, res)=>{
     if(!gameStarted)
         res.redirect('/');
@@ -55,13 +91,38 @@ app.get('/game', (req, res)=>{
         res.sendFile(__dirname + '/client/page_game/index.html');
 });
 
+app.get('/data/tournaments', async (req,res)=>{
+    res.set({'Content-Type': 'application/json'});
+    res.send(await database.getStandardTournaments())
+});
+app.get('/data/games', async (req,res)=>{
+    res.set({'Content-Type': 'application/json'});
+    res.send(await database.getGames(req.query))
+});
+app.get('/data/identity', async (req,res)=>{
+    if(!user || !localPlayer){
+      let identity = await database.login();
+      user = identity.user; localPlayer = identity.localPlayer;
+    }
+    res.set({'Content-Type': 'application/json'});
+    res.send({user, localPlayer});
+});
+
+// @ts-ignore
 app.get('/test', (req, res)=>{
     res.writeHead( 200, {"Content-Type": "text/html"} );
     res.end('<p>Here is a paragraph of <strong>HTML</strong>! This is the test directory</p>');
 });
 
-app.use(express.static(__dirname + '/client')); //Serves ALL static resources from public folder
+// app.use('/', express.static(__dirname + '/client')); //Serves ALL static resources from public folder
+// app.use('/update', express.static(__dirname + '/client/page_update'));
+// app.use('/game', express.static(__dirname + '/client/page_game'));
+app.use('/tournaments', express.static(__dirname + '/client/page_tournaments'));
+app.use('/tournaments/join', express.static(__dirname + '/client/page_tournaments/page_join'));
+app.use( express.static(__dirname + '/client'));
 
+
+// @ts-ignore
 app.use( (req, res, next)=>{ //Any url not defined (or i guess final module to be used)
     res.writeHead( 404 );
     res.end();
@@ -75,17 +136,22 @@ io.on('connection', (socket)=>{
     socket.emit('log', 'Server socket connected');
     
     socket.on('simulate', ()=>{
-        console.log('Client asked for simulated data');
-       simulate(socket);
+      console.log('Client asked for simulated data');
+      simulate();
+    });
+    socket.on('test', ()=>{
+      console.log('Client requested a test');
+      test();
     });
     var fromURL = socket.client.request.headers.referer;
     if(gameStarted) {
         io.sockets.emit('game_inProgress');
-        if(fromURL == 'http://localhost:8080/')
+        if(fromURL == 'http://localhost:'+port+'/')
         return;
     }
 
     if(lastState)
+        // @ts-ignore
         gamebuilder.emit(lastState, lastGame);
 
     checkUpdate().then(versionData=>{
@@ -97,7 +163,6 @@ io.on('connection', (socket)=>{
             console.log('Your MindKnight version is out of date. You\'re running: v'+versionData.local+', while the latest version is v', versionData.current);
             socket.emit('version_expired', versionData);
         }
-        
     });
     
     socket.on('update', ()=>{
@@ -113,16 +178,18 @@ io.on('disconnect', function(socket) {
 // ********* TAIL *********
 //C:/Users/nnova/AppData/LocalLow/Nomoon/Mindnight/output_log.txt
 
-new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/Player.log", gamebuilder.process.bind(gamebuilder)).tail();
+new Tail(`${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`, gamebuilder.process.bind(gamebuilder)).tail();//new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/Player.log", gamebuilder.process.bind(gamebuilder)).tail();
 
 // ********* Game Build *********
 //Intro page
+// @ts-ignore
 gamebuilder.on('game_launch', (game)=>{
     lastState = 'game_launch';
     log('game_launch detected');
     io.sockets.emit('game_launch');
     database.resetCheckpoint();
 });
+// @ts-ignore
 gamebuilder.on('game_menu', (game)=>{
     game={};
     lastGame={};
@@ -130,12 +197,24 @@ gamebuilder.on('game_menu', (game)=>{
     log('game_menu detected');
     io.sockets.emit('game_menu');
 });
+// @ts-ignore
+gamebuilder.on('game_player_info', (packet)=>{
+    lastState = 'game_player_info';
+    log('game_player_info detected');
+    io.sockets.emit('game_player_info', packet);
+    database.login(packet.Steamid, packet.Nickname).then((loginDetails)=>{
+      user = loginDetails.user;
+      localPlayer = loginDetails.localPlayer;
+    });
+});
+// @ts-ignore
 gamebuilder.on('game_close', (game)=>{
     log('game_close detected');
     io.sockets.emit('game_close');
 });
 
 //game page
+// @ts-ignore
 gamebuilder.on('game_start', (game)=>{
     lastState='game_start';
     lastGame=game;
@@ -144,6 +223,7 @@ gamebuilder.on('game_start', (game)=>{
     io.sockets.emit('game_start', game);
 });
 
+// @ts-ignore
 gamebuilder.on('game_selectPhaseEnd', (game)=>{
     lastState='game_selectPhaseEnd';
     lastGame=game;
@@ -151,6 +231,7 @@ gamebuilder.on('game_selectPhaseEnd', (game)=>{
     io.sockets.emit('game_selectPhaseEnd', game);
 });
 
+// @ts-ignore
 gamebuilder.on('game_votePhaseEnd', (game)=>{
     lastState='game_votePhaseEnd';
     lastGame=game;
@@ -158,6 +239,7 @@ gamebuilder.on('game_votePhaseEnd', (game)=>{
     io.sockets.emit('game_votePhaseEnd', game);
 });
 
+// @ts-ignore
 gamebuilder.on('game_missionPhaseEnd', (game)=>{
     lastState='game_missionPhaseEnd';
     lastGame=game;
@@ -165,14 +247,17 @@ gamebuilder.on('game_missionPhaseEnd', (game)=>{
     io.sockets.emit('game_missionPhaseEnd', game);
 });
 
+// @ts-ignore
 gamebuilder.on('game_end', (game)=>{
     lastState='game_end';
     gameStarted = false;
     log('game_end detected');
     io.sockets.emit('game_end', game);
-    database.uploadGame(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log"));
+    database.uploadGame(game, path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log"));
+    // fs.writeFileSync('./test.txt',JSON.stringify(game))
 });
 
+// @ts-ignore
 gamebuilder.on('game_chatUpdate', (game)=>{
     lastState='game_chatUpdate';
     lastGame=game;
@@ -182,25 +267,34 @@ gamebuilder.on('game_chatUpdate', (game)=>{
 
 
 //********* Simulate Game *********
-function simulate(socket){
+function simulate(){
     // let simFile = 'output_log_beforeGameEnd.txt'; //WORKS PERFECTLY, game 2 folder
-    let simFile = 'output_log_beforeGameEnd.txt'//'output_log.txt'//'output_log_beforeGameEnd.txt';
+    let simFile = './sample_games/Game 7/Mindnight/Player_beforeGameEnd.log'; // './sample_games/TM symbol crashing - Player.log' //'output_log_afterGameEnd.log'//'output_log_beforeGameEnd.txt'//'output_log.txt'//'output_log_beforeGameEnd.txt';
     var lineReader = require('readline').createInterface({
-        input: fs.createReadStream('./sample_games/Game 6/Mindnight/'+simFile)
+        input: fs.createReadStream(simFile)
     });
-
+    let lines = [];
     lineReader.on('line', function (line) {
         if(line.length===0)
             return;
-        console.log();
-        gamebuilder.process(line.trim(), socket);
+        lines.push(line);
     });
+    setInterval(function(){
+        let line = lines.shift();
+        if(!line){
+            clearInterval(this);
+            return;
+        }
+        console.log('Line:', line);
+        gamebuilder.process(line);
+    }, 20);
 }
 
 
 // ********* MISC *********
 
 function checkUpdate(){
+    // @ts-ignore
     return new Promise( (resolve, reject) =>{
         fs.readFile('mindknight.version', 'utf-8',(err, local) => {
             if (err) {
@@ -208,6 +302,7 @@ function checkUpdate(){
                 local = 'unknown';
             };
             let versionURL = 'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version';
+            // @ts-ignore
             request(versionURL, function (error, response, current) {
                 //console.log('('+local+ ', ' + current+')');
                 resolve({local:local, current:current});
@@ -220,11 +315,94 @@ function log(msg){
     console.log('[LOG]',msg);
 }
 
-var opn = require('opn');
-opn('http://'+ip.address()+':8080');
+//********* Test stuff *********
+async function test(){
+  // database.test();
+  testBuildingRawGameFromDB();
+}
+test();
+
+async function testBuildingRawGameFromFile(){
+  // database.test();
+  let log = fs.readFileSync('./sample_games/tourny_day1_heat3_pace.log').toString();
+  let testGameBuilder = new GameBuilder();
+  let games = testGameBuilder.buildGamesFromLog(log);
+  console.log(games);
+}
+
+async function testBuildingRawGameFromDB(){
+  let testGameBuilder = new GameBuilder();
+  // let game = await database.getGame({_id:'5eb8e0f104515830c49cd405'});
+  let rawGame = await database.getRawGame({_id:'5eb8e77004515830c49cd406'});
+  let startPoint = rawGame.data.indexOf('Received GameFound') - 50;
+  let games = testGameBuilder.buildGamesFromLog(rawGame.data, startPoint);
+  games.forEach(game=>{
+    console.log('\n\n\n')
+    new Game(game).printResults();
+  })
+  fs.writeFileSync('./test.log', util.inspect(games,false,null));
+}
+
+class Role {
+  constructor(roleID){
+    this.roleID = roleID;
+  }
+  get name(){
+    const idToNameMap = {
+      10: 'Agent',
+      20: 'Hacker'
+    }
+    return idToNameMap[this.roleID];
+  }
+}
+
+class Game {
+  constructor(data){
+    if(!data)
+      throw Error('Game cannot be null');
+    this.data = data;
+  }
+
+  get hacked(){ return this.data.game_end.Hacked };
+
+  getPlayerIdentity(slot){
+    return this.data.game_end.PlayerIdentities[slot];
+  }
+
+  printResults(){
+    console.log('Winner:', this.hacked ? 'Hackers' : 'Agents');
+    console.log('Players:')
+    this.data.game_end.PlayerIdentities.forEach(playerIdentity=>{
+      let slot = playerIdentity.Slot;
+      let role = new Role(this.data.game_end.Roles[slot].Role);
+      let didWin = ( !this.hacked && role.name=='Agent' || this.hacked && role.name=='Hacker' )
+      console.log(`\t Player[${slot}]:`)
+      console.log(`\t\t Name: ${playerIdentity.Nickname}(${this.data.players[slot].Username})`);
+      console.log(`\t\t Role: ${role.name}`);
+      console.log(`\t\t Outcome: ${didWin ? 'Win' : 'Loss'}`);
+      
+    });
+    console.log('Nodes:');
+    // console.log(this.data.missions)
+    Object.entries(this.data.missions).forEach(([key, value])=>{
+      console.log(`\t Node ${key}`)
+      let proposerSlot = value.mission_phase_end.Proposer;
+      console.log(`\t\t ProposedBy: ${this.getPlayerIdentity(proposerSlot).Nickname}(${this.data.players[proposerSlot].Username})`);
+      console.log(`\t\t Result: ${value.mission_phase_end.Failed?`Hacked(${value.mission_phase_end.NumHacks})`:'Secured'}`);
+      console.log(`\t\t propIndex: ${value.mission_phase_end.propNumber-1}/5`);
+    });
+  }
+}
+
+opn('http://'+ip.address()+':'+port);
+
+});
 
 
 //TODO: Main menu detect exits game --should be done
 //TODO: refresh exclamation marks on updates --should be done
 //TODO: LAN/online mode --should be working
 //TODO: Detailed target info
+
+// console.log(JSON.parse('{"Type":205,"Message":"The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer","Slot":4}'));
+

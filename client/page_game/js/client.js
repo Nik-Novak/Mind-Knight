@@ -71,6 +71,11 @@ $('.player-img').hover(function(event){ //mouse enter
     $('.advanced-target-container').removeClass('opaque');
 });
 
+$('#option_showTooltips').click(function(){
+    let enabled = $(this).prop('checked');
+    tooltips.forEach(tooltipSet=>tooltipSet.forEach(tooltip=>enabled ? tooltip.enable() : tooltip.disable()));
+})
+
 function showAdvancedStats(__this){
     if(!$('#option_showAdvanced').prop('checked'))
         return;
@@ -80,8 +85,8 @@ function showAdvancedStats(__this){
     let nodeNum = $('.node-container div.round-button.selected').attr('index');
     let turnNum = $('.turn-container .round-button.selected').attr('index')-1;
     // console.log(propPlayerIndex, nodeNum, turnNum, playerIndex);
-    // console.log(nodeNum==undefined, turnNum==undefined, playerIndex==undefined, propPlayerIndex==undefined, !game.players[propPlayerIndex].missions, !game.players[propPlayerIndex].missions[nodeNum], !game.players[propPlayerIndex].missions[nodeNum][turnNum], !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_made, !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end);
-    if(nodeNum==undefined || turnNum==undefined || playerIndex==undefined || propPlayerIndex==undefined || !game.players[propPlayerIndex].missions || !game.players[propPlayerIndex].missions[nodeNum] || !game.players[propPlayerIndex].missions[nodeNum][turnNum] || !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_made || !game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end)
+    // console.log(nodeNum==undefined, turnNum==undefined, playerIndex==undefined, propPlayerIndex==undefined, !game.players[propPlayerIndex].proposals, !game.players[propPlayerIndex].proposals[nodeNum], !game.players[propPlayerIndex].proposals[nodeNum][turnNum], !game.players[propPlayerIndex].proposals[nodeNum][turnNum].vote_made, !game.players[propPlayerIndex].proposals[nodeNum][turnNum].vote_phase_end);
+    if(nodeNum==undefined || turnNum==undefined || playerIndex==undefined || propPlayerIndex==undefined || !game.players[propPlayerIndex].proposals || !game.players[propPlayerIndex].proposals[nodeNum] || !game.players[propPlayerIndex].proposals[nodeNum][turnNum] || !game.players[propPlayerIndex].proposals[nodeNum][turnNum].vote_made || !game.players[propPlayerIndex].proposals[nodeNum][turnNum].vote_phase_end)
         return;
 
     if(playerIndex==propPlayerIndex) {
@@ -92,14 +97,14 @@ function showAdvancedStats(__this){
         $('.advanced-target-container .prop-time').parent().addClass('nodisp');
         $('.advanced-target-container .prop-auto').parent().addClass('nodisp');
     }
-    let deltaTProp = game.players[propPlayerIndex].missions[nodeNum][turnNum].deltaT;
-    if(game.players[propPlayerIndex].missions[nodeNum][turnNum].Passed)
+    let deltaTProp = game.players[propPlayerIndex].proposals[nodeNum][turnNum].deltaT;
+    if(game.players[propPlayerIndex].proposals[nodeNum][turnNum].Passed)
         $('.advanced-target-container .prop-type').html('before passing');
     else
         $('.advanced-target-container .prop-type').html('proposing');
     $('.advanced-target-container .prop-time').html(deltaTProp/1000);
-    let deltaTVote = game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_made[playerIndex].deltaT;
-    let deltaTVoteAll = game.players[propPlayerIndex].missions[nodeNum][turnNum].vote_phase_end.deltaT;
+    let deltaTVote = game.players[propPlayerIndex].proposals[nodeNum][turnNum].vote_made[playerIndex].deltaT;
+    let deltaTVoteAll = game.players[propPlayerIndex].proposals[nodeNum][turnNum].vote_phase_end.deltaT;
     $('.advanced-target-container .vote-time').html(deltaTVote/1000);
     $('.advanced-target-container .vote-time-all').html(deltaTVoteAll/1000);
     if(deltaTVote == 60000 || deltaTVote<1000)
@@ -139,10 +144,10 @@ function displayTurn(nodeNum, turnNum, playerIndex, display=true){
         resetManager.resetImportantInfo();
     }
     // console.log(nodeNum, turnNum, playerIndex); //debug
-    if(nodeNum===undefined || playerIndex===undefined || turnNum===undefined || !game.players[playerIndex].missions || !game.players[playerIndex].missions[nodeNum] ||!game.players[playerIndex].missions[nodeNum][turnNum-1] )
+    if(nodeNum===undefined || playerIndex===undefined || turnNum===undefined || !game.players[playerIndex].proposals || !game.players[playerIndex].proposals[nodeNum] ||!game.players[playerIndex].proposals[nodeNum][turnNum-1] )
         return;
     // console.log(playerIndex, nodeNum, turnNum-1);
-    let turnInfo = game.players[playerIndex].missions[nodeNum][turnNum-1];
+    let turnInfo = game.players[playerIndex].proposals[nodeNum][turnNum-1];
     if(!turnInfo || turnInfo.Proposer===undefined) //never propped or in teh middle of propping
         return;
 
@@ -271,9 +276,9 @@ $('.node-container div.round-button').click(function(event){
 
     var numTurns=0;
     Object.keys(game.players).forEach( key=>{
-        // console.log(game.players[key].missions , game.players[key].missions[nodeNum] , game.players[key].missions[nodeNum].length > numTurns , game.players[key].missions[nodeNum].length , numTurns);
-        if(game.players[key].missions && game.players[key].missions[nodeNum] && game.players[key].missions[nodeNum].length > numTurns)
-            numTurns=parseInt(game.players[key].missions[nodeNum].length);
+        // console.log(game.players[key].proposals , game.players[key].proposals[nodeNum] , game.players[key].proposals[nodeNum].length > numTurns , game.players[key].proposals[nodeNum].length , numTurns);
+        if(game.players[key].proposals && game.players[key].proposals[nodeNum] && game.players[key].proposals[nodeNum].length > numTurns)
+            numTurns=parseInt(game.players[key].proposals[nodeNum].length);
     });
 
     for(let i=1; i<numTurns; i++){
