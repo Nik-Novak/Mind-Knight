@@ -6,7 +6,7 @@ class Logger {
     
   }
   cloneOutputToFile(logPath, options={}){
-    if(options.wipe)
+    if(options.wipe && fs.existsSync(logPath))
       fs.unlinkSync(logPath);
     var logFile = fs.createWriteStream(logPath, { flags: 'a' });
     // Or 'w' to truncate the file every time the process starts.

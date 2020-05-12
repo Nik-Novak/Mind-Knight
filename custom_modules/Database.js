@@ -65,7 +65,7 @@ class Database {
         });
 
         console.log('Successfully read log file: \n');
-        return data.toString();
+        return data;
     }
 
     async login(steamID, name){
