@@ -2,6 +2,7 @@
 const util = require('util')
 var path = require("path");
 var fs = require('fs-extra');
+const _ = require('lodash');
 var express = require('express');
 const portastic = require('portastic');
 const opn = require('opn');
@@ -11,6 +12,7 @@ var Database = require('./custom_modules/Database.js').Database;
 var Updater = require('./custom_modules/Updater.js').Updater;
 const { readCredsFromFile } = require('./custom_modules/Creds');
 var request = require('request');
+
 
 // const LOGPATH = "$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/output_log.txt";
 
@@ -269,7 +271,7 @@ gamebuilder.on('game_chatUpdate', (game)=>{
 //********* Simulate Game *********
 function simulate(){
     // let simFile = 'output_log_beforeGameEnd.txt'; //WORKS PERFECTLY, game 2 folder
-    let simFile = './sample_games/Game 7/Mindnight/Player_beforeGameEnd.log'; // './sample_games/TM symbol crashing - Player.log' //'output_log_afterGameEnd.log'//'output_log_beforeGameEnd.txt'//'output_log.txt'//'output_log_beforeGameEnd.txt';
+    let simFile = './sample_games/kain_day2_heat1.log';//'./sample_games/Game 7/Mindnight/Player_beforeGameEnd.log'; // './sample_games/TM symbol crashing - Player.log' //'output_log_afterGameEnd.log'//'output_log_beforeGameEnd.txt'//'output_log.txt'//'output_log_beforeGameEnd.txt';
     var lineReader = require('readline').createInterface({
         input: fs.createReadStream(simFile)
     });
@@ -285,9 +287,9 @@ function simulate(){
             clearInterval(this);
             return;
         }
-        console.log('Line:', line);
+        // console.log('Line:', line);
         gamebuilder.process(line);
-    }, 20);
+    }, 5);
 }
 
 
@@ -316,11 +318,58 @@ function log(msg){
 }
 
 //********* Test stuff *********
+/**
+ * FIXING ACCIDENTAL DELETION OF KAIN: { "o" : { "$v" : 1, "$set" : { "gameIDs.5" : ObjectId("5ebb7e046ca4d532d8f72720"), "raw_gameIDs.5" : ObjectId("5ebb7e016ca4d532d8f7271f") } } }
+{ "o" : { "$v" : 1, "$set" : { "gameIDs.6" : ObjectId("5ebb846e6ca4d532d8f72d01"), "raw_gameIDs.6" : ObjectId("5ebb846d6ca4d532d8f72d00") } } }
+{ "o" : { "$v" : 1, "$set" : { "gameIDs.7" : ObjectId("5ebc07f1c424a7b7686f8c5e"), "raw_gameIDs.7" : ObjectId("5ebc07f1c424a7b7686f8c5d") } } }
+ Kains old ID: ObjectId("5eb77fef3db8853cc8e9e1be")
+
+ JUNK kain games, delete all references later:
+ ObjectId("5ebc21b7fbc510bf58ef20e7"), 
+        ObjectId("5ebc256e606152c390b4b69e"), 
+        ObjectId("5ebc27028b829eae081f7af8"), 
+        ObjectId("5ebc27fdd65d658884defa39"), 
+        ObjectId("5ebc290fbdf875c028e82a59"),
+  JUNK kain RawGames, delete all references later:
+
+  ObjectId("5ebc21b7fbc510bf58ef20e6"), 
+        ObjectId("5ebc256d606152c390b4b69d"), 
+        ObjectId("5ebc27018b829eae081f7af7"), 
+        ObjectId("5ebc27fbd65d658884defa38"), 
+        ObjectId("5ebc290dbdf875c028e82a58"), 
+        ObjectId("5ebc2a24883e7aa24074b1ad"), 
+        ObjectId("5ebc2a4e883e7aa24074b528"),
+ */
+
 async function test(){
+  // let kain = await database.getOrCreatePlayer('76561198027955330', 'Kain42link42');
   // database.test();
   // testBuildingRawGameFromDB();
 }
 test();
+
+async function fixDeletedUser(kain){
+  const { Player } = require('./custom_modules/models/Player');
+  let allGames = (await database.getGames({}));
+  let brokenLinkGames = [];
+  let kainGames = [];
+  allGames.forEach(async game=>{
+    for(let playerIdentity of game.game_end.PlayerIdentities){
+      if(playerIdentity.Nickname=='Kain42link42'){
+        kainGames.push(game);
+        // Player.updateOne({_id:kain._id}, {$push:{gameIDs:game._id, raw_gameIDs:game.raw_gameID}})
+      }
+      // let player = await database.getPlayer({ name:playerIdentity.Nickname, gameIDs:game._id });
+      // if(!player){
+      //   console.log('FOUND BROKEN LINK GAME:', game._id);
+      //   console.log('BROKEN FOR PLAYER:', playerIdentity.Nickname);
+      //   brokenLinkGames.push(game);
+      // }
+    };
+  });
+  kainGames=kainGames.sort((a,b)=>new Date(a.game_start.timestamp).getTime() - new Date(b.game_start.timestamp).getTime());
+  // kainGames.forEach(async game=>await Player.updateOne({_id:kain._id}, {$push:{gameIDs:game._id, raw_gameIDs:game.raw_gameID}}))
+}
 
 async function testBuildingRawGameFromFile(){
   // database.test();

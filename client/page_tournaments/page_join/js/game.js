@@ -12,6 +12,7 @@ class Game {
   }
 
   printResults(){
+    console.log('Played at:', this.data.game_found.timestamp)
     console.log('Winner:', this.hacked ? 'Hackers' : 'Agents');
     console.log('Players:')
     this.data.game_end.PlayerIdentities.forEach(playerIdentity=>{

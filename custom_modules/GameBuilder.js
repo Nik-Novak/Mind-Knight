@@ -46,6 +46,8 @@ class GameBuilder extends EventEmitter {
         else if (line.includes('Received SpawnPlayer')) {
             let packet = JSON.parse(line.substring(line.indexOf('packet:', 20) + 7));
             packet.timestamp = this.getISOTimestamp(line.substring(0, 19));
+            if(packet.IsLocal)
+                this.game.local_slot = packet.Slot;
             this.game.players = this.game.players || {}; //INIT
             this.game.players[packet.Slot] = packet;
         }
@@ -53,7 +55,6 @@ class GameBuilder extends EventEmitter {
             let packet = JSON.parse(line.substring(line.indexOf('packet:', 20) + 7));
             packet.timestamp = this.getISOTimestamp(line.substring(0, 19));
             this.game.game_start = packet;
-            this.game.local_slot = _.reduce(this.game.players, (result, value, key)=> value.IsLocal?value.Slot:result);
             this.propNumber = 1;
             this.emit('game_start', this.game);
         }

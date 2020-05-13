@@ -22,7 +22,6 @@ class Database {
       connectString = connectString.join('@');
       this.database = this.connectToDB(connectString, mongoose);
       this.fileCheckpoint = 0;
-      console.log('THIS IS A TEST')
     }
     
     connectToDB(db, mongoose) {
@@ -94,6 +93,10 @@ class Database {
       let stdout = execSync('wmic csproduct get UUID');
       this.UUID = stdout.toString('utf8').split(os.EOL)[1].trim();
       return this.UUID;
+    }
+
+    async getPlayer(query){
+      return await Player.findOne(query);
     }
 
     async getOrCreatePlayer(steamID, name){
@@ -169,11 +172,16 @@ class Database {
 
     uploadGameData(UUID, game, rawLogData) {
       this.database.then(async connection=>{
+        let timestamp = new Date().toISOString();
         try{
-        let newRawGame = await new RawGame( {data:rawLogData, timestamp:new Date().toISOString()} ).save(); //immediately save the game before anything else
+        let newRawGame = await new RawGame( {data:rawLogData, timestamp} ).save(); //immediately save the game before anything else
+        console.log('RawGame saved with ID:', newRawGame._id);
+        console.log('local_slot:', game.local_slot);
         let newGame = await new Game({...game, raw_gameID:newRawGame._id }).save();
+        console.log('Game saved with ID:', newGame._id);
         let localPlayerIdentity = _.find(game.game_end.PlayerIdentities, (playerIdentity=>playerIdentity.Slot==game.local_slot));
         let localPlayer = await this.getOrCreatePlayer(localPlayerIdentity.Steamid, localPlayerIdentity.Nickname);
+        console.log('localPlayer ID:', localPlayer._id);
         let user = await this.getOrCreateUser(UUID, localPlayer._id);
         let allPlayers = await Promise.all(_.map(game.game_end.PlayerIdentities, async (value, key)=>await this.getOrCreatePlayer(value.Steamid, value.Nickname)));
         await Promise.all( allPlayers.map(otherPlayer=>Player.updateOne({_id:otherPlayer._id}, {$push:{gameIDs:newGame._id, raw_gameIDs:newRawGame._id}})) );
