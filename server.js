@@ -37,7 +37,7 @@ portastic.find({
   max: 8180
 })
 .then(function(ports){
-  console.log(database.readLogFile());
+  console.log(database.readLogFile(path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log")));
   const port = ports[0];
 
 
