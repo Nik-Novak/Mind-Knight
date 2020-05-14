@@ -37,6 +37,7 @@ portastic.find({
   max: 8180
 })
 .then(function(ports){
+  console.log(database.readLogFile());
   const port = ports[0];
 
 
