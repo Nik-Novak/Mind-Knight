@@ -32,7 +32,7 @@ class Game {
       let proposerSlot = value.mission_phase_end.Proposer;
       console.log(`\t\t ProposedBy: ${this.getPlayerIdentity(proposerSlot).Nickname}(${this.data.players[proposerSlot].Username})`);
       console.log(`\t\t Result: ${value.mission_phase_end.Failed?`Hacked(${value.mission_phase_end.NumHacks})`:'Secured'}`);
-      console.log(`\t\t propIndex: ${value.mission_phase_end.propNumber-1}/5`);
+      console.log(`\t\t PropIndex: ${value.mission_phase_end.propNumber-1}/5`);
     });
   }
 }

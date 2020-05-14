@@ -447,14 +447,12 @@ static void fd_orphan(grpc_fd* fd, grpc_closure* on_done, int* release_fd,
     // Otherwise, we will receive epoll events after we release the FD.
     epoll_event ev_fd;
     memset(&ev_fd, 0, sizeof(ev_fd));
-    if (release_fd != nullptr) {
-      if (pollable_obj != nullptr) {  // For PO_FD.
-        epoll_ctl(pollable_obj->epfd, EPOLL_CTL_DEL, fd->fd, &ev_fd);
-      }
-      for (size_t i = 0; i < fd->pollset_fds.size(); ++i) {  // For PO_MULTI.
-        const int epfd = fd->pollset_fds[i];
-        epoll_ctl(epfd, EPOLL_CTL_DEL, fd->fd, &ev_fd);
-      }
+    if (pollable_obj != nullptr) {  // For PO_FD.
+      epoll_ctl(pollable_obj->epfd, EPOLL_CTL_DEL, fd->fd, &ev_fd);
+    }
+    for (size_t i = 0; i < fd->pollset_fds.size(); ++i) {  // For PO_MULTI.
+      const int epfd = fd->pollset_fds[i];
+      epoll_ctl(epfd, EPOLL_CTL_DEL, fd->fd, &ev_fd);
     }
     *release_fd = fd->fd;
   } else {
@@ -614,6 +612,7 @@ static void pollable_unref(pollable* p, int line, const char* reason) {
     close(p->epfd);
     grpc_wakeup_fd_destroy(&p->wakeup);
     gpr_mu_destroy(&p->owner_orphan_mu);
+    gpr_mu_destroy(&p->mu);
     gpr_free(p);
   }
 }
@@ -1295,7 +1294,7 @@ static grpc_error* pollset_as_multipollable_locked(grpc_pollset* pollset,
 static void pollset_add_fd(grpc_pollset* pollset, grpc_fd* fd) {
   GPR_TIMER_SCOPE("pollset_add_fd", 0);
 
-  // We never transition from PO_MULTI to other modes (i.e., PO_FD or PO_EMOPTY)
+  // We never transition from PO_MULTI to other modes (i.e., PO_FD or PO_EMPTY)
   // and, thus, it is safe to simply store and check whether the FD has already
   // been added to the active pollable previously.
   if (gpr_atm_acq_load(&pollset->active_pollable_type) == PO_MULTI &&
@@ -1579,6 +1578,11 @@ static bool is_any_background_poller_thread(void) { return false; }
 
 static void shutdown_background_closure(void) {}
 
+static bool add_closure_to_background_poller(grpc_closure* closure,
+                                             grpc_error* error) {
+  return false;
+}
+
 static void shutdown_engine(void) {
   fd_global_shutdown();
   pollset_global_shutdown();
@@ -1620,6 +1624,7 @@ static const grpc_event_engine_vtable vtable = {
     is_any_background_poller_thread,
     shutdown_background_closure,
     shutdown_engine,
+    add_closure_to_background_poller,
 };
 
 const grpc_event_engine_vtable* grpc_init_epollex_linux(

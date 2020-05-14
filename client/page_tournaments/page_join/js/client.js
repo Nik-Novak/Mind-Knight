@@ -22,7 +22,7 @@ identity = await database.getIdentity();
 console.log('IDENTITY:', identity);
 console.log('Tournaments:', tournies);
 
-(await database.getGameByID('5ebc2a5d883e7aa24074ba1c')).printResults();
+(await database.getGameByID('5ebce6b4675bb139ccebd8c3')).printResults();
 
 $( document).ready(function(){
   for(let i=0; i< tournies.length; i++){
