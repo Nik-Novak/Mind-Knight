@@ -194,11 +194,11 @@ const GameEndSchema = {
 }
 
 const ChatMsgSchema = {
-  Message:    { type:String, required:true },
-  Slot:    { ...Integer.Positive, required:true },
-  Type:    { ...Integer.Positive, required:true },
-  index:    { ...Integer.Positive, required:true },
-  timestamp:        { type:Date, required:true },
+  Message:    { type:String, default:"" }, //should be required=true, not sure why messages are being saved that have no content
+  Slot:    { ...Integer.Positive, default:-1 },
+  Type:    { ...Integer.Positive, default:-1 },
+  index:    { ...Integer.Positive, default:-1 },
+  timestamp:        { type:Date, default:new Date(0) },
 }
 
 const GameSchema = new Schema({
