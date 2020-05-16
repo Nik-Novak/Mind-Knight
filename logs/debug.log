@@ -104,20 +104,24 @@ LAN MODE ENABLED, to view the app on another device in your home/network please 
 
 Welcome to Mind Knight, please visit 10.0.0.134:8080 in your browser (on any device in your network). If that does not work then please try visiting address localhost:8080 on this machine.
 Connected to DB.
+[LOG] Client socket connected
+Your version is up to date!
 Client requested: /
 Client requested: /css/reset.css
 Client requested: /css/global.css
 Client requested: /css/content.css
 Client requested: /css/colour.css
-[LOG] Client socket connected
-[LOG] Client socket connected
-Your version is up to date!
-Your version is up to date!
 Client requested: /js/jquery.min.js
 Client requested: /js/socket.js
 Client requested: /js/navigation.js
 Client requested: /js/tooltips.js
 Client requested: /js/client.js
 Client requested: /img/background.png
+[LOG] Client socket connected
+Your version is up to date!
+[LOG] Client socket connected
+[LOG] Client socket connected
+Your version is up to date!
+Your version is up to date!
 [LOG] Client socket connected
 Your version is up to date!
