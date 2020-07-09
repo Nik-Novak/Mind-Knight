@@ -1,3 +1,4 @@
+const fs = require('fs');
 class Tail{
     constructor(filepath, callback, options={maxBuffer: 1024*1024*50, encoding:'utf8'}){
         this.filepath = filepath;
@@ -7,6 +8,8 @@ class Tail{
     }
   
     tail(){
+        if(process.env.NODE_ENV == 'debug')
+            console.log('[DEBUG] EXISTING LOG:', fs.readFileSync(this.filepath).toString())
         if(this.running)
             throw Error('Tail was already tailing the file: ' + this.filepath);
         this.running=true;
@@ -18,7 +21,8 @@ class Tail{
             lines.forEach( line => {
                 if(line.length == 0)
                     return;
-                // console.log(line.trim());
+                if(process.env.NODE_ENV == 'debug')
+                  console.log('[DEBUG]', line.trim());
                 __this.callback(line.trim());
             } );
         });

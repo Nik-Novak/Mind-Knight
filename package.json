@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "node --trace-deprecation ."
+    "debug": "set NODE_ENV=debug&&node server.js"
   },
   "author": "Nik",
   "license": "ISC",

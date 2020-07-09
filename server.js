@@ -62,6 +62,7 @@ console.log('*******************************************************************
 console.log('Welcome to Mind Knight, please visit ' + ip.address() + ':'+port+' in your browser (on any device in your network). If that does not work then please try visiting address localhost:'+port+' on this machine.');
 
 //****** Checking log file *******
+  console.log('NODE_ENV', process.env.NODE_ENV);
   let logExists = fs.existsSync(`${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`);
   console.log(`logExists:`, logExists);
 //*****************
