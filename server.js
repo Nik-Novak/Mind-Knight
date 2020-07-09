@@ -60,6 +60,12 @@ console.log('\n*************************************** LAN MODE ****************
 console.log('LAN MODE ENABLED, to view the app on another device in your home/network please visit this address in your browser:', ip.address()+ ':'+port+'');
 console.log('****************************************************************************************\n');
 console.log('Welcome to Mind Knight, please visit ' + ip.address() + ':'+port+' in your browser (on any device in your network). If that does not work then please try visiting address localhost:'+port+' on this machine.');
+
+//****** Checking log file *******
+  let logExists = fs.existsSync(`${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`);
+  console.log(`logExists:`, logExists);
+//*****************
+    
 // @ts-ignore
 app.use( (req, res, next)=>{ //Any url not defined (or i guess final module to be used)
     console.log('Client requested:', req.originalUrl);
