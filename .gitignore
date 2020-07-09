@@ -2,3 +2,4 @@
 sample_games/
 .vs/
 logs/
+npm-debug.log
