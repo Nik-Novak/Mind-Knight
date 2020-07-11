@@ -1,5 +1,5 @@
 .idea/
 sample_games/
 .vs/
-logs/
+logs/debug.log
 npm-debug.log
