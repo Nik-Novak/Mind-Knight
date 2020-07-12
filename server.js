@@ -7,6 +7,7 @@ var express = require('express');
 const portastic = require('portastic');
 const opn = require('opn');
 const Tail = require('./custom_modules/Tail.js');
+const TailCompatibility = require('./custom_modules/TailCompatibility.js');
 const GameBuilder = require('./custom_modules/GameBuilder.js');
 var Database = require('./custom_modules/Database.js').Database;
 var Updater = require('./custom_modules/Updater.js').Updater;
@@ -187,8 +188,10 @@ io.on('disconnect', function(socket) {
 
 // ********* TAIL *********
 //C:/Users/nnova/AppData/LocalLow/Nomoon/Mindnight/output_log.txt
-
-new Tail(`${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`, gamebuilder.process.bind(gamebuilder)).tail();//new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/Player.log", gamebuilder.process.bind(gamebuilder)).tail();
+if(process.env.NODE_ENV == 'compatibility')
+  new TailCompatibility(`${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`, gamebuilder.process.bind(gamebuilder)).tail();
+else
+  new Tail(`${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`, gamebuilder.process.bind(gamebuilder)).tail();//new Tail("$Env:USERPROFILE/appdata/LocalLow/Nomoon/Mindnight/Player.log", gamebuilder.process.bind(gamebuilder)).tail();
 
 // ********* Game Build *********
 //Intro page
