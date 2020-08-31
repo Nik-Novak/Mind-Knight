@@ -1,1 +1,1 @@
-cmd /k PowerShell ./node server.js
+cmd /k PowerShell cd ./server; ../bin/node/node ./server.js

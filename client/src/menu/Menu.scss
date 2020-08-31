@@ -1,0 +1,50 @@
+.Menu {
+
+  position:relative;
+  width: 100%;
+  height:100%;
+  background: url(./img/background.png) no-repeat center;
+
+  /* IPHONE FIX for BG cover */
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  #donate{
+    margin-left: 10px;
+  }
+
+  footer .flex-center {
+    text-align: center;
+  }
+
+  h1, h2{
+    margin-top: 20px;
+  }
+
+
+  @media(max-width:768px){
+    h1{
+        font-size: 11.25vw;
+    }
+
+    h2{
+        font-size: 5vw;
+    }
+
+    h3{
+        font-size: 3.75vw;
+    }
+
+    h5{
+        font-size: 1.875vw;
+    }
+  }
+
+
+}

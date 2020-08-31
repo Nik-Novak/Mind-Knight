@@ -1,0 +1,1894 @@
+Initialize engine version: 2018.2.14f1 (3262fb3b0716)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 980 Ti (ID=0x17c8)
+    Vendor:   
+    VRAM:     6097 MB
+    Driver:   25.21.14.1616
+Begin MonoManager ReloadAssembly
+- Completed reload, in  0.091 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.442625 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 2478 -> priority: 1 
+  Thread -> id: 3f28 -> priority: 1 
+  Thread -> id: 1bb4 -> priority: 1 
+  Thread -> id: 28a4 -> priority: 1 
+UnloadTime: 4.164617 ms
+2018.11.12 11:46:09: Discord: init
+2018.11.12 11:46:09: Loading Main menu Background
+
+Unloading 60 unused Assets to reduce memory usage. Loaded Objects now: 1258.
+Total: 1.432323 ms (FindLiveObjects: 0.932098 ms CreateObjectMapping: 0.048896 ms MarkObjects: 0.386560 ms  DeleteObjects: 0.064768 ms)
+
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.12 11:46:17: Activate Main menu Background
+2018.11.12 11:46:17: Background done, loading MainMenu
+UnloadTime: 0.202496 ms
+2018.11.12 11:46:17: System.Collections.Generic.List`1[Mindnight.EventManager+Event]
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 11037.
+Total: 3.081991 ms (FindLiveObjects: 1.142530 ms CreateObjectMapping: 0.075776 ms MarkObjects: 1.848068 ms  DeleteObjects: 0.015616 ms)
+
+2018.11.12 11:46:17: Destroying GameControl because it already existed.
+2018.11.12 11:46:17: load skin colors
+2018.11.12 11:46:17: load skin colors done
+2018.11.12 11:46:17: Starting main menu
+2018.11.12 11:46:17: MusicManager: start music Music
+2018.11.12 11:46:17: Steam Manager Inialized
+2018.11.12 11:46:17: Init Steam Avatar Async Loading
+2018.11.12 11:46:17: Initialized False
+2018.11.12 11:46:17: Connect, Current stateNotConnected
+2018.11.12 11:46:17: Network state changed to: Connecting
+2018.11.12 11:46:17: connecting to ws://173.212.195.37:6543/
+2018.11.12 11:46:17: Network state changed to: Connected
+2018.11.12 11:46:17: Sending PlayerInfoPacket:{"Type":601,"Nickname":"2JZ 4U","Steamid":"76561198073023481"}
+2018.11.12 11:46:17: Sending AuthorizationRequestPacket:{"Type":801,"SteamTicket":"140000004845D636F8565B9DF98BB80601001001BC42E95B1800000001000000020000009706BE6B0000000080659E0008000000B20000003200000004000000F98BB80601001001DE300A009706BE6B6D01A8C000000000F32DE55B73DD005C010061700300000000002546D9190BE5988A59E71357D3D374CDC24546980CB6A2CAEE8203C863D9BC50615CB7AB021A585FB79ADD2492B9DF22C78940ABC5F1F6E5C98A1DF821FEA0BE1D4552AA9208421C7075819D7AD429CBA7CB6762EF0C410C7D6D347D6C5E492A93C3A70CA59E25447AC98F84694FC19380F10CDD7459E5FEDC0B6F0A9C5EE318","ClientToken":"2.5-c1957bac-e290-11e8-9f32-f2801f1b9fd1"}
+2018.11.12 11:46:17: connected
+2018.11.12 11:46:17: Received EventInfo packet:{"Type":3,"Events":[]}
+2018.11.12 11:46:17: System.Collections.Generic.List`1[Mindnight.EventManager+Event]
+2018.11.12 11:46:18: Received Achievements packet:{"Type":607,"Achievements":[{"achievementId":"10","reward":1000},{"achievementId":"15","reward":1000},{"achievementId":"42","reward":250},{"achievementId":"43","reward":250},{"achievementId":"44","reward":1000},{"achievementId":"45","reward":1500},{"achievementId":"46","reward":10},{"achievementId":"47","reward":15},{"achievementId":"48","reward":20},{"achievementId":"49","reward":25},{"achievementId":"50","reward":100},{"achievementId":"51","reward":50},{"achievementId":"52","reward":100},{"achievementId":"53","reward":200},{"achievementId":"54","reward":300},{"achievementId":"55","reward":50},{"achievementId":"56","reward":50},{"achievementId":"57","reward":50},{"achievementId":"58","reward":50},{"achievementId":"59","reward":50},{"achievementId":"60","reward":50},{"achievementId":"61","reward":50},{"achievementId":"62","reward":50},{"achievementId":"63","reward":50},{"achievementId":"64","reward":50},{"achievementId":"65","reward":50},{"achievementId":"66","reward":50},{"achievementId":"67","reward":50},{"achievementId":"68","reward":50},{"achievementId":"69","reward":50},{"achievementId":"70","reward":50},{"achievementId":"71","reward":50},{"achievementId":"72","reward":50},{"achievementId":"73","reward":50},{"achievementId":"74","reward":50},{"achievementId":"75","reward":50},{"achievementId":"76","reward":50},{"achievementId":"77","reward":50},{"achievementId":"78","reward":50},{"achievementId":"79","reward":100},{"achievementId":"80","reward":200},{"achievementId":"81","reward":300},{"achievementId":"0","reward":5},{"achievementId":"1","reward":10},{"achievementId":"2","reward":50},{"achievementId":"3","reward":100},{"achievementId":"4","reward":200},{"achievementId":"5","reward":500},{"achievementId":"6","reward":10},{"achievementId":"7","reward":50},{"achievementId":"8","reward":150},{"achievementId":"9","reward":100},{"achievementId":"11","reward":10},{"achievementId":"12","reward":50},{"achievementId":"13","reward":100},{"achievementId":"14","reward":200},{"achievementId":"16","reward":10},{"achievementId":"17","reward":20},{"achievementId":"18","reward":75},{"achievementId":"19","reward":200},{"achievementId":"20","reward":1000},{"achievementId":"21","reward":100},{"achievementId":"22","reward":200},{"achievementId":"23","reward":235},{"achievementId":"24","reward":100},{"achievementId":"25","reward":50},{"achievementId":"26","reward":100},{"achievementId":"27","reward":200},{"achievementId":"28","reward":300},{"achievementId":"29","reward":100},{"achievementId":"30","reward":50},{"achievementId":"31","reward":23},{"achievementId":"32","reward":80},{"achievementId":"33","reward":200},{"achievementId":"34","reward":50},{"achievementId":"35","reward":40},{"achievementId":"36","reward":20},{"achievementId":"37","reward":50},{"achievementId":"38","reward":20},{"achievementId":"39","reward":10},{"achievementId":"40","reward":200},{"achievementId":"41","reward":100},{"achievementId":"82","reward":50},{"achievementId":"83","reward":50},{"achievementId":"84","reward":50},{"achievementId":"85","reward":50},{"achievementId":"86","reward":50},{"achievementId":"87","reward":50},{"achievementId":"88","reward":100},{"achievementId":"89","reward":50}]}
+2018.11.12 11:46:18: Received PlayerStats packet:{"Type":602,"Stats":{"TimePlayed":529377,"Credits":1204,"Level":30,"MaxLevel":30,"EXP":0,"MaxEXP":11168,"GamesPlayedHacker":173,"GamesPlayedAgent":288,"GamesWonHacker":102,"GamesWonAgent":129,"GamesLostHacker":71,"GamesLostAgent":159,"WordsWritten":107383,"BadWordsWritten":250,"CurrentWinStreak":0,"BestWinStreak":9,"MaxAchievements":90,"MaxSkins":46,"MaxEmojis":20,"MaxGestures":7,"ClaimedItems":["61","72","70","7","66","28","57","6","27","5","26","4","25","3","24","2","23","35","34","33","22","21","20","1"],"ClaimedAchievements":["15","10","53","89","88","57","55","50","49","48","33","81","14","9","5","75","56","52","51","47","46","31","80","79","78","43","42","41","40","39","37","36","35","34","32","29","28","27","26","25","24","23","22","21","19","18","17","16","13","12","11","8","7","6","4","3","2","1","0"],"CurrentSkin":"72","RandomNamePreference":0,"AccountRoles":[0],"Muted":0,"LongestGame":3056,"ShortestGame":192,"CustomGamesPlayed":48,"CreditsObtained":"69604","PlayersReported":40,"ReportsReceived":34,"LeavePenalties":4,"BansReceived":0,"BanAppreciation":false,"ItemOfTheWeek":13,"ItemOfTheWeekTimeLeft":1542050746,"ItemOfTheWeekSKU":1008}}
+2018.11.12 11:46:18: Received AuthResponse packet:{"Type":802}
+2018.11.12 11:46:18: Network state changed to: Authorized
+2018.11.12 11:46:18: Sending SteamFriendListPacket:{"Type":701,"SteamIds":["76561197960459533","76561197960512132","76561197960535884","76561197961174257","76561197962025305","76561197962038248","76561197962085858","76561197962853057","76561197962859432","76561197963839453","76561197965025381","76561197965210064","76561197965226583","76561197965353810","76561197965920614","76561197966546209","76561197967457534","76561197968569296","76561197970757339","76561197972585317","76561197976474049","76561197977169761","76561197977185530","76561197980010372","76561197980258601","76561197982192968","76561197982834361","76561197985016605","76561197985837799","76561197987653371","76561197988205434","76561197989708228","76561197990161098","76561197990900121","76561197993402823","76561197994406148","76561197994636666","76561197996304386","76561197996490957","76561197996497946","76561197998392766","76561197998477508","76561197999090846","76561197999457502","76561197999754957","76561198000038939","76561198000273155","76561198000650858","76561198001265932","76561198001355026","76561198001785187","76561198001951474","76561198002531506","76561198004823930","76561198005103049","76561198005122607","76561198007584877","76561198008367578","76561198011399481","76561198011637632","76561198012243414","76561198013114948","76561198013287552","76561198016995592","76561198017337275","76561198018620231","76561198019087261","76561198019208732","76561198019230107","76561198019807927","76561198021172002","76561198021465860","76561198022791103","76561198023072664","76561198023548598","76561198023665795","76561198026847863","76561198027955330","76561198028408950","76561198028906939","76561198028963664","76561198029841478","76561198030414692","76561198032619308","76561198034570743","76561198036180357","76561198036533964","76561198036853968","76561198037188073","76561198037894023","76561198037959548","76561198040609119","76561198041659390","76561198044279118","76561198046182986","76561198046349765","76561198046657181","76561198047479312","76561198048005039","76561198050493897","76561198050684813","76561198051870968","76561198052480519","76561198054812673","76561198054831857","76561198055534918","76561198055604547","76561198056752024","76561198058736759","76561198058770418","76561198058925193","76561198059485361","76561198059531211","76561198060613943","76561198061744788","76561198062336652","76561198062791210","76561198062814871","76561198064108496","76561198065018004","76561198065627157","76561198065861702","76561198066124937","76561198066757202","76561198067613754","76561198067851563","76561198068331490","76561198068372718","76561198069540289","76561198071170711","76561198072129745","76561198072317186","76561198072555979","76561198079166731","76561198079206622","76561198079621573","76561198080509999","76561198080646380","76561198081203193","76561198083881081","76561198084704749","76561198091436205","76561198093821178","76561198096220936","76561198096288711","76561198098517554","76561198101080904","76561198101748928","76561198103948001","76561198107371021","76561198111934413","76561198112518267","76561198112627443","76561198112672364","76561198114567948","76561198115200711","76561198116361606","76561198117593394","76561198119788488","76561198119826574","76561198120628655","76561198121665679","76561198124938279","76561198125832162","76561198126644527","76561198129889808","76561198130324847","76561198130838187","76561198131479033","76561198133764501","76561198134311672","76561198139867774","76561198140501630","76561198146003890","76561198146594273","76561198147252205","76561198148312444","76561198148506776","76561198149177798","76561198150535844","76561198150878963","76561198151323019","76561198152016716","76561198152861130","76561198153795200","76561198154807836","76561198156682106","76561198160836824","76561198162078315","76561198162078709","76561198162368675","76561198164590664","76561198164659152","76561198165171480","76561198165303720","76561198165912334","76561198165945329","76561198166291850","76561198167206103","76561198169371557","76561198170691287","76561198183115865","76561198186229847","76561198190266450","76561198190455442","76561198191418945","76561198193698603","76561198195799419","76561198197555130","76561198197775474","76561198198260085","76561198199724431","76561198202244507","76561198206648431","76561198207930381","76561198208078609","76561198212355685","76561198212452935","76561198217767851","76561198218229553","76561198230069152","76561198242131254","76561198248111646","76561198249198482","76561198255998734","76561198257601903","76561198258938748","76561198261177558","76561198261882260","76561198262433525","76561198263391498","76561198271575731","76561198274031521","76561198290400609","76561198306931301","76561198313654508","76561198321820986","76561198322529547","76561198323116418","76561198326819363","76561198329247286","76561198329400057","76561198330802605","76561198333179471","76561198333446536","76561198334671702","76561198352365751","76561198355153372","76561198358292470","76561198364992365","76561198375674405","76561198378180268","76561198379011517","76561198395199107","76561198403309923","76561198405890907","76561198412369051","76561198421319331","76561198441838874","76561198449205538","76561198802134311","76561198812796787","76561198820514920","76561198841040165","76561198842253830","76561198867287373"]}
+2018.11.12 11:46:18: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:46:18: Received News packet:{"Type":605,"News":[{"Title":"MAINFRAME","Category":0,"Link":"http://www.mindnightgame.com/mainframe/","ImageSrc":"http://www.mindnightgame.com/static/mainframe_update.png"},{"Title":"CHANGELOG","Category":0,"Link":"https://store.steampowered.com/news/?appids=667870","ImageSrc":"#patchnotes"},{"Title":"DISCORD","Category":0,"Link":"https://discord.gg/mindnight","ImageSrc":"#discord"},{"Title":"PATREON","Category":0,"Link":"https://www.patreon.com/mindnight","ImageSrc":"#patreon"},{"Title":"SPECIAL DEAL","Category":1,"Link":"","ImageSrc":""}]}
+2018.11.12 11:46:18: Received Items packet:{"Type":613,"Items":[{"ItemId":1,"Name":"skin_default","Category":0,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":2,"Name":"skin_cadet","Category":0,"Price":0,"UnlockLevel":5,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":3,"Name":"skin_ensign","Category":0,"Price":0,"UnlockLevel":10,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":4,"Name":"skin_lieutenant","Category":0,"Price":0,"UnlockLevel":15,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":5,"Name":"skin_sergeant","Category":0,"Price":0,"UnlockLevel":20,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":6,"Name":"skin_admiral","Category":0,"Price":0,"UnlockLevel":25,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":7,"Name":"skin_master","Category":0,"Price":0,"UnlockLevel":30,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":8,"Name":"skin_heckard","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":9,"Name":"skin_lin_baden","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":10,"Name":"skin_micky","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":11,"Name":"skin_loolee","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":12,"Name":"skin_suit_guy","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":13,"Name":"skin_aloire_of_satora","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":14,"Name":"skin_chef","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":15,"Name":"skin_ketchup","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":16,"Name":"skin_hacker_man","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":17,"Name":"skin_pierrot","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":18,"Name":"skin_ghaben","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":19,"Name":"skin_mcfly","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":20,"Name":"emoji_smile","Category":1,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":21,"Name":"emoji_big_smile","Category":1,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":22,"Name":"emoji_sad_face","Category":1,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":23,"Name":"emoji_cry","Category":1,"Price":0,"UnlockLevel":3,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":24,"Name":"emoji_tongue","Category":1,"Price":0,"UnlockLevel":7,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":25,"Name":"emoji_saint","Category":1,"Price":0,"UnlockLevel":12,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":26,"Name":"emoji_devil","Category":1,"Price":0,"UnlockLevel":17,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":27,"Name":"emoji_hypnotized","Category":1,"Price":0,"UnlockLevel":22,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":28,"Name":"emoji_wink","Category":1,"Price":0,"UnlockLevel":27,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":29,"Name":"emoji_surprised","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":30,"Name":"emoji_straight_face","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":31,"Name":"emoji_angry","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":32,"Name":"emoji_kiss","Category":1,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":33,"Name":"gesture_wave","Category":2,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":34,"Name":"gesture_crying","Category":2,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":35,"Name":"gesture_celebrate","Category":2,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":36,"Name":"gesture_fart","Category":2,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":37,"Name":"gesture_facepalm","Category":2,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":38,"Name":"gesture_sleep","Category":2,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":39,"Name":"gesture_laugh","Category":2,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":40,"Name":"emoji_cute","Category":1,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":41,"Name":"skin_elf_f","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":42,"Name":"skin_elf_m","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":43,"Name":"skin_santa","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":44,"Name":"skin_xmastree","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":45,"Name":"skin_mandeer","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":46,"Name":"skin_snowman","Category":0,"Price":15000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":47,"Name":"skin_mr_robot","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":49,"Name":"emoji_thumbs_up","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":50,"Name":"emoji_thumbs_down","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":51,"Name":"emoji_thinking","Category":1,"Price":3000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":52,"Name":"emoji_heart","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":53,"Name":"skin_hangover_john","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"Generic User"},{"ItemId":54,"Name":"skin_leela","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"Eva"},{"ItemId":55,"Name":"skin_reaper","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"gangster_heart"},{"ItemId":56,"Name":"skin_shodan","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"iwanPlays"},{"ItemId":57,"Name":"skin_tuxedoguy","Category":0,"Price":15000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"Fudjijama"},{"ItemId":58,"Name":"skin_jukebox","Category":0,"Price":0,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":59,"Name":"skin_raggy","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":60,"Name":"skin_alice","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":61,"Name":"skin_angela","Category":0,"Price":25000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":62,"Name":"skin_holo_san","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":63,"Name":"skin_bob","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":64,"Name":"skin_spy_infinity","Category":0,"Price":6000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":65,"Name":"skin_developer_skin","Category":0,"Price":0,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":66,"Name":"emoji_hammer","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":67,"Name":"emoji_broken_heart","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":68,"Name":"skin_chicken_man","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":69,"Name":"skin_hot_chick","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":70,"Name":"skin_develyn","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":71,"Name":"skin_wizard","Category":0,"Price":15000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":72,"Name":"skin_metalhead","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":73,"Name":"skin_indie","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":74,"Name":"skin_claudette","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null}]}
+2018.11.12 11:46:18: Sending RequestUnlockAchievementsPacket:{"Type":610}
+2018.11.12 11:46:19: Received PlayerFriendList packet:{"Type":702,"FriendList":[{"SteamId":"76561198313654508","Status":5},{"SteamId":"76561198066124937","Status":5},{"SteamId":"76561197998392766","Status":5},{"SteamId":"76561198812796787","Status":5},{"SteamId":"76561198841040165","Status":5},{"SteamId":"76561198355153372","Status":5},{"SteamId":"76561198098517554","Status":5},{"SteamId":"76561198079621573","Status":5},{"SteamId":"76561197998477508","Status":5},{"SteamId":"76561198036180357","Status":5},{"SteamId":"76561198403309923","Status":5},{"SteamId":"76561198842253830","Status":5},{"SteamId":"76561198027955330","Status":5},{"SteamId":"76561198072555979","Status":5},{"SteamId":"76561198441838874","Status":5},{"SteamId":"76561198412369051","Status":5},{"SteamId":"76561198206648431","Status":5},{"SteamId":"76561198107371021","Status":5},{"SteamId":"76561198079166731","Status":5},{"SteamId":"76561198023665795","Status":5},{"SteamId":"76561198867287373","Status":5},{"SteamId":"76561198802134311","Status":5},{"SteamId":"76561197987653371","Status":5},{"SteamId":"76561197985837799","Status":5},{"SteamId":"76561198329247286","Status":5},{"SteamId":"76561198333179471","Status":5},{"SteamId":"76561197999754957","Status":5},{"SteamId":"76561198820514920","Status":5},{"SteamId":"76561198067613754","Status":5},{"SteamId":"76561198065861702","Status":5},{"SteamId":"76561198255998734","Status":5},{"SteamId":"76561198037188073","Status":5},{"SteamId":"76561198146003890","Status":5}]}
+2018.11.12 11:46:19: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.12 11:46:21: Sending RandomSkinPacket:{"Type":623,"RandomSkin":true}
+2018.11.12 11:46:21: Sending GlobalChatHisotryRequestPacket:{"Type":903}
+2018.11.12 11:46:21: Sending Packet:{"Type":108}
+
+Unloading 116 unused Assets to reduce memory usage. Loaded Objects now: 17698.
+Total: 9.592342 ms (FindLiveObjects: 1.422083 ms CreateObjectMapping: 0.161280 ms MarkObjects: 7.887634 ms  DeleteObjects: 0.121344 ms)
+
+2018.11.12 11:46:21: Received GlobalChatHistoryResponse packet:{"Type":904,"Messages":[{"Message":"GOOOOOOOOOOO","SteamId":"76561198280106410","Username":"XxDarkGhostxX","Roles":[0],"Timestamp":1542020891},{"Message":"but aloire looks cool aasfuck","SteamId":"76561198323636850","Username":"Lighthouse","Roles":[0],"Timestamp":1542020893},{"Message":"3","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021114},{"Message":"4","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021265},{"Message":"just on","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021414},{"Message":"one","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021420},{"Message":"cmon","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021422},{"Message":"come","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021424},{"Message":"here 2 save the day","SteamId":"76561198251408214","Username":"Boner","Roles":[0],"Timestamp":1542021431},{"Message":"oh jeez","SteamId":"76561198251408214","Username":"Boner","Roles":[0],"Timestamp":1542021440},{"Message":"omg","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542021456},{"Message":"cmon ","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021460},{"Message":"just one","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021463},{"Message":"lest play","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021465},{"Message":"guys","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021466},{"Message":"gogogo 1 more","SteamId":"76561198067826783","Username":"ZombieZ","Roles":[0],"Timestamp":1542021471},{"Message":"poor guy died waiting","SteamId":"76561198251408214","Username":"Boner","Roles":[0],"Timestamp":1542021472},{"Message":"come come","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021480},{"Message":"go queue","SteamId":"76561198280106410","Username":"XxDarkGhostxX","Roles":[0],"Timestamp":1542022258},{"Message":"3/5","SteamId":"76561198280106410","Username":"XxDarkGhostxX","Roles":[0],"Timestamp":1542022263}]}
+2018.11.12 11:46:24: Sending RequestServerInfoPacket:{"Type":5}
+2018.11.12 11:46:24: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:46:24: Network state changed to: FindingGame
+2018.11.12 11:46:24: Sending FindGamePacket:{"Type":101,"LevelGroup":0,"RandomSkin":true}
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.12 11:46:24: Sending RandomSkinPacket:{"Type":623,"RandomSkin":true}
+
+Unloading 82 unused Assets to reduce memory usage. Loaded Objects now: 18787.
+Total: 15.301923 ms (FindLiveObjects: 1.713411 ms CreateObjectMapping: 0.222976 ms MarkObjects: 13.271326 ms  DeleteObjects: 0.093696 ms)
+
+2018.11.12 11:46:24: Received RoomInfo packet:{"Type":103,"PlayersCount":1,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":-1}
+2018.11.12 11:46:25: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":-1}
+2018.11.12 11:46:25: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":-1}
+2018.11.12 11:46:25: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":10000}
+2018.11.12 11:46:26: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":9000}
+2018.11.12 11:46:26: Sending AcceptMatchPacket:{"Type":105}
+2018.11.12 11:46:26: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":1,"StartIn":8532}
+2018.11.12 11:46:27: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":2,"StartIn":8352}
+2018.11.12 11:46:27: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":2,"StartIn":8000}
+2018.11.12 11:46:27: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":3,"StartIn":7763}
+2018.11.12 11:46:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:46:27: Sending Packet:{"Type":-1}
+2018.11.12 11:46:27: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":4,"StartIn":7486}
+2018.11.12 11:46:28: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":4,"StartIn":6999}
+2018.11.12 11:46:29: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":5,"StartIn":-1}
+2018.11.12 11:46:29: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:46:29: Received GameFound packet:{"Type":102,"PlayerNumber":5,"Hacker":true,"GuyRole":20,"HackersAmount":2,"MissionInfo":[2,3,2,3,3],"MissionMinhacks":[1,1,1,1,1],"Hackers":[0,3],"MatchType":0,"FirstPlayer":0,"Map":31,"Options":{"GameMode":0,"MaxPlayers":8,"Visibility":0,"NamingConvention":1,"HammerEnabled":true,"SkipTalkingPhaseEnabled":true,"MapPickOption":1,"Maps":[]}}
+2018.11.12 11:46:29: GameSession:Awake
+2018.11.12 11:46:29: GameFound - Map: Hideout
+2018.11.12 11:46:29: Network state changed to: InGame
+2018.11.12 11:46:29: SceneLoader: LoadingScene is loading.
+2018.11.12 11:46:29: Received SpawnPlayer packet:{"Type":202,"Slot":0,"Color":5,"Username":"Vera","Female":true,"IsLocal":false,"Skin":"skin_mandeer"}
+2018.11.12 11:46:29: Received SpawnPlayer packet:{"Type":202,"Slot":1,"Color":0,"Username":"Nunya","Female":false,"IsLocal":false,"Skin":"skin_chicken_man"}
+2018.11.12 11:46:29: Received SpawnPlayer packet:{"Type":202,"Slot":2,"Color":3,"Username":"Logan","Female":false,"IsLocal":false,"Skin":"skin_pierrot"}
+2018.11.12 11:46:29: Received SpawnPlayer packet:{"Type":202,"Slot":3,"Color":7,"Username":"Brittany","Female":true,"IsLocal":true,"Skin":"skin_tuxedoguy"}
+2018.11.12 11:46:29: Received SpawnPlayer packet:{"Type":202,"Slot":4,"Color":6,"Username":"Zelda","Female":true,"IsLocal":false,"Skin":"skin_ensign"}
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 14.111520 ms
+2018.11.12 11:46:29: Destroying GameControl because it already existed.
+2018.11.12 11:46:29: SceneLoader: LoadingScene loaded.
+
+Unloading 1215 unused Assets to reduce memory usage. Loaded Objects now: 1467.
+Total: 2.376197 ms (FindLiveObjects: 0.593409 ms CreateObjectMapping: 0.104448 ms MarkObjects: 0.985346 ms  DeleteObjects: 0.692993 ms)
+
+2018.11.12 11:46:31: SceneLoader: Play is loading.
+2018.11.12 11:46:31: LoadingManager is loading: Play
+2018.11.12 11:46:31: LoadingManager finished loading: Play
+2018.11.12 11:46:32: Destroying GameControl because it already existed.
+2018.11.12 11:46:32: PlayReference:Awake
+2018.11.12 11:46:32: PlayManager:Awake
+Your current multi-scene setup has inconsistent Lighting settings which may lead to different lighting when loading scenes individually or in a different order! Consider homogenizing the following:
+1/2 scenes have different Realtime GI settings.
+
+ 
+(Filename:  Line: 124)
+
+2018.11.12 11:46:32: Scene is fully loaded: Play True
+2018.11.12 11:46:32: Scene is fully active: LoadingScene=>Play
+2018.11.12 11:46:32: PlayReference:Start
+2018.11.12 11:46:32: PlayManager:Start
+2018.11.12 11:46:32: SceneLoader: Play loaded.
+2018.11.12 11:46:32: SubsceneManager awake
+Your current multi-scene setup has inconsistent Lighting settings which may lead to different lighting when loading scenes individually or in a different order! Consider homogenizing the following:
+1/3 scenes have different Realtime GI settings.
+1/3 scenes use different skyboxes.
+
+ 
+(Filename:  Line: 124)
+
+2018.11.12 11:46:32: SubsceneManager start. wait for playscene
+2018.11.12 11:46:32: PlayReference:CrossSceneReferences
+2018.11.12 11:46:32: SubsceneManager:CrosssceneReferenceSetup
+2018.11.12 11:46:32: SubsceneManager:getting references from play scene
+2018.11.12 11:46:32: MusicManager: start music Music
+2018.11.12 11:46:32: PlayState: Entering Init
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.12 11:46:32: Spawn player Vera on slot 0
+2018.11.12 11:46:32: Spawn player Nunya on slot 1
+2018.11.12 11:46:33: Spawn player Logan on slot 2
+2018.11.12 11:46:33: Localplayer is on slot 3
+2018.11.12 11:46:33: Spawn player Brittany on slot 3
+2018.11.12 11:46:33: Spawn player Zelda on slot 4
+2018.11.12 11:46:33: First player: 0
+2018.11.12 11:46:33: Sending ReadyPacket:{"Type":401}
+
+Unloading 389 unused Assets to reduce memory usage. Loaded Objects now: 11558.
+Total: 8.781588 ms (FindLiveObjects: 1.340931 ms CreateObjectMapping: 0.215296 ms MarkObjects: 6.870799 ms  DeleteObjects: 0.354560 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 11559.
+Total: 8.701716 ms (FindLiveObjects: 1.080066 ms CreateObjectMapping: 0.142080 ms MarkObjects: 7.464977 ms  DeleteObjects: 0.014336 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 11559.
+Total: 7.087888 ms (FindLiveObjects: 1.073922 ms CreateObjectMapping: 0.137216 ms MarkObjects: 5.867021 ms  DeleteObjects: 0.009472 ms)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 11559.
+Total: 7.468305 ms (FindLiveObjects: 1.102338 ms CreateObjectMapping: 0.152320 ms MarkObjects: 6.202638 ms  DeleteObjects: 0.011008 ms)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 11559.
+Total: 8.965140 ms (FindLiveObjects: 1.656067 ms CreateObjectMapping: 0.304896 ms MarkObjects: 6.991888 ms  DeleteObjects: 0.011776 ms)
+
+2018.11.12 11:46:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:46:37: Sending Packet:{"Type":-1}
+2018.11.12 11:46:38: Received GameStart packet:{"Type":201,"Disconnected":[],"AFK":[]}
+2018.11.12 11:46:38: Received TalkPhaseStart packet:{"Type":301,"Duration":30000}
+2018.11.12 11:46:38: PlayState: Entering TalkingPhase
+2018.11.12 11:46:42: Sending TalkPhaseSkipPacket:{"Type":313}
+2018.11.12 11:46:44: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:46:45: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:46:46: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:46:46: Received ChatMessageReceive packet:{"Type":205,"Message":"vera","Slot":2}
+2018.11.12 11:46:46: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:46:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:46:47: Sending Packet:{"Type":-1}
+2018.11.12 11:46:47: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:46:47: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:46:47: Received ChatMessageReceive packet:{"Type":205,"Message":"are u ","Slot":2}
+2018.11.12 11:46:48: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:46:48: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:46:48: Received ChatMessageReceive packet:{"Type":205,"Message":"oh the magic clown again","Slot":0}
+2018.11.12 11:46:48: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:46:48: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:46:48: Sending SendChatPacket:{"Type":204,"Message":"heya"}
+2018.11.12 11:46:48: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:46:48: Received ChatMessageReceive packet:{"Type":205,"Message":"heya","Slot":3}
+2018.11.12 11:46:48: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:46:48: Received ChatMessageReceive packet:{"Type":205,"Message":";D","Slot":0}
+2018.11.12 11:46:49: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"watch out there is cheaters in quickplay","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023210}}
+2018.11.12 11:46:49: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:46:51: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:46:52: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:46:53: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:46:53: Received ChatMessageReceive packet:{"Type":205,"Message":"hello","Slot":2}
+2018.11.12 11:46:54: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:46:55: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"multi-accounting","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023216}}
+2018.11.12 11:46:56: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:46:57: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:46:57: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:46:57: Received ChatMessageReceive packet:{"Type":205,"Message":"so ","Slot":2}
+2018.11.12 11:46:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:46:57: Sending Packet:{"Type":-1}
+2018.11.12 11:46:58: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:00: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:47:01: Received ChatMessageReceive packet:{"Type":205,"Message":"im again agent please trust me","Slot":4}
+2018.11.12 11:47:02: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:47:02: Received ChatMessageReceive packet:{"Type":205,"Message":"let's see ur n2 guess this time","Slot":0}
+2018.11.12 11:47:07: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:47:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:47:07: Sending Packet:{"Type":-1}
+2018.11.12 11:47:08: Received TalkPhaseEnd packet:{"Type":302}
+2018.11.12 11:47:08: Received SelectPhaseStart packet:{"Type":303,"Player":0,"NextPlayer":1,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.12 11:47:08: PlayState: Entering SelectPhase
+2018.11.12 11:47:08: SelectPhase: 0 2
+2018.11.12 11:47:09: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:09: Received ChatMessageReceive packet:{"Type":205,"Message":"ill do it dw","Slot":2}
+2018.11.12 11:47:10: Received SelectUpdate packet:{"Type":305,"Slots":[0],"Submit":false,"Pass":false}
+2018.11.12 11:47:11: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 11:47:13: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"įNeverįMore youį're the shittiest hacker on here","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023234}}
+2018.11.12 11:47:14: Received SelectPhaseEnd packet:{"Type":304,"Proposer":0,"SelectedTeam":[0,2],"Passed":false}
+2018.11.12 11:47:14: Received VotePhaseStart packet:{"Type":306,"Proposer":0,"Players":[0,2],"Duration":60000}
+2018.11.12 11:47:14: PlayState: Entering VotePhase
+2018.11.12 11:47:15: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:47:15: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:47:16: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:47:16: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:47:16: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:47:16: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:47:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:47:17: Sending Packet:{"Type":-1}
+2018.11.12 11:47:19: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:47:19: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:47:20: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:47:20: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:47:22: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:47:22: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:47:24: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:47:24: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[2,0],"VotesAgainst":[4,3,1],"Passed":false}
+2018.11.12 11:47:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:47:27: Sending Packet:{"Type":-1}
+2018.11.12 11:47:29: Received SelectPhaseStart packet:{"Type":303,"Player":1,"NextPlayer":2,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.12 11:47:29: PlayState: Entering SelectPhase
+2018.11.12 11:47:29: SelectPhase: 1 2
+2018.11.12 11:47:30: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:47:31: Received SelectUpdate packet:{"Type":305,"Slots":[1,4],"Submit":false,"Pass":false}
+2018.11.12 11:47:31: Received SelectPhaseEnd packet:{"Type":304,"Proposer":1,"SelectedTeam":[1,4],"Passed":false}
+2018.11.12 11:47:31: Received VotePhaseStart packet:{"Type":306,"Proposer":1,"Players":[1,4],"Duration":60000}
+2018.11.12 11:47:31: PlayState: Entering VotePhase
+2018.11.12 11:47:33: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:47:33: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:47:34: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:47:34: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:47:34: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:47:35: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:47:36: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:47:37: Sending Packet:{"Type":-1}
+2018.11.12 11:47:38: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:47:38: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1,4],"VotesAgainst":[2,0,3],"Passed":false}
+2018.11.12 11:47:43: Received SelectPhaseStart packet:{"Type":303,"Player":2,"NextPlayer":3,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.12 11:47:43: PlayState: Entering SelectPhase
+2018.11.12 11:47:43: SelectPhase: 2 2
+2018.11.12 11:47:44: Received SelectUpdate packet:{"Type":305,"Slots":[2],"Submit":false,"Pass":false}
+2018.11.12 11:47:46: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 11:47:47: Received SelectPhaseEnd packet:{"Type":304,"Proposer":2,"SelectedTeam":[0,2],"Passed":false}
+2018.11.12 11:47:47: Received VotePhaseStart packet:{"Type":306,"Proposer":2,"Players":[0,2],"Duration":60000}
+2018.11.12 11:47:47: PlayState: Entering VotePhase
+2018.11.12 11:47:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:47:47: Sending Packet:{"Type":-1}
+2018.11.12 11:47:47: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:47:49: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:47:50: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:47:53: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:47:54: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:47:54: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:47:54: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:54: Received ChatMessageReceive packet:{"Type":205,"Message":"acc","Slot":2}
+2018.11.12 11:47:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:47:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:55: Received ChatMessageReceive packet:{"Type":205,"Message":"ty","Slot":2}
+2018.11.12 11:47:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:56: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"i have 4/3 as hacker niggerr","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023276}}
+2018.11.12 11:47:56: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:47:56: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[2,0],"VotesAgainst":[4,3,1],"Passed":false}
+2018.11.12 11:47:56: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:47:57: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:47:57: Received ChatMessageReceive packet:{"Type":205,"Message":"go fast","Slot":2}
+2018.11.12 11:47:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:47:57: Sending Packet:{"Type":-1}
+2018.11.12 11:48:00: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"and you?","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023281}}
+2018.11.12 11:48:01: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:48:01: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:48:01: Received SelectPhaseStart packet:{"Type":303,"Player":3,"NextPlayer":4,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.12 11:48:01: PlayState: Entering SelectPhase
+2018.11.12 11:48:01: SelectPhase: 3 2
+2018.11.12 11:48:04: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:48:04: Sending SendChatPacket:{"Type":204,"Message":"none of htis past game nonsense"}
+2018.11.12 11:48:04: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:48:04: Received ChatMessageReceive packet:{"Type":205,"Message":"none of htis past game nonsense","Slot":3}
+2018.11.12 11:48:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:48:07: Sending Packet:{"Type":-1}
+2018.11.12 11:48:08: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:48:09: Sending UpdateSelectPacket:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 11:48:09: Received SelectUpdate packet:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 11:48:10: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 11:48:10: Received SelectUpdate packet:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 11:48:10: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4],"Submit":true,"Pass":false}
+2018.11.12 11:48:10: Received SelectPhaseEnd packet:{"Type":304,"Proposer":3,"SelectedTeam":[3,4],"Passed":false}
+2018.11.12 11:48:10: Received VotePhaseStart packet:{"Type":306,"Proposer":3,"Players":[3,4],"Duration":60000}
+2018.11.12 11:48:10: PlayState: Entering VotePhase
+2018.11.12 11:48:11: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:48:12: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:48:13: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:48:14: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:48:14: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:48:14: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:48:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:48:17: Sending Packet:{"Type":-1}
+2018.11.12 11:48:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:48:27: Sending Packet:{"Type":-1}
+2018.11.12 11:48:28: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"i am perfect","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023309}}
+2018.11.12 11:48:34: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:48:34: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"i am the bestest","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023315}}
+2018.11.12 11:48:35: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:48:35: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[],"VotesAgainst":[3,2,0,4,1],"Passed":false}
+2018.11.12 11:48:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:48:37: Sending Packet:{"Type":-1}
+2018.11.12 11:48:39: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:48:40: Received SelectPhaseStart packet:{"Type":303,"Player":4,"NextPlayer":0,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.12 11:48:40: PlayState: Entering SelectPhase
+2018.11.12 11:48:40: SelectPhase: 4 2
+2018.11.12 11:48:41: Received SelectUpdate packet:{"Type":305,"Slots":[4],"Submit":false,"Pass":false}
+2018.11.12 11:48:42: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:48:42: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:48:43: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:48:43: Received ChatMessageReceive packet:{"Type":205,"Message":"nunya brittany prob hackers not sure","Slot":2}
+2018.11.12 11:48:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:48:45: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:48:45: Received ChatMessageReceive packet:{"Type":205,"Message":":^","Slot":2}
+2018.11.12 11:48:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:48:47: Sending Packet:{"Type":-1}
+2018.11.12 11:48:48: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:48:49: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:48:50: Received SelectUpdate packet:{"Type":305,"Slots":[1,4],"Submit":false,"Pass":false}
+2018.11.12 11:48:51: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:48:51: Sending SendChatPacket:{"Type":204,"Message":"yeah u got me"}
+2018.11.12 11:48:51: Received SelectPhaseEnd packet:{"Type":304,"Proposer":4,"SelectedTeam":[1,4],"Passed":false}
+2018.11.12 11:48:51: Received VotePhaseStart packet:{"Type":306,"Proposer":4,"Players":[1,4],"Duration":60000}
+2018.11.12 11:48:51: PlayState: Entering VotePhase
+2018.11.12 11:48:51: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:48:51: Received ChatMessageReceive packet:{"Type":205,"Message":"yeah u got me","Slot":3}
+2018.11.12 11:48:51: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"oke what is your stats then idiot","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023332}}
+2018.11.12 11:48:52: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:48:52: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:48:53: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:48:54: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:48:54: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:48:54: Received ChatMessageReceive packet:{"Type":205,"Message":"$#©&","Slot":2}
+2018.11.12 11:48:55: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:48:55: Sending VotePacket:{"Type":308,"Action":1}
+2018.11.12 11:48:55: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:48:55: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[4,1,0,3],"VotesAgainst":[2],"Passed":true}
+2018.11.12 11:48:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:48:57: Sending Packet:{"Type":-1}
+2018.11.12 11:49:00: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:49:00: Received MissionPhaseStart packet:{"Type":310,"Mission":1,"Players":[1,4],"Duration":15000}
+2018.11.12 11:49:00: PlayState: Entering MissionPhase
+2018.11.12 11:49:00: Set Mission Players: <color=#00A6F6>Nunya</color>, <color=#00B48B>Zelda</color>
+2018.11.12 11:49:04: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"5į/1","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023345}}
+2018.11.12 11:49:05: Received MissionPhaseEnd packet:{"Type":311,"Mission":1,"Failed":false,"NumHacks":0,"Proposer":4}
+2018.11.12 11:49:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:49:07: Sending Packet:{"Type":-1}
+2018.11.12 11:49:07: Set Mission Players: <color=#00A6F6>Nunya</color>, <color=#00B48B>Zelda</color>
+2018.11.12 11:49:09: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:49:12: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:49:13: Received TalkPhaseStart packet:{"Type":301,"Duration":45000}
+2018.11.12 11:49:13: PlayState: Entering TalkingPhase
+2018.11.12 11:49:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:49:17: Sending Packet:{"Type":-1}
+2018.11.12 11:49:19: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:49:19: Received ChatMessageReceive packet:{"Type":205,"Message":"wow Clown guy you're really improving","Slot":0}
+2018.11.12 11:49:19: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:49:22: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"yep ch3ater","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023363}}
+2018.11.12 11:49:23: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:49:23: Received ChatMessageReceive packet:{"Type":205,"Message":"this time u guessed n1!","Slot":0}
+2018.11.12 11:49:26: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"but i will add you because i am also racist","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023366}}
+2018.11.12 11:49:27: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"i reported u btw","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023368}}
+2018.11.12 11:49:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:49:27: Sending Packet:{"Type":-1}
+2018.11.12 11:49:28: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:49:29: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:49:30: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"yeah i got aimbot lol","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023370}}
+2018.11.12 11:49:33: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:49:33: Sending SendChatPacket:{"Type":204,"Message":"u guys wanna know something dope"}
+2018.11.12 11:49:33: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:49:33: Received ChatMessageReceive packet:{"Type":205,"Message":"u guys wanna know something dope","Slot":3}
+2018.11.12 11:49:34: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:49:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:49:37: Sending Packet:{"Type":-1}
+2018.11.12 11:49:39: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:49:39: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:49:39: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:49:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:49:42: Received ChatMessageReceive packet:{"Type":205,"Message":"u are agent ? KEK","Slot":2}
+2018.11.12 11:49:43: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:49:46: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:49:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:49:47: Sending Packet:{"Type":-1}
+2018.11.12 11:49:49: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:49:49: Received ChatMessageReceive packet:{"Type":205,"Message":"i m agent please","Slot":4}
+2018.11.12 11:49:50: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":26,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:49:53: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:49:53: Sending SendChatPacket:{"Type":204,"Message":"just finished writing some software that automatically logs everyones props, how long it took to vote etc"}
+2018.11.12 11:49:54: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:49:54: Received ChatMessageReceive packet:{"Type":205,"Message":"just finished writing some software that automatically logs everyones props, how long it took to vote etc","Slot":3}
+2018.11.12 11:49:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:49:57: Sending Packet:{"Type":-1}
+2018.11.12 11:49:58: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:49:58: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:49:58: Received TalkPhaseEnd packet:{"Type":302}
+2018.11.12 11:49:58: Received SelectPhaseStart packet:{"Type":303,"Player":0,"NextPlayer":1,"Amount":3,"Duration":60000,"Mission":2}
+2018.11.12 11:49:58: PlayState: Entering SelectPhase
+2018.11.12 11:49:58: SelectPhase: 0 3
+2018.11.12 11:50:01: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:50:01: Sending SendChatPacket:{"Type":204,"Message":"this is teh first test run"}
+2018.11.12 11:50:01: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:50:01: Received ChatMessageReceive packet:{"Type":205,"Message":"this is teh first test run","Slot":3}
+2018.11.12 11:50:02: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":25,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:50:05: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:50:07: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:07: Received ChatMessageReceive packet:{"Type":205,"Message":"lets go","Slot":2}
+2018.11.12 11:50:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:50:07: Sending Packet:{"Type":-1}
+2018.11.12 11:50:07: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:08: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:50:08: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:50:09: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:50:11: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:50:11: Sending SendChatPacket:{"Type":204,"Message":"and its doooope"}
+2018.11.12 11:50:11: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:50:11: Received ChatMessageReceive packet:{"Type":205,"Message":"and its doooope","Slot":3}
+2018.11.12 11:50:11: Received SelectUpdate packet:{"Type":305,"Slots":[0],"Submit":false,"Pass":false}
+2018.11.12 11:50:12: Received SelectUpdate packet:{"Type":305,"Slots":[0,1],"Submit":false,"Pass":false}
+2018.11.12 11:50:12: Received SelectUpdate packet:{"Type":305,"Slots":[0,1,2],"Submit":false,"Pass":false}
+2018.11.12 11:50:14: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":24,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:50:15: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:15: Received ChatMessageReceive packet:{"Type":205,"Message":"its kinda counted as hack no ?","Slot":2}
+2018.11.12 11:50:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:50:17: Sending Packet:{"Type":-1}
+2018.11.12 11:50:18: Received SelectPhaseEnd packet:{"Type":304,"Proposer":0,"SelectedTeam":[0,1,2],"Passed":false}
+2018.11.12 11:50:18: Received VotePhaseStart packet:{"Type":306,"Proposer":0,"Players":[0,1,2],"Duration":60000}
+2018.11.12 11:50:18: PlayState: Entering VotePhase
+2018.11.12 11:50:19: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:50:19: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:50:19: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:50:19: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:50:20: Received ChatMessageReceive packet:{"Type":205,"Message":"nono","Slot":4}
+2018.11.12 11:50:21: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:50:21: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:50:21: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:50:21: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:50:21: Sending SendChatPacket:{"Type":204,"Message":"no"}
+2018.11.12 11:50:21: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:50:21: Received ChatMessageReceive packet:{"Type":205,"Message":"no","Slot":3}
+2018.11.12 11:50:22: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:50:22: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:50:23: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:23: Received ChatMessageReceive packet:{"Type":205,"Message":"its hacked like that tbh","Slot":2}
+2018.11.12 11:50:24: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:50:24: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:50:26: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:50:26: Sending SendChatPacket:{"Type":204,"Message":"it reads incoming packets "}
+2018.11.12 11:50:26: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:50:26: Received ChatMessageReceive packet:{"Type":205,"Message":"it reads incoming packets ","Slot":3}
+2018.11.12 11:50:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:50:27: Sending Packet:{"Type":-1}
+2018.11.12 11:50:30: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:50:30: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:50:30: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[0],"VotesAgainst":[4,1,2,3],"Passed":false}
+2018.11.12 11:50:34: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:50:35: Received SelectPhaseStart packet:{"Type":303,"Player":1,"NextPlayer":2,"Amount":3,"Duration":60000,"Mission":2}
+2018.11.12 11:50:35: PlayState: Entering SelectPhase
+2018.11.12 11:50:35: SelectPhase: 1 3
+2018.11.12 11:50:37: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":23,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:50:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:50:37: Sending Packet:{"Type":-1}
+2018.11.12 11:50:38: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":22,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:50:39: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:40: Received ChatMessageReceive packet:{"Type":205,"Message":"so it doesnt count as hackers?","Slot":2}
+2018.11.12 11:50:41: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":10,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:50:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:50:44: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:44: Received ChatMessageReceive packet:{"Type":205,"Message":"as hacker ","Slot":2}
+2018.11.12 11:50:45: Received SelectUpdate packet:{"Type":305,"Slots":[],"Submit":false,"Pass":false}
+2018.11.12 11:50:46: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:46: Received SelectUpdate packet:{"Type":305,"Slots":[],"Submit":false,"Pass":false}
+2018.11.12 11:50:46: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:46: Received SelectUpdate packet:{"Type":305,"Slots":[],"Submit":false,"Pass":false}
+2018.11.12 11:50:46: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:46: Received SelectUpdate packet:{"Type":305,"Slots":[],"Submit":false,"Pass":false}
+2018.11.12 11:50:47: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:50:47: Sending Packet:{"Type":-1}
+2018.11.12 11:50:48: Received SelectUpdate packet:{"Type":305,"Slots":[],"Submit":false,"Pass":false}
+2018.11.12 11:50:48: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:48: Received SelectUpdate packet:{"Type":305,"Slots":[],"Submit":false,"Pass":false}
+2018.11.12 11:50:49: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:50:50: Received SelectUpdate packet:{"Type":305,"Slots":[1,4],"Submit":false,"Pass":false}
+2018.11.12 11:50:54: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:50:54: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:50:54: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:50:54: Sending SendChatPacket:{"Type":204,"Message":"?"}
+2018.11.12 11:50:54: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:50:55: Received ChatMessageReceive packet:{"Type":205,"Message":"?","Slot":3}
+2018.11.12 11:50:57: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:50:57: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:50:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:50:57: Sending Packet:{"Type":-1}
+2018.11.12 11:50:58: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:50:58: Received ChatMessageReceive packet:{"Type":205,"Message":"i mean","Slot":2}
+2018.11.12 11:50:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:51:06: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":4}
+2018.11.12 11:51:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:51:07: Sending Packet:{"Type":-1}
+2018.11.12 11:51:08: Received SelectUpdate packet:{"Type":305,"Slots":[0,1,4],"Submit":false,"Pass":false}
+2018.11.12 11:51:09: Received SelectPhaseEnd packet:{"Type":304,"Proposer":1,"SelectedTeam":[0,1,4],"Passed":false}
+2018.11.12 11:51:09: Received VotePhaseStart packet:{"Type":306,"Proposer":1,"Players":[0,1,4],"Duration":60000}
+2018.11.12 11:51:09: PlayState: Entering VotePhase
+2018.11.12 11:51:10: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:51:11: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:51:11: Received ChatMessageReceive packet:{"Type":205,"Message":"isnt it ","Slot":2}
+2018.11.12 11:51:12: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":4}
+2018.11.12 11:51:12: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:12: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:51:14: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:51:14: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:51:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:51:17: Sending Packet:{"Type":-1}
+2018.11.12 11:51:18: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:51:19: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:51:19: Received ChatMessageReceive packet:{"Type":205,"Message":"a third part program ?","Slot":2}
+2018.11.12 11:51:20: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:22: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:23: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:51:26: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:51:26: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:51:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:51:27: Sending Packet:{"Type":-1}
+2018.11.12 11:51:33: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:51:33: Sending SendChatPacket:{"Type":204,"Message":"kinda but it just does what u would normally do in excel"}
+2018.11.12 11:51:33: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:51:33: Received ChatMessageReceive packet:{"Type":205,"Message":"kinda but it just does what u would normally do in excel","Slot":3}
+2018.11.12 11:51:35: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:36: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:51:37: Sending Packet:{"Type":-1}
+2018.11.12 11:51:41: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:41: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:51:41: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:51:44: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:51:44: Sending SendChatPacket:{"Type":204,"Message":"id be writing prop susually"}
+2018.11.12 11:51:44: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:51:44: Received ChatMessageReceive packet:{"Type":205,"Message":"id be writing prop susually","Slot":3}
+2018.11.12 11:51:44: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:51:45: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:51:46: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:51:47: Sending Packet:{"Type":-1}
+2018.11.12 11:51:48: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:51:49: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:51:49: Sending SendChatPacket:{"Type":204,"Message":"now I can focus more on the game"}
+2018.11.12 11:51:49: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:51:49: Received ChatMessageReceive packet:{"Type":205,"Message":"now I can focus more on the game","Slot":3}
+2018.11.12 11:51:53: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:51:53: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:51:53: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1,0,4],"VotesAgainst":[2,3],"Passed":true}
+2018.11.12 11:51:54: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:51:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:51:55: Received ChatMessageReceive packet:{"Type":205,"Message":"yhea ","Slot":2}
+2018.11.12 11:51:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:51:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:51:57: Sending Packet:{"Type":-1}
+2018.11.12 11:51:58: Received MissionPhaseStart packet:{"Type":310,"Mission":2,"Players":[0,1,4],"Duration":15000}
+2018.11.12 11:51:58: PlayState: Entering MissionPhase
+2018.11.12 11:51:58: Set Mission Players: <color=#FFEC16>Vera</color>, <color=#00A6F6>Nunya</color>, <color=#00B48B>Zelda</color>
+2018.11.12 11:51:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:51:59: Received ChatMessageReceive packet:{"Type":205,"Message":"feelsgo","Slot":2}
+2018.11.12 11:52:00: Received MissionPhaseEnd packet:{"Type":311,"Mission":2,"Failed":true,"NumHacks":1,"Proposer":1}
+2018.11.12 11:52:02: Set Mission Players: <color=#FFEC16>Vera</color>, <color=#00A6F6>Nunya</color>, <color=#00B48B>Zelda</color>
+2018.11.12 11:52:04: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:52:05: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:52:05: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:05: Received ChatMessageReceive packet:{"Type":205,"Message":"so ","Slot":2}
+2018.11.12 11:52:05: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:52:06: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:52:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:52:07: Sending Packet:{"Type":-1}
+2018.11.12 11:52:08: Received TalkPhaseStart packet:{"Type":301,"Duration":60000}
+2018.11.12 11:52:08: PlayState: Entering TalkingPhase
+2018.11.12 11:52:10: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:10: Received ChatMessageReceive packet:{"Type":205,"Message":"nunya is hacker","Slot":2}
+2018.11.12 11:52:11: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:52:11: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:52:11: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:12: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:13: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:52:13: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:52:16: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:52:17: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:52:17: Received ChatMessageReceive packet:{"Type":205,"Message":"nonoonoo","Slot":4}
+2018.11.12 11:52:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:52:17: Sending Packet:{"Type":-1}
+2018.11.12 11:52:18: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:52:19: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:52:19: Received ChatMessageReceive packet:{"Type":205,"Message":"madooo","Slot":4}
+2018.11.12 11:52:19: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:52:19: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:52:19: Sending SendChatPacket:{"Type":204,"Message":"u guys mind passing a full circle or two?"}
+2018.11.12 11:52:19: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:52:20: Received ChatMessageReceive packet:{"Type":205,"Message":"u guys mind passing a full circle or two?","Slot":3}
+2018.11.12 11:52:20: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:52:20: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:52:21: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:52:21: Received ChatMessageReceive packet:{"Type":205,"Message":"im agent","Slot":4}
+2018.11.12 11:52:23: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:52:23: Sending SendChatPacket:{"Type":204,"Message":"i wanna stress test it"}
+2018.11.12 11:52:23: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:52:24: Received ChatMessageReceive packet:{"Type":205,"Message":"i wanna stress test it","Slot":3}
+2018.11.12 11:52:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:52:27: Sending Packet:{"Type":-1}
+2018.11.12 11:52:30: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:52:33: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:52:34: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:34: Received ChatMessageReceive packet:{"Type":205,"Message":"tbh i already know ","Slot":2}
+2018.11.12 11:52:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:52:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:52:37: Sending Packet:{"Type":-1}
+2018.11.12 11:52:40: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:40: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:52:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:44: Received ChatMessageReceive packet:{"Type":205,"Message":"one hacker","Slot":2}
+2018.11.12 11:52:45: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:52:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:52:47: Sending Packet:{"Type":-1}
+2018.11.12 11:52:49: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:49: Received ChatMessageReceive packet:{"Type":205,"Message":"and its nunya","Slot":2}
+2018.11.12 11:52:50: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:52: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:52:53: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:52:53: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:52:54: Received ChatMessageReceive packet:{"Type":205,"Message":"gj clown","Slot":0}
+2018.11.12 11:52:54: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:52:54: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:52:54: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:52:54: Received ChatMessageReceive packet:{"Type":205,"Message":"im agent","Slot":4}
+2018.11.12 11:52:55: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:52:55: Sending SendChatPacket:{"Type":204,"Message":"why nunya"}
+2018.11.12 11:52:55: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:52:55: Received ChatMessageReceive packet:{"Type":205,"Message":"why nunya","Slot":3}
+2018.11.12 11:52:55: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:52:56: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:52:56: Received ChatMessageReceive packet:{"Type":205,"Message":"please","Slot":4}
+2018.11.12 11:52:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:52:57: Sending Packet:{"Type":-1}
+2018.11.12 11:52:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:52:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:01: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:03: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:53:05: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:05: Received ChatMessageReceive packet:{"Type":205,"Message":"zelda or is bad","Slot":2}
+2018.11.12 11:53:06: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:53:07: Sending Packet:{"Type":-1}
+2018.11.12 11:53:08: Received TalkPhaseEnd packet:{"Type":302}
+2018.11.12 11:53:08: Received SelectPhaseStart packet:{"Type":303,"Player":2,"NextPlayer":3,"Amount":2,"Duration":60000,"Mission":3}
+2018.11.12 11:53:08: PlayState: Entering SelectPhase
+2018.11.12 11:53:08: SelectPhase: 2 2
+2018.11.12 11:53:09: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:53:09: Received ChatMessageReceive packet:{"Type":205,"Message":"so it's logan + vera","Slot":1}
+2018.11.12 11:53:11: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:14: Received SelectUpdate packet:{"Type":305,"Slots":[2],"Submit":false,"Pass":false}
+2018.11.12 11:53:15: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 11:53:15: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:53:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:53:17: Sending Packet:{"Type":-1}
+2018.11.12 11:53:17: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:53:18: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:53:18: Received ChatMessageReceive packet:{"Type":205,"Message":"xd","Slot":1}
+2018.11.12 11:53:18: Received SelectUpdate packet:{"Type":305,"Slots":[0,4],"Submit":false,"Pass":false}
+2018.11.12 11:53:18: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:53:18: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:53:19: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:20: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:53:20: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:53:20: Sending SendChatPacket:{"Type":204,"Message":"whys that"}
+2018.11.12 11:53:20: Received ChatMessageReceive packet:{"Type":205,"Message":"brittany i will try y","Slot":4}
+2018.11.12 11:53:20: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:53:21: Received ChatMessageReceive packet:{"Type":205,"Message":"whys that","Slot":3}
+2018.11.12 11:53:21: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:21: Received ChatMessageReceive packet:{"Type":205,"Message":"im gonna go ","Slot":2}
+2018.11.12 11:53:22: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:22: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:24: Received ChatMessageReceive packet:{"Type":205,"Message":"with that ","Slot":2}
+2018.11.12 11:53:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:25: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:53:27: Sending Packet:{"Type":-1}
+2018.11.12 11:53:27: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:29: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:29: Received ChatMessageReceive packet:{"Type":205,"Message":"can u acc ?","Slot":2}
+2018.11.12 11:53:30: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:31: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:53:31: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:53:31: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:32: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:53:32: Received ChatMessageReceive packet:{"Type":205,"Message":"no","Slot":4}
+2018.11.12 11:53:32: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:53:32: Received ChatMessageReceive packet:{"Type":205,"Message":"no","Slot":1}
+2018.11.12 11:53:35: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:36: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:36: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:36: Received ChatMessageReceive packet:{"Type":205,"Message":"well","Slot":2}
+2018.11.12 11:53:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:53:37: Sending Packet:{"Type":-1}
+2018.11.12 11:53:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:42: Received ChatMessageReceive packet:{"Type":205,"Message":"zelda is a really bad agent ","Slot":2}
+2018.11.12 11:53:43: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:53:46: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:53:47: Sending Packet:{"Type":-1}
+2018.11.12 11:53:49: Received SelectUpdate packet:{"Type":305,"Slots":[2,4],"Submit":false,"Pass":false}
+2018.11.12 11:53:50: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:53:51: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:53:51: Received ChatMessageReceive packet:{"Type":205,"Message":"tse","Slot":4}
+2018.11.12 11:53:53: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:53:55: Received SelectUpdate packet:{"Type":305,"Slots":[2],"Submit":false,"Pass":false}
+2018.11.12 11:53:56: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 11:53:56: Received SelectPhaseEnd packet:{"Type":304,"Proposer":2,"SelectedTeam":[0,2],"Passed":false}
+2018.11.12 11:53:56: Received VotePhaseStart packet:{"Type":306,"Proposer":2,"Players":[0,2],"Duration":60000}
+2018.11.12 11:53:56: PlayState: Entering VotePhase
+2018.11.12 11:53:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:53:57: Sending Packet:{"Type":-1}
+2018.11.12 11:53:58: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:53:58: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:53:58: Received ChatMessageReceive packet:{"Type":205,"Message":"u are trolling u and vera","Slot":4}
+2018.11.12 11:53:58: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:53:59: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:54:02: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:54:03: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:54:03: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:54:04: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:54:05: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:54:05: Received ChatMessageReceive packet:{"Type":205,"Message":"im agent","Slot":4}
+2018.11.12 11:54:07: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:54:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:54:07: Sending Packet:{"Type":-1}
+2018.11.12 11:54:15: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:54:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:54:17: Sending Packet:{"Type":-1}
+2018.11.12 11:54:18: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:54:18: Sending SendChatPacket:{"Type":204,"Message":"sry if im not playing my fullest, still debugging this tool"}
+2018.11.12 11:54:18: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:54:18: Received ChatMessageReceive packet:{"Type":205,"Message":"sry if im not playing my fullest, still debugging this tool","Slot":3}
+2018.11.12 11:54:20: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:54:22: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:54:22: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:54:22: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[2,0],"VotesAgainst":[1,4,3],"Passed":false}
+2018.11.12 11:54:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:54:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:24: Received ChatMessageReceive packet:{"Type":205,"Message":"dw ","Slot":2}
+2018.11.12 11:54:25: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:54:27: Sending Packet:{"Type":-1}
+2018.11.12 11:54:27: Received SelectPhaseStart packet:{"Type":303,"Player":3,"NextPlayer":4,"Amount":2,"Duration":60000,"Mission":3}
+2018.11.12 11:54:27: PlayState: Entering SelectPhase
+2018.11.12 11:54:27: SelectPhase: 3 2
+2018.11.12 11:54:31: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:54:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:37: Received ChatMessageReceive packet:{"Type":205,"Message":"zelda is bad agent or idk ","Slot":2}
+2018.11.12 11:54:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:54:37: Sending Packet:{"Type":-1}
+2018.11.12 11:54:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:39: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:54:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:44: Received ChatMessageReceive packet:{"Type":205,"Message":"nunya is hacker","Slot":2}
+2018.11.12 11:54:45: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:54:46: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:46: Received ChatMessageReceive packet:{"Type":205,"Message":"and ","Slot":2}
+2018.11.12 11:54:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:54:47: Sending Packet:{"Type":-1}
+2018.11.12 11:54:49: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:54:51: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:52: Sending UpdateSelectPacket:{"Type":305,"Slots":[],"Submit":true,"Pass":true}
+2018.11.12 11:54:52: Received SelectPhaseEnd packet:{"Type":304,"Proposer":3,"SelectedTeam":[],"Passed":true}
+2018.11.12 11:54:52: Received SelectPhaseStart packet:{"Type":303,"Player":4,"NextPlayer":0,"Amount":2,"Duration":60000,"Mission":3}
+2018.11.12 11:54:52: PlayStateMachine: Same state twice in a row: SelectPhase
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 43)
+
+2018.11.12 11:54:52: PlayState: Entering SelectPhase
+2018.11.12 11:54:52: SelectPhase: 4 2
+2018.11.12 11:54:53: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:54:55: Received SelectUpdate packet:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 11:54:55: Received SelectUpdate packet:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 11:54:55: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:54:56: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:54:56: Received SelectPhaseEnd packet:{"Type":304,"Proposer":4,"SelectedTeam":[3,4],"Passed":false}
+2018.11.12 11:54:56: Received VotePhaseStart packet:{"Type":306,"Proposer":4,"Players":[3,4],"Duration":60000}
+2018.11.12 11:54:56: PlayState: Entering VotePhase
+2018.11.12 11:54:57: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:54:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:54:57: Sending Packet:{"Type":-1}
+2018.11.12 11:54:58: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:54:58: Sending SendChatPacket:{"Type":204,"Message":"passing to test software"}
+2018.11.12 11:54:58: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:58: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:54:58: Received ChatMessageReceive packet:{"Type":205,"Message":"passing to test software","Slot":3}
+2018.11.12 11:54:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:54:59: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:54:59: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:54:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:00: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:55:01: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:55:01: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:55:02: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:55:03: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:55:03: Received ChatMessageReceive packet:{"Type":205,"Message":"acc","Slot":1}
+2018.11.12 11:55:04: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:55:04: Sending SendChatPacket:{"Type":204,"Message":"not cuz i trust anyone more"}
+2018.11.12 11:55:04: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:55:04: Received ChatMessageReceive packet:{"Type":205,"Message":"not cuz i trust anyone more","Slot":3}
+2018.11.12 11:55:05: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:55:07: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:55:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:55:07: Sending Packet:{"Type":-1}
+2018.11.12 11:55:08: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:08: Received ChatMessageReceive packet:{"Type":205,"Message":"acc ","Slot":2}
+2018.11.12 11:55:08: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:08: Sending VotePacket:{"Type":308,"Action":1}
+2018.11.12 11:55:08: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:55:08: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[4,1,2,3],"VotesAgainst":[0],"Passed":true}
+2018.11.12 11:55:12: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:13: Received MissionPhaseStart packet:{"Type":310,"Mission":3,"Players":[3,4],"Duration":15000}
+2018.11.12 11:55:13: PlayState: Entering MissionPhase
+2018.11.12 11:55:13: Set Mission Players: <color=#0041F6>Brittany</color>, <color=#00B48B>Zelda</color>
+2018.11.12 11:55:15: Sending MissionActionPacket:{"Type":312,"MissionAction":1}
+2018.11.12 11:55:15: Received MissionPhaseEnd packet:{"Type":311,"Mission":3,"Failed":false,"NumHacks":0,"Proposer":4}
+2018.11.12 11:55:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:55:17: Sending Packet:{"Type":-1}
+2018.11.12 11:55:18: Set Mission Players: <color=#0041F6>Brittany</color>, <color=#00B48B>Zelda</color>
+2018.11.12 11:55:20: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:55:21: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:21: Received ChatMessageReceive packet:{"Type":205,"Message":"okay ","Slot":2}
+2018.11.12 11:55:21: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:23: Received TalkPhaseStart packet:{"Type":301,"Duration":75000}
+2018.11.12 11:55:23: PlayState: Entering TalkingPhase
+2018.11.12 11:55:27: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:55:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:55:27: Sending Packet:{"Type":-1}
+2018.11.12 11:55:29: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:55:29: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:55:30: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:55:30: Received ChatMessageReceive packet:{"Type":205,"Message":"ez game","Slot":1}
+2018.11.12 11:55:30: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:30: Received ChatMessageReceive packet:{"Type":205,"Message":"can i know ","Slot":2}
+2018.11.12 11:55:31: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:55:33: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:33: Received ChatMessageReceive packet:{"Type":205,"Message":"who trust me ?","Slot":2}
+2018.11.12 11:55:33: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:36: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:55:36: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:55:36: Received ChatMessageReceive packet:{"Type":205,"Message":"no one","Slot":4}
+2018.11.12 11:55:37: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:55:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:55:37: Sending Packet:{"Type":-1}
+2018.11.12 11:55:40: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:55:40: Received ChatMessageReceive packet:{"Type":205,"Message":"vera prolly","Slot":1}
+2018.11.12 11:55:41: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:55:43: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:55:44: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:55:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:55:45: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:55:45: Received ChatMessageReceive packet:{"Type":205,"Message":"ur partner","Slot":1}
+2018.11.12 11:55:47: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:47: Received ChatMessageReceive packet:{"Type":205,"Message":"just say yes or no","Slot":2}
+2018.11.12 11:55:47: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:55:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:55:47: Sending Packet:{"Type":-1}
+2018.11.12 11:55:47: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:48: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:55:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:55:57: Sending Packet:{"Type":-1}
+2018.11.12 11:56:06: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:56:06: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:56:07: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:56:07: Sending Packet:{"Type":-1}
+2018.11.12 11:56:09: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":20,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:10: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:56:10: Received ChatMessageReceive packet:{"Type":205,"Message":"well at least 1 agent acc out of node last one","Slot":0}
+2018.11.12 11:56:10: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:11: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:56:11: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:13: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:13: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:56:13: Sending SendChatPacket:{"Type":204,"Message":"hard to trust when random accusations are flying"}
+2018.11.12 11:56:13: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:56:14: Received ChatMessageReceive packet:{"Type":205,"Message":"hard to trust when random accusations are flying","Slot":3}
+2018.11.12 11:56:14: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:56:14: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:56:14: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:16: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:56:17: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:56:17: Sending SendChatPacket:{"Type":204,"Message":"with no reason behind them"}
+2018.11.12 11:56:17: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:56:17: Received ChatMessageReceive packet:{"Type":205,"Message":"with no reason behind them","Slot":3}
+2018.11.12 11:56:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:56:17: Sending Packet:{"Type":-1}
+2018.11.12 11:56:17: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:56:23: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:56:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:25: Received ChatMessageReceive packet:{"Type":205,"Message":"lets say ","Slot":2}
+2018.11.12 11:56:25: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":4}
+2018.11.12 11:56:26: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:27: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:56:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:56:27: Sending Packet:{"Type":-1}
+2018.11.12 11:56:29: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:56:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:56:37: Sending Packet:{"Type":-1}
+2018.11.12 11:56:38: Received TalkPhaseEnd packet:{"Type":302}
+2018.11.12 11:56:38: Received SelectPhaseStart packet:{"Type":303,"Player":0,"NextPlayer":1,"Amount":3,"Duration":60000,"Mission":4}
+2018.11.12 11:56:38: PlayState: Entering SelectPhase
+2018.11.12 11:56:38: SelectPhase: 0 3
+2018.11.12 11:56:40: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:41: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:41: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:43: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:44: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:56:47: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:56:47: Sending Packet:{"Type":-1}
+2018.11.12 11:56:48: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":4}
+2018.11.12 11:56:48: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:50: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:56:53: Received SelectUpdate packet:{"Type":305,"Slots":[0],"Submit":false,"Pass":false}
+2018.11.12 11:56:53: Received SelectUpdate packet:{"Type":305,"Slots":[0,4],"Submit":false,"Pass":false}
+2018.11.12 11:56:54: Received SelectUpdate packet:{"Type":305,"Slots":[0,3,4],"Submit":false,"Pass":false}
+2018.11.12 11:56:56: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:56: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:56:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:56:57: Sending Packet:{"Type":-1}
+2018.11.12 11:56:57: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:57:00: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:57:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:57:07: Sending Packet:{"Type":-1}
+2018.11.12 11:57:08: Received SelectPhaseEnd packet:{"Type":304,"Proposer":0,"SelectedTeam":[0,3,4],"Passed":false}
+2018.11.12 11:57:08: Received VotePhaseStart packet:{"Type":306,"Proposer":0,"Players":[0,3,4],"Duration":60000}
+2018.11.12 11:57:08: PlayState: Entering VotePhase
+2018.11.12 11:57:10: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:57:10: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:57:10: Received ChatMessageReceive packet:{"Type":205,"Message":"ill just say that nunya is 100% hacker ","Slot":2}
+2018.11.12 11:57:10: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:57:12: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:57:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:57:17: Sending Packet:{"Type":-1}
+2018.11.12 11:57:18: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:57:19: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:57:19: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:57:19: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:57:19: Sending SendChatPacket:{"Type":204,"Message":"why"}
+2018.11.12 11:57:19: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:57:19: Received ChatMessageReceive packet:{"Type":205,"Message":"why","Slot":3}
+2018.11.12 11:57:21: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:57:21: Received ChatMessageReceive packet:{"Type":205,"Message":"so are u the other one?","Slot":0}
+2018.11.12 11:57:22: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:57:22: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:57:23: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:57:23: Received ChatMessageReceive packet:{"Type":205,"Message":"now just play ur game","Slot":2}
+2018.11.12 11:57:26: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:57:26: Sending SendChatPacket:{"Type":204,"Message":"why not anyone else in n2"}
+2018.11.12 11:57:26: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:57:26: Received ChatMessageReceive packet:{"Type":205,"Message":"why not anyone else in n2","Slot":3}
+2018.11.12 11:57:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:57:27: Sending Packet:{"Type":-1}
+2018.11.12 11:57:27: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:57:31: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:57:34: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:57:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:57:37: Sending Packet:{"Type":-1}
+2018.11.12 11:57:44: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:57:44: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:57:44: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[0],"VotesAgainst":[4,1,2,3],"Passed":false}
+2018.11.12 11:57:45: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:57:45: Received ChatMessageReceive packet:{"Type":205,"Message":"listeln me brit we will try one time nunya and the other time if is hacked logan okey?","Slot":4}
+2018.11.12 11:57:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:57:47: Sending Packet:{"Type":-1}
+2018.11.12 11:57:49: Received SelectPhaseStart packet:{"Type":303,"Player":1,"NextPlayer":2,"Amount":3,"Duration":60000,"Mission":4}
+2018.11.12 11:57:49: PlayState: Entering SelectPhase
+2018.11.12 11:57:49: SelectPhase: 1 3
+2018.11.12 11:57:50: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 11:57:50: Received SelectUpdate packet:{"Type":305,"Slots":[1,4],"Submit":false,"Pass":false}
+2018.11.12 11:57:51: Received SelectUpdate packet:{"Type":305,"Slots":[1,3,4],"Submit":false,"Pass":false}
+2018.11.12 11:57:51: Received SelectPhaseEnd packet:{"Type":304,"Proposer":1,"SelectedTeam":[1,3,4],"Passed":false}
+2018.11.12 11:57:51: Received VotePhaseStart packet:{"Type":306,"Proposer":1,"Players":[1,3,4],"Duration":60000}
+2018.11.12 11:57:51: PlayState: Entering VotePhase
+2018.11.12 11:57:52: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:57:53: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:57:57: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:57:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:57:57: Sending Packet:{"Type":-1}
+2018.11.12 11:57:58: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:57:59: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:57:59: Received ChatMessageReceive packet:{"Type":205,"Message":"acc","Slot":4}
+2018.11.12 11:57:59: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:00: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:58:00: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:04: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:58:04: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:58:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:58:07: Sending Packet:{"Type":-1}
+2018.11.12 11:58:11: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:58:11: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:58:11: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:58:11: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:58:11: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1,4],"VotesAgainst":[2,0,3],"Passed":false}
+2018.11.12 11:58:13: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:58:13: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:58:15: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:58:16: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:58:16: Sending SendChatPacket:{"Type":204,"Message":"why are we rushing"}
+2018.11.12 11:58:16: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:58:16: Received ChatMessageReceive packet:{"Type":205,"Message":"why are we rushing","Slot":3}
+2018.11.12 11:58:16: Received SelectPhaseStart packet:{"Type":303,"Player":2,"NextPlayer":3,"Amount":3,"Duration":60000,"Mission":4}
+2018.11.12 11:58:16: PlayState: Entering SelectPhase
+2018.11.12 11:58:16: SelectPhase: 2 3
+2018.11.12 11:58:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:58:17: Sending Packet:{"Type":-1}
+2018.11.12 11:58:20: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:20: Received SelectUpdate packet:{"Type":305,"Slots":[0],"Submit":false,"Pass":false}
+2018.11.12 11:58:20: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:58:20: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:58:20: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 11:58:20: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:58:21: Received SelectUpdate packet:{"Type":305,"Slots":[0,2,3],"Submit":false,"Pass":false}
+2018.11.12 11:58:21: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:58:21: Received ChatMessageReceive packet:{"Type":205,"Message":"okok","Slot":4}
+2018.11.12 11:58:21: Received SelectPhaseEnd packet:{"Type":304,"Proposer":2,"SelectedTeam":[0,2,3],"Passed":false}
+2018.11.12 11:58:21: Received VotePhaseStart packet:{"Type":306,"Proposer":2,"Players":[0,2,3],"Duration":60000}
+2018.11.12 11:58:21: PlayState: Entering VotePhase
+2018.11.12 11:58:23: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:58:23: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:58:23: Sending SendChatPacket:{"Type":204,"Message":"u have hammer zelda"}
+2018.11.12 11:58:23: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:58:23: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:58:23: Received ChatMessageReceive packet:{"Type":205,"Message":"u have hammer zelda","Slot":3}
+2018.11.12 11:58:24: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:58:24: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:58:24: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:58:24: Received ChatMessageReceive packet:{"Type":205,"Message":"xd","Slot":1}
+2018.11.12 11:58:24: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:58:24: Received ChatMessageReceive packet:{"Type":205,"Message":"ahahah","Slot":4}
+2018.11.12 11:58:25: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 11:58:25: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:58:26: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:58:26: Received ChatMessageReceive packet:{"Type":205,"Message":"no rush","Slot":4}
+2018.11.12 11:58:26: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:58:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:58:27: Sending Packet:{"Type":-1}
+2018.11.12 11:58:29: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:58:29: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:58:29: Received ChatMessageReceive packet:{"Type":205,"Message":"ok","Slot":4}
+2018.11.12 11:58:30: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:58:32: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:32: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:58:32: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:58:32: Received ChatMessageReceive packet:{"Type":205,"Message":"nice node","Slot":1}
+2018.11.12 11:58:33: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:58:34: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:58:34: Received ChatMessageReceive packet:{"Type":205,"Message":"xd","Slot":1}
+2018.11.12 11:58:36: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 11:58:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:58:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:58:37: Sending Packet:{"Type":-1}
+2018.11.12 11:58:38: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:38: Received ChatMessageReceive packet:{"Type":205,"Message":"acc ty ","Slot":2}
+2018.11.12 11:58:45: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 11:58:45: Received ChatMessageReceive packet:{"Type":205,"Message":"so u suggest double hacker n1/n2?","Slot":0}
+2018.11.12 11:58:47: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 11:58:47: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 11:58:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:58:47: Sending Packet:{"Type":-1}
+2018.11.12 11:58:51: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:58:53: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:53: Received ChatMessageReceive packet:{"Type":205,"Message":"not sure ","Slot":2}
+2018.11.12 11:58:54: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:58:54: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:58:54: Received ChatMessageReceive packet:{"Type":205,"Message":"but ","Slot":2}
+2018.11.12 11:58:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:58:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:58:57: Sending Packet:{"Type":-1}
+2018.11.12 11:58:58: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:58:58: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:58:59: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:00: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:00: Received ChatMessageReceive packet:{"Type":205,"Message":"ahhahaha","Slot":4}
+2018.11.12 11:59:00: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:59:00: Received ChatMessageReceive packet:{"Type":205,"Message":"if this get hacked","Slot":2}
+2018.11.12 11:59:00: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:59:00: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:59:00: Sending SendChatPacket:{"Type":204,"Message":"zelda what level are u"}
+2018.11.12 11:59:00: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:59:00: Received ChatMessageReceive packet:{"Type":205,"Message":"zelda what level are u","Slot":3}
+2018.11.12 11:59:01: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:59:01: Received ChatMessageReceive packet:{"Type":205,"Message":"i can","Slot":2}
+2018.11.12 11:59:01: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:59:01: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:59:01: Received ChatMessageReceive packet:{"Type":205,"Message":"get","Slot":2}
+2018.11.12 11:59:02: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 11:59:02: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[2],"VotesAgainst":[4,1,3,0],"Passed":false}
+2018.11.12 11:59:03: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:59:05: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:59:05: Received ChatMessageReceive packet:{"Type":205,"Message":"free node last","Slot":2}
+2018.11.12 11:59:06: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:07: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:07: Received ChatMessageReceive packet:{"Type":205,"Message":"idk ","Slot":4}
+2018.11.12 11:59:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:59:07: Sending Packet:{"Type":-1}
+2018.11.12 11:59:07: Received SelectPhaseStart packet:{"Type":303,"Player":3,"NextPlayer":4,"Amount":3,"Duration":60000,"Mission":4}
+2018.11.12 11:59:07: PlayState: Entering SelectPhase
+2018.11.12 11:59:07: SelectPhase: 3 3
+2018.11.12 11:59:10: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:59:10: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:59:12: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:59:12: Sending SendChatPacket:{"Type":204,"Message":"approximately"}
+2018.11.12 11:59:12: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:12: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:59:12: Received ChatMessageReceive packet:{"Type":205,"Message":"approximately","Slot":3}
+2018.11.12 11:59:14: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:15: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:16: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:17: Received ChatMessageReceive packet:{"Type":205,"Message":"26","Slot":4}
+2018.11.12 11:59:17: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:59:17: Sending Packet:{"Type":-1}
+2018.11.12 11:59:18: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:18: Received ChatMessageReceive packet:{"Type":205,"Message":"25","Slot":4}
+2018.11.12 11:59:20: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:59:22: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:59:22: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:59:22: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:24: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:24: Received ChatMessageReceive packet:{"Type":205,"Message":"i will see","Slot":4}
+2018.11.12 11:59:25: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:59:25: Sending SendChatPacket:{"Type":204,"Message":"then n2 coulda been double"}
+2018.11.12 11:59:25: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:59:25: Received ChatMessageReceive packet:{"Type":205,"Message":"then n2 coulda been double","Slot":3}
+2018.11.12 11:59:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:59:27: Sending Packet:{"Type":-1}
+2018.11.12 11:59:29: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:59:29: Received ChatMessageReceive packet:{"Type":205,"Message":"and brittany is gonna get his long game ","Slot":2}
+2018.11.12 11:59:31: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:32: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:32: Received ChatMessageReceive packet:{"Type":205,"Message":"no","Slot":4}
+2018.11.12 11:59:34: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 11:59:34: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 11:59:34: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:35: Received ChatMessageReceive packet:{"Type":205,"Message":"idk so","Slot":4}
+2018.11.12 11:59:35: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 11:59:35: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 11:59:35: Received ChatMessageReceive packet:{"Type":205,"Message":"for the test","Slot":2}
+2018.11.12 11:59:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:59:37: Sending Packet:{"Type":-1}
+2018.11.12 11:59:43: Sending UpdateSelectPacket:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 11:59:43: Received SelectUpdate packet:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 11:59:44: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 11:59:44: Received SelectUpdate packet:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 11:59:44: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4,0],"Submit":false,"Pass":false}
+2018.11.12 11:59:44: Received SelectUpdate packet:{"Type":305,"Slots":[0,3,4],"Submit":false,"Pass":false}
+2018.11.12 11:59:45: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4,0],"Submit":true,"Pass":false}
+2018.11.12 11:59:45: Received SelectPhaseEnd packet:{"Type":304,"Proposer":3,"SelectedTeam":[0,3,4],"Passed":false}
+2018.11.12 11:59:45: Received VotePhaseStart packet:{"Type":306,"Proposer":3,"Players":[0,3,4],"Duration":60000}
+2018.11.12 11:59:45: PlayState: Entering VotePhase
+2018.11.12 11:59:46: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 11:59:46: Received ChatMessageReceive packet:{"Type":205,"Message":"brittany trust me and go next game","Slot":1}
+2018.11.12 11:59:47: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 11:59:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:59:47: Sending Packet:{"Type":-1}
+2018.11.12 11:59:49: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 11:59:50: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 11:59:50: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 11:59:53: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 11:59:53: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 11:59:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 11:59:57: Sending Packet:{"Type":-1}
+2018.11.12 11:59:57: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 11:59:57: Sending SendChatPacket:{"Type":204,"Message":"yall 2 randomly accusing eachother"}
+2018.11.12 11:59:58: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 11:59:58: Received ChatMessageReceive packet:{"Type":205,"Message":"yall 2 randomly accusing eachother","Slot":3}
+2018.11.12 11:59:59: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:00:02: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:00:03: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:00:06: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:00:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:00:07: Sending Packet:{"Type":-1}
+2018.11.12 12:00:08: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:00:08: Sending SendChatPacket:{"Type":204,"Message":"logan not giving any reason why he thinks ur hacker"}
+2018.11.12 12:00:08: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:00:08: Received ChatMessageReceive packet:{"Type":205,"Message":"logan not giving any reason why he thinks ur hacker","Slot":3}
+2018.11.12 12:00:11: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:00:12: Received ChatMessageReceive packet:{"Type":205,"Message":"im just insecure about nunya and logan","Slot":4}
+2018.11.12 12:00:12: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:00:15: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:00:16: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 12:00:16: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:00:17: Received ChatMessageReceive packet:{"Type":205,"Message":"i will try to understand","Slot":4}
+2018.11.12 12:00:17: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:00:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:00:17: Sending Packet:{"Type":-1}
+2018.11.12 12:00:18: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:00:18: Received ChatMessageReceive packet:{"Type":205,"Message":"wasn't this my prop? <sprite name=\"emoji_tongue\">","Slot":0}
+2018.11.12 12:00:19: Sending VotePacket:{"Type":308,"Action":1}
+2018.11.12 12:00:19: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:00:19: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[0,3],"VotesAgainst":[2,4,1],"Passed":false}
+2018.11.12 12:00:21: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 12:00:21: Received ChatMessageReceive packet:{"Type":205,"Message":"ye just roandom","Slot":1}
+2018.11.12 12:00:22: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:00:22: Received ChatMessageReceive packet:{"Type":205,"Message":"imma say that ","Slot":2}
+2018.11.12 12:00:23: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:00:23: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:00:23: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:00:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:00:24: Received SelectPhaseStart packet:{"Type":303,"Player":4,"NextPlayer":0,"Amount":3,"Duration":60000,"Mission":4}
+2018.11.12 12:00:24: PlayState: Entering SelectPhase
+2018.11.12 12:00:24: SelectPhase: 4 3
+2018.11.12 12:00:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:00:27: Sending Packet:{"Type":-1}
+2018.11.12 12:00:28: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:00:28: Received ChatMessageReceive packet:{"Type":205,"Message":"bad move at the begging ","Slot":4}
+2018.11.12 12:00:29: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:00:33: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:00:33: Received ChatMessageReceive packet:{"Type":205,"Message":"putting logan vera vera logan ","Slot":4}
+2018.11.12 12:00:35: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:00:36: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:00:36: Received SelectUpdate packet:{"Type":305,"Slots":[4],"Submit":false,"Pass":false}
+2018.11.12 12:00:37: Received SelectUpdate packet:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 12:00:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:00:37: Sending Packet:{"Type":-1}
+2018.11.12 12:00:38: Received SelectUpdate packet:{"Type":305,"Slots":[1,3,4],"Submit":false,"Pass":false}
+2018.11.12 12:00:39: Received SelectPhaseEnd packet:{"Type":304,"Proposer":4,"SelectedTeam":[1,3,4],"Passed":false}
+2018.11.12 12:00:39: Received VotePhaseStart packet:{"Type":306,"Proposer":4,"Players":[1,3,4],"Duration":60000}
+2018.11.12 12:00:39: PlayState: Entering VotePhase
+2018.11.12 12:00:40: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 12:00:40: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:00:41: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:00:41: Received ChatMessageReceive packet:{"Type":205,"Message":"brittany + nunya or zelda, if zelda is agent its just superbad ","Slot":2}
+2018.11.12 12:00:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:00:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:00:42: Received ChatMessageReceive packet:{"Type":205,"Message":"gl","Slot":2}
+2018.11.12 12:00:43: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:00:44: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:00:46: Sending VotePacket:{"Type":308,"Action":1}
+2018.11.12 12:00:46: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:00:46: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:00:46: Received ChatMessageReceive packet:{"Type":205,"Message":"not gonna talk again","Slot":2}
+2018.11.12 12:00:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:00:47: Sending Packet:{"Type":-1}
+2018.11.12 12:00:48: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 12:00:48: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1,4,0,3],"VotesAgainst":[2],"Passed":true}
+2018.11.12 12:00:48: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:00:49: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:00:53: Received MissionPhaseStart packet:{"Type":310,"Mission":4,"Players":[1,3,4],"Duration":15000}
+2018.11.12 12:00:53: PlayState: Entering MissionPhase
+2018.11.12 12:00:53: Set Mission Players: <color=#00A6F6>Nunya</color>, <color=#0041F6>Brittany</color>, <color=#00B48B>Zelda</color>
+2018.11.12 12:00:55: Sending MissionActionPacket:{"Type":312,"MissionAction":2}
+2018.11.12 12:00:56: Received MissionPhaseEnd packet:{"Type":311,"Mission":4,"Failed":true,"NumHacks":1,"Proposer":4}
+2018.11.12 12:00:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:00:57: Sending Packet:{"Type":-1}
+2018.11.12 12:00:58: Set Mission Players: <color=#00A6F6>Nunya</color>, <color=#0041F6>Brittany</color>, <color=#00B48B>Zelda</color>
+2018.11.12 12:01:01: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:01:02: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:01:02: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:01:03: Received ChatMessageReceive packet:{"Type":205,"Message":"ay ","Slot":2}
+2018.11.12 12:01:03: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:01:03: Received ChatMessageReceive packet:{"Type":205,"Message":"wtf","Slot":4}
+2018.11.12 12:01:04: Received TalkPhaseStart packet:{"Type":301,"Duration":90000}
+2018.11.12 12:01:04: PlayState: Entering TalkingPhase
+2018.11.12 12:01:05: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":20,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:06: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:01:07: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:01:07: Received ChatMessageReceive packet:{"Type":205,"Message":"we lost","Slot":2}
+2018.11.12 12:01:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:01:07: Sending Packet:{"Type":-1}
+2018.11.12 12:01:08: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:01:08: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:01:08: Received ChatMessageReceive packet:{"Type":205,"Message":"gl","Slot":2}
+2018.11.12 12:01:11: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":9,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:11: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:12: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:01:13: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:01:14: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:01:14: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:01:15: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:01:15: Received ChatMessageReceive packet:{"Type":205,"Message":"britty","Slot":4}
+2018.11.12 12:01:16: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:01:16: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:01:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:01:17: Sending Packet:{"Type":-1}
+2018.11.12 12:01:17: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:01:17: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:01:17: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:01:17: Sending SendChatPacket:{"Type":204,"Message":"yo"}
+2018.11.12 12:01:18: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:01:18: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:01:18: Received ChatMessageReceive packet:{"Type":205,"Message":"yo","Slot":3}
+2018.11.12 12:01:19: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 12:01:20: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 12:01:20: Received ChatMessageReceive packet:{"Type":205,"Message":"oh god","Slot":1}
+2018.11.12 12:01:22: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 12:01:23: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:01:23: Received ChatMessageReceive packet:{"Type":205,"Message":"britty","Slot":4}
+2018.11.12 12:01:23: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":24,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:24: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":23,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:25: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:01:27: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:01:27: Received ChatMessageReceive packet:{"Type":205,"Message":"britty","Slot":4}
+2018.11.12 12:01:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:01:27: Sending Packet:{"Type":-1}
+2018.11.12 12:01:31: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":22,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:31: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:01:33: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:01:33: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:01:33: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:01:33: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:34: Received ChatMessageReceive packet:{"Type":205,"Message":"this is weird","Slot":4}
+2018.11.12 12:01:34: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":20,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:01:37: Sending Packet:{"Type":-1}
+2018.11.12 12:01:37: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:37: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:38: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:01:38: Sending SendChatPacket:{"Type":204,"Message":"im thinking it was logan nunya"}
+2018.11.12 12:01:38: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:01:38: Received ChatMessageReceive packet:{"Type":205,"Message":"im thinking it was logan nunya","Slot":3}
+2018.11.12 12:01:38: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:39: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:41: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:01:41: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:01:46: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:01:46: Sending SendChatPacket:{"Type":204,"Message":"but i never get tehse thigns right"}
+2018.11.12 12:01:46: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:01:46: Received ChatMessageReceive packet:{"Type":205,"Message":"but i never get tehse thigns right","Slot":3}
+2018.11.12 12:01:47: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:01:47: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:01:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:01:47: Sending Packet:{"Type":-1}
+2018.11.12 12:01:50: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 12:01:54: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:01:54: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 12:01:54: Received ChatMessageReceive packet:{"Type":205,"Message":"it's zelda logan","Slot":1}
+2018.11.12 12:01:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:01:57: Sending Packet:{"Type":-1}
+2018.11.12 12:01:58: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"you wanna see my wallhacks","SteamId":"76561198225047612","Username":"T0xic","Roles":[0],"Timestamp":1542024118}}
+2018.11.12 12:02:01: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:02:01: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:02:05: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:02:06: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:02:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:02:07: Sending Packet:{"Type":-1}
+2018.11.12 12:02:08: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:02:08: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:02:08: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:02:08: Sending SendChatPacket:{"Type":204,"Message":"why"}
+2018.11.12 12:02:08: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:02:09: Received ChatMessageReceive packet:{"Type":205,"Message":"why","Slot":3}
+2018.11.12 12:02:09: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:02:11: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:02:11: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:02:12: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:02:12: Sending SendChatPacket:{"Type":204,"Message":"is it zelda logan"}
+2018.11.12 12:02:12: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:02:12: Received ChatMessageReceive packet:{"Type":205,"Message":"is it zelda logan","Slot":3}
+2018.11.12 12:02:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:02:17: Sending Packet:{"Type":-1}
+2018.11.12 12:02:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:02:27: Sending Packet:{"Type":-1}
+2018.11.12 12:02:34: Received TalkPhaseEnd packet:{"Type":302}
+2018.11.12 12:02:34: Received SelectPhaseStart packet:{"Type":303,"Player":0,"NextPlayer":1,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:02:34: PlayState: Entering SelectPhase
+2018.11.12 12:02:34: SelectPhase: 0 3
+2018.11.12 12:02:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:02:37: Sending Packet:{"Type":-1}
+2018.11.12 12:02:38: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:02:38: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":6,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:02:39: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:02:39: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:02:39: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":1}
+2018.11.12 12:02:40: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:02:40: Sending SendChatPacket:{"Type":204,"Message":"great talk"}
+2018.11.12 12:02:41: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:02:41: Received ChatMessageReceive packet:{"Type":205,"Message":"great talk","Slot":3}
+2018.11.12 12:02:42: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":1}
+2018.11.12 12:02:47: Received SelectUpdate packet:{"Type":305,"Slots":[0],"Submit":false,"Pass":false}
+2018.11.12 12:02:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:02:47: Sending Packet:{"Type":-1}
+2018.11.12 12:02:52: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":4}
+2018.11.12 12:02:54: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":4}
+2018.11.12 12:02:55: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:02:56: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:02:56: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:02:56: Received ChatMessageReceive packet:{"Type":205,"Message":"im thinking","Slot":4}
+2018.11.12 12:02:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:02:57: Sending Packet:{"Type":-1}
+2018.11.12 12:03:04: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:03:04: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:03:05: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:03:05: Received ChatMessageReceive packet:{"Type":205,"Message":"*#@!","Slot":4}
+2018.11.12 12:03:07: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":5,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:03:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:03:07: Sending Packet:{"Type":-1}
+2018.11.12 12:03:14: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:03:14: Received ChatMessageReceive packet:{"Type":205,"Message":"n1 or n3 was faked right...","Slot":0}
+2018.11.12 12:03:15: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:03:16: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 12:03:16: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:03:16: Received ChatMessageReceive packet:{"Type":205,"Message":"logan","Slot":4}
+2018.11.12 12:03:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:03:17: Sending Packet:{"Type":-1}
+2018.11.12 12:03:19: Received SelectUpdate packet:{"Type":305,"Slots":[0,2,4],"Submit":false,"Pass":false}
+2018.11.12 12:03:25: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:03:26: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:03:27: Received ChatMessageReceive packet:{"Type":205,"Message":"where are u?","Slot":4}
+2018.11.12 12:03:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:03:27: Sending Packet:{"Type":-1}
+2018.11.12 12:03:27: Received SelectPhaseEnd packet:{"Type":304,"Proposer":0,"SelectedTeam":[],"Passed":true}
+2018.11.12 12:03:27: Received SelectPhaseStart packet:{"Type":303,"Player":1,"NextPlayer":2,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:03:27: PlayStateMachine: Same state twice in a row: SelectPhase
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 43)
+
+2018.11.12 12:03:27: PlayState: Entering SelectPhase
+2018.11.12 12:03:27: SelectPhase: 1 3
+2018.11.12 12:03:29: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:03:30: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:03:32: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:03:32: Sending SendChatPacket:{"Type":204,"Message":"has to be from my pov"}
+2018.11.12 12:03:32: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:03:32: Received ChatMessageReceive packet:{"Type":205,"Message":"has to be from my pov","Slot":3}
+2018.11.12 12:03:34: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:03:35: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":1}
+2018.11.12 12:03:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:03:37: Sending Packet:{"Type":-1}
+2018.11.12 12:03:42: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":1}
+2018.11.12 12:03:43: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 12:03:43: Received SelectUpdate packet:{"Type":305,"Slots":[1,2],"Submit":false,"Pass":false}
+2018.11.12 12:03:44: Received SelectUpdate packet:{"Type":305,"Slots":[1,2,4],"Submit":false,"Pass":false}
+2018.11.12 12:03:45: Received SelectPhaseEnd packet:{"Type":304,"Proposer":1,"SelectedTeam":[1,2,4],"Passed":false}
+2018.11.12 12:03:45: Received VotePhaseStart packet:{"Type":306,"Proposer":1,"Players":[1,2,4],"Duration":60000}
+2018.11.12 12:03:45: PlayState: Entering VotePhase
+2018.11.12 12:03:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:03:47: Sending Packet:{"Type":-1}
+2018.11.12 12:03:47: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 12:03:49: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 12:03:49: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 12:03:49: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:03:52: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:03:52: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:03:52: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1,4],"VotesAgainst":[2,3,0],"Passed":false}
+2018.11.12 12:03:57: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:03:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:03:57: Sending Packet:{"Type":-1}
+2018.11.12 12:03:57: Received SelectPhaseStart packet:{"Type":303,"Player":2,"NextPlayer":3,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:03:57: PlayState: Entering SelectPhase
+2018.11.12 12:03:57: SelectPhase: 2 3
+2018.11.12 12:04:01: Received SelectUpdate packet:{"Type":305,"Slots":[0],"Submit":false,"Pass":false}
+2018.11.12 12:04:02: Received SelectUpdate packet:{"Type":305,"Slots":[0,3],"Submit":false,"Pass":false}
+2018.11.12 12:04:02: Received SelectUpdate packet:{"Type":305,"Slots":[0,2,3],"Submit":false,"Pass":false}
+2018.11.12 12:04:03: Received SelectPhaseEnd packet:{"Type":304,"Proposer":2,"SelectedTeam":[0,2,3],"Passed":false}
+2018.11.12 12:04:03: Received VotePhaseStart packet:{"Type":306,"Proposer":2,"Players":[0,2,3],"Duration":60000}
+2018.11.12 12:04:03: PlayState: Entering VotePhase
+2018.11.12 12:04:04: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":13,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":20,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:04: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 12:04:04: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:04:06: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 12:04:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:04:07: Sending Packet:{"Type":-1}
+2018.11.12 12:04:17: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:04:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:04:17: Sending Packet:{"Type":-1}
+2018.11.12 12:04:21: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:23: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:04:23: Received ChatMessageReceive packet:{"Type":205,"Message":"Logan still on double hacker theory?","Slot":0}
+2018.11.12 12:04:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:04:27: Sending Packet:{"Type":-1}
+2018.11.12 12:04:30: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":20,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:31: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 12:04:31: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:04:33: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:04:33: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:04:33: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:34: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:35: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:35: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:04:37: Sending Packet:{"Type":-1}
+2018.11.12 12:04:38: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:04:38: Sending SendChatPacket:{"Type":204,"Message":"i dont think anyof them have any theories"}
+2018.11.12 12:04:39: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:04:39: Received ChatMessageReceive packet:{"Type":205,"Message":"i dont think anyof them have any theories","Slot":3}
+2018.11.12 12:04:39: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:04:39: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:04:40: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:40: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:04:42: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:04:42: Sending SendChatPacket:{"Type":204,"Message":"just spitting out random names"}
+2018.11.12 12:04:43: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:04:43: Received ChatMessageReceive packet:{"Type":205,"Message":"just spitting out random names","Slot":3}
+2018.11.12 12:04:45: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:04:45: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[0],"VotesAgainst":[2,4,1,3],"Passed":false}
+2018.11.12 12:04:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:04:47: Sending Packet:{"Type":-1}
+2018.11.12 12:04:50: Received SelectPhaseStart packet:{"Type":303,"Player":3,"NextPlayer":4,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:04:50: PlayState: Entering SelectPhase
+2018.11.12 12:04:50: SelectPhase: 3 3
+2018.11.12 12:04:53: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:04:53: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:04:56: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:04:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:04:57: Sending Packet:{"Type":-1}
+2018.11.12 12:04:57: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:04:58: Received ChatMessageReceive packet:{"Type":205,"Message":"im so sad","Slot":4}
+2018.11.12 12:04:58: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:04:58: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:04:58: Sending SendChatPacket:{"Type":204,"Message":"this game is lost thx to terrible agents"}
+2018.11.12 12:04:59: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:04:59: Received ChatMessageReceive packet:{"Type":205,"Message":"this game is lost thx to terrible agents","Slot":3}
+2018.11.12 12:04:59: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:04:59: Received ChatMessageReceive packet:{"Type":205,"Message":"really","Slot":4}
+2018.11.12 12:05:04: Sending UpdateSelectPacket:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 12:05:04: Received SelectUpdate packet:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.12 12:05:04: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 12:05:05: Received SelectUpdate packet:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.12 12:05:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:05:07: Sending Packet:{"Type":-1}
+2018.11.12 12:05:10: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":12,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:05:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:05:17: Sending Packet:{"Type":-1}
+2018.11.12 12:05:25: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:05:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:05:27: Sending Packet:{"Type":-1}
+2018.11.12 12:05:29: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:05:33: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4,2],"Submit":false,"Pass":false}
+2018.11.12 12:05:33: Received SelectUpdate packet:{"Type":305,"Slots":[2,3,4],"Submit":false,"Pass":false}
+2018.11.12 12:05:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:05:37: Sending Packet:{"Type":-1}
+2018.11.12 12:05:38: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:05:38: Received ChatMessageReceive packet:{"Type":205,"Message":"imma just say, gg wp","Slot":2}
+2018.11.12 12:05:40: Sending UpdateSelectPacket:{"Type":305,"Slots":[3,4,2],"Submit":true,"Pass":false}
+2018.11.12 12:05:40: Received SelectPhaseEnd packet:{"Type":304,"Proposer":3,"SelectedTeam":[2,3,4],"Passed":false}
+2018.11.12 12:05:40: Received VotePhaseStart packet:{"Type":306,"Proposer":3,"Players":[2,3,4],"Duration":60000}
+2018.11.12 12:05:40: PlayState: Entering VotePhase
+2018.11.12 12:05:41: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:05:41: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 12:05:42: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 12:05:43: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.12 12:05:43: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.12 12:05:43: Received ChatMessageReceive packet:{"Type":205,"Message":"ref","Slot":1}
+2018.11.12 12:05:44: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:05:44: Received ChatMessageReceive packet:{"Type":205,"Message":"logan are u agent???","Slot":4}
+2018.11.12 12:05:46: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:05:47: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 12:05:47: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:05:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:05:47: Sending Packet:{"Type":-1}
+2018.11.12 12:05:48: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:05:48: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[2],"VotesAgainst":[1,0,3,4],"Passed":false}
+2018.11.12 12:05:51: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2018.11.12 12:05:53: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:05:53: Received ChatMessageReceive packet:{"Type":205,"Message":"ma seis cemooooooooooooooooo","Slot":4}
+2018.11.12 12:05:53: Received SelectPhaseStart packet:{"Type":303,"Player":4,"NextPlayer":0,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:05:53: PlayState: Entering SelectPhase
+2018.11.12 12:05:53: SelectPhase: 4 3
+2018.11.12 12:05:57: Received SelectPhaseEnd packet:{"Type":304,"Proposer":4,"SelectedTeam":[],"Passed":true}
+2018.11.12 12:05:57: Received SelectPhaseStart packet:{"Type":303,"Player":0,"NextPlayer":1,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:05:57: PlayStateMachine: Same state twice in a row: SelectPhase
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 43)
+
+2018.11.12 12:05:57: PlayState: Entering SelectPhase
+2018.11.12 12:05:57: SelectPhase: 0 3
+2018.11.12 12:05:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:05:57: Sending Packet:{"Type":-1}
+2018.11.12 12:06:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:06:07: Sending Packet:{"Type":-1}
+2018.11.12 12:06:08: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:06:13: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:06:15: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:06:15: Received ChatMessageReceive packet:{"Type":205,"Message":"not hammer on nunya ;/","Slot":0}
+2018.11.12 12:06:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:06:17: Sending Packet:{"Type":-1}
+2018.11.12 12:06:18: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":7,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:06:18: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:06:18: Received ChatMessageReceive packet:{"Type":205,"Message":"if zelda is agent ","Slot":2}
+2018.11.12 12:06:20: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:06:20: Received SelectPhaseEnd packet:{"Type":304,"Proposer":0,"SelectedTeam":[],"Passed":true}
+2018.11.12 12:06:20: Received SelectPhaseStart packet:{"Type":303,"Player":1,"NextPlayer":2,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:06:20: PlayStateMachine: Same state twice in a row: SelectPhase
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 43)
+
+2018.11.12 12:06:20: PlayState: Entering SelectPhase
+2018.11.12 12:06:20: SelectPhase: 1 3
+2018.11.12 12:06:21: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:06:21: Received ChatMessageReceive packet:{"Type":205,"Message":"imma kms","Slot":2}
+2018.11.12 12:06:23: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.12 12:06:23: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:06:23: Received SelectUpdate packet:{"Type":305,"Slots":[1,2],"Submit":false,"Pass":false}
+2018.11.12 12:06:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:06:24: Received ChatMessageReceive packet:{"Type":205,"Message":"right now","Slot":2}
+2018.11.12 12:06:24: Received SelectUpdate packet:{"Type":305,"Slots":[1,2,4],"Submit":false,"Pass":false}
+2018.11.12 12:06:25: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:06:25: Received SelectPhaseEnd packet:{"Type":304,"Proposer":1,"SelectedTeam":[1,2,4],"Passed":false}
+2018.11.12 12:06:25: Received VotePhaseStart packet:{"Type":306,"Proposer":1,"Players":[1,2,4],"Duration":60000}
+2018.11.12 12:06:25: PlayState: Entering VotePhase
+2018.11.12 12:06:25: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:06:25: Received ChatMessageReceive packet:{"Type":205,"Message":"ty bye","Slot":2}
+2018.11.12 12:06:26: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:06:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:06:27: Sending Packet:{"Type":-1}
+2018.11.12 12:06:28: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:06:29: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 12:06:31: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 12:06:31: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:06:31: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:06:31: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:06:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:06:37: Sending Packet:{"Type":-1}
+2018.11.12 12:06:42: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:06:42: Sending SendChatPacket:{"Type":204,"Message":"every1 played terribly"}
+2018.11.12 12:06:42: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:06:42: Received ChatMessageReceive packet:{"Type":205,"Message":"every1 played terribly","Slot":3}
+2018.11.12 12:06:44: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.12 12:06:45: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:06:45: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[4,1],"VotesAgainst":[0,2,3],"Passed":false}
+2018.11.12 12:06:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:06:47: Sending Packet:{"Type":-1}
+2018.11.12 12:06:50: Received SelectPhaseStart packet:{"Type":303,"Player":2,"NextPlayer":3,"Amount":3,"Duration":60000,"Mission":5}
+2018.11.12 12:06:50: PlayState: Entering SelectPhase
+2018.11.12 12:06:50: SelectPhase: 2 3
+2018.11.12 12:06:50: Received SelectUpdate packet:{"Type":305,"Slots":[2],"Submit":false,"Pass":false}
+2018.11.12 12:06:50: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:06:50: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:06:51: Received SelectUpdate packet:{"Type":305,"Slots":[0,2],"Submit":false,"Pass":false}
+2018.11.12 12:06:51: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2018.11.12 12:06:52: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:06:52: Sending SendChatPacket:{"Type":204,"Message":"gl man"}
+2018.11.12 12:06:52: Received SelectUpdate packet:{"Type":305,"Slots":[0,2,3],"Submit":false,"Pass":false}
+2018.11.12 12:06:52: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:06:52: Received ChatMessageReceive packet:{"Type":205,"Message":"gl man","Slot":3}
+2018.11.12 12:06:52: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:06:52: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:06:53: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:06:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:06:55: Received ChatMessageReceive packet:{"Type":205,"Message":"gg guys ","Slot":2}
+2018.11.12 12:06:55: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:06:55: Sending SendChatPacket:{"Type":204,"Message":"its a guess at this poing"}
+2018.11.12 12:06:56: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:06:56: Received ChatMessageReceive packet:{"Type":205,"Message":"its a guess at this poing","Slot":3}
+2018.11.12 12:06:56: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:06:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:06:57: Sending Packet:{"Type":-1}
+2018.11.12 12:06:58: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:07:02: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:07: Received SelectPhaseEnd packet:{"Type":304,"Proposer":2,"SelectedTeam":[0,2,3],"Passed":false}
+2018.11.12 12:07:07: Received VotePhaseStart packet:{"Type":306,"Proposer":2,"Players":[0,2,3],"Duration":60000}
+2018.11.12 12:07:07: PlayState: Entering VotePhase
+2018.11.12 12:07:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:07:07: Sending Packet:{"Type":-1}
+2018.11.12 12:07:08: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.12 12:07:10: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:07:10: Sending VotePacket:{"Type":308,"Action":1}
+2018.11.12 12:07:10: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.12 12:07:11: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:07:11: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.12 12:07:13: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.12 12:07:13: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:13: Received ChatMessageReceive packet:{"Type":205,"Message":"gg ","Slot":2}
+2018.11.12 12:07:14: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.12 12:07:14: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[2,3,4],"VotesAgainst":[0,1],"Passed":true}
+2018.11.12 12:07:14: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:07:14: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:07:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:07:17: Sending Packet:{"Type":-1}
+2018.11.12 12:07:17: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:07:17: Sending SendChatPacket:{"Type":204,"Message":"u agents played horribly"}
+2018.11.12 12:07:18: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:07:18: Received ChatMessageReceive packet:{"Type":205,"Message":"u agents played horribly","Slot":3}
+2018.11.12 12:07:19: Received MissionPhaseStart packet:{"Type":310,"Mission":5,"Players":[0,2,3],"Duration":15000}
+2018.11.12 12:07:19: PlayState: Entering MissionPhase
+2018.11.12 12:07:19: Set Mission Players: <color=#FFEC16>Vera</color>, <color=#9D9D9D>Logan</color>, <color=#0041F6>Brittany</color>
+2018.11.12 12:07:20: Sending MissionActionPacket:{"Type":312,"MissionAction":2}
+2018.11.12 12:07:21: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"yum","SteamId":"76561198444763953","Username":"Koolaid KId","Roles":[0],"Timestamp":1542024441}}
+2018.11.12 12:07:21: Received MissionPhaseEnd packet:{"Type":311,"Mission":5,"Failed":true,"NumHacks":2,"Proposer":2}
+2018.11.12 12:07:21: Received GameEnd packet:{"Type":203,"Hacked":true,"Hackers":[0,3],"Roles":[{"Slot":0,"Role":20},{"Slot":1,"Role":10},{"Slot":2,"Role":10},{"Slot":3,"Role":20},{"Slot":4,"Role":10}],"Timeout":360000,"PlayerIdentities":[{"Slot":0,"Nickname":"sivymasta","Steamid":"76561198085416426","Level":23},{"Slot":1,"Nickname":"ZombieZ","Steamid":"76561198067826783","Level":30},{"Slot":2,"Nickname":"lucioo00","Steamid":"76561198134270385","Level":23},{"Slot":3,"Nickname":"2JZ 4U","Steamid":"76561198073023481","Level":30},{"Slot":4,"Nickname":"dileovalentina","Steamid":"76561198074393558","Level":26}],"AfterGameLobby":"no-lobby"}
+2018.11.12 12:07:21: MissionPhase: Exiting without showing results
+2018.11.12 12:07:21: PlayState: Entering GameEnd
+2018.11.12 12:07:21: Received AchievementChat packet:{"Type":611,"Info":{"Slot":4,"Achievements":[36]}}
+2018.11.12 12:07:22: Received MatchReward packet:{"Type":606,"CurrentRank":249,"NewRank":246,"CurrentEXP":0,"CurrentLevel":30,"MaxEXP":11167.139524561271,"NextLevelMaxEXP":11167.139524561271,"Wins":232,"Losses":230,"FirstWinToday":true,"FirstWinTodayEXP":0,"EXPEarned":0,"CreditsEarned":188,"ItemsUnlocked":[],"MaxLevel":30}
+2018.11.12 12:07:22: Received Achievements packet:{"Type":607,"Achievements":[{"achievementId":"10","reward":1000},{"achievementId":"15","reward":1000},{"achievementId":"42","reward":250},{"achievementId":"43","reward":250},{"achievementId":"44","reward":1000},{"achievementId":"45","reward":1500},{"achievementId":"46","reward":10},{"achievementId":"47","reward":15},{"achievementId":"48","reward":20},{"achievementId":"49","reward":25},{"achievementId":"50","reward":100},{"achievementId":"51","reward":50},{"achievementId":"52","reward":100},{"achievementId":"53","reward":200},{"achievementId":"54","reward":300},{"achievementId":"55","reward":50},{"achievementId":"56","reward":50},{"achievementId":"57","reward":50},{"achievementId":"58","reward":50},{"achievementId":"59","reward":50},{"achievementId":"60","reward":50},{"achievementId":"61","reward":50},{"achievementId":"62","reward":50},{"achievementId":"63","reward":50},{"achievementId":"64","reward":50},{"achievementId":"65","reward":50},{"achievementId":"66","reward":50},{"achievementId":"67","reward":50},{"achievementId":"68","reward":50},{"achievementId":"69","reward":50},{"achievementId":"70","reward":50},{"achievementId":"71","reward":50},{"achievementId":"72","reward":50},{"achievementId":"73","reward":50},{"achievementId":"74","reward":50},{"achievementId":"75","reward":50},{"achievementId":"76","reward":50},{"achievementId":"77","reward":50},{"achievementId":"78","reward":50},{"achievementId":"79","reward":100},{"achievementId":"80","reward":200},{"achievementId":"81","reward":300},{"achievementId":"0","reward":5},{"achievementId":"1","reward":10},{"achievementId":"2","reward":50},{"achievementId":"3","reward":100},{"achievementId":"4","reward":200},{"achievementId":"5","reward":500},{"achievementId":"6","reward":10},{"achievementId":"7","reward":50},{"achievementId":"8","reward":150},{"achievementId":"9","reward":100},{"achievementId":"11","reward":10},{"achievementId":"12","reward":50},{"achievementId":"13","reward":100},{"achievementId":"14","reward":200},{"achievementId":"16","reward":10},{"achievementId":"17","reward":20},{"achievementId":"18","reward":75},{"achievementId":"19","reward":200},{"achievementId":"20","reward":1000},{"achievementId":"21","reward":100},{"achievementId":"22","reward":200},{"achievementId":"23","reward":235},{"achievementId":"24","reward":100},{"achievementId":"25","reward":50},{"achievementId":"26","reward":100},{"achievementId":"27","reward":200},{"achievementId":"28","reward":300},{"achievementId":"29","reward":100},{"achievementId":"30","reward":50},{"achievementId":"31","reward":23},{"achievementId":"32","reward":80},{"achievementId":"33","reward":200},{"achievementId":"34","reward":50},{"achievementId":"35","reward":40},{"achievementId":"36","reward":20},{"achievementId":"37","reward":50},{"achievementId":"38","reward":20},{"achievementId":"39","reward":10},{"achievementId":"40","reward":200},{"achievementId":"41","reward":100},{"achievementId":"82","reward":50},{"achievementId":"83","reward":50},{"achievementId":"84","reward":50},{"achievementId":"85","reward":50},{"achievementId":"86","reward":50},{"achievementId":"87","reward":50},{"achievementId":"88","reward":100},{"achievementId":"89","reward":50}]}
+2018.11.12 12:07:22: Received PlayerStats packet:{"Type":602,"Stats":{"TimePlayed":530629,"Credits":1392,"Level":30,"MaxLevel":30,"EXP":0,"MaxEXP":11168,"GamesPlayedHacker":174,"GamesPlayedAgent":288,"GamesWonHacker":103,"GamesWonAgent":129,"GamesLostHacker":71,"GamesLostAgent":159,"WordsWritten":107614,"BadWordsWritten":250,"CurrentWinStreak":1,"BestWinStreak":9,"MaxAchievements":90,"MaxSkins":46,"MaxEmojis":20,"MaxGestures":7,"ClaimedItems":["61","72","70","7","66","28","57","6","27","5","26","4","25","3","24","2","23","35","34","33","22","21","20","1"],"ClaimedAchievements":["15","10","53","89","88","57","55","50","49","48","33","81","14","9","5","75","56","52","51","47","46","31","80","79","78","43","42","41","40","39","37","36","35","34","32","29","28","27","26","25","24","23","22","21","19","18","17","16","13","12","11","8","7","6","4","3","2","1","0"],"CurrentSkin":"72","RandomNamePreference":0,"AccountRoles":[0],"Muted":0,"LongestGame":3056,"ShortestGame":192,"CustomGamesPlayed":48,"CreditsObtained":"69792","PlayersReported":40,"ReportsReceived":34,"LeavePenalties":4,"BansReceived":0,"BanAppreciation":false,"ItemOfTheWeek":13,"ItemOfTheWeekTimeLeft":1542050746,"ItemOfTheWeekSKU":1008}}
+2018.11.12 12:07:22: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":21,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:22: Sending RequestUnlockAchievementsPacket:{"Type":610}
+2018.11.12 12:07:22: Sending RequestUnlockAchievementsPacket:{"Type":610}
+2018.11.12 12:07:23: Set Mission Players: <color=#FFEC16>Vera</color>, <color=#9D9D9D>Logan</color>, <color=#0041F6>Brittany</color>
+2018.11.12 12:07:24: Refresh 1 Image Sprites
+2018.11.12 12:07:24: Refresh 1 Image Sprites
+2018.11.12 12:07:24: Refresh 1 Image Sprites
+2018.11.12 12:07:24: Refresh 1 Image Sprites
+2018.11.12 12:07:24: Refresh 1 Image Sprites
+2018.11.12 12:07:24: Refresh 1 Image Sprites
+2018.11.12 12:07:25: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:07:26: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:07:27: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:27: Received ChatMessageReceive packet:{"Type":205,"Message":"kms ","Slot":2}
+2018.11.12 12:07:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:07:27: Sending Packet:{"Type":-1}
+2018.11.12 12:07:27: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:07:28: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:07:28: Received ChatMessageReceive packet:{"Type":205,"Message":"tT","Slot":0}
+2018.11.12 12:07:28: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:28: Received ChatMessageReceive packet:{"Type":205,"Message":"soon","Slot":2}
+2018.11.12 12:07:28: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:07:28: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:29: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:29: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:07:29: Received ChatMessageReceive packet:{"Type":205,"Message":"no achie","Slot":0}
+2018.11.12 12:07:30: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:07:30: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:07:30: Received ChatMessageReceive packet:{"Type":205,"Message":"xD","Slot":0}
+2018.11.12 12:07:30: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:31: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:32: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.12 12:07:33: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.12 12:07:34: Received Disconnected packet:{"Type":402,"Player":2,"ByNetwork":false}
+2018.11.12 12:07:35: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":20,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:07:37: Sending Packet:{"Type":-1}
+2018.11.12 12:07:37: Received Disconnected packet:{"Type":402,"Player":4,"ByNetwork":false}
+2018.11.12 12:07:37: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:41: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:07:41: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:07:44: Received Disconnected packet:{"Type":402,"Player":1,"ByNetwork":false}
+2018.11.12 12:07:45: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:45: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:07:45: Sending SendChatPacket:{"Type":204,"Message":"god that was awful"}
+2018.11.12 12:07:45: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:07:45: Received ChatMessageReceive packet:{"Type":205,"Message":"god that was awful","Slot":3}
+2018.11.12 12:07:46: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:07:47: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:07:47: Received ChatMessageReceive packet:{"Type":205,"Message":"<sprite name=\"emoji_big_smile\">","Slot":0}
+2018.11.12 12:07:47: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:07:47: Sending Packet:{"Type":-1}
+2018.11.12 12:07:50: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":6,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:50: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":5,"PlayersOnlineGold":11,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:52: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":5,"PlayersOnlineGold":10,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":17,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:07:57: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:07:57: Sending Packet:{"Type":-1}
+2018.11.12 12:08:02: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:08:04: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:08:04: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:08:06: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:08:06: Received ChatMessageReceive packet:{"Type":205,"Message":"so how's ur hacking progbram?","Slot":0}
+2018.11.12 12:08:06: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:08:06: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:08:06: Sending SendChatPacket:{"Type":204,"Message":"now to fix these errors"}
+2018.11.12 12:08:07: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:08:07: Received ChatMessageReceive packet:{"Type":205,"Message":"now to fix these errors","Slot":3}
+2018.11.12 12:08:07: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:08:07: Received ChatMessageReceive packet:{"Type":205,"Message":"xDDD","Slot":0}
+2018.11.12 12:08:07: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:08:07: Sending Packet:{"Type":-1}
+2018.11.12 12:08:09: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:08:09: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:08:11: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:08:11: Sending SendChatPacket:{"Type":204,"Message":"it did really well"}
+2018.11.12 12:08:11: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:08:11: Received ChatMessageReceive packet:{"Type":205,"Message":"it did really well","Slot":3}
+2018.11.12 12:08:11: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:08:11: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:08:13: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:08:13: Sending SendChatPacket:{"Type":204,"Message":"until n4"}
+2018.11.12 12:08:13: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:08:13: Received ChatMessageReceive packet:{"Type":205,"Message":"until n4","Slot":3}
+2018.11.12 12:08:14: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:08:15: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:08:15: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:08:15: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:08:15: Received ChatMessageReceive packet:{"Type":205,"Message":"lol <sprite name=\"emoji_big_smile\">","Slot":0}
+2018.11.12 12:08:17: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:08:17: Sending Packet:{"Type":-1}
+2018.11.12 12:08:19: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:08:19: Sending SendChatPacket:{"Type":204,"Message":"where some weird bug happened"}
+2018.11.12 12:08:19: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:08:20: Received ChatMessageReceive packet:{"Type":205,"Message":"where some weird bug happened","Slot":3}
+2018.11.12 12:08:21: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:08:23: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:08:23: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:08:24: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:08:24: Received ChatMessageReceive packet:{"Type":205,"Message":"k cya","Slot":0}
+2018.11.12 12:08:25: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.12 12:08:25: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.12 12:08:25: Received ChatMessageReceive packet:{"Type":205,"Message":"g2g","Slot":0}
+2018.11.12 12:08:26: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:08:26: Sending SendChatPacket:{"Type":204,"Message":"gonna fix it then try again"}
+2018.11.12 12:08:26: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:08:26: Received ChatMessageReceive packet:{"Type":205,"Message":"gonna fix it then try again","Slot":3}
+2018.11.12 12:08:26: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.12 12:08:26: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.12 12:08:26: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.12 12:08:26: Sending SendChatPacket:{"Type":204,"Message":"gl"}
+2018.11.12 12:08:27: Received Disconnected packet:{"Type":402,"Player":0,"ByNetwork":false}
+2018.11.12 12:08:27: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":5,"PlayersOnlineGold":10,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":16,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:08:27: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.12 12:08:27: Received ChatMessageReceive packet:{"Type":205,"Message":"gl","Slot":3}
+2018.11.12 12:08:27: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:08:27: Sending Packet:{"Type":-1}
+2018.11.12 12:08:28: PlayState: Entering MatchReward
+2018.11.12 12:08:28: Sending Packet:{"Type":206}
+2018.11.12 12:08:28: Network state changed to: Authorized
+2018.11.12 12:08:28: Received Disconnected packet:{"Type":402,"Player":3,"ByNetwork":false}
+2018.11.12 12:08:28: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":8,"PlayersOnlineSilver":5,"PlayersOnlineGold":10,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":15,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.12 12:08:37: Received KeepAlive packet:{"Type":-1}
+2018.11.12 12:08:37: Sending Packet:{"Type":-1}
+2018.11.12 12:08:40: Sending Packet:{"Type":206}
+2018.11.12 12:08:40: Warning. Leave Game, but current state is not Ingame
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 43)
+
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 19.658797 ms
+
+Unloading 1196 unused Assets to reduce memory usage. Loaded Objects now: 11161.
+Total: 10.866457 ms (FindLiveObjects: 1.090050 ms CreateObjectMapping: 0.169216 ms MarkObjects: 2.327813 ms  DeleteObjects: 7.278864 ms)
+
+2018.11.12 12:08:40: Destroying GameControl because it already existed.
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.12 12:08:40: Sending RandomSkinPacket:{"Type":623,"RandomSkin":true}
+
+Unloading 78 unused Assets to reduce memory usage. Loaded Objects now: 17695.
+Total: 8.529171 ms (FindLiveObjects: 1.309443 ms CreateObjectMapping: 0.166656 ms MarkObjects: 6.972944 ms  DeleteObjects: 0.079616 ms)
+
+2018.11.12 12:08:40: System.Collections.Generic.List`1[Mindnight.EventManager+Event]
+2018.11.12 12:08:40: Starting main menu
+2018.11.12 12:08:40: MusicManager: start music Music
+2018.11.12 12:08:40: Init Steam Avatar Async Loading
+2018.11.12 12:08:40: Initialized True
+2018.11.12 12:08:40: Sending RequestUnlockAchievementsPacket:{"Type":610}
+2018.11.12 12:08:40: UpdateCredits: 1392 1392 0 0
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.12 12:08:40: Sending RandomSkinPacket:{"Type":623,"RandomSkin":true}
+2018.11.12 12:08:40: Sending GlobalChatHisotryRequestPacket:{"Type":903}
+2018.11.12 12:08:40: Sending Packet:{"Type":108}
+
+Unloading 117 unused Assets to reduce memory usage. Loaded Objects now: 17708.
+Total: 11.155481 ms (FindLiveObjects: 1.340931 ms CreateObjectMapping: 0.199168 ms MarkObjects: 9.429013 ms  DeleteObjects: 0.186112 ms)
+
+2018.11.12 12:08:40: Received GlobalChatHistoryResponse packet:{"Type":904,"Messages":[{"Message":"gogogo 1 more","SteamId":"76561198067826783","Username":"ZombieZ","Roles":[0],"Timestamp":1542021471},{"Message":"poor guy died waiting","SteamId":"76561198251408214","Username":"Boner","Roles":[0],"Timestamp":1542021472},{"Message":"come come","SteamId":"76561198074393558","Username":"dileovalentina","Roles":[0],"Timestamp":1542021480},{"Message":"go queue","SteamId":"76561198280106410","Username":"XxDarkGhostxX","Roles":[0],"Timestamp":1542022258},{"Message":"3/5","SteamId":"76561198280106410","Username":"XxDarkGhostxX","Roles":[0],"Timestamp":1542022263},{"Message":"watch out there is cheaters in quickplay","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023210},{"Message":"multi-accounting","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023216},{"Message":"įNeverįMore youį're the shittiest hacker on here","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023234},{"Message":"i have 4/3 as hacker niggerr","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023276},{"Message":"and you?","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023281},{"Message":"i am perfect","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023309},{"Message":"i am the bestest","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023315},{"Message":"oke what is your stats then idiot","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023332},{"Message":"5į/1","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023345},{"Message":"yep ch3ater","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023363},{"Message":"but i will add you because i am also racist","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023366},{"Message":"i reported u btw","SteamId":"76561198869827286","Username":"NeverMore","Roles":[0],"Timestamp":1542023368},{"Message":"yeah i got aimbot lol","SteamId":"76561197990915722","Username":"Karl暴力420","Roles":[0],"Timestamp":1542023370},{"Message":"you wanna see my wallhacks","SteamId":"76561198225047612","Username":"T0xic","Roles":[0],"Timestamp":1542024118},{"Message":"yum","SteamId":"76561198444763953","Username":"Koolaid KId","Roles":[0],"Timestamp":1542024441}]}
+2018.11.12 12:08:43: Discord: shutdown
+2018.11.12 12:08:43: Network state changed to: NotConnected
+2018.11.12 12:08:43: Connection was closed.

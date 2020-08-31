@@ -1,0 +1,78 @@
+/* *****IMPORTANT: Swappable CSS Files are found in teh public/swappable-css folder ********* */
+
+#center-interface{
+  position: relative;
+}
+
+.player-container{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4vh;
+}
+
+.player-img img{
+  width: 4vh;
+}
+
+.player-container .action-exists-icon {
+  position: absolute;
+  left: -15%;
+  top: 0;
+}
+
+.player-container .hammer-icon {
+  position: absolute;
+  left: -20%;
+  bottom: 10%;
+}
+
+.player-container .disconnect-icon {
+  position: absolute;
+  left: 95%;
+  top: 0;
+}
+
+.player-container .vote-icon {
+  position: absolute;
+  left: 95%;
+  bottom: 40%;
+}
+
+.player-container .prop-number-container {
+  position: absolute;
+  left: 95%;
+  bottom: 0%;
+}
+
+.player-container .player-info{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.player-img{
+  position: relative;
+  width: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor:pointer;
+}
+
+.player-container.highlighted > .player-img {
+  border-radius: 0 0 20px 20px;
+}
+
+.fa-times{
+  font-size: 20px;
+}
+
+
+/* not sure why this is here */
+.nodisp:not(.always-visible){
+  display: none;
+}

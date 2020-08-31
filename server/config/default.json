@@ -1,0 +1,19 @@
+{
+  "database": "mongodb+srv://mind-knight-oxzpw.gcp.mongodb.net/production?retryWrites=true&w=majority",
+  "version_url":{
+    "local": "../mindknight.version",
+    "remote": "https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version"
+  },
+  "port_range":{
+    "min": 8080,
+    "max": 8180
+  },
+  "external_commands":{
+    "getID": "wmic csproduct get UUID"
+  },
+  "paths": {
+    "log":{
+      "path": "/appdata/LocalLow/Nomoon/Mindnight/Player.log"
+    }
+  }
+}

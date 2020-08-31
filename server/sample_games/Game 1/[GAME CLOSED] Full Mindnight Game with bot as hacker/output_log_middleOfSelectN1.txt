@@ -1,0 +1,427 @@
+Initialize engine version: 2018.2.14f1 (3262fb3b0716)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 980 Ti (ID=0x17c8)
+    Vendor:   
+    VRAM:     6097 MB
+    Driver:   25.21.14.1616
+Begin MonoManager ReloadAssembly
+- Completed reload, in  0.262 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 5.763076 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 22ec -> priority: 1 
+  Thread -> id: 3f00 -> priority: 1 
+  Thread -> id: 7b4 -> priority: 1 
+  Thread -> id: 4470 -> priority: 1 
+UnloadTime: 3.779330 ms
+2018.11.08 08:38:47: Discord: init
+2018.11.08 08:38:47: Loading Main menu Background
+
+Unloading 60 unused Assets to reduce memory usage. Loaded Objects now: 1258.
+Total: 4.779011 ms (FindLiveObjects: 0.503040 ms CreateObjectMapping: 0.048384 ms MarkObjects: 4.161795 ms  DeleteObjects: 0.065536 ms)
+
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.08 08:38:53: Activate Main menu Background
+2018.11.08 08:38:53: Background done, loading MainMenu
+UnloadTime: 0.189952 ms
+2018.11.08 08:38:53: System.Collections.Generic.List`1[Mindnight.EventManager+Event]
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 11037.
+Total: 2.995202 ms (FindLiveObjects: 1.018880 ms CreateObjectMapping: 0.078336 ms MarkObjects: 1.880833 ms  DeleteObjects: 0.017152 ms)
+
+2018.11.08 08:38:53: Destroying GameControl because it already existed.
+2018.11.08 08:38:53: load skin colors
+2018.11.08 08:38:53: load skin colors done
+2018.11.08 08:38:54: Starting main menu
+2018.11.08 08:38:54: MusicManager: start music Music
+2018.11.08 08:38:54: Steam Manager Inialized
+2018.11.08 08:38:54: Init Steam Avatar Async Loading
+2018.11.08 08:38:54: Initialized False
+2018.11.08 08:38:54: Connect, Current stateNotConnected
+2018.11.08 08:38:54: Network state changed to: Connecting
+2018.11.08 08:38:54: connecting to ws://173.212.195.37:6543/
+2018.11.08 08:38:54: Network state changed to: Connected
+2018.11.08 08:38:54: Sending PlayerInfoPacket:{"Type":601,"Nickname":"2JZ 4U","Steamid":"76561198073023481"}
+2018.11.08 08:38:54: Sending AuthorizationRequestPacket:{"Type":801,"SteamTicket":"1400000020F10455E05F0747F98BB806010010018990E35B1800000001000000020000009706BE6B6D01A8C0FB3F18070B000000B20000003200000004000000F98BB80601001001DE300A009706BE6B6D01A8C000000000634DD75BE3FCF25B0100617003000000000098664CA1E0A8D92AC3E52CF4891F3CF40EF62A0A52DB8FD6B5D3311A8357C33EE3656C0EFD293D09421DA61BC488A6AF2DD8A63AF53CD6A347BBCEC0EC17DC53DD5615BDDEB33E388CD66C3A3C16F1EF1D57C29857E8727FB51F31F737702FF9EA98894EDD19D47765357936343C64EF0EC16C60F6804A5293E2FAA64BD0DA9F","ClientToken":"2.5-c1957bac-e290-11e8-9f32-f2801f1b9fd1"}
+2018.11.08 08:38:54: connected
+2018.11.08 08:38:54: Received EventInfo packet:{"Type":3,"Events":[]}
+2018.11.08 08:38:54: System.Collections.Generic.List`1[Mindnight.EventManager+Event]
+2018.11.08 08:38:55: Received Achievements packet:{"Type":607,"Achievements":[{"achievementId":"10","reward":1000},{"achievementId":"15","reward":1000},{"achievementId":"42","reward":250},{"achievementId":"43","reward":250},{"achievementId":"44","reward":1000},{"achievementId":"45","reward":1500},{"achievementId":"46","reward":10},{"achievementId":"47","reward":15},{"achievementId":"48","reward":20},{"achievementId":"49","reward":25},{"achievementId":"50","reward":100},{"achievementId":"51","reward":50},{"achievementId":"52","reward":100},{"achievementId":"53","reward":200},{"achievementId":"54","reward":300},{"achievementId":"55","reward":50},{"achievementId":"56","reward":50},{"achievementId":"57","reward":50},{"achievementId":"58","reward":50},{"achievementId":"59","reward":50},{"achievementId":"60","reward":50},{"achievementId":"61","reward":50},{"achievementId":"62","reward":50},{"achievementId":"63","reward":50},{"achievementId":"64","reward":50},{"achievementId":"65","reward":50},{"achievementId":"66","reward":50},{"achievementId":"67","reward":50},{"achievementId":"68","reward":50},{"achievementId":"69","reward":50},{"achievementId":"70","reward":50},{"achievementId":"71","reward":50},{"achievementId":"72","reward":50},{"achievementId":"73","reward":50},{"achievementId":"74","reward":50},{"achievementId":"75","reward":50},{"achievementId":"76","reward":50},{"achievementId":"77","reward":50},{"achievementId":"78","reward":50},{"achievementId":"79","reward":100},{"achievementId":"80","reward":200},{"achievementId":"81","reward":300},{"achievementId":"0","reward":5},{"achievementId":"1","reward":10},{"achievementId":"2","reward":50},{"achievementId":"3","reward":100},{"achievementId":"4","reward":200},{"achievementId":"5","reward":500},{"achievementId":"6","reward":10},{"achievementId":"7","reward":50},{"achievementId":"8","reward":150},{"achievementId":"9","reward":100},{"achievementId":"11","reward":10},{"achievementId":"12","reward":50},{"achievementId":"13","reward":100},{"achievementId":"14","reward":200},{"achievementId":"16","reward":10},{"achievementId":"17","reward":20},{"achievementId":"18","reward":75},{"achievementId":"19","reward":200},{"achievementId":"20","reward":1000},{"achievementId":"21","reward":100},{"achievementId":"22","reward":200},{"achievementId":"23","reward":235},{"achievementId":"24","reward":100},{"achievementId":"25","reward":50},{"achievementId":"26","reward":100},{"achievementId":"27","reward":200},{"achievementId":"28","reward":300},{"achievementId":"29","reward":100},{"achievementId":"30","reward":50},{"achievementId":"31","reward":23},{"achievementId":"32","reward":80},{"achievementId":"33","reward":200},{"achievementId":"34","reward":50},{"achievementId":"35","reward":40},{"achievementId":"36","reward":20},{"achievementId":"37","reward":50},{"achievementId":"38","reward":20},{"achievementId":"39","reward":10},{"achievementId":"40","reward":200},{"achievementId":"41","reward":100},{"achievementId":"82","reward":50},{"achievementId":"83","reward":50},{"achievementId":"84","reward":50},{"achievementId":"85","reward":50},{"achievementId":"86","reward":50},{"achievementId":"87","reward":50},{"achievementId":"88","reward":100},{"achievementId":"89","reward":50}]}
+2018.11.08 08:38:55: Received PlayerStats packet:{"Type":602,"Stats":{"TimePlayed":520655,"Credits":180,"Level":30,"MaxLevel":30,"EXP":0,"MaxEXP":11168,"GamesPlayedHacker":170,"GamesPlayedAgent":285,"GamesWonHacker":100,"GamesWonAgent":127,"GamesLostHacker":70,"GamesLostAgent":158,"WordsWritten":105464,"BadWordsWritten":249,"CurrentWinStreak":0,"BestWinStreak":9,"MaxAchievements":90,"MaxSkins":46,"MaxEmojis":20,"MaxGestures":7,"ClaimedItems":["61","72","70","7","66","28","57","6","27","5","26","4","25","3","24","2","23","35","34","33","22","21","20","1"],"ClaimedAchievements":["15","10","53","89","88","57","55","50","49","48","33","81","14","9","5","75","56","52","51","47","46","31","80","79","78","43","42","41","40","39","37","36","35","34","32","29","28","27","26","25","24","23","22","21","19","18","17","16","13","12","11","8","7","6","4","3","2","1","0"],"CurrentSkin":"72","RandomNamePreference":0,"AccountRoles":[0],"Muted":0,"LongestGame":3056,"ShortestGame":192,"CustomGamesPlayed":48,"CreditsObtained":"68580","PlayersReported":40,"ReportsReceived":34,"LeavePenalties":4,"BansReceived":0,"BanAppreciation":false,"ItemOfTheWeek":74,"ItemOfTheWeekTimeLeft":1541791526,"ItemOfTheWeekSKU":1006}}
+2018.11.08 08:38:55: Received AuthResponse packet:{"Type":802}
+2018.11.08 08:38:55: Network state changed to: Authorized
+2018.11.08 08:38:55: Sending SteamFriendListPacket:{"Type":701,"SteamIds":["76561197960459533","76561197960512132","76561197960535884","76561197961174257","76561197962025305","76561197962038248","76561197962085858","76561197962853057","76561197962859432","76561197963839453","76561197965025381","76561197965210064","76561197965226583","76561197965353810","76561197965920614","76561197966546209","76561197967457534","76561197968569296","76561197970757339","76561197972585317","76561197976474049","76561197977169761","76561197977185530","76561197980010372","76561197980258601","76561197982192968","76561197982834361","76561197985016605","76561197985837799","76561197987653371","76561197988205434","76561197989708228","76561197990161098","76561197990900121","76561197993402823","76561197994406148","76561197994636666","76561197996304386","76561197996490957","76561197996497946","76561197998392766","76561197998477508","76561197999090846","76561197999457502","76561197999754957","76561198000038939","76561198000273155","76561198000650858","76561198001265932","76561198001355026","76561198001785187","76561198001951474","76561198002531506","76561198004823930","76561198005103049","76561198005122607","76561198007584877","76561198008367578","76561198011399481","76561198011637632","76561198012243414","76561198013114948","76561198013287552","76561198016995592","76561198017337275","76561198018620231","76561198019087261","76561198019208732","76561198019230107","76561198019807927","76561198021172002","76561198021465860","76561198022791103","76561198023072664","76561198023548598","76561198023665795","76561198026847863","76561198027955330","76561198028408950","76561198028906939","76561198028963664","76561198029841478","76561198030414692","76561198032619308","76561198034570743","76561198036180357","76561198036533964","76561198036853968","76561198037188073","76561198037894023","76561198037959548","76561198040609119","76561198041659390","76561198044279118","76561198046182986","76561198046349765","76561198046657181","76561198047479312","76561198048005039","76561198050493897","76561198050684813","76561198051870968","76561198052480519","76561198054812673","76561198054831857","76561198055534918","76561198055604547","76561198056752024","76561198058736759","76561198058770418","76561198058925193","76561198059485361","76561198059531211","76561198060613943","76561198061744788","76561198062336652","76561198062791210","76561198062814871","76561198064108496","76561198065018004","76561198065627157","76561198065861702","76561198066124937","76561198066757202","76561198067613754","76561198067851563","76561198068331490","76561198068372718","76561198069540289","76561198071170711","76561198072129745","76561198072317186","76561198072555979","76561198079166731","76561198079206622","76561198079621573","76561198080509999","76561198080646380","76561198081203193","76561198083881081","76561198084704749","76561198091436205","76561198093821178","76561198096220936","76561198096288711","76561198098517554","76561198101080904","76561198101748928","76561198103948001","76561198107371021","76561198111934413","76561198112518267","76561198112627443","76561198112672364","76561198114567948","76561198115200711","76561198116361606","76561198117593394","76561198119788488","76561198119826574","76561198120628655","76561198121665679","76561198124938279","76561198125832162","76561198126644527","76561198129889808","76561198130324847","76561198130838187","76561198131479033","76561198133764501","76561198134311672","76561198139867774","76561198140501630","76561198146003890","76561198146594273","76561198147252205","76561198148312444","76561198148506776","76561198149177798","76561198150535844","76561198150878963","76561198151323019","76561198152016716","76561198152861130","76561198153795200","76561198154807836","76561198156682106","76561198160836824","76561198162078315","76561198162078709","76561198162368675","76561198164590664","76561198164659152","76561198165171480","76561198165303720","76561198165912334","76561198165945329","76561198166291850","76561198167206103","76561198169371557","76561198170691287","76561198183115865","76561198186229847","76561198190266450","76561198190455442","76561198191418945","76561198193698603","76561198195799419","76561198197555130","76561198197775474","76561198198260085","76561198199724431","76561198202244507","76561198206648431","76561198207930381","76561198208078609","76561198212355685","76561198212452935","76561198217767851","76561198218229553","76561198230069152","76561198242131254","76561198248111646","76561198249198482","76561198255998734","76561198257601903","76561198258938748","76561198261177558","76561198261882260","76561198262433525","76561198263391498","76561198271575731","76561198274031521","76561198290400609","76561198306931301","76561198313654508","76561198321820986","76561198322529547","76561198323116418","76561198326819363","76561198329247286","76561198329400057","76561198330802605","76561198333179471","76561198333446536","76561198334671702","76561198352365751","76561198355153372","76561198358292470","76561198364992365","76561198375674405","76561198378180268","76561198379011517","76561198395199107","76561198403309923","76561198405890907","76561198412369051","76561198421319331","76561198449205538","76561198802134311","76561198812796787","76561198820514920","76561198842253830","76561198867287373","76561198441838874"]}
+2018.11.08 08:38:55: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":7,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:38:55: Received News packet:{"Type":605,"News":[{"Title":"MAINFRAME","Category":0,"Link":"http://www.mindnightgame.com/mainframe/","ImageSrc":"http://www.mindnightgame.com/static/mainframe_update.png"},{"Title":"CHANGELOG","Category":0,"Link":"https://store.steampowered.com/news/?appids=667870","ImageSrc":"#patchnotes"},{"Title":"DISCORD","Category":0,"Link":"https://discord.gg/mindnight","ImageSrc":"#discord"},{"Title":"PATREON","Category":0,"Link":"https://www.patreon.com/mindnight","ImageSrc":"#patreon"},{"Title":"SPECIAL DEAL","Category":1,"Link":"","ImageSrc":""}]}
+2018.11.08 08:38:55: Received Items packet:{"Type":613,"Items":[{"ItemId":1,"Name":"skin_default","Category":0,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":2,"Name":"skin_cadet","Category":0,"Price":0,"UnlockLevel":5,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":3,"Name":"skin_ensign","Category":0,"Price":0,"UnlockLevel":10,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":4,"Name":"skin_lieutenant","Category":0,"Price":0,"UnlockLevel":15,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":5,"Name":"skin_sergeant","Category":0,"Price":0,"UnlockLevel":20,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":6,"Name":"skin_admiral","Category":0,"Price":0,"UnlockLevel":25,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":7,"Name":"skin_master","Category":0,"Price":0,"UnlockLevel":30,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":8,"Name":"skin_heckard","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":9,"Name":"skin_lin_baden","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":10,"Name":"skin_micky","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":11,"Name":"skin_loolee","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":12,"Name":"skin_suit_guy","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":13,"Name":"skin_aloire_of_satora","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":14,"Name":"skin_chef","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":15,"Name":"skin_ketchup","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":16,"Name":"skin_hacker_man","Category":0,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":17,"Name":"skin_pierrot","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":18,"Name":"skin_ghaben","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":19,"Name":"skin_mcfly","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":20,"Name":"emoji_smile","Category":1,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":21,"Name":"emoji_big_smile","Category":1,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":22,"Name":"emoji_sad_face","Category":1,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":23,"Name":"emoji_cry","Category":1,"Price":0,"UnlockLevel":3,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":24,"Name":"emoji_tongue","Category":1,"Price":0,"UnlockLevel":7,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":25,"Name":"emoji_saint","Category":1,"Price":0,"UnlockLevel":12,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":26,"Name":"emoji_devil","Category":1,"Price":0,"UnlockLevel":17,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":27,"Name":"emoji_hypnotized","Category":1,"Price":0,"UnlockLevel":22,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":28,"Name":"emoji_wink","Category":1,"Price":0,"UnlockLevel":27,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":29,"Name":"emoji_surprised","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":30,"Name":"emoji_straight_face","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":31,"Name":"emoji_angry","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":32,"Name":"emoji_kiss","Category":1,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":33,"Name":"gesture_wave","Category":2,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":34,"Name":"gesture_crying","Category":2,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":35,"Name":"gesture_celebrate","Category":2,"Price":0,"UnlockLevel":0,"Premium":false,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":36,"Name":"gesture_fart","Category":2,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":37,"Name":"gesture_facepalm","Category":2,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":38,"Name":"gesture_sleep","Category":2,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":39,"Name":"gesture_laugh","Category":2,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":40,"Name":"emoji_cute","Category":1,"Price":2000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":41,"Name":"skin_elf_f","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":42,"Name":"skin_elf_m","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":43,"Name":"skin_santa","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":44,"Name":"skin_xmastree","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":45,"Name":"skin_mandeer","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":46,"Name":"skin_snowman","Category":0,"Price":15000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":47,"Name":"skin_mr_robot","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":49,"Name":"emoji_thumbs_up","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":50,"Name":"emoji_thumbs_down","Category":1,"Price":1500,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":51,"Name":"emoji_thinking","Category":1,"Price":3000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":52,"Name":"emoji_heart","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":53,"Name":"skin_hangover_john","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"Generic User"},{"ItemId":54,"Name":"skin_leela","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"Eva"},{"ItemId":55,"Name":"skin_reaper","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"gangster_heart"},{"ItemId":56,"Name":"skin_shodan","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"iwanPlays"},{"ItemId":57,"Name":"skin_tuxedoguy","Category":0,"Price":15000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":"Fudjijama"},{"ItemId":58,"Name":"skin_jukebox","Category":0,"Price":0,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":59,"Name":"skin_raggy","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":60,"Name":"skin_alice","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":61,"Name":"skin_angela","Category":0,"Price":25000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":62,"Name":"skin_holo_san","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":63,"Name":"skin_bob","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":64,"Name":"skin_spy_infinity","Category":0,"Price":6000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":65,"Name":"skin_developer_skin","Category":0,"Price":0,"UnlockLevel":0,"Premium":true,"Buyable":false,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":66,"Name":"emoji_hammer","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":67,"Name":"emoji_broken_heart","Category":1,"Price":4000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":68,"Name":"skin_chicken_man","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":69,"Name":"skin_hot_chick","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":70,"Name":"skin_develyn","Category":0,"Price":20000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":71,"Name":"skin_wizard","Category":0,"Price":15000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":72,"Name":"skin_metalhead","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":73,"Name":"skin_indie","Category":0,"Price":10000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null},{"ItemId":74,"Name":"skin_claudette","Category":0,"Price":5000,"UnlockLevel":0,"Premium":true,"Buyable":true,"Event":"","EventEnd":null,"MadeBy":null}]}
+2018.11.08 08:38:55: Received PlayerFriendList packet:{"Type":702,"FriendList":[{"SteamId":"76561198313654508","Status":5},{"SteamId":"76561198066124937","Status":5},{"SteamId":"76561197998392766","Status":5},{"SteamId":"76561198355153372","Status":5},{"SteamId":"76561198079621573","Status":5},{"SteamId":"76561197998477508","Status":5},{"SteamId":"76561198036180357","Status":5},{"SteamId":"76561198403309923","Status":5},{"SteamId":"76561198842253830","Status":5},{"SteamId":"76561198027955330","Status":5},{"SteamId":"76561198072555979","Status":5},{"SteamId":"76561198441838874","Status":5},{"SteamId":"76561198812796787","Status":5},{"SteamId":"76561198412369051","Status":5},{"SteamId":"76561198206648431","Status":5},{"SteamId":"76561198107371021","Status":5},{"SteamId":"76561198098517554","Status":5},{"SteamId":"76561198079166731","Status":5},{"SteamId":"76561198023665795","Status":5},{"SteamId":"76561198867287373","Status":5},{"SteamId":"76561198802134311","Status":5},{"SteamId":"76561197987653371","Status":5},{"SteamId":"76561197985837799","Status":5},{"SteamId":"76561198329247286","Status":5},{"SteamId":"76561198333179471","Status":5},{"SteamId":"76561197999754957","Status":5},{"SteamId":"76561198820514920","Status":5},{"SteamId":"76561198067613754","Status":5},{"SteamId":"76561198065861702","Status":5},{"SteamId":"76561198255998734","Status":5},{"SteamId":"76561198037188073","Status":5},{"SteamId":"76561198146003890","Status":5}]}
+2018.11.08 08:38:56: Sending RequestUnlockAchievementsPacket:{"Type":610}
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.08 08:38:58: Sending RandomSkinPacket:{"Type":623,"RandomSkin":true}
+2018.11.08 08:38:58: Sending GlobalChatHisotryRequestPacket:{"Type":903}
+2018.11.08 08:38:58: Sending Packet:{"Type":108}
+
+Unloading 116 unused Assets to reduce memory usage. Loaded Objects now: 17708.
+Total: 7.957766 ms (FindLiveObjects: 1.286912 ms CreateObjectMapping: 0.103424 ms MarkObjects: 6.469380 ms  DeleteObjects: 0.097792 ms)
+
+2018.11.08 08:38:59: Received GlobalChatHistoryResponse packet:{"Type":904,"Messages":[{"Message":"c-1crp308u6","SteamId":"76561198082252918","Username":"FullCream","Roles":[0],"Timestamp":1541661777},{"Message":"join pls","SteamId":"76561198267878539","Username":"never ending pain ?","Roles":[0],"Timestamp":1541662428},{"Message":"search game","SteamId":"76561198267878539","Username":"never ending pain ?","Roles":[0],"Timestamp":1541662434},{"Message":"i don't even know how to play mainframe","SteamId":"76561198067501229","Username":"victhedestroyer","Roles":[0],"Timestamp":1541662442},{"Message":"do i need to be a certain level?","SteamId":"76561198067501229","Username":"victhedestroyer","Roles":[0],"Timestamp":1541662449},{"Message":"no, you have to make a game, try again in nine hrs","SteamId":"76561198121113627","Username":"ajjemmett","Roles":[0],"Timestamp":1541663010},{"Message":"Queue boiz","SteamId":"76561198089130981","Username":"Agent Snowman (no scam,legit)","Roles":[0],"Timestamp":1541663241},{"Message":"bess $*°%/&","SteamId":"76561198049757512","Username":"LAWTON 911 mr lonely","Roles":[0],"Timestamp":1541663385},{"Message":"victhedestroyer","SteamId":"76561198267878539","Username":"never ending pain ?","Roles":[0],"Timestamp":1541664476},{"Message":"you freaking john","SteamId":"76561198267878539","Username":"never ending pain ?","Roles":[0],"Timestamp":1541664479},{"Message":"xD","SteamId":"76561198267878539","Username":"never ending pain ?","Roles":[0],"Timestamp":1541664480},{"Message":"Search game","SteamId":"76561198262656013","Username":"hoptimtom","Roles":[0],"Timestamp":1541664481},{"Message":"c<sprite name=\"emoji_thumbs_down\">crp69lmh","SteamId":"76561198258379145","Username":"ngqitao","Roles":[0],"Timestamp":1541665050},{"Message":"Mindnight lobby!","SteamId":"76561198262656013","Username":"hoptimtom","Roles":[0],"Timestamp":1541665063},{"Message":"Come join","SteamId":"76561198262656013","Username":"hoptimtom","Roles":[0],"Timestamp":1541665065},{"Message":"another game of queuenight :/","SteamId":"76561198090469779","Username":"Assimilator","Roles":[0],"Timestamp":1541665654},{"Message":"what happens when u die?","SteamId":"76561198067501229","Username":"victhedestroyer","Roles":[0],"Timestamp":1541666146},{"Message":"c<sprite name=\"emoji_thumbs_down\">crp7bq1n","SteamId":"76561198258379145","Username":"ngqitao","Roles":[0],"Timestamp":1541666152},{"Message":"c-1crp7bq1n","SteamId":"76561198223547996","Username":"Mr.Fuzzball","Roles":[0],"Timestamp":1541666174},{"Message":"c-1crp7bq1n","SteamId":"76561198223547996","Username":"Mr.Fuzzball","Roles":[0],"Timestamp":1541666175}]}
+2018.11.08 08:39:03: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"who knows","SteamId":"76561198001761991","Username":"sir slurpi","Roles":[0],"Timestamp":1541666340}}
+2018.11.08 08:39:04: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:39:04: Sending Packet:{"Type":-1}
+2018.11.08 08:39:10: Sending RequestServerInfoPacket:{"Type":5}
+2018.11.08 08:39:11: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":7,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":14,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:39:11: Network state changed to: FindingGame
+2018.11.08 08:39:11: Sending FindGamePacket:{"Type":101,"LevelGroup":0,"RandomSkin":true}
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.08 08:39:11: Sending RandomSkinPacket:{"Type":623,"RandomSkin":true}
+
+Unloading 82 unused Assets to reduce memory usage. Loaded Objects now: 18850.
+Total: 15.277579 ms (FindLiveObjects: 1.334017 ms CreateObjectMapping: 0.205568 ms MarkObjects: 13.650954 ms  DeleteObjects: 0.086528 ms)
+
+2018.11.08 08:39:11: Received RoomInfo packet:{"Type":103,"PlayersCount":1,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":-1}
+2018.11.08 08:39:12: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":-1}
+2018.11.08 08:39:12: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":-1}
+2018.11.08 08:39:12: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":10000}
+2018.11.08 08:39:13: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":0,"StartIn":9000}
+2018.11.08 08:39:14: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":1,"StartIn":8218}
+2018.11.08 08:39:14: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:39:14: Sending Packet:{"Type":-1}
+2018.11.08 08:39:14: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":1,"StartIn":8000}
+2018.11.08 08:39:14: Sending AcceptMatchPacket:{"Type":105}
+2018.11.08 08:39:14: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":2,"StartIn":7744}
+2018.11.08 08:39:14: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":3,"StartIn":7685}
+2018.11.08 08:39:15: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":4,"StartIn":7182}
+2018.11.08 08:39:15: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":4,"StartIn":6999}
+2018.11.08 08:39:16: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":4,"StartIn":5999}
+2018.11.08 08:39:17: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":4,"StartIn":4998}
+2018.11.08 08:39:18: Received RoomInfo packet:{"Type":103,"PlayersCount":5,"MaxPlayers":8,"AcceptedPlayers":5,"StartIn":-1}
+2018.11.08 08:39:18: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":7,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:39:18: Received GameFound packet:{"Type":102,"PlayerNumber":5,"Hacker":true,"GuyRole":20,"HackersAmount":2,"MissionInfo":[2,3,2,3,3],"MissionMinhacks":[1,1,1,1,1],"Hackers":[2,3],"MatchType":0,"FirstPlayer":0,"Map":61,"Options":{"GameMode":0,"MaxPlayers":8,"Visibility":0,"NamingConvention":1,"HammerEnabled":true,"SkipTalkingPhaseEnabled":true,"MapPickOption":1,"Maps":[]}}
+2018.11.08 08:39:18: GameSession:Awake
+2018.11.08 08:39:18: GameFound - Map: Agency
+2018.11.08 08:39:18: Network state changed to: InGame
+2018.11.08 08:39:18: SceneLoader: LoadingScene is loading.
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":0,"Color":5,"Username":"Tom","Female":false,"IsLocal":false,"Skin":"skin_default"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":1,"Color":7,"Username":"Anna","Female":true,"IsLocal":false,"Skin":"skin_ensign"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":2,"Color":1,"Username":"Radu","Female":false,"IsLocal":true,"Skin":"skin_lieutenant"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":3,"Color":6,"Username":"Mook","Female":false,"IsLocal":false,"Skin":"skin_default"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":4,"Color":2,"Username":"Carl","Female":false,"IsLocal":false,"Skin":"skin_mandeer"}
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 35.500571 ms
+2018.11.08 08:39:18: Destroying GameControl because it already existed.
+2018.11.08 08:39:18: SceneLoader: LoadingScene loaded.
+
+Unloading 1217 unused Assets to reduce memory usage. Loaded Objects now: 1462.
+Total: 2.526209 ms (FindLiveObjects: 0.609536 ms CreateObjectMapping: 0.105984 ms MarkObjects: 0.946944 ms  DeleteObjects: 0.863744 ms)
+
+2018.11.08 08:39:20: SceneLoader: Play is loading.
+2018.11.08 08:39:20: LoadingManager is loading: Play
+2018.11.08 08:39:21: LoadingManager finished loading: Play
+2018.11.08 08:39:21: Destroying GameControl because it already existed.
+2018.11.08 08:39:21: PlayReference:Awake
+2018.11.08 08:39:21: PlayManager:Awake
+Your current multi-scene setup has inconsistent Lighting settings which may lead to different lighting when loading scenes individually or in a different order! Consider homogenizing the following:
+1/2 scenes have different Realtime GI settings.
+
+ 
+(Filename:  Line: 124)
+
+2018.11.08 08:39:21: Scene is fully loaded: Play True
+2018.11.08 08:39:21: Scene is fully active: LoadingScene=>Play
+2018.11.08 08:39:21: PlayReference:Start
+2018.11.08 08:39:21: PlayManager:Start
+2018.11.08 08:39:21: SceneLoader: Play loaded.
+2018.11.08 08:39:21: SubsceneManager awake
+Your current multi-scene setup has inconsistent Lighting settings which may lead to different lighting when loading scenes individually or in a different order! Consider homogenizing the following:
+1/3 scenes have different Realtime GI settings.
+1/3 scenes use different skyboxes.
+
+ 
+(Filename:  Line: 124)
+
+2018.11.08 08:39:21: SubsceneManager start. wait for playscene
+2018.11.08 08:39:21: PlayReference:CrossSceneReferences
+2018.11.08 08:39:21: SubsceneManager:CrosssceneReferenceSetup
+2018.11.08 08:39:21: SubsceneManager:getting references from play scene
+2018.11.08 08:39:21: MusicManager: start music Music
+2018.11.08 08:39:21: PlayState: Entering Init
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+2018.11.08 08:39:22: Spawn player Tom on slot 0
+2018.11.08 08:39:22: Spawn player Anna on slot 1
+2018.11.08 08:39:22: Localplayer is on slot 2
+2018.11.08 08:39:22: Spawn player Radu on slot 2
+2018.11.08 08:39:22: Spawn player Mook on slot 3
+2018.11.08 08:39:22: Spawn player Carl on slot 4
+2018.11.08 08:39:22: First player: 0
+2018.11.08 08:39:22: Sending ReadyPacket:{"Type":401}
+
+Unloading 312 unused Assets to reduce memory usage. Loaded Objects now: 5739.
+Total: 5.017091 ms (FindLiveObjects: 0.781824 ms CreateObjectMapping: 0.125184 ms MarkObjects: 3.848194 ms  DeleteObjects: 0.261632 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 5740.
+Total: 4.452355 ms (FindLiveObjects: 0.754944 ms CreateObjectMapping: 0.107008 ms MarkObjects: 3.585794 ms  DeleteObjects: 0.004608 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 5740.
+Total: 4.764675 ms (FindLiveObjects: 0.769792 ms CreateObjectMapping: 0.106496 ms MarkObjects: 3.883522 ms  DeleteObjects: 0.004864 ms)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 5740.
+Total: 4.628483 ms (FindLiveObjects: 0.761856 ms CreateObjectMapping: 0.107008 ms MarkObjects: 3.754754 ms  DeleteObjects: 0.004352 ms)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 5740.
+Total: 4.685315 ms (FindLiveObjects: 0.737536 ms CreateObjectMapping: 0.107264 ms MarkObjects: 3.835906 ms  DeleteObjects: 0.004352 ms)
+
+2018.11.08 08:39:24: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:39:24: Sending Packet:{"Type":-1}
+2018.11.08 08:39:33: Received GameStart packet:{"Type":201,"Disconnected":[],"AFK":[]}
+2018.11.08 08:39:33: Received TalkPhaseStart packet:{"Type":301,"Duration":30000}
+2018.11.08 08:39:33: PlayState: Entering TalkingPhase
+2018.11.08 08:39:34: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:39:34: Sending Packet:{"Type":-1}
+2018.11.08 08:39:38: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:39:40: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:39:40: Received ChatMessageReceive packet:{"Type":205,"Message":"greetings","Slot":0}
+2018.11.08 08:39:42: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:39:44: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:39:44: Sending Packet:{"Type":-1}
+2018.11.08 08:39:44: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:39:44: Received ChatMessageReceive packet:{"Type":205,"Message":"hello","Slot":1}
+2018.11.08 08:39:49: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:39:49: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:39:50: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:39:50: Sending SendChatPacket:{"Type":204,"Message":"Hey whats up"}
+2018.11.08 08:39:50: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:39:50: Received ChatMessageReceive packet:{"Type":205,"Message":"Hey whats up","Slot":2}
+2018.11.08 08:39:52: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:39:54: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:39:54: Sending Packet:{"Type":-1}
+2018.11.08 08:39:55: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:39:55: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:39:56: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:39:56: Sending SendChatPacket:{"Type":204,"Message":"gas prices"}
+2018.11.08 08:39:56: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:39:56: Received ChatMessageReceive packet:{"Type":205,"Message":"gas prices","Slot":2}
+2018.11.08 08:40:02: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:40:03: Received TalkPhaseEnd packet:{"Type":302}
+2018.11.08 08:40:03: Received SelectPhaseStart packet:{"Type":303,"Player":0,"NextPlayer":1,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.08 08:40:03: PlayState: Entering SelectPhase
+2018.11.08 08:40:03: SelectPhase: 0 2
+2018.11.08 08:40:03: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:40:03: Received ChatMessageReceive packet:{"Type":205,"Message":"dont remind me","Slot":1}
+2018.11.08 08:40:04: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:40:04: Received ChatMessageReceive packet:{"Type":205,"Message":"*dies ","Slot":0}
+2018.11.08 08:40:04: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:40:04: Sending Packet:{"Type":-1}
+2018.11.08 08:40:07: Received SelectUpdate packet:{"Type":305,"Slots":[4],"Submit":false,"Pass":false}
+2018.11.08 08:40:09: Received SelectUpdate packet:{"Type":305,"Slots":[0,4],"Submit":false,"Pass":false}
+2018.11.08 08:40:10: Received SelectPhaseEnd packet:{"Type":304,"Proposer":0,"SelectedTeam":[0,4],"Passed":false}
+2018.11.08 08:40:10: Received VotePhaseStart packet:{"Type":306,"Proposer":0,"Players":[0,4],"Duration":60000}
+2018.11.08 08:40:10: PlayState: Entering VotePhase
+2018.11.08 08:40:12: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.08 08:40:12: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.08 08:40:13: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.08 08:40:14: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:40:14: Sending Packet:{"Type":-1}
+2018.11.08 08:40:16: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.08 08:40:20: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.08 08:40:22: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.08 08:40:22: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[0],"VotesAgainst":[2,1,4,3],"Passed":false}
+2018.11.08 08:40:24: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:40:24: Sending Packet:{"Type":-1}
+2018.11.08 08:40:24: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":8,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":19,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:40:26: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:40:27: Received SelectPhaseStart packet:{"Type":303,"Player":1,"NextPlayer":2,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.08 08:40:27: PlayState: Entering SelectPhase
+2018.11.08 08:40:27: SelectPhase: 1 2
+2018.11.08 08:40:29: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:40:30: Received SelectUpdate packet:{"Type":305,"Slots":[1],"Submit":false,"Pass":false}
+2018.11.08 08:40:30: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:40:31: Received ChatMessageReceive packet:{"Type":205,"Message":"So sad","Slot":0}
+2018.11.08 08:40:34: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:40:34: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:40:34: Sending Packet:{"Type":-1}
+2018.11.08 08:40:37: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:40:37: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:40:37: Received ChatMessageReceive packet:{"Type":205,"Message":"you clicked carl first","Slot":1}
+2018.11.08 08:40:39: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:40:39: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:40:40: Received ChatMessageReceive packet:{"Type":205,"Message":"sussy","Slot":1}
+2018.11.08 08:40:42: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.08 08:40:42: Received SelectUpdate packet:{"Type":305,"Slots":[1,3],"Submit":false,"Pass":false}
+2018.11.08 08:40:43: Received SelectPhaseEnd packet:{"Type":304,"Proposer":1,"SelectedTeam":[1,3],"Passed":false}
+2018.11.08 08:40:43: Received VotePhaseStart packet:{"Type":306,"Proposer":1,"Players":[1,3],"Duration":60000}
+2018.11.08 08:40:43: PlayState: Entering VotePhase
+2018.11.08 08:40:44: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:40:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:40:44: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:40:44: Sending Packet:{"Type":-1}
+2018.11.08 08:40:45: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.08 08:40:46: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.08 08:40:47: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:40:47: Received ChatMessageReceive packet:{"Type":205,"Message":"jeez ok","Slot":0}
+2018.11.08 08:40:48: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:40:48: Sending SendChatPacket:{"Type":204,"Message":"ayyeee smart one"}
+2018.11.08 08:40:48: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:40:48: Received ChatMessageReceive packet:{"Type":205,"Message":"ayyeee smart one","Slot":2}
+2018.11.08 08:40:48: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.08 08:40:49: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:40:50: Received ChatMessageReceive packet:{"Type":205,"Message":"smells like up in here","Slot":3}
+2018.11.08 08:40:53: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.08 08:40:54: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:40:54: Sending Packet:{"Type":-1}
+2018.11.08 08:40:56: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:40:56: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:40:57: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.08 08:40:58: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.08 08:40:58: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1,0],"VotesAgainst":[4,3,2],"Passed":false}
+2018.11.08 08:40:59: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:40:59: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:41:02: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:41:02: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:41:02: Received ChatMessageReceive packet:{"Type":205,"Message":"no disney movie smell","Slot":1}
+2018.11.08 08:41:03: Received ChatMessageReceive packet:{"Type":205,"Message":"Whats up dog","Slot":0}
+2018.11.08 08:41:03: Received SelectPhaseStart packet:{"Type":303,"Player":2,"NextPlayer":3,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.08 08:41:03: PlayState: Entering SelectPhase
+2018.11.08 08:41:03: SelectPhase: 2 2
+2018.11.08 08:41:04: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:41:04: Sending Packet:{"Type":-1}
+2018.11.08 08:41:06: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:41:07: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.08 08:41:08: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:41:08: Received ChatMessageReceive packet:{"Type":205,"Message":"nm u","Slot":3}
+2018.11.08 08:41:10: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:41:10: Received ChatMessageReceive packet:{"Type":205,"Message":"Whats up dog","Slot":0}
+2018.11.08 08:41:14: Received Disconnected packet:{"Type":402,"Player":0,"ByNetwork":true}
+2018.11.08 08:41:14: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":8,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:41:14: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":6,"PlayersOnlineSilver":8,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:41:14: Sending UpdateSelectPacket:{"Type":305,"Slots":[2],"Submit":false,"Pass":false}
+2018.11.08 08:41:14: Received SelectUpdate packet:{"Type":305,"Slots":[2],"Submit":false,"Pass":false}
+2018.11.08 08:41:14: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:41:14: Sending Packet:{"Type":-1}
+2018.11.08 08:41:14: Sending UpdateSelectPacket:{"Type":305,"Slots":[2,1],"Submit":false,"Pass":false}
+2018.11.08 08:41:14: Received SelectUpdate packet:{"Type":305,"Slots":[1,2],"Submit":false,"Pass":false}
+2018.11.08 08:41:15: Sending UpdateSelectPacket:{"Type":305,"Slots":[2,1],"Submit":true,"Pass":false}
+2018.11.08 08:41:15: Received SelectPhaseEnd packet:{"Type":304,"Proposer":2,"SelectedTeam":[1,2],"Passed":false}
+2018.11.08 08:41:15: Received VotePhaseStart packet:{"Type":306,"Proposer":2,"Players":[1,2],"Duration":60000}
+2018.11.08 08:41:15: PlayState: Entering VotePhase
+2018.11.08 08:41:15: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.08 08:41:16: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.08 08:41:17: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:41:18: Received ChatMessageReceive packet:{"Type":205,"Message":"nm u","Slot":3}
+2018.11.08 08:41:18: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.08 08:41:18: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.08 08:41:19: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.08 08:41:24: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:41:24: Sending Packet:{"Type":-1}
+2018.11.08 08:41:28: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.08 08:41:30: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":4}
+2018.11.08 08:41:31: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:41:34: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:41:34: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:41:34: Sending Packet:{"Type":-1}
+2018.11.08 08:41:34: Received ChatMessageReceive packet:{"Type":205,"Message":"great toms diddly done","Slot":1}
+2018.11.08 08:41:40: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:41:40: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:41:43: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":4}
+2018.11.08 08:41:43: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.08 08:41:43: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1],"VotesAgainst":[0,2,3,4],"Passed":false}
+2018.11.08 08:41:43: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.08 08:41:44: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:41:44: Sending SendChatPacket:{"Type":204,"Message":"gotta love leavers"}
+2018.11.08 08:41:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:41:44: Received ChatMessageReceive packet:{"Type":205,"Message":"gotta love leavers","Slot":2}
+2018.11.08 08:41:44: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:41:44: Sending Packet:{"Type":-1}
+2018.11.08 08:41:48: Received SelectPhaseStart packet:{"Type":303,"Player":3,"NextPlayer":4,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.08 08:41:48: PlayState: Entering SelectPhase
+2018.11.08 08:41:48: SelectPhase: 3 2
+2018.11.08 08:41:49: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:41:49: Received ChatMessageReceive packet:{"Type":205,"Message":"i kilt him with my funny joek","Slot":3}
+2018.11.08 08:41:54: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:41:54: Sending Packet:{"Type":-1}
+2018.11.08 08:41:54: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:41:56: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:41:56: Received ChatMessageReceive packet:{"Type":205,"Message":"agreed","Slot":1}
+2018.11.08 08:41:59: Received SelectUpdate packet:{"Type":305,"Slots":[3],"Submit":false,"Pass":false}
+2018.11.08 08:42:00: Received SelectUpdate packet:{"Type":305,"Slots":[3,4],"Submit":false,"Pass":false}
+2018.11.08 08:42:02: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":true}
+2018.11.08 08:42:04: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:42:04: Sending Packet:{"Type":-1}
+2018.11.08 08:42:06: Received ServerInfo packet:{"Type":2,"PlayersOnlineBronze":7,"PlayersOnlineSilver":8,"PlayersOnlineGold":8,"PlayersPlayingBronze":0,"PlayersPlayingSilver":0,"PlayersPlayingGold":0,"PlayersPlayingOther":18,"PublicCustomGames":0,"MaintenanceIn":-1}
+2018.11.08 08:42:07: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:42:07: Received ChatMessageReceive packet:{"Type":205,"Message":"laughing so hard he had to leave","Slot":3}
+2018.11.08 08:42:09: Received SelectPhaseEnd packet:{"Type":304,"Proposer":3,"SelectedTeam":[3,4],"Passed":false}
+2018.11.08 08:42:09: Received VotePhaseStart packet:{"Type":306,"Proposer":3,"Players":[3,4],"Duration":60000}
+2018.11.08 08:42:09: PlayState: Entering VotePhase
+2018.11.08 08:42:09: Received VoteMade packet:{"Type":309,"Slot":0}
+2018.11.08 08:42:10: Received VoteMade packet:{"Type":309,"Slot":3}
+2018.11.08 08:42:11: Received VoteMade packet:{"Type":309,"Slot":1}
+2018.11.08 08:42:13: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:42:14: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:42:14: Sending Packet:{"Type":-1}
+2018.11.08 08:42:14: Sending VotePacket:{"Type":308,"Action":2}
+2018.11.08 08:42:14: Received VoteMade packet:{"Type":309,"Slot":2}
+2018.11.08 08:42:15: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:42:15: Received ChatMessageReceive packet:{"Type":205,"Message":"gone to ER","Slot":1}
+2018.11.08 08:42:17: Received Reconnected packet:{"Type":406,"Player":0}
+2018.11.08 08:42:19: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:42:19: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:42:21: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:42:21: Sending SendChatPacket:{"Type":204,"Message":"shuld test the bot"}
+2018.11.08 08:42:21: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:42:21: Received ChatMessageReceive packet:{"Type":205,"Message":"shuld test the bot","Slot":2}
+2018.11.08 08:42:22: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:42:23: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:42:24: Received ChatMessageReceive packet:{"Type":205,"Message":"Ayo","Slot":0}
+2018.11.08 08:42:24: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:42:24: Sending Packet:{"Type":-1}
+2018.11.08 08:42:24: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:42:24: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:42:25: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:42:25: Sending SendChatPacket:{"Type":204,"Message":"o nvm"}
+2018.11.08 08:42:25: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:42:25: Received ChatMessageReceive packet:{"Type":205,"Message":"o nvm","Slot":2}
+2018.11.08 08:42:28: Received IdleStatusUpdate packet:{"Type":403,"Idle":true,"Player":4}
+2018.11.08 08:42:28: Received ReceiveGlobalChatMessage packet:{"Type":902,"Message":{"Message":"<sprite name=\"emoji_big_smile\"><sprite name=\"emoji_cry\"><sprite name=\"emoji_sad_face\"><sprite name=\"emoji_smile\"><sprite name=\"emoji_tongue\">","SteamId":"76561198126982662","Username":"Rizzler","Roles":[0],"Timestamp":1541666545}}
+2018.11.08 08:42:30: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:42:30: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:42:33: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:42:33: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:42:33: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:42:33: Sending SendChatPacket:{"Type":204,"Message":"wb"}
+2018.11.08 08:42:33: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:42:33: Received ChatMessageReceive packet:{"Type":205,"Message":"wb","Slot":2}
+2018.11.08 08:42:34: Received KeepAlive packet:{"Type":-1}
+2018.11.08 08:42:34: Sending Packet:{"Type":-1}
+2018.11.08 08:42:36: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":false}
+2018.11.08 08:42:36: Received ChatMessageReceive packet:{"Type":205,"Message":"did you leave because of funny joak tom","Slot":1}
+2018.11.08 08:42:37: Received IdleStatusUpdate packet:{"Type":403,"Idle":false,"Player":4}
+2018.11.08 08:42:38: Received VoteMade packet:{"Type":309,"Slot":4}
+2018.11.08 08:42:38: Received VotePhaseEnd packet:{"Type":307,"VotesFor":[1],"VotesAgainst":[0,3,2,4],"Passed":false}
+2018.11.08 08:42:38: Received ChatUpdate packet:{"Type":405,"Slot":3,"Typing":false}
+2018.11.08 08:42:41: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2018.11.08 08:42:41: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2018.11.08 08:42:42: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2018.11.08 08:42:42: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2018.11.08 08:42:42: Received ChatMessageReceive packet:{"Type":205,"Message":"nyes","Slot":0}
+2018.11.08 08:42:42: Received ChatUpdate packet:{"Type":405,"Slot":1,"Typing":true}
+2018.11.08 08:42:43: Received SelectPhaseStart packet:{"Type":303,"Player":4,"NextPlayer":0,"Amount":2,"Duration":60000,"Mission":1}
+2018.11.08 08:42:43: PlayState: Entering SelectPhase
+2018.11.08 08:42:43: SelectPhase: 4 2
+2018.11.08 08:42:43: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2018.11.08 08:42:43: Sending SendChatPacket:{"Type":204,"Message":"its joek"}
+2018.11.08 08:42:43: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2018.11.08 08:42:43: Received ChatMessageReceive packet:{"Type":205,"Message":"its joek","Slot":2}
+2018.11.08 08:42:43: Sending SendTypingPacket:{"Type":404,"Typing":true}

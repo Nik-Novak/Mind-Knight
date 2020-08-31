@@ -1,0 +1,37 @@
+
+tail -f /var/log/syslog
+Powershell:
+
+PowerShell -Command Get-Content "C:/Users/nnova/AppData/LocalLow/Nomoon/Mindnight/output_log.txt" –Wait
+
+Shows the syslog updates as they are added to the file.
+
+
+colors:{
+	'0':{ name:'light-blue', hex:#00A6F6 },
+	'1':{ name:'magenta', hex:#D31FD4 },
+	'2':{ name:'light-green', hex:#6FE015 },
+	'3':{ name:'grey', hex:#9D9D9D },
+	'4':{ name:'orange', hex:#FF8113 },
+	'5':{ name:'yellow', hex:#FFEC16 },
+	'6':{ name:'turquoise', hex:#00B48B },
+	'7':{ name:'dark-blue', hex:#0041F6 }
+}
+
+
+0.31953125
+
+//****************************************************
+
+start searching timestamp: 8:39:11
+
+
+2018.11.08 08:39:18: Received GameFound packet:{"Type":102,"PlayerNumber":5,"Hacker":true,"GuyRole":20,"HackersAmount":2,"MissionInfo":[2,3,2,3,3],"MissionMinhacks":[1,1,1,1,1],"Hackers":[2,3],"MatchType":0,"FirstPlayer":0,"Map":61,"Options":{"GameMode":0,"MaxPlayers":8,"Visibility":0,"NamingConvention":1,"HammerEnabled":true,"SkipTalkingPhaseEnabled":true,"MapPickOption":1,"Maps":[]}}
+
+
+
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":0,"Color":5,"Username":"Tom","Female":false,"IsLocal":false,"Skin":"skin_default"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":1,"Color":7,"Username":"Anna","Female":true,"IsLocal":false,"Skin":"skin_ensign"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":2,"Color":1,"Username":"Radu","Female":false,"IsLocal":true,"Skin":"skin_lieutenant"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":3,"Color":6,"Username":"Mook","Female":false,"IsLocal":false,"Skin":"skin_default"}
+2018.11.08 08:39:18: Received SpawnPlayer packet:{"Type":202,"Slot":4,"Color":2,"Username":"Carl","Female":false,"IsLocal":false,"Skin":"skin_mandeer"}

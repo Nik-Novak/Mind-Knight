@@ -1,0 +1,37 @@
+.PageMain#content{
+  height:100%;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  .title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instructions-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instructions-container h3 {
+    margin-bottom: 15px;
+  }
+
+  .options-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .options-container button{
+    width: 120px;
+    margin: 5px 10px;
+  }
+
+}

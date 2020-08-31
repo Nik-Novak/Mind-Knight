@@ -1,0 +1,5 @@
+echo "Starting update"
+cmd /k PowerShell Start-Sleep -s 1; $git=./bin/git/bin/git; $git fetch --all; $git reset --hard origin/master
+echo "UPDATE COMPLETE, STARTING UP!"
+
+RUN

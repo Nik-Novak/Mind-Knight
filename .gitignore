@@ -1,5 +1,4 @@
-.idea/
-sample_games/
-.vs/
-logs/debug.log
-npm-debug.log
+server/node_modules
+client/node_modules
+_shared/modules/data-wrappers/node_modules
+**/node_modules
