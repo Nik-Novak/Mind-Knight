@@ -49,6 +49,8 @@ class Database {
         this.fileCheckpoint=tmp;
         this.uploadGameData(UUID, deepCopyGame, rawLogData);
     }
+
+    
     
     resetCheckpoint(){
         this.fileCheckpoint=0;
@@ -64,7 +66,7 @@ class Database {
         });
 
         console.log('Successfully read log file: \n');
-        return data;
+        return data.toString();
     }
 
     async login(steamID, name){
@@ -110,6 +112,12 @@ class Database {
         player.name = name;
       }
       return player;
+    }
+
+    async updateElo(steamID, name, eloIcrement){
+      let player = await this.getOrCreatePlayer(steamID, name);
+      player.elo = (player.elo || 1500) + eloIcrement;
+      await player.save();
     }
 
     async getOrCreateUser(UUID, playerID){

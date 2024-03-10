@@ -261,12 +261,15 @@ gamebuilder.on('game_missionPhaseEnd', (game)=>{
 });
 
 // @ts-ignore
-gamebuilder.on('game_end', (game)=>{
+gamebuilder.on('game_end', async (game)=>{
     lastState='game_end';
     gameStarted = false;
     log('game_end detected');
     io.sockets.emit('game_end', game);
     database.uploadGame(game, path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log"));
+    
+    let slotToEloMap = await new Elo(game, database).updateElo(); // Map<number, {elo:number, eloIncrement:number}>
+    io.sockets.emit('elo_update', slotToEloMap);
     // fs.writeFileSync('./test.txt',JSON.stringify(game))
 });
 

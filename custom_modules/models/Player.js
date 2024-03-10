@@ -10,8 +10,9 @@ const PlayerSchema = new Schema({
   steamID:          { type:String, required:true },
   name:             { type:String, required:true },
   gameIDs:          { type:[ExistingID(Game)], default:[] },
-  raw_gameIDs:       { type:[ExistingID(RawGame)], default:[] },
-  tournamentIDs:    { type:[ExistingID('Tournament')], default:[] }
+  raw_gameIDs:      { type:[ExistingID(RawGame)], default:[] },
+  tournamentIDs:    { type:[ExistingID('Tournament')], default:[] },
+  elo:              { type:Number, default:1500 },
 });
 
 PlayerSchema.index({ steamID:1 }, { unique:true });
