@@ -12,9 +12,15 @@ let tooltips = [
   }),
 
   tippy('#option-replays', {
-    content: "Under construction, check back soon",
+    content: "Under construction, check back soon™",
     theme:"disabled",
     placement:'right'
+  }),
+
+  tippy('#qr-code-container', {
+    content: "View on another device",
+    theme:"translucent",
+    placement:'bottom'
   }),
   
   // tippy('#chat-log .log-search .toggle-visibility', {

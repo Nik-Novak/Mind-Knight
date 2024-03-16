@@ -35,6 +35,13 @@ html, body {
     align-items: center;
 }
 
+#qr-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: small;
+}
+
 #content #instructions-container {
     margin-top: 100px;
     display: flex;

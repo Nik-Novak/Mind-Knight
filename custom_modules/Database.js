@@ -40,15 +40,17 @@ class Database {
         });
       }
 
-    uploadGame(game, rawLogFilepath) {
+    async uploadGame(game, rawLogFilepath) {
         let deepCopyGame = _.cloneDeep(game);
         let rawLogData = this.readLogFile(rawLogFilepath);
         let tmp = rawLogData.length; //store the legtnh of the file as a checkpoint
         rawLogData = rawLogData.substring(this.fileCheckpoint);
         let UUID = this.getID();
         this.fileCheckpoint=tmp;
-        this.uploadGameData(UUID, deepCopyGame, rawLogData);
+        await this.uploadGameData(UUID, deepCopyGame, rawLogData);
     }
+
+    
     
     resetCheckpoint(){
         this.fileCheckpoint=0;
@@ -64,7 +66,7 @@ class Database {
         });
 
         console.log('Successfully read log file: \n');
-        return data;
+        return data.toString();
     }
 
     async login(steamID, name){
@@ -110,6 +112,14 @@ class Database {
         player.name = name;
       }
       return player;
+    }
+
+    async updateElo(steamID, name, eloIcrement){
+      console.log('UPDATING ELO:', steamID, name, eloIcrement);
+      let player = await this.getOrCreatePlayer(steamID, name);
+      console.log('FETCHED PLAYER:', player);
+      player.elo = (player.elo || 1500) + eloIcrement;
+      await player.save();
     }
 
     async getOrCreateUser(UUID, playerID){
@@ -170,8 +180,7 @@ class Database {
       return { equivalent, missing };
     }
 
-    uploadGameData(UUID, game, rawLogData) {
-      this.database.then(async connection=>{
+    async uploadGameData(UUID, game, rawLogData) {
         let timestamp = new Date().toISOString();
         try{
         let newRawGame = await new RawGame( {data:rawLogData, timestamp} ).save(); //immediately save the game before anything else
@@ -197,7 +206,6 @@ class Database {
           console.log('*********************************************************************************************\n');
         }
       }catch(err){ console.log('****************** ERROR WHILE SAVING GAME REPORT THIS ****************'); console.log(err); }
-      });
     }
 
     getStandardTournaments() {

@@ -60,6 +60,13 @@ function updateChat(msg) {
     }
 }
 
+function updateElo(slotToEloMap) {
+    Object.entries(slotToEloMap).forEach(([slot, eloData])=>{
+        let eloIcrementColor = eloData.eloIncrement > 0 ? '#25A165' : eloData.eloIncrement < 0 ? '#952C30' : '#FFFFFF';
+        $(`.player-container[index=${slot}] .player-elo p`).html(`${coloredTextSpan(Math.round(eloData.elo), '#AD8432')} <br>${coloredTextSpan(`${eloData.eloIncrement > 0 ? '+':''}${Math.round(eloData.eloIncrement)}`, eloIcrementColor)}`);
+    })
+}
+
 socket.on('game_start', (updatedGame)=>{
     log('game_start');
     log(updatedGame.game_found.PlayerNumber + ' Players were detected. Loading appropriate layout');
@@ -93,6 +100,13 @@ socket.on('game_missionPhaseEnd', (updatedGame)=>{
 
 socket.on('game_end', (updatedGame)=>{
     console.log(updatedGame);
+});
+
+socket.on('elo_update', (slotToEloMap)=>{
+    log('elo_update');
+    console.log(slotToEloMap);
+    log(slotToEloMap);
+    updateElo(slotToEloMap);
 });
 
 socket.on('game_menu', (updatedGame)=>{

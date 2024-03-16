@@ -9,6 +9,6 @@ tippy('#join-tournament', {
 });
 
 tippy('#watch-tournament', {
-  content: "Under construction, check back soon",
+  content: "Under construction, check back soon™",
   theme:"disabled"
 });

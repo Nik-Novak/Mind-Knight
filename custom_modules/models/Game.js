@@ -176,7 +176,7 @@ const RoleSchema = {
 
 const PlayerIdentitySchema = {
   Slot:             { ...Integer.Positive, required:true },
-  Nickname:         { type:String, required:true },
+  Nickname:         { type:String, required:true, default:"" },
   Steamid:          { type:String, required:true },
   Level:            { ...Integer.Positive, required:true }
 }

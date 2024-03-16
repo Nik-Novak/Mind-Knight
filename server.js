@@ -11,6 +11,7 @@ const TailCompatibility = require('./custom_modules/TailCompatibility.js');
 const GameBuilder = require('./custom_modules/GameBuilder.js');
 var Database = require('./custom_modules/Database.js').Database;
 var Updater = require('./custom_modules/Updater.js').Updater;
+var Elo = require('./custom_modules/Elo.js').Elo;
 const { readCredsFromFile } = require('./custom_modules/Creds');
 var request = require('request');
 
@@ -77,6 +78,11 @@ app.use( (req, res, next)=>{ //Any url not defined (or i guess final module to b
 // @ts-ignore
 app.get('/', (req, res)=>{
     res.sendFile(__dirname + '/client/index.html');
+});
+
+//@ts-ignore
+app.get('/qr-code', (req, res)=>{
+  res.json({ url: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://${ip.address()}:${port}` });
 });
 
 // @ts-ignore
@@ -261,12 +267,17 @@ gamebuilder.on('game_missionPhaseEnd', (game)=>{
 });
 
 // @ts-ignore
-gamebuilder.on('game_end', (game)=>{
+gamebuilder.on('game_end', async (game)=>{
     lastState='game_end';
     gameStarted = false;
     log('game_end detected');
     io.sockets.emit('game_end', game);
-    database.uploadGame(game, path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log"));
+    await database.uploadGame(game, path.join(process.env.APPDATA,"../LocalLow/Nomoon/Mindnight/Player.log"));
+    
+    if(game.game_end.Canceled == false){
+    let slotToEloMap = await new Elo(game, database).updateElo(); // Map<number, {elo:number, eloIncrement:number}>
+    io.sockets.emit('elo_update', slotToEloMap);
+    }
     // fs.writeFileSync('./test.txt',JSON.stringify(game))
 });
 

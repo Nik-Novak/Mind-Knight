@@ -64,6 +64,10 @@ class ResetManager{
         $('.toggle-visibility>i').removeClass('enabled');
     }
 
+    resetElos(){
+        $('.player-container .player-elo p').empty();
+    }
+
     resetAll(){
         this.resetPlayernames();
         this.resetPlayerHighlights();
@@ -75,5 +79,6 @@ class ResetManager{
         this.resetNodeRejects();
         this.resetNodeStatuses();
         this.resetChat();
+        this.resetElos();
     }
 }

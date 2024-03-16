@@ -5,6 +5,10 @@ body{
 	background-color: #f3f3f3;
 }
 
+#qr-code-container p {
+    color: white
+}
+
 h1, h2, h3, h4, h5,a{
     color: #f3f3f3;
 }
