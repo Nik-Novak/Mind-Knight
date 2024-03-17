@@ -118,8 +118,7 @@ class Database {
       console.log('UPDATING ELO:', steamID, name, eloIcrement);
       let player = await this.getOrCreatePlayer(steamID, name);
       console.log('FETCHED PLAYER:', player);
-      player.elo = (player.elo || 1500) + eloIcrement;
-      await player.save();
+      await Player.findOneAndUpdate({_id:player._id}, {elo: (player.elo || 1500) + eloIcrement });
     }
 
     async getOrCreateUser(UUID, playerID){
