@@ -37,6 +37,8 @@ Or try updating on the main menu.
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
+* v0.5.0-0
+  * Elo System!
 * v0.3.0-0
   * Added node identifiers in chat to more easily figure out when a message was sent
   * Added chat search functionality, to search for previous messages
