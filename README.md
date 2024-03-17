@@ -30,11 +30,9 @@ Just download the latest version from above, then delete your old files and repl
 Or try updating on the main menu.
 
 # Help with the interface
-![OMD, that smile...](https://github.com/Nik-Novak/Mind-Knight/raw/master/MindKnight-guide.mp4){loop=""}
+<video src="https://media.giphy.com/media/3ndAvMC5LFPNMCzq7m/giphy.mp4" controls></video>
 ![MK Showcase](https://i.ibb.co/r78qZtF/Mind-Knight-guide.gif)
 ![MK help](https://image.ibb.co/idENnq/help.png)
-
-![OMD, that smile...](https://media.giphy.com/media/3ndAvMC5LFPNMCzq7m/giphy.mp4){loop=""}
 
 # Limitations
 * Currently only works on windows, it's pretty easy to port to Unix so if enough people want it I will. Check discord.
