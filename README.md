@@ -30,7 +30,8 @@ Just download the latest version from above, then delete your old files and repl
 Or try updating on the main menu.
 
 # Help with the interface
-![MK Showcase](https://i.ibb.co/r78qZtF/Mind-Knight-guide.gif)
+![OMD, that smile...](https://github.com/Nik-Novak/Mind-Knight/raw/master/MindKnight-guide.mp4){loop=""}
+[MK Showcase](https://i.ibb.co/r78qZtF/Mind-Knight-guide.gif)
 ![MK help](https://image.ibb.co/idENnq/help.png)
 
 # Limitations
