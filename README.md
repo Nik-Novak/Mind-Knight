@@ -41,6 +41,8 @@ Or try updating on the main menu.
 * The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
 
 # Changelog
+* v0.5.0-1
+  * Some games not uploading (temp hotfix)
 * v0.5.0-0
   * Elo System!
 * v0.4.*
