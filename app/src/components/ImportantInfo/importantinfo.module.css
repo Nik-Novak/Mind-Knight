@@ -1,0 +1,35 @@
+.container {
+  width: 33.36vw;
+  height: 7.92vh;
+  display: flex;
+  text-align: center;
+}
+
+.container p{
+  line-height: 1 !important;
+}
+
+.right, .left {
+  width: 37.47%;
+  height: 90%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: 2vh;
+}
+
+.right p, .left p {
+  font-size: 100%;
+}
+
+.center{
+  width: 25.06%
+}
+
+.center p{
+  font-size: 2vh;
+}
+
+.center h3{
+  font-size: 5vh;
+}

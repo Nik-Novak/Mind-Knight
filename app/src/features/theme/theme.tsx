@@ -26,6 +26,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: `Munro, ${roboto.style.fontFamily}, sans-serif`,
+    allVariants:{
+      // lineHeight: 1
+    }
   },
   components:{
     MuiTypography:{
@@ -60,6 +63,13 @@ const theme = createTheme({
         root: {
           backgroundColor: '#444',
           // color: 'white'
+        }
+      }
+    },
+    MuiPaper: {
+      styleOverrides:{
+        root:{
+          backgroundColor:'#2F2E2C'
         }
       }
     }

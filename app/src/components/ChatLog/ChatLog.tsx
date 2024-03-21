@@ -6,17 +6,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import React, { useState } from "react";
 import { ChatMessage, GamePlayers } from "@prisma/client";
 import { ColorCode, colors } from "@/utils/constants/colors";
-
-// type ChatMessage = {
-//   author: string | 'system',
-//   message: string,
-//   color: string
-// }
-
-
-
-
-
+import { PlayerSlot } from "@/types/game";
+import { coloredText } from "@/utils/functions/jsx";
 
 type Props = {
   chat:ChatMessage[],
@@ -43,24 +34,19 @@ export default function Chatlog({chat, game_players}:Props){
           </IconButton>
         </Tooltip>
       </Stack>
-      <ul style={{maxHeight:500, maxWidth:400, overflow:'hidden', overflowY:'scroll'}}>
+      <ul style={{maxHeight:500, overflow:'hidden', overflowY:'scroll'}}>
         {chat.map(c=>{
-          const slot = c.Slot as keyof typeof game_players;
+          const slot = c.Slot as PlayerSlot;
           const author = game_players[slot]?.Username || '_UNKNOWN';
           const message = c.Message;
           const colorCode = game_players[slot]?.Color as ColorCode || 0
           let color = colors[ colorCode ].hex;
-          // return <li>{JSON.stringify(c)}</li>
           if(author === 'system')
-            return <li key={c.index}>{`------- ${coloredTextSpan(message, color)} -------`}</li>
+            return <li key={c.index}>{`------- ${coloredText(message, color)} -------`}</li>
           else
-            return <li key={c.index}><Typography>{['[', coloredTextSpan(author, color), ']: ', message]}</Typography></li>
+            return <li key={c.index}><Typography>{'['}{coloredText(author, color)}{']: '}{message}</Typography></li>
         })}
       </ul>
     </Stack>
   )
-}
-
-export function coloredTextSpan(text:string, color:string){
-  return <span style={{color}}>{text}</span>;
 }
