@@ -1,0 +1,408 @@
+{
+  "_id" : "5eb8973b3ae97e2d482443e7",
+  "game_found" : {
+      "Options" : {
+          "Maps" : [
+
+          ],
+          "GameMode" : 0,
+          "MaxPlayers" : 8,
+          "Visibility" : 2,
+          "NamingConvention" : 1,
+          "HammerEnabled" : true,
+          "SkipTalkingPhaseEnabled" : true,
+          "MapPickOption" : 0
+      },
+      "Hackers" : [
+
+      ],
+      "MissionInfo" : [
+          2,
+          3,
+          2,
+          3,
+          3
+      ],
+      "MissionMinhacks" : [
+          1,
+          1,
+          1,
+          1,
+          1
+      ],
+      "Type" : 102,
+      "PlayerNumber" : 5,
+      "Hacker" : false,
+      "GuyRole" : 10,
+      "HackersAmount" : 2,
+      "MatchType" : 4,
+      "FirstPlayer" : 0,
+      "Map" : 21,
+      "VoiceChat" : false,
+      "VoiceChatName" : ".41466_3.",
+      "VoiceChatChannel" : "channel_41466",
+      "timestamp" : "2020-05-11T00:06:40.000+0000"
+  },
+  "game_start" : {
+      "AFK" : [
+
+      ],
+      "Disconnected" : [
+
+      ],
+      "Type" : 201,
+      "timestamp" : "2020-05-11T00:06:59.000+0000"
+  },
+  "game_end" : {
+      "Hackers" : [
+          1,
+          4
+      ],
+      "Type" : 203,
+      "Hacked" : false,
+      "Canceled" : true,
+      "Roles" : [
+          {
+              "_id" : "5eb8973b3ae97e2d482443fa",
+              "Slot" : 0,
+              "Role" : 10
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d482443fb",
+              "Slot" : 1,
+              "Role" : 20
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d482443fc",
+              "Slot" : 2,
+              "Role" : 10
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d482443fd",
+              "Slot" : 3,
+              "Role" : 10
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d482443fe",
+              "Slot" : 4,
+              "Role" : 20
+          }
+      ],
+      "Timeout" : 360000,
+      "PlayerIdentities" : [
+          {
+              "_id" : "5eb8973b3ae97e2d482443ff",
+              "Slot" : 0,
+              "Nickname" : "Jemma",
+              "Steamid" : "76561199012217952",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d48244400",
+              "Slot" : 1,
+              "Nickname" : "Little Dog",
+              "Steamid" : "76561197998392766",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d48244401",
+              "Slot" : 2,
+              "Nickname" : "Plimpton",
+              "Steamid" : "76561198204964299",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d48244402",
+              "Slot" : 3,
+              "Nickname" : "Kain42link42",
+              "Steamid" : "76561198027955330",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb8973b3ae97e2d48244403",
+              "Slot" : 4,
+              "Nickname" : "blueicyflame",
+              "Steamid" : "76561198068394804",
+              "Level" : 30
+          }
+      ],
+      "AfterGameLobby" : "c-1e80gtbdl",
+      "timestamp" : "2020-05-11T00:07:23.000+0000"
+  },
+  "players" : {
+      "0" : {
+          "proposals" : {
+              "1" : [
+
+              ],
+              "2" : [
+
+              ],
+              "3" : [
+
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          },
+          "chat" : [
+              9,
+              12
+          ],
+          "_id" : "5eb8973b3ae97e2d482443e8",
+          "Type" : 202,
+          "Slot" : 0,
+          "Color" : 1,
+          "Username" : "Helga",
+          "Female" : true,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:06:40.000+0000"
+      },
+      "1" : {
+          "proposals" : {
+              "1" : [
+
+              ],
+              "2" : [
+
+              ],
+              "3" : [
+
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          },
+          "chat" : [
+              4
+          ],
+          "_id" : "5eb8973b3ae97e2d482443e9",
+          "Type" : 202,
+          "Slot" : 1,
+          "Color" : 4,
+          "Username" : "Emily",
+          "Female" : true,
+          "IsLocal" : false,
+          "Skin" : "skin_xmastree",
+          "timestamp" : "2020-05-11T00:06:40.000+0000"
+      },
+      "2" : {
+          "proposals" : {
+              "1" : [
+
+              ],
+              "2" : [
+
+              ],
+              "3" : [
+
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          },
+          "chat" : [
+              1,
+              2,
+              6
+          ],
+          "_id" : "5eb8973b3ae97e2d482443ea",
+          "Type" : 202,
+          "Slot" : 2,
+          "Color" : 0,
+          "Username" : "Dillard",
+          "Female" : false,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:06:40.000+0000"
+      },
+      "3" : {
+          "proposals" : {
+              "1" : [
+
+              ],
+              "2" : [
+
+              ],
+              "3" : [
+
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          },
+          "chat" : [
+              0,
+              3,
+              5,
+              7,
+              8,
+              10,
+              11
+          ],
+          "_id" : "5eb8973b3ae97e2d482443eb",
+          "Type" : 202,
+          "Slot" : 3,
+          "Color" : 2,
+          "Username" : "Shirley",
+          "Female" : true,
+          "IsLocal" : true,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:06:40.000+0000"
+      },
+      "4" : {
+          "proposals" : {
+              "1" : [
+
+              ],
+              "2" : [
+
+              ],
+              "3" : [
+
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          },
+          "chat" : [
+
+          ],
+          "_id" : "5eb8973b3ae97e2d482443ec",
+          "Type" : 202,
+          "Slot" : 4,
+          "Color" : 5,
+          "Username" : "Joe",
+          "Female" : false,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:06:40.000+0000"
+      }
+  },
+  "local_slot" : 3,
+  "chat" : [
+      {
+          "_id" : "5eb8973b3ae97e2d482443ed",
+          "Type" : 205,
+          "Message" : "really",
+          "Slot" : 3,
+          "index" : 0,
+          "timestamp" : "2020-05-11T00:07:04.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443ee",
+          "Type" : 205,
+          "Message" : "restart",
+          "Slot" : 2,
+          "index" : 1,
+          "timestamp" : "2020-05-11T00:07:05.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443ef",
+          "Type" : 205,
+          "Message" : "lmfao",
+          "Slot" : 2,
+          "index" : 2,
+          "timestamp" : "2020-05-11T00:07:05.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f0",
+          "Type" : 205,
+          "Message" : "realyl little dog",
+          "Slot" : 3,
+          "index" : 3,
+          "timestamp" : "2020-05-11T00:07:06.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f1",
+          "Type" : 205,
+          "Message" : "c@�%",
+          "Slot" : 1,
+          "index" : 4,
+          "timestamp" : "2020-05-11T00:07:07.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f2",
+          "Type" : 205,
+          "Message" : "the one fucken rule",
+          "Slot" : 3,
+          "index" : 5,
+          "timestamp" : "2020-05-11T00:07:12.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f3",
+          "Type" : 205,
+          "Message" : "kain kek",
+          "Slot" : 2,
+          "index" : 6,
+          "timestamp" : "2020-05-11T00:07:14.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f4",
+          "Type" : 205,
+          "Message" : "and everyone is breaking it",
+          "Slot" : 3,
+          "index" : 7,
+          "timestamp" : "2020-05-11T00:07:15.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f5",
+          "Type" : 205,
+          "Message" : "lol",
+          "Slot" : 3,
+          "index" : 8,
+          "timestamp" : "2020-05-11T00:07:18.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f6",
+          "Type" : 205,
+          "Message" : "bi tch",
+          "Slot" : 0,
+          "index" : 9,
+          "timestamp" : "2020-05-11T00:07:18.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f7",
+          "Type" : 205,
+          "Message" : "what",
+          "Slot" : 3,
+          "index" : 10,
+          "timestamp" : "2020-05-11T00:07:20.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f8",
+          "Type" : 205,
+          "Message" : "i did nothing",
+          "Slot" : 3,
+          "index" : 11,
+          "timestamp" : "2020-05-11T00:07:21.000+0000"
+      },
+      {
+          "_id" : "5eb8973b3ae97e2d482443f9",
+          "Type" : 205,
+          "Message" : "not this sh it",
+          "Slot" : 0,
+          "index" : 12,
+          "timestamp" : "2020-05-11T00:07:21.000+0000"
+      }
+  ],
+  "raw_gameID" : "5eb8973b3ae97e2d482443e6",
+  "timestamp" : "2020-05-11T00:07:23.778+0000",
+  "__v" : 0
+}

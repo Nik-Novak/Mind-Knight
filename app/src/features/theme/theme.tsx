@@ -11,8 +11,17 @@ const roboto = Roboto({
 
 const theme = createTheme({
   palette:{
+    text:{
+      primary: '#FFF'
+    },
     primary: {
       main: '#F0F0F0'
+    },
+    secondary: {
+      main: '#F0F0F0'
+    },
+    action:{ //icon buttons, etc.
+      active: '#F0F0F0',
     }
   },
   typography: {
@@ -21,9 +30,6 @@ const theme = createTheme({
   components:{
     MuiTypography:{
       styleOverrides:{
-        root:{
-          color: 'white'
-        },
         h1:{
           fontWeight:'bold',
           fontSize: 90
@@ -46,6 +52,14 @@ const theme = createTheme({
           fontSize: '1rem',
           paddingLeft: 50,
           paddingRight: 50,
+        }
+      }
+    },
+    MuiAccordion: {
+      styleOverrides:{
+        root: {
+          backgroundColor: '#444',
+          // color: 'white'
         }
       }
     }

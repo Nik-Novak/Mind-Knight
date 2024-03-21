@@ -7,7 +7,7 @@ import Instructions from "@/components/Instructions";
 import Footer from "@/components/Footer";
 
 //React server component that securely runs on the server by default
-export default async function Home() {
+export default async function HomePage() {
 
   return (
     <>

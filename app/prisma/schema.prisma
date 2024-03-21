@@ -28,15 +28,15 @@ type VoteSchema {
   timestamp   DateTime
 }
 
-type VoteMade {
+type VoteMade { //dimension = player slot
   0     VoteSchema
   1     VoteSchema
   2     VoteSchema
   3     VoteSchema
   4     VoteSchema
-  5     VoteSchema
-  6     VoteSchema
-  7     VoteSchema
+  5     VoteSchema?
+  6     VoteSchema?
+  7     VoteSchema?
 }
 
 type VotePhaseEnd {
@@ -95,9 +95,9 @@ type GamePlayers {
   2     GamePlayer
   3     GamePlayer
   4     GamePlayer
-  5     GamePlayer
-  6     GamePlayer
-  7     GamePlayer
+  5     GamePlayer?
+  6     GamePlayer?
+  7     GamePlayer?
 }
 
 type GameOptions {
@@ -163,11 +163,11 @@ type Mission {
 }
 
 type Missions { //LIMITATION: 5 nodes assumption
-  1   Mission
-  2   Mission
-  3   Mission
-  4   Mission
-  5   Mission
+  1   Mission?
+  2   Mission?
+  3   Mission?
+  4   Mission?
+  5   Mission?
 }
 
 type Role {
@@ -194,7 +194,7 @@ type GameEnd {
   timestamp         DateTime
 }
 
-type ChatMsg {
+type ChatMessage {
   Message   String    @default("")  //should be required=true, not sure why messages are being saved that have no content
   Slot      Int       @default(-1)
   Type      Int       @default(-1)
@@ -207,20 +207,20 @@ type ChatMsg {
 // =========================
 
 model Game { //unique: { timestamp &  } We want this to map 1 game to multiple rawgames (avoid duplicates)
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
-  v             Int?       @map("__v")
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  v             Int?        @map("__v")
   game_found    GameFound
   game_start    GameStart
   players       GamePlayers
   missions      Missions
   game_end      GameEnd
-  chat          ChatMsg[]
+  chat          ChatMessage[]
   local_slot    Int
-  timestamp     DateTime
+  timestamp     DateTime    @default(now())
   raw_game      RawGame[]
 
-  player        Player     @relation(fields: [player_id], references: [id])
-  player_id     String     @db.ObjectId
+  player        Player      @relation(fields: [player_id], references: [id])
+  player_id     String      @db.ObjectId
 
   @@map("games")
 }

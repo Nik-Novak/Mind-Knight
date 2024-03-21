@@ -1,0 +1,3909 @@
+{
+  "_id" : "5eb89bab3ae97e2d48244423",
+  "game_found" : {
+      "Options" : {
+          "Maps" : [
+
+          ],
+          "GameMode" : 0,
+          "MaxPlayers" : 8,
+          "Visibility" : 2,
+          "NamingConvention" : 1,
+          "HammerEnabled" : true,
+          "SkipTalkingPhaseEnabled" : true,
+          "MapPickOption" : 0
+      },
+      "Hackers" : [
+          1,
+          2
+      ],
+      "MissionInfo" : [
+          2,
+          3,
+          2,
+          3,
+          3
+      ],
+      "MissionMinhacks" : [
+          1,
+          1,
+          1,
+          1,
+          1
+      ],
+      "Type" : 102,
+      "PlayerNumber" : 5,
+      "Hacker" : true,
+      "GuyRole" : 20,
+      "HackersAmount" : 2,
+      "MatchType" : 4,
+      "FirstPlayer" : 0,
+      "Map" : 51,
+      "VoiceChat" : false,
+      "VoiceChatName" : ".41467_2.",
+      "VoiceChatChannel" : "channel_41467",
+      "timestamp" : "2020-05-11T00:10:10.000+0000"
+  },
+  "game_start" : {
+      "AFK" : [
+
+      ],
+      "Disconnected" : [
+
+      ],
+      "Type" : 201,
+      "timestamp" : "2020-05-11T00:10:17.000+0000"
+  },
+  "game_end" : {
+      "Hackers" : [
+          1,
+          2
+      ],
+      "Type" : 203,
+      "Hacked" : true,
+      "Canceled" : false,
+      "Roles" : [
+          {
+              "_id" : "5eb89bab3ae97e2d482445a2",
+              "Slot" : 0,
+              "Role" : 10
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445a3",
+              "Slot" : 1,
+              "Role" : 20
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445a4",
+              "Slot" : 2,
+              "Role" : 20
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445a5",
+              "Slot" : 3,
+              "Role" : 10
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445a6",
+              "Slot" : 4,
+              "Role" : 10
+          }
+      ],
+      "Timeout" : 360000,
+      "PlayerIdentities" : [
+          {
+              "_id" : "5eb89bab3ae97e2d482445a7",
+              "Slot" : 0,
+              "Nickname" : "Plimpton",
+              "Steamid" : "76561198204964299",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445a8",
+              "Slot" : 1,
+              "Nickname" : "Little Dog",
+              "Steamid" : "76561197998392766",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445a9",
+              "Slot" : 2,
+              "Nickname" : "Kain42link42",
+              "Steamid" : "76561198027955330",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445aa",
+              "Slot" : 3,
+              "Nickname" : "blueicyflame",
+              "Steamid" : "76561198068394804",
+              "Level" : 30
+          },
+          {
+              "_id" : "5eb89bab3ae97e2d482445ab",
+              "Slot" : 4,
+              "Nickname" : "Jemma",
+              "Steamid" : "76561199012217952",
+              "Level" : 30
+          }
+      ],
+      "AfterGameLobby" : "c-1e80hvvdq",
+      "timestamp" : "2020-05-11T00:26:17.000+0000"
+  },
+  "players" : {
+      "0" : {
+          "chat" : [
+              16,
+              25,
+              38,
+              40,
+              42,
+              44,
+              46,
+              47,
+              53,
+              55,
+              59,
+              67,
+              71,
+              73,
+              79,
+              88,
+              98,
+              100,
+              105,
+              117,
+              122,
+              125,
+              132,
+              134,
+              135,
+              149,
+              152,
+              153,
+              159,
+              160,
+              163,
+              165,
+              171,
+              182,
+              187,
+              191,
+              199,
+              208,
+              211,
+              216
+          ],
+          "_id" : "5eb89bab3ae97e2d48244424",
+          "Type" : 202,
+          "Slot" : 0,
+          "Color" : 7,
+          "Username" : "Mario",
+          "Female" : false,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:10:10.000+0000",
+          "proposals" : {
+              "1" : [
+                  {
+                      "SelectedTeam" : [
+                          0,
+                          1
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244425",
+                      "Type" : 304,
+                      "Player" : 0,
+                      "NextPlayer" : 1,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 1,
+                      "timestamp" : "2020-05-11T00:10:54.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 0,
+                      "Passed" : false,
+                      "deltaT" : 7000,
+                      "chatIndex" : 5,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              0,
+                              1
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244426",
+                          "Type" : 306,
+                          "Proposer" : 0,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:10:54.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244428",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:10:55.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244429",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:10:57.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d4824442a",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:10:56.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d4824442b",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:10:56.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d4824442c",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:10:56.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244427"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              0
+                          ],
+                          "VotesAgainst" : [
+                              4,
+                              2,
+                              3,
+                              1
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824442d",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:10:57.000+0000",
+                          "deltaT" : 3000,
+                          "chatIndex" : 6
+                      }
+                  }
+              ],
+              "2" : [
+                  {
+                      "SelectedTeam" : [
+                          0,
+                          2,
+                          3
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824442e",
+                      "Type" : 304,
+                      "Player" : 0,
+                      "NextPlayer" : 1,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:14:00.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 0,
+                      "Passed" : false,
+                      "deltaT" : 53000,
+                      "chatIndex" : 33,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              0,
+                              2,
+                              3
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824442f",
+                          "Type" : 306,
+                          "Proposer" : 0,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:14:00.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244431",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:14:00.000+0000",
+                              "deltaT" : 0
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244432",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:14:01.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244433",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:14:08.000+0000",
+                              "deltaT" : 8000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244434",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:14:07.000+0000",
+                              "deltaT" : 7000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244435",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:14:04.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244430"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              0,
+                              1,
+                              4,
+                              3,
+                              2
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244436",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:14:08.000+0000",
+                          "deltaT" : 8000,
+                          "chatIndex" : 37
+                      }
+                  },
+                  {
+                      "SelectedTeam" : [
+                          0,
+                          1,
+                          4
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244437",
+                      "Type" : 304,
+                      "Player" : 0,
+                      "NextPlayer" : 1,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:16:50.000+0000",
+                      "propNumber" : 4,
+                      "Proposer" : 0,
+                      "Passed" : false,
+                      "deltaT" : 56000,
+                      "chatIndex" : 65,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              0,
+                              1,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244438",
+                          "Type" : 306,
+                          "Proposer" : 0,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:16:50.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d4824443a",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:16:51.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d4824443b",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:16:52.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d4824443c",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:16:51.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d4824443d",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:16:54.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d4824443e",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:17:00.000+0000",
+                              "deltaT" : 10000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244439"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              0,
+                              2,
+                              1,
+                              3,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824443f",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:17:00.000+0000",
+                          "deltaT" : 10000,
+                          "chatIndex" : 69
+                      }
+                  }
+              ],
+              "3" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244440",
+                      "Type" : 304,
+                      "Player" : 0,
+                      "NextPlayer" : 1,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:20:46.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 0,
+                      "Passed" : true,
+                      "deltaT" : 55000,
+                      "chatIndex" : 128
+                  },
+                  {
+                      "SelectedTeam" : [
+                          0,
+                          3
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244441",
+                      "Type" : 304,
+                      "Player" : 0,
+                      "NextPlayer" : 1,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:22:43.000+0000",
+                      "propNumber" : 2,
+                      "Proposer" : 0,
+                      "Passed" : false,
+                      "deltaT" : 27000,
+                      "chatIndex" : 171,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              0,
+                              3
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244442",
+                          "Type" : 306,
+                          "Proposer" : 0,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:22:43.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244444",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:22:43.000+0000",
+                              "deltaT" : 0
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244445",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:22:45.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244446",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:22:43.000+0000",
+                              "deltaT" : 0
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244447",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:22:59.000+0000",
+                              "deltaT" : 16000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244448",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:23:12.000+0000",
+                              "deltaT" : 29000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244443"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              0,
+                              2,
+                              1,
+                              3,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244449",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:23:12.000+0000",
+                          "deltaT" : 29000,
+                          "chatIndex" : 176
+                      }
+                  },
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824444a",
+                      "Type" : 304,
+                      "Player" : 0,
+                      "NextPlayer" : 1,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:25:14.000+0000",
+                      "propNumber" : 4,
+                      "Proposer" : 0,
+                      "Passed" : true,
+                      "deltaT" : 13000,
+                      "chatIndex" : 212
+                  }
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          }
+      },
+      "1" : {
+          "chat" : [
+              12,
+              17,
+              19,
+              56,
+              58,
+              81,
+              83,
+              92,
+              101,
+              107,
+              110,
+              120,
+              133,
+              148,
+              151,
+              189,
+              197,
+              203,
+              213,
+              220
+          ],
+          "_id" : "5eb89bab3ae97e2d4824444b",
+          "Type" : 202,
+          "Slot" : 1,
+          "Color" : 6,
+          "Username" : "Zelda",
+          "Female" : true,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:10:10.000+0000",
+          "proposals" : {
+              "1" : [
+                  {
+                      "SelectedTeam" : [
+                          1,
+                          2
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824444c",
+                      "Type" : 304,
+                      "Player" : 1,
+                      "NextPlayer" : 2,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 1,
+                      "timestamp" : "2020-05-11T00:11:05.000+0000",
+                      "propNumber" : 2,
+                      "Proposer" : 1,
+                      "Passed" : false,
+                      "deltaT" : 3000,
+                      "chatIndex" : 6,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              1,
+                              2
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824444d",
+                          "Type" : 306,
+                          "Proposer" : 1,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:11:05.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d4824444f",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:11:12.000+0000",
+                              "deltaT" : 7000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244450",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:11:05.000+0000",
+                              "deltaT" : 0
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244451",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:11:07.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244452",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:11:05.000+0000",
+                              "deltaT" : 0
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244453",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:11:07.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "_id" : "5eb89bab3ae97e2d4824444e"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              2
+                          ],
+                          "VotesAgainst" : [
+                              1,
+                              3,
+                              4,
+                              0
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244454",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:11:12.000+0000",
+                          "deltaT" : 7000,
+                          "chatIndex" : 6
+                      }
+                  }
+              ],
+              "2" : [
+                  {
+                      "SelectedTeam" : [
+                          0,
+                          1,
+                          2
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244455",
+                      "Type" : 304,
+                      "Player" : 1,
+                      "NextPlayer" : 2,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:14:42.000+0000",
+                      "propNumber" : 2,
+                      "Proposer" : 1,
+                      "Passed" : false,
+                      "deltaT" : 29000,
+                      "chatIndex" : 48,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              0,
+                              1,
+                              2
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244456",
+                          "Type" : 306,
+                          "Proposer" : 1,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:14:42.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244458",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:14:55.000+0000",
+                              "deltaT" : 13000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244459",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:14:43.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d4824445a",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:14:47.000+0000",
+                              "deltaT" : 5000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d4824445b",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:14:54.000+0000",
+                              "deltaT" : 12000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d4824445c",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:14:45.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244457"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              1,
+                              4,
+                              2,
+                              3,
+                              0
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824445d",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:14:55.000+0000",
+                          "deltaT" : 13000,
+                          "chatIndex" : 50
+                      }
+                  },
+                  {
+                      "SelectedTeam" : [
+                          0,
+                          1,
+                          2
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824445e",
+                      "Type" : 304,
+                      "Player" : 1,
+                      "NextPlayer" : 2,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:17:08.000+0000",
+                      "propNumber" : 5,
+                      "Proposer" : 1,
+                      "Passed" : false,
+                      "deltaT" : 3000,
+                      "chatIndex" : 72,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              0,
+                              1,
+                              2
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824445f",
+                          "Type" : 306,
+                          "Proposer" : 1,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:17:08.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244461",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:17:15.000+0000",
+                              "deltaT" : 7000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244462",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:17:12.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244463",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:17:16.000+0000",
+                              "deltaT" : 8000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244464",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:17:20.000+0000",
+                              "deltaT" : 12000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244465",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:17:23.000+0000",
+                              "deltaT" : 15000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244460"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              1,
+                              0,
+                              2,
+                              3,
+                              4
+                          ],
+                          "VotesAgainst" : [
+
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244466",
+                          "Type" : 307,
+                          "Passed" : true,
+                          "timestamp" : "2020-05-11T00:17:23.000+0000",
+                          "deltaT" : 15000,
+                          "chatIndex" : 78
+                      }
+                  }
+              ],
+              "3" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244467",
+                      "Type" : 304,
+                      "Player" : 1,
+                      "NextPlayer" : 2,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:20:59.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 1,
+                      "Passed" : true,
+                      "deltaT" : 13000,
+                      "chatIndex" : 134
+                  },
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244468",
+                      "Type" : 304,
+                      "Player" : 1,
+                      "NextPlayer" : 2,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:23:27.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 1,
+                      "Passed" : true,
+                      "deltaT" : 10000,
+                      "chatIndex" : 179
+                  },
+                  {
+                      "SelectedTeam" : [
+                          1,
+                          2
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244469",
+                      "Type" : 304,
+                      "Player" : 1,
+                      "NextPlayer" : 2,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:25:19.000+0000",
+                      "propNumber" : 4,
+                      "Proposer" : 1,
+                      "Passed" : false,
+                      "deltaT" : 5000,
+                      "chatIndex" : 216,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              1,
+                              2
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824446a",
+                          "Type" : 306,
+                          "Proposer" : 1,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:25:19.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d4824446c",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:25:26.000+0000",
+                              "deltaT" : 7000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d4824446d",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:25:20.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d4824446e",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:25:20.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d4824446f",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:25:48.000+0000",
+                              "deltaT" : 29000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244470",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:26:11.000+0000",
+                              "deltaT" : 52000
+                          },
+                          "_id" : "5eb89bab3ae97e2d4824446b"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              2,
+                              1,
+                              4
+                          ],
+                          "VotesAgainst" : [
+                              0,
+                              3
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244471",
+                          "Type" : 307,
+                          "Passed" : true,
+                          "timestamp" : "2020-05-11T00:26:11.000+0000",
+                          "deltaT" : 52000,
+                          "chatIndex" : 235
+                      }
+                  }
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          }
+      },
+      "2" : {
+          "chat" : [
+              0,
+              2,
+              4,
+              6,
+              8,
+              9,
+              11,
+              13,
+              18,
+              22,
+              23,
+              27,
+              30,
+              35,
+              36,
+              43,
+              45,
+              48,
+              49,
+              51,
+              52,
+              54,
+              60,
+              61,
+              64,
+              65,
+              69,
+              70,
+              77,
+              78,
+              80,
+              82,
+              84,
+              87,
+              89,
+              91,
+              96,
+              102,
+              103,
+              104,
+              108,
+              112,
+              113,
+              116,
+              118,
+              121,
+              124,
+              127,
+              129,
+              130,
+              131,
+              136,
+              139,
+              141,
+              143,
+              146,
+              155,
+              156,
+              162,
+              168,
+              172,
+              174,
+              177,
+              180,
+              181,
+              183,
+              185,
+              186,
+              192,
+              198,
+              201,
+              204,
+              205,
+              206,
+              207,
+              215,
+              217,
+              225,
+              226,
+              228,
+              229,
+              231
+          ],
+          "_id" : "5eb89bab3ae97e2d48244472",
+          "Type" : 202,
+          "Slot" : 2,
+          "Color" : 4,
+          "Username" : "Lynne",
+          "Female" : true,
+          "IsLocal" : true,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:10:10.000+0000",
+          "proposals" : {
+              "1" : [
+                  {
+                      "SelectedTeam" : [
+                          2,
+                          4
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244473",
+                      "Type" : 304,
+                      "Player" : 2,
+                      "NextPlayer" : 3,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 1,
+                      "timestamp" : "2020-05-11T00:11:25.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 2,
+                      "Passed" : false,
+                      "deltaT" : 8000,
+                      "chatIndex" : 6,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              2,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244474",
+                          "Type" : 306,
+                          "Proposer" : 2,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:11:25.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244476",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:11:30.000+0000",
+                              "deltaT" : 5000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244477",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:11:28.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244478",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:11:26.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244479",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:11:34.000+0000",
+                              "deltaT" : 9000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d4824447a",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:11:28.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244475"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              2
+                          ],
+                          "VotesAgainst" : [
+                              4,
+                              1,
+                              0,
+                              3
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824447b",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:11:34.000+0000",
+                          "deltaT" : 9000,
+                          "chatIndex" : 6
+                      }
+                  }
+              ],
+              "2" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824447c",
+                      "Type" : 304,
+                      "Player" : 2,
+                      "NextPlayer" : 3,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:15:09.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 2,
+                      "Passed" : true,
+                      "deltaT" : 9000,
+                      "chatIndex" : 52
+                  }
+              ],
+              "3" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824447d",
+                      "Type" : 304,
+                      "Player" : 2,
+                      "NextPlayer" : 3,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:18:44.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 2,
+                      "Passed" : true,
+                      "deltaT" : 6000,
+                      "chatIndex" : 93
+                  },
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824447e",
+                      "Type" : 304,
+                      "Player" : 2,
+                      "NextPlayer" : 3,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:21:12.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 2,
+                      "Passed" : true,
+                      "deltaT" : 13000,
+                      "chatIndex" : 138
+                  },
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824447f",
+                      "Type" : 304,
+                      "Player" : 2,
+                      "NextPlayer" : 3,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:23:46.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 2,
+                      "Passed" : true,
+                      "deltaT" : 19000,
+                      "chatIndex" : 187
+                  }
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          }
+      },
+      "3" : {
+          "chat" : [
+              1,
+              5,
+              7,
+              14,
+              20,
+              24,
+              28,
+              31,
+              37,
+              39,
+              41,
+              50,
+              57,
+              62,
+              63,
+              72,
+              74,
+              85,
+              93,
+              94,
+              97,
+              99,
+              106,
+              109,
+              114,
+              115,
+              123,
+              126,
+              128,
+              140,
+              142,
+              144,
+              150,
+              158,
+              161,
+              164,
+              166,
+              167,
+              170,
+              173,
+              176,
+              178,
+              179,
+              184,
+              195,
+              196,
+              200,
+              209,
+              212,
+              218,
+              219,
+              222,
+              223,
+              224,
+              227,
+              232
+          ],
+          "_id" : "5eb89bab3ae97e2d48244480",
+          "Type" : 202,
+          "Slot" : 3,
+          "Color" : 1,
+          "Username" : "Nunya",
+          "Female" : false,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:10:10.000+0000",
+          "proposals" : {
+              "1" : [
+                  {
+                      "SelectedTeam" : [
+                          3,
+                          4
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244481",
+                      "Type" : 304,
+                      "Player" : 3,
+                      "NextPlayer" : 4,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 1,
+                      "timestamp" : "2020-05-11T00:11:43.000+0000",
+                      "propNumber" : 4,
+                      "Proposer" : 3,
+                      "Passed" : false,
+                      "deltaT" : 4000,
+                      "chatIndex" : 6,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              3,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244482",
+                          "Type" : 306,
+                          "Proposer" : 3,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:11:43.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d48244484",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:11:50.000+0000",
+                              "deltaT" : 7000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244485",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:11:47.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244486",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:11:47.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244487",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:11:46.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244488",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:11:45.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244483"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              4,
+                              3,
+                              2,
+                              1,
+                              0
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244489",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:11:50.000+0000",
+                          "deltaT" : 7000,
+                          "chatIndex" : 6
+                      }
+                  }
+              ],
+              "2" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824448a",
+                      "Type" : 304,
+                      "Player" : 3,
+                      "NextPlayer" : 4,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:15:30.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 3,
+                      "Passed" : true,
+                      "deltaT" : 21000,
+                      "chatIndex" : 55
+                  }
+              ],
+              "3" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824448b",
+                      "Type" : 304,
+                      "Player" : 3,
+                      "NextPlayer" : 4,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:18:57.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 3,
+                      "Passed" : true,
+                      "deltaT" : 13000,
+                      "chatIndex" : 97
+                  },
+                  {
+                      "SelectedTeam" : [
+                          2,
+                          3
+                      ],
+                      "_id" : "5eb89bab3ae97e2d4824448c",
+                      "Type" : 304,
+                      "Player" : 3,
+                      "NextPlayer" : 4,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:21:27.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 3,
+                      "Passed" : false,
+                      "deltaT" : 15000,
+                      "chatIndex" : 143,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              2,
+                              3
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824448d",
+                          "Type" : 306,
+                          "Proposer" : 3,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:21:27.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d4824448f",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:21:33.000+0000",
+                              "deltaT" : 6000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d48244490",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:21:29.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d48244491",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:21:31.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d48244492",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:21:28.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d48244493",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:21:46.000+0000",
+                              "deltaT" : 19000
+                          },
+                          "_id" : "5eb89bab3ae97e2d4824448e"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              3,
+                              2
+                          ],
+                          "VotesAgainst" : [
+                              1,
+                              0,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244494",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:21:46.000+0000",
+                          "deltaT" : 19000,
+                          "chatIndex" : 148
+                      }
+                  },
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244495",
+                      "Type" : 304,
+                      "Player" : 3,
+                      "NextPlayer" : 4,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:23:52.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 3,
+                      "Passed" : true,
+                      "deltaT" : 6000,
+                      "chatIndex" : 188
+                  }
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          }
+      },
+      "4" : {
+          "chat" : [
+              3,
+              10,
+              15,
+              21,
+              26,
+              29,
+              32,
+              33,
+              34,
+              66,
+              68,
+              75,
+              76,
+              86,
+              90,
+              95,
+              111,
+              119,
+              137,
+              138,
+              145,
+              147,
+              154,
+              157,
+              169,
+              175,
+              188,
+              190,
+              193,
+              194,
+              202,
+              210,
+              214,
+              221,
+              230,
+              233,
+              234
+          ],
+          "_id" : "5eb89bab3ae97e2d48244496",
+          "Type" : 202,
+          "Slot" : 4,
+          "Color" : 3,
+          "Username" : "Sasha",
+          "Female" : false,
+          "IsLocal" : false,
+          "Skin" : "skin_default",
+          "timestamp" : "2020-05-11T00:10:10.000+0000",
+          "proposals" : {
+              "1" : [
+                  {
+                      "SelectedTeam" : [
+                          2,
+                          4
+                      ],
+                      "_id" : "5eb89bab3ae97e2d48244497",
+                      "Type" : 304,
+                      "Player" : 4,
+                      "NextPlayer" : 0,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 1,
+                      "timestamp" : "2020-05-11T00:11:59.000+0000",
+                      "propNumber" : 5,
+                      "Proposer" : 4,
+                      "Passed" : false,
+                      "deltaT" : 4000,
+                      "chatIndex" : 8,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              2,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d48244498",
+                          "Type" : 306,
+                          "Proposer" : 4,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:11:59.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d4824449a",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:12:06.000+0000",
+                              "deltaT" : 7000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d4824449b",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:12:01.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d4824449c",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:12:03.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d4824449d",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:12:02.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d4824449e",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:12:08.000+0000",
+                              "deltaT" : 9000
+                          },
+                          "_id" : "5eb89bab3ae97e2d48244499"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+                              1,
+                              3,
+                              2,
+                              0,
+                              4
+                          ],
+                          "VotesAgainst" : [
+
+                          ],
+                          "_id" : "5eb89bab3ae97e2d4824449f",
+                          "Type" : 307,
+                          "Passed" : true,
+                          "timestamp" : "2020-05-11T00:12:08.000+0000",
+                          "deltaT" : 9000,
+                          "chatIndex" : 12
+                      }
+                  }
+              ],
+              "2" : [
+                  {
+                      "SelectedTeam" : [
+                          1,
+                          3,
+                          4
+                      ],
+                      "_id" : "5eb89bab3ae97e2d482444a0",
+                      "Type" : 304,
+                      "Player" : 4,
+                      "NextPlayer" : 0,
+                      "Amount" : 3,
+                      "Duration" : 60000,
+                      "Mission" : 2,
+                      "timestamp" : "2020-05-11T00:15:45.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 4,
+                      "Passed" : false,
+                      "deltaT" : 15000,
+                      "chatIndex" : 55,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              1,
+                              3,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d482444a1",
+                          "Type" : 306,
+                          "Proposer" : 4,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:15:45.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d482444a3",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:15:47.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d482444a4",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:15:47.000+0000",
+                              "deltaT" : 2000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d482444a5",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:15:49.000+0000",
+                              "deltaT" : 4000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d482444a6",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:15:48.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d482444a7",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:15:48.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "_id" : "5eb89bab3ae97e2d482444a2"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              1,
+                              0,
+                              4,
+                              3,
+                              2
+                          ],
+                          "_id" : "5eb89bab3ae97e2d482444a8",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:15:49.000+0000",
+                          "deltaT" : 4000,
+                          "chatIndex" : 55
+                      }
+                  }
+              ],
+              "3" : [
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d482444a9",
+                      "Type" : 304,
+                      "Player" : 4,
+                      "NextPlayer" : 0,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:19:51.000+0000",
+                      "propNumber" : 1,
+                      "Proposer" : 4,
+                      "Passed" : true,
+                      "deltaT" : 54000,
+                      "chatIndex" : 109
+                  },
+                  {
+                      "SelectedTeam" : [
+
+                      ],
+                      "_id" : "5eb89bab3ae97e2d482444aa",
+                      "Type" : 304,
+                      "Player" : 4,
+                      "NextPlayer" : 0,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:22:16.000+0000",
+                      "propNumber" : 2,
+                      "Proposer" : 4,
+                      "Passed" : true,
+                      "deltaT" : 25000,
+                      "chatIndex" : 163
+                  },
+                  {
+                      "SelectedTeam" : [
+                          1,
+                          4
+                      ],
+                      "_id" : "5eb89bab3ae97e2d482444ab",
+                      "Type" : 304,
+                      "Player" : 4,
+                      "NextPlayer" : 0,
+                      "Amount" : 2,
+                      "Duration" : 60000,
+                      "Mission" : 3,
+                      "timestamp" : "2020-05-11T00:24:22.000+0000",
+                      "propNumber" : 3,
+                      "Proposer" : 4,
+                      "Passed" : false,
+                      "deltaT" : 30000,
+                      "chatIndex" : 196,
+                      "vote_phase_start" : {
+                          "Players" : [
+                              1,
+                              4
+                          ],
+                          "_id" : "5eb89bab3ae97e2d482444ac",
+                          "Type" : 306,
+                          "Proposer" : 4,
+                          "Duration" : 60000,
+                          "timestamp" : "2020-05-11T00:24:22.000+0000"
+                      },
+                      "vote_made" : {
+                          "0" : {
+                              "_id" : "5eb89bab3ae97e2d482444ae",
+                              "Type" : 309,
+                              "Slot" : 0,
+                              "timestamp" : "2020-05-11T00:24:56.000+0000",
+                              "deltaT" : 34000
+                          },
+                          "1" : {
+                              "_id" : "5eb89bab3ae97e2d482444af",
+                              "Type" : 309,
+                              "Slot" : 1,
+                              "timestamp" : "2020-05-11T00:24:35.000+0000",
+                              "deltaT" : 13000
+                          },
+                          "2" : {
+                              "_id" : "5eb89bab3ae97e2d482444b0",
+                              "Type" : 309,
+                              "Slot" : 2,
+                              "timestamp" : "2020-05-11T00:24:23.000+0000",
+                              "deltaT" : 1000
+                          },
+                          "3" : {
+                              "_id" : "5eb89bab3ae97e2d482444b1",
+                              "Type" : 309,
+                              "Slot" : 3,
+                              "timestamp" : "2020-05-11T00:24:43.000+0000",
+                              "deltaT" : 21000
+                          },
+                          "4" : {
+                              "_id" : "5eb89bab3ae97e2d482444b2",
+                              "Type" : 309,
+                              "Slot" : 4,
+                              "timestamp" : "2020-05-11T00:24:25.000+0000",
+                              "deltaT" : 3000
+                          },
+                          "_id" : "5eb89bab3ae97e2d482444ad"
+                      },
+                      "vote_phase_end" : {
+                          "VotesFor" : [
+
+                          ],
+                          "VotesAgainst" : [
+                              2,
+                              4,
+                              1,
+                              3,
+                              0
+                          ],
+                          "_id" : "5eb89bab3ae97e2d482444b3",
+                          "Type" : 307,
+                          "Passed" : false,
+                          "timestamp" : "2020-05-11T00:24:56.000+0000",
+                          "deltaT" : 34000,
+                          "chatIndex" : 206
+                      }
+                  }
+              ],
+              "4" : [
+
+              ],
+              "5" : [
+
+              ]
+          }
+      }
+  },
+  "local_slot" : 2,
+  "chat" : [
+      {
+          "_id" : "5eb89bab3ae97e2d482444b4",
+          "Type" : 205,
+          "Message" : "wait",
+          "Slot" : 2,
+          "index" : 0,
+          "timestamp" : "2020-05-11T00:10:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444b5",
+          "Type" : 205,
+          "Message" : "hello all, good luck",
+          "Slot" : 3,
+          "index" : 1,
+          "timestamp" : "2020-05-11T00:10:27.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444b6",
+          "Type" : 205,
+          "Message" : "everyone is ntf skin",
+          "Slot" : 2,
+          "index" : 2,
+          "timestamp" : "2020-05-11T00:10:29.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444b7",
+          "Type" : 205,
+          "Message" : "amazing",
+          "Slot" : 4,
+          "index" : 3,
+          "timestamp" : "2020-05-11T00:10:34.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444b8",
+          "Type" : 205,
+          "Message" : "we did it reddit",
+          "Slot" : 2,
+          "index" : 4,
+          "timestamp" : "2020-05-11T00:10:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444b9",
+          "Type" : 205,
+          "Message" : "i have the worst colour",
+          "Slot" : 3,
+          "index" : 5,
+          "timestamp" : "2020-05-11T00:10:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ba",
+          "Type" : 205,
+          "Message" : "so how is everyone",
+          "Slot" : 2,
+          "index" : 6,
+          "timestamp" : "2020-05-11T00:11:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444bb",
+          "Type" : 205,
+          "Message" : "sasha, pick me if you like",
+          "Slot" : 3,
+          "index" : 7,
+          "timestamp" : "2020-05-11T00:11:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444bc",
+          "Type" : 205,
+          "Message" : "he'll pick mario",
+          "Slot" : 2,
+          "index" : 8,
+          "timestamp" : "2020-05-11T00:11:59.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444bd",
+          "Type" : 205,
+          "Message" : "woah",
+          "Slot" : 2,
+          "index" : 9,
+          "timestamp" : "2020-05-11T00:12:00.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444be",
+          "Type" : 205,
+          "Message" : "*/#c da meta",
+          "Slot" : 4,
+          "index" : 10,
+          "timestamp" : "2020-05-11T00:12:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444bf",
+          "Type" : 205,
+          "Message" : "#c!* meta",
+          "Slot" : 2,
+          "index" : 11,
+          "timestamp" : "2020-05-11T00:12:07.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c0",
+          "Type" : 205,
+          "Message" : "�#*c me",
+          "Slot" : 1,
+          "index" : 12,
+          "timestamp" : "2020-05-11T00:12:12.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c1",
+          "Type" : 205,
+          "Message" : "wow",
+          "Slot" : 2,
+          "index" : 13,
+          "timestamp" : "2020-05-11T00:12:19.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c2",
+          "Type" : 205,
+          "Message" : "imagine hacking that",
+          "Slot" : 3,
+          "index" : 14,
+          "timestamp" : "2020-05-11T00:12:29.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c3",
+          "Type" : 205,
+          "Message" : "gives an agent a lot of info",
+          "Slot" : 4,
+          "index" : 15,
+          "timestamp" : "2020-05-11T00:12:37.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c4",
+          "Type" : 205,
+          "Message" : "i'm tempted to say that this is cool",
+          "Slot" : 0,
+          "index" : 16,
+          "timestamp" : "2020-05-11T00:12:38.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c5",
+          "Type" : 205,
+          "Message" : "imagine the feel of it",
+          "Slot" : 1,
+          "index" : 17,
+          "timestamp" : "2020-05-11T00:12:38.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c6",
+          "Type" : 205,
+          "Message" : "it's wild i'll give you that",
+          "Slot" : 2,
+          "index" : 18,
+          "timestamp" : "2020-05-11T00:12:40.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c7",
+          "Type" : 205,
+          "Message" : "the taste",
+          "Slot" : 1,
+          "index" : 19,
+          "timestamp" : "2020-05-11T00:12:40.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c8",
+          "Type" : 205,
+          "Message" : "who think that could be double btw?",
+          "Slot" : 3,
+          "index" : 20,
+          "timestamp" : "2020-05-11T00:13:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444c9",
+          "Type" : 205,
+          "Message" : "its not",
+          "Slot" : 4,
+          "index" : 21,
+          "timestamp" : "2020-05-11T00:13:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ca",
+          "Type" : 205,
+          "Message" : "it's not adouble",
+          "Slot" : 2,
+          "index" : 22,
+          "timestamp" : "2020-05-11T00:13:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444cb",
+          "Type" : 205,
+          "Message" : "just 1 hacker",
+          "Slot" : 2,
+          "index" : 23,
+          "timestamp" : "2020-05-11T00:13:25.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444cc",
+          "Type" : 205,
+          "Message" : "alright",
+          "Slot" : 3,
+          "index" : 24,
+          "timestamp" : "2020-05-11T00:13:27.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444cd",
+          "Type" : 205,
+          "Message" : "i don't think it's a double",
+          "Slot" : 0,
+          "index" : 25,
+          "timestamp" : "2020-05-11T00:13:31.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ce",
+          "Type" : 205,
+          "Message" : "i would highly advice against anti",
+          "Slot" : 4,
+          "index" : 26,
+          "timestamp" : "2020-05-11T00:13:34.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444cf",
+          "Type" : 205,
+          "Message" : "anti = 100% hacked",
+          "Slot" : 2,
+          "index" : 27,
+          "timestamp" : "2020-05-11T00:13:42.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d0",
+          "Type" : 205,
+          "Message" : "no we never anti",
+          "Slot" : 3,
+          "index" : 28,
+          "timestamp" : "2020-05-11T00:13:44.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d1",
+          "Type" : 205,
+          "Message" : "because then were just getting a second hacked node",
+          "Slot" : 4,
+          "index" : 29,
+          "timestamp" : "2020-05-11T00:13:45.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d2",
+          "Type" : 205,
+          "Message" : "anti has sasha's partner",
+          "Slot" : 2,
+          "index" : 30,
+          "timestamp" : "2020-05-11T00:13:45.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d3",
+          "Type" : 205,
+          "Message" : "it was just a question",
+          "Slot" : 3,
+          "index" : 31,
+          "timestamp" : "2020-05-11T00:13:48.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d4",
+          "Type" : 205,
+          "Message" : "just hammering it home",
+          "Slot" : 4,
+          "index" : 32,
+          "timestamp" : "2020-05-11T00:13:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d5",
+          "Type" : 205,
+          "Message" : "dont do anti",
+          "Slot" : 4,
+          "index" : 33,
+          "timestamp" : "2020-05-11T00:14:01.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d6",
+          "Type" : 205,
+          "Message" : "lol",
+          "Slot" : 4,
+          "index" : 34,
+          "timestamp" : "2020-05-11T00:14:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d7",
+          "Type" : 205,
+          "Message" : "we need passes",
+          "Slot" : 2,
+          "index" : 35,
+          "timestamp" : "2020-05-11T00:14:04.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d8",
+          "Type" : 205,
+          "Message" : "this isn't anti",
+          "Slot" : 2,
+          "index" : 36,
+          "timestamp" : "2020-05-11T00:14:07.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444d9",
+          "Type" : 205,
+          "Message" : "mario",
+          "Slot" : 3,
+          "index" : 37,
+          "timestamp" : "2020-05-11T00:14:09.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444da",
+          "Type" : 205,
+          "Message" : "yes?",
+          "Slot" : 0,
+          "index" : 38,
+          "timestamp" : "2020-05-11T00:14:14.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444db",
+          "Type" : 205,
+          "Message" : "you should have passed",
+          "Slot" : 3,
+          "index" : 39,
+          "timestamp" : "2020-05-11T00:14:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444dc",
+          "Type" : 205,
+          "Message" : "no ?",
+          "Slot" : 0,
+          "index" : 40,
+          "timestamp" : "2020-05-11T00:14:18.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444dd",
+          "Type" : 205,
+          "Message" : "off n1",
+          "Slot" : 3,
+          "index" : 41,
+          "timestamp" : "2020-05-11T00:14:19.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444de",
+          "Type" : 205,
+          "Message" : "dude",
+          "Slot" : 0,
+          "index" : 42,
+          "timestamp" : "2020-05-11T00:14:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444df",
+          "Type" : 205,
+          "Message" : "pass off sasha cuz they were in n1",
+          "Slot" : 2,
+          "index" : 43,
+          "timestamp" : "2020-05-11T00:14:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e0",
+          "Type" : 205,
+          "Message" : "lynne is gonna pass off sasha no matter what",
+          "Slot" : 0,
+          "index" : 44,
+          "timestamp" : "2020-05-11T00:14:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e1",
+          "Type" : 205,
+          "Message" : "why leave it to a 50%?",
+          "Slot" : 2,
+          "index" : 45,
+          "timestamp" : "2020-05-11T00:14:27.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e2",
+          "Type" : 205,
+          "Message" : "or she should",
+          "Slot" : 0,
+          "index" : 46,
+          "timestamp" : "2020-05-11T00:14:28.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e3",
+          "Type" : 205,
+          "Message" : "it's pretty basic, nunya",
+          "Slot" : 0,
+          "index" : 47,
+          "timestamp" : "2020-05-11T00:14:38.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e4",
+          "Type" : 205,
+          "Message" : "i mean it makes sense mario",
+          "Slot" : 2,
+          "index" : 48,
+          "timestamp" : "2020-05-11T00:14:45.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e5",
+          "Type" : 205,
+          "Message" : "but you look more sus",
+          "Slot" : 2,
+          "index" : 49,
+          "timestamp" : "2020-05-11T00:14:46.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e6",
+          "Type" : 205,
+          "Message" : "this is hacked tw",
+          "Slot" : 3,
+          "index" : 50,
+          "timestamp" : "2020-05-11T00:14:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e7",
+          "Type" : 205,
+          "Message" : "this is what i would try",
+          "Slot" : 2,
+          "index" : 51,
+          "timestamp" : "2020-05-11T00:15:08.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e8",
+          "Type" : 205,
+          "Message" : "so pass once more",
+          "Slot" : 2,
+          "index" : 52,
+          "timestamp" : "2020-05-11T00:15:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444e9",
+          "Type" : 205,
+          "Message" : "????",
+          "Slot" : 0,
+          "index" : 53,
+          "timestamp" : "2020-05-11T00:15:18.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ea",
+          "Type" : 205,
+          "Message" : "if you want to test that theory",
+          "Slot" : 2,
+          "index" : 54,
+          "timestamp" : "2020-05-11T00:15:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444eb",
+          "Type" : 205,
+          "Message" : "zelda thoughts ?",
+          "Slot" : 0,
+          "index" : 55,
+          "timestamp" : "2020-05-11T00:15:52.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ec",
+          "Type" : 205,
+          "Message" : "n1 was funky",
+          "Slot" : 1,
+          "index" : 56,
+          "timestamp" : "2020-05-11T00:16:04.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ed",
+          "Type" : 205,
+          "Message" : "mario dont dare pass back to n1",
+          "Slot" : 3,
+          "index" : 57,
+          "timestamp" : "2020-05-11T00:16:07.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ee",
+          "Type" : 205,
+          "Message" : "#?c� meta",
+          "Slot" : 1,
+          "index" : 58,
+          "timestamp" : "2020-05-11T00:16:17.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ef",
+          "Type" : 205,
+          "Message" : "nunya lmfao i will obviously not",
+          "Slot" : 0,
+          "index" : 59,
+          "timestamp" : "2020-05-11T00:16:19.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f0",
+          "Type" : 205,
+          "Message" : "that would be a decent frame nunya",
+          "Slot" : 2,
+          "index" : 60,
+          "timestamp" : "2020-05-11T00:16:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f1",
+          "Type" : 205,
+          "Message" : "if he did",
+          "Slot" : 2,
+          "index" : 61,
+          "timestamp" : "2020-05-11T00:16:22.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f2",
+          "Type" : 205,
+          "Message" : "<sprite name=\"emoji_smile\">",
+          "Slot" : 3,
+          "index" : 62,
+          "timestamp" : "2020-05-11T00:16:23.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f3",
+          "Type" : 205,
+          "Message" : "i suppose lynne",
+          "Slot" : 3,
+          "index" : 63,
+          "timestamp" : "2020-05-11T00:16:32.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f4",
+          "Type" : 205,
+          "Message" : "time",
+          "Slot" : 2,
+          "index" : 64,
+          "timestamp" : "2020-05-11T00:16:40.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f5",
+          "Type" : 205,
+          "Message" : "auto?",
+          "Slot" : 2,
+          "index" : 65,
+          "timestamp" : "2020-05-11T00:16:50.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f6",
+          "Type" : 205,
+          "Message" : "well cant be a frame since lynne isnt agent",
+          "Slot" : 4,
+          "index" : 66,
+          "timestamp" : "2020-05-11T00:16:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f7",
+          "Type" : 205,
+          "Message" : "autos aren't allowed remember",
+          "Slot" : 0,
+          "index" : 67,
+          "timestamp" : "2020-05-11T00:16:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f8",
+          "Type" : 205,
+          "Message" : "so dw bout that",
+          "Slot" : 4,
+          "index" : 68,
+          "timestamp" : "2020-05-11T00:16:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444f9",
+          "Type" : 205,
+          "Message" : "lol sasha",
+          "Slot" : 2,
+          "index" : 69,
+          "timestamp" : "2020-05-11T00:17:01.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444fa",
+          "Type" : 205,
+          "Message" : "hammer <sprite name=\"emoji_hammer\">",
+          "Slot" : 2,
+          "index" : 70,
+          "timestamp" : "2020-05-11T00:17:06.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444fb",
+          "Type" : 205,
+          "Message" : "zelda",
+          "Slot" : 0,
+          "index" : 71,
+          "timestamp" : "2020-05-11T00:17:07.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444fc",
+          "Type" : 205,
+          "Message" : "this is hacked",
+          "Slot" : 3,
+          "index" : 72,
+          "timestamp" : "2020-05-11T00:17:13.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444fd",
+          "Type" : 205,
+          "Message" : "that was fast af",
+          "Slot" : 0,
+          "index" : 73,
+          "timestamp" : "2020-05-11T00:17:14.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444fe",
+          "Type" : 205,
+          "Message" : "btw",
+          "Slot" : 3,
+          "index" : 74,
+          "timestamp" : "2020-05-11T00:17:14.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d482444ff",
+          "Type" : 205,
+          "Message" : "wrong prop",
+          "Slot" : 4,
+          "index" : 75,
+          "timestamp" : "2020-05-11T00:17:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244500",
+          "Type" : 205,
+          "Message" : "unforuntaely",
+          "Slot" : 4,
+          "index" : 76,
+          "timestamp" : "2020-05-11T00:17:20.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244501",
+          "Type" : 205,
+          "Message" : "that was a fast pick",
+          "Slot" : 2,
+          "index" : 77,
+          "timestamp" : "2020-05-11T00:17:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244502",
+          "Type" : 205,
+          "Message" : "and not what i wanted at all",
+          "Slot" : 2,
+          "index" : 78,
+          "timestamp" : "2020-05-11T00:17:24.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244503",
+          "Type" : 205,
+          "Message" : "clearly way too fast",
+          "Slot" : 0,
+          "index" : 79,
+          "timestamp" : "2020-05-11T00:17:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244504",
+          "Type" : 205,
+          "Message" : "good job zelda you didn't lsiten to me",
+          "Slot" : 2,
+          "index" : 80,
+          "timestamp" : "2020-05-11T00:17:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244505",
+          "Type" : 205,
+          "Message" : "How was that too fast",
+          "Slot" : 1,
+          "index" : 81,
+          "timestamp" : "2020-05-11T00:17:40.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244506",
+          "Type" : 205,
+          "Message" : "but nunya is confirmed agent",
+          "Slot" : 2,
+          "index" : 82,
+          "timestamp" : "2020-05-11T00:17:43.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244507",
+          "Type" : 205,
+          "Message" : "if i had it in mind",
+          "Slot" : 1,
+          "index" : 83,
+          "timestamp" : "2020-05-11T00:17:44.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244508",
+          "Type" : 205,
+          "Message" : "mario or zelda",
+          "Slot" : 2,
+          "index" : 84,
+          "timestamp" : "2020-05-11T00:17:56.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244509",
+          "Type" : 205,
+          "Message" : "zelda, can you explain the prop?",
+          "Slot" : 3,
+          "index" : 85,
+          "timestamp" : "2020-05-11T00:18:14.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824450a",
+          "Type" : 205,
+          "Message" : "im propping mario or zelda",
+          "Slot" : 4,
+          "index" : 86,
+          "timestamp" : "2020-05-11T00:18:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824450b",
+          "Type" : 205,
+          "Message" : "my gut wants to say mario but i think that's what sasha might have wanted me to go with",
+          "Slot" : 2,
+          "index" : 87,
+          "timestamp" : "2020-05-11T00:18:17.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824450c",
+          "Type" : 205,
+          "Message" : "if i had to make a guess now i'd say it's zelda-sasha",
+          "Slot" : 0,
+          "index" : 88,
+          "timestamp" : "2020-05-11T00:18:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824450d",
+          "Type" : 205,
+          "Message" : "so i could see zelda sasha being it",
+          "Slot" : 2,
+          "index" : 89,
+          "timestamp" : "2020-05-11T00:18:28.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824450e",
+          "Type" : 205,
+          "Message" : "n2 could be double but even if it is 50/50 i get it right",
+          "Slot" : 4,
+          "index" : 90,
+          "timestamp" : "2020-05-11T00:18:33.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824450f",
+          "Type" : 205,
+          "Message" : "esp with how quick zelda was to put that in",
+          "Slot" : 2,
+          "index" : 91,
+          "timestamp" : "2020-05-11T00:18:34.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244510",
+          "Type" : 205,
+          "Message" : "Yeah you told Sasha to pick you if they wanted and then they skipped meta just for it to get hacked",
+          "Slot" : 1,
+          "index" : 92,
+          "timestamp" : "2020-05-11T00:18:34.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244511",
+          "Type" : 205,
+          "Message" : "ok",
+          "Slot" : 3,
+          "index" : 93,
+          "timestamp" : "2020-05-11T00:18:46.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244512",
+          "Type" : 205,
+          "Message" : "that tells me alot",
+          "Slot" : 3,
+          "index" : 94,
+          "timestamp" : "2020-05-11T00:18:49.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244513",
+          "Type" : 205,
+          "Message" : "why mario",
+          "Slot" : 4,
+          "index" : 95,
+          "timestamp" : "2020-05-11T00:18:49.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244514",
+          "Type" : 205,
+          "Message" : "it's our last shot at winning",
+          "Slot" : 2,
+          "index" : 96,
+          "timestamp" : "2020-05-11T00:18:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244515",
+          "Type" : 205,
+          "Message" : "im undecided on n1",
+          "Slot" : 3,
+          "index" : 97,
+          "timestamp" : "2020-05-11T00:19:06.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244516",
+          "Type" : 205,
+          "Message" : "zelda picking n2 way too fast, sasha not proping meta",
+          "Slot" : 0,
+          "index" : 98,
+          "timestamp" : "2020-05-11T00:19:11.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244517",
+          "Type" : 205,
+          "Message" : "but i have a feeling n2 was double",
+          "Slot" : 3,
+          "index" : 99,
+          "timestamp" : "2020-05-11T00:19:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244518",
+          "Type" : 205,
+          "Message" : "basically",
+          "Slot" : 0,
+          "index" : 100,
+          "timestamp" : "2020-05-11T00:19:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244519",
+          "Type" : 205,
+          "Message" : "lmao how do you pick too fast",
+          "Slot" : 1,
+          "index" : 101,
+          "timestamp" : "2020-05-11T00:19:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824451a",
+          "Type" : 205,
+          "Message" : "n2 wasn't double",
+          "Slot" : 2,
+          "index" : 102,
+          "timestamp" : "2020-05-11T00:19:22.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824451b",
+          "Type" : 205,
+          "Message" : "n2 can't be double",
+          "Slot" : 2,
+          "index" : 103,
+          "timestamp" : "2020-05-11T00:19:28.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824451c",
+          "Type" : 205,
+          "Message" : "i know your pov says it's possible but im telling you",
+          "Slot" : 2,
+          "index" : 104,
+          "timestamp" : "2020-05-11T00:19:36.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824451d",
+          "Type" : 205,
+          "Message" : "you proposed in 2 seconds lol you weren't even trying to catch a nano-info",
+          "Slot" : 0,
+          "index" : 105,
+          "timestamp" : "2020-05-11T00:19:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824451e",
+          "Type" : 205,
+          "Message" : "you need to be agent then lynne",
+          "Slot" : 3,
+          "index" : 106,
+          "timestamp" : "2020-05-11T00:19:46.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824451f",
+          "Type" : 205,
+          "Message" : "a nano-info",
+          "Slot" : 1,
+          "index" : 107,
+          "timestamp" : "2020-05-11T00:19:49.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244520",
+          "Type" : 205,
+          "Message" : "i just can't figure if sasha mind game on mario is right or not",
+          "Slot" : 2,
+          "index" : 108,
+          "timestamp" : "2020-05-11T00:19:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244521",
+          "Type" : 205,
+          "Message" : "as you should be able to confirm me obv",
+          "Slot" : 3,
+          "index" : 109,
+          "timestamp" : "2020-05-11T00:19:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244522",
+          "Type" : 205,
+          "Message" : "no need to make terms up",
+          "Slot" : 1,
+          "index" : 110,
+          "timestamp" : "2020-05-11T00:19:55.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244523",
+          "Type" : 205,
+          "Message" : "i hate that logic mario",
+          "Slot" : 4,
+          "index" : 111,
+          "timestamp" : "2020-05-11T00:19:58.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244524",
+          "Type" : 205,
+          "Message" : "i already did?",
+          "Slot" : 2,
+          "index" : 112,
+          "timestamp" : "2020-05-11T00:19:58.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244525",
+          "Type" : 205,
+          "Message" : "read chat?",
+          "Slot" : 2,
+          "index" : 113,
+          "timestamp" : "2020-05-11T00:20:00.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244526",
+          "Type" : 205,
+          "Message" : "i know",
+          "Slot" : 3,
+          "index" : 114,
+          "timestamp" : "2020-05-11T00:20:01.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244527",
+          "Type" : 205,
+          "Message" : "i did",
+          "Slot" : 3,
+          "index" : 115,
+          "timestamp" : "2020-05-11T00:20:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244528",
+          "Type" : 205,
+          "Message" : "that's why we have to figure out zelda  and mario",
+          "Slot" : 2,
+          "index" : 116,
+          "timestamp" : "2020-05-11T00:20:08.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244529",
+          "Type" : 205,
+          "Message" : "sasha, my logic about zelda is right",
+          "Slot" : 0,
+          "index" : 117,
+          "timestamp" : "2020-05-11T00:20:10.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824452a",
+          "Type" : 205,
+          "Message" : "who of them is sasha's partner",
+          "Slot" : 2,
+          "index" : 118,
+          "timestamp" : "2020-05-11T00:20:13.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824452b",
+          "Type" : 205,
+          "Message" : "that tehy propped too fast?",
+          "Slot" : 4,
+          "index" : 119,
+          "timestamp" : "2020-05-11T00:20:20.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824452c",
+          "Type" : 205,
+          "Message" : "what logic",
+          "Slot" : 1,
+          "index" : 120,
+          "timestamp" : "2020-05-11T00:20:21.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824452d",
+          "Type" : 205,
+          "Message" : "sasha was trying to make me believe it was mario but i think that's a mind game",
+          "Slot" : 2,
+          "index" : 121,
+          "timestamp" : "2020-05-11T00:20:22.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824452e",
+          "Type" : 205,
+          "Message" : "lynne are you serious ? how can you suspect zelda more than me",
+          "Slot" : 0,
+          "index" : 122,
+          "timestamp" : "2020-05-11T00:20:30.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824452f",
+          "Type" : 205,
+          "Message" : "yeah",
+          "Slot" : 3,
+          "index" : 123,
+          "timestamp" : "2020-05-11T00:20:33.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244530",
+          "Type" : 205,
+          "Message" : "i think it's zelda and sasha from what sasha was saying",
+          "Slot" : 2,
+          "index" : 124,
+          "timestamp" : "2020-05-11T00:20:35.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244531",
+          "Type" : 205,
+          "Message" : "*not",
+          "Slot" : 0,
+          "index" : 125,
+          "timestamp" : "2020-05-11T00:20:35.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244532",
+          "Type" : 205,
+          "Message" : "sasha propped pretty fast too right?",
+          "Slot" : 3,
+          "index" : 126,
+          "timestamp" : "2020-05-11T00:20:45.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244533",
+          "Type" : 205,
+          "Message" : "cuz mario the way sasha was talking eariler",
+          "Slot" : 2,
+          "index" : 127,
+          "timestamp" : "2020-05-11T00:20:46.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244534",
+          "Type" : 205,
+          "Message" : "for hammer?",
+          "Slot" : 3,
+          "index" : 128,
+          "timestamp" : "2020-05-11T00:20:47.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244535",
+          "Type" : 205,
+          "Message" : "wow",
+          "Slot" : 2,
+          "index" : 129,
+          "timestamp" : "2020-05-11T00:20:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244536",
+          "Type" : 205,
+          "Message" : "pass to sasha?",
+          "Slot" : 2,
+          "index" : 130,
+          "timestamp" : "2020-05-11T00:20:53.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244537",
+          "Type" : 205,
+          "Message" : "wtf",
+          "Slot" : 2,
+          "index" : 131,
+          "timestamp" : "2020-05-11T00:20:55.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244538",
+          "Type" : 205,
+          "Message" : "i passed to myself",
+          "Slot" : 0,
+          "index" : 132,
+          "timestamp" : "2020-05-11T00:20:58.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244539",
+          "Type" : 205,
+          "Message" : "y'all are high strung huh?",
+          "Slot" : 1,
+          "index" : 133,
+          "timestamp" : "2020-05-11T00:20:58.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824453a",
+          "Type" : 205,
+          "Message" : "lynne i passed to myself",
+          "Slot" : 0,
+          "index" : 134,
+          "timestamp" : "2020-05-11T00:21:05.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824453b",
+          "Type" : 205,
+          "Message" : "kek",
+          "Slot" : 0,
+          "index" : 135,
+          "timestamp" : "2020-05-11T00:21:06.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824453c",
+          "Type" : 205,
+          "Message" : "oh right nobody propped",
+          "Slot" : 2,
+          "index" : 136,
+          "timestamp" : "2020-05-11T00:21:07.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824453d",
+          "Type" : 205,
+          "Message" : "i didnt know propping fast was sus",
+          "Slot" : 4,
+          "index" : 137,
+          "timestamp" : "2020-05-11T00:21:08.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824453e",
+          "Type" : 205,
+          "Message" : "i have my props in my mind before hand usually",
+          "Slot" : 4,
+          "index" : 138,
+          "timestamp" : "2020-05-11T00:21:16.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824453f",
+          "Type" : 205,
+          "Message" : "prop nunya or we go around again",
+          "Slot" : 2,
+          "index" : 139,
+          "timestamp" : "2020-05-11T00:21:20.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244540",
+          "Type" : 205,
+          "Message" : "lets force the hammer on me or lynne",
+          "Slot" : 3,
+          "index" : 140,
+          "timestamp" : "2020-05-11T00:21:23.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244541",
+          "Type" : 205,
+          "Message" : "let our third agent show them self",
+          "Slot" : 2,
+          "index" : 141,
+          "timestamp" : "2020-05-11T00:21:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244542",
+          "Type" : 205,
+          "Message" : "hackers will pass",
+          "Slot" : 3,
+          "index" : 142,
+          "timestamp" : "2020-05-11T00:21:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244543",
+          "Type" : 205,
+          "Message" : "i want hammer on you nunya",
+          "Slot" : 2,
+          "index" : 143,
+          "timestamp" : "2020-05-11T00:21:30.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244544",
+          "Type" : 205,
+          "Message" : "im also accepting",
+          "Slot" : 3,
+          "index" : 144,
+          "timestamp" : "2020-05-11T00:21:31.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244545",
+          "Type" : 205,
+          "Message" : "do not force the hammer on lynne",
+          "Slot" : 4,
+          "index" : 145,
+          "timestamp" : "2020-05-11T00:21:35.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244546",
+          "Type" : 205,
+          "Message" : "we need our third agent to push this through",
+          "Slot" : 2,
+          "index" : 146,
+          "timestamp" : "2020-05-11T00:21:37.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244547",
+          "Type" : 205,
+          "Message" : "tf are you doing",
+          "Slot" : 4,
+          "index" : 147,
+          "timestamp" : "2020-05-11T00:21:38.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244548",
+          "Type" : 205,
+          "Message" : "nah",
+          "Slot" : 1,
+          "index" : 148,
+          "timestamp" : "2020-05-11T00:21:48.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244549",
+          "Type" : 205,
+          "Message" : "WOW",
+          "Slot" : 0,
+          "index" : 149,
+          "timestamp" : "2020-05-11T00:21:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824454a",
+          "Type" : 205,
+          "Message" : "3rd agent accept",
+          "Slot" : 3,
+          "index" : 150,
+          "timestamp" : "2020-05-11T00:21:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824454b",
+          "Type" : 205,
+          "Message" : "first of all @*%/�",
+          "Slot" : 1,
+          "index" : 151,
+          "timestamp" : "2020-05-11T00:21:52.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824454c",
+          "Type" : 205,
+          "Message" : "do not rush",
+          "Slot" : 0,
+          "index" : 152,
+          "timestamp" : "2020-05-11T00:21:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824454d",
+          "Type" : 205,
+          "Message" : "ffs",
+          "Slot" : 0,
+          "index" : 153,
+          "timestamp" : "2020-05-11T00:21:55.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824454e",
+          "Type" : 205,
+          "Message" : "nunya why would you early acc that",
+          "Slot" : 4,
+          "index" : 154,
+          "timestamp" : "2020-05-11T00:21:56.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824454f",
+          "Type" : 205,
+          "Message" : "safe is smart but this is secured",
+          "Slot" : 2,
+          "index" : 155,
+          "timestamp" : "2020-05-11T00:21:58.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244550",
+          "Type" : 205,
+          "Message" : "i know it's 100% secured",
+          "Slot" : 2,
+          "index" : 156,
+          "timestamp" : "2020-05-11T00:22:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244551",
+          "Type" : 205,
+          "Message" : "that realy makes me thin youre his partmer dude",
+          "Slot" : 4,
+          "index" : 157,
+          "timestamp" : "2020-05-11T00:22:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244552",
+          "Type" : 205,
+          "Message" : "its been passed round fully once",
+          "Slot" : 3,
+          "index" : 158,
+          "timestamp" : "2020-05-11T00:22:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244553",
+          "Type" : 205,
+          "Message" : "do not rush n5 it's the best way to lose",
+          "Slot" : 0,
+          "index" : 159,
+          "timestamp" : "2020-05-11T00:22:04.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244554",
+          "Type" : 205,
+          "Message" : "i mean n3",
+          "Slot" : 0,
+          "index" : 160,
+          "timestamp" : "2020-05-11T00:22:08.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244555",
+          "Type" : 205,
+          "Message" : "i am forcing the issue now",
+          "Slot" : 3,
+          "index" : 161,
+          "timestamp" : "2020-05-11T00:22:12.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244556",
+          "Type" : 205,
+          "Message" : "mario if we do what i'm saying it'll be secured",
+          "Slot" : 2,
+          "index" : 162,
+          "timestamp" : "2020-05-11T00:22:16.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244557",
+          "Type" : 205,
+          "Message" : "nunya yo",
+          "Slot" : 0,
+          "index" : 163,
+          "timestamp" : "2020-05-11T00:22:17.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244558",
+          "Type" : 205,
+          "Message" : "nobody pass off me",
+          "Slot" : 3,
+          "index" : 164,
+          "timestamp" : "2020-05-11T00:22:20.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244559",
+          "Type" : 205,
+          "Message" : "a hacker just has to accept with you and you're dead",
+          "Slot" : 0,
+          "index" : 165,
+          "timestamp" : "2020-05-11T00:22:24.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824455a",
+          "Type" : 205,
+          "Message" : "yeah",
+          "Slot" : 3,
+          "index" : 166,
+          "timestamp" : "2020-05-11T00:22:29.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824455b",
+          "Type" : 205,
+          "Message" : "but they didnt",
+          "Slot" : 3,
+          "index" : 167,
+          "timestamp" : "2020-05-11T00:22:30.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824455c",
+          "Type" : 205,
+          "Message" : "that's if i was a hacker but im not",
+          "Slot" : 2,
+          "index" : 168,
+          "timestamp" : "2020-05-11T00:22:35.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824455d",
+          "Type" : 205,
+          "Message" : "you have to pass of nunya if theyre propping lynne",
+          "Slot" : 4,
+          "index" : 169,
+          "timestamp" : "2020-05-11T00:22:38.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824455e",
+          "Type" : 205,
+          "Message" : "this is also what im thinkin gmario",
+          "Slot" : 3,
+          "index" : 170,
+          "timestamp" : "2020-05-11T00:22:38.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824455f",
+          "Type" : 205,
+          "Message" : "i'm accepting",
+          "Slot" : 0,
+          "index" : 171,
+          "timestamp" : "2020-05-11T00:22:49.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244560",
+          "Type" : 205,
+          "Message" : "this is too risky for me",
+          "Slot" : 2,
+          "index" : 172,
+          "timestamp" : "2020-05-11T00:22:59.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244561",
+          "Type" : 205,
+          "Message" : "its risk",
+          "Slot" : 3,
+          "index" : 173,
+          "timestamp" : "2020-05-11T00:23:07.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244562",
+          "Type" : 205,
+          "Message" : "only way to get a green is putting me and nunya",
+          "Slot" : 2,
+          "index" : 174,
+          "timestamp" : "2020-05-11T00:23:08.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244563",
+          "Type" : 205,
+          "Message" : "from nunya's pov lynne could just as likely be hacker as me dont you think ts weird they have full trust in lynee",
+          "Slot" : 4,
+          "index" : 175,
+          "timestamp" : "2020-05-11T00:23:10.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244564",
+          "Type" : 205,
+          "Message" : "but if good lynne we would take you",
+          "Slot" : 3,
+          "index" : 176,
+          "timestamp" : "2020-05-11T00:23:13.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244565",
+          "Type" : 205,
+          "Message" : "nunya is in the toughest spot",
+          "Slot" : 2,
+          "index" : 177,
+          "timestamp" : "2020-05-11T00:23:19.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244566",
+          "Type" : 205,
+          "Message" : "im reviewing sasha",
+          "Slot" : 3,
+          "index" : 178,
+          "timestamp" : "2020-05-11T00:23:25.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244567",
+          "Type" : 205,
+          "Message" : "watching votes",
+          "Slot" : 3,
+          "index" : 179,
+          "timestamp" : "2020-05-11T00:23:29.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244568",
+          "Type" : 205,
+          "Message" : "really?",
+          "Slot" : 2,
+          "index" : 180,
+          "timestamp" : "2020-05-11T00:23:30.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244569",
+          "Type" : 205,
+          "Message" : "pass to sasha?",
+          "Slot" : 2,
+          "index" : 181,
+          "timestamp" : "2020-05-11T00:23:34.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824456a",
+          "Type" : 205,
+          "Message" : "okay that was sus af",
+          "Slot" : 0,
+          "index" : 182,
+          "timestamp" : "2020-05-11T00:23:35.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824456b",
+          "Type" : 205,
+          "Message" : "ok like i said",
+          "Slot" : 2,
+          "index" : 183,
+          "timestamp" : "2020-05-11T00:23:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824456c",
+          "Type" : 205,
+          "Message" : "lynne, double pass",
+          "Slot" : 3,
+          "index" : 184,
+          "timestamp" : "2020-05-11T00:23:40.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824456d",
+          "Type" : 205,
+          "Message" : "zelda and sasha",
+          "Slot" : 2,
+          "index" : 185,
+          "timestamp" : "2020-05-11T00:23:42.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824456e",
+          "Type" : 205,
+          "Message" : "confirmed",
+          "Slot" : 2,
+          "index" : 186,
+          "timestamp" : "2020-05-11T00:23:44.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824456f",
+          "Type" : 205,
+          "Message" : "i agree",
+          "Slot" : 0,
+          "index" : 187,
+          "timestamp" : "2020-05-11T00:23:49.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244570",
+          "Type" : 205,
+          "Message" : "i think its lynne nunya",
+          "Slot" : 4,
+          "index" : 188,
+          "timestamp" : "2020-05-11T00:23:53.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244571",
+          "Type" : 205,
+          "Message" : "you should be a politician",
+          "Slot" : 1,
+          "index" : 189,
+          "timestamp" : "2020-05-11T00:23:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244572",
+          "Type" : 205,
+          "Message" : "i dont see why they would have such blind trust",
+          "Slot" : 4,
+          "index" : 190,
+          "timestamp" : "2020-05-11T00:24:03.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244573",
+          "Type" : 205,
+          "Message" : "you \"think\" it's lynne ? <sprite name=\"emoji_smile\">",
+          "Slot" : 0,
+          "index" : 191,
+          "timestamp" : "2020-05-11T00:24:05.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244574",
+          "Type" : 205,
+          "Message" : "nunya is confirmed agent sasha",
+          "Slot" : 2,
+          "index" : 192,
+          "timestamp" : "2020-05-11T00:24:10.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244575",
+          "Type" : 205,
+          "Message" : "i know lynne",
+          "Slot" : 4,
+          "index" : 193,
+          "timestamp" : "2020-05-11T00:24:10.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244576",
+          "Type" : 205,
+          "Message" : "i think nunya",
+          "Slot" : 4,
+          "index" : 194,
+          "timestamp" : "2020-05-11T00:24:12.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244577",
+          "Type" : 205,
+          "Message" : "the only reason i can think of for zelda passing",
+          "Slot" : 3,
+          "index" : 195,
+          "timestamp" : "2020-05-11T00:24:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244578",
+          "Type" : 205,
+          "Message" : "is for them to be a hacker",
+          "Slot" : 3,
+          "index" : 196,
+          "timestamp" : "2020-05-11T00:24:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244579",
+          "Type" : 205,
+          "Message" : "lynne who are you trying to get that point to? ",
+          "Slot" : 1,
+          "index" : 197,
+          "timestamp" : "2020-05-11T00:24:30.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824457a",
+          "Type" : 205,
+          "Message" : "what point?",
+          "Slot" : 2,
+          "index" : 198,
+          "timestamp" : "2020-05-11T00:24:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824457b",
+          "Type" : 205,
+          "Message" : "i'm accepting",
+          "Slot" : 0,
+          "index" : 199,
+          "timestamp" : "2020-05-11T00:24:47.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824457c",
+          "Type" : 205,
+          "Message" : "mario no",
+          "Slot" : 3,
+          "index" : 200,
+          "timestamp" : "2020-05-11T00:24:50.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824457d",
+          "Type" : 205,
+          "Message" : "why",
+          "Slot" : 2,
+          "index" : 201,
+          "timestamp" : "2020-05-11T00:24:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824457e",
+          "Type" : 205,
+          "Message" : "nunya you are reallllllly fighting with lynnes logic here",
+          "Slot" : 4,
+          "index" : 202,
+          "timestamp" : "2020-05-11T00:24:51.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824457f",
+          "Type" : 205,
+          "Message" : "that nunya is a confirmed agent",
+          "Slot" : 1,
+          "index" : 203,
+          "timestamp" : "2020-05-11T00:24:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244580",
+          "Type" : 205,
+          "Message" : "why would you accept this mario",
+          "Slot" : 2,
+          "index" : 204,
+          "timestamp" : "2020-05-11T00:24:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244581",
+          "Type" : 205,
+          "Message" : "wtf",
+          "Slot" : 2,
+          "index" : 205,
+          "timestamp" : "2020-05-11T00:24:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244582",
+          "Type" : 205,
+          "Message" : "do not accept this",
+          "Slot" : 2,
+          "index" : 206,
+          "timestamp" : "2020-05-11T00:24:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244583",
+          "Type" : 205,
+          "Message" : "ffs",
+          "Slot" : 2,
+          "index" : 207,
+          "timestamp" : "2020-05-11T00:24:59.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244584",
+          "Type" : 205,
+          "Message" : "bait",
+          "Slot" : 0,
+          "index" : 208,
+          "timestamp" : "2020-05-11T00:25:00.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244585",
+          "Type" : 205,
+          "Message" : "im the agent outside of n2",
+          "Slot" : 3,
+          "index" : 209,
+          "timestamp" : "2020-05-11T00:25:00.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244586",
+          "Type" : 205,
+          "Message" : "if you arent hacker with them i dont know what to say lol",
+          "Slot" : 4,
+          "index" : 210,
+          "timestamp" : "2020-05-11T00:25:02.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244587",
+          "Type" : 205,
+          "Message" : "yo, i'm betting 5 bucks we have the right node",
+          "Slot" : 0,
+          "index" : 211,
+          "timestamp" : "2020-05-11T00:25:11.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244588",
+          "Type" : 205,
+          "Message" : "same",
+          "Slot" : 3,
+          "index" : 212,
+          "timestamp" : "2020-05-11T00:25:15.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244589",
+          "Type" : 205,
+          "Message" : "gg",
+          "Slot" : 1,
+          "index" : 213,
+          "timestamp" : "2020-05-11T00:25:16.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824458a",
+          "Type" : 205,
+          "Message" : "no",
+          "Slot" : 4,
+          "index" : 214,
+          "timestamp" : "2020-05-11T00:25:18.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824458b",
+          "Type" : 205,
+          "Message" : "gg",
+          "Slot" : 2,
+          "index" : 215,
+          "timestamp" : "2020-05-11T00:25:18.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824458c",
+          "Type" : 205,
+          "Message" : "what",
+          "Slot" : 0,
+          "index" : 216,
+          "timestamp" : "2020-05-11T00:25:22.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824458d",
+          "Type" : 205,
+          "Message" : "well played zelda",
+          "Slot" : 2,
+          "index" : 217,
+          "timestamp" : "2020-05-11T00:25:22.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824458e",
+          "Type" : 205,
+          "Message" : "it was a double",
+          "Slot" : 3,
+          "index" : 218,
+          "timestamp" : "2020-05-11T00:25:25.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824458f",
+          "Type" : 205,
+          "Message" : "lol",
+          "Slot" : 3,
+          "index" : 219,
+          "timestamp" : "2020-05-11T00:25:26.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244590",
+          "Type" : 205,
+          "Message" : "you too",
+          "Slot" : 1,
+          "index" : 220,
+          "timestamp" : "2020-05-11T00:25:27.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244591",
+          "Type" : 205,
+          "Message" : "nunya were you really an agent",
+          "Slot" : 4,
+          "index" : 221,
+          "timestamp" : "2020-05-11T00:25:30.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244592",
+          "Type" : 205,
+          "Message" : "sasha",
+          "Slot" : 3,
+          "index" : 222,
+          "timestamp" : "2020-05-11T00:25:33.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244593",
+          "Type" : 205,
+          "Message" : "for the record",
+          "Slot" : 3,
+          "index" : 223,
+          "timestamp" : "2020-05-11T00:25:35.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244594",
+          "Type" : 205,
+          "Message" : "i was going to switch",
+          "Slot" : 3,
+          "index" : 224,
+          "timestamp" : "2020-05-11T00:25:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244595",
+          "Type" : 205,
+          "Message" : "yes nunya is agent",
+          "Slot" : 2,
+          "index" : 225,
+          "timestamp" : "2020-05-11T00:25:39.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244596",
+          "Type" : 205,
+          "Message" : "nunya was taking mario",
+          "Slot" : 2,
+          "index" : 226,
+          "timestamp" : "2020-05-11T00:25:43.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244597",
+          "Type" : 205,
+          "Message" : "but didnt wanna give it away",
+          "Slot" : 3,
+          "index" : 227,
+          "timestamp" : "2020-05-11T00:25:44.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244598",
+          "Type" : 205,
+          "Message" : "that's why zelda passed",
+          "Slot" : 2,
+          "index" : 228,
+          "timestamp" : "2020-05-11T00:25:46.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d48244599",
+          "Type" : 205,
+          "Message" : "but taking mario was fine",
+          "Slot" : 2,
+          "index" : 229,
+          "timestamp" : "2020-05-11T00:25:50.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824459a",
+          "Type" : 205,
+          "Message" : "okay well from my pov i didnt know that",
+          "Slot" : 4,
+          "index" : 230,
+          "timestamp" : "2020-05-11T00:25:52.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824459b",
+          "Type" : 205,
+          "Message" : "i might have slipped into n4",
+          "Slot" : 2,
+          "index" : 231,
+          "timestamp" : "2020-05-11T00:25:54.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824459c",
+          "Type" : 205,
+          "Message" : "its cool",
+          "Slot" : 3,
+          "index" : 232,
+          "timestamp" : "2020-05-11T00:25:57.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824459d",
+          "Type" : 205,
+          "Message" : "i knew lynne was a confirmed hack",
+          "Slot" : 4,
+          "index" : 233,
+          "timestamp" : "2020-05-11T00:25:58.000+0000"
+      },
+      {
+          "_id" : "5eb89bab3ae97e2d4824459e",
+          "Type" : 205,
+          "Message" : "so i had to fight for it",
+          "Slot" : 4,
+          "index" : 234,
+          "timestamp" : "2020-05-11T00:26:02.000+0000"
+      }
+  ],
+  "missions" : {
+      "1" : {
+          "mission_phase_start" : {
+              "Players" : [
+                  2,
+                  4
+              ],
+              "Type" : 310,
+              "Mission" : 1,
+              "Duration" : 15000,
+              "timestamp" : "2020-05-11T00:12:13.000+0000"
+          },
+          "_id" : "5eb89bab3ae97e2d4824459f",
+          "mission_phase_end" : {
+              "Type" : 311,
+              "Mission" : 1,
+              "Failed" : true,
+              "NumHacks" : 1,
+              "Proposer" : 4,
+              "timestamp" : "2020-05-11T00:12:14.000+0000",
+              "deltaT" : 1000,
+              "propNumber" : 5,
+              "chatIndex" : 13
+          }
+      },
+      "2" : {
+          "mission_phase_start" : {
+              "Players" : [
+                  0,
+                  1,
+                  2
+              ],
+              "Type" : 310,
+              "Mission" : 2,
+              "Duration" : 15000,
+              "timestamp" : "2020-05-11T00:17:28.000+0000"
+          },
+          "_id" : "5eb89bab3ae97e2d482445a0",
+          "mission_phase_end" : {
+              "Type" : 311,
+              "Mission" : 2,
+              "Failed" : true,
+              "NumHacks" : 1,
+              "Proposer" : 1,
+              "timestamp" : "2020-05-11T00:17:30.000+0000",
+              "deltaT" : 2000,
+              "propNumber" : 5,
+              "chatIndex" : 80
+          }
+      },
+      "3" : {
+          "mission_phase_start" : {
+              "Players" : [
+                  1,
+                  2
+              ],
+              "Type" : 310,
+              "Mission" : 3,
+              "Duration" : 15000,
+              "timestamp" : "2020-05-11T00:26:16.000+0000"
+          },
+          "_id" : "5eb89bab3ae97e2d482445a1",
+          "mission_phase_end" : {
+              "Type" : 311,
+              "Mission" : 3,
+              "Failed" : true,
+              "NumHacks" : 2,
+              "Proposer" : 1,
+              "timestamp" : "2020-05-11T00:26:17.000+0000",
+              "deltaT" : 1000,
+              "propNumber" : 4,
+              "chatIndex" : 235
+          }
+      }
+  },
+  "raw_gameID" : "5eb89ba93ae97e2d48244422",
+  "timestamp" : "2020-05-11T00:26:19.310+0000",
+  "__v" : 0
+}
