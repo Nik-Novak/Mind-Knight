@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/assets/styles/reset.css";
 import "@/assets/styles/globals.css";
-import NavBar from "@/components/NavBar/NavBar";
-import Dates from "@/components/Dates";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/features/theme";
+import style from './page.module.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <p style={{background:'ghostwhite'}}>Showcase cacheing:</p>
-        <Dates />
-        {children}
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

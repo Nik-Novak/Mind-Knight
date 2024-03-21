@@ -1,5 +1,8 @@
 
-
+@font-face {
+	font-family: Munro;
+	src: url(https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/Munro.ttf) format('truetype');
+}
 
 * {
   box-sizing: border-box;
@@ -9,14 +12,59 @@
 
 html,
 body {
+  display: flex;
+  flex-direction: column;
   max-width: 100vw;
   overflow-x: hidden;
+  min-height: 100vh;
+  background: url(/img/background.png) no-repeat center;
 }
 
-/* a {
+a {
   color: inherit;
-  text-decoration: none;
-} */
+  text-decoration: underline;
+}
+
+.pixel-corners, .MuiButton-root {
+  clip-path: polygon(
+    0px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 4px,
+    12px 4px,
+    12px 8px,
+    8px 8px,
+    8px 12px,
+    4px 12px,
+    4px 20px,
+    0px 20px
+  );
+}
 
 @media (prefers-color-scheme: dark) {
   html {

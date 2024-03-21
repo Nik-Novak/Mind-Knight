@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* align-items: center; */
+  /* text-align: center; */
+  /* justify-content: space-around; */
+  flex:1
+}
+
+.left {
+  justify-content: flex-end;
+}

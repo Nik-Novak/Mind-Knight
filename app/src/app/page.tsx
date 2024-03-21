@@ -1,26 +1,34 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import { get } from "@/lib/fetch";
-import { getRepository } from "@/services/respositories";
 import Link from "next/link";
-import NavBar from "@/components/NavBar/NavBar";
+import Title from "@/components/Title";
+import Version from "@/components/Version";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import Instructions from "@/components/Instructions";
+import Footer from "@/components/Footer";
 
 //React server component that securely runs on the server by default
 export default async function Home() {
-  let repository = await getRepository('https://api.github.com/repos/vercel/next.js');
+
   return (
-    <main className={styles.main}>
-      <div>
-        <h1>Repo id: {repository.id}</h1>
-        <h1>Repo name: {repository.name}</h1>
-        <h1>Repo full_name: {repository.full_name}</h1>
-      </div>
+    <>
+    <main id='content' className={styles.main}>
+      <Title 
+        main='Mind Knight'
+        secondary={<>A companion tool for <Link href="http://www.mindnightgame.com/">Mindnight</Link></>}
+        tertiary={
+          <Version localPath={'../mindknight.version'} remotePath={'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/react-ts/mindknight.version'} />
+        }
+      />
+      <Stack spacing={1}>
+        <Instructions />
+        <Typography variant="h3">OR</Typography>
+        <Stack spacing={2} direction={'row'} justifyContent={'center'}>
+          <Link href='/events'><Button className="pixel-corners" variant="contained">Events</Button></Link>
+          <Link href='/replays'><Button variant="contained">Replays</Button></Link>
+        </Stack>
+      </Stack>
     </main>
+    <Footer />
+    </>
   );
 }
-
-//https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
-// export const runtime = 'nodejs'
-// export const dynamic = 'force-static'
-// export const revalidate = 5
-// export const fetchCache = 'force-cache'

@@ -1,0 +1,277 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type VotePhaseStart {
+  Duration          Int
+  Players           Int[]
+  Proposer          Int
+  Type              Int
+  timestamp         DateTime
+}
+
+type VoteSchema {
+  Slot        Int
+  Type        Int
+  deltaT      Int
+  timestamp   DateTime
+}
+
+type VoteMade {
+  0     VoteSchema
+  1     VoteSchema
+  2     VoteSchema
+  3     VoteSchema
+  4     VoteSchema
+  5     VoteSchema
+  6     VoteSchema
+  7     VoteSchema
+}
+
+type VotePhaseEnd {
+  Passed            Boolean
+  Type              Int
+  VotesFor          Int[]
+  VotesAgainst      Int[]
+  chatIndex         Int
+  deltaT            Int
+  timestamp         DateTime
+}
+
+type Proposal {
+  Amount            Int
+  Duration          Int
+  Mission           Int
+  NextPlayer        Int
+  Passed            Boolean
+  Player            Int
+  Proposer          Int
+  SelectedTeam      Int[]
+  Type              Int
+  chatIndex         Int
+  deltaT            Int
+  propNumber        Int
+  timestamp         DateTime
+  vote_phase_start  VotePhaseStart
+  vote_made         VoteMade
+  vote_phase_end    VotePhaseEnd
+}
+
+type PlayerProposal { //LIMITATION: 5 nodes assumption
+  1             Proposal[]
+  2             Proposal[]
+  3             Proposal[]
+  4             Proposal[]
+  5             Proposal[]
+}
+
+type GamePlayer {
+  Color         Int
+  Female        Boolean
+  IsLocal       Boolean
+  Skin          String
+  Slot          Int
+  Type          Int
+  Username      String
+  chat          Int[] //array of chat messages mapped to chat indices
+  proposals     PlayerProposal
+  timestamp     DateTime
+}
+
+type GamePlayers {
+  0     GamePlayer
+  1     GamePlayer
+  2     GamePlayer
+  3     GamePlayer
+  4     GamePlayer
+  5     GamePlayer
+  6     GamePlayer
+  7     GamePlayer
+}
+
+type GameOptions {
+  GameMode                Int
+  HammerEnabled           Boolean
+  MapPickOption           Int
+  Maps                    Int[]
+  MaxPlayers              Int
+  NamingConvention        Int
+  SkipTalkingPhaseEnabled Boolean
+  Visibility              Int
+}
+
+type GameFound {
+  FirstPlayer       Int
+  GuyRole           Int
+  Hacker            Boolean
+  Hackers           Int[]
+  HackersAmount     Int
+  Map               Int
+  MatchType         Int
+  MissionInfo       Int[]
+  MissionMinhacks   Int
+  Options           GameOptions
+  PlayerNumber      Int
+  Type              Int
+  VoiceChat         Boolean
+  VoiceChatChannel  String
+  VoiceChatName     String
+  timestamp         DateTime
+}
+
+type GameStart {
+  Type          Int
+  AFK           Int[]
+  Disconnected  Int[]
+  timestamp     DateTime
+}
+
+type MissionPhaseStart {
+  Duration    Int
+  Mission     Int
+  Players     Int[]
+  Type        Int
+  timestamp   DateTime
+}
+
+type MissionPhaseEnd {
+  Failed      Boolean
+  Mission     Int
+  NumHacks    Int
+  Proposer    Int
+  Type        Int
+  chatIndex   Int
+  deltaT      Int
+  propNumber  Int
+  timestamp   DateTime
+}
+
+type Mission {
+  mission_phase_start MissionPhaseStart
+  mission_phase_end   MissionPhaseEnd
+}
+
+type Missions { //LIMITATION: 5 nodes assumption
+  1   Mission
+  2   Mission
+  3   Mission
+  4   Mission
+  5   Mission
+}
+
+type Role {
+  Slot    Int
+  Role    Int
+}
+
+type PlayerIdentity {
+  Slot      Int
+  Nickname  String
+  Steamid   String
+  Level     Int
+}
+
+type GameEnd {
+  Type              Int
+  Hacked            Boolean
+  Hackers           Int[]
+  Canceled          Boolean
+  Roles             Role[]
+  Timeout           Int
+  PlayerIdentities  PlayerIdentity[]
+  AfterGameLobby    String
+  timestamp         DateTime
+}
+
+type ChatMsg {
+  Message   String    @default("")  //should be required=true, not sure why messages are being saved that have no content
+  Slot      Int       @default(-1)
+  Type      Int       @default(-1)
+  index     Int       @default(-1)
+  timestamp DateTime  @default(now())
+}
+
+// =========================
+// Game
+// =========================
+
+model Game { //unique: { timestamp &  } We want this to map 1 game to multiple rawgames (avoid duplicates)
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  v             Int?       @map("__v")
+  game_found    GameFound
+  game_start    GameStart
+  players       GamePlayers
+  missions      Missions
+  game_end      GameEnd
+  chat          ChatMsg[]
+  local_slot    Int
+  timestamp     DateTime
+  raw_game      RawGame[]
+
+  player        Player     @relation(fields: [player_id], references: [id])
+  player_id     String     @db.ObjectId
+
+  @@map("games")
+}
+
+// =========================
+// RawGame
+// =========================
+
+model RawGame {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  v             Int?       @map("__v")
+  data          String
+  timestamp     DateTime
+  game          Game        @relation(fields: [gameID], references: [id])
+  gameID        String      @db.ObjectId
+
+  player        Player      @relation(fields: [player_id], references: [id])
+  player_id     String      @db.ObjectId
+
+  @@map("rawgames")
+}
+
+// =========================
+// Player
+// =========================
+
+model Player {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int?    @map("__v")
+  steamID   String  @unique
+  name      String
+  games     Game[]
+  rawGames  RawGame[]
+
+  users     User[]
+
+  @@map("players")
+}
+
+// =========================
+// User
+// =========================
+
+model User {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int?    @map("__v")
+  UUID      String  @unique
+  
+  player    Player  @relation(fields: [playerID], references: [id])
+  playerID  String  @db.ObjectId
+  @@map("users")
+}
+
+//TODO implement prismix: https://github.com/jamiepine/prismix
