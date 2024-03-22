@@ -8,6 +8,8 @@ import { ChatMessage, GamePlayers } from "@prisma/client";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { PlayerSlot } from "@/types/game";
 import { coloredText } from "@/utils/functions/jsx";
+import Highlighter from "react-highlight-words";
+import style from './chatlog.module.css';
 
 type Props = {
   chat:ChatMessage[],
@@ -16,10 +18,16 @@ type Props = {
 
 export default function Chatlog({chat, game_players}:Props){
   const [searchPattern, setSearchPattern] = useState('');
-  const [showMatchingChatOnly, setShowMatchingChatOnly] = useState(false);
-
+  const [showMatchingChatOnly, setShowMatchingChatOnly] = useState(true);
+  let processedChat = chat;
+  if (searchPattern && showMatchingChatOnly){
+    processedChat = chat.filter(c=>
+      c.Message.toLowerCase().includes(searchPattern.toLowerCase()) 
+      || game_players[c.Slot as PlayerSlot]?.Username.toLowerCase().includes(searchPattern.toLowerCase())
+    );
+  }
   return (
-    <Stack>
+    <Stack className={style.container}>
       <Stack direction='row' spacing={2}>
         <TextField style={{flexGrow:1}} variant="standard" value={searchPattern} placeholder="Search" onChange={(event)=>setSearchPattern(event.target.value)} 
           InputProps={{ endAdornment: <InputAdornment position="end">
@@ -34,17 +42,19 @@ export default function Chatlog({chat, game_players}:Props){
           </IconButton>
         </Tooltip>
       </Stack>
-      <ul style={{maxHeight:500, overflow:'hidden', overflowY:'scroll'}}>
-        {chat.map(c=>{
+      <ul style={{maxHeight:400, overflow:'hidden', overflowY:'scroll'}}>
+        {processedChat.map(c=>{
           const slot = c.Slot as PlayerSlot;
           const author = game_players[slot]?.Username || '_UNKNOWN';
           const message = c.Message;
           const colorCode = game_players[slot]?.Color as ColorCode || 0
           let color = colors[ colorCode ].hex;
           if(author === 'system')
-            return <li key={c.index}>{`------- ${coloredText(message, color)} -------`}</li>
-          else
-            return <li key={c.index}><Typography>{'['}{coloredText(author, color)}{']: '}{message}</Typography></li>
+            return <li key={c.index} className={style.message} >{`------- ${coloredText(message, color)} -------`}</li>
+          else{
+            let text = <>{'['}{coloredText(author, color)}{']: '}<Highlighter searchWords={[searchPattern]} textToHighlight={message}/></> //`[${coloredText(author, color)}]: ${message}`; //
+            return <li key={c.index} className={style.message}><Typography>{text}</Typography></li>
+          }
         })}
       </ul>
     </Stack>
