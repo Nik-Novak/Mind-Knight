@@ -16,6 +16,7 @@
 .center {
   flex:1;
   align-items: center;
+  max-width: 100vh;
 }
 
 .right {
