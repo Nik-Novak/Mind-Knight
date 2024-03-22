@@ -252,6 +252,7 @@ model Player {
   v         Int?    @map("__v")
   steamID   String  @unique
   name      String
+  elo       Float   @default(1500)
   games     Game[]
   rawGames  RawGame[]
 
@@ -275,3 +276,9 @@ model User {
 }
 
 //TODO implement prismix: https://github.com/jamiepine/prismix
+
+
+//awesome post for features: https://github.com/prisma/prisma/issues/7161#issuecomment-1026317110
+//custom computed fields: https://www.prisma.io/docs/orm/prisma-client/queries/computed-fields
+//custom validation: https://www.prisma.io/docs/concepts/components/prisma-client/custom-validation
+//custom models: .findManyByDomain() : https://www.prisma.io/docs/concepts/components/prisma-client/custom-validation

@@ -14,5 +14,12 @@
 }
 
 .center {
-  flex:1
+  flex:1;
+  align-items: center;
+}
+
+.right {
+  /* width: 23.44%; */
+  margin: 20px;
+  align-items: center;
 }

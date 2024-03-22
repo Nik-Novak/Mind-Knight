@@ -1,0 +1,47 @@
+/******************POSITIONS************************/
+
+.playerContainer[data-index='0']{
+  left: 37%;
+  bottom: 75%;
+}
+
+.playerContainer[data-index='1']{
+  left: 25%;
+  bottom: 53%;
+}
+
+.playerContainer[data-index='2']{
+  left: 15%;
+  bottom: 29%;
+}
+
+.playerContainer[data-index='3']{
+  left: 25%;
+  bottom: 5%;
+}
+
+.playerContainer[data-index='4']{
+  right:35%;
+  bottom: 0%;
+}
+
+.playerContainer[data-index='5']{
+  right:22%;
+  bottom: 18%;
+}
+
+.playerContainer[data-index='6']{
+  right:15%;
+  bottom: 40%;
+}
+
+.playerContainer[data-index='7']{
+  right:25%;
+  bottom: 60%;
+}
+
+/*******FLIP IMAGES*******/
+.playerContainer[data-index='4'] img, .playerContainer[data-index='5'] img, .playerContainer[data-index='6'] img, .playerContainer[data-index='7'] img{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}

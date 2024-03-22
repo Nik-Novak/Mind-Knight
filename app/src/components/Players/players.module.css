@@ -1,0 +1,83 @@
+.playerContainer{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4vh;
+}
+
+.playerImg img{
+  user-select: none;
+  width: 4vh;
+}
+
+.actionExistsIcon {
+  position: absolute;
+  left: -15%;
+  top: 0;
+  color: #AD8432;
+}
+
+.hammerIcon {
+  position: absolute;
+  left: -20%;
+  bottom: 10%;
+  color: darkgray;
+}
+
+.disconnectIcon {
+  position: absolute;
+  left: 95%;
+  top: 0;
+}
+
+.voteIcon {
+  position: absolute;
+  left: 95%;
+  bottom: 40%;
+}
+
+.propNumberContainer {
+  position: absolute;
+  left: 95%;
+  bottom: 0%;
+}
+
+.playerInfo{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  user-select: none;
+}
+.playerInfo p {
+  line-height: 1;
+}
+
+.playerImg{
+  position: relative;
+  width: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor:pointer;
+}
+
+.highlighted > .playerImg {
+  border-radius: 0 0 20px 20px;
+}
+
+.fa-times{
+  font-size: 20px;
+}
+
+.highlighted > .playerImg {
+  background: linear-gradient(to top, rgba(173,132,50, 1), rgba(163,122,50, 0));
+  /*background: rgba(163,122,50, 0.7);*/
+}
+
+.selected > .playerImg {
+  box-shadow: 0 0 10px 2px white;
+  /*background: rgba(163,122,50, 0.7);*/
+}

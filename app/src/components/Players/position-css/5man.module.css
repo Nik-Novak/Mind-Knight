@@ -1,0 +1,45 @@
+
+/******************POSITIONS************************/
+
+.playerContainer[data-index='0']{
+  left: 23%;
+  bottom: 65%;
+}
+
+.playerContainer[data-index='1']{
+  left: 20%;
+  bottom: 20%;
+}
+
+.playerContainer[data-index='2']{
+   left: 61%;
+   bottom: 11%;
+}
+
+.playerContainer[data-index='3']{
+  left: 80%;
+  bottom: 45%;
+}
+
+.playerContainer[data-index='4']{
+  left: 59%;
+  bottom: 79%;
+}
+
+.playerContainer[data-index='5']{
+  display:none;
+}
+
+.playerContainer[data-index='6']{
+  display:none;
+}
+
+.playerContainer[data-index='7']{
+  display:none;
+}
+
+/*******FLIP IMAGES*******/
+.playerContainer[data-index='2'] /* > .player-img > */ img, .playerContainer[data-index='3'] /* > .player-img > */ img, .playerContainer[data-index='4'] /* > .player-img > */ img {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
