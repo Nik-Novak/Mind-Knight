@@ -2,37 +2,44 @@
 
 .playerContainer[data-index='0']{
   left: 27%;
-  bottom: 75%;
+  /* bottom: 75%; */
+  top: 11%;
 }
 
 .playerContainer[data-index='1']{
   left: 10%;
-  bottom: 43%;
+  /* bottom: 43%; */
+  top: 43%;
 }
 
 .playerContainer[data-index='2']{
   left: 23%;
-  bottom: 11%;
+  /* bottom: 11%; */
+  bottom: 75%;
 }
 
 .playerContainer[data-index='3']{
   left: 65%;
-  bottom: 0%;
+  /* bottom: 0%; */
+  top: 86%;
 }
 
 .playerContainer[data-index='4']{
   right:5%;
-  bottom: 43%;
+  /* bottom: 43%; */
+  top: 43%;
 }
 
 .playerContainer[data-index='5']{
   right:17%;
-  bottom: 62%;
+  /* bottom: 62%; */
+  top: 24%;
 }
 
 .playerContainer[data-index='6']{
   right:30%;
   bottom: 80%;
+  top: 6%;
 }
 
 .playerContainer[data-index='7']{

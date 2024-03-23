@@ -2,32 +2,38 @@
 
 .playerContainer[data-index='0']{
   left: 27%;
-  bottom: 75%;
+  /* bottom: 75%; */
+  top: 11%;
 }
 
 .playerContainer[data-index='1']{
   left: 10%;
-  bottom: 43%;
+  /* bottom: 43%; */
+  top: 43%;
 }
 
 .playerContainer[data-index='2']{
   left: 23%;
-  bottom: 11%;
+  /* bottom: 11%; */
+  top: 75%;
 }
 
 .playerContainer[data-index='3']{
   left: 75%;
-  bottom: 11%;
+  /* bottom: 11%; */
+  bottom: 75%;
 }
 
 .playerContainer[data-index='4']{
   right:10%;
-  bottom: 43%;
+  /* bottom: 43%; */
+  top: 43%;
 }
 
 .playerContainer[data-index='5']{
   right:26%;
-  bottom: 73%;
+  /* bottom: 73%; */
+  top: 13%;
 }
 
 .playerContainer[data-index='6']{

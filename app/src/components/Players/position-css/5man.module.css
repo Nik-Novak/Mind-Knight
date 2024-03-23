@@ -3,27 +3,31 @@
 
 .playerContainer[data-index='0']{
   left: 23%;
-  bottom: 65%;
+  /* bottom: 65%; top = 100-bottom-14 */
+  top: 21%;
 }
 
 .playerContainer[data-index='1']{
   left: 20%;
-  bottom: 20%;
+  /* bottom: 20%; */
+  top: 66%;
 }
 
 .playerContainer[data-index='2']{
    left: 61%;
-   bottom: 11%;
+   /* bottom: 11%; */
+   top: 75%;
 }
 
 .playerContainer[data-index='3']{
   left: 80%;
-  bottom: 45%;
+  /* bottom: 45%; */
+  top: 41%;
 }
 
 .playerContainer[data-index='4']{
   left: 59%;
-  bottom: 79%;
+  top: 7%;
 }
 
 .playerContainer[data-index='5']{

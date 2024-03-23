@@ -2,42 +2,50 @@
 
 .playerContainer[data-index='0']{
   left: 37%;
-  bottom: 75%;
+  /* bottom: 75%; */
+  top: 11%;
 }
 
 .playerContainer[data-index='1']{
   left: 25%;
-  bottom: 53%;
+  /* bottom: 53%; */
+  top: 33%;
 }
 
 .playerContainer[data-index='2']{
   left: 15%;
-  bottom: 29%;
+  /* bottom: 29%; */
+  top: 57%;
 }
 
 .playerContainer[data-index='3']{
   left: 25%;
-  bottom: 5%;
+  /* bottom: 5%; */
+  top: 81%;
 }
 
 .playerContainer[data-index='4']{
   right:35%;
-  bottom: 0%;
+  /* bottom: 0%; */
+  bottom: 86%;
 }
 
 .playerContainer[data-index='5']{
   right:22%;
-  bottom: 18%;
+  /* bottom: 18%; */
+  top: 68%;
 }
 
 .playerContainer[data-index='6']{
   right:15%;
-  bottom: 40%;
+  /* bottom: 40%; */
+  top: 46%;
 }
 
 .playerContainer[data-index='7']{
   right:25%;
-  bottom: 60%;
+  /* bottom: 60%; */
+  top: 26%;
 }
 
 /*******FLIP IMAGES*******/
