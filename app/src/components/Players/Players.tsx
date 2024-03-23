@@ -5,6 +5,8 @@ import { getHammerPlayerSlot, getPropIndex } from "@/utils/functions/game";
 import { suspense } from "@/utils/hoc/suspense";
 import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
+import { Suspense } from "react";
+import PlayerSkeleton from "./PlayerSkeleton";
 
 type Props = {
   selectedNode: NodeNumber;
@@ -32,20 +34,22 @@ export default function Players({selectedNode, selectedTurn, selectedSlot, game_
         let hammerPlayerSlot = propSlot && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const vote = turnInfo?.vote_phase_end.VotesFor.includes(slot) ? 'accept' : 'refuse';
         return (
-          <Player 
-            key={k} 
-            slot={game_player.Slot as PlayerSlot}
-            numPlayers={numPlayers}
-            username={game_player.Username}
-            color={colors[game_player.Color as ColorCode].hex}
-            playerIdentity={playerIdentity}
-            hasAction={playerAction!==undefined}
-            selected={slot === selectedSlot}
-            hasHammer={slot === hammerPlayerSlot}
-            isDisconnected={false}
-            vote={vote}
-            highlighted={turnInfo?.SelectedTeam.includes(slot)}
-          />
+          <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
+            <Player 
+              key={k} 
+              slot={slot}
+              numPlayers={numPlayers}
+              username={game_player.Username}
+              color={colors[game_player.Color as ColorCode].hex}
+              playerIdentity={playerIdentity}
+              hasAction={playerAction!==undefined}
+              selected={slot === selectedSlot}
+              hasHammer={slot === hammerPlayerSlot}
+              isDisconnected={false}
+              vote={vote}
+              highlighted={turnInfo?.SelectedTeam.includes(slot)}
+            />
+          </Suspense>
         );
       })
     }

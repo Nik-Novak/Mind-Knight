@@ -39,7 +39,7 @@ type Props = {
   proppedIndex?: number,
 }
 
-async function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, vote, proppedIndex }:Props){
+export default async function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, vote, proppedIndex }:Props){
   const positionalStyle = styleMap[numPlayers];
   
   let voteIcon;
@@ -51,7 +51,7 @@ async function Player({ slot, numPlayers, username, color, playerIdentity, selec
   let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
   let eloIncrement:number|undefined = -12;
 
-  // await new Promise((res)=>setTimeout(res, 5000));
+  await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
 
   return (
@@ -87,4 +87,4 @@ async function Player({ slot, numPlayers, username, color, playerIdentity, selec
   )
 }
 
-export default suspense(Player, 'loading...')
+// export default suspense(Player, 'loading...')
