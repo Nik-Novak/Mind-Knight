@@ -16,7 +16,7 @@ import style8 from './position-css/8man.module.css';
 import { coloredText } from "@/utils/functions/jsx";
 import Elo from "../Elo";
 
-const styleMap = {
+export const styleMap = {
   5: style5,
   6: style6,
   7: style7,
@@ -50,6 +50,9 @@ async function Player({ slot, numPlayers, username, color, playerIdentity, selec
 
   let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
   let eloIncrement:number|undefined = -12;
+
+  // await new Promise((res)=>setTimeout(res, 5000));
+  // return <PlayerSkeleton slot={0} numPlayers={5} />
 
   return (
     <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${highlighted ? style.highlighted :''}`} data-index={slot}>

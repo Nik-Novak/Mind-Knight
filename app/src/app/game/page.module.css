@@ -5,7 +5,9 @@
   /* align-items: center; */
   /* text-align: center; */
   /* justify-content: space-around; */
-  flex:1
+  flex:1;
+  
+  /* background-color: #222; */
 }
 
 .left {
