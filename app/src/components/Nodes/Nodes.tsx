@@ -18,7 +18,7 @@ function Node({ numPlayers, hacked, selected}:NodeProps){
     bgColor = '#25A165';
     hoverColor = '#159155';
   }
-  return <IconButton sx={{ border:selected?'2px solid white':undefined, width:'15vh', height:'15vh', maxWidth:100, maxHeight:100, bgcolor:bgColor, '&:hover': {
+  return <IconButton sx={{ padding:0, border:selected?'2px solid white':undefined, width:'15vh', height:'15vh', maxWidth:80, maxHeight:80, bgcolor:bgColor, '&:hover': {
     bgcolor: hoverColor, // Keep the background red on hover
   }}}>
     <Typography sx={{fontWeight:'bold'}}>{numPlayers}</Typography>
@@ -27,7 +27,7 @@ function Node({ numPlayers, hacked, selected}:NodeProps){
 
 type Props = {
   game_found: GameFound,
-  missions: Missions,
+  missions?: Missions,
   selectedNode: NodeNumber,
 }
 
@@ -37,7 +37,7 @@ export default function Nodes({missions, selectedNode, game_found}:Props){
       {
         game_found.MissionInfo.map((numPlayers, i)=>{
           let n = i+1 as NodeNumber;
-          let hacked = missions[n]?.mission_phase_end.Failed
+          let hacked = missions?.[n]?.mission_phase_end.Failed
           return <Node key={n} hacked={hacked} numPlayers={numPlayers} selected={selectedNode === i+1} />
         })
       }

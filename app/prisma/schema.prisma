@@ -19,6 +19,8 @@ type VotePhaseStart {
   Proposer          Int
   Type              Int
   timestamp         DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type VoteSchema {
@@ -26,6 +28,8 @@ type VoteSchema {
   Type        Int
   deltaT      Int
   timestamp   DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type VoteMade { //dimension = player slot
@@ -47,6 +51,8 @@ type VotePhaseEnd {
   chatIndex         Int
   deltaT            Int
   timestamp         DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type Proposal {
@@ -66,6 +72,8 @@ type Proposal {
   vote_phase_start  VotePhaseStart
   vote_made         VoteMade
   vote_phase_end    VotePhaseEnd?
+
+  created_at        DateTime    @default(now())
 }
 
 type PlayerProposal { //LIMITATION: 5 nodes assumption
@@ -87,6 +95,8 @@ type GamePlayer {
   chat          Int[] //array of chat messages mapped to chat indices
   proposals     PlayerProposal
   timestamp     DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type GamePlayers {
@@ -109,6 +119,8 @@ type GameOptions {
   NamingConvention        Int
   SkipTalkingPhaseEnabled Boolean
   Visibility              Int
+
+  created_at        DateTime    @default(now())
 }
 
 type GameFound {
@@ -128,6 +140,8 @@ type GameFound {
   VoiceChatChannel  String
   VoiceChatName     String
   timestamp         DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type GameStart {
@@ -135,6 +149,8 @@ type GameStart {
   AFK           Int[]
   Disconnected  Int[]
   timestamp     DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type MissionPhaseStart {
@@ -143,6 +159,8 @@ type MissionPhaseStart {
   Players     Int[]
   Type        Int
   timestamp   DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type MissionPhaseEnd {
@@ -155,6 +173,8 @@ type MissionPhaseEnd {
   deltaT      Int
   propNumber  Int
   timestamp   DateTime
+
+  created_at        DateTime    @default(now())
 }
 
 type Mission {
@@ -212,7 +232,7 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   game_found    GameFound
   game_start    GameStart
   players       GamePlayers
-  missions      Missions
+  missions      Missions?
   game_end      GameEnd
   chat          ChatMessage[]
   local_slot    Int
@@ -221,6 +241,9 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 
   player        Player      @relation(fields: [player_id], references: [id])
   player_id     String      @db.ObjectId
+
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
 
   @@map("games")
 }
