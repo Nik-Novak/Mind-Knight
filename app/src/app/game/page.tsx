@@ -15,7 +15,7 @@ import Turns from "@/components/Turns";
 export default async function GamePage() {
   const game:Game = sampleGame as unknown as Game//TODO fetch game
   const selectedNode:NodeNumber = 2;
-  const selectedTurn:number = 1;
+  const selectedTurn:number = 2;
   const selectedSlot:PlayerSlot = 1;
   
   return (

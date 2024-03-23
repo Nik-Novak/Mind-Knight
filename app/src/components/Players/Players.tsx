@@ -33,7 +33,7 @@ export default function Players({selectedNode, selectedTurn, selectedSlot, game_
         const playerAction = game_player.proposals[selectedNode][selectedTurn-1];
         let hammerPlayerSlot = propSlot && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
-        let proppedIndex = playerAction.propNumber -1;
+        let proppedIndex = playerAction && playerAction.propNumber -1;
         return (
           <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 

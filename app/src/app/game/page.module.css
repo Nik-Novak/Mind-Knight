@@ -12,7 +12,7 @@
 
 .left {
   justify-content: flex-end;
-  max-width: 400px;
+  max-width: min(25%, 400px);
 }
 
 .center {
@@ -37,5 +37,6 @@
     left: 50%; /* Set left position to 50% */
     transform: translateX(-50%); /* Translate back by half of its own width */
     z-index: 100;
+    max-width: 400px;
   }
 }
