@@ -15,7 +15,7 @@ export default function NodeTeamRejects({selectedNode, selectedTurn, selectedSlo
   return (
     <Stack sx={{width:'8.89vh', textAlign:'center'}}>
       <Typography my={'10px'} sx={{fontSize:'2vh', lineHeight:1}}>Node Teams Rejected</Typography>
-      <Typography variant="h4">{numRejects}/5</Typography>
+      <Typography variant="h4" sx={{fontSize:'3vh', lineHeight:1}}>{numRejects}/5</Typography>
     </Stack>
   )
 }

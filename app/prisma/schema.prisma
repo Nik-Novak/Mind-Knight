@@ -65,7 +65,7 @@ type Proposal {
   timestamp         DateTime
   vote_phase_start  VotePhaseStart
   vote_made         VoteMade
-  vote_phase_end    VotePhaseEnd
+  vote_phase_end    VotePhaseEnd?
 }
 
 type PlayerProposal { //LIMITATION: 5 nodes assumption

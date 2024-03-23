@@ -3,7 +3,7 @@ import { Tooltip, Typography } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
 import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import GavelIcon from '@mui/icons-material/Gavel';
+import HammerIcon from '@mui/icons-material/Hardware';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
 import { PlayerIdentity } from "@prisma/client";
 import { database } from "@/utils/database/database";
@@ -35,23 +35,23 @@ type Props = {
   hasAction?: boolean,
   hasHammer?: boolean,
   isDisconnected?: boolean,
-  vote?: 'accept'|'refuse',
-  proppedIndex?: number,
+  accepted?: boolean,
+  proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
 }
 
-export default async function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, vote, proppedIndex }:Props){
+export default async function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
   const positionalStyle = styleMap[numPlayers];
   
-  let voteIcon;
-  if(vote==='accept')
-    voteIcon = <AcceptIcon className={style.voteIcon} sx={{color:'green', fontSize:'32px', strokeWidth:'10px'}} />
-  else if(vote === 'refuse')
-    voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red', fontSize:'32px'}} />
+  let voteIcon; //undefined=novote
+  if(accepted===true) //accepted
+    voteIcon = <AcceptIcon className={style.voteIcon} sx={{color:'green'}} />
+  else if(accepted === false) //rejected
+    voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red'}} />
 
-  let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
-  let eloIncrement:number|undefined = -12;
+  // let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
+  // let eloIncrement:number|undefined = 12;
 
-  await new Promise((res)=>setTimeout(res, 10000));
+  // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
 
   return (
@@ -64,24 +64,24 @@ export default async function Player({ slot, numPlayers, username, color, player
         </Tooltip>
         <Tooltip title="This player had hammer at the time of the shown proposal" placement="left" arrow>
           {/* <i className={`hammer-icon fas fa-hammer ${hasHammer?'':'hidden'}`}></i> */}
-          <GavelIcon sx={{visibility: !hasHammer?'hidden':undefined}} className={style.hammerIcon} />
+          <HammerIcon sx={{visibility: !hasHammer?'hidden':undefined}} className={style.hammerIcon} />
         </Tooltip>
         <Tooltip title="This player was disconnected at the time of the shown proposal" placement="right" arrow>
           <PowerOffIcon sx={{visibility: !isDisconnected?'hidden':undefined}} className={style.disconnectIcon} />
           {/* <i className={`disconnect-icon fas fa-plug ${isDisconnected ? '': 'hidden'}`}></i> */}
         </Tooltip>
-        {voteIcon && <Tooltip title={`This player ${vote==='accept'?'accepted':'refused'} the shown proposal`} placement="right" arrow>
+        {voteIcon && <Tooltip title={`This player ${accepted===true?'accepted':'refused'} the shown proposal`} placement="right" arrow>
           {voteIcon}
           {/* <i className={`vote-icon fas ${voteIcon}`}></i> */}
         </Tooltip>}
         <Tooltip title={`This player proposed when there ${proppedIndex===1?'was':'were'} ${proppedIndex} node team${proppedIndex===1?'':'s'} rejected`} placement="right" arrow>
-          <p className={style.propNumberContainer} style={{visibility: proppedIndex===undefined?'hidden':undefined}}><span className="prop-number">{proppedIndex}</span>/5</p>
+          <Typography className={style.propNumberContainer} style={{visibility: proppedIndex===undefined?'hidden':undefined}}><span className="prop-number">{proppedIndex}</span>/5</Typography>
         </Tooltip>
       </div>
       <div className={style.playerInfo}>
         <Typography className="player-username">{coloredText(username, color)}</Typography>
         { playerIdentity && <Typography className="player-steamname">{`${playerIdentity.Nickname} (${playerIdentity.Level})`}</Typography> }
-        <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} />
+        {/* <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} /> */}
       </div>
     </div>
   )

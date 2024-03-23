@@ -13,34 +13,41 @@
 
 .actionExistsIcon {
   position: absolute;
-  left: -15%;
-  top: 0;
+  left: -30%;
+  top: -0%;
   color: #AD8432;
+  font-size: 2.5vh !important;
 }
 
 .hammerIcon {
+  /* transform: scaleX(-1); */
   position: absolute;
-  left: -20%;
-  bottom: 10%;
+  left: -30%;
+  bottom: -3%;
   color: darkgray;
+  font-size: 2.5vh !important;
 }
 
 .disconnectIcon {
   position: absolute;
   left: 95%;
   top: 0;
+  font-size: 2.5vh !important;
 }
 
 .voteIcon {
   position: absolute;
   left: 95%;
   bottom: 40%;
+  font-size: 2.5vh !important;
 }
 
 .propNumberContainer {
   position: absolute;
-  left: 95%;
+  left: 102%;
   bottom: 0%;
+  font-size: 1.5vh !important;
+  color: lightgray;
 }
 
 .playerInfo{

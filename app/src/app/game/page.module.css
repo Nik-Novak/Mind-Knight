@@ -25,6 +25,7 @@
   /* width: 23.44%; */
   margin: 20px;
   align-items: center;
+  max-height: 80vh;
 }
 
 @media (max-width: 1000px)  {

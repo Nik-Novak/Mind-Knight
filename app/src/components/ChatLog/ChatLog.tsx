@@ -40,7 +40,7 @@ export default function Chatlog({chat, game_players}:Props){
           </IconButton>
         </Tooltip>
       </Stack>
-      <ul style={{maxHeight:400, overflow:'hidden', overflowY:'scroll'}}>
+      <ul style={{maxHeight:'30vh', overflow:'hidden', overflowY:'scroll'}}>
         {processedChat.map(c=>{
           const slot = c.Slot as PlayerSlot;
           const author = game_players[slot]?.Username || '_UNKNOWN';
