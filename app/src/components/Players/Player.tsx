@@ -48,8 +48,8 @@ export default async function Player({ slot, numPlayers, username, color, player
   else if(accepted === false) //rejected
     voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red'}} />
 
-  // let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
-  // let eloIncrement:number|undefined = 12;
+  let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
+  let eloIncrement:number|undefined = 12;
 
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
@@ -81,7 +81,7 @@ export default async function Player({ slot, numPlayers, username, color, player
       <div className={style.playerInfo}>
         <Typography className="player-username">{coloredText(username, color)}</Typography>
         { playerIdentity && <Typography className="player-steamname">{`${playerIdentity.Nickname} (${playerIdentity.Level})`}</Typography> }
-        {/* <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} /> */}
+        <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} />
       </div>
     </div>
   )
