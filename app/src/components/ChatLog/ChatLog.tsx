@@ -1,5 +1,5 @@
 "use client";
-import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Input, InputAdornment, Paper, Stack, TextField, Tooltip, Typography } from "@mui/material";
+import { IconButton, InputAdornment, Stack, TextField, Tooltip } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -7,9 +7,7 @@ import React, { useState } from "react";
 import { ChatMessage, GamePlayers } from "@prisma/client";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { PlayerSlot } from "@/types/game";
-import { coloredText } from "@/utils/functions/jsx";
-import Highlighter from "react-highlight-words";
-import style from './chatlog.module.css';
+import Message from "./Message";
 
 type Props = {
   chat:ChatMessage[],
@@ -27,7 +25,7 @@ export default function Chatlog({chat, game_players}:Props){
     );
   }
   return (
-    <Stack className={style.container}>
+    <Stack>
       <Stack direction='row' spacing={2}>
         <TextField style={{flexGrow:1}} variant="standard" value={searchPattern} placeholder="Search" onChange={(event)=>setSearchPattern(event.target.value)} 
           InputProps={{ endAdornment: <InputAdornment position="end">
@@ -49,12 +47,7 @@ export default function Chatlog({chat, game_players}:Props){
           const message = c.Message;
           const colorCode = game_players[slot]?.Color as ColorCode || 0
           let color = colors[ colorCode ].hex;
-          if(author === 'system')
-            return <li key={c.index} className={style.message} >{`------- ${coloredText(message, color)} -------`}</li>
-          else{
-            let text = <>{'['}{coloredText(author, color)}{']: '}<Highlighter searchWords={[searchPattern]} textToHighlight={message}/></> //`[${coloredText(author, color)}]: ${message}`; //
-            return <li key={c.index} className={style.message}><Typography>{text}</Typography></li>
-          }
+          return <Message key={c.index} author={author} color={color} message={message} searchPattern={searchPattern} />
         })}
       </ul>
     </Stack>
