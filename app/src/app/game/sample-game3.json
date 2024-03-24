@@ -1,5 +1,4 @@
 {
-  "_id" : "65fe1cb8e5035d52d87c0ad2",
   "game_found" : {
       "Options" : {
           "Maps" : [
@@ -42,7 +41,7 @@
       "VoiceChat" : false,
       "VoiceChatName" : ".8697_4.",
       "VoiceChatChannel" : "channel_8697",
-      "timestamp" : "2024-03-22T23:38:17.000+0000"
+      "timestamp" : "2024-03-22T23:38:17.000Z"
   },
   "game_start" : {
       "AFK" : [
@@ -52,7 +51,7 @@
 
       ],
       "Type" : 201,
-      "timestamp" : "2024-03-22T23:38:22.000+0000"
+      "timestamp" : "2024-03-22T23:38:22.000Z"
   },
   "game_end" : {
       "Hackers" : [
@@ -140,9 +139,9 @@
           }
       ],
       "AfterGameLobby" : "no-lobby",
-      "timestamp" : "2024-03-23T00:05:10.000+0000"
+      "timestamp" : "2024-03-23T00:05:10.000Z"
   },
-  "players" : {
+  "game_players" : {
       "0" : {
           "chat" : [
               4,
@@ -197,7 +196,7 @@
           "Female" : false,
           "IsLocal" : false,
           "Skin" : "skin_pierrot",
-          "timestamp" : "2024-03-22T23:38:17.000+0000",
+          "timestamp" : "2024-03-22T23:38:17.000Z",
           "proposals" : {
               "1" : [
                   {
@@ -212,7 +211,7 @@
                       "Amount" : 2,
                       "Duration" : 60000,
                       "Mission" : 1,
-                      "timestamp" : "2024-03-22T23:39:23.000+0000",
+                      "timestamp" : "2024-03-22T23:39:23.000Z",
                       "propNumber" : 1,
                       "Proposer" : 0,
                       "Passed" : false,
@@ -227,49 +226,49 @@
                           "Type" : 306,
                           "Proposer" : 0,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:39:23.000+0000"
+                          "timestamp" : "2024-03-22T23:39:23.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0ad7",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:39:40.000+0000",
+                              "timestamp" : "2024-03-22T23:39:40.000Z",
                               "deltaT" : 17000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0ad8",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:39:27.000+0000",
+                              "timestamp" : "2024-03-22T23:39:27.000Z",
                               "deltaT" : 4000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0ad9",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:39:33.000+0000",
+                              "timestamp" : "2024-03-22T23:39:33.000Z",
                               "deltaT" : 10000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0ada",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:39:27.000+0000",
+                              "timestamp" : "2024-03-22T23:39:27.000Z",
                               "deltaT" : 4000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0adb",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:39:31.000+0000",
+                              "timestamp" : "2024-03-22T23:39:31.000Z",
                               "deltaT" : 8000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0adc",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:39:29.000+0000",
+                              "timestamp" : "2024-03-22T23:39:29.000Z",
                               "deltaT" : 6000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0ad6"
@@ -288,7 +287,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0add",
                           "Type" : 307,
                           "Passed" : true,
-                          "timestamp" : "2024-03-22T23:39:40.000+0000",
+                          "timestamp" : "2024-03-22T23:39:40.000Z",
                           "deltaT" : 17000,
                           "chatIndex" : 18
                       }
@@ -312,7 +311,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 3,
-                      "timestamp" : "2024-03-22T23:45:44.000+0000",
+                      "timestamp" : "2024-03-22T23:45:44.000Z",
                       "propNumber" : 1,
                       "Proposer" : 0,
                       "Passed" : false,
@@ -329,49 +328,49 @@
                           "Type" : 306,
                           "Proposer" : 0,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:45:44.000+0000"
+                          "timestamp" : "2024-03-22T23:45:44.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0ae1",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:46:02.000+0000",
+                              "timestamp" : "2024-03-22T23:46:02.000Z",
                               "deltaT" : 18000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0ae2",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:45:58.000+0000",
+                              "timestamp" : "2024-03-22T23:45:58.000Z",
                               "deltaT" : 14000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0ae3",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:46:01.000+0000",
+                              "timestamp" : "2024-03-22T23:46:01.000Z",
                               "deltaT" : 17000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0ae4",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:45:55.000+0000",
+                              "timestamp" : "2024-03-22T23:45:55.000Z",
                               "deltaT" : 11000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0ae5",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:45:56.000+0000",
+                              "timestamp" : "2024-03-22T23:45:56.000Z",
                               "deltaT" : 12000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0ae6",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:46:06.000+0000",
+                              "timestamp" : "2024-03-22T23:46:06.000Z",
                               "deltaT" : 22000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0ae0"
@@ -390,7 +389,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0ae7",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:46:06.000+0000",
+                          "timestamp" : "2024-03-22T23:46:06.000Z",
                           "deltaT" : 22000,
                           "chatIndex" : 84
                       }
@@ -410,7 +409,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:52:47.000+0000",
+                      "timestamp" : "2024-03-22T23:52:47.000Z",
                       "propNumber" : 1,
                       "Proposer" : 0,
                       "Passed" : false,
@@ -426,49 +425,49 @@
                           "Type" : 306,
                           "Proposer" : 0,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:52:47.000+0000"
+                          "timestamp" : "2024-03-22T23:52:47.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0aeb",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:52:48.000+0000",
+                              "timestamp" : "2024-03-22T23:52:48.000Z",
                               "deltaT" : 1000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0aec",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:52:57.000+0000",
+                              "timestamp" : "2024-03-22T23:52:57.000Z",
                               "deltaT" : 10000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0aed",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:52:54.000+0000",
+                              "timestamp" : "2024-03-22T23:52:54.000Z",
                               "deltaT" : 7000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0aee",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:52:56.000+0000",
+                              "timestamp" : "2024-03-22T23:52:56.000Z",
                               "deltaT" : 9000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0aef",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:53:13.000+0000",
+                              "timestamp" : "2024-03-22T23:53:13.000Z",
                               "deltaT" : 26000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0af0",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:52:49.000+0000",
+                              "timestamp" : "2024-03-22T23:52:49.000Z",
                               "deltaT" : 2000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0aea"
@@ -487,7 +486,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0af1",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:53:13.000+0000",
+                          "timestamp" : "2024-03-22T23:53:13.000Z",
                           "deltaT" : 26000,
                           "chatIndex" : 176
                       }
@@ -505,7 +504,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:57:59.000+0000",
+                      "timestamp" : "2024-03-22T23:57:59.000Z",
                       "propNumber" : 4,
                       "Proposer" : 0,
                       "Passed" : false,
@@ -521,49 +520,49 @@
                           "Type" : 306,
                           "Proposer" : 0,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:57:59.000+0000"
+                          "timestamp" : "2024-03-22T23:57:59.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0af5",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:58:09.000+0000",
+                              "timestamp" : "2024-03-22T23:58:09.000Z",
                               "deltaT" : 10000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0af6",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:58:09.000+0000",
+                              "timestamp" : "2024-03-22T23:58:09.000Z",
                               "deltaT" : 10000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0af7",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:58:10.000+0000",
+                              "timestamp" : "2024-03-22T23:58:10.000Z",
                               "deltaT" : 11000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0af8",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:58:34.000+0000",
+                              "timestamp" : "2024-03-22T23:58:34.000Z",
                               "deltaT" : 35000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0af9",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:58:01.000+0000",
+                              "timestamp" : "2024-03-22T23:58:01.000Z",
                               "deltaT" : 2000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0afa",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:58:00.000+0000",
+                              "timestamp" : "2024-03-22T23:58:00.000Z",
                               "deltaT" : 1000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0af4"
@@ -582,7 +581,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0afb",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:58:34.000+0000",
+                          "timestamp" : "2024-03-22T23:58:34.000Z",
                           "deltaT" : 35000,
                           "chatIndex" : 244
                       }
@@ -658,7 +657,7 @@
           "Female" : false,
           "IsLocal" : false,
           "Skin" : "skin_oompa",
-          "timestamp" : "2024-03-22T23:38:17.000+0000",
+          "timestamp" : "2024-03-22T23:38:17.000Z",
           "proposals" : {
               "1" : [
 
@@ -677,7 +676,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 2,
-                      "timestamp" : "2024-03-22T23:40:57.000+0000",
+                      "timestamp" : "2024-03-22T23:40:57.000Z",
                       "propNumber" : 1,
                       "Proposer" : 1,
                       "Passed" : false,
@@ -693,49 +692,49 @@
                           "Type" : 306,
                           "Proposer" : 1,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:40:57.000+0000"
+                          "timestamp" : "2024-03-22T23:40:57.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b00",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:41:00.000+0000",
+                              "timestamp" : "2024-03-22T23:41:00.000Z",
                               "deltaT" : 3000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b01",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:40:58.000+0000",
+                              "timestamp" : "2024-03-22T23:40:58.000Z",
                               "deltaT" : 1000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b02",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:41:04.000+0000",
+                              "timestamp" : "2024-03-22T23:41:04.000Z",
                               "deltaT" : 7000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b03",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:41:06.000+0000",
+                              "timestamp" : "2024-03-22T23:41:06.000Z",
                               "deltaT" : 9000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b04",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:41:03.000+0000",
+                              "timestamp" : "2024-03-22T23:41:03.000Z",
                               "deltaT" : 6000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b05",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:41:04.000+0000",
+                              "timestamp" : "2024-03-22T23:41:04.000Z",
                               "deltaT" : 7000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0aff"
@@ -754,7 +753,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b06",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:41:06.000+0000",
+                          "timestamp" : "2024-03-22T23:41:06.000Z",
                           "deltaT" : 9000,
                           "chatIndex" : 30
                       }
@@ -775,7 +774,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 3,
-                      "timestamp" : "2024-03-22T23:46:18.000+0000",
+                      "timestamp" : "2024-03-22T23:46:18.000Z",
                       "propNumber" : 2,
                       "Proposer" : 1,
                       "Passed" : false,
@@ -792,49 +791,49 @@
                           "Type" : 306,
                           "Proposer" : 1,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:46:18.000+0000"
+                          "timestamp" : "2024-03-22T23:46:18.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b0a",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:46:26.000+0000",
+                              "timestamp" : "2024-03-22T23:46:26.000Z",
                               "deltaT" : 8000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b0b",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:46:22.000+0000",
+                              "timestamp" : "2024-03-22T23:46:22.000Z",
                               "deltaT" : 4000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b0c",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:46:29.000+0000",
+                              "timestamp" : "2024-03-22T23:46:29.000Z",
                               "deltaT" : 11000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b0d",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:46:28.000+0000",
+                              "timestamp" : "2024-03-22T23:46:28.000Z",
                               "deltaT" : 10000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b0e",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:46:20.000+0000",
+                              "timestamp" : "2024-03-22T23:46:20.000Z",
                               "deltaT" : 2000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b0f",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:46:30.000+0000",
+                              "timestamp" : "2024-03-22T23:46:30.000Z",
                               "deltaT" : 12000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b09"
@@ -853,7 +852,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b10",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:46:30.000+0000",
+                          "timestamp" : "2024-03-22T23:46:30.000Z",
                           "deltaT" : 12000,
                           "chatIndex" : 88
                       }
@@ -871,7 +870,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:54:05.000+0000",
+                      "timestamp" : "2024-03-22T23:54:05.000Z",
                       "propNumber" : 2,
                       "Proposer" : 1,
                       "Passed" : true,
@@ -891,7 +890,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:59:22.000+0000",
+                      "timestamp" : "2024-03-22T23:59:22.000Z",
                       "propNumber" : 5,
                       "Proposer" : 1,
                       "Passed" : false,
@@ -907,49 +906,49 @@
                           "Type" : 306,
                           "Proposer" : 1,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:59:22.000+0000"
+                          "timestamp" : "2024-03-22T23:59:22.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b15",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:59:24.000+0000",
+                              "timestamp" : "2024-03-22T23:59:24.000Z",
                               "deltaT" : 2000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b16",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:59:23.000+0000",
+                              "timestamp" : "2024-03-22T23:59:23.000Z",
                               "deltaT" : 1000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b17",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:59:26.000+0000",
+                              "timestamp" : "2024-03-22T23:59:26.000Z",
                               "deltaT" : 4000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b18",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:59:30.000+0000",
+                              "timestamp" : "2024-03-22T23:59:30.000Z",
                               "deltaT" : 8000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b19",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:59:35.000+0000",
+                              "timestamp" : "2024-03-22T23:59:35.000Z",
                               "deltaT" : 13000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b1a",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:59:25.000+0000",
+                              "timestamp" : "2024-03-22T23:59:25.000Z",
                               "deltaT" : 3000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b14"
@@ -968,7 +967,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b1b",
                           "Type" : 307,
                           "Passed" : true,
-                          "timestamp" : "2024-03-22T23:59:35.000+0000",
+                          "timestamp" : "2024-03-22T23:59:35.000Z",
                           "deltaT" : 13000,
                           "chatIndex" : 262
                       }
@@ -1057,7 +1056,7 @@
           "Female" : false,
           "IsLocal" : false,
           "Skin" : "skin_cactus",
-          "timestamp" : "2024-03-22T23:38:17.000+0000",
+          "timestamp" : "2024-03-22T23:38:17.000Z",
           "proposals" : {
               "1" : [
 
@@ -1076,7 +1075,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 2,
-                      "timestamp" : "2024-03-22T23:41:26.000+0000",
+                      "timestamp" : "2024-03-22T23:41:26.000Z",
                       "propNumber" : 2,
                       "Proposer" : 2,
                       "Passed" : false,
@@ -1092,49 +1091,49 @@
                           "Type" : 306,
                           "Proposer" : 2,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:41:26.000+0000"
+                          "timestamp" : "2024-03-22T23:41:26.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b20",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:41:46.000+0000",
+                              "timestamp" : "2024-03-22T23:41:46.000Z",
                               "deltaT" : 20000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b21",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:41:35.000+0000",
+                              "timestamp" : "2024-03-22T23:41:35.000Z",
                               "deltaT" : 9000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b22",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:41:34.000+0000",
+                              "timestamp" : "2024-03-22T23:41:34.000Z",
                               "deltaT" : 8000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b23",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:41:30.000+0000",
+                              "timestamp" : "2024-03-22T23:41:30.000Z",
                               "deltaT" : 4000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b24",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:41:36.000+0000",
+                              "timestamp" : "2024-03-22T23:41:36.000Z",
                               "deltaT" : 10000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b25",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:41:39.000+0000",
+                              "timestamp" : "2024-03-22T23:41:39.000Z",
                               "deltaT" : 13000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b1f"
@@ -1153,7 +1152,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b26",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:41:46.000+0000",
+                          "timestamp" : "2024-03-22T23:41:46.000Z",
                           "deltaT" : 20000,
                           "chatIndex" : 37
                       }
@@ -1171,7 +1170,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 3,
-                      "timestamp" : "2024-03-22T23:46:49.000+0000",
+                      "timestamp" : "2024-03-22T23:46:49.000Z",
                       "propNumber" : 3,
                       "Proposer" : 2,
                       "Passed" : true,
@@ -1193,7 +1192,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:55:02.000+0000",
+                      "timestamp" : "2024-03-22T23:55:02.000Z",
                       "propNumber" : 2,
                       "Proposer" : 2,
                       "Passed" : false,
@@ -1209,49 +1208,49 @@
                           "Type" : 306,
                           "Proposer" : 2,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:55:02.000+0000"
+                          "timestamp" : "2024-03-22T23:55:02.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b2b",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:55:05.000+0000",
+                              "timestamp" : "2024-03-22T23:55:05.000Z",
                               "deltaT" : 3000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b2c",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:55:39.000+0000",
+                              "timestamp" : "2024-03-22T23:55:39.000Z",
                               "deltaT" : 37000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b2d",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:55:28.000+0000",
+                              "timestamp" : "2024-03-22T23:55:28.000Z",
                               "deltaT" : 26000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b2e",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:55:40.000+0000",
+                              "timestamp" : "2024-03-22T23:55:40.000Z",
                               "deltaT" : 38000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b2f",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:55:05.000+0000",
+                              "timestamp" : "2024-03-22T23:55:05.000Z",
                               "deltaT" : 3000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b30",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:55:23.000+0000",
+                              "timestamp" : "2024-03-22T23:55:23.000Z",
                               "deltaT" : 21000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b2a"
@@ -1270,7 +1269,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b31",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:55:40.000+0000",
+                          "timestamp" : "2024-03-22T23:55:40.000Z",
                           "deltaT" : 38000,
                           "chatIndex" : 201
                       }
@@ -1288,7 +1287,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 5,
-                      "timestamp" : "2024-03-23T00:01:41.000+0000",
+                      "timestamp" : "2024-03-23T00:01:41.000Z",
                       "propNumber" : 1,
                       "Proposer" : 2,
                       "Passed" : true,
@@ -1348,7 +1347,7 @@
           "Female" : false,
           "IsLocal" : false,
           "Skin" : "skin_wizard",
-          "timestamp" : "2024-03-22T23:38:17.000+0000",
+          "timestamp" : "2024-03-22T23:38:17.000Z",
           "proposals" : {
               "1" : [
 
@@ -1367,7 +1366,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 2,
-                      "timestamp" : "2024-03-22T23:42:38.000+0000",
+                      "timestamp" : "2024-03-22T23:42:38.000Z",
                       "propNumber" : 3,
                       "Proposer" : 3,
                       "Passed" : false,
@@ -1383,49 +1382,49 @@
                           "Type" : 306,
                           "Proposer" : 3,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:42:38.000+0000"
+                          "timestamp" : "2024-03-22T23:42:38.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b37",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:42:44.000+0000",
+                              "timestamp" : "2024-03-22T23:42:44.000Z",
                               "deltaT" : 6000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b38",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:42:41.000+0000",
+                              "timestamp" : "2024-03-22T23:42:41.000Z",
                               "deltaT" : 3000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b39",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:42:42.000+0000",
+                              "timestamp" : "2024-03-22T23:42:42.000Z",
                               "deltaT" : 4000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b3a",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:42:39.000+0000",
+                              "timestamp" : "2024-03-22T23:42:39.000Z",
                               "deltaT" : 1000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b3b",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:42:45.000+0000",
+                              "timestamp" : "2024-03-22T23:42:45.000Z",
                               "deltaT" : 7000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b3c",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:42:43.000+0000",
+                              "timestamp" : "2024-03-22T23:42:43.000Z",
                               "deltaT" : 5000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b36"
@@ -1444,7 +1443,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b3d",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:42:45.000+0000",
+                          "timestamp" : "2024-03-22T23:42:45.000Z",
                           "deltaT" : 7000,
                           "chatIndex" : 50
                       }
@@ -1465,7 +1464,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 3,
-                      "timestamp" : "2024-03-22T23:47:46.000+0000",
+                      "timestamp" : "2024-03-22T23:47:46.000Z",
                       "propNumber" : 3,
                       "Proposer" : 3,
                       "Passed" : false,
@@ -1482,49 +1481,49 @@
                           "Type" : 306,
                           "Proposer" : 3,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:47:46.000+0000"
+                          "timestamp" : "2024-03-22T23:47:46.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b41",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:47:54.000+0000",
+                              "timestamp" : "2024-03-22T23:47:54.000Z",
                               "deltaT" : 8000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b42",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:47:50.000+0000",
+                              "timestamp" : "2024-03-22T23:47:50.000Z",
                               "deltaT" : 4000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b43",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:47:51.000+0000",
+                              "timestamp" : "2024-03-22T23:47:51.000Z",
                               "deltaT" : 5000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b44",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:47:47.000+0000",
+                              "timestamp" : "2024-03-22T23:47:47.000Z",
                               "deltaT" : 1000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b45",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:48:26.000+0000",
+                              "timestamp" : "2024-03-22T23:48:26.000Z",
                               "deltaT" : 40000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b46",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:47:52.000+0000",
+                              "timestamp" : "2024-03-22T23:47:52.000Z",
                               "deltaT" : 6000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b40"
@@ -1543,7 +1542,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b47",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:48:26.000+0000",
+                          "timestamp" : "2024-03-22T23:48:26.000Z",
                           "deltaT" : 40000,
                           "chatIndex" : 102
                       }
@@ -1563,7 +1562,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:56:45.000+0000",
+                      "timestamp" : "2024-03-22T23:56:45.000Z",
                       "propNumber" : 3,
                       "Proposer" : 3,
                       "Passed" : false,
@@ -1579,49 +1578,49 @@
                           "Type" : 306,
                           "Proposer" : 3,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:56:45.000+0000"
+                          "timestamp" : "2024-03-22T23:56:45.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b4b",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:57:29.000+0000",
+                              "timestamp" : "2024-03-22T23:57:29.000Z",
                               "deltaT" : 44000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b4c",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:56:53.000+0000",
+                              "timestamp" : "2024-03-22T23:56:53.000Z",
                               "deltaT" : 8000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b4d",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:56:50.000+0000",
+                              "timestamp" : "2024-03-22T23:56:50.000Z",
                               "deltaT" : 5000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b4e",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:56:46.000+0000",
+                              "timestamp" : "2024-03-22T23:56:46.000Z",
                               "deltaT" : 1000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b4f",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:56:47.000+0000",
+                              "timestamp" : "2024-03-22T23:56:47.000Z",
                               "deltaT" : 2000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b50",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:57:00.000+0000",
+                              "timestamp" : "2024-03-22T23:57:00.000Z",
                               "deltaT" : 15000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b4a"
@@ -1640,7 +1639,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b51",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:57:29.000+0000",
+                          "timestamp" : "2024-03-22T23:57:29.000Z",
                           "deltaT" : 44000,
                           "chatIndex" : 231
                       }
@@ -1661,7 +1660,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 5,
-                      "timestamp" : "2024-03-23T00:02:39.000+0000",
+                      "timestamp" : "2024-03-23T00:02:39.000Z",
                       "propNumber" : 1,
                       "Proposer" : 3,
                       "Passed" : false,
@@ -1678,49 +1677,49 @@
                           "Type" : 306,
                           "Proposer" : 3,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-23T00:02:39.000+0000"
+                          "timestamp" : "2024-03-23T00:02:39.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b55",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-23T00:03:17.000+0000",
+                              "timestamp" : "2024-03-23T00:03:17.000Z",
                               "deltaT" : 38000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b56",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-23T00:02:42.000+0000",
+                              "timestamp" : "2024-03-23T00:02:42.000Z",
                               "deltaT" : 3000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b57",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-23T00:02:41.000+0000",
+                              "timestamp" : "2024-03-23T00:02:41.000Z",
                               "deltaT" : 2000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b58",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-23T00:02:57.000+0000",
+                              "timestamp" : "2024-03-23T00:02:57.000Z",
                               "deltaT" : 18000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b59",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-23T00:02:42.000+0000",
+                              "timestamp" : "2024-03-23T00:02:42.000Z",
                               "deltaT" : 3000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b5a",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-23T00:03:23.000+0000",
+                              "timestamp" : "2024-03-23T00:03:23.000Z",
                               "deltaT" : 44000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b54"
@@ -1739,7 +1738,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b5b",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-23T00:03:23.000+0000",
+                          "timestamp" : "2024-03-23T00:03:23.000Z",
                           "deltaT" : 44000,
                           "chatIndex" : 321
                       }
@@ -1825,7 +1824,7 @@
           "Female" : false,
           "IsLocal" : true,
           "Skin" : "skin_metalhead",
-          "timestamp" : "2024-03-22T23:38:17.000+0000",
+          "timestamp" : "2024-03-22T23:38:17.000Z",
           "proposals" : {
               "1" : [
 
@@ -1844,7 +1843,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 2,
-                      "timestamp" : "2024-03-22T23:43:03.000+0000",
+                      "timestamp" : "2024-03-22T23:43:03.000Z",
                       "propNumber" : 4,
                       "Proposer" : 4,
                       "Passed" : false,
@@ -1860,49 +1859,49 @@
                           "Type" : 306,
                           "Proposer" : 4,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:43:03.000+0000"
+                          "timestamp" : "2024-03-22T23:43:03.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b60",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:43:30.000+0000",
+                              "timestamp" : "2024-03-22T23:43:30.000Z",
                               "deltaT" : 27000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b61",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:43:20.000+0000",
+                              "timestamp" : "2024-03-22T23:43:20.000Z",
                               "deltaT" : 17000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b62",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:43:27.000+0000",
+                              "timestamp" : "2024-03-22T23:43:27.000Z",
                               "deltaT" : 24000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b63",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:43:35.000+0000",
+                              "timestamp" : "2024-03-22T23:43:35.000Z",
                               "deltaT" : 32000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b64",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:43:04.000+0000",
+                              "timestamp" : "2024-03-22T23:43:04.000Z",
                               "deltaT" : 1000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b65",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:43:04.000+0000",
+                              "timestamp" : "2024-03-22T23:43:04.000Z",
                               "deltaT" : 1000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b5f"
@@ -1921,7 +1920,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b66",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:43:35.000+0000",
+                          "timestamp" : "2024-03-22T23:43:35.000Z",
                           "deltaT" : 32000,
                           "chatIndex" : 53
                       }
@@ -1942,7 +1941,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 3,
-                      "timestamp" : "2024-03-22T23:48:44.000+0000",
+                      "timestamp" : "2024-03-22T23:48:44.000Z",
                       "propNumber" : 4,
                       "Proposer" : 4,
                       "Passed" : false,
@@ -1959,49 +1958,49 @@
                           "Type" : 306,
                           "Proposer" : 4,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:48:44.000+0000"
+                          "timestamp" : "2024-03-22T23:48:44.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b6a",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:48:51.000+0000",
+                              "timestamp" : "2024-03-22T23:48:51.000Z",
                               "deltaT" : 7000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b6b",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:48:46.000+0000",
+                              "timestamp" : "2024-03-22T23:48:46.000Z",
                               "deltaT" : 2000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b6c",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:48:48.000+0000",
+                              "timestamp" : "2024-03-22T23:48:48.000Z",
                               "deltaT" : 4000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b6d",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:49:33.000+0000",
+                              "timestamp" : "2024-03-22T23:49:33.000Z",
                               "deltaT" : 49000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b6e",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:48:45.000+0000",
+                              "timestamp" : "2024-03-22T23:48:45.000Z",
                               "deltaT" : 1000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b6f",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:48:47.000+0000",
+                              "timestamp" : "2024-03-22T23:48:47.000Z",
                               "deltaT" : 3000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b69"
@@ -2020,7 +2019,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b70",
                           "Type" : 307,
                           "Passed" : false,
-                          "timestamp" : "2024-03-22T23:49:33.000+0000",
+                          "timestamp" : "2024-03-22T23:49:33.000Z",
                           "deltaT" : 49000,
                           "chatIndex" : 119
                       }
@@ -2038,7 +2037,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:57:35.000+0000",
+                      "timestamp" : "2024-03-22T23:57:35.000Z",
                       "propNumber" : 4,
                       "Proposer" : 4,
                       "Passed" : true,
@@ -2061,7 +2060,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 5,
-                      "timestamp" : "2024-03-23T00:03:51.000+0000",
+                      "timestamp" : "2024-03-23T00:03:51.000Z",
                       "propNumber" : 2,
                       "Proposer" : 4,
                       "Passed" : false,
@@ -2078,49 +2077,49 @@
                           "Type" : 306,
                           "Proposer" : 4,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-23T00:03:51.000+0000"
+                          "timestamp" : "2024-03-23T00:03:51.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b75",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-23T00:04:00.000+0000",
+                              "timestamp" : "2024-03-23T00:04:00.000Z",
                               "deltaT" : 9000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b76",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-23T00:04:27.000+0000",
+                              "timestamp" : "2024-03-23T00:04:27.000Z",
                               "deltaT" : 36000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b77",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-23T00:03:55.000+0000",
+                              "timestamp" : "2024-03-23T00:03:55.000Z",
                               "deltaT" : 4000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b78",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-23T00:04:44.000+0000",
+                              "timestamp" : "2024-03-23T00:04:44.000Z",
                               "deltaT" : 53000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b79",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-23T00:03:56.000+0000",
+                              "timestamp" : "2024-03-23T00:03:56.000Z",
                               "deltaT" : 5000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b7a",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-23T00:04:50.000+0000",
+                              "timestamp" : "2024-03-23T00:04:50.000Z",
                               "deltaT" : 59000
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b74"
@@ -2139,7 +2138,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b7b",
                           "Type" : 307,
                           "Passed" : true,
-                          "timestamp" : "2024-03-23T00:04:50.000+0000",
+                          "timestamp" : "2024-03-23T00:04:50.000Z",
                           "deltaT" : 59000,
                           "chatIndex" : 342
                       }
@@ -2233,7 +2232,7 @@
           "Female" : false,
           "IsLocal" : false,
           "Skin" : "skin_sumo",
-          "timestamp" : "2024-03-22T23:38:17.000+0000",
+          "timestamp" : "2024-03-22T23:38:17.000Z",
           "proposals" : {
               "1" : [
 
@@ -2252,7 +2251,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 2,
-                      "timestamp" : "2024-03-22T23:43:57.000+0000",
+                      "timestamp" : "2024-03-22T23:43:57.000Z",
                       "propNumber" : 5,
                       "Proposer" : 5,
                       "Passed" : false,
@@ -2268,49 +2267,49 @@
                           "Type" : 306,
                           "Proposer" : 5,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:43:57.000+0000"
+                          "timestamp" : "2024-03-22T23:43:57.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b80",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:44:11.000+0000",
+                              "timestamp" : "2024-03-22T23:44:11.000Z",
                               "deltaT" : 14000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b81",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:43:59.000+0000",
+                              "timestamp" : "2024-03-22T23:43:59.000Z",
                               "deltaT" : 2000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b82",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:43:59.000+0000",
+                              "timestamp" : "2024-03-22T23:43:59.000Z",
                               "deltaT" : 2000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b83",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:44:01.000+0000",
+                              "timestamp" : "2024-03-22T23:44:01.000Z",
                               "deltaT" : 4000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b84",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:44:01.000+0000",
+                              "timestamp" : "2024-03-22T23:44:01.000Z",
                               "deltaT" : 4000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b85",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:43:57.000+0000",
+                              "timestamp" : "2024-03-22T23:43:57.000Z",
                               "deltaT" : 0
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b7f"
@@ -2329,7 +2328,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b86",
                           "Type" : 307,
                           "Passed" : true,
-                          "timestamp" : "2024-03-22T23:44:11.000+0000",
+                          "timestamp" : "2024-03-22T23:44:11.000Z",
                           "deltaT" : 14000,
                           "chatIndex" : 62
                       }
@@ -2350,7 +2349,7 @@
                       "Amount" : 4,
                       "Duration" : 60000,
                       "Mission" : 3,
-                      "timestamp" : "2024-03-22T23:50:24.000+0000",
+                      "timestamp" : "2024-03-22T23:50:24.000Z",
                       "propNumber" : 5,
                       "Proposer" : 5,
                       "Passed" : false,
@@ -2367,49 +2366,49 @@
                           "Type" : 306,
                           "Proposer" : 5,
                           "Duration" : 60000,
-                          "timestamp" : "2024-03-22T23:50:24.000+0000"
+                          "timestamp" : "2024-03-22T23:50:24.000Z"
                       },
                       "vote_made" : {
                           "0" : {
                               "_id" : "65fe1cb8e5035d52d87c0b8a",
                               "Type" : 309,
                               "Slot" : 0,
-                              "timestamp" : "2024-03-22T23:50:27.000+0000",
+                              "timestamp" : "2024-03-22T23:50:27.000Z",
                               "deltaT" : 3000
                           },
                           "1" : {
                               "_id" : "65fe1cb8e5035d52d87c0b8b",
                               "Type" : 309,
                               "Slot" : 1,
-                              "timestamp" : "2024-03-22T23:50:26.000+0000",
+                              "timestamp" : "2024-03-22T23:50:26.000Z",
                               "deltaT" : 2000
                           },
                           "2" : {
                               "_id" : "65fe1cb8e5035d52d87c0b8c",
                               "Type" : 309,
                               "Slot" : 2,
-                              "timestamp" : "2024-03-22T23:50:28.000+0000",
+                              "timestamp" : "2024-03-22T23:50:28.000Z",
                               "deltaT" : 4000
                           },
                           "3" : {
                               "_id" : "65fe1cb8e5035d52d87c0b8d",
                               "Type" : 309,
                               "Slot" : 3,
-                              "timestamp" : "2024-03-22T23:50:37.000+0000",
+                              "timestamp" : "2024-03-22T23:50:37.000Z",
                               "deltaT" : 13000
                           },
                           "4" : {
                               "_id" : "65fe1cb8e5035d52d87c0b8e",
                               "Type" : 309,
                               "Slot" : 4,
-                              "timestamp" : "2024-03-22T23:50:27.000+0000",
+                              "timestamp" : "2024-03-22T23:50:27.000Z",
                               "deltaT" : 3000
                           },
                           "5" : {
                               "_id" : "65fe1cb8e5035d52d87c0b8f",
                               "Type" : 309,
                               "Slot" : 5,
-                              "timestamp" : "2024-03-22T23:50:24.000+0000",
+                              "timestamp" : "2024-03-22T23:50:24.000Z",
                               "deltaT" : 0
                           },
                           "_id" : "65fe1cb8e5035d52d87c0b89"
@@ -2428,7 +2427,7 @@
                           "_id" : "65fe1cb8e5035d52d87c0b90",
                           "Type" : 307,
                           "Passed" : true,
-                          "timestamp" : "2024-03-22T23:50:37.000+0000",
+                          "timestamp" : "2024-03-22T23:50:37.000Z",
                           "deltaT" : 13000,
                           "chatIndex" : 134
                       }
@@ -2446,7 +2445,7 @@
                       "Amount" : 3,
                       "Duration" : 60000,
                       "Mission" : 4,
-                      "timestamp" : "2024-03-22T23:57:46.000+0000",
+                      "timestamp" : "2024-03-22T23:57:46.000Z",
                       "propNumber" : 4,
                       "Proposer" : 5,
                       "Passed" : true,
@@ -2467,7 +2466,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 0,
-          "timestamp" : "2024-03-22T23:38:32.000+0000",
+          "timestamp" : "2024-03-22T23:38:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b92"
       },
       {
@@ -2475,7 +2474,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 1,
-          "timestamp" : "2024-03-22T23:38:35.000+0000",
+          "timestamp" : "2024-03-22T23:38:35.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b93"
       },
       {
@@ -2483,7 +2482,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 2,
-          "timestamp" : "2024-03-22T23:38:40.000+0000",
+          "timestamp" : "2024-03-22T23:38:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b94"
       },
       {
@@ -2491,7 +2490,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 3,
-          "timestamp" : "2024-03-22T23:38:51.000+0000",
+          "timestamp" : "2024-03-22T23:38:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b95"
       },
       {
@@ -2499,7 +2498,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 4,
-          "timestamp" : "2024-03-22T23:38:56.000+0000",
+          "timestamp" : "2024-03-22T23:38:56.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b96"
       },
       {
@@ -2507,7 +2506,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 5,
-          "timestamp" : "2024-03-22T23:38:59.000+0000",
+          "timestamp" : "2024-03-22T23:38:59.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b97"
       },
       {
@@ -2515,7 +2514,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 6,
-          "timestamp" : "2024-03-22T23:39:06.000+0000",
+          "timestamp" : "2024-03-22T23:39:06.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b98"
       },
       {
@@ -2523,7 +2522,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 7,
-          "timestamp" : "2024-03-22T23:39:15.000+0000",
+          "timestamp" : "2024-03-22T23:39:15.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b99"
       },
       {
@@ -2531,7 +2530,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 8,
-          "timestamp" : "2024-03-22T23:39:16.000+0000",
+          "timestamp" : "2024-03-22T23:39:16.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b9a"
       },
       {
@@ -2539,7 +2538,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 9,
-          "timestamp" : "2024-03-22T23:39:21.000+0000",
+          "timestamp" : "2024-03-22T23:39:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b9b"
       },
       {
@@ -2547,7 +2546,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 10,
-          "timestamp" : "2024-03-22T23:39:23.000+0000",
+          "timestamp" : "2024-03-22T23:39:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b9c"
       },
       {
@@ -2555,7 +2554,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 11,
-          "timestamp" : "2024-03-22T23:39:27.000+0000",
+          "timestamp" : "2024-03-22T23:39:27.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b9d"
       },
       {
@@ -2563,7 +2562,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 12,
-          "timestamp" : "2024-03-22T23:39:29.000+0000",
+          "timestamp" : "2024-03-22T23:39:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b9e"
       },
       {
@@ -2571,7 +2570,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 13,
-          "timestamp" : "2024-03-22T23:39:33.000+0000",
+          "timestamp" : "2024-03-22T23:39:33.000Z",
           "_id" : "65fe1cb8e5035d52d87c0b9f"
       },
       {
@@ -2579,7 +2578,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 14,
-          "timestamp" : "2024-03-22T23:39:36.000+0000",
+          "timestamp" : "2024-03-22T23:39:36.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba0"
       },
       {
@@ -2587,7 +2586,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 15,
-          "timestamp" : "2024-03-22T23:39:37.000+0000",
+          "timestamp" : "2024-03-22T23:39:37.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba1"
       },
       {
@@ -2595,7 +2594,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 16,
-          "timestamp" : "2024-03-22T23:39:39.000+0000",
+          "timestamp" : "2024-03-22T23:39:39.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba2"
       },
       {
@@ -2603,7 +2602,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 17,
-          "timestamp" : "2024-03-22T23:39:39.000+0000",
+          "timestamp" : "2024-03-22T23:39:39.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba3"
       },
       {
@@ -2611,7 +2610,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 18,
-          "timestamp" : "2024-03-22T23:39:53.000+0000",
+          "timestamp" : "2024-03-22T23:39:53.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba4"
       },
       {
@@ -2619,7 +2618,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 19,
-          "timestamp" : "2024-03-22T23:39:54.000+0000",
+          "timestamp" : "2024-03-22T23:39:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba5"
       },
       {
@@ -2627,7 +2626,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 20,
-          "timestamp" : "2024-03-22T23:39:55.000+0000",
+          "timestamp" : "2024-03-22T23:39:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba6"
       },
       {
@@ -2635,7 +2634,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 21,
-          "timestamp" : "2024-03-22T23:39:58.000+0000",
+          "timestamp" : "2024-03-22T23:39:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba7"
       },
       {
@@ -2643,7 +2642,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 22,
-          "timestamp" : "2024-03-22T23:40:13.000+0000",
+          "timestamp" : "2024-03-22T23:40:13.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba8"
       },
       {
@@ -2651,7 +2650,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 23,
-          "timestamp" : "2024-03-22T23:40:17.000+0000",
+          "timestamp" : "2024-03-22T23:40:17.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ba9"
       },
       {
@@ -2659,7 +2658,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 24,
-          "timestamp" : "2024-03-22T23:40:22.000+0000",
+          "timestamp" : "2024-03-22T23:40:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0baa"
       },
       {
@@ -2667,7 +2666,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 25,
-          "timestamp" : "2024-03-22T23:40:24.000+0000",
+          "timestamp" : "2024-03-22T23:40:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bab"
       },
       {
@@ -2675,7 +2674,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 26,
-          "timestamp" : "2024-03-22T23:40:41.000+0000",
+          "timestamp" : "2024-03-22T23:40:41.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bac"
       },
       {
@@ -2683,7 +2682,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 27,
-          "timestamp" : "2024-03-22T23:40:52.000+0000",
+          "timestamp" : "2024-03-22T23:40:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bad"
       },
       {
@@ -2691,7 +2690,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 28,
-          "timestamp" : "2024-03-22T23:40:53.000+0000",
+          "timestamp" : "2024-03-22T23:40:53.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bae"
       },
       {
@@ -2699,7 +2698,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 29,
-          "timestamp" : "2024-03-22T23:41:00.000+0000",
+          "timestamp" : "2024-03-22T23:41:00.000Z",
           "_id" : "65fe1cb8e5035d52d87c0baf"
       },
       {
@@ -2707,7 +2706,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 30,
-          "timestamp" : "2024-03-22T23:41:17.000+0000",
+          "timestamp" : "2024-03-22T23:41:17.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb0"
       },
       {
@@ -2715,7 +2714,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 31,
-          "timestamp" : "2024-03-22T23:41:22.000+0000",
+          "timestamp" : "2024-03-22T23:41:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb1"
       },
       {
@@ -2723,7 +2722,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 32,
-          "timestamp" : "2024-03-22T23:41:24.000+0000",
+          "timestamp" : "2024-03-22T23:41:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb2"
       },
       {
@@ -2731,7 +2730,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 33,
-          "timestamp" : "2024-03-22T23:41:28.000+0000",
+          "timestamp" : "2024-03-22T23:41:28.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb3"
       },
       {
@@ -2739,7 +2738,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 34,
-          "timestamp" : "2024-03-22T23:41:29.000+0000",
+          "timestamp" : "2024-03-22T23:41:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb4"
       },
       {
@@ -2747,7 +2746,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 35,
-          "timestamp" : "2024-03-22T23:41:30.000+0000",
+          "timestamp" : "2024-03-22T23:41:30.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb5"
       },
       {
@@ -2755,7 +2754,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 36,
-          "timestamp" : "2024-03-22T23:41:32.000+0000",
+          "timestamp" : "2024-03-22T23:41:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb6"
       },
       {
@@ -2763,7 +2762,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 37,
-          "timestamp" : "2024-03-22T23:41:57.000+0000",
+          "timestamp" : "2024-03-22T23:41:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb7"
       },
       {
@@ -2771,7 +2770,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 38,
-          "timestamp" : "2024-03-22T23:41:58.000+0000",
+          "timestamp" : "2024-03-22T23:41:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb8"
       },
       {
@@ -2779,7 +2778,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 39,
-          "timestamp" : "2024-03-22T23:42:05.000+0000",
+          "timestamp" : "2024-03-22T23:42:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bb9"
       },
       {
@@ -2787,7 +2786,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 40,
-          "timestamp" : "2024-03-22T23:42:05.000+0000",
+          "timestamp" : "2024-03-22T23:42:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bba"
       },
       {
@@ -2795,7 +2794,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 41,
-          "timestamp" : "2024-03-22T23:42:11.000+0000",
+          "timestamp" : "2024-03-22T23:42:11.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bbb"
       },
       {
@@ -2803,7 +2802,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 42,
-          "timestamp" : "2024-03-22T23:42:25.000+0000",
+          "timestamp" : "2024-03-22T23:42:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bbc"
       },
       {
@@ -2811,7 +2810,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 43,
-          "timestamp" : "2024-03-22T23:42:26.000+0000",
+          "timestamp" : "2024-03-22T23:42:26.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bbd"
       },
       {
@@ -2819,7 +2818,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 44,
-          "timestamp" : "2024-03-22T23:42:32.000+0000",
+          "timestamp" : "2024-03-22T23:42:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bbe"
       },
       {
@@ -2827,7 +2826,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 45,
-          "timestamp" : "2024-03-22T23:42:35.000+0000",
+          "timestamp" : "2024-03-22T23:42:35.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bbf"
       },
       {
@@ -2835,7 +2834,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 46,
-          "timestamp" : "2024-03-22T23:42:36.000+0000",
+          "timestamp" : "2024-03-22T23:42:36.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc0"
       },
       {
@@ -2843,7 +2842,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 47,
-          "timestamp" : "2024-03-22T23:42:40.000+0000",
+          "timestamp" : "2024-03-22T23:42:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc1"
       },
       {
@@ -2851,7 +2850,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 48,
-          "timestamp" : "2024-03-22T23:42:40.000+0000",
+          "timestamp" : "2024-03-22T23:42:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc2"
       },
       {
@@ -2859,7 +2858,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 49,
-          "timestamp" : "2024-03-22T23:42:43.000+0000",
+          "timestamp" : "2024-03-22T23:42:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc3"
       },
       {
@@ -2867,7 +2866,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 50,
-          "timestamp" : "2024-03-22T23:42:48.000+0000",
+          "timestamp" : "2024-03-22T23:42:48.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc4"
       },
       {
@@ -2875,7 +2874,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 51,
-          "timestamp" : "2024-03-22T23:42:51.000+0000",
+          "timestamp" : "2024-03-22T23:42:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc5"
       },
       {
@@ -2883,7 +2882,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 52,
-          "timestamp" : "2024-03-22T23:42:53.000+0000",
+          "timestamp" : "2024-03-22T23:42:53.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc6"
       },
       {
@@ -2891,7 +2890,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 53,
-          "timestamp" : "2024-03-22T23:43:45.000+0000",
+          "timestamp" : "2024-03-22T23:43:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc7"
       },
       {
@@ -2899,7 +2898,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 54,
-          "timestamp" : "2024-03-22T23:43:51.000+0000",
+          "timestamp" : "2024-03-22T23:43:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc8"
       },
       {
@@ -2907,7 +2906,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 55,
-          "timestamp" : "2024-03-22T23:43:54.000+0000",
+          "timestamp" : "2024-03-22T23:43:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bc9"
       },
       {
@@ -2915,7 +2914,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 56,
-          "timestamp" : "2024-03-22T23:43:54.000+0000",
+          "timestamp" : "2024-03-22T23:43:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bca"
       },
       {
@@ -2923,7 +2922,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 57,
-          "timestamp" : "2024-03-22T23:43:54.000+0000",
+          "timestamp" : "2024-03-22T23:43:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bcb"
       },
       {
@@ -2931,7 +2930,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 58,
-          "timestamp" : "2024-03-22T23:43:57.000+0000",
+          "timestamp" : "2024-03-22T23:43:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bcc"
       },
       {
@@ -2939,7 +2938,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 59,
-          "timestamp" : "2024-03-22T23:44:02.000+0000",
+          "timestamp" : "2024-03-22T23:44:02.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bcd"
       },
       {
@@ -2947,7 +2946,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 60,
-          "timestamp" : "2024-03-22T23:44:06.000+0000",
+          "timestamp" : "2024-03-22T23:44:06.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bce"
       },
       {
@@ -2955,7 +2954,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 61,
-          "timestamp" : "2024-03-22T23:44:11.000+0000",
+          "timestamp" : "2024-03-22T23:44:11.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bcf"
       },
       {
@@ -2963,7 +2962,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 62,
-          "timestamp" : "2024-03-22T23:44:27.000+0000",
+          "timestamp" : "2024-03-22T23:44:27.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd0"
       },
       {
@@ -2971,7 +2970,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 63,
-          "timestamp" : "2024-03-22T23:44:28.000+0000",
+          "timestamp" : "2024-03-22T23:44:28.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd1"
       },
       {
@@ -2979,7 +2978,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 64,
-          "timestamp" : "2024-03-22T23:44:33.000+0000",
+          "timestamp" : "2024-03-22T23:44:33.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd2"
       },
       {
@@ -2987,7 +2986,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 65,
-          "timestamp" : "2024-03-22T23:44:35.000+0000",
+          "timestamp" : "2024-03-22T23:44:35.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd3"
       },
       {
@@ -2995,7 +2994,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 66,
-          "timestamp" : "2024-03-22T23:44:38.000+0000",
+          "timestamp" : "2024-03-22T23:44:38.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd4"
       },
       {
@@ -3003,7 +3002,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 67,
-          "timestamp" : "2024-03-22T23:44:40.000+0000",
+          "timestamp" : "2024-03-22T23:44:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd5"
       },
       {
@@ -3011,7 +3010,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 68,
-          "timestamp" : "2024-03-22T23:44:43.000+0000",
+          "timestamp" : "2024-03-22T23:44:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd6"
       },
       {
@@ -3019,7 +3018,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 69,
-          "timestamp" : "2024-03-22T23:44:51.000+0000",
+          "timestamp" : "2024-03-22T23:44:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd7"
       },
       {
@@ -3027,7 +3026,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 70,
-          "timestamp" : "2024-03-22T23:44:59.000+0000",
+          "timestamp" : "2024-03-22T23:44:59.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd8"
       },
       {
@@ -3035,7 +3034,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 71,
-          "timestamp" : "2024-03-22T23:45:05.000+0000",
+          "timestamp" : "2024-03-22T23:45:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bd9"
       },
       {
@@ -3043,7 +3042,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 72,
-          "timestamp" : "2024-03-22T23:45:09.000+0000",
+          "timestamp" : "2024-03-22T23:45:09.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bda"
       },
       {
@@ -3051,7 +3050,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 73,
-          "timestamp" : "2024-03-22T23:45:10.000+0000",
+          "timestamp" : "2024-03-22T23:45:10.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bdb"
       },
       {
@@ -3059,7 +3058,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 74,
-          "timestamp" : "2024-03-22T23:45:15.000+0000",
+          "timestamp" : "2024-03-22T23:45:15.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bdc"
       },
       {
@@ -3067,7 +3066,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 75,
-          "timestamp" : "2024-03-22T23:45:19.000+0000",
+          "timestamp" : "2024-03-22T23:45:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bdd"
       },
       {
@@ -3075,7 +3074,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 76,
-          "timestamp" : "2024-03-22T23:45:29.000+0000",
+          "timestamp" : "2024-03-22T23:45:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bde"
       },
       {
@@ -3083,7 +3082,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 77,
-          "timestamp" : "2024-03-22T23:45:31.000+0000",
+          "timestamp" : "2024-03-22T23:45:31.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bdf"
       },
       {
@@ -3091,7 +3090,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 78,
-          "timestamp" : "2024-03-22T23:45:40.000+0000",
+          "timestamp" : "2024-03-22T23:45:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be0"
       },
       {
@@ -3099,7 +3098,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 79,
-          "timestamp" : "2024-03-22T23:45:45.000+0000",
+          "timestamp" : "2024-03-22T23:45:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be1"
       },
       {
@@ -3107,7 +3106,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 80,
-          "timestamp" : "2024-03-22T23:45:45.000+0000",
+          "timestamp" : "2024-03-22T23:45:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be2"
       },
       {
@@ -3115,7 +3114,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 81,
-          "timestamp" : "2024-03-22T23:45:47.000+0000",
+          "timestamp" : "2024-03-22T23:45:47.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be3"
       },
       {
@@ -3123,7 +3122,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 82,
-          "timestamp" : "2024-03-22T23:45:50.000+0000",
+          "timestamp" : "2024-03-22T23:45:50.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be4"
       },
       {
@@ -3131,7 +3130,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 83,
-          "timestamp" : "2024-03-22T23:45:57.000+0000",
+          "timestamp" : "2024-03-22T23:45:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be5"
       },
       {
@@ -3139,7 +3138,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 84,
-          "timestamp" : "2024-03-22T23:46:07.000+0000",
+          "timestamp" : "2024-03-22T23:46:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be6"
       },
       {
@@ -3147,7 +3146,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 85,
-          "timestamp" : "2024-03-22T23:46:12.000+0000",
+          "timestamp" : "2024-03-22T23:46:12.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be7"
       },
       {
@@ -3155,7 +3154,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 86,
-          "timestamp" : "2024-03-22T23:46:29.000+0000",
+          "timestamp" : "2024-03-22T23:46:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be8"
       },
       {
@@ -3163,7 +3162,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 87,
-          "timestamp" : "2024-03-22T23:46:30.000+0000",
+          "timestamp" : "2024-03-22T23:46:30.000Z",
           "_id" : "65fe1cb8e5035d52d87c0be9"
       },
       {
@@ -3171,7 +3170,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 88,
-          "timestamp" : "2024-03-22T23:46:40.000+0000",
+          "timestamp" : "2024-03-22T23:46:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bea"
       },
       {
@@ -3179,7 +3178,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 89,
-          "timestamp" : "2024-03-22T23:46:42.000+0000",
+          "timestamp" : "2024-03-22T23:46:42.000Z",
           "_id" : "65fe1cb8e5035d52d87c0beb"
       },
       {
@@ -3187,7 +3186,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 90,
-          "timestamp" : "2024-03-22T23:46:45.000+0000",
+          "timestamp" : "2024-03-22T23:46:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bec"
       },
       {
@@ -3195,7 +3194,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 91,
-          "timestamp" : "2024-03-22T23:47:33.000+0000",
+          "timestamp" : "2024-03-22T23:47:33.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bed"
       },
       {
@@ -3203,7 +3202,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 92,
-          "timestamp" : "2024-03-22T23:47:37.000+0000",
+          "timestamp" : "2024-03-22T23:47:37.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bee"
       },
       {
@@ -3211,7 +3210,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 93,
-          "timestamp" : "2024-03-22T23:47:39.000+0000",
+          "timestamp" : "2024-03-22T23:47:39.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bef"
       },
       {
@@ -3219,7 +3218,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 94,
-          "timestamp" : "2024-03-22T23:47:46.000+0000",
+          "timestamp" : "2024-03-22T23:47:46.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf0"
       },
       {
@@ -3227,7 +3226,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 95,
-          "timestamp" : "2024-03-22T23:47:47.000+0000",
+          "timestamp" : "2024-03-22T23:47:47.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf1"
       },
       {
@@ -3235,7 +3234,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 96,
-          "timestamp" : "2024-03-22T23:47:52.000+0000",
+          "timestamp" : "2024-03-22T23:47:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf2"
       },
       {
@@ -3243,7 +3242,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 97,
-          "timestamp" : "2024-03-22T23:47:55.000+0000",
+          "timestamp" : "2024-03-22T23:47:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf3"
       },
       {
@@ -3251,7 +3250,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 98,
-          "timestamp" : "2024-03-22T23:48:12.000+0000",
+          "timestamp" : "2024-03-22T23:48:12.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf4"
       },
       {
@@ -3259,7 +3258,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 99,
-          "timestamp" : "2024-03-22T23:48:21.000+0000",
+          "timestamp" : "2024-03-22T23:48:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf5"
       },
       {
@@ -3267,7 +3266,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 100,
-          "timestamp" : "2024-03-22T23:48:24.000+0000",
+          "timestamp" : "2024-03-22T23:48:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf6"
       },
       {
@@ -3275,7 +3274,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 101,
-          "timestamp" : "2024-03-22T23:48:24.000+0000",
+          "timestamp" : "2024-03-22T23:48:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf7"
       },
       {
@@ -3283,7 +3282,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 102,
-          "timestamp" : "2024-03-22T23:48:32.000+0000",
+          "timestamp" : "2024-03-22T23:48:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf8"
       },
       {
@@ -3291,7 +3290,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 103,
-          "timestamp" : "2024-03-22T23:48:42.000+0000",
+          "timestamp" : "2024-03-22T23:48:42.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bf9"
       },
       {
@@ -3299,7 +3298,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 104,
-          "timestamp" : "2024-03-22T23:48:45.000+0000",
+          "timestamp" : "2024-03-22T23:48:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bfa"
       },
       {
@@ -3307,7 +3306,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 105,
-          "timestamp" : "2024-03-22T23:48:51.000+0000",
+          "timestamp" : "2024-03-22T23:48:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bfb"
       },
       {
@@ -3315,7 +3314,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 106,
-          "timestamp" : "2024-03-22T23:48:51.000+0000",
+          "timestamp" : "2024-03-22T23:48:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bfc"
       },
       {
@@ -3323,7 +3322,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 107,
-          "timestamp" : "2024-03-22T23:48:55.000+0000",
+          "timestamp" : "2024-03-22T23:48:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bfd"
       },
       {
@@ -3331,7 +3330,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 108,
-          "timestamp" : "2024-03-22T23:49:02.000+0000",
+          "timestamp" : "2024-03-22T23:49:02.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bfe"
       },
       {
@@ -3339,7 +3338,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 109,
-          "timestamp" : "2024-03-22T23:49:05.000+0000",
+          "timestamp" : "2024-03-22T23:49:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0bff"
       },
       {
@@ -3347,7 +3346,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 110,
-          "timestamp" : "2024-03-22T23:49:06.000+0000",
+          "timestamp" : "2024-03-22T23:49:06.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c00"
       },
       {
@@ -3355,7 +3354,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 111,
-          "timestamp" : "2024-03-22T23:49:12.000+0000",
+          "timestamp" : "2024-03-22T23:49:12.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c01"
       },
       {
@@ -3363,7 +3362,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 112,
-          "timestamp" : "2024-03-22T23:49:16.000+0000",
+          "timestamp" : "2024-03-22T23:49:16.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c02"
       },
       {
@@ -3371,7 +3370,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 113,
-          "timestamp" : "2024-03-22T23:49:22.000+0000",
+          "timestamp" : "2024-03-22T23:49:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c03"
       },
       {
@@ -3379,7 +3378,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 114,
-          "timestamp" : "2024-03-22T23:49:25.000+0000",
+          "timestamp" : "2024-03-22T23:49:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c04"
       },
       {
@@ -3387,7 +3386,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 115,
-          "timestamp" : "2024-03-22T23:49:25.000+0000",
+          "timestamp" : "2024-03-22T23:49:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c05"
       },
       {
@@ -3395,7 +3394,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 116,
-          "timestamp" : "2024-03-22T23:49:27.000+0000",
+          "timestamp" : "2024-03-22T23:49:27.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c06"
       },
       {
@@ -3403,7 +3402,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 117,
-          "timestamp" : "2024-03-22T23:49:29.000+0000",
+          "timestamp" : "2024-03-22T23:49:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c07"
       },
       {
@@ -3411,7 +3410,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 118,
-          "timestamp" : "2024-03-22T23:49:30.000+0000",
+          "timestamp" : "2024-03-22T23:49:30.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c08"
       },
       {
@@ -3419,7 +3418,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 119,
-          "timestamp" : "2024-03-22T23:49:37.000+0000",
+          "timestamp" : "2024-03-22T23:49:37.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c09"
       },
       {
@@ -3427,7 +3426,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 120,
-          "timestamp" : "2024-03-22T23:49:43.000+0000",
+          "timestamp" : "2024-03-22T23:49:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c0a"
       },
       {
@@ -3435,7 +3434,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 121,
-          "timestamp" : "2024-03-22T23:49:45.000+0000",
+          "timestamp" : "2024-03-22T23:49:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c0b"
       },
       {
@@ -3443,7 +3442,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 122,
-          "timestamp" : "2024-03-22T23:49:46.000+0000",
+          "timestamp" : "2024-03-22T23:49:46.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c0c"
       },
       {
@@ -3451,7 +3450,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 123,
-          "timestamp" : "2024-03-22T23:49:48.000+0000",
+          "timestamp" : "2024-03-22T23:49:48.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c0d"
       },
       {
@@ -3459,7 +3458,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 124,
-          "timestamp" : "2024-03-22T23:49:50.000+0000",
+          "timestamp" : "2024-03-22T23:49:50.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c0e"
       },
       {
@@ -3467,7 +3466,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 125,
-          "timestamp" : "2024-03-22T23:49:52.000+0000",
+          "timestamp" : "2024-03-22T23:49:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c0f"
       },
       {
@@ -3475,7 +3474,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 126,
-          "timestamp" : "2024-03-22T23:49:54.000+0000",
+          "timestamp" : "2024-03-22T23:49:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c10"
       },
       {
@@ -3483,7 +3482,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 127,
-          "timestamp" : "2024-03-22T23:50:05.000+0000",
+          "timestamp" : "2024-03-22T23:50:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c11"
       },
       {
@@ -3491,7 +3490,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 128,
-          "timestamp" : "2024-03-22T23:50:10.000+0000",
+          "timestamp" : "2024-03-22T23:50:10.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c12"
       },
       {
@@ -3499,7 +3498,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 129,
-          "timestamp" : "2024-03-22T23:50:18.000+0000",
+          "timestamp" : "2024-03-22T23:50:18.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c13"
       },
       {
@@ -3507,7 +3506,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 130,
-          "timestamp" : "2024-03-22T23:50:21.000+0000",
+          "timestamp" : "2024-03-22T23:50:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c14"
       },
       {
@@ -3515,7 +3514,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 131,
-          "timestamp" : "2024-03-22T23:50:28.000+0000",
+          "timestamp" : "2024-03-22T23:50:28.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c15"
       },
       {
@@ -3523,7 +3522,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 132,
-          "timestamp" : "2024-03-22T23:50:33.000+0000",
+          "timestamp" : "2024-03-22T23:50:33.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c16"
       },
       {
@@ -3531,7 +3530,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 133,
-          "timestamp" : "2024-03-22T23:50:34.000+0000",
+          "timestamp" : "2024-03-22T23:50:34.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c17"
       },
       {
@@ -3539,7 +3538,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 134,
-          "timestamp" : "2024-03-22T23:50:41.000+0000",
+          "timestamp" : "2024-03-22T23:50:41.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c18"
       },
       {
@@ -3547,7 +3546,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 135,
-          "timestamp" : "2024-03-22T23:50:43.000+0000",
+          "timestamp" : "2024-03-22T23:50:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c19"
       },
       {
@@ -3555,7 +3554,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 136,
-          "timestamp" : "2024-03-22T23:50:45.000+0000",
+          "timestamp" : "2024-03-22T23:50:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c1a"
       },
       {
@@ -3563,7 +3562,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 137,
-          "timestamp" : "2024-03-22T23:50:52.000+0000",
+          "timestamp" : "2024-03-22T23:50:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c1b"
       },
       {
@@ -3571,7 +3570,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 138,
-          "timestamp" : "2024-03-22T23:50:53.000+0000",
+          "timestamp" : "2024-03-22T23:50:53.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c1c"
       },
       {
@@ -3579,7 +3578,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 139,
-          "timestamp" : "2024-03-22T23:50:54.000+0000",
+          "timestamp" : "2024-03-22T23:50:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c1d"
       },
       {
@@ -3587,7 +3586,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 140,
-          "timestamp" : "2024-03-22T23:50:55.000+0000",
+          "timestamp" : "2024-03-22T23:50:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c1e"
       },
       {
@@ -3595,7 +3594,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 141,
-          "timestamp" : "2024-03-22T23:50:57.000+0000",
+          "timestamp" : "2024-03-22T23:50:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c1f"
       },
       {
@@ -3603,7 +3602,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 142,
-          "timestamp" : "2024-03-22T23:51:07.000+0000",
+          "timestamp" : "2024-03-22T23:51:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c20"
       },
       {
@@ -3611,7 +3610,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 143,
-          "timestamp" : "2024-03-22T23:51:07.000+0000",
+          "timestamp" : "2024-03-22T23:51:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c21"
       },
       {
@@ -3619,7 +3618,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 144,
-          "timestamp" : "2024-03-22T23:51:14.000+0000",
+          "timestamp" : "2024-03-22T23:51:14.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c22"
       },
       {
@@ -3627,7 +3626,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 145,
-          "timestamp" : "2024-03-22T23:51:17.000+0000",
+          "timestamp" : "2024-03-22T23:51:17.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c23"
       },
       {
@@ -3635,7 +3634,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 146,
-          "timestamp" : "2024-03-22T23:51:24.000+0000",
+          "timestamp" : "2024-03-22T23:51:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c24"
       },
       {
@@ -3643,7 +3642,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 147,
-          "timestamp" : "2024-03-22T23:51:28.000+0000",
+          "timestamp" : "2024-03-22T23:51:28.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c25"
       },
       {
@@ -3651,7 +3650,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 148,
-          "timestamp" : "2024-03-22T23:51:31.000+0000",
+          "timestamp" : "2024-03-22T23:51:31.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c26"
       },
       {
@@ -3659,7 +3658,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 149,
-          "timestamp" : "2024-03-22T23:51:32.000+0000",
+          "timestamp" : "2024-03-22T23:51:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c27"
       },
       {
@@ -3667,7 +3666,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 150,
-          "timestamp" : "2024-03-22T23:51:43.000+0000",
+          "timestamp" : "2024-03-22T23:51:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c28"
       },
       {
@@ -3675,7 +3674,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 151,
-          "timestamp" : "2024-03-22T23:51:46.000+0000",
+          "timestamp" : "2024-03-22T23:51:46.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c29"
       },
       {
@@ -3683,7 +3682,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 152,
-          "timestamp" : "2024-03-22T23:51:46.000+0000",
+          "timestamp" : "2024-03-22T23:51:46.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c2a"
       },
       {
@@ -3691,7 +3690,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 153,
-          "timestamp" : "2024-03-22T23:51:49.000+0000",
+          "timestamp" : "2024-03-22T23:51:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c2b"
       },
       {
@@ -3699,7 +3698,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 154,
-          "timestamp" : "2024-03-22T23:51:52.000+0000",
+          "timestamp" : "2024-03-22T23:51:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c2c"
       },
       {
@@ -3707,7 +3706,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 155,
-          "timestamp" : "2024-03-22T23:51:55.000+0000",
+          "timestamp" : "2024-03-22T23:51:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c2d"
       },
       {
@@ -3715,7 +3714,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 156,
-          "timestamp" : "2024-03-22T23:51:57.000+0000",
+          "timestamp" : "2024-03-22T23:51:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c2e"
       },
       {
@@ -3723,7 +3722,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 157,
-          "timestamp" : "2024-03-22T23:52:03.000+0000",
+          "timestamp" : "2024-03-22T23:52:03.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c2f"
       },
       {
@@ -3731,7 +3730,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 158,
-          "timestamp" : "2024-03-22T23:52:07.000+0000",
+          "timestamp" : "2024-03-22T23:52:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c30"
       },
       {
@@ -3739,7 +3738,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 159,
-          "timestamp" : "2024-03-22T23:52:11.000+0000",
+          "timestamp" : "2024-03-22T23:52:11.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c31"
       },
       {
@@ -3747,7 +3746,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 160,
-          "timestamp" : "2024-03-22T23:52:14.000+0000",
+          "timestamp" : "2024-03-22T23:52:14.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c32"
       },
       {
@@ -3755,7 +3754,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 161,
-          "timestamp" : "2024-03-22T23:52:15.000+0000",
+          "timestamp" : "2024-03-22T23:52:15.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c33"
       },
       {
@@ -3763,7 +3762,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 162,
-          "timestamp" : "2024-03-22T23:52:17.000+0000",
+          "timestamp" : "2024-03-22T23:52:17.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c34"
       },
       {
@@ -3771,7 +3770,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 163,
-          "timestamp" : "2024-03-22T23:52:22.000+0000",
+          "timestamp" : "2024-03-22T23:52:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c35"
       },
       {
@@ -3779,7 +3778,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 164,
-          "timestamp" : "2024-03-22T23:52:24.000+0000",
+          "timestamp" : "2024-03-22T23:52:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c36"
       },
       {
@@ -3787,7 +3786,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 165,
-          "timestamp" : "2024-03-22T23:52:29.000+0000",
+          "timestamp" : "2024-03-22T23:52:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c37"
       },
       {
@@ -3795,7 +3794,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 166,
-          "timestamp" : "2024-03-22T23:52:34.000+0000",
+          "timestamp" : "2024-03-22T23:52:34.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c38"
       },
       {
@@ -3803,7 +3802,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 167,
-          "timestamp" : "2024-03-22T23:52:36.000+0000",
+          "timestamp" : "2024-03-22T23:52:36.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c39"
       },
       {
@@ -3811,7 +3810,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 168,
-          "timestamp" : "2024-03-22T23:52:43.000+0000",
+          "timestamp" : "2024-03-22T23:52:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c3a"
       },
       {
@@ -3819,7 +3818,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 169,
-          "timestamp" : "2024-03-22T23:52:48.000+0000",
+          "timestamp" : "2024-03-22T23:52:48.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c3b"
       },
       {
@@ -3827,7 +3826,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 170,
-          "timestamp" : "2024-03-22T23:52:51.000+0000",
+          "timestamp" : "2024-03-22T23:52:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c3c"
       },
       {
@@ -3835,7 +3834,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 171,
-          "timestamp" : "2024-03-22T23:52:59.000+0000",
+          "timestamp" : "2024-03-22T23:52:59.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c3d"
       },
       {
@@ -3843,7 +3842,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 172,
-          "timestamp" : "2024-03-22T23:53:01.000+0000",
+          "timestamp" : "2024-03-22T23:53:01.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c3e"
       },
       {
@@ -3851,7 +3850,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 173,
-          "timestamp" : "2024-03-22T23:53:01.000+0000",
+          "timestamp" : "2024-03-22T23:53:01.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c3f"
       },
       {
@@ -3859,7 +3858,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 174,
-          "timestamp" : "2024-03-22T23:53:06.000+0000",
+          "timestamp" : "2024-03-22T23:53:06.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c40"
       },
       {
@@ -3867,7 +3866,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 175,
-          "timestamp" : "2024-03-22T23:53:13.000+0000",
+          "timestamp" : "2024-03-22T23:53:13.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c41"
       },
       {
@@ -3875,7 +3874,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 176,
-          "timestamp" : "2024-03-22T23:53:20.000+0000",
+          "timestamp" : "2024-03-22T23:53:20.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c42"
       },
       {
@@ -3883,7 +3882,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 177,
-          "timestamp" : "2024-03-22T23:53:21.000+0000",
+          "timestamp" : "2024-03-22T23:53:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c43"
       },
       {
@@ -3891,7 +3890,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 178,
-          "timestamp" : "2024-03-22T23:53:22.000+0000",
+          "timestamp" : "2024-03-22T23:53:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c44"
       },
       {
@@ -3899,7 +3898,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 179,
-          "timestamp" : "2024-03-22T23:53:22.000+0000",
+          "timestamp" : "2024-03-22T23:53:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c45"
       },
       {
@@ -3907,7 +3906,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 180,
-          "timestamp" : "2024-03-22T23:53:27.000+0000",
+          "timestamp" : "2024-03-22T23:53:27.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c46"
       },
       {
@@ -3915,7 +3914,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 181,
-          "timestamp" : "2024-03-22T23:53:39.000+0000",
+          "timestamp" : "2024-03-22T23:53:39.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c47"
       },
       {
@@ -3923,7 +3922,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 182,
-          "timestamp" : "2024-03-22T23:53:40.000+0000",
+          "timestamp" : "2024-03-22T23:53:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c48"
       },
       {
@@ -3931,7 +3930,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 183,
-          "timestamp" : "2024-03-22T23:53:45.000+0000",
+          "timestamp" : "2024-03-22T23:53:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c49"
       },
       {
@@ -3939,7 +3938,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 184,
-          "timestamp" : "2024-03-22T23:54:08.000+0000",
+          "timestamp" : "2024-03-22T23:54:08.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c4a"
       },
       {
@@ -3947,7 +3946,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 185,
-          "timestamp" : "2024-03-22T23:54:14.000+0000",
+          "timestamp" : "2024-03-22T23:54:14.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c4b"
       },
       {
@@ -3955,7 +3954,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 186,
-          "timestamp" : "2024-03-22T23:54:25.000+0000",
+          "timestamp" : "2024-03-22T23:54:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c4c"
       },
       {
@@ -3963,7 +3962,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 187,
-          "timestamp" : "2024-03-22T23:54:38.000+0000",
+          "timestamp" : "2024-03-22T23:54:38.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c4d"
       },
       {
@@ -3971,7 +3970,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 188,
-          "timestamp" : "2024-03-22T23:54:45.000+0000",
+          "timestamp" : "2024-03-22T23:54:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c4e"
       },
       {
@@ -3979,7 +3978,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 189,
-          "timestamp" : "2024-03-22T23:54:48.000+0000",
+          "timestamp" : "2024-03-22T23:54:48.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c4f"
       },
       {
@@ -3987,7 +3986,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 190,
-          "timestamp" : "2024-03-22T23:54:49.000+0000",
+          "timestamp" : "2024-03-22T23:54:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c50"
       },
       {
@@ -3995,7 +3994,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 191,
-          "timestamp" : "2024-03-22T23:54:49.000+0000",
+          "timestamp" : "2024-03-22T23:54:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c51"
       },
       {
@@ -4003,7 +4002,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 192,
-          "timestamp" : "2024-03-22T23:54:51.000+0000",
+          "timestamp" : "2024-03-22T23:54:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c52"
       },
       {
@@ -4011,7 +4010,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 193,
-          "timestamp" : "2024-03-22T23:54:54.000+0000",
+          "timestamp" : "2024-03-22T23:54:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c53"
       },
       {
@@ -4019,7 +4018,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 194,
-          "timestamp" : "2024-03-22T23:54:54.000+0000",
+          "timestamp" : "2024-03-22T23:54:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c54"
       },
       {
@@ -4027,7 +4026,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 195,
-          "timestamp" : "2024-03-22T23:54:55.000+0000",
+          "timestamp" : "2024-03-22T23:54:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c55"
       },
       {
@@ -4035,7 +4034,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 196,
-          "timestamp" : "2024-03-22T23:54:57.000+0000",
+          "timestamp" : "2024-03-22T23:54:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c56"
       },
       {
@@ -4043,7 +4042,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 197,
-          "timestamp" : "2024-03-22T23:54:57.000+0000",
+          "timestamp" : "2024-03-22T23:54:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c57"
       },
       {
@@ -4051,7 +4050,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 198,
-          "timestamp" : "2024-03-22T23:55:08.000+0000",
+          "timestamp" : "2024-03-22T23:55:08.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c58"
       },
       {
@@ -4059,7 +4058,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 199,
-          "timestamp" : "2024-03-22T23:55:16.000+0000",
+          "timestamp" : "2024-03-22T23:55:16.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c59"
       },
       {
@@ -4067,7 +4066,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 200,
-          "timestamp" : "2024-03-22T23:55:23.000+0000",
+          "timestamp" : "2024-03-22T23:55:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c5a"
       },
       {
@@ -4075,7 +4074,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 201,
-          "timestamp" : "2024-03-22T23:55:44.000+0000",
+          "timestamp" : "2024-03-22T23:55:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c5b"
       },
       {
@@ -4083,7 +4082,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 202,
-          "timestamp" : "2024-03-22T23:55:45.000+0000",
+          "timestamp" : "2024-03-22T23:55:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c5c"
       },
       {
@@ -4091,7 +4090,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 203,
-          "timestamp" : "2024-03-22T23:55:47.000+0000",
+          "timestamp" : "2024-03-22T23:55:47.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c5d"
       },
       {
@@ -4099,7 +4098,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 204,
-          "timestamp" : "2024-03-22T23:55:51.000+0000",
+          "timestamp" : "2024-03-22T23:55:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c5e"
       },
       {
@@ -4107,7 +4106,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 205,
-          "timestamp" : "2024-03-22T23:55:54.000+0000",
+          "timestamp" : "2024-03-22T23:55:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c5f"
       },
       {
@@ -4115,7 +4114,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 206,
-          "timestamp" : "2024-03-22T23:55:55.000+0000",
+          "timestamp" : "2024-03-22T23:55:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c60"
       },
       {
@@ -4123,7 +4122,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 207,
-          "timestamp" : "2024-03-22T23:55:56.000+0000",
+          "timestamp" : "2024-03-22T23:55:56.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c61"
       },
       {
@@ -4131,7 +4130,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 208,
-          "timestamp" : "2024-03-22T23:55:57.000+0000",
+          "timestamp" : "2024-03-22T23:55:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c62"
       },
       {
@@ -4139,7 +4138,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 209,
-          "timestamp" : "2024-03-22T23:55:58.000+0000",
+          "timestamp" : "2024-03-22T23:55:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c63"
       },
       {
@@ -4147,7 +4146,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 210,
-          "timestamp" : "2024-03-22T23:55:58.000+0000",
+          "timestamp" : "2024-03-22T23:55:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c64"
       },
       {
@@ -4155,7 +4154,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 211,
-          "timestamp" : "2024-03-22T23:56:05.000+0000",
+          "timestamp" : "2024-03-22T23:56:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c65"
       },
       {
@@ -4163,7 +4162,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 212,
-          "timestamp" : "2024-03-22T23:56:14.000+0000",
+          "timestamp" : "2024-03-22T23:56:14.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c66"
       },
       {
@@ -4171,7 +4170,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 213,
-          "timestamp" : "2024-03-22T23:56:16.000+0000",
+          "timestamp" : "2024-03-22T23:56:16.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c67"
       },
       {
@@ -4179,7 +4178,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 214,
-          "timestamp" : "2024-03-22T23:56:16.000+0000",
+          "timestamp" : "2024-03-22T23:56:16.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c68"
       },
       {
@@ -4187,7 +4186,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 215,
-          "timestamp" : "2024-03-22T23:56:17.000+0000",
+          "timestamp" : "2024-03-22T23:56:17.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c69"
       },
       {
@@ -4195,7 +4194,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 216,
-          "timestamp" : "2024-03-22T23:56:19.000+0000",
+          "timestamp" : "2024-03-22T23:56:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c6a"
       },
       {
@@ -4203,7 +4202,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 217,
-          "timestamp" : "2024-03-22T23:56:25.000+0000",
+          "timestamp" : "2024-03-22T23:56:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c6b"
       },
       {
@@ -4211,7 +4210,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 218,
-          "timestamp" : "2024-03-22T23:56:27.000+0000",
+          "timestamp" : "2024-03-22T23:56:27.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c6c"
       },
       {
@@ -4219,7 +4218,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 219,
-          "timestamp" : "2024-03-22T23:56:32.000+0000",
+          "timestamp" : "2024-03-22T23:56:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c6d"
       },
       {
@@ -4227,7 +4226,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 220,
-          "timestamp" : "2024-03-22T23:56:44.000+0000",
+          "timestamp" : "2024-03-22T23:56:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c6e"
       },
       {
@@ -4235,7 +4234,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 221,
-          "timestamp" : "2024-03-22T23:56:51.000+0000",
+          "timestamp" : "2024-03-22T23:56:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c6f"
       },
       {
@@ -4243,7 +4242,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 222,
-          "timestamp" : "2024-03-22T23:56:56.000+0000",
+          "timestamp" : "2024-03-22T23:56:56.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c70"
       },
       {
@@ -4251,7 +4250,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 223,
-          "timestamp" : "2024-03-22T23:56:59.000+0000",
+          "timestamp" : "2024-03-22T23:56:59.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c71"
       },
       {
@@ -4259,7 +4258,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 224,
-          "timestamp" : "2024-03-22T23:57:02.000+0000",
+          "timestamp" : "2024-03-22T23:57:02.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c72"
       },
       {
@@ -4267,7 +4266,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 225,
-          "timestamp" : "2024-03-22T23:57:07.000+0000",
+          "timestamp" : "2024-03-22T23:57:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c73"
       },
       {
@@ -4275,7 +4274,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 226,
-          "timestamp" : "2024-03-22T23:57:10.000+0000",
+          "timestamp" : "2024-03-22T23:57:10.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c74"
       },
       {
@@ -4283,7 +4282,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 227,
-          "timestamp" : "2024-03-22T23:57:14.000+0000",
+          "timestamp" : "2024-03-22T23:57:14.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c75"
       },
       {
@@ -4291,7 +4290,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 228,
-          "timestamp" : "2024-03-22T23:57:24.000+0000",
+          "timestamp" : "2024-03-22T23:57:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c76"
       },
       {
@@ -4299,7 +4298,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 229,
-          "timestamp" : "2024-03-22T23:57:25.000+0000",
+          "timestamp" : "2024-03-22T23:57:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c77"
       },
       {
@@ -4307,7 +4306,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 230,
-          "timestamp" : "2024-03-22T23:57:26.000+0000",
+          "timestamp" : "2024-03-22T23:57:26.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c78"
       },
       {
@@ -4315,7 +4314,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 231,
-          "timestamp" : "2024-03-22T23:57:34.000+0000",
+          "timestamp" : "2024-03-22T23:57:34.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c79"
       },
       {
@@ -4323,7 +4322,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 232,
-          "timestamp" : "2024-03-22T23:57:39.000+0000",
+          "timestamp" : "2024-03-22T23:57:39.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c7a"
       },
       {
@@ -4331,7 +4330,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 233,
-          "timestamp" : "2024-03-22T23:57:44.000+0000",
+          "timestamp" : "2024-03-22T23:57:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c7b"
       },
       {
@@ -4339,7 +4338,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 234,
-          "timestamp" : "2024-03-22T23:57:45.000+0000",
+          "timestamp" : "2024-03-22T23:57:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c7c"
       },
       {
@@ -4347,7 +4346,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 235,
-          "timestamp" : "2024-03-22T23:58:12.000+0000",
+          "timestamp" : "2024-03-22T23:58:12.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c7d"
       },
       {
@@ -4355,7 +4354,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 236,
-          "timestamp" : "2024-03-22T23:58:16.000+0000",
+          "timestamp" : "2024-03-22T23:58:16.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c7e"
       },
       {
@@ -4363,7 +4362,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 237,
-          "timestamp" : "2024-03-22T23:58:19.000+0000",
+          "timestamp" : "2024-03-22T23:58:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c7f"
       },
       {
@@ -4371,7 +4370,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 238,
-          "timestamp" : "2024-03-22T23:58:19.000+0000",
+          "timestamp" : "2024-03-22T23:58:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c80"
       },
       {
@@ -4379,7 +4378,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 239,
-          "timestamp" : "2024-03-22T23:58:21.000+0000",
+          "timestamp" : "2024-03-22T23:58:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c81"
       },
       {
@@ -4387,7 +4386,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 240,
-          "timestamp" : "2024-03-22T23:58:24.000+0000",
+          "timestamp" : "2024-03-22T23:58:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c82"
       },
       {
@@ -4395,7 +4394,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 241,
-          "timestamp" : "2024-03-22T23:58:24.000+0000",
+          "timestamp" : "2024-03-22T23:58:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c83"
       },
       {
@@ -4403,7 +4402,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 242,
-          "timestamp" : "2024-03-22T23:58:31.000+0000",
+          "timestamp" : "2024-03-22T23:58:31.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c84"
       },
       {
@@ -4411,7 +4410,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 243,
-          "timestamp" : "2024-03-22T23:58:34.000+0000",
+          "timestamp" : "2024-03-22T23:58:34.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c85"
       },
       {
@@ -4419,7 +4418,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 244,
-          "timestamp" : "2024-03-22T23:58:38.000+0000",
+          "timestamp" : "2024-03-22T23:58:38.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c86"
       },
       {
@@ -4427,7 +4426,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 245,
-          "timestamp" : "2024-03-22T23:58:43.000+0000",
+          "timestamp" : "2024-03-22T23:58:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c87"
       },
       {
@@ -4435,7 +4434,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 246,
-          "timestamp" : "2024-03-22T23:58:44.000+0000",
+          "timestamp" : "2024-03-22T23:58:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c88"
       },
       {
@@ -4443,7 +4442,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 247,
-          "timestamp" : "2024-03-22T23:58:49.000+0000",
+          "timestamp" : "2024-03-22T23:58:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c89"
       },
       {
@@ -4451,7 +4450,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 248,
-          "timestamp" : "2024-03-22T23:58:58.000+0000",
+          "timestamp" : "2024-03-22T23:58:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c8a"
       },
       {
@@ -4459,7 +4458,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 249,
-          "timestamp" : "2024-03-22T23:59:01.000+0000",
+          "timestamp" : "2024-03-22T23:59:01.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c8b"
       },
       {
@@ -4467,7 +4466,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 250,
-          "timestamp" : "2024-03-22T23:59:05.000+0000",
+          "timestamp" : "2024-03-22T23:59:05.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c8c"
       },
       {
@@ -4475,7 +4474,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 251,
-          "timestamp" : "2024-03-22T23:59:09.000+0000",
+          "timestamp" : "2024-03-22T23:59:09.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c8d"
       },
       {
@@ -4483,7 +4482,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 252,
-          "timestamp" : "2024-03-22T23:59:12.000+0000",
+          "timestamp" : "2024-03-22T23:59:12.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c8e"
       },
       {
@@ -4491,7 +4490,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 253,
-          "timestamp" : "2024-03-22T23:59:19.000+0000",
+          "timestamp" : "2024-03-22T23:59:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c8f"
       },
       {
@@ -4499,7 +4498,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 254,
-          "timestamp" : "2024-03-22T23:59:19.000+0000",
+          "timestamp" : "2024-03-22T23:59:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c90"
       },
       {
@@ -4507,7 +4506,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 255,
-          "timestamp" : "2024-03-22T23:59:23.000+0000",
+          "timestamp" : "2024-03-22T23:59:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c91"
       },
       {
@@ -4515,7 +4514,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 256,
-          "timestamp" : "2024-03-22T23:59:23.000+0000",
+          "timestamp" : "2024-03-22T23:59:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c92"
       },
       {
@@ -4523,7 +4522,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 257,
-          "timestamp" : "2024-03-22T23:59:27.000+0000",
+          "timestamp" : "2024-03-22T23:59:27.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c93"
       },
       {
@@ -4531,7 +4530,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 258,
-          "timestamp" : "2024-03-22T23:59:29.000+0000",
+          "timestamp" : "2024-03-22T23:59:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c94"
       },
       {
@@ -4539,7 +4538,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 259,
-          "timestamp" : "2024-03-22T23:59:30.000+0000",
+          "timestamp" : "2024-03-22T23:59:30.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c95"
       },
       {
@@ -4547,7 +4546,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 260,
-          "timestamp" : "2024-03-22T23:59:32.000+0000",
+          "timestamp" : "2024-03-22T23:59:32.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c96"
       },
       {
@@ -4555,7 +4554,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 261,
-          "timestamp" : "2024-03-22T23:59:35.000+0000",
+          "timestamp" : "2024-03-22T23:59:35.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c97"
       },
       {
@@ -4563,7 +4562,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 262,
-          "timestamp" : "2024-03-22T23:59:49.000+0000",
+          "timestamp" : "2024-03-22T23:59:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c98"
       },
       {
@@ -4571,7 +4570,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 263,
-          "timestamp" : "2024-03-22T23:59:49.000+0000",
+          "timestamp" : "2024-03-22T23:59:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c99"
       },
       {
@@ -4579,7 +4578,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 264,
-          "timestamp" : "2024-03-22T23:59:51.000+0000",
+          "timestamp" : "2024-03-22T23:59:51.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c9a"
       },
       {
@@ -4587,7 +4586,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 265,
-          "timestamp" : "2024-03-22T23:59:53.000+0000",
+          "timestamp" : "2024-03-22T23:59:53.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c9b"
       },
       {
@@ -4595,7 +4594,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 266,
-          "timestamp" : "2024-03-22T23:59:53.000+0000",
+          "timestamp" : "2024-03-22T23:59:53.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c9c"
       },
       {
@@ -4603,7 +4602,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 267,
-          "timestamp" : "2024-03-22T23:59:54.000+0000",
+          "timestamp" : "2024-03-22T23:59:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c9d"
       },
       {
@@ -4611,7 +4610,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 268,
-          "timestamp" : "2024-03-22T23:59:59.000+0000",
+          "timestamp" : "2024-03-22T23:59:59.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c9e"
       },
       {
@@ -4619,7 +4618,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 269,
-          "timestamp" : "2024-03-22T23:59:59.000+0000",
+          "timestamp" : "2024-03-22T23:59:59.000Z",
           "_id" : "65fe1cb8e5035d52d87c0c9f"
       },
       {
@@ -4627,7 +4626,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 270,
-          "timestamp" : "2024-03-23T00:00:00.000+0000",
+          "timestamp" : "2024-03-23T00:00:00.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca0"
       },
       {
@@ -4635,7 +4634,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 271,
-          "timestamp" : "2024-03-23T00:00:02.000+0000",
+          "timestamp" : "2024-03-23T00:00:02.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca1"
       },
       {
@@ -4643,7 +4642,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 272,
-          "timestamp" : "2024-03-23T00:00:08.000+0000",
+          "timestamp" : "2024-03-23T00:00:08.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca2"
       },
       {
@@ -4651,7 +4650,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 273,
-          "timestamp" : "2024-03-23T00:00:09.000+0000",
+          "timestamp" : "2024-03-23T00:00:09.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca3"
       },
       {
@@ -4659,7 +4658,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 274,
-          "timestamp" : "2024-03-23T00:00:11.000+0000",
+          "timestamp" : "2024-03-23T00:00:11.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca4"
       },
       {
@@ -4667,7 +4666,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 275,
-          "timestamp" : "2024-03-23T00:00:11.000+0000",
+          "timestamp" : "2024-03-23T00:00:11.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca5"
       },
       {
@@ -4675,7 +4674,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 276,
-          "timestamp" : "2024-03-23T00:00:12.000+0000",
+          "timestamp" : "2024-03-23T00:00:12.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca6"
       },
       {
@@ -4683,7 +4682,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 277,
-          "timestamp" : "2024-03-23T00:00:18.000+0000",
+          "timestamp" : "2024-03-23T00:00:18.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca7"
       },
       {
@@ -4691,7 +4690,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 278,
-          "timestamp" : "2024-03-23T00:00:19.000+0000",
+          "timestamp" : "2024-03-23T00:00:19.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca8"
       },
       {
@@ -4699,7 +4698,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 279,
-          "timestamp" : "2024-03-23T00:00:20.000+0000",
+          "timestamp" : "2024-03-23T00:00:20.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ca9"
       },
       {
@@ -4707,7 +4706,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 280,
-          "timestamp" : "2024-03-23T00:00:22.000+0000",
+          "timestamp" : "2024-03-23T00:00:22.000Z",
           "_id" : "65fe1cb8e5035d52d87c0caa"
       },
       {
@@ -4715,7 +4714,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 281,
-          "timestamp" : "2024-03-23T00:00:23.000+0000",
+          "timestamp" : "2024-03-23T00:00:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cab"
       },
       {
@@ -4723,7 +4722,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 282,
-          "timestamp" : "2024-03-23T00:00:23.000+0000",
+          "timestamp" : "2024-03-23T00:00:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cac"
       },
       {
@@ -4731,7 +4730,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 283,
-          "timestamp" : "2024-03-23T00:00:30.000+0000",
+          "timestamp" : "2024-03-23T00:00:30.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cad"
       },
       {
@@ -4739,7 +4738,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 284,
-          "timestamp" : "2024-03-23T00:00:38.000+0000",
+          "timestamp" : "2024-03-23T00:00:38.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cae"
       },
       {
@@ -4747,7 +4746,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 285,
-          "timestamp" : "2024-03-23T00:00:40.000+0000",
+          "timestamp" : "2024-03-23T00:00:40.000Z",
           "_id" : "65fe1cb8e5035d52d87c0caf"
       },
       {
@@ -4755,7 +4754,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 286,
-          "timestamp" : "2024-03-23T00:00:43.000+0000",
+          "timestamp" : "2024-03-23T00:00:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb0"
       },
       {
@@ -4763,7 +4762,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 287,
-          "timestamp" : "2024-03-23T00:00:44.000+0000",
+          "timestamp" : "2024-03-23T00:00:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb1"
       },
       {
@@ -4771,7 +4770,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 288,
-          "timestamp" : "2024-03-23T00:00:49.000+0000",
+          "timestamp" : "2024-03-23T00:00:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb2"
       },
       {
@@ -4779,7 +4778,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 289,
-          "timestamp" : "2024-03-23T00:00:55.000+0000",
+          "timestamp" : "2024-03-23T00:00:55.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb3"
       },
       {
@@ -4787,7 +4786,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 290,
-          "timestamp" : "2024-03-23T00:01:00.000+0000",
+          "timestamp" : "2024-03-23T00:01:00.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb4"
       },
       {
@@ -4795,7 +4794,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 291,
-          "timestamp" : "2024-03-23T00:01:03.000+0000",
+          "timestamp" : "2024-03-23T00:01:03.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb5"
       },
       {
@@ -4803,7 +4802,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 292,
-          "timestamp" : "2024-03-23T00:01:03.000+0000",
+          "timestamp" : "2024-03-23T00:01:03.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb6"
       },
       {
@@ -4811,7 +4810,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 293,
-          "timestamp" : "2024-03-23T00:01:13.000+0000",
+          "timestamp" : "2024-03-23T00:01:13.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb7"
       },
       {
@@ -4819,7 +4818,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 294,
-          "timestamp" : "2024-03-23T00:01:15.000+0000",
+          "timestamp" : "2024-03-23T00:01:15.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb8"
       },
       {
@@ -4827,7 +4826,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 295,
-          "timestamp" : "2024-03-23T00:01:17.000+0000",
+          "timestamp" : "2024-03-23T00:01:17.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cb9"
       },
       {
@@ -4835,7 +4834,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 296,
-          "timestamp" : "2024-03-23T00:01:21.000+0000",
+          "timestamp" : "2024-03-23T00:01:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cba"
       },
       {
@@ -4843,7 +4842,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 297,
-          "timestamp" : "2024-03-23T00:01:23.000+0000",
+          "timestamp" : "2024-03-23T00:01:23.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cbb"
       },
       {
@@ -4851,7 +4850,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 298,
-          "timestamp" : "2024-03-23T00:01:43.000+0000",
+          "timestamp" : "2024-03-23T00:01:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cbc"
       },
       {
@@ -4859,7 +4858,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 299,
-          "timestamp" : "2024-03-23T00:01:49.000+0000",
+          "timestamp" : "2024-03-23T00:01:49.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cbd"
       },
       {
@@ -4867,7 +4866,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 300,
-          "timestamp" : "2024-03-23T00:01:57.000+0000",
+          "timestamp" : "2024-03-23T00:01:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cbe"
       },
       {
@@ -4875,7 +4874,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 301,
-          "timestamp" : "2024-03-23T00:01:57.000+0000",
+          "timestamp" : "2024-03-23T00:01:57.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cbf"
       },
       {
@@ -4883,7 +4882,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 302,
-          "timestamp" : "2024-03-23T00:02:04.000+0000",
+          "timestamp" : "2024-03-23T00:02:04.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc0"
       },
       {
@@ -4891,7 +4890,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 303,
-          "timestamp" : "2024-03-23T00:02:07.000+0000",
+          "timestamp" : "2024-03-23T00:02:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc1"
       },
       {
@@ -4899,7 +4898,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 304,
-          "timestamp" : "2024-03-23T00:02:09.000+0000",
+          "timestamp" : "2024-03-23T00:02:09.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc2"
       },
       {
@@ -4907,7 +4906,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 305,
-          "timestamp" : "2024-03-23T00:02:18.000+0000",
+          "timestamp" : "2024-03-23T00:02:18.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc3"
       },
       {
@@ -4915,7 +4914,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 306,
-          "timestamp" : "2024-03-23T00:02:25.000+0000",
+          "timestamp" : "2024-03-23T00:02:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc4"
       },
       {
@@ -4923,7 +4922,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 307,
-          "timestamp" : "2024-03-23T00:02:25.000+0000",
+          "timestamp" : "2024-03-23T00:02:25.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc5"
       },
       {
@@ -4931,7 +4930,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 308,
-          "timestamp" : "2024-03-23T00:02:26.000+0000",
+          "timestamp" : "2024-03-23T00:02:26.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc6"
       },
       {
@@ -4939,7 +4938,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 309,
-          "timestamp" : "2024-03-23T00:02:29.000+0000",
+          "timestamp" : "2024-03-23T00:02:29.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc7"
       },
       {
@@ -4947,7 +4946,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 310,
-          "timestamp" : "2024-03-23T00:02:34.000+0000",
+          "timestamp" : "2024-03-23T00:02:34.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc8"
       },
       {
@@ -4955,7 +4954,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 311,
-          "timestamp" : "2024-03-23T00:02:35.000+0000",
+          "timestamp" : "2024-03-23T00:02:35.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cc9"
       },
       {
@@ -4963,7 +4962,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 312,
-          "timestamp" : "2024-03-23T00:02:36.000+0000",
+          "timestamp" : "2024-03-23T00:02:36.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cca"
       },
       {
@@ -4971,7 +4970,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 313,
-          "timestamp" : "2024-03-23T00:02:43.000+0000",
+          "timestamp" : "2024-03-23T00:02:43.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ccb"
       },
       {
@@ -4979,7 +4978,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 314,
-          "timestamp" : "2024-03-23T00:02:44.000+0000",
+          "timestamp" : "2024-03-23T00:02:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ccc"
       },
       {
@@ -4987,7 +4986,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 315,
-          "timestamp" : "2024-03-23T00:02:47.000+0000",
+          "timestamp" : "2024-03-23T00:02:47.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ccd"
       },
       {
@@ -4995,7 +4994,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 316,
-          "timestamp" : "2024-03-23T00:02:56.000+0000",
+          "timestamp" : "2024-03-23T00:02:56.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cce"
       },
       {
@@ -5003,7 +5002,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 317,
-          "timestamp" : "2024-03-23T00:03:00.000+0000",
+          "timestamp" : "2024-03-23T00:03:00.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ccf"
       },
       {
@@ -5011,7 +5010,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 318,
-          "timestamp" : "2024-03-23T00:03:03.000+0000",
+          "timestamp" : "2024-03-23T00:03:03.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd0"
       },
       {
@@ -5019,7 +5018,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 319,
-          "timestamp" : "2024-03-23T00:03:04.000+0000",
+          "timestamp" : "2024-03-23T00:03:04.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd1"
       },
       {
@@ -5027,7 +5026,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 320,
-          "timestamp" : "2024-03-23T00:03:20.000+0000",
+          "timestamp" : "2024-03-23T00:03:20.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd2"
       },
       {
@@ -5035,7 +5034,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 321,
-          "timestamp" : "2024-03-23T00:03:26.000+0000",
+          "timestamp" : "2024-03-23T00:03:26.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd3"
       },
       {
@@ -5043,7 +5042,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 322,
-          "timestamp" : "2024-03-23T00:03:30.000+0000",
+          "timestamp" : "2024-03-23T00:03:30.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd4"
       },
       {
@@ -5051,7 +5050,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 323,
-          "timestamp" : "2024-03-23T00:03:33.000+0000",
+          "timestamp" : "2024-03-23T00:03:33.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd5"
       },
       {
@@ -5059,7 +5058,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 324,
-          "timestamp" : "2024-03-23T00:03:37.000+0000",
+          "timestamp" : "2024-03-23T00:03:37.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd6"
       },
       {
@@ -5067,7 +5066,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 325,
-          "timestamp" : "2024-03-23T00:03:52.000+0000",
+          "timestamp" : "2024-03-23T00:03:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd7"
       },
       {
@@ -5075,7 +5074,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 326,
-          "timestamp" : "2024-03-23T00:03:58.000+0000",
+          "timestamp" : "2024-03-23T00:03:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd8"
       },
       {
@@ -5083,7 +5082,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 327,
-          "timestamp" : "2024-03-23T00:03:58.000+0000",
+          "timestamp" : "2024-03-23T00:03:58.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cd9"
       },
       {
@@ -5091,7 +5090,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 328,
-          "timestamp" : "2024-03-23T00:04:00.000+0000",
+          "timestamp" : "2024-03-23T00:04:00.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cda"
       },
       {
@@ -5099,7 +5098,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 329,
-          "timestamp" : "2024-03-23T00:04:03.000+0000",
+          "timestamp" : "2024-03-23T00:04:03.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cdb"
       },
       {
@@ -5107,7 +5106,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 330,
-          "timestamp" : "2024-03-23T00:04:03.000+0000",
+          "timestamp" : "2024-03-23T00:04:03.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cdc"
       },
       {
@@ -5115,7 +5114,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 331,
-          "timestamp" : "2024-03-23T00:04:07.000+0000",
+          "timestamp" : "2024-03-23T00:04:07.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cdd"
       },
       {
@@ -5123,7 +5122,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 332,
-          "timestamp" : "2024-03-23T00:04:11.000+0000",
+          "timestamp" : "2024-03-23T00:04:11.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cde"
       },
       {
@@ -5131,7 +5130,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 333,
-          "timestamp" : "2024-03-23T00:04:13.000+0000",
+          "timestamp" : "2024-03-23T00:04:13.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cdf"
       },
       {
@@ -5139,7 +5138,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 334,
-          "timestamp" : "2024-03-23T00:04:15.000+0000",
+          "timestamp" : "2024-03-23T00:04:15.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce0"
       },
       {
@@ -5147,7 +5146,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 335,
-          "timestamp" : "2024-03-23T00:04:21.000+0000",
+          "timestamp" : "2024-03-23T00:04:21.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce1"
       },
       {
@@ -5155,7 +5154,7 @@
           "Slot" : 1,
           "Type" : 205,
           "index" : 336,
-          "timestamp" : "2024-03-23T00:04:24.000+0000",
+          "timestamp" : "2024-03-23T00:04:24.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce2"
       },
       {
@@ -5163,7 +5162,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 337,
-          "timestamp" : "2024-03-23T00:04:36.000+0000",
+          "timestamp" : "2024-03-23T00:04:36.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce3"
       },
       {
@@ -5171,7 +5170,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 338,
-          "timestamp" : "2024-03-23T00:04:38.000+0000",
+          "timestamp" : "2024-03-23T00:04:38.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce4"
       },
       {
@@ -5179,7 +5178,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 339,
-          "timestamp" : "2024-03-23T00:04:42.000+0000",
+          "timestamp" : "2024-03-23T00:04:42.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce5"
       },
       {
@@ -5187,7 +5186,7 @@
           "Slot" : 5,
           "Type" : 205,
           "index" : 340,
-          "timestamp" : "2024-03-23T00:04:44.000+0000",
+          "timestamp" : "2024-03-23T00:04:44.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce6"
       },
       {
@@ -5195,7 +5194,7 @@
           "Slot" : 0,
           "Type" : 205,
           "index" : 341,
-          "timestamp" : "2024-03-23T00:04:45.000+0000",
+          "timestamp" : "2024-03-23T00:04:45.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce7"
       },
       {
@@ -5203,7 +5202,7 @@
           "Slot" : 4,
           "Type" : 205,
           "index" : 342,
-          "timestamp" : "2024-03-23T00:04:52.000+0000",
+          "timestamp" : "2024-03-23T00:04:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce8"
       },
       {
@@ -5211,7 +5210,7 @@
           "Slot" : 2,
           "Type" : 205,
           "index" : 343,
-          "timestamp" : "2024-03-23T00:04:52.000+0000",
+          "timestamp" : "2024-03-23T00:04:52.000Z",
           "_id" : "65fe1cb8e5035d52d87c0ce9"
       },
       {
@@ -5219,7 +5218,7 @@
           "Slot" : 3,
           "Type" : 205,
           "index" : 344,
-          "timestamp" : "2024-03-23T00:04:54.000+0000",
+          "timestamp" : "2024-03-23T00:04:54.000Z",
           "_id" : "65fe1cb8e5035d52d87c0cea"
       }
   ],
@@ -5233,7 +5232,7 @@
               "Type" : 310,
               "Mission" : 1,
               "Duration" : 15000,
-              "timestamp" : "2024-03-22T23:39:45.000+0000"
+              "timestamp" : "2024-03-22T23:39:45.000Z"
           },
           "_id" : "65fe1cb8e5035d52d87c0ceb",
           "mission_phase_end" : {
@@ -5242,7 +5241,7 @@
               "Failed" : true,
               "NumHacks" : 1,
               "Proposer" : 0,
-              "timestamp" : "2024-03-22T23:39:47.000+0000",
+              "timestamp" : "2024-03-22T23:39:47.000Z",
               "deltaT" : 2000,
               "propNumber" : 1,
               "chatIndex" : 18
@@ -5258,7 +5257,7 @@
               "Type" : 310,
               "Mission" : 2,
               "Duration" : 15000,
-              "timestamp" : "2024-03-22T23:44:16.000+0000"
+              "timestamp" : "2024-03-22T23:44:16.000Z"
           },
           "_id" : "65fe1cb8e5035d52d87c0cec",
           "mission_phase_end" : {
@@ -5267,7 +5266,7 @@
               "Failed" : false,
               "NumHacks" : 0,
               "Proposer" : 5,
-              "timestamp" : "2024-03-22T23:44:19.000+0000",
+              "timestamp" : "2024-03-22T23:44:19.000Z",
               "deltaT" : 3000,
               "propNumber" : 5,
               "chatIndex" : 62
@@ -5284,7 +5283,7 @@
               "Type" : 310,
               "Mission" : 3,
               "Duration" : 15000,
-              "timestamp" : "2024-03-22T23:50:42.000+0000"
+              "timestamp" : "2024-03-22T23:50:42.000Z"
           },
           "_id" : "65fe1cb8e5035d52d87c0ced",
           "mission_phase_end" : {
@@ -5293,7 +5292,7 @@
               "Failed" : true,
               "NumHacks" : 1,
               "Proposer" : 5,
-              "timestamp" : "2024-03-22T23:50:45.000+0000",
+              "timestamp" : "2024-03-22T23:50:45.000Z",
               "deltaT" : 3000,
               "propNumber" : 5,
               "chatIndex" : 136
@@ -5309,7 +5308,7 @@
               "Type" : 310,
               "Mission" : 4,
               "Duration" : 15000,
-              "timestamp" : "2024-03-22T23:59:40.000+0000"
+              "timestamp" : "2024-03-22T23:59:40.000Z"
           },
           "_id" : "65fe1cb8e5035d52d87c0cee",
           "mission_phase_end" : {
@@ -5318,7 +5317,7 @@
               "Failed" : false,
               "NumHacks" : 0,
               "Proposer" : 1,
-              "timestamp" : "2024-03-22T23:59:43.000+0000",
+              "timestamp" : "2024-03-22T23:59:43.000Z",
               "deltaT" : 3000,
               "propNumber" : 5,
               "chatIndex" : 262
@@ -5335,7 +5334,7 @@
               "Type" : 310,
               "Mission" : 5,
               "Duration" : 15000,
-              "timestamp" : "2024-03-23T00:04:55.000+0000"
+              "timestamp" : "2024-03-23T00:04:55.000Z"
           },
           "_id" : "65fe1cb8e5035d52d87c0cef",
           "mission_phase_end" : {
@@ -5344,7 +5343,7 @@
               "Failed" : true,
               "NumHacks" : 1,
               "Proposer" : 4,
-              "timestamp" : "2024-03-23T00:05:10.000+0000",
+              "timestamp" : "2024-03-23T00:05:10.000Z",
               "deltaT" : 15000,
               "propNumber" : 2,
               "chatIndex" : 345

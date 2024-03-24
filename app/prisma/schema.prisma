@@ -18,7 +18,6 @@ type VotePhaseStart {
   Players           Int[]
   Proposer          Int
   Type              Int
-  timestamp         DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -27,7 +26,6 @@ type VoteSchema {
   Slot        Int
   Type        Int
   deltaT      Int
-  timestamp   DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -50,7 +48,6 @@ type VotePhaseEnd {
   VotesAgainst      Int[]
   chatIndex         Int
   deltaT            Int
-  timestamp         DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -68,9 +65,8 @@ type Proposal {
   chatIndex         Int
   deltaT            Int
   propNumber        Int
-  timestamp         DateTime
-  vote_phase_start  VotePhaseStart
-  vote_made         VoteMade
+  vote_phase_start  VotePhaseStart?
+  vote_made         VoteMade?
   vote_phase_end    VotePhaseEnd?
 
   created_at        DateTime    @default(now())
@@ -94,7 +90,6 @@ type GamePlayer {
   Username      String
   chat          Int[] //array of chat messages mapped to chat indices
   proposals     PlayerProposal
-  timestamp     DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -132,14 +127,13 @@ type GameFound {
   Map               Int
   MatchType         Int
   MissionInfo       Int[]
-  MissionMinhacks   Int
+  MissionMinhacks   Int[]
   Options           GameOptions
   PlayerNumber      Int
   Type              Int
   VoiceChat         Boolean
   VoiceChatChannel  String
   VoiceChatName     String
-  timestamp         DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -148,7 +142,6 @@ type GameStart {
   Type          Int
   AFK           Int[]
   Disconnected  Int[]
-  timestamp     DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -158,7 +151,6 @@ type MissionPhaseStart {
   Mission     Int
   Players     Int[]
   Type        Int
-  timestamp   DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -172,7 +164,6 @@ type MissionPhaseEnd {
   chatIndex   Int
   deltaT      Int
   propNumber  Int
-  timestamp   DateTime
 
   created_at        DateTime    @default(now())
 }
@@ -211,7 +202,8 @@ type GameEnd {
   Timeout           Int
   PlayerIdentities  PlayerIdentity[]
   AfterGameLobby    String
-  timestamp         DateTime
+  
+  created_at        DateTime    @default(now())
 }
 
 type ChatMessage {
@@ -219,7 +211,8 @@ type ChatMessage {
   Slot      Int       @default(-1)
   Type      Int       @default(-1)
   index     Int       @default(-1)
-  timestamp DateTime  @default(now())
+  
+  created_at        DateTime    @default(now())
 }
 
 // =========================
@@ -231,20 +224,19 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   v             Int?        @map("__v")
   game_found    GameFound
   game_start    GameStart
-  players       GamePlayers
+  game_players  GamePlayers
   missions      Missions?
   game_end      GameEnd
   chat          ChatMessage[]
-  local_slot    Int
-  timestamp     DateTime    @default(now())
-  raw_game      RawGame[]
+  // local_slot    Int
+  
+  raw_games     RawGame[]
 
-  player        Player      @relation(fields: [player_id], references: [id])
-  player_id     String      @db.ObjectId
+  players       Player[]   @relation(fields: [player_ids], references: [id])
+  player_ids    String[]   @db.ObjectId
 
-  created_at        DateTime    @default(now())
-  updated_at        DateTime    @updatedAt
-
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
   @@map("games")
 }
 
@@ -256,13 +248,10 @@ model RawGame {
   id            String     @id @default(auto()) @map("_id") @db.ObjectId
   v             Int?       @map("__v")
   data          String
-  timestamp     DateTime
-  game          Game        @relation(fields: [gameID], references: [id])
-  gameID        String      @db.ObjectId
+  game          Game        @relation(fields: [game_id], references: [id])
+  game_id        String      @db.ObjectId
 
-  player        Player      @relation(fields: [player_id], references: [id])
-  player_id     String      @db.ObjectId
-
+  created_at        DateTime    @default(now())
   @@map("rawgames")
 }
 
@@ -271,16 +260,19 @@ model RawGame {
 // =========================
 
 model Player {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int?    @map("__v")
-  steamID   String  @unique
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int?      @map("__v")
+  steam_id   String    @unique
   name      String
-  elo       Float   @default(1500)
-  games     Game[]
-  rawGames  RawGame[]
+  level     Int       @default(1)
+  elo       Float     @default(1500)
+  games     Game[]    @relation(fields: [game_ids], references: [id])
+  game_ids  String[]  @db.ObjectId
 
   users     User[]
 
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
   @@map("players")
 }
 
@@ -291,10 +283,10 @@ model Player {
 model User {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   v         Int?    @map("__v")
-  UUID      String  @unique
+  uuid      String  @unique
   
-  player    Player  @relation(fields: [playerID], references: [id])
-  playerID  String  @db.ObjectId
+  player    Player  @relation(fields: [player_id], references: [id])
+  player_id  String  @db.ObjectId
   @@map("users")
 }
 
