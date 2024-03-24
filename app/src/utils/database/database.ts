@@ -14,6 +14,13 @@ const prismaClientSingleton= ()=>{
     },
     model: {
       $allModels:{
+        findById<T>(
+          this: T,
+          id: string
+        ):Promise< Prisma.Result<T, undefined, 'findFirstOrThrow'> >{
+          const ctx = Prisma.getExtensionContext(this)
+          return  (ctx as any).findFirstOrThrow({where:{id}});
+        },
         polish<T>(
           this:T, 
           valueToPolish:Prisma.Args<T, 'create'>['data'], //corresponding model input type

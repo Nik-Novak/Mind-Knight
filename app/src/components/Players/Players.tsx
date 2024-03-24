@@ -12,14 +12,14 @@ type Props = {
   selectedNode: NodeNumber;
   selectedTurn: number; //1..many
   selectedSlot: PlayerSlot;
+  numPlayers: NumberOfPlayers;
   game_players: GamePlayers;
   game_end?: GameEnd;
 }
 
-export default function Players({selectedNode, selectedTurn, selectedSlot, game_players, game_end }:Props){
+export default function Players({selectedNode, selectedTurn, selectedSlot, numPlayers, game_players, game_end }:Props){
   const turnInfo = game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1];
   let propSlot = turnInfo && getPropIndex(turnInfo);
-  let numPlayers = Object.keys(game_players).length as NumberOfPlayers;
   
   return (
     <Box id="players-container" position='relative' width='100%' height='100%'>

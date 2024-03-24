@@ -1,4 +1,4 @@
-import { NodeNumber, PlayerSlot } from "@/types/game";
+import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import { GamePlayer, GamePlayers } from "@prisma/client";
@@ -10,7 +10,7 @@ type Props = {
   selectedTurn: number; //1..many
   selectedSlot: PlayerSlot;
   game_players: GamePlayers;
-  numPlayers: number;
+  numPlayers: NumberOfPlayers;
 }
 
 function trueMod(n:number, m:number) {
