@@ -1,4 +1,4 @@
-import { getVersion } from "@/services/version";
+import { getVersion } from "@/actions/version";
 import { suspense } from "@/utils/hoc/suspense";
 import Link from "next/link";
 import { FC, Suspense } from "react";

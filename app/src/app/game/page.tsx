@@ -1,7 +1,6 @@
 import Panel from "@/components/Panel";
 import styles from "./page.module.css";
 import { Stack, Typography } from "@mui/material";
-import Chatlog from "@/components/ChatLog";
 import { Game } from "@prisma/client";
 // import sampleGame from './sample-game3.json';
 import ImportantInfo from "@/components/ImportantInfo";
@@ -12,6 +11,7 @@ import Players from "@/components/Players";
 import Turns from "@/components/Turns";
 import { database } from "@/utils/database/database";
 import { Prisma } from "@prisma/client";
+import Chatbox from "@/components/Chatbox";
 
 //React server component that securely runs on the server by default
 export default async function GamePage() {
@@ -19,8 +19,6 @@ export default async function GamePage() {
   const selectedNode:NodeNumber = 1;
   const selectedTurn:number = 1;
   const selectedSlot:PlayerSlot = 0;
-
-  console.log(Object.keys(game));
 
   // console.log(game.game_found);
   // game.
@@ -45,7 +43,7 @@ export default async function GamePage() {
     <>
       <main id='content' className={styles.main}>
         <Stack className={styles.left}>
-          <Panel title="Chat" > <Chatlog chat={game.chat} game_players={game.game_players} /> </Panel>
+          <Panel title="Chat" defaultExpanded > <Chatbox chat={game.chat} game_players={game.game_players} /> </Panel>
         </Stack>
         <Stack className={styles.center}>
           <ImportantInfo selectedNode={selectedNode} selectedTurn={selectedTurn} selectedSlot={selectedSlot} game_players={game.game_players} numPlayers={game.game_found.PlayerNumber as NumberOfPlayers}/>

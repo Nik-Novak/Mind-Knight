@@ -8,7 +8,7 @@ import { copyToClipboard } from "@/utils/functions/general";
 
 type Props = {
   author: string,
-  color: string,
+  color?: string,
   message: string,
   searchPattern: string
 }

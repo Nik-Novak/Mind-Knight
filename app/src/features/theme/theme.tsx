@@ -12,7 +12,7 @@ const roboto = Roboto({
 const theme = createTheme({
   palette:{
     text:{
-      primary: '#FFF'
+      primary: '#FFFFFF'
     },
     primary: {
       main: '#F0F0F0'
@@ -27,6 +27,7 @@ const theme = createTheme({
   typography: {
     fontFamily: `Munro, ${roboto.style.fontFamily}, sans-serif`,
     allVariants:{
+      color: '#FFF'
       // lineHeight: 1
     }
   },
@@ -53,8 +54,6 @@ const theme = createTheme({
           textTransform:'none',
           fontWeight: 'bold',
           fontSize: '1rem',
-          paddingLeft: 50,
-          paddingRight: 50,
         }
       }
     },
