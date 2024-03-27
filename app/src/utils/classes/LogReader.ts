@@ -67,6 +67,10 @@ class LogReader extends EventEmitter<LogEvents>{
         if(osRelease.toLowerCase().includes('ubuntu'))
           this.filepath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
       } break;
+      case 'win32': {
+        osRelease = fs.readFileSync('/etc/os-release', 'utf8');
+        this.filepath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
+      } break;
     }
     if(!this.filepath)
       throw Error(`Sorry, Mind Knight does not yet support your platform: ${platform} ${osRelease}`);
