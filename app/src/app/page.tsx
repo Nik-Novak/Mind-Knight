@@ -13,12 +13,13 @@ import { deepOrange, grey } from "@mui/material/colors";
 import Avatar from "@/components/Avatar";
 import { signIn } from "next-auth/react";
 import { getServerSession } from "next-auth";
+import { getMindnightSession } from "@/actions/session";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {
 
   const globalChat: GlobalChatMessage[] = await getGlobalChat();
-  const session = await getServerSession();
+  const steamSession = await getServerSession();
 
   return (
     <>
@@ -35,7 +36,7 @@ export default async function HomePage() {
         <Typography variant="h3">OR</Typography>
         <Stack spacing={2} direction={'row'} justifyContent={'center'}>
           { 
-            session?.user
+            steamSession?.user
             ? <> 
                 <Link href='/events'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Events</Button></Link>
                 <Link href='/replays'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Replays</Button></Link>

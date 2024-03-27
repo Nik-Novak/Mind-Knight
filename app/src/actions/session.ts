@@ -2,10 +2,41 @@
 import LogReader, { LogEvents } from "@/utils/classes/LogReader";
 import { send } from "./websocket";
 import { revalidatePath } from "next/cache";
-// import SteamClient from 'steam-client';
+import Steam from 'steam-client';
 
+type MindnightSession = {
+  name: string,
+  steamId: string,
+  status: 'pending'|'authenticated'|'menu'
+}
+let session:MindnightSession|undefined; //TODO make this a call to ws to check
 
-let loggedIn = false; //TODO make this a call to ws to check
+export async function getMindnightSession(){
+  return session;
+}
+
+// const steamClient = new Steam.CMClient();
+// steamClient.
+
+LogReader.on('PlayerInfo', ( {Nickname, Steamid} )=>{
+  session = {
+    name: Nickname,
+    steamId: Steamid,
+    status: 'pending'
+  }
+});
+
+LogReader.on('AuthResponse', ()=>{
+  if(session)
+    session.status = 'authenticated';
+  revalidatePath('/');
+});
+
+LogReader.on('GlobalChatHistoryResponse', ()=>{
+  if(session)
+    session.status = 'menu';
+  revalidatePath('/');
+});
 
 // const steamClient = new SteamClient();
 

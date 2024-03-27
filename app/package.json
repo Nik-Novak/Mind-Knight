@@ -29,6 +29,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-highlight-words": "^0.20.0",
+    "steam-client": "^2.5.8",
     "tail": "^2.2.6",
     "ws": "^8.16.0"
   },
@@ -39,6 +40,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-highlight-words": "^0.16.7",
+    "@types/steam-client": "^2.5.6",
     "@types/tail": "^2.2.3",
     "@types/ws": "^8.5.10",
     "prisma": "^5.11.0",

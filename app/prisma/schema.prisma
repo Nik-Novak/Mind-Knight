@@ -119,13 +119,13 @@ type GameOptions {
 }
 
 type GameFound {
-  FirstPlayer       Int
-  GuyRole           Int
-  Hacker            Boolean
-  Hackers           Int[]
+  FirstPlayer       Int     //0, startingg pos
+  GuyRole           Int     //10 = agent, 20 = hacker ; local player's role
+  Hacker            Boolean //hacker team or agent team
+  Hackers           Int[]   //PlayerSlot[]
   HackersAmount     Int
   Map               Int
-  MatchType         Int
+  MatchType         Int     //MatchType 4 = mainframe, 0 = default, ? = blind hackers
   MissionInfo       Int[]
   MissionMinhacks   Int[]
   Options           GameOptions
