@@ -315,11 +315,11 @@ model Client {
 
 model Account {
   id                  String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId              String  @db.ObjectId
-  steamId             String
+  userId              String  @map("user_id") @db.ObjectId
+  steamId             String  @map("steam_id")
   type                String
   provider            String
-  providerAccountId   String
+  providerAccountId   String  @map("provider_account_id")
   refresh_token       String?
   access_token        String?
   expires_at          Int?
@@ -336,8 +336,8 @@ model Account {
 
 model Session {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken  String    @unique
-  userId        String    @db.ObjectId
+  sessionToken  String    @map("session_token") @unique 
+  userId        String    @map("user_id") @db.ObjectId
   expires       DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@map("sessions")
@@ -347,7 +347,7 @@ model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
+  emailVerified DateTime? @map("email_verified")
   image         String?
   accounts      Account[]
   sessions      Session[]
