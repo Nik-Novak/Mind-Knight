@@ -10,7 +10,7 @@ import { GlobalChatMessage, PlayerSlot } from "@/types/game";
 import Message from "./Message";
 import { useRouter } from "next/navigation";
 import { provideLogEvents } from "@/utils/hoc/provideLogEvents";
-import { useLogEvents } from "../LogEventsProvider";
+import { useServerEvents } from "../ServerEventsProvider";
 import { LogEvents } from "@/utils/classes/LogReader";
 
 // type GameProps = {
@@ -31,7 +31,7 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   const messageForm = useRef<HTMLFormElement>(null);
   const chatContainerRef = useRef<HTMLUListElement>(null);
   const router = useRouter();
-  const { logEvents } = useLogEvents();
+  const { serverEvents: logEvents } = useServerEvents();
 
   const [optimisticChat, addOptimisticChat] = useOptimistic(
     chat,

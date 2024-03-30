@@ -11,8 +11,8 @@ import { sendToMindnight } from "./mindnight";
 export async function createGlobalChatMessage(message:GlobalChatMessage){
   "use server";
   let chatMsg = await database.globalChatMessage.create({
-    data: message
-  });
+    data:message
+  })
   revalidateTag(Tags.chat)
   // revalidatePath('/')
   // console.log('SHOULD BE REVALIDATED');

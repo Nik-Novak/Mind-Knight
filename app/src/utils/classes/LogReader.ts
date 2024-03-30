@@ -54,7 +54,7 @@ export type LogReceiveEvents = {
   GameEnd: [{"Type":203,"Hacked":boolean,"Hackers":PlayerSlot[],"Canceled":boolean,"Roles":Role[],"Timeout":number/*ms*/,"PlayerIdentities":PlayerIdentity[],"AfterGameLobby":string}]
 }
 
-export type LogEvents = LogSendEvents & LogReceiveEvents & { '*': any[] } ;
+export type LogEvents = LogSendEvents & LogReceiveEvents;
 
 /**
  * Subscribes to log based on platform and emits events
