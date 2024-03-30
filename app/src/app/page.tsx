@@ -12,13 +12,14 @@ import { getGlobalChat, sendGlobalMessage } from "@/actions/chat";
 import { grey } from "@mui/material/colors";
 import Avatar from "@/components/Avatar";
 import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {
 
   const globalChat: GlobalChatMessage[] = await getGlobalChat();
   // console.log('RERENDER AND REFETCH GLOBAL CHAT', globalChat[globalChat.length-1].Message);
-  const steamSession = await getServerSession();
+  const steamSession = await getServerSession(authOptions);
 
   return (
     <>
