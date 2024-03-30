@@ -22,7 +22,6 @@ export async function createGlobalChatMessage(message:GlobalChatMessage){
 export const getGlobalChat = cache( async function (){
     "use server";
     let chat = await database.globalChatMessage.findMany();
-    console.log('GET GLOBAL');
     return chat;
   }, 
   [Tags.chat],
@@ -45,6 +44,5 @@ export async function sendGlobalMessage(message:string){
     Roles: [0],
     Timestamp: Date.now()
   });
-  console.log('SEND GLOBAL', message)
   return chatMsg;
 }
