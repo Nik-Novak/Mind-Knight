@@ -1,6 +1,5 @@
 "use server";
 import LogReader, { LogEvents } from "@/utils/classes/LogReader";
-import { send } from "./websocket";
 import { revalidatePath } from "next/cache";
 import Steam from 'steam-client';
 
@@ -38,7 +37,7 @@ LogReader.on('GlobalChatHistoryResponse', ()=>{
   revalidatePath('/');
 });
 
-// const steamClient = new SteamClient();
+// const steamUser = new SteamUser();
 
 // async function steamLogin(username: string, password: string): Promise<{sessionTicket:string}>{
 //   return new Promise((resolve, reject)=>{

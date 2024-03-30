@@ -12,6 +12,7 @@ import Turns from "@/components/Turns";
 import { database } from "@/utils/database/database";
 import { Prisma } from "@prisma/client";
 import Chatbox from "@/components/Chatbox";
+import Settings from "@/components/Settings";
 
 //React server component that securely runs on the server by default
 export default async function GamePage() {
@@ -43,6 +44,7 @@ export default async function GamePage() {
     <>
       <main id='content' className={styles.main}>
         <Stack className={styles.left}>
+          <Settings />
           <Panel title="Chat" defaultExpanded > <Chatbox chat={game.chat} game_players={game.game_players} /> </Panel>
         </Stack>
         <Stack className={styles.center}>

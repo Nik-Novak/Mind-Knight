@@ -9,16 +9,15 @@ import Panel from "@/components/Panel";
 import Chatbox from "@/components/Chatbox";
 import { GlobalChatMessage } from "@/types/game";
 import { getGlobalChat, sendGlobalMessage } from "@/actions/chat";
-import { deepOrange, grey } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 import Avatar from "@/components/Avatar";
-import { signIn } from "next-auth/react";
 import { getServerSession } from "next-auth";
-import { getMindnightSession } from "@/actions/session";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {
 
   const globalChat: GlobalChatMessage[] = await getGlobalChat();
+  // console.log('RERENDER AND REFETCH GLOBAL CHAT', globalChat[globalChat.length-1].Message);
   const steamSession = await getServerSession();
 
   return (

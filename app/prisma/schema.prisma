@@ -290,6 +290,19 @@ model User {
   @@map("users")
 }
 
+model GlobalChatMessage {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int?    @map("__v")
+
+  Message   String
+  SteamId   String
+  Username  String
+  Roles     Int[]
+  Timestamp Int
+
+  @@map("globalchatmessages")
+}
+
 //TODO implement prismix: https://github.com/jamiepine/prismix
 
 

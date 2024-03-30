@@ -5,6 +5,7 @@ import { GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, Playe
 import { PlayerIdentity, Role } from '@prisma/client';
 import FileTail from './FileTail';
 import { ColorCode } from '../constants/colors';
+import { WildcardEventEmitter } from './WildcardEventEmitter';
 
 export type LogSendEvents = {
   //GENERAL
@@ -53,8 +54,11 @@ export type LogReceiveEvents = {
   GameEnd: [{"Type":203,"Hacked":boolean,"Hackers":PlayerSlot[],"Canceled":boolean,"Roles":Role[],"Timeout":number/*ms*/,"PlayerIdentities":PlayerIdentity[],"AfterGameLobby":string}]
 }
 
-export type LogEvents = LogSendEvents & LogReceiveEvents;
+export type LogEvents = LogSendEvents & LogReceiveEvents & { '*': any[] } ;
 
+/**
+ * Subscribes to log based on platform and emits events
+ */
 class LogReader extends EventEmitter<LogEvents>{
   private filepath = '';
   constructor(){
@@ -68,7 +72,6 @@ class LogReader extends EventEmitter<LogEvents>{
           this.filepath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
       } break;
       case 'win32': {
-        osRelease = fs.readFileSync('/etc/os-release', 'utf8');
         this.filepath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
       } break;
     }
@@ -110,6 +113,16 @@ class LogReader extends EventEmitter<LogEvents>{
       })
       .start();
   }
+  // emit(type: keyof LogSendEvents | keyof LogReceiveEvents, ...args: any[]): boolean {
+  //   super.emit('*', type, ...args);
+  //   return super.emit(type, ...args) || super.emit('', ...args);
+  // }
+  // onAny(listener:(eventName?:keyof LogEvents, ...args: any[]) => void ){
+  //   console.log('evt names', this.emit);
+  //   this.eventNames().forEach(eventName=>{
+  //     this.on(eventName, (...args:any[])=>listener(eventName, ...args));
+  //   })
+  // }
 }
 
 export default new LogReader();
