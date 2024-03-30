@@ -165,7 +165,7 @@ type MissionPhaseEnd {
   deltaT      Int
   propNumber  Int
 
-  created_at        DateTime    @default(now())
+  created_at  DateTime    @default(now())
 }
 
 type Mission {
@@ -262,13 +262,13 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 // =========================
 
 model RawGame {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
-  v             Int?       @map("__v")
-  data          String
-  game          Game        @relation(fields: [game_id], references: [id])
-  game_id        String      @db.ObjectId
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  v               Int?       @map("__v")
+  data            String
+  game            Game        @relation(fields: [game_id], references: [id])
+  game_id         String      @db.ObjectId
 
-  created_at        DateTime    @default(now())
+  created_at      DateTime    @default(now())
   @@map("rawgames")
 }
 
@@ -288,6 +288,9 @@ model Player {
 
   clients   Client[]
 
+  user      User?     @relation(fields: [user_id], references: [id])
+  user_id   String    @db.ObjectId @unique
+
   created_at        DateTime    @default(now())
   updated_at        DateTime    @updatedAt
   @@map("players")
@@ -298,12 +301,13 @@ model Player {
 // =========================
 
 model Client {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int?    @map("__v")
-  uuid      String  @unique
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  v           Int?    @map("__v")
+  uuid        String  @unique
+
+  player      Player    @relation(fields: [player_id], references: [id])
+  player_id   String  @db.ObjectId
   
-  player    Player  @relation(fields: [player_id], references: [id])
-  player_id  String  @db.ObjectId
   @@map("clients")
 }
 
@@ -347,6 +351,9 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  player        Player?
+  
   @@map("users")
 }
 
