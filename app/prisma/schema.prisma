@@ -215,6 +215,12 @@ type ChatMessage {
   created_at        DateTime    @default(now())
 }
 
+enum MindnightSessionStatus {
+  pending
+  authenticated
+  ready
+}
+
 // =========================
 // Global Chat
 // =========================
@@ -229,6 +235,8 @@ model GlobalChatMessage {
   Roles     Int[]
   Timestamp Int
 
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
   @@map("globalchatmessages")
 }
 
@@ -269,6 +277,7 @@ model RawGame {
   game_id         String      @db.ObjectId
 
   created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
   @@map("rawgames")
 }
 
@@ -301,14 +310,32 @@ model Player {
 // =========================
 
 model Client {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  v           Int?    @map("__v")
-  uuid        String  @unique
+  id                    String              @id @default(auto()) @map("_id") @db.ObjectId
+  v                     Int?                @map("__v")
+  uuid                  String              @unique
 
-  player      Player    @relation(fields: [player_id], references: [id])
-  player_id   String  @db.ObjectId
+  mindnight_session     MindnightSession?
+
+  player                Player?             @relation(fields: [player_id], references: [id])
+  player_id             String?             @db.ObjectId
   
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
   @@map("clients")
+}
+
+model MindnightSession {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  steam_id    String
+  status      MindnightSessionStatus
+
+  client      Client  @relation(fields: [client_id], references: [id], onDelete: Cascade)
+  client_id   String  @db.ObjectId @unique
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("mindnightsessions")
 }
 
 // ############## AUTH JS ##################
@@ -330,6 +357,8 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
@@ -340,6 +369,9 @@ model Session {
   userId        String    @map("user_id") @db.ObjectId
   expires       DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
   @@map("sessions")
 }
 
@@ -354,6 +386,8 @@ model User {
 
   player        Player?
   
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
   @@map("users")
 }
 
@@ -363,6 +397,8 @@ model VerificationToken {
   token         String   @unique
   expires       DateTime
 
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
   @@unique([identifier, token])
   @@map("verificationtokens")
 }

@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 import { provideLogEvents } from "@/utils/hoc/provideLogEvents";
 import { useServerEvents } from "../ServerEventsProvider";
 import { LogEvents } from "@/utils/classes/LogReader";
+import { provideMindnightSession } from "@/utils/hoc/provideMindnightSession";
+import { useMindnightSession } from "../MindnightSessionProvider";
 
 // type GameProps = {
 //   chat:(GlobalChatMessage|ChatMessage)[],
@@ -31,7 +33,8 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   const messageForm = useRef<HTMLFormElement>(null);
   const chatContainerRef = useRef<HTMLUListElement>(null);
   const router = useRouter();
-  const { serverEvents: logEvents } = useServerEvents();
+  const { serverEvents } = useServerEvents();
+  const { mindnightSession } = useMindnightSession();
 
   const [optimisticChat, addOptimisticChat] = useOptimistic(
     chat,
@@ -69,9 +72,9 @@ function Chatbox({chat, game_players, sendMessage}:Props){
     let onReceiveGlobalChatMessage = (data:LogEvents['ReceiveGlobalChatMessage'][0])=> {
       router.refresh();
     };
-    logEvents.on('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage );
+    serverEvents.on('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage );
     //cleanup event listener
-    return ()=> {logEvents.removeListener('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage )};
+    return ()=> {serverEvents.removeListener('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage )};
   }, []);
   
   return (
@@ -114,9 +117,9 @@ function Chatbox({chat, game_players, sendMessage}:Props){
         messageForm.current?.reset();
         // router.refresh();
       }} style={{display:'flex'}} ref={messageForm}>
-        <TextField name="message" style={{flexGrow:1}} variant="standard" placeholder="Message" 
+        <TextField disabled={mindnightSession?.status!=='ready'} name="message" style={{flexGrow:1}} variant="standard" placeholder="Message" 
           InputProps={{ endAdornment: <InputAdornment position="end">
-              <Button type="submit" sx={{fontSize:12, padding: '2px'}} variant="contained" className="pixel-corners-small">
+              <Button type="submit" disabled={mindnightSession?.status!=='ready'} sx={{fontSize:12, padding: '2px'}} variant="contained" className="pixel-corners-small">
                 Send
               </Button>
             </InputAdornment>}}
@@ -127,4 +130,4 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   )
 }
 
-export default provideLogEvents(Chatbox);
+export default provideLogEvents(provideMindnightSession(Chatbox));

@@ -13,6 +13,8 @@ import { grey } from "@mui/material/colors";
 import Avatar from "@/components/Avatar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import { database } from "@/utils/database/database";
+import { MindnightSessionStatus } from "@prisma/client";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {

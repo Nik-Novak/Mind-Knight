@@ -1,4 +1,4 @@
-import { getMindnightSession } from "@/actions/session";
+import { getMindnightSession } from "@/actions/mindnight";
 import { suspense } from "@/utils/hoc/suspense";
 import { Typography } from "@mui/material";
 
@@ -7,7 +7,7 @@ async function Instructions() {
   let instructions = 'launch mindnight to begin...';
   if(mnSession?.status==='pending')
     instructions = 'game launched, awaiting main menu';
-  else if(mnSession?.status==='menu')
+  else if(mnSession?.status==='ready')
     instructions = 'ready for a game';
   return(
     <Typography variant="h3">{instructions}</Typography>

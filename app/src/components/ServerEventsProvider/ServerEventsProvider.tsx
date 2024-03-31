@@ -2,8 +2,13 @@
 import { LogEvents } from '@/utils/classes/LogReader';
 import React, { createContext, useContext, useEffect } from 'react';
 import { EventEmitter } from 'events';
+import { MindnightSession } from '@prisma/client';
 
-export type ServerEvents = LogEvents; //add new events here
+type SessionEvents = {
+  MindnightSessionUpdate: [MindnightSession]
+}
+
+export type ServerEvents = LogEvents & SessionEvents; //add new events here
 
 export type ServerEventPacket = {
   type: keyof ServerEvents,

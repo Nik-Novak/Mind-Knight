@@ -1,3 +1,4 @@
 export enum Tags {
-  chat='chat'
+  chat='chat',
+  session='session'
 }

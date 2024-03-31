@@ -1,9 +1,10 @@
-import { PrismaClient, PlayerIdentity, Prisma, Game } from '@prisma/client'
+import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, MindnightSessionStatus } from '@prisma/client'
 // let modelnames = Prisma.dmmf.datamodel.models.map(m=>m.name); Value `in` modelnames
 
 type NonNull<T> = Exclude<T, null | undefined>;
 
-const prismaClientSingleton= ()=>{
+const prismaClientSingleton= ()=>{ 
+  
   let prisma = new PrismaClient();
   return prisma.$extends({
     query:{
@@ -12,13 +13,39 @@ const prismaClientSingleton= ()=>{
         return query(args)
       }
     },
+    // result: { //TODO nextjs not allowing symbols on functions?
+    //   $allModels:{
+    //     $save: {
+    //       // needs: { id: true },
+    //       compute(data:any) {
+    //         "use server";
+    //         return async () =>{
+    //           "use server"; //have to mark these otherwise nextjs complains
+    //           const ctx = Prisma.getExtensionContext(this) as any;
+    //           // const ctx = prisma.client;
+    //           return ctx.update({ where: { id: data.id }, data: data }) as Promise< void > //TODO, return typing: Promise< Prisma.Result<T, undefined, 'findFirstOrThrow'> >
+    //         }
+    //       },
+    //     },
+    //   }
+    // },
     model: {
       $allModels:{
+        async findOrCreate<T, A extends Prisma.Args<T, 'create'>>(
+          this: T,
+          args: A
+        ):Promise< Prisma.Result<T, A, 'findFirstOrThrow'> >{  //let t = await prisma.mindnightSession.create({  }); let q = prisma.mindnightSession.findFirst({})
+          const ctx = Prisma.getExtensionContext<T>(this);
+          let record = await (ctx as any).findFirst({where:args.data, include:args.include, select:args.select });
+          if(!record)
+            record = await (ctx as any).create(args);
+          return record;
+        },
         findById<T>(
           this: T,
           id: string
         ):Promise< Prisma.Result<T, undefined, 'findFirstOrThrow'> >{
-          const ctx = Prisma.getExtensionContext(this)
+          const ctx = Prisma.getExtensionContext(this);
           return  (ctx as any).findFirstOrThrow({where:{id}});
         },
         polish<T>(
@@ -55,15 +82,23 @@ const prismaClientSingleton= ()=>{
           return polishedData;
         }
       },
-      player: {
-        async findOrCreate(playerIdentity:PlayerIdentity){
-          return database.player.create({data:{
-            level: playerIdentity.Level,
-            steam_id: playerIdentity.Steamid,
-            name: playerIdentity.Nickname,
-          }})
+      mindnightSession:{
+        async authenticate(session:MindnightSession){
+          return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'authenticated'}});
         },
-      },
+        async ready(session:MindnightSession){
+          return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'ready'}});
+        }
+      }
+      // player: {
+      //   async findOrCreate(playerIdentity:PlayerIdentity){
+      //     return database.player.create({data:{
+      //       level: playerIdentity.Level,
+      //       steam_id: playerIdentity.Steamid,
+      //       name: playerIdentity.Nickname,
+      //     }})
+      //   },
+      // },
     },
   })
 }
@@ -80,3 +115,22 @@ if (process.env.NODE_ENV === 'development') globalThis.prismaGlobal = database;
 //custom computed fields: https://www.prisma.io/docs/orm/prisma-client/queries/computed-fields
 //custom validation: https://www.prisma.io/docs/concepts/components/prisma-client/custom-validation
 // !!! custom models: .findManyByDomain() : https://www.prisma.io/docs/concepts/components/prisma-client/custom-validation
+
+
+
+//WHOA figure out this typing: (done, it creates a __typename Result extension that is mapped to modelName)
+
+// const typeExtension = Prisma.defineExtension((client) => {
+//   type ModelKey = Exclude<keyof typeof client, `$${string}` | symbol>;
+//   type Result = {
+//     [K in ModelKey]: { __typename: { needs: Record<string, never>; compute: () => K } };
+//   };
+
+//   const result = {} as Result;
+//   const modelKeys = Object.keys(client).filter((key) => !key.startsWith('$')) as ModelKey[];
+//   modelKeys.forEach((k) => {
+//     result[k] = { __typename: { needs: {}, compute: () => k as any } };
+//   });
+
+//   return client.$extends({ result });
+// });
