@@ -231,7 +231,7 @@ model GlobalChatMessage {
 
   Message   String
   SteamId   String
-  Username  String
+  Username  String  @default("")
   Roles     Int[]
   Timestamp Int
 

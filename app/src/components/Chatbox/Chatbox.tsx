@@ -36,6 +36,8 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   const { serverEvents } = useServerEvents();
   const { mindnightSession } = useMindnightSession();
 
+  console.log('CHATBOX MN SESSION', mindnightSession);
+
   const [optimisticChat, addOptimisticChat] = useOptimistic(
     chat,
     (state, newChat:GlobalChatMessage|ChatMessage)=>{
@@ -93,7 +95,7 @@ function Chatbox({chat, game_players, sendMessage}:Props){
           </IconButton>
         </Tooltip>
       </Stack>
-      <ul style={{maxHeight:'30vh', overflow:'hidden', overflowY:'scroll'}} ref={chatContainerRef}>
+      <ul style={{maxHeight:'30vh', overflow:'hidden', overflowY:'scroll', textAlign:'left'}} ref={chatContainerRef}>
         {processedChat.map((c, i)=>{
             const slot = game_players && (c as ChatMessage).Slot as PlayerSlot; //game_players existing enforces ChatMessage type
             const author = game_players && game_players[slot!]?.Username || (c as GlobalChatMessage).Username;
@@ -105,11 +107,11 @@ function Chatbox({chat, game_players, sendMessage}:Props){
       </ul>
       { sendMessage && <form action={async (data)=>{
         let msg = data.get('message')?.toString();
-        if(!msg) return;
+        if(!msg || !mindnightSession) return;
         addOptimisticChat({
           Message: msg,
-          SteamId: '123',
-          Username:'why',
+          SteamId: mindnightSession.steam_id,
+          Username: mindnightSession.name,
           Roles: [0],
           Timestamp: Date.now()
         })
@@ -130,4 +132,4 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   )
 }
 
-export default provideLogEvents(provideMindnightSession(Chatbox));
+export default Chatbox;

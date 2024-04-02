@@ -6,7 +6,7 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import HammerIcon from '@mui/icons-material/Hardware';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
 import { PlayerIdentity } from "@prisma/client";
-import { database } from "@/utils/database/database";
+import { database } from "@/utils/database";
 import { suspense } from "@/utils/hoc/suspense";
 import style from './players.module.css';
 import style5 from './position-css/5man.module.css';

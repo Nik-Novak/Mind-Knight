@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "patch": "npx next-ws-cli@latest patch",
-    "dev": "yarn patch; next dev",
+    "dev": "next dev",
     "dev:prisma": "prisma generate ; next dev",
     "build": "next build",
     "start": "next start",

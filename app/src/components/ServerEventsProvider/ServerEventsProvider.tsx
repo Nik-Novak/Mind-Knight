@@ -5,7 +5,7 @@ import { EventEmitter } from 'events';
 import { MindnightSession } from '@prisma/client';
 
 type SessionEvents = {
-  MindnightSessionUpdate: [MindnightSession]
+  MindnightSessionUpdate: [MindnightSession|null]
 }
 
 export type ServerEvents = LogEvents & SessionEvents; //add new events here

@@ -1,6 +1,7 @@
+import { ServerEvents } from "@/components/ServerEventsProvider";
 import { post } from "@/lib/fetch";
-import { database } from "@/utils/database/database";
-import { Client } from "@prisma/client";
+import { database } from "@/utils/database";
+import { Client, MindnightSessionStatus } from "@prisma/client";
 import { JsonObject } from "@prisma/client/runtime/library";
 import { machineId } from "node-machine-id";
 
@@ -17,16 +18,19 @@ export async function getClient(){
 }
 
 export async function getMindnightSession(){
-  "use server";
   let client = await getClient();
-  console.log('client:', client);
+  // console.log('client:', client);
   return client.mindnight_session;
 }
 
-export async function createMindnightSession(){
-  "use server";
-  if(!cachedUUID)
-    cachedUUID = await machineId(); //TODO generate uuid and store in root if fails
-  let client = await database.client.findOrCreate({data: {uuid:cachedUUID}, include:{mindnight_session:true}});
-  return client.mindnight_session;
+export async function createMindnightSession(packet:ServerEvents['PlayerInfo'][0]){
+  let client = await getClient();
+  let mindnightSession = await database.mindnightSession.create({data:{
+    client_id: client.id,
+    name: packet.Nickname,
+    steam_id: packet.Steamid,
+    status: MindnightSessionStatus.pending
+  }});
+  return mindnightSession;
 }
+

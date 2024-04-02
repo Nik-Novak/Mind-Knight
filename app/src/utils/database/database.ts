@@ -3,6 +3,28 @@ import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, M
 
 type NonNull<T> = Exclude<T, null | undefined>;
 
+type ObjectWithArrays<T> = {
+  [K in keyof T]: T[K] extends any[] ? { equals: T[K][number] } | T[K] : T[K];
+};
+function replaceArraysWithEquals<T>(obj: T): ObjectWithArrays<T> {
+  const newObj: any = {};
+  for (const key in obj) {
+      if (Array.isArray(obj[key])) {
+          const arr = obj[key] as any[];
+          if (arr.length === 1) {
+              newObj[key] = { equals: arr };
+          } else {
+              newObj[key] = arr.map((value: any) => ({ equals: value }));
+          }
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+          newObj[key] = replaceArraysWithEquals(obj[key]);
+      } else {
+          newObj[key] = obj[key];
+      }
+  }
+  return newObj as ObjectWithArrays<T>;
+}
+
 const prismaClientSingleton= ()=>{ 
   
   let prisma = new PrismaClient();
@@ -34,9 +56,9 @@ const prismaClientSingleton= ()=>{
         async findOrCreate<T, A extends Prisma.Args<T, 'create'>>(
           this: T,
           args: A
-        ):Promise< Prisma.Result<T, A, 'findFirstOrThrow'> >{  //let t = await prisma.mindnightSession.create({  }); let q = prisma.mindnightSession.findFirst({})
+        ):Promise< Prisma.Result<T, A, 'create'> >{ prisma.globalChatMessage.findFirst({where:{Roles:{}}})  //let t = await prisma.mindnightSession.create({  }); let q = prisma.mindnightSession.findFirst({})
           const ctx = Prisma.getExtensionContext<T>(this);
-          let record = await (ctx as any).findFirst({where:args.data, include:args.include, select:args.select });
+          let record = await (ctx as any).findFirst({where:replaceArraysWithEquals(args.data), include:args.include, select:args.select });
           if(!record)
             record = await (ctx as any).create(args);
           return record;

@@ -3,7 +3,7 @@ import DiscordProvider from 'next-auth/providers/discord';
 import SteamProvider, { SteamProfile } from 'next-auth-steam';
 import { NextRequest } from 'next/server';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { database } from '@/utils/database/database';
+import { database } from '@/utils/database';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Adapter } from 'next-auth/adapters';
 import { OAuthConfig } from 'next-auth/providers/oauth';
@@ -19,7 +19,7 @@ export const authOptions:NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET
 }
 
-export async function handler(req: NextApiRequest, res: NextApiResponse){
+async function handler(req: NextApiRequest, res: NextApiResponse){
   authOptions.providers = [
     SteamProvider(req, {
       clientSecret: process.env.NEXTAUTH_STEAM_SECRET!,

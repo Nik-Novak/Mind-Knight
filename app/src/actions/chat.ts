@@ -1,27 +1,25 @@
-'use server';
+"use server";
 import { GlobalChatMessage } from "@/types/game";
 import { LogEvents } from "@/utils/classes/LogReader";
 import { revalidateTag, unstable_cache as cache, revalidatePath } from "next/cache";
-import { database } from "@/utils/database/database";
+import { database } from "@/utils/database";
 import { Tags } from "@/utils/cache/tags";
-import { sendToMindnight } from "./mindnight";
+import { getMindnightSession, sendToMindnight } from "./mindnight";
 
 
 
 export async function createGlobalChatMessage(message:GlobalChatMessage){
-  "use server";
   let chatMsg = await database.globalChatMessage.create({
     data:message
   })
-  revalidateTag(Tags.chat)
+  // revalidateTag(Tags.chat)
   // revalidatePath('/')
   // console.log('SHOULD BE REVALIDATED');
   return chatMsg;
 }
 
 export const getGlobalChat = cache( async function (){
-    "use server";
-    let chat = await database.globalChatMessage.findMany();
+    let chat = await database.globalChatMessage.findMany({orderBy:{Timestamp:'asc'}});
     return chat;
   }, 
   [Tags.chat],
@@ -29,9 +27,11 @@ export const getGlobalChat = cache( async function (){
 );
 
 export async function sendGlobalMessage(message:string){
-  "use server";
   if(!message)
     throw Error('Cannot send empty message');
+  let mindnightSession = await getMindnightSession();
+  if(!mindnightSession)
+    throw Error("Cannot send global chat with no mindnight_session");
   let payload:LogEvents['SendGlobalChatMessage'][0] = {
     Type: 901,
     Message: message
@@ -39,8 +39,8 @@ export async function sendGlobalMessage(message:string){
   await sendToMindnight(payload)
   let chatMsg = await createGlobalChatMessage({
     Message: message,
-    SteamId: '76561199656324830',
-    Username: 'why',
+    SteamId: mindnightSession.steam_id,
+    Username: mindnightSession.name,
     Roles: [0],
     Timestamp: Date.now()
   });

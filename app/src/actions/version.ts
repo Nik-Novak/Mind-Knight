@@ -6,7 +6,7 @@ type Version = {
   remote: string
 }
 export async function getVersion(localPath:string, remotePath:string):Promise<Version>{
-  "use server"; //server action
+  // "use server"; //server action
   let local = (await fs.readFile(localPath)).toString();
   let response = await get(remotePath);
   return { local, remote: response.data };

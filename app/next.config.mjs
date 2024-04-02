@@ -1,5 +1,5 @@
-import {verifyPatch} from 'next-ws/server/index.js'
-verifyPatch();
+// import {verifyPatch} from 'next-ws/server/index.js'
+// verifyPatch();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

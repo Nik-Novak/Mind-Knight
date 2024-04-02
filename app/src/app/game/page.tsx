@@ -9,7 +9,7 @@ import Nodes from "@/components/Nodes";
 import NodeTeamRejects from "@/components/NodeTeamRejects";
 import Players from "@/components/Players";
 import Turns from "@/components/Turns";
-import { database } from "@/utils/database/database";
+import { database } from "@/utils/database";
 import { Prisma } from "@prisma/client";
 import Chatbox from "@/components/Chatbox";
 import Settings from "@/components/Settings";

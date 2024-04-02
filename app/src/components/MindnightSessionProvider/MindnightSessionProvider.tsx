@@ -4,7 +4,10 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { EventEmitter } from 'events';
 import { MindnightSession } from '@prisma/client';
 import { useServerEvents } from '../ServerEventsProvider';
-import { database } from '@/utils/database/database';
+import { database } from '@/utils/database';
+import { useRouter } from 'next/navigation';
+import { revalidateTag } from 'next/cache';
+import { Tags } from '@/utils/cache/tags';
 
 export type ServerEvents = LogEvents; //add new events here
 
@@ -28,9 +31,12 @@ type Props = {
 export function MindnightSessionProvider({ children }:Props) {
   const [ mindnightSession, setMindnightSession ] = useState<MindnightSession|null>(null);
   const {serverEvents} = useServerEvents();
+  const router = useRouter();
   useEffect(()=>{
     serverEvents.on('MindnightSessionUpdate', newMindnightSession=>{
       setMindnightSession(newMindnightSession);
+      // revalidateTag(Tags.session);
+      router.refresh();
     })
   }, []);
   return (

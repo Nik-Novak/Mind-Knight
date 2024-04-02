@@ -1,4 +1,6 @@
+import { getMindnightSession } from "@/actions/mindnight";
 import { LogEvents } from "@/utils/classes/LogReader";
+import { database } from "@/utils/database";
 import { JsonObject } from "@prisma/client/runtime/library";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
@@ -17,7 +19,9 @@ function sendToMindnight(packet: JsonObject) {
         setInterval(()=>sendToMindnight(keepAlivePacket), 10_000);
       });
       mindnightWs.addEventListener('open', ()=>sendToMindnight(packet).then(resolve)); //queue the packet send
-      mindnightWs.addEventListener('close', (ev)=>console.log(`Disconnected from Mindnight, reason: ${ev.reason}`));
+      mindnightWs.addEventListener('close', async (ev)=>{
+        console.log(`Disconnected from Mindnight, reason: ${ev.reason}`);
+      });
       mindnightWs.addEventListener('message', (ev)=>console.log('Received from MN:', ev.data.toString()));
     }
     else if(mindnightWs.readyState === WebSocket.OPEN) { //connected, simply send
