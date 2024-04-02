@@ -13,13 +13,17 @@ import { database } from "@/utils/database";
 import { Prisma } from "@prisma/client";
 import Chatbox from "@/components/Chatbox";
 import Settings from "@/components/Settings";
+import { getGame, getSelectedNode, getSelectedSlot, getSelectedTurn } from "@/actions/game";
+import { redirect } from "next/navigation";
 
 //React server component that securely runs on the server by default
 export default async function GamePage() {
-  const game:Game = await database.game.findById('660086081003d3d36367f840'); //sampleGame as unknown as Game//TODO fetch game
-  const selectedNode:NodeNumber = 1;
-  const selectedTurn:number = 1;
-  const selectedSlot:PlayerSlot = 0;
+  const game:Game|undefined = await getGame(); //sampleGame as unknown as Game//TODO fetch game
+  if(!game)
+    return redirect('/');
+  const selectedNode = getSelectedNode();
+  const selectedTurn = getSelectedTurn();
+  const selectedSlot = getSelectedSlot();
 
   // console.log(game.game_found);
   // game.

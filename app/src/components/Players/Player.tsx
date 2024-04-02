@@ -48,7 +48,12 @@ export default async function Player({ slot, numPlayers, username, color, player
   else if(accepted === false) //rejected
     voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red'}} />
 
-  let dbPlayer = playerIdentity && await database.player.findOrCreate(playerIdentity);
+  let dbPlayer = playerIdentity && await database.player.findOrCreate({data:{
+    name:playerIdentity.Nickname,
+    steam_id: playerIdentity.Steamid,
+    level: playerIdentity.Level,
+  }}, {where:{steam_id:playerIdentity.Steamid}});
+
   let eloIncrement:number|undefined = 12;
 
   // await new Promise((res)=>setTimeout(res, 10000));

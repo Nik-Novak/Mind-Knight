@@ -21,7 +21,7 @@ export async function register(){
 if (process.env.NEXT_RUNTIME === 'nodejs') {
 
   const os = await import('os');
-  const {getClient, getMindnightSession, sendToMindnight, createMindnightSession} = await import('@/actions/mindnight');
+  const {getClient, getMindnightSession, sendToMindnight, createMindnightSession} = await import('@/actions/mindnight-session');
   // const {} = await import('@/actions/chat'); //for some reason we cant import from here
   console.log('i am running server side: ' + os.hostname);
   const { default:LogReader} = await import('./utils/classes/LogReader');
@@ -79,6 +79,7 @@ LogReader.on('AuthResponse', async (packet)=>{
   }
   sendServerEvent('AuthResponse', packet);
 });
+
 
 LogReader.on('GlobalChatHistoryResponse', async (packet)=>{
   let mindnightSession = await getMindnightSession();

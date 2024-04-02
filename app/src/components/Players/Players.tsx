@@ -1,7 +1,7 @@
 import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
 import { GameEnd, GamePlayers } from "@prisma/client";
 import Player from "./Player";
-import { getHammerPlayerSlot, getPropIndex } from "@/utils/functions/game";
+import { getHammerPlayerSlot, getPlayerAction, getPropIndex, getTurnInfo } from "@/utils/functions/game";
 import { suspense } from "@/utils/hoc/suspense";
 import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
@@ -9,16 +9,16 @@ import { Suspense } from "react";
 import PlayerSkeleton from "./PlayerSkeleton";
 
 type Props = {
-  selectedNode: NodeNumber;
+  selectedNode: NodeNumber|undefined;
   selectedTurn: number; //1..many
-  selectedSlot: PlayerSlot;
+  selectedSlot: PlayerSlot|undefined;
   numPlayers: NumberOfPlayers;
   game_players: GamePlayers;
   game_end?: GameEnd;
 }
 
 export default function Players({selectedNode, selectedTurn, selectedSlot, numPlayers, game_players, game_end }:Props){
-  const turnInfo = game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1];
+  const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
   let propSlot = turnInfo && getPropIndex(turnInfo);
   
   return (
@@ -30,8 +30,8 @@ export default function Players({selectedNode, selectedTurn, selectedSlot, numPl
         let slot = game_player.Slot as PlayerSlot;
         const playerIdentity = game_end?.PlayerIdentities.find(pi=>pi.Slot == slot);
 
-        const playerAction = game_player.proposals[selectedNode][selectedTurn-1];
-        let hammerPlayerSlot = propSlot && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
+        const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn);
+        let hammerPlayerSlot = getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
         let proppedIndex = playerAction && playerAction.propNumber -1;
         return (

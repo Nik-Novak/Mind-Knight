@@ -28,7 +28,7 @@ function Node({ numPlayers, hacked, selected}:NodeProps){
 type Props = {
   game_found: GameFound,
   missions?: Missions,
-  selectedNode: NodeNumber,
+  selectedNode: NodeNumber|undefined,
 }
 
 export default function Nodes({missions, selectedNode, game_found}:Props){

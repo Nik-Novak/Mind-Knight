@@ -3,12 +3,12 @@ import { ColorCode, colors } from "@/utils/constants/colors";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import { GamePlayer, GamePlayers } from "@prisma/client";
 import {coloredText} from '@/utils/functions/jsx'
-import { getHammerPlayerSlot, getPropIndex } from "@/utils/functions/game";
+import { getHammerPlayerSlot, getPropIndex, getTurnInfo } from "@/utils/functions/game";
 import style from './importantinfo.module.css';
 type Props = {
-  selectedNode: NodeNumber;
+  selectedNode: NodeNumber|undefined;
   selectedTurn: number; //1..many
-  selectedSlot: PlayerSlot;
+  selectedSlot: PlayerSlot|undefined;
   game_players: GamePlayers;
   numPlayers: NumberOfPlayers;
 }
@@ -31,7 +31,7 @@ function numSuffix(num:number){
 }
 
 export default function ImportantInfo({selectedNode, selectedTurn, selectedSlot, game_players, numPlayers}:Props){
-  const turnInfo = game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1];
+  const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot)
   const proposerSlot = turnInfo?.Proposer as PlayerSlot | undefined;
   const proposer = proposerSlot ? game_players[proposerSlot] as GamePlayer : undefined;
   const proposerColor = proposer && colors[proposer.Color as ColorCode].hex
@@ -41,14 +41,14 @@ export default function ImportantInfo({selectedNode, selectedTurn, selectedSlot,
   if(turnInfo)
     if(turnInfo.Passed){
       let propIndex = getPropIndex(turnInfo); //IMPORTANT CONVERSION FOR PROP TRANSITION
-      let hammerPlayerSlot = getHammerPlayerSlot(propIndex, selectedSlot, numPlayers); //IMPORTANT: hammer is who they pass it to
-      let fromPlayerIndex = trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot;
-      let fromPlayer = game_players[fromPlayerIndex] || undefined;
-      let fromPlayerColor = fromPlayer && colors[fromPlayer.Color as ColorCode]?.hex;
+      let hammerPlayerSlot = getHammerPlayerSlot(propIndex, selectedSlot!, numPlayers); //IMPORTANT: hammer is who they pass it to
+      let fromPlayerIndex = hammerPlayerSlot!=undefined ? trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot : undefined;
+      let fromPlayer = fromPlayerIndex!=undefined ? game_players[fromPlayerIndex] : undefined;
+      let fromPlayerColor = fromPlayer ? colors[fromPlayer.Color as ColorCode]?.hex : undefined;
       let fromPlayerText = coloredText(fromPlayer?.Username, fromPlayerColor);
       // let toPlayerIndex = trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot;
-      let toPlayer = game_players[hammerPlayerSlot] || undefined;
-      let toPlayerColor = toPlayer && colors[toPlayer.Color as ColorCode]?.hex;
+      let toPlayer = hammerPlayerSlot ? game_players[hammerPlayerSlot] : undefined;
+      let toPlayerColor = toPlayer ? colors[toPlayer.Color as ColorCode]?.hex : undefined;
       let toPlayerText = coloredText(toPlayer?.Username, toPlayerColor);
       targets.push('from ');
       targets.push(fromPlayerText);

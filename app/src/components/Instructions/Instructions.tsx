@@ -1,4 +1,4 @@
-import { getMindnightSession } from "@/actions/mindnight";
+import { getMindnightSession } from "@/actions/mindnight-session";
 import { suspense } from "@/utils/hoc/suspense";
 import { Typography } from "@mui/material";
 

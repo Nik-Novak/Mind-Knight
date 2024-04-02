@@ -4,7 +4,7 @@ import { GamePlayers } from "@prisma/client";
 import { ReactNode } from "react";
 
 type Props = {
-  selectedNode: NodeNumber,
+  selectedNode: NodeNumber|undefined,
   selectedTurn: number,
   game_players: GamePlayers,
 }
@@ -20,7 +20,7 @@ function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
 }
 
 export default function Turns({ selectedNode, selectedTurn, game_players }: Props){
-  let numTurns = maxTurns(selectedNode, game_players);
+  let numTurns = selectedNode ? maxTurns(selectedNode, game_players) : 1;
   let turnNodes:ReactNode[] = [];
   for(let i=1; i<=numTurns; i++){
     let bgcolor = i===selectedTurn ? 'white': undefined;

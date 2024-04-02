@@ -215,12 +215,6 @@ type ChatMessage {
   created_at        DateTime    @default(now())
 }
 
-enum MindnightSessionStatus {
-  pending
-  authenticated
-  ready
-}
-
 // =========================
 // Global Chat
 // =========================
@@ -248,10 +242,10 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
   v             Int?        @map("__v")
   game_found    GameFound
-  game_start    GameStart
-  game_players  GamePlayers
+  game_start    GameStart//?
+  game_players  GamePlayers//?
   missions      Missions?
-  game_end      GameEnd
+  game_end      GameEnd//?  //also end condition?
   chat          ChatMessage[]
   // local_slot    Int
   
@@ -298,7 +292,7 @@ model Player {
   clients   Client[]
 
   user      User?     @relation(fields: [user_id], references: [id])
-  user_id   String    @db.ObjectId @unique
+  user_id   String?    @db.ObjectId @unique
 
   created_at        DateTime    @default(now())
   updated_at        DateTime    @updatedAt
@@ -324,6 +318,13 @@ model Client {
   @@map("clients")
 }
 
+enum MindnightSessionStatus {
+  pending
+  authenticated
+  ready
+  searching
+  playing
+}
 model MindnightSession {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String

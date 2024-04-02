@@ -1,8 +1,5 @@
-import { getMindnightSession } from "@/actions/mindnight";
 import { LogEvents } from "@/utils/classes/LogReader";
-import { database } from "@/utils/database";
 import { JsonObject } from "@prisma/client/runtime/library";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 if(!process.env.MINDNIGHT_WS) throw Error('Must provide env MINDNIGHT_WS');

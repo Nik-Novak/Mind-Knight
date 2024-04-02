@@ -55,12 +55,15 @@ const prismaClientSingleton= ()=>{
       $allModels:{
         async findOrCreate<T, A extends Prisma.Args<T, 'create'>>(
           this: T,
-          args: A
-        ):Promise< Prisma.Result<T, A, 'create'> >{ prisma.globalChatMessage.findFirst({where:{Roles:{}}})  //let t = await prisma.mindnightSession.create({  }); let q = prisma.mindnightSession.findFirst({})
+          createArgs: A,
+          queryArgs?: Prisma.Args<T, 'findFirst'>,
+        ):Promise< Prisma.Result<T, A, 'create'> >{  //let t = await prisma.mindnightSession.create({  }); let q = prisma.mindnightSession.findFirst({})
           const ctx = Prisma.getExtensionContext<T>(this);
-          let record = await (ctx as any).findFirst({where:replaceArraysWithEquals(args.data), include:args.include, select:args.select });
+          let record = queryArgs ? 
+                        await (ctx as any).findFirst(queryArgs) : 
+                        await (ctx as any).findFirst({where:replaceArraysWithEquals(createArgs.data), include:createArgs.include, select:createArgs.select });
           if(!record)
-            record = await (ctx as any).create(args);
+            record = await (ctx as any).create(createArgs);
           return record;
         },
         findById<T>(
