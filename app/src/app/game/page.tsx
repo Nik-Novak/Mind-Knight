@@ -1,3 +1,4 @@
+"use server";
 import Panel from "@/components/Panel";
 import styles from "./page.module.css";
 import { Stack, Typography } from "@mui/material";
@@ -13,17 +14,18 @@ import { database } from "@/utils/database";
 import { Prisma } from "@prisma/client";
 import Chatbox from "@/components/Chatbox";
 import Settings from "@/components/Settings";
-import { getGame, getSelectedNode, getSelectedSlot, getSelectedTurn } from "@/actions/game";
 import { redirect } from "next/navigation";
+import { getDbPlayer } from "@/actions/game";
 
 //React server component that securely runs on the server by default
 export default async function GamePage() {
-  const game:Game|undefined = await getGame(); //sampleGame as unknown as Game//TODO fetch game
-  if(!game)
-    return redirect('/');
-  const selectedNode = getSelectedNode();
-  const selectedTurn = getSelectedTurn();
-  const selectedSlot = getSelectedSlot();
+  const game:Game|undefined = await database.game.findById('660086081003d3d36367f840');//await getGame(); //sampleGame as unknown as Game//TODO fetch game
+  // if(!game)
+  //   return redirect('/');
+
+  // useStore.setState({game});
+
+  // setTimeout(()=>console.log(useStore.getState().game), 2000);
 
   // console.log(game.game_found);
   // game.
@@ -52,13 +54,13 @@ export default async function GamePage() {
           <Panel title="Chat" defaultExpanded > <Chatbox chat={game.chat} game_players={game.game_players} /> </Panel>
         </Stack>
         <Stack className={styles.center}>
-          <ImportantInfo selectedNode={selectedNode} selectedTurn={selectedTurn} selectedSlot={selectedSlot} game_players={game.game_players} numPlayers={game.game_found.PlayerNumber as NumberOfPlayers}/>
-          <Players selectedNode={selectedNode} selectedTurn={selectedTurn} selectedSlot={selectedSlot} numPlayers={game.game_found.PlayerNumber as NumberOfPlayers} game_players={game.game_players} game_end={game.game_end} />
-          <Turns selectedNode={selectedNode} selectedTurn={selectedTurn} game_players={game.game_players} />
+          <ImportantInfo />
+          <Players />
+          <Turns />
         </Stack>
         <Stack className={styles.right}>
-          <Nodes selectedNode={selectedNode} missions={game.missions||undefined} game_found={game.game_found} />
-          <NodeTeamRejects selectedNode={selectedNode} selectedTurn={selectedTurn} selectedSlot={selectedSlot} game_players={game.game_players}/>
+          <Nodes />
+          <NodeTeamRejects />
         </Stack>
       </main>
     </>

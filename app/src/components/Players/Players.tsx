@@ -1,5 +1,6 @@
+"use client";
 import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
-import { GameEnd, GamePlayers } from "@prisma/client";
+import type { GameEnd, GamePlayers, Player as PlayerData, PlayerIdentity } from "@prisma/client"; //TODO fiix figuring out typing on clientside
 import Player from "./Player";
 import { getHammerPlayerSlot, getPlayerAction, getPropIndex, getTurnInfo } from "@/utils/functions/game";
 import { suspense } from "@/utils/hoc/suspense";
@@ -7,39 +8,49 @@ import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { Suspense } from "react";
 import PlayerSkeleton from "./PlayerSkeleton";
+import { useStore } from "@/zustand/store";
+import { database } from "@/utils/database";
 
 type Props = {
-  selectedNode: NodeNumber|undefined;
-  selectedTurn: number; //1..many
-  selectedSlot: PlayerSlot|undefined;
-  numPlayers: NumberOfPlayers;
-  game_players: GamePlayers;
-  game_end?: GameEnd;
+  // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<PlayerData>
+  // selectedNode: NodeNumber|undefined;
+  // selectedTurn: number; //1..many
+  // selectedSlot: PlayerSlot|undefined;
+  // numPlayers: NumberOfPlayers;
+  // game_players: GamePlayers;
+  // game_end?: GameEnd;
 }
 
-export default function Players({selectedNode, selectedTurn, selectedSlot, numPlayers, game_players, game_end }:Props){
+export default function Players({ }:Props){
+  const { selectedNode, selectedSlot, selectedTurn } = useStore();
+  const game_players = useStore(state=>state.game?.game_players);
+  const game_end = useStore(state=>state.game?.game_end);
+  const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
+  // const { selectedNode, selectedSlot, selectedTurn } = useControlsStore.getState()
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
   let propSlot = turnInfo && getPropIndex(turnInfo);
+
+  console.log('REFRESH', selectedSlot);
   
   return (
     <Box id="players-container" position='relative' width='100%' height='100%'>
     {
-      Object.entries(game_players).map(([k, game_player])=>{
+      game_players && Object.entries(game_players).map(([k, game_player])=>{
         if(!game_player)
           return null;
         let slot = game_player.Slot as PlayerSlot;
         const playerIdentity = game_end?.PlayerIdentities.find(pi=>pi.Slot == slot);
 
         const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn);
-        let hammerPlayerSlot = getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
+        let hammerPlayerSlot = numPlayers!=undefined && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
         let proppedIndex = playerAction && playerAction.propNumber -1;
         return (
-          <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
+          // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
               key={k} 
               slot={slot}
-              numPlayers={numPlayers}
+              numPlayers={numPlayers || 5}
               username={game_player.Username}
               color={colors[game_player.Color as ColorCode].hex}
               playerIdentity={playerIdentity}
@@ -48,10 +59,10 @@ export default function Players({selectedNode, selectedTurn, selectedSlot, numPl
               hasHammer={slot === hammerPlayerSlot}
               isDisconnected={false}
               accepted={accepted}
-              proppedIndex={proppedIndex}
+              proppedIndex={playerAction && !playerAction.Passed && proppedIndex || undefined}
               highlighted={turnInfo?.SelectedTeam.includes(slot)}
             />
-          </Suspense>
+          // </Suspense>
         );
       })
     }

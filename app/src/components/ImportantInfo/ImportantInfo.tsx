@@ -1,3 +1,4 @@
+"use client";
 import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { Box, Paper, Stack, Typography } from "@mui/material";
@@ -5,12 +6,13 @@ import { GamePlayer, GamePlayers } from "@prisma/client";
 import {coloredText} from '@/utils/functions/jsx'
 import { getHammerPlayerSlot, getPropIndex, getTurnInfo } from "@/utils/functions/game";
 import style from './importantinfo.module.css';
+import { useStore } from "@/zustand/store";
 type Props = {
-  selectedNode: NodeNumber|undefined;
-  selectedTurn: number; //1..many
-  selectedSlot: PlayerSlot|undefined;
-  game_players: GamePlayers;
-  numPlayers: NumberOfPlayers;
+  // selectedNode: NodeNumber|undefined;
+  // selectedTurn: number; //1..many
+  // selectedSlot: PlayerSlot|undefined;
+  // game_players: GamePlayers;
+  // numPlayers: NumberOfPlayers;
 }
 
 function trueMod(n:number, m:number) {
@@ -30,15 +32,18 @@ function numSuffix(num:number){
   }
 }
 
-export default function ImportantInfo({selectedNode, selectedTurn, selectedSlot, game_players, numPlayers}:Props){
+export default function ImportantInfo({}:Props){
+  const { selectedNode, selectedSlot, selectedTurn } = useStore();
+  const game_players = useStore(state=>state.game?.game_players);
+  const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot)
   const proposerSlot = turnInfo?.Proposer as PlayerSlot | undefined;
-  const proposer = proposerSlot ? game_players[proposerSlot] as GamePlayer : undefined;
+  const proposer = game_players && proposerSlot!=undefined ? game_players[proposerSlot] as GamePlayer : undefined;
   const proposerColor = proposer && colors[proposer.Color as ColorCode].hex
   const nth = numSuffix(selectedTurn);
   const action = turnInfo?.Passed ? 'passed hammer' : 'proposed';
   const targets:React.ReactNode[] = [];
-  if(turnInfo)
+  if(turnInfo && game_players && numPlayers!=undefined)
     if(turnInfo.Passed){
       let propIndex = getPropIndex(turnInfo); //IMPORTANT CONVERSION FOR PROP TRANSITION
       let hammerPlayerSlot = getHammerPlayerSlot(propIndex, selectedSlot!, numPlayers); //IMPORTANT: hammer is who they pass it to

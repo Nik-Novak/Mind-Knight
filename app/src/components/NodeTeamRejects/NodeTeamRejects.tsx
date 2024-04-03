@@ -1,16 +1,20 @@
+"use client";
 import { NodeNumber, PlayerSlot } from "@/types/game";
 import { getTurnInfo } from "@/utils/functions/game";
+import { useStore } from "@/zustand/store";
 import { Stack, Typography } from "@mui/material";
 import { GamePlayers } from "@prisma/client";
 
 type Props = {
-  selectedNode: NodeNumber|undefined;
-  selectedTurn: number; //1..many
-  selectedSlot: PlayerSlot|undefined;
-  game_players: GamePlayers;
+  // selectedNode: NodeNumber|undefined;
+  // selectedTurn: number; //1..many
+  // selectedSlot: PlayerSlot|undefined;
+  // game_players: GamePlayers;
 }
 
-export default function NodeTeamRejects({selectedNode, selectedTurn, selectedSlot, game_players}:Props){
+export default function NodeTeamRejects({}:Props){
+  const { selectedNode, selectedSlot, selectedTurn } = useStore();
+  const game_players = useStore(state=>state.game?.game_players);
   let turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
   let numRejects = (turnInfo?.propNumber||1) - 1
   return (

@@ -1,7 +1,17 @@
 import { NumberOfPlayers } from '@/types/game';
-import { styleMap } from './Player';
 import style from './players.module.css';
+import style5 from './position-css/5man.module.css';
+import style6 from './position-css/6man.module.css';
+import style7 from './position-css/7man.module.css';
+import style8 from './position-css/8man.module.css';
 import { Skeleton } from '@mui/material';
+
+export const styleMap = {
+  5: style5,
+  6: style6,
+  7: style7,
+  8: style8,
+}
 
 type Props = {
   slot: number,

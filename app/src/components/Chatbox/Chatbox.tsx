@@ -14,6 +14,7 @@ import { useServerEvents } from "../ServerEventsProvider";
 import { LogEvents } from "@/utils/classes/LogReader";
 import { provideMindnightSession } from "@/utils/hoc/provideMindnightSession";
 import { useMindnightSession } from "../MindnightSessionProvider";
+import { useStore } from "@/zustand/store";
 
 // type GameProps = {
 //   chat:(GlobalChatMessage|ChatMessage)[],
@@ -35,6 +36,9 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   const router = useRouter();
   const { serverEvents } = useServerEvents();
   const { mindnightSession } = useMindnightSession();
+
+  // const chat = useStore(state=>state.game?.chat);
+  // const game_players = useStore(state=>state.game?.game_players);
 
   console.log('CHATBOX MN SESSION', mindnightSession);
 

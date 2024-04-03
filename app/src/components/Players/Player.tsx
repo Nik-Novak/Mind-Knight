@@ -1,3 +1,4 @@
+"use client";
 import { NumberOfPlayers, PlayerSlot } from "@/types/game";
 import { Tooltip, Typography } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
@@ -5,9 +6,7 @@ import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import HammerIcon from '@mui/icons-material/Hardware';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
-import { PlayerIdentity } from "@prisma/client";
-import { database } from "@/utils/database";
-import { suspense } from "@/utils/hoc/suspense";
+import { Player, PlayerIdentity } from "@prisma/client";
 import style from './players.module.css';
 import style5 from './position-css/5man.module.css';
 import style6 from './position-css/6man.module.css';
@@ -15,6 +14,9 @@ import style7 from './position-css/7man.module.css';
 import style8 from './position-css/8man.module.css';
 import { coloredText } from "@/utils/functions/jsx";
 import Elo from "../Elo";
+import { useStore } from "@/zustand/store";
+import { useEffect, useState } from "react";
+import { getDbPlayer } from "@/actions/game";
 
 export const styleMap = {
   5: style5,
@@ -37,10 +39,12 @@ type Props = {
   isDisconnected?: boolean,
   accepted?: boolean,
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
+  // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<Player>
 }
 
-export default async function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
+export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
   const positionalStyle = styleMap[numPlayers];
+  const { setSelectedSlot } = useStore();
   
   let voteIcon; //undefined=novote
   if(accepted===true) //accepted
@@ -48,11 +52,11 @@ export default async function Player({ slot, numPlayers, username, color, player
   else if(accepted === false) //rejected
     voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red'}} />
 
-  let dbPlayer = playerIdentity && await database.player.findOrCreate({data:{
-    name:playerIdentity.Nickname,
-    steam_id: playerIdentity.Steamid,
-    level: playerIdentity.Level,
-  }}, {where:{steam_id:playerIdentity.Steamid}});
+  const [dbPlayer, setDbPlayer] = useState<Player>();
+  useEffect(()=>{
+    if(playerIdentity)
+      getDbPlayer(playerIdentity).then((dbPlayer)=>setDbPlayer(dbPlayer));
+  }, [playerIdentity?.Steamid])
 
   let eloIncrement:number|undefined = 12;
 
@@ -61,7 +65,7 @@ export default async function Player({ slot, numPlayers, username, color, player
 
   return (
     <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${highlighted ? style.highlighted :''}`} data-index={slot}>
-      <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/>
+      <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>setSelectedSlot(slot)}>
         <img src={'/img/skin-default.png'} alt="" /*onClick={onClick}*//>
         <Tooltip title="This player has an action available to view" placement="left" arrow>
           {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}

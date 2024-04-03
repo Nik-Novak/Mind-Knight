@@ -20,10 +20,20 @@ export function getHammerPlayerSlot(propIndex:number|undefined, selectedSlot:Pla
   return ( (4-propIndex) + selectedSlot ) % numPlayers as PlayerSlot
 }
 
-export function getTurnInfo(game_players:GamePlayers, selectedNode:NodeNumber|undefined, selectedTurn:number, selectedSlot:PlayerSlot|undefined){
-  return selectedNode && selectedSlot!=undefined ? game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1] : undefined;
+export function getTurnInfo(game_players:GamePlayers|undefined, selectedNode:NodeNumber|undefined, selectedTurn:number, selectedSlot:PlayerSlot|undefined){
+  return game_players && selectedNode && selectedSlot!=undefined ? game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1] : undefined;
 }
 
 export function getPlayerAction(game_player:GamePlayer, selectedNode:NodeNumber|undefined, selectedTurn:number){
   return selectedNode ? game_player.proposals[selectedNode][selectedTurn-1] : undefined
+}
+
+export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
+  let maxTurns = Object.entries(players).reduce((maxTurns, [key, player])=>{
+    let currentTurns = player?.proposals[selectedNode].length;
+    if(currentTurns !== undefined && currentTurns > maxTurns)
+      return currentTurns
+    return maxTurns;
+  }, 1);
+  return maxTurns;
 }

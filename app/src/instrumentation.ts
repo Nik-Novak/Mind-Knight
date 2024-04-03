@@ -2,6 +2,8 @@ import { WebSocketServer } from 'ws';
 import type { ServerEventPacket, ServerEvents } from './components/ServerEventsProvider';
 import { database } from './utils/database';
 import { GlobalChatMessage } from './types/game';
+import { Game } from '@prisma/client';
+// import { getGame } from './actions/game'; //DO NOT IMPORT FROM HERE OR ANY ANNOTATED COMPONENT
 
 console.log('instrumentation.ts');
 
@@ -25,7 +27,6 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   // const {} = await import('@/actions/chat'); //for some reason we cant import from here
   console.log('i am running server side: ' + os.hostname);
   const { default:LogReader} = await import('./utils/classes/LogReader');
-  
 
   if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
     throw Error("Must provide env NEXT_PUBLIC_SERVEREVENTS_WS");
@@ -40,6 +41,11 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     let mindnightSession = await getMindnightSession();
     if(mindnightSession)
       sendServerEvent('MindnightSessionUpdate', mindnightSession);
+
+    let game:Game|undefined;
+    game = await database.game.findById('660086081003d3d36367f840')
+    if(game)
+      sendServerEvent('GameUpdate', game);
   });
 
   const sendServerEvent = <T extends keyof ServerEvents>(eventName:T, payload:ServerEvents[T][0] )=>{
@@ -51,6 +57,8 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       client.send(JSON.stringify(packet));
     });
   }
+
+  
   
   LogReader.on('ReceiveGlobalChatMessage', async (packet)=>{
     await createGlobalChatMessage(packet.Message);

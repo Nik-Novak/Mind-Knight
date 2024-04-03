@@ -1,31 +1,28 @@
+"use client";
 import { Box, IconButton } from "@mui/material";
 import { NodeNumber } from "@/types/game";
 import { GamePlayers } from "@prisma/client";
 import { ReactNode } from "react";
+import { useStore } from "@/zustand/store";
+import { maxTurns } from "@/utils/functions/game";
 
 type Props = {
-  selectedNode: NodeNumber|undefined,
-  selectedTurn: number,
-  game_players: GamePlayers,
+  // selectedNode: NodeNumber|undefined,
+  // selectedTurn: number,
+  // game_players: GamePlayers,
 }
 
-function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
-  let maxTurns = Object.entries(players).reduce((maxTurns, [key, player])=>{
-    let currentTurns = player?.proposals[selectedNode].length;
-    if(currentTurns !== undefined && currentTurns > maxTurns)
-      return currentTurns
-    return maxTurns;
-  }, 1);
-  return maxTurns;
-}
 
-export default function Turns({ selectedNode, selectedTurn, game_players }: Props){
-  let numTurns = selectedNode ? maxTurns(selectedNode, game_players) : 1;
+
+export default function Turns({ }: Props){
+  const { selectedNode, selectedTurn, setSelectedTurn } = useStore();
+  const game_players = useStore(state=>state.game?.game_players);
+  let numTurns = selectedNode && game_players ? maxTurns(selectedNode, game_players) : 1;
   let turnNodes:ReactNode[] = [];
   for(let i=1; i<=numTurns; i++){
     let bgcolor = i===selectedTurn ? 'white': undefined;
       turnNodes.push(
-        <IconButton sx={{ width:'2vh', height:'2vh', margin:'10px 5px', bgcolor, boxShadow: '0 0 5px 2px grey', '&:hover':{bgcolor, boxShadow: '0 0 5px 2px white'}  }}></IconButton>
+        <IconButton key={i} onClick={()=>setSelectedTurn(i)} sx={{ width:'2vh', height:'2vh', margin:'10px 5px', bgcolor, boxShadow: '0 0 5px 2px grey', '&:hover':{bgcolor, boxShadow: '0 0 5px 2px white'}  }}></IconButton>
       ) 
   }
   return (
