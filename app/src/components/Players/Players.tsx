@@ -44,7 +44,7 @@ export default function Players({ }:Props){
         const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn);
         let hammerPlayerSlot = numPlayers!=undefined && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
-        let proppedIndex = playerAction && playerAction.propNumber -1;
+        let proppedIndex = playerAction && playerAction.select_phase_start.propNumber -1;
         return (
           // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
@@ -59,8 +59,8 @@ export default function Players({ }:Props){
               hasHammer={slot === hammerPlayerSlot}
               isDisconnected={false}
               accepted={accepted}
-              proppedIndex={playerAction && !playerAction.Passed && proppedIndex || undefined}
-              highlighted={turnInfo?.SelectedTeam.includes(slot)}
+              proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex || undefined}
+              highlighted={turnInfo?.select_phase_end?.SelectedTeam.includes(slot)}
             />
           // </Suspense>
         );

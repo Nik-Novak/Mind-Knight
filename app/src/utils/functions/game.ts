@@ -1,5 +1,5 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
-import { GamePlayer, GamePlayers, Proposal } from "@prisma/client";
+import { GamePlayer, GamePlayers, Missions, Proposal } from "@prisma/client";
 
 // export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
 //   let maxTurns = 1;
@@ -11,7 +11,7 @@ import { GamePlayer, GamePlayers, Proposal } from "@prisma/client";
 // }
 
 export function getPropIndex(turnInfo:Proposal){
-  return turnInfo && ( turnInfo.Passed ? turnInfo.propNumber-2 : turnInfo.propNumber-1 ); //IMPORTANT CONVERSION FOR PROP TRANSITION
+  return turnInfo && turnInfo.select_phase_end ? ( turnInfo.select_phase_end.Passed ? turnInfo.select_phase_start.propNumber-2 : turnInfo.select_phase_start.propNumber-1 ) : undefined; //IMPORTANT CONVERSION FOR PROP TRANSITION
 }
 
 export function getHammerPlayerSlot(propIndex:number|undefined, selectedSlot:PlayerSlot|undefined, numPlayers:number){
@@ -36,4 +36,44 @@ export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
     return maxTurns;
   }, 1);
   return maxTurns;
+}
+
+export function logLineToISOTime(line:string){
+  let formattedTimestamp = line.substring(0,19).replace(/\./g, '-').replace(' ', 'T') + "Z";
+  return new Date(formattedTimestamp);
+}
+
+export function getCurrentNumProposals(game_players: GamePlayers, node:NodeNumber){
+  let numProposals = 0;
+  Object.values(game_players).forEach((game_player)=>{
+    game_player && Object.values(game_player?.proposals).forEach(proposals=>{
+      proposals.forEach(proposal=>{
+        if(proposal.vote_phase_end && proposal.vote_phase_end.Passed==false && proposal.select_phase_start.Mission === node)
+          ++numProposals
+      }) //every time we find a vote_phase_end, increse the number of proposals
+    })
+  });
+  return numProposals;
+}
+
+export function getCurrentMissionNumber(missions: Missions|null){
+  let currentMission = 1 as NodeNumber;
+  missions && Object.entries(missions).forEach(([missionNum, mission])=>{
+    if(mission?.mission_phase_start)
+      currentMission = parseInt(missionNum) as NodeNumber;
+  });
+  return currentMission;
+}
+
+export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumber){
+  let latestProposal:Proposal|undefined;
+  Object.values(game_players).forEach(game_player=>{
+    game_player?.proposals[missionNum].forEach(proposal=>{
+      if(!latestProposal)
+        latestProposal = proposal; //init
+      else if(proposal.select_phase_start.log_time.valueOf() > latestProposal.select_phase_start.log_time.valueOf())
+        latestProposal = proposal;
+    })
+  });
+  return latestProposal;
 }

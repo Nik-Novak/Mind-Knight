@@ -44,15 +44,10 @@ export default function Nodes({}:Props){
       {
         game_found?.MissionInfo.map((numPlayers, i)=>{
           let n = i+1 as NodeNumber;
-          let hacked = missions?.[n]?.mission_phase_end.Failed
+          let hacked = missions?.[n]?.mission_phase_end?.Failed
           return <Node key={n} hacked={hacked} numPlayers={numPlayers} selected={selectedNode === i+1} onClick={()=>setSelectedNode(n)} />
         })
       }
     </Stack>
-    // <div className={`round-button ${selected?'selected':''}`} index={index} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-    //   <div className="round-button-circle" status={status}>
-    //     <a className="round-button">{size}</a>
-    //   </div>
-    // </div>
   )
 }

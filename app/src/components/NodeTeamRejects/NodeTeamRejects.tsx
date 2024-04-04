@@ -16,7 +16,7 @@ export default function NodeTeamRejects({}:Props){
   const { selectedNode, selectedSlot, selectedTurn } = useStore();
   const game_players = useStore(state=>state.game?.game_players);
   let turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
-  let numRejects = (turnInfo?.propNumber||1) - 1
+  let numRejects = (turnInfo?.select_phase_start.propNumber||1) - 1
   return (
     <Stack sx={{width:'8.89vh', textAlign:'center'}}>
       <Typography my={'10px'} sx={{fontSize:'2vh', lineHeight:1}}>Node Teams Rejected</Typography>

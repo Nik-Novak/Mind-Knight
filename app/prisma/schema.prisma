@@ -19,26 +19,32 @@ type VotePhaseStart {
   Proposer          Int
   Type              Int
 
+  chatIndex         Int
+
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
-type VoteSchema {
+type VoteMade {
   Slot        Int
   Type        Int
+
+  chatIndex   Int
   deltaT      Int
 
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
-type VoteMade { //dimension = player slot
-  0     VoteSchema
-  1     VoteSchema
-  2     VoteSchema
-  3     VoteSchema
-  4     VoteSchema
-  5     VoteSchema?
-  6     VoteSchema?
-  7     VoteSchema?
+type Votes { //dimension = player slot
+  0     VoteMade?
+  1     VoteMade?
+  2     VoteMade?
+  3     VoteMade?
+  4     VoteMade?
+  5     VoteMade?
+  6     VoteMade?
+  7     VoteMade?
 }
 
 type VotePhaseEnd {
@@ -46,27 +52,59 @@ type VotePhaseEnd {
   Type              Int
   VotesFor          Int[]
   VotesAgainst      Int[]
+
   chatIndex         Int
   deltaT            Int
 
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
+type SelectPhaseStart {
+  Type                Int
+  Player              Int
+  NextPlayer          Int
+  Amount              Int
+  Duration            Int
+  Mission             Int
+
+  chatIndex           Int
+  propNumber          Int
+
+  log_time            DateTime
+  created_at          DateTime    @default(now())
+}
+type SelectUpdate {
+  Type                Int
+  Slots               Int[]
+  Submit              Boolean
+  Pass                Boolean
+
+  chatIndex           Int
+
+  log_time            DateTime
+  created_at          DateTime    @default(now())
+}
+type SelectPhaseEnd {
+  Type                Int
+  Proposer            Int
+  SelectedTeam        Int[]
+  Passed              Boolean
+
+  chatIndex           Int
+  deltaT              Int?
+
+  log_time            DateTime
+  created_at          DateTime    @default(now())
+}
+
 type Proposal {
-  Amount            Int
-  Duration          Int
-  Mission           Int
-  NextPlayer        Int
-  Passed            Boolean
-  Player            Int
-  Proposer          Int
-  SelectedTeam      Int[]
-  Type              Int
-  chatIndex         Int
-  deltaT            Int
-  propNumber        Int
+  select_phase_start    SelectPhaseStart
+  select_updates        SelectUpdate[]
+  select_phase_end      SelectPhaseEnd?
+
   vote_phase_start  VotePhaseStart?
-  vote_made         VoteMade?
+  votes             Votes
   vote_phase_end    VotePhaseEnd?
 
   created_at        DateTime    @default(now())
@@ -91,15 +129,16 @@ type GamePlayer {
   chat          Int[] //array of chat messages mapped to chat indices
   proposals     PlayerProposal
 
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
 type GamePlayers {
-  0     GamePlayer
-  1     GamePlayer
-  2     GamePlayer
-  3     GamePlayer
-  4     GamePlayer
+  0     GamePlayer?
+  1     GamePlayer?
+  2     GamePlayer?
+  3     GamePlayer?
+  4     GamePlayer?
   5     GamePlayer?
   6     GamePlayer?
   7     GamePlayer?
@@ -114,8 +153,6 @@ type GameOptions {
   NamingConvention        Int
   SkipTalkingPhaseEnabled Boolean
   Visibility              Int
-
-  created_at        DateTime    @default(now())
 }
 
 type GameFound {
@@ -135,6 +172,7 @@ type GameFound {
   VoiceChatChannel  String
   VoiceChatName     String
 
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
@@ -143,6 +181,7 @@ type GameStart {
   AFK           Int[]
   Disconnected  Int[]
 
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
@@ -152,6 +191,7 @@ type MissionPhaseStart {
   Players     Int[]
   Type        Int
 
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
@@ -165,12 +205,13 @@ type MissionPhaseEnd {
   deltaT      Int
   propNumber  Int
 
+  log_time    DateTime
   created_at  DateTime    @default(now())
 }
 
 type Mission {
   mission_phase_start MissionPhaseStart
-  mission_phase_end   MissionPhaseEnd
+  mission_phase_end   MissionPhaseEnd?
 }
 
 type Missions { //LIMITATION: 5 nodes assumption
@@ -203,6 +244,7 @@ type GameEnd {
   PlayerIdentities  PlayerIdentity[]
   AfterGameLobby    String
   
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
@@ -212,6 +254,7 @@ type ChatMessage {
   Type      Int       @default(-1)
   index     Int       @default(-1)
   
+  log_time          DateTime
   created_at        DateTime    @default(now())
 }
 
@@ -221,7 +264,6 @@ type ChatMessage {
 
 model GlobalChatMessage {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int?    @map("__v")
 
   Message   String
   SteamId   String
@@ -240,12 +282,11 @@ model GlobalChatMessage {
 
 model Game { //unique: { timestamp &  } We want this to map 1 game to multiple rawgames (avoid duplicates)
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  v             Int?        @map("__v")
   game_found    GameFound
-  game_start    GameStart//?
-  game_players  GamePlayers//?
-  missions      Missions?
-  game_end      GameEnd//?  //also end condition?
+  game_start    GameStart?
+  game_players  GamePlayers
+  missions      Missions
+  game_end      GameEnd?  //also end condition?
   chat          ChatMessage[]
   // local_slot    Int
   
@@ -265,7 +306,6 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 
 model RawGame {
   id              String     @id @default(auto()) @map("_id") @db.ObjectId
-  v               Int?       @map("__v")
   data            String
   game            Game        @relation(fields: [game_id], references: [id])
   game_id         String      @db.ObjectId
@@ -281,7 +321,6 @@ model RawGame {
 
 model Player {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int?      @map("__v")
   steam_id  String    @unique
   name      String
   level     Int       @default(1)
@@ -305,7 +344,6 @@ model Player {
 
 model Client {
   id                    String              @id @default(auto()) @map("_id") @db.ObjectId
-  v                     Int?                @map("__v")
   uuid                  String              @unique
 
   mindnight_session     MindnightSession?

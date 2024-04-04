@@ -37,14 +37,14 @@ export default function ImportantInfo({}:Props){
   const game_players = useStore(state=>state.game?.game_players);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot)
-  const proposerSlot = turnInfo?.Proposer as PlayerSlot | undefined;
+  const proposerSlot = turnInfo?.select_phase_end?.Proposer as PlayerSlot | undefined;
   const proposer = game_players && proposerSlot!=undefined ? game_players[proposerSlot] as GamePlayer : undefined;
   const proposerColor = proposer && colors[proposer.Color as ColorCode].hex
   const nth = numSuffix(selectedTurn);
-  const action = turnInfo?.Passed ? 'passed hammer' : 'proposed';
+  const action = turnInfo?.select_phase_end?.Passed ? 'passed hammer' : 'proposed';
   const targets:React.ReactNode[] = [];
   if(turnInfo && game_players && numPlayers!=undefined)
-    if(turnInfo.Passed){
+    if(turnInfo.select_phase_end?.Passed){
       let propIndex = getPropIndex(turnInfo); //IMPORTANT CONVERSION FOR PROP TRANSITION
       let hammerPlayerSlot = getHammerPlayerSlot(propIndex, selectedSlot!, numPlayers); //IMPORTANT: hammer is who they pass it to
       let fromPlayerIndex = hammerPlayerSlot!=undefined ? trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot : undefined;
@@ -61,8 +61,8 @@ export default function ImportantInfo({}:Props){
       targets.push(toPlayerText);
     }
     else{
-      let proposedPlayerSlots = turnInfo.SelectedTeam as PlayerSlot[];
-      proposedPlayerSlots.forEach((playerSlot, index)=>{
+      let proposedPlayerSlots = turnInfo.select_phase_end?.SelectedTeam as PlayerSlot[] | undefined;
+      proposedPlayerSlots?.forEach((playerSlot, index)=>{
         targets.push( coloredText(game_players[playerSlot]?.Username+' ', colors[game_players[playerSlot]?.Color as ColorCode]?.hex) );
       });
     }
