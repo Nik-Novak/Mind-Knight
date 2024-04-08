@@ -48,7 +48,9 @@ const prismaClientSingleton= ()=>{
               
               return database.game.update({where:{id:data.id}, data:{
                 game_players: {
-                  [spawn_player.Slot]: {...spawn_player,  proposals:{}, log_time }
+                  update:{
+                    [spawn_player.Slot]: {...spawn_player,  proposals:{}, log_time }
+                  }
                 }
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }

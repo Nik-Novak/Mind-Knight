@@ -23,12 +23,12 @@ import { useStore } from "@/zustand/store";
 // }
 
 type Props = {
-  chat:(GlobalChatMessage|ChatMessage)[],
-  game_players?: GamePlayers //will treat as global chat if no game_players
+  chat?:(GlobalChatMessage|ChatMessage)[],
+  // game_players?: GamePlayers //will treat as global chat if no game_players
   sendMessage?: (message:string)=>Promise<GlobalChatMessage|ChatMessage>
 }
 
-function Chatbox({chat, game_players, sendMessage}:Props){
+function Chatbox({ chat, sendMessage}:Props){
   const [searchPattern, setSearchPattern] = useState('');
   const [showMatchingChatOnly, setShowMatchingChatOnly] = useState(true);
   const messageForm = useRef<HTMLFormElement>(null);
@@ -37,8 +37,10 @@ function Chatbox({chat, game_players, sendMessage}:Props){
   const { serverEvents } = useServerEvents();
   const { mindnightSession } = useMindnightSession();
 
-  // const chat = useStore(state=>state.game?.chat);
-  // const game_players = useStore(state=>state.game?.game_players);
+  if(!chat)
+    chat = useStore(state=>state.game?.chat) || [];
+  
+  const game_players = useStore(state=>state.game?.game_players);
 
   console.log('CHATBOX MN SESSION', mindnightSession);
 

@@ -19,7 +19,7 @@ import { getDbPlayer } from "@/actions/game";
 
 //React server component that securely runs on the server by default
 export default async function GamePage() {
-  const game:Game|undefined = await database.game.findById('660086081003d3d36367f840');//await getGame(); //sampleGame as unknown as Game//TODO fetch game
+  // const game:Game|undefined = await database.game.findById('660086081003d3d36367f840');//await getGame(); //sampleGame as unknown as Game//TODO fetch game
   // if(!game)
   //   return redirect('/');
 
@@ -47,11 +47,11 @@ export default async function GamePage() {
   // console.log('UPLOADED', uploadedGame.id);
 
   return (
-    <>bbbb
+    <>
       <main id='content' className={styles.main}>
         <Stack className={styles.left}>
           <Settings />
-          <Panel title="Chat" defaultExpanded > <Chatbox chat={game.chat} game_players={game.game_players} /> </Panel>
+          <Panel title="Chat" defaultExpanded > <Chatbox /> </Panel>
         </Stack>
         <Stack className={styles.center}>
           <ImportantInfo />
