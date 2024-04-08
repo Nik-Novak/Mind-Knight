@@ -27,7 +27,7 @@ export const useStore = create<Store>((set)=>({
     let currentMission = getCurrentMissionNumber(state.game?.missions);
     if(state.game && newNode <= currentMission){ //node exists
       let newMaxTurns = maxTurns(newNode, state.game.game_players);
-      let selectedTurn = Math.min(newMaxTurns, state.selectedTurn); //ensuring turn exists
+      let selectedTurn = Math.min(newMaxTurns, state.selectedTurn, 1); //ensuring turn exists
       return ({selectedNode: newNode, selectedTurn});
     }
     return state; //default no changes

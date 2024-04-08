@@ -5,7 +5,6 @@ import { GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, Playe
 import { PlayerIdentity, Role } from '@prisma/client';
 import FileTail from './FileTail';
 import { ColorCode } from '../constants/colors';
-import { WildcardEventEmitter } from './WildcardEventEmitter';
 import { logLineToISOTime } from '../functions/game';
 
 export type LogSendEvents = {
@@ -99,7 +98,7 @@ class LogReader extends EventEmitter<LogEvents>{
               // if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse']).includes(packetType))
               console.log(`FOUND PACKET`, packetType)
               let packet = JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7).trim());
-              if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse']).includes(packetType))
+              if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse', 'GameEnd']).includes(packetType))
                 console.log('\t', packet);
               this.emit(packetType, packet, logLineToISOTime(line));
             }
@@ -113,6 +112,9 @@ class LogReader extends EventEmitter<LogEvents>{
         }
       })
       .start();
+  }
+  readLog(){
+    return fs.readFileSync(this.filepath, 'utf8');
   }
   // emit(type: keyof LogSendEvents | keyof LogReceiveEvents, ...args: any[]): boolean {
   //   super.emit('*', type, ...args);

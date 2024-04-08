@@ -309,10 +309,15 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 // =========================
 // RawGame
 // =========================
-
+enum RawGameUploadReason {
+  GameEnd
+  Error
+}
 model RawGame {
   id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  upload_reason   RawGameUploadReason
   data            String
+  error           String?
   game            Game        @relation(fields: [game_id], references: [id])
   game_id         String      @db.ObjectId
 

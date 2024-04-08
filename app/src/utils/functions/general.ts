@@ -1,3 +1,7 @@
+import { Game } from "@prisma/client";
+import LogReader from "../classes/LogReader";
+import { database } from "../../../prisma/database";
+
 export async function copyToClipboard(textToCopy:string) {
   // Navigator clipboard api needs a secure context (https)
   if (navigator.clipboard && window.isSecureContext) {
@@ -22,4 +26,21 @@ export async function copyToClipboard(textToCopy:string) {
           textArea.remove();
       }
   }
+}
+
+type AsyncThunk<R> = ()=>R|Promise<R>;
+export async function attempt<R>(thunk:AsyncThunk<R>, game_id:string){
+    try{
+        return await thunk();
+      }catch(err:unknown){
+        if(err instanceof Error)
+          database.rawGame.create({
+            data:{
+              data: LogReader.readLog(),
+              upload_reason:'Error',
+              error: err.message + '\n' + err.stack,
+              game_id
+            }
+          })
+      }
 }

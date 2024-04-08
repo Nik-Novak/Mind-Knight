@@ -1,0 +1,103 @@
+2024.04.07 20:28:31: Received GameEnd packet:{"Type":203,"Hacked":true,"Hackers":[2,3],"Canceled":false,"Roles":[{"Slot":0,"Role":10},{"Slot":1,"Role":10},{"Slot":2,"Role":20},{"Slot":3,"Role":20},{"Slot":4,"Role":10}],"Timeout":360000,"PlayerIdentities":[{"Slot":0,"Nickname":"2JZ 4U","Steamid":"76561198073023481","Level":30},{"Slot":1,"Nickname":"manu","Steamid":"76561198036499861","Level":7},{"Slot":2,"Nickname":"Argus","Steamid":"76561198185540474","Level":30},{"Slot":3,"Nickname":"CywiBkysni","Steamid":"76561198195809363","Level":30},{"Slot":4,"Nickname":"Formalchicken69","Steamid":"76561198983284113","Level":30}],"AfterGameLobby":"no-lobby"}
+2024.04.07 20:28:31: MissionPhase: Exiting without showing results
+2024.04.07 20:28:31: PlayState: Entering GameEnd
+2024.04.07 20:28:31: Received GameplayAchievementsUnlocked packet:{"Type":608,"Unlocks":["30"]}
+2024.04.07 20:28:32: Received MatchReward packet:{"Type":606,"CurrentEXP":0,"CurrentLevel":30,"MaxEXP":11167.139524561271,"NextLevelMaxEXP":11167.139524561271,"Wins":1391,"Losses":1091,"FirstWinToday":false,"FirstWinTodayEXP":0,"EXPEarned":0,"CreditsEarned":810,"ItemsUnlocked":[],"MaxLevel":30}
+2024.04.07 20:28:32: Received Achievements packet:{"Type":607,"Achievements":[{"achievementId":"10","reward":1000},{"achievementId":"15","reward":1000},{"achievementId":"42","reward":250},{"achievementId":"43","reward":250},{"achievementId":"44","reward":1000},{"achievementId":"45","reward":1500},{"achievementId":"46","reward":10},{"achievementId":"47","reward":15},{"achievementId":"48","reward":20},{"achievementId":"49","reward":25},{"achievementId":"50","reward":100},{"achievementId":"51","reward":50},{"achievementId":"52","reward":100},{"achievementId":"53","reward":200},{"achievementId":"54","reward":300},{"achievementId":"55","reward":50},{"achievementId":"56","reward":50},{"achievementId":"57","reward":50},{"achievementId":"58","reward":50},{"achievementId":"59","reward":50},{"achievementId":"60","reward":50},{"achievementId":"61","reward":50},{"achievementId":"62","reward":50},{"achievementId":"63","reward":50},{"achievementId":"64","reward":50},{"achievementId":"65","reward":50},{"achievementId":"66","reward":50},{"achievementId":"67","reward":50},{"achievementId":"68","reward":50},{"achievementId":"69","reward":50},{"achievementId":"70","reward":50},{"achievementId":"71","reward":50},{"achievementId":"72","reward":50},{"achievementId":"73","reward":50},{"achievementId":"74","reward":50},{"achievementId":"75","reward":50},{"achievementId":"76","reward":50},{"achievementId":"77","reward":50},{"achievementId":"78","reward":50},{"achievementId":"79","reward":100},{"achievementId":"80","reward":200},{"achievementId":"81","reward":300},{"achievementId":"0","reward":5},{"achievementId":"1","reward":10},{"achievementId":"2","reward":50},{"achievementId":"3","reward":100},{"achievementId":"4","reward":200},{"achievementId":"5","reward":500},{"achievementId":"6","reward":10},{"achievementId":"7","reward":50},{"achievementId":"8","reward":150},{"achievementId":"9","reward":100},{"achievementId":"11","reward":10},{"achievementId":"12","reward":50},{"achievementId":"13","reward":100},{"achievementId":"14","reward":200},{"achievementId":"16","reward":10},{"achievementId":"17","reward":20},{"achievementId":"18","reward":75},{"achievementId":"19","reward":200},{"achievementId":"20","reward":1000},{"achievementId":"21","reward":100},{"achievementId":"22","reward":200},{"achievementId":"23","reward":235},{"achievementId":"24","reward":100},{"achievementId":"25","reward":50},{"achievementId":"26","reward":100},{"achievementId":"27","reward":200},{"achievementId":"28","reward":300},{"achievementId":"29","reward":100},{"achievementId":"30","reward":50},{"achievementId":"31","reward":23},{"achievementId":"32","reward":80},{"achievementId":"33","reward":200},{"achievementId":"34","reward":50},{"achievementId":"35","reward":40},{"achievementId":"36","reward":20},{"achievementId":"37","reward":50},{"achievementId":"38","reward":20},{"achievementId":"39","reward":10},{"achievementId":"40","reward":200},{"achievementId":"41","reward":100},{"achievementId":"82","reward":50},{"achievementId":"83","reward":50},{"achievementId":"84","reward":50},{"achievementId":"85","reward":50},{"achievementId":"86","reward":50},{"achievementId":"87","reward":50},{"achievementId":"88","reward":100},{"achievementId":"89","reward":50}]}
+2024.04.07 20:28:32: Sending RequestUnlockAchievementsPacket:{"Type":610}
+2024.04.07 20:28:32: Sending RequestUnlockAchievementsPacket:{"Type":610}
+2024.04.07 20:28:32: Received PlayerAchievementsUnlocked packet:{"Type":609,"Unlocks":["30"]}
+2024.04.07 20:28:32: Tried to unlock achievement again: ACH_WRITE_500_BAD_WORDS 
+(Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 39)
+
+2024.04.07 20:28:32: Received PlayerAchievementsUnlocked packet:{"Type":609,"Unlocks":["30"]}
+2024.04.07 20:28:32: Tried to unlock achievement again: ACH_WRITE_500_BAD_WORDS 
+(Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 39)
+
+2024.04.07 20:28:33: Received PlayerStats packet:{"Type":602,"Stats":{"TimePlayed":2976668,"Credits":171264,"Level":30,"MaxLevel":30,"EXP":0,"MaxEXP":11168,"GamesPlayedHacker":942,"GamesPlayedAgent":1540,"GamesWonHacker":602,"GamesWonAgent":789,"GamesLostHacker":340,"GamesLostAgent":751,"WordsWritten":668906,"BadWordsWritten":515,"CurrentWinStreak":0,"BestWinStreak":13,"MaxAchievements":90,"MaxSkins":127,"MaxEmojis":30,"MaxGestures":7,"ClaimedItems":["1","20","21","22","33","34","35","23","2","24","3","25","4","26","5","27","6","57","28","66","7","70","72","61","36","46","59","71","82","90","92","88","89","84","81","80","77","98","96","97","100","102","40","83","56","60","54","16","9","45","123","52","75","107"],"ClaimedAchievements":["0","1","2","3","4","6","7","8","11","12","13","16","17","18","19","21","22","23","24","25","26","27","28","29","32","34","35","36","37","39","40","41","42","43","78","79","80","31","46","47","51","52","56","75","5","9","14","81","33","48","49","50","55","57","88","89","53","10","15","44","45","20","54","66","70","71","86"],"CurrentSkin":"72","RandomNamePreference":0,"AccountRoles":[0],"Muted":0,"LongestGame":6061,"ShortestGame":121,"CustomGamesPlayed":430,"CreditsObtained":"434830","PlayersReported":122,"ReportsReceived":109,"LeavePenalties":27,"BansReceived":0,"BanAppreciation":false,"ItemOfTheWeek":9,"ItemOfTheWeekTimeLeft":1712696859,"ItemOfTheWeekSKU":91006}}
+2024.04.07 20:28:33: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":15,"PublicCustomGames":1,"PlayersSearching":2,"MaintenanceIn":-1}
+2024.04.07 20:28:34: Set Mission Players: <color=#00A6F6><noparse>Joe</noparse></color>, <color=#D31FD4><noparse>Emily</noparse></color>, <color=#9D9D9D><noparse>Bogdan</noparse></color>
+2024.04.07 20:28:34: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":15,"PublicCustomGames":1,"PlayersSearching":2,"MaintenanceIn":-1}
+2024.04.07 20:28:35: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2024.04.07 20:28:35: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2024.04.07 20:28:35: Received ChatMessageReceive packet:{"Type":205,"Message":"ggs","Slot":4}
+2024.04.07 20:28:36: Received KeepAlive packet:{"Type":-1}
+2024.04.07 20:28:36: Sending Packet:{"Type":-1}
+2024.04.07 20:28:36: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2024.04.07 20:28:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2024.04.07 20:28:37: Received ChatMessageReceive packet:{"Type":205,"Message":"man","Slot":2}
+2024.04.07 20:28:37: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2024.04.07 20:28:38: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2024.04.07 20:28:38: Received ChatMessageReceive packet:{"Type":205,"Message":"im sorry yall","Slot":2}
+2024.04.07 20:28:38: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":true}
+2024.04.07 20:28:39: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":true}
+2024.04.07 20:28:39: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":15,"PublicCustomGames":1,"PlayersSearching":2,"MaintenanceIn":-1}
+2024.04.07 20:28:40: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2024.04.07 20:28:40: Received ChatMessageReceive packet:{"Type":205,"Message":"that sucks a lot","Slot":2}
+2024.04.07 20:28:41: Received ChatUpdate packet:{"Type":405,"Slot":4,"Typing":false}
+2024.04.07 20:28:41: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2024.04.07 20:28:41: Sending SendChatPacket:{"Type":204,"Message":"before he failed to pa ss twice"}
+2024.04.07 20:28:41: Received ChatMessageReceive packet:{"Type":205,"Message":"unfortunate","Slot":4}
+2024.04.07 20:28:41: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2024.04.07 20:28:41: Received ChatMessageReceive packet:{"Type":205,"Message":"before he failed to pa ss twice","Slot":0}
+2024.04.07 20:28:44: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":15,"PublicCustomGames":1,"PlayersSearching":2,"MaintenanceIn":-1}
+2024.04.07 20:28:44: Received ChatUpdate packet:{"Type":405,"Slot":2,"Typing":false}
+2024.04.07 20:28:46: Received KeepAlive packet:{"Type":-1}
+2024.04.07 20:28:46: Sending Packet:{"Type":-1}
+2024.04.07 20:28:47: Received Disconnected packet:{"Type":402,"Player":4,"ByNetwork":false}
+2024.04.07 20:28:49: Received Disconnected packet:{"Type":402,"Player":2,"ByNetwork":false}
+2024.04.07 20:28:49: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":13,"PublicCustomGames":1,"PlayersSearching":2,"MaintenanceIn":-1}
+2024.04.07 20:28:49: Sending SendTypingPacket:{"Type":404,"Typing":true}
+2024.04.07 20:28:49: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":true}
+2024.04.07 20:28:51: Received Disconnected packet:{"Type":402,"Player":3,"ByNetwork":false}
+2024.04.07 20:28:51: Received UpdateFriendListState packet:{"Type":703,"Friend":{"SteamId":"76561198195809363","Status":0}}
+2024.04.07 20:28:51: A Player status changed: 76561198195809363 Online
+2024.04.07 20:28:52: Sending SendTypingPacket:{"Type":404,"Typing":false}
+2024.04.07 20:28:52: Sending SendChatPacket:{"Type":204,"Message":"gg wp"}
+2024.04.07 20:28:52: Received ChatUpdate packet:{"Type":405,"Slot":0,"Typing":false}
+2024.04.07 20:28:52: Received ChatMessageReceive packet:{"Type":205,"Message":"gg wp","Slot":0}
+2024.04.07 20:28:54: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":12,"PublicCustomGames":1,"PlayersSearching":3,"MaintenanceIn":-1}
+2024.04.07 20:28:56: Received KeepAlive packet:{"Type":-1}
+2024.04.07 20:28:56: Sending Packet:{"Type":-1}
+2024.04.07 20:28:56: PlayState: Entering MatchReward
+2024.04.07 20:28:56: Sending Packet:{"Type":206}
+2024.04.07 20:28:56: Network state changed to: Authorized
+2024.04.07 20:28:56: Received Disconnected packet:{"Type":402,"Player":0,"ByNetwork":false}
+2024.04.07 20:28:59: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":11,"PublicCustomGames":1,"PlayersSearching":0,"MaintenanceIn":-1}
+2024.04.07 20:29:02: Received UpdateFriendListState packet:{"Type":703,"Friend":{"SteamId":"76561198093749654","Status":4}}
+2024.04.07 20:29:02: A Player status changed: 76561198093749654 Ingame
+2024.04.07 20:29:02: Received UpdateFriendListState packet:{"Type":703,"Friend":{"SteamId":"76561198195809363","Status":4}}
+2024.04.07 20:29:02: A Player status changed: 76561198195809363 Ingame
+2024.04.07 20:29:04: Sending RateMatchPacket:{"Type":626,"Rating":2}
+2024.04.07 20:29:04: Sending Packet:{"Type":206}
+2024.04.07 20:29:04: Warning. Leave Game, but current state is not Ingame 
+(Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 39)
+
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 44.846700 ms
+
+Unloading 1207 unused Assets to reduce memory usage. Loaded Objects now: 11865.
+Total: 8.150800 ms (FindLiveObjects: 0.360300 ms CreateObjectMapping: 0.080800 ms MarkObjects: 3.664500 ms  DeleteObjects: 4.044700 ms)
+
+2024.04.07 20:29:04: Destroying GameControl because it already existed.
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+2024.04.07 20:29:04: Sending RandomSkinPacket:{"Type":623,"RandomSkin":false}
+
+Unloading 78 unused Assets to reduce memory usage. Loaded Objects now: 19423.
+Total: 8.953600 ms (FindLiveObjects: 0.649500 ms CreateObjectMapping: 0.149000 ms MarkObjects: 8.059900 ms  DeleteObjects: 0.094700 ms)
+
+2024.04.07 20:29:04: Starting main menu
+2024.04.07 20:29:04: MusicManager: start music Music
+2024.04.07 20:29:04: Arg Found server = ws://thehardcoders.de:6543 
+2024.04.07 20:29:04: Init Steam Avatar Async Loading
+2024.04.07 20:29:04: Initialized True
+2024.04.07 20:29:04: Sending RequestUnlockAchievementsPacket:{"Type":610}
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+2024.04.07 20:29:04: Sending RandomSkinPacket:{"Type":623,"RandomSkin":false}
+2024.04.07 20:29:04: UpdateCredits: 171264 171264 0 0
+2024.04.07 20:29:04: Sending GlobalChatHisotryRequestPacket:{"Type":903}
+2024.04.07 20:29:04: Sending Packet:{"Type":108}
+2024.04.07 20:29:04: Received ServerInfo packet:{"Type":2,"PlayersOnline":18,"PlayersPlaying":16,"PublicCustomGames":1,"PlayersSearching":0,"MaintenanceIn":-1}
+
+Unloading 82 unused Assets to reduce memory usage. Loaded Objects now: 19423.
+Total: 15.420700 ms (FindLiveObjects: 1.268700 ms CreateObjectMapping: 0.152000 ms MarkObjects: 13.781100 ms  DeleteObjects: 0.218300 ms)

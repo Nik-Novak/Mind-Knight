@@ -18,7 +18,7 @@ fi
 # Loop through each line in the source file
 while IFS= read -r line; do
     echo "$line" >> "$destination_file"  # Append the line to the destination file
-    sleep 0.5  # Sleep for 2 seconds
+    sleep 0.25  # Sleep for 2 seconds
 done < "$source_file"
 
 echo "Copying complete."
