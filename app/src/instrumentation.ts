@@ -45,7 +45,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     let mindnightSession = await getMindnightSession();
     if(mindnightSession)
       sendServerEvent('MindnightSessionUpdate', mindnightSession);
-    game = await database.game.findById('66144a8f577750ccbfab6f00');
+    // game = await database.game.findById('66144a8f577750ccbfab6f00');
     if(game)
       sendServerEvent('GameUpdate', game);
   });
