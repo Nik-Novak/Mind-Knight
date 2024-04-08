@@ -66,14 +66,15 @@ export function getCurrentMissionNumber(missions: Missions|null){
 }
 
 export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumber){
-  let latestProposal:Proposal|undefined;
-  Object.values(game_players).forEach(game_player=>{
-    game_player?.proposals[missionNum].forEach(proposal=>{
-      if(!latestProposal)
-        latestProposal = proposal; //init
-      else if(proposal.select_phase_start.log_time.valueOf() > latestProposal.select_phase_start.log_time.valueOf())
-        latestProposal = proposal;
+  let result:{playerSlot:PlayerSlot, value:Proposal, proposalIndex:number}|undefined;
+  Object.entries(game_players).forEach(([slot, game_player])=>{
+    let playerSlot = parseInt(slot) as PlayerSlot;
+    game_player?.proposals[missionNum].forEach((proposal, i)=>{
+      if(!result)
+        result = { playerSlot, value:proposal, proposalIndex:i}; //init
+      else if(proposal.select_phase_start.log_time.valueOf() > result.value.select_phase_start.log_time.valueOf())
+        result = {playerSlot, value:proposal, proposalIndex:i};
     })
   });
-  return latestProposal;
+  return result;
 }

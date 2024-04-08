@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { EventEmitter } from 'events';
 import { MindnightSession } from '@prisma/client';
 import { useServerEvents } from '../ServerEventsProvider';
-import { database } from '@/utils/database';
+import { database } from '../../../prisma/database';
 import { useRouter } from 'next/navigation';
 import { revalidateTag } from 'next/cache';
 import { Tags } from '@/utils/cache/tags';

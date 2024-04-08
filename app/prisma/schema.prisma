@@ -36,7 +36,7 @@ type VoteMade {
   created_at        DateTime    @default(now())
 }
 
-type Votes { //dimension = player slot
+type VoteMades { //dimension = player slot
   0     VoteMade?
   1     VoteMade?
   2     VoteMade?
@@ -92,7 +92,7 @@ type SelectPhaseEnd {
   Passed              Boolean
 
   chatIndex           Int
-  deltaT              Int?
+  deltaT              Int
 
   log_time            DateTime
   created_at          DateTime    @default(now())
@@ -103,14 +103,14 @@ type Proposal {
   select_updates        SelectUpdate[]
   select_phase_end      SelectPhaseEnd?
 
-  vote_phase_start  VotePhaseStart?
-  votes             Votes
-  vote_phase_end    VotePhaseEnd?
+  vote_phase_start      VotePhaseStart?
+  vote_mades            VoteMades //vote times
+  vote_phase_end        VotePhaseEnd?
 
   created_at        DateTime    @default(now())
 }
 
-type PlayerProposal { //LIMITATION: 5 nodes assumption
+type PlayerProposals { //LIMITATION: 5 nodes assumption
   1             Proposal[]
   2             Proposal[]
   3             Proposal[]
@@ -127,7 +127,7 @@ type GamePlayer {
   Type          Int
   Username      String
   chat          Int[] //array of chat messages mapped to chat indices
-  proposals     PlayerProposal
+  proposals     PlayerProposals
 
   log_time          DateTime
   created_at        DateTime    @default(now())
@@ -191,6 +191,8 @@ type MissionPhaseStart {
   Players     Int[]
   Type        Int
 
+  chatIndex   Int
+
   log_time          DateTime
   created_at        DateTime    @default(now())
 }
@@ -201,6 +203,7 @@ type MissionPhaseEnd {
   NumHacks    Int
   Proposer    Int
   Type        Int
+  
   chatIndex   Int
   deltaT      Int
   propNumber  Int
@@ -243,6 +246,9 @@ type GameEnd {
   Timeout           Int
   PlayerIdentities  PlayerIdentity[]
   AfterGameLobby    String
+
+  deltaT            Int
+  chatIndex         Int
   
   log_time          DateTime
   created_at        DateTime    @default(now())

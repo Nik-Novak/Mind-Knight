@@ -1,6 +1,6 @@
 import { WebSocketServer } from 'ws';
 import type { ServerEventPacket, ServerEvents } from './components/ServerEventsProvider';
-import { database } from './utils/database';
+import { database } from '../prisma/database';
 import { GlobalChatMessage, PlayerSlot } from './types/game';
 import { Game, Proposal } from '@prisma/client';
 import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from './utils/functions/game';
@@ -37,16 +37,14 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     port: parseInt(wsUrl.port),
   });
 
-  let game:Game|undefined;
-
+  let game:Awaited<ReturnType<typeof database.game.create>>|undefined;
+  
   //INIT for clients;
   clientsWss.on('connection', async ()=>{
     let mindnightSession = await getMindnightSession();
     if(mindnightSession)
       sendServerEvent('MindnightSessionUpdate', mindnightSession);
     
-    // game = await database.game.findById('660086081003d3d36367f840')
-
     if(game)
       sendServerEvent('GameUpdate', game);
   });
@@ -60,8 +58,6 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       client.send(JSON.stringify(packet));
     });
   }
-
-  
   
   LogReader.on('ReceiveGlobalChatMessage', async (packet)=>{
     await createGlobalChatMessage(packet.Message);
@@ -106,138 +102,155 @@ LogReader.on('GlobalChatHistoryResponse', async (packet)=>{
 });
 
 //building the game
-LogReader.on('GameFound', (game_found, log_time)=>{
+LogReader.on('GameFound', async (game_found, log_time)=>{
   if(game){
     game = undefined;
     // game.game_found = {...game_found, created_at:new Date()}
     // sendServerEvent('GameUpdate', game);
   }
-  game = {
-    id: '123',
-    game_found:{...game_found, log_time, created_at:new Date()},
-    chat: [],
-    missions: {1:null, 2:null,3:null,4:null,5:null},
-    game_start: null,
-    game_end: null,
-    game_players: {0:null,1:null, 2:null,3:null,4:null,5:null,6:null,7:null},
-    player_ids: [],
-    created_at: new Date(),
-    updated_at: new Date(),
-  }
+  game = await database.game.create({data:{
+    game_found: {...game_found, log_time},
+    game_players:{},
+    missions:{},
+  }});
+
+  
+  // game = {
+  //   id: '123',
+  //   game_found:{...game_found, log_time, created_at:new Date()},
+  //   chat: [],
+  //   missions: {1:null, 2:null,3:null,4:null,5:null},
+  //   game_start: null,
+  //   game_end: null,
+  //   game_players: {0:null,1:null, 2:null,3:null,4:null,5:null,6:null,7:null},
+  //   player_ids: [],
+  //   created_at: new Date(),
+  //   updated_at: new Date(),
+  // }
   sendServerEvent('GameUpdate', game);
 });
-LogReader.on('SpawnPlayer', (spawn_player, log_time)=>{
+LogReader.on('SpawnPlayer', async (spawn_player, log_time)=>{
   if(game){
-    game.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() } //TODO, database approach
+    game = await game.$spawnPlayer(spawn_player, log_time);
+    // game.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() } //TODO, database approach
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('GameStart', (game_start, log_time)=>{
+LogReader.on('GameStart', async (game_start, log_time)=>{
   if(game){
-    game.game_start = {...game_start, log_time, created_at:new Date()}
+    game = await game.$startGame(game_start, log_time);
+    // game.game_start = {...game_start, log_time, created_at:new Date()}
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('ChatMessageReceive', (chat_message, log_time)=>{
+LogReader.on('ChatMessageReceive', async (chat_message, log_time)=>{
   if(game){
-    game.chat.push( {...chat_message, index:game.chat.length, log_time, created_at:new Date() } )
+    game = await game.$addChatMessage(chat_message, log_time);
+    // game.chat.push( {...chat_message, index:game.chat.length, log_time, created_at:new Date() } )
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('SelectPhaseStart', (select_phase_start, log_time)=>{
+LogReader.on('SelectPhaseStart', async (select_phase_start, log_time)=>{
   if(game){
-    let propNumber = getCurrentNumProposals(game.game_players, select_phase_start.Mission) + 1;
-    let proposal:Proposal = {
-      select_phase_start: {...select_phase_start, log_time, chatIndex:game.chat.length, propNumber, created_at: new Date()},
-      select_updates: [],
-      select_phase_end:null,
-      votes: { 0:null, 1: null, 2:null, 3:null, 4:null, 5:null, 6:null, 7:null },
-      vote_phase_end: null,
-      vote_phase_start: null,
-      created_at: new Date()
-    }
-    game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal);
+    // let propNumber = getCurrentNumProposals(game.game_players, select_phase_start.Mission) + 1;
+    // let proposal:Proposal = {
+    //   select_phase_start: {...select_phase_start, log_time, chatIndex:game.chat.length, propNumber, created_at: new Date()},
+    //   select_updates: [],
+    //   select_phase_end:null,
+    //   votes: { 0:null, 1: null, 2:null, 3:null, 4:null, 5:null, 6:null, 7:null },
+    //   vote_phase_end: null,
+    //   vote_phase_start: null,
+    //   created_at: new Date()
+    // }
+    game = await game.$startProposal(select_phase_start, log_time);
+    // game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal);
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('SelectUpdate', (select_update, log_time)=>{
+LogReader.on('SelectUpdate', async (select_update, log_time)=>{
   if(game){
-    let missionNum = getCurrentMissionNumber(game.missions);
-    let latestProposal = getLatestProposal(game.game_players, missionNum);
-    if(!latestProposal)
-      throw Error("Something went wrong. Could not find the latest proposal..");
-    latestProposal.select_updates.push({...select_update, chatIndex: game.chat.length, log_time, created_at:new Date()});
+    // let missionNum = getCurrentMissionNumber(game.missions);
+    // let latestProposal = getLatestProposal(game.game_players, missionNum);
+    // if(!latestProposal)
+    //   throw Error("Something went wrong. Could not find the latest proposal..");
+    game = await game.$updateProposalSelection(select_update, log_time);
+    // latestProposal.select_updates.push({...select_update, chatIndex: game.chat.length, log_time, created_at:new Date()});
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('SelectPhaseEnd', (select_phase_end, log_time)=>{
+LogReader.on('SelectPhaseEnd', async (select_phase_end, log_time)=>{
   if(game){
-    let missionNum = getCurrentMissionNumber(game.missions);
-    let missionProps:Proposal[]|undefined = game.game_players[select_phase_end.Proposer]?.proposals[missionNum];
-    if(missionProps){
-      let deltaT = log_time.valueOf() - missionProps[missionProps.length-1].select_phase_start.log_time.valueOf();
-      let chatIndex = game.chat.length;
-      missionProps[missionProps.length-1].select_phase_end = {...select_phase_end, log_time, deltaT, chatIndex, created_at: new Date()}
-    }
+    // let missionNum = getCurrentMissionNumber(game.missions);
+    // let missionProps:Proposal[]|undefined = game.game_players[select_phase_end.Proposer]?.proposals[missionNum];
+    // if(missionProps){
+    game = await game.$endProposal(select_phase_end, log_time);
+      // missionProps[missionProps.length-1].select_phase_end = {...select_phase_end, log_time, deltaT, chatIndex, created_at: new Date()}
+    // }
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('VotePhaseStart', (vote_phase_start, log_time)=>{
+LogReader.on('VotePhaseStart', async (vote_phase_start, log_time)=>{
   if(game){
-    let missionNum = getCurrentMissionNumber(game.missions);
-    let proposal = getLatestProposal(game?.game_players, missionNum);
-    if(!proposal)
-      throw Error("Something went wrong. Could not find the latest proposal..");
-    proposal.vote_phase_start = {...vote_phase_start, chatIndex:game.chat.length, log_time, created_at: new Date()}
+    // let missionNum = getCurrentMissionNumber(game.missions);
+    // let proposal = getLatestProposal(game?.game_players, missionNum);
+    // if(!proposal)
+    //   throw Error("Something went wrong. Could not find the latest proposal..");
+    game = await game.$startVote(vote_phase_start, log_time);
+    // proposal.vote_phase_start = {...vote_phase_start, chatIndex:game.chat.length, log_time, created_at: new Date()}
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('VoteMade', (vote_made, log_time)=>{
+LogReader.on('VoteMade', async (vote_made, log_time)=>{
   if(game){
-    let missionNum = getCurrentMissionNumber(game.missions);
-    let latestProposal = getLatestProposal(game.game_players, missionNum);
-    if(!latestProposal)
-      throw Error("Something went wrong. Could not find the latest proposal..");
-    if(!latestProposal.vote_phase_start)
-      throw Error("Something went wrong. Could not find vote_phase_start for latest proposal..");
-    let deltaT = log_time.valueOf() - latestProposal.vote_phase_start.log_time.valueOf();
-    latestProposal.votes[vote_made.Slot] = { ...vote_made, chatIndex:game.chat.length, log_time, deltaT, created_at: new Date() };
+    // let missionNum = getCurrentMissionNumber(game.missions);
+    // let latestProposal = getLatestProposal(game.game_players, missionNum);
+    // if(!latestProposal)
+    //   throw Error("Something went wrong. Could not find the latest proposal..");
+    // if(!latestProposal.vote_phase_start)
+    //   throw Error("Something went wrong. Could not find vote_phase_start for latest proposal..");
+    // let deltaT = log_time.valueOf() - latestProposal.vote_phase_start.log_time.valueOf();
+    game = await game.$addVoteMade(vote_made, log_time);
+    // latestProposal.votes[vote_made.Slot] = { ...vote_made, chatIndex:game.chat.length, log_time, deltaT, created_at: new Date() };
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('VotePhaseEnd', (vote_phase_end, log_time)=>{
+LogReader.on('VotePhaseEnd', async (vote_phase_end, log_time)=>{
   if(game){
-    let missionNum = getCurrentMissionNumber(game.missions);
-    let proposal = getLatestProposal(game?.game_players, missionNum);
-    if(!proposal)
-      throw Error("Something went wrong. Could not find the latest proposal..");
-    let deltaT = log_time.valueOf() - proposal.select_phase_start.log_time.valueOf();
-    proposal.vote_phase_end = { ...vote_phase_end, chatIndex:game.chat.length, log_time, deltaT, created_at:new Date() };
+    // let missionNum = getCurrentMissionNumber(game.missions);
+    // let proposal = getLatestProposal(game?.game_players, missionNum);
+    // if(!proposal)
+    //   throw Error("Something went wrong. Could not find the latest proposal..");
+    // let deltaT = log_time.valueOf() - proposal.select_phase_start.log_time.valueOf();
+    game = await game.$endVote(vote_phase_end, log_time);
+    // proposal.vote_phase_end = { ...vote_phase_end, chatIndex:game.chat.length, log_time, deltaT, created_at:new Date() };
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('MissionPhaseStart', (mission_phase_start, log_time)=>{
+LogReader.on('MissionPhaseStart', async (mission_phase_start, log_time)=>{
   if(game){
-    game.missions[mission_phase_start.Mission] = {
-      mission_phase_start: {...mission_phase_start, log_time, created_at: new Date()},
-      mission_phase_end: null
-    }
+    // game.missions[mission_phase_start.Mission] = {
+    //   mission_phase_start: {...mission_phase_start, log_time, created_at: new Date()},
+    //   mission_phase_end: null
+    // }
+    game = await game.$startMission(mission_phase_start, log_time);
     sendServerEvent('GameUpdate', game);
   }
 });
-LogReader.on('MissionPhaseEnd', (mission_phase_end, log_time)=>{
+LogReader.on('MissionPhaseEnd', async (mission_phase_end, log_time)=>{
   if(game) {
-    if(!game.missions[mission_phase_end.Mission])
-      throw Error(`Something went wrong. Missing mission ${mission_phase_end.Mission}`);
-    let deltaT = log_time.valueOf() - game.missions[mission_phase_end.Mission]!.mission_phase_start.log_time.valueOf();
-    let propNumber = getCurrentNumProposals(game.game_players, mission_phase_end.Mission);
-    game.missions[mission_phase_end.Mission]!.mission_phase_end = { ...mission_phase_end, chatIndex: game.chat.length, log_time, deltaT, propNumber, created_at: new Date()  }
+    // if(!game.missions[mission_phase_end.Mission])
+    //   throw Error(`Something went wrong. Missing mission ${mission_phase_end.Mission}`);
+    // let deltaT = log_time.valueOf() - game.missions[mission_phase_end.Mission]!.mission_phase_start.log_time.valueOf();
+    // let propNumber = getCurrentNumProposals(game.game_players, mission_phase_end.Mission);
+    game = await game.$endMission(mission_phase_end, log_time);
+    // game.missions[mission_phase_end.Mission]!.mission_phase_end = { ...mission_phase_end, chatIndex: game.chat.length, log_time, deltaT, propNumber, created_at: new Date()  }
     sendServerEvent('GameUpdate', game);
   }
 });
 LogReader.on('GameEnd', (game_end, log_time)=>{
   if(game) {
-    game.game_end = { ...game_end, log_time, created_at:new Date() };
+    // game.game_end = { ...game_end, log_time, created_at:new Date() };
+    game.$endGame(game_end, log_time);
     sendServerEvent('GameUpdate', game);
   }
 });
