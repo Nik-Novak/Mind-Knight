@@ -1,5 +1,5 @@
 import { NodeNumber, PlayerSlot } from "@/types/game"
-import { getPlayerAction, maxTurns } from "@/utils/functions/game";
+import { getCurrentMissionNumber, getPlayerAction, maxTurns } from "@/utils/functions/game";
 import { Game } from "@prisma/client";
 import { create } from 'zustand'
 
@@ -24,7 +24,8 @@ export const useStore = create<Store>((set)=>({
     console.log('game', state.game);
     if(newNode === undefined) 
       return ({selectedNode: newNode});
-    if(state.game?.missions?.[newNode]){ //node exists
+    let currentMission = getCurrentMissionNumber(state.game?.missions);
+    if(state.game && newNode <= currentMission){ //node exists
       let newMaxTurns = maxTurns(newNode, state.game.game_players);
       let selectedTurn = Math.min(newMaxTurns, state.selectedTurn); //ensuring turn exists
       return ({selectedNode: newNode, selectedTurn});

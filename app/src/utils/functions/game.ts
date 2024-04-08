@@ -56,7 +56,7 @@ export function getCurrentNumProposals(game_players: GamePlayers, node:NodeNumbe
   return numProposals;
 }
 
-export function getCurrentMissionNumber(missions: Missions|null){
+export function getCurrentMissionNumber(missions: Missions|null|undefined){
   let currentMission = 1 as NodeNumber;
   missions && Object.entries(missions).forEach(([missionNum, mission])=>{
     if(mission?.mission_phase_start)

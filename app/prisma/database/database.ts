@@ -96,7 +96,7 @@ const prismaClientSingleton= ()=>{
               return database.game.update({where:{id:data.id}, data:{
                 game_players:{
                   update:{
-                    [select_phase_start.Player]:{
+                    [game_player.Slot]:{
                       upsert:{
                         update:{
                           proposals:{
@@ -111,7 +111,7 @@ const prismaClientSingleton= ()=>{
                           }
                         },
                         set:{
-                          ...game_player,
+                          ...game_player
                         }
                       },
                     }
@@ -175,7 +175,8 @@ const prismaClientSingleton= ()=>{
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
               let missionNum = getCurrentMissionNumber(data.missions);
-              let latestProposal = game_player.proposals[missionNum][game_player.proposals[missionNum].length-1];
+              let proposals = game_player.proposals[missionNum];
+              let latestProposal = proposals[proposals.length-1];
               let deltaT = log_time.valueOf() - latestProposal.select_phase_start.log_time.valueOf();
               return database.game.update({where:{id:data.id}, data:{
                 game_players:{

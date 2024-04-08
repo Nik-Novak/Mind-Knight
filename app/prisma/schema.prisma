@@ -126,7 +126,7 @@ type GamePlayer {
   Slot          Int
   Type          Int
   Username      String
-  chat          Int[] //array of chat messages mapped to chat indices
+  // chat          Int[] //array of chat messages mapped to chat indices
   proposals     PlayerProposals
 
   log_time          DateTime
