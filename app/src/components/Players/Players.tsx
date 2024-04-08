@@ -59,7 +59,7 @@ export default function Players({ }:Props){
               hasHammer={slot === hammerPlayerSlot}
               isDisconnected={false}
               accepted={accepted}
-              proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex || undefined}
+              proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex!=undefined ? proppedIndex : undefined}
               highlighted={turnInfo?.select_phase_end?.SelectedTeam.includes(slot)}
             />
           // </Suspense>

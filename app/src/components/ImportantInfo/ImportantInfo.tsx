@@ -52,7 +52,7 @@ export default function ImportantInfo({}:Props){
       let fromPlayerColor = fromPlayer ? colors[fromPlayer.Color as ColorCode]?.hex : undefined;
       let fromPlayerText = coloredText(fromPlayer?.Username, fromPlayerColor);
       // let toPlayerIndex = trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot;
-      let toPlayer = hammerPlayerSlot ? game_players[hammerPlayerSlot] : undefined;
+      let toPlayer = hammerPlayerSlot!=undefined ? game_players[hammerPlayerSlot] : undefined;
       let toPlayerColor = toPlayer ? colors[toPlayer.Color as ColorCode]?.hex : undefined;
       let toPlayerText = coloredText(toPlayer?.Username, toPlayerColor);
       targets.push('from ');
