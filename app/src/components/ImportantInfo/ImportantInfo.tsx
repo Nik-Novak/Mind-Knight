@@ -50,14 +50,15 @@ export default function ImportantInfo({}:Props){
       let fromPlayerIndex = hammerPlayerSlot!=undefined ? trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot : undefined;
       let fromPlayer = fromPlayerIndex!=undefined ? game_players[fromPlayerIndex] : undefined;
       let fromPlayerColor = fromPlayer ? colors[fromPlayer.Color as ColorCode]?.hex : undefined;
-      let fromPlayerText = coloredText(fromPlayer?.Username, fromPlayerColor);
+      let fromPlayerText = coloredText(fromPlayer?.Username, fromPlayerColor, 'fromText');
       // let toPlayerIndex = trueMod(hammerPlayerSlot-1, numPlayers) as PlayerSlot;
       let toPlayer = hammerPlayerSlot!=undefined ? game_players[hammerPlayerSlot] : undefined;
       let toPlayerColor = toPlayer ? colors[toPlayer.Color as ColorCode]?.hex : undefined;
-      let toPlayerText = coloredText(toPlayer?.Username, toPlayerColor);
-      targets.push('from ');
+      let toPlayerText = coloredText(toPlayer?.Username, toPlayerColor, 'toText');
+      // targets.push(`from ${fromPlayerText} to ${toPlayerText}`)
+      targets.push(<span key='from'>{'from '}</span>);
       targets.push(fromPlayerText);
-      targets.push(' to ');
+      targets.push(<span key='to'>{' to '}</span>);
       targets.push(toPlayerText);
     }
     else{

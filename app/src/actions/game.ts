@@ -2,6 +2,7 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
 import { database } from "../../prisma/database";
 import { Game, PlayerIdentity } from "@prisma/client";
+import { ServerEventPacket } from "@/components/ServerEventsProvider";
 
 
 export async function getGames(playerId:string){
@@ -27,6 +28,22 @@ export async function getGames(playerId:string){
       updated_at:true,
     }
   })
+}
+
+export async function updateGameOnServer(game: Game){
+  return new Promise<void>((resolve, reject)=>{
+    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
+        throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
+    const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+    tempSocket.onopen = ()=>{
+      let packet:ServerEventPacket = {
+        type:'GameUpdate',
+        payload: game
+      }
+      tempSocket.send(JSON.stringify(packet));
+      resolve()
+    }
+  });
 }
 
 export async function getPlayer(steamId:string){

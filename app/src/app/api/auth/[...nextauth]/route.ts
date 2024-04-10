@@ -1,12 +1,23 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
-import SteamProvider, { SteamProfile } from 'next-auth-steam';
+import SteamProvider, { PROVIDER_ID, SteamProfile } from 'next-auth-steam';
 import { NextRequest } from 'next/server';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { database } from '../../../../../prisma/database';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Adapter } from 'next-auth/adapters';
-import { OAuthConfig } from 'next-auth/providers/oauth';
+
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      email?: string;
+      image?: string;
+      name?: string;
+      steam_id: string;
+    }
+    // Add other extra fields as needed
+  }
+}
 
 if( !process.env.NEXTAUTH_DISCORD_CLIENTID || !process.env.NEXTAUTH_DISCORD_SECRET )
     throw Error("Must provide env NEXTAUTH_DISCORD_CLIENTID and NEXTAUTH_DISCORD_SECRET");
@@ -16,7 +27,30 @@ if( !process.env.NEXTAUTH_STEAM_SECRET )
 export const authOptions:NextAuthOptions = {
   adapter: PrismaAdapter(database) as Adapter,
   providers: [],
-  secret: process.env.NEXTAUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks:{
+    async session({session, user }){
+      let matchingAccount = await database.account.findFirstOrThrow({ //get account for steamId
+        where:{
+          userId: user.id
+        }
+      });
+      let player = await database.player.findOrCreate({ //create or find existing player
+          data:{
+            name: user.name || '',
+            steam_id: matchingAccount.steamId
+          },
+        },
+        {
+          where:{
+            steam_id: matchingAccount.steamId
+          }
+        }
+      );
+      session.user.steam_id = player.steam_id; //add steam_id to session
+      return session;
+    }
+  }
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse){

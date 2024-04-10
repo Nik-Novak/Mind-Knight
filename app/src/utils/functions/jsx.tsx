@@ -1,4 +1,4 @@
 
-export function coloredText(text:string|undefined, color:string|undefined){
-  return <span style={{color}}>{text}</span>;
+export function coloredText(text:string|undefined, color:string|undefined, key?:string){
+  return <span key={key} style={{color}}>{text}</span>;
 }

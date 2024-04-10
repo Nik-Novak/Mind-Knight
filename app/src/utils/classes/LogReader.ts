@@ -98,7 +98,7 @@ class LogReader extends EventEmitter<LogEvents>{
             if(packetType){
               // if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse']).includes(packetType))
               console.log(`FOUND PACKET`, packetType)
-              let packet = JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7).trim());
+              let packet = JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7).trim());// as LogEvents[keyof LogEvents]['0'];
               if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse', 'GameEnd']).includes(packetType))
                 console.log('\t', packet);
               this.emit(packetType, packet, logLineToISOTime(line));

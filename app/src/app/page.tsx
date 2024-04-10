@@ -23,6 +23,7 @@ export default async function HomePage() {
   // console.log('RERENDER AND REFETCH GLOBAL CHAT', globalChat[globalChat.length-1].Message);
   const steamSession = await getServerSession(authOptions);
 
+  console.log('SS', steamSession);
 
   return (
     <>

@@ -4,16 +4,17 @@ import styles from "./page.module.css";
 import { getGames, getPlayer } from "@/actions/game";
 import ReplaysGrid from "@/components/ReplaysGrid";
 import { Typography } from "@mui/material";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 // import sampleGame from './sample-game3.json';
 
 export default async function ReplaysPage() {
-  let mindnightSession = await getMindnightSession();
-  if(!mindnightSession)
+  let session = await getServerSession(authOptions);
+  console.log('HERE REPLAYS', session);
+  if(!session)
     return null;
-  let player = await getPlayer(mindnightSession.steam_id);
+  let player = await getPlayer(session.user.steam_id);
   let myGames = await getGames(player.id);
-
-  console.log('HEreE', myGames);
   
   return (
     <>

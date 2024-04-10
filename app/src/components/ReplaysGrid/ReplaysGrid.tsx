@@ -102,52 +102,27 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
     { field: "created_at", headerName: "Date", flex: 0.5, minWidth: 40 },
     { field: "actions", headerName: "Actions", flex: 0.15, minWidth: 120,
       renderCell: (params: GridRenderCellParams<DataType>) =>
-        renderOptionsRef.current.renderCell(params, [
-          {
-            name: "Share",
-            value: "share",
-            onClick: async () =>
-              {
-                await copyToClipboard(params.row.id);
-                pushNotification(<Notification>Copied GameID to Clipboard!</Notification>);
-              }
-          },
-          {
-            name: "Details",
-            value: "details",
-            onClick: () =>
-              setShowDetails(params.row)
-          },
-        ], (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained">Play</Button></Link>)
-      // <Button variant="contained">
-      //   Play
-      //     {/* <Button 
-      //       color="primary"
-      //       variant="contained"
-      //       onClick={()=>setShowDetails(params.row)}
-      //     >
-      //       View Details
-      //     </Button> */}
-      //   </Button>
-      
-      
-        
-            
-          
-      // renderCell:(params)=>{
-      //   let row = params.row as DataType;
-      //   // if(!row.details)
-      //   //   return <LoadingButton variant="contained" loading={row._isfetching} onClick={()=>{row._isfetching=true; onFetchDetails([row])}}>Fetch Details</LoadingButton>
-      //   return(
-      //     <Button 
-      //       color="primary"
-      //       variant="contained"
-      //       onClick={()=>setShowDetails(row)}
-      //     >
-      //       View Details
-      //     </Button>
-      //   )
-      // } 
+        renderOptionsRef.current.renderCell(
+          params, 
+          [
+            {
+              name: "Share",
+              value: "share",
+              onClick: async () =>
+                {
+                  await copyToClipboard(params.row.id);
+                  pushNotification(<Notification>Copied GameID to Clipboard!</Notification>);
+                }
+            },
+            {
+              name: "Details",
+              value: "details",
+              onClick: () =>
+                setShowDetails(params.row)
+            },
+          ], 
+          (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained">Play</Button></Link>
+        )
     },
   ];
 

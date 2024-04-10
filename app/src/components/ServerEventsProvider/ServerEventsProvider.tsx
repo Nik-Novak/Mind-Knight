@@ -14,12 +14,18 @@ type GameEvents = {
 }
 
 
-export type ServerEvents = LogEvents & SessionEvents & GameEvents; //add new events here
+export type ServerEvents = LogEvents & SessionEvents & GameEvents & {
+  ClientInit: []
+}; //add new events here
 
 export type ServerEventPacket = {
   type: keyof ServerEvents,
   payload: any
 }
+// export type ServerEventPacket<T extends keyof ServerEvents> = { //TODO add proper typing
+//   type: T,
+//   payload: ServerEvents[T]
+// }
 
 const serverEvents = new EventEmitter<ServerEvents>();
 
@@ -39,15 +45,22 @@ export function ServerEventsProvider({ children }:Props) {
     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS) throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS (connection to server ws for log events)');
     // console.log('Client WS');
     const ws = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
-    ws.onopen = ()=>console.log('Connected to server WS');
+    ws.onopen = (t)=>{
+      console.log('Connected to server WS');
+      let packet:ServerEventPacket = {
+        type: 'ClientInit',
+        payload:undefined
+      }
+      ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
+    }
     ws.onmessage = (e)=>{
       let packet = JSON.parse(e.data) as ServerEventPacket;
-      // console.log('WSPAcket', packet);
+      
+      //TODO: fix typing
       serverEvents.emit(packet.type, packet.payload);
     }
 
     serverEvents.on('GameUpdate', game=>{
-      console.log('HERE1', game);
       setGame(game);
     });
   }, []);

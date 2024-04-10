@@ -15,7 +15,7 @@ import { Prisma } from "@prisma/client";
 import Chatbox from "@/components/Chatbox";
 import Settings from "@/components/Settings";
 import { redirect } from "next/navigation";
-import { getDbPlayer } from "@/actions/game";
+import { getDbPlayer, updateGameOnServer } from "@/actions/game";
 
 //React server component that securely runs on the server by default
 export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
@@ -24,7 +24,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
   if(gameId){
     let game = await database.game.findById(gameId);
     if(game){
-      
+      await updateGameOnServer(game);
     }
   }
 
