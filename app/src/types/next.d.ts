@@ -3,5 +3,5 @@ interface ServerSideComponentProp<
     SearchParams = undefined,
 > {
     params: Params;
-    searchParams: SearchParams;
+    searchParams: Partial<SearchParams>;
 }

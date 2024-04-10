@@ -4,19 +4,38 @@ import { database } from "../../prisma/database";
 import { Game, PlayerIdentity } from "@prisma/client";
 
 
+export async function getGames(playerId:string){
+  return await database.game.findMany({
+    where:{
+      player_ids: {has:playerId}
+    },
+    orderBy:{
+      created_at:'desc'
+    },
+    select:{
+      id:true,
+      chat:true,
+      created_at:true,
+      game_end:true,
+      game_found:true,
+      game_players:true,
+      game_start:true,
+      missions:true,
+      player_ids:true,
+      players:true,
+      raw_games:true,
+      updated_at:true,
+    }
+  })
+}
 
-// async function init(){
-//   game = await database.game.findById('660086081003d3d36367f840');
-// }
-// init();
-
-// export async function getGame(){
-//   // await database.game.findFirst({where:{ TODO: store game in db
-//   //   game_end: null
-//   // }})
-//   let game = await database.game.findById('660086081003d3d36367f840');
-//   return game;
-// }
+export async function getPlayer(steamId:string){
+  return await database.player.findFirstOrThrow({
+    where:{
+      steam_id: steamId
+    }
+  });
+}
 
 export async function getDbPlayer(playerIdentity: PlayerIdentity){
    return await database.player.findOrCreate({data:{

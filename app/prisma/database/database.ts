@@ -45,6 +45,8 @@ const prismaClientSingleton= ()=>{
           compute(data) {
             return (...spawnPlayerArgs:LogEvents['SpawnPlayer'])=>{
               let [spawn_player, log_time] = spawnPlayerArgs;
+
+              console.log('db spawn', spawn_player);
               
               return database.game.update({where:{id:data.id}, data:{
                 game_players: {
@@ -405,19 +407,37 @@ const prismaClientSingleton= ()=>{
         },
         $endGame: {
           compute(data) {
-            return (...args:LogEvents['GameEnd'])=>{
+            return async (...args:LogEvents['GameEnd'])=>{
               let [game_end, log_time] = args;
               if(!data.game_start)
                 throw Error("Something went wrong, game_start not found");
-              let deltaT = log_time.valueOf() - data.game_start.log_time.valueOf()
+              let deltaT = log_time.valueOf() - data.game_start.log_time.valueOf();
+              let playerIds = await Promise.all(game_end.PlayerIdentities.map(async playerIdentity=>{
+                let player = await database.player.findOrCreate({data:{
+                  name:playerIdentity.Nickname,
+                  steam_id: playerIdentity.Steamid,
+                  level: playerIdentity.Level,
+                }}, {where:{steam_id:playerIdentity.Steamid}});
+                return player.id
+              }))
               return database.game.update({where:{id:data.id}, data:{
-                game_end: { ...game_end, log_time, deltaT, chatIndex: data.chat.length }
+                game_end: { ...game_end, log_time, deltaT, chatIndex: data.chat.length },
+                player_ids: playerIds
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
-      }
+      },
+      // $allModels:{
+      //   $toJson:{
+      //     compute(data) {
+      //       return ()=>{
+      //         return data;
+      //       }
+      //     },
+      //   }
+      // }
     },
     // result: { //TODO nextjs not allowing symbols on functions?
     //   $allModels:{

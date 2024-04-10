@@ -18,3 +18,15 @@ export function objToFormData<K extends string|number|symbol,T>(obj:Record<K,T>)
   });
   return bodyData;
 };
+
+export function checkPagination(metadata:PaginationMetadata|undefined) {
+  if(!metadata)
+    return [null, null];
+  const totalPages = metadata?.total_pages;
+  const currentPage = metadata?.current_page;
+
+  const previousPage = currentPage > 1 ? currentPage - 1 : null;
+  const nextPage = totalPages && currentPage < totalPages ? currentPage + 1 : null;
+
+  return [previousPage, nextPage];
+}

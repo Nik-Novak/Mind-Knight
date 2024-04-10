@@ -103,12 +103,12 @@ function Chatbox({ chat, sendMessage}:Props){
       </Stack>
       <ul style={{maxHeight:'30vh', overflow:'hidden', overflowY:'scroll', textAlign:'left'}} ref={chatContainerRef}>
         {processedChat.map((c, i)=>{
-            const slot = game_players && (c as ChatMessage).Slot as PlayerSlot; //game_players existing enforces ChatMessage type
-            const author = game_players && game_players[slot!]?.Username || (c as GlobalChatMessage).Username;
-            const message = c.Message;
-            const colorCode = game_players && game_players[slot!]?.Color as ColorCode;
-            let color = game_players && colors[ colorCode! ].hex;
-            return <Message key={i} author={author} color={color} message={message} searchPattern={searchPattern} />
+          const slot = game_players && (c as ChatMessage).Slot as PlayerSlot; //game_players existing enforces ChatMessage type
+          const author = game_players && game_players[slot!]?.Username || (c as GlobalChatMessage).Username;
+          const message = c.Message;
+          const colorCode = game_players && game_players[slot!]?.Color as ColorCode;
+          let color = game_players && colors[ colorCode || 0 ].hex;
+          return <Message key={i} author={author} color={color} message={message} searchPattern={searchPattern} />
         })}
       </ul>
       { sendMessage && <form action={async (data)=>{

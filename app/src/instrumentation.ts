@@ -1,10 +1,8 @@
 import { WebSocketServer } from 'ws';
 import type { ServerEventPacket, ServerEvents } from './components/ServerEventsProvider';
 import { database } from '../prisma/database';
-import { GlobalChatMessage, PlayerSlot } from './types/game';
-import { Game, Proposal } from '@prisma/client';
-import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from './utils/functions/game';
-import { attempt } from './utils/functions/general';
+import { GlobalChatMessage } from './types/game';
+
 // import { getGame } from './actions/game'; //DO NOT IMPORT FROM HERE OR ANY ANNOTATED COMPONENT
 
 console.log('instrumentation.ts');
@@ -29,6 +27,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   // const {} = await import('@/actions/chat'); //for some reason we cant import from here
   console.log('i am running server side: ' + os.hostname);
   const { default:LogReader} = await import('./utils/classes/LogReader');
+  const { attempt } = await import('./utils/functions/error');
 
   if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
     throw Error("Must provide env NEXT_PUBLIC_SERVEREVENTS_WS");
@@ -119,10 +118,10 @@ LogReader.on('GameFound', async (game_found, log_time)=>{
 });
 LogReader.on('SpawnPlayer', async (spawn_player, log_time)=>{
   if(game){
-    attempt(async ()=>{
+    // attempt(async ()=>{
       game = await game!.$spawnPlayer(spawn_player, log_time);
       sendServerEvent('GameUpdate', game);
-    }, game.id);
+    // }, game.id);
   }
 });
 LogReader.on('GameStart', async (game_start, log_time)=>{
@@ -222,10 +221,28 @@ LogReader.on('GameEnd', async (game_end, log_time)=>{
   }
 });
 
+//TODO main menu wipe game
+
 // //INIT
 let client = await getClient();
 if(client.mindnight_session)
   await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
 }
+
+// let games = await database.game.findMany();
+// games.map(async game=>{
+//   if(!game.game_end)
+//     return null;
+//   let playerIds = await Promise.all(game.game_end.PlayerIdentities.map(async playerIdentity=>{
+//     let player = await database.player.findOrCreate({data:{
+//       name:playerIdentity.Nickname,
+//       steam_id: playerIdentity.Steamid,
+//       level: playerIdentity.Level,
+//     }}, {where:{steam_id:playerIdentity.Steamid}});
+//     return player.id
+//   }));
+//   await database.game.update({where:{id: game.id}, data:{player_ids: playerIds}});
+// })
+
 }
 

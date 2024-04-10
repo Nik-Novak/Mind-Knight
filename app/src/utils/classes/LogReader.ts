@@ -77,10 +77,11 @@ class LogReader extends EventEmitter<LogEvents>{
     }
     if(!this.filepath)
       throw Error(`Sorry, Mind Knight does not yet support your platform: ${platform} ${osRelease}`);
-    new FileTail(this.filepath)
+    new FileTail(this.filepath, {})
       .addListener((line)=>{
         try{
-          console.log(line);
+          if(!line.trim())
+            return;
           if(line.includes('Initialize engine version'))
             this.emit('GameLaunch', logLineToISOTime(line));
           else if(line.includes('GlobalChatHisotryRequest')){ //cmon marcel, why u gotta make my life hard. lol

@@ -40,6 +40,13 @@ export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
 
 export function logLineToISOTime(line:string){
   let formattedTimestamp = line.substring(0,19).replace(/\./g, '-').replace(' ', 'T') + "Z";
+  let date = new Date(formattedTimestamp);
+  if(isNaN(date.valueOf())){
+    console.log('INVALID TIMESTAMP:', formattedTimestamp);
+    console.log('\tTIMESTAMP LINE:', formattedTimestamp);
+    console.log('RETRYING WITH FIRST CHARACTER RESTORED:', '2'+formattedTimestamp);
+    return logLineToISOTime('2'+formattedTimestamp);
+  }
   return new Date(formattedTimestamp);
 }
 

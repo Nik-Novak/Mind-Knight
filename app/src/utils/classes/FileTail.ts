@@ -5,7 +5,7 @@ type Callback = (line:string)=>void
 export default class FileTail{
   private listeners:Callback[] = [];
   private tail:LinuxTail|undefined;
-  constructor(private filepath:string, private options:TailOptions = {fromBeginning:false, encoding:'utf8'}){
+  constructor(private filepath:string, private options:TailOptions = {fromBeginning:false, encoding:'utf8', flushAtEOF:true}){
   }
 
   addListener(callback:Callback){
@@ -16,7 +16,7 @@ export default class FileTail{
   start(){
     if(!this.tail){
       this.tail = new LinuxTail(this.filepath, this.options)
-      this.tail.on('line', line=> this.listeners.forEach(l=>l(line)));
+      this.tail.on('line', line=> this.listeners.forEach(l=>l(line.trim())));
     }
     else
       this.tail.watch();

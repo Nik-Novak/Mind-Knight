@@ -22,7 +22,8 @@ const theme = createTheme({
     },
     action:{ //icon buttons, etc.
       active: '#F0F0F0',
-    }
+    },
+    
   },
   typography: {
     fontFamily: `Munro, ${roboto.style.fontFamily}, sans-serif`,
@@ -32,6 +33,17 @@ const theme = createTheme({
     }
   },
   components:{
+    //@ts-expect-error
+    MuiDataGrid:{
+      styleOverrides:{
+        root:{
+          backgroundColor: '#2F2E2C'
+        },
+        columnHeader: {
+          backgroundColor: '#222222'
+        }
+      }
+    },
     MuiTypography:{
       styleOverrides:{
         h1:{
