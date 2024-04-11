@@ -44,7 +44,7 @@ type Props = {
 
 export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
   const positionalStyle = styleMap[numPlayers];
-  const { setSelectedSlot } = useStore();
+  const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   
   let voteIcon; //undefined=novote
   if(accepted===true) //accepted

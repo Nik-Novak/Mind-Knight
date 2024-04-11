@@ -13,7 +13,9 @@ type Props = {
 }
 
 export default function NodeTeamRejects({}:Props){
-  const { selectedNode, selectedSlot, selectedTurn } = useStore();
+  const selectedNode = useStore(state=>state.selectedNode);
+  const selectedSlot = useStore(state=>state.selectedSlot);
+  const selectedTurn = useStore(state=>state.selectedTurn);
   const game_players = useStore(state=>state.game?.game_players);
   let turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
   let numRejects = (turnInfo?.select_phase_start.propNumber||1) - 1

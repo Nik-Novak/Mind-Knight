@@ -38,6 +38,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
         </Stack>
         <Stack className={styles.center}>
           <ImportantInfo />
+          <Playback />
           <Players />
           <Turns />
         </Stack>
@@ -45,7 +46,6 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
           <Nodes />
           <NodeTeamRejects />
         </Stack>
-        <Playback />
       </main>
     </>
   );

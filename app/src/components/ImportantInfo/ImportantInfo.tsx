@@ -33,7 +33,9 @@ function numSuffix(num:number){
 }
 
 export default function ImportantInfo({}:Props){
-  const { selectedNode, selectedSlot, selectedTurn } = useStore();
+  const selectedNode = useStore(state=>state.selectedNode);
+  const selectedSlot = useStore(state=>state.selectedSlot);
+  const selectedTurn = useStore(state=>state.selectedTurn);
   const game_players = useStore(state=>state.game?.game_players);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot)
@@ -64,7 +66,7 @@ export default function ImportantInfo({}:Props){
     else{
       let proposedPlayerSlots = turnInfo.select_phase_end?.SelectedTeam as PlayerSlot[] | undefined;
       proposedPlayerSlots?.forEach((playerSlot, index)=>{
-        targets.push( coloredText(game_players[playerSlot]?.Username+' ', colors[game_players[playerSlot]?.Color as ColorCode]?.hex) );
+        targets.push( coloredText(game_players[playerSlot]?.Username+' ', colors[game_players[playerSlot]?.Color as ColorCode]?.hex, index) );
       });
     }
   return (

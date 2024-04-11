@@ -22,7 +22,9 @@ type Props = {
 }
 
 export default function Players({ }:Props){
-  const { selectedNode, selectedSlot, selectedTurn } = useStore();
+  const selectedNode = useStore(state=>state.selectedNode);
+  const selectedSlot = useStore(state=>state.selectedSlot);
+  const selectedTurn = useStore(state=>state.selectedTurn);
   const game_players = useStore(state=>state.game?.game_players);
   const game_end = useStore(state=>state.game?.game_end);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);

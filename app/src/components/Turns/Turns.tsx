@@ -15,7 +15,9 @@ type Props = {
 
 
 export default function Turns({ }: Props){
-  const { selectedNode, selectedTurn, setSelectedTurn } = useStore();
+  const selectedNode = useStore(state=>state.selectedNode);
+  const selectedTurn = useStore(state=>state.selectedTurn);
+  const setSelectedTurn = useStore(state=>state.setSelectedTurn);
   const game_players = useStore(state=>state.game?.game_players);
   let numTurns = selectedNode && game_players ? maxTurns(selectedNode, game_players) : 1;
   let turnNodes:ReactNode[] = [];

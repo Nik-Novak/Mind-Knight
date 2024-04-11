@@ -37,7 +37,8 @@ type Props = {
 }
 
 export default function Nodes({}:Props){
-  const { selectedNode, setSelectedNode } = useStore();
+  const selectedNode = useStore(state=>state.selectedNode);
+  const setSelectedNode = useStore(state=>state.setSelectedNode);
   const game_found = useStore(state=>state.game?.game_found);
   const missions = useStore(state=>state.game?.missions);
   const playHead = useStore(state=>state.playHead);

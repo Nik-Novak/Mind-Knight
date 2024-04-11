@@ -54,7 +54,7 @@ type Props = {
  * @returns 
  */
 export function ServerEventsProvider({ children }:Props) {
-  const { game, setGame } = useStore();
+  const setGame = useStore(state=>state.setGame);
   useEffect(()=>{
     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS) throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS (connection to server ws for log events)');
     // console.log('Client WS');
