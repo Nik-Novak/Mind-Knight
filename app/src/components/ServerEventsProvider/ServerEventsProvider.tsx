@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect } from 'react';
 import { EventEmitter } from 'events';
 import { Game, MindnightSession } from '@prisma/client';
 import { useStore } from '@/zustand/store';
+import { dateTimeReviver } from '@/utils/functions/general';
 
 type SessionEvents = {
   MindnightSessionUpdate: [MindnightSession|null]
@@ -26,6 +27,19 @@ export type ServerEventPacket = {
 //   type: T,
 //   payload: ServerEvents[T]
 // }
+
+// const dateTimeReviver = function (key:string, value:string) {
+//   var a;
+//   if (typeof value === 'string') {
+//       a = /\/Date\((\d*)\)\//.exec(value);
+//       console.log('A', a);
+//       if (a) {
+//           return new Date(+a[1]);
+//       }
+//   }
+//   return value;
+// }
+
 
 const serverEvents = new EventEmitter<ServerEvents>();
 
@@ -54,7 +68,7 @@ export function ServerEventsProvider({ children }:Props) {
       ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
     }
     ws.onmessage = (e)=>{
-      let packet = JSON.parse(e.data) as ServerEventPacket;
+      let packet = JSON.parse(e.data, dateTimeReviver) as ServerEventPacket;
       
       //TODO: fix typing
       serverEvents.emit(packet.type, packet.payload);

@@ -121,7 +121,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                 setShowDetails(params.row)
             },
           ], 
-          (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained">Play</Button></Link>
+          (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">Play</Button></Link>
         )
     },
   ];
@@ -129,7 +129,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
   function renderComponent() {
     return (
       <>
-      <DetailsDialog title={`Details for ${showDetails?.id}`} data={showDetails} onClose={()=>setShowDetails(null)} />
+      <DetailsDialog title={`Details for ${showDetails?.id}`} data={showDetails} excludeFields={['chat']} onClose={()=>setShowDetails(null)} />
         {/* <Modal
           open={!!showDetails}
           onClose={()=>setShowDetails(null)}

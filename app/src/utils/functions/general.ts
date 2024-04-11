@@ -18,6 +18,7 @@ export async function copyToClipboard(textToCopy:string) {
 
       try {
           document.execCommand('copy');
+          console.log('Copied', textToCopy, 'Successfully');
       } catch (error) {
           console.error(error);
       } finally {
@@ -25,3 +26,11 @@ export async function copyToClipboard(textToCopy:string) {
       }
   }
 }
+
+export const dateTimeReviver = (key: any, value: any) => {
+    let reDateDetect = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
+    if (typeof value == 'string' && (reDateDetect.exec(value))) {
+        return new Date(value);
+    }
+    return value;
+  };

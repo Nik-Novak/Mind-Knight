@@ -86,3 +86,7 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
   console.log('LATEST PROPOSAL:', JSON.stringify(result, null, 2));
   return result;
 }
+
+export function hasHappened(log_time:Date|undefined, playHead:Date|undefined){
+  return log_time && playHead ? log_time.valueOf() <= playHead.valueOf() : true;
+}

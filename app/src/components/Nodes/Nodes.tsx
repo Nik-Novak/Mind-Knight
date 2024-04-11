@@ -1,8 +1,10 @@
 "use client";
 import { NodeNumber } from "@/types/game";
+import { hasHappened as checkHasHappened } from "@/utils/functions/game";
 import { useStore } from "@/zustand/store";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { GameFound, Missions } from "@prisma/client";
+import { useEffect } from "react";
 
 type NodeProps = {
   hacked:boolean|undefined,
@@ -38,14 +40,18 @@ export default function Nodes({}:Props){
   const { selectedNode, setSelectedNode } = useStore();
   const game_found = useStore(state=>state.game?.game_found);
   const missions = useStore(state=>state.game?.missions);
-  console.log('here', game_found);
+  const playHead = useStore(state=>state.playHead);
+
   return (
     <Stack m={'10%'} height={'80vh'} maxHeight={'637px'} justifyContent={'space-between'}>
       {
         game_found?.MissionInfo.map((numPlayers, i)=>{
           let n = i+1 as NodeNumber;
+          let hasHappened = checkHasHappened(missions?.[n]?.mission_phase_end?.log_time, playHead); //playHead && missions?.[n]?.mission_phase_end?.log_time ? missions[n]!.mission_phase_end!.log_time.valueOf() < playHead.valueOf() : true;
+          // if( missions?.[n]?.mission_phase_end?.log_time && missions[n]!.mission_phase_end!.log_time.valueOf() > new Date('2024-04-07T20:01:48.000Z').valueOf() )
+          //   return null;
           let hacked = missions?.[n]?.mission_phase_end?.Failed
-          return <Node key={n} hacked={hacked} numPlayers={numPlayers} selected={selectedNode === i+1} onClick={()=>setSelectedNode(n)} />
+          return <Node key={n} hacked={ hasHappened ? hacked : undefined} numPlayers={numPlayers} selected={selectedNode === i+1} onClick={()=>setSelectedNode(n)} />
         })
       }
     </Stack>

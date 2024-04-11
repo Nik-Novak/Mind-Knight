@@ -3,9 +3,10 @@ import { getMindnightSession } from "@/actions/mindnight-session";
 import styles from "./page.module.css";
 import { getGames, getPlayer } from "@/actions/game";
 import ReplaysGrid from "@/components/ReplaysGrid";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import HomeIcon from "@mui/icons-material/Home";
 // import sampleGame from './sample-game3.json';
 
 export default async function ReplaysPage() {

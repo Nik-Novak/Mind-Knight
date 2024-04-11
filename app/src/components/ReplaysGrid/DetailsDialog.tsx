@@ -6,10 +6,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 export type ConfirmDialogProps = {
   title: string;
   data: any|null;
+  excludeFields?: string[];
   onClose: () => void;
 };
 
-export default function DetailsDialog({ title, data, onClose = () => {} }: ConfirmDialogProps) {
+export default function DetailsDialog({ title, data, excludeFields = [], onClose = () => {} }: ConfirmDialogProps) {
   // const { t } = useLang();
   const dialogInputRef = useRef<HTMLInputElement>();
 
@@ -43,7 +44,7 @@ export default function DetailsDialog({ title, data, onClose = () => {} }: Confi
   }
 
   const getTableBody = (data:object)=>{
-    return Object.entries(data).map(([key, value]) => {
+    return Object.entries(data).filter(([key])=>!excludeFields.includes(key)).map(([key, value]) => {
       return (
         <TableRow
           key={key}
