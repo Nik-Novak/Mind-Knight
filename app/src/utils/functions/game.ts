@@ -28,11 +28,14 @@ export function getPlayerAction(game_player:GamePlayer, selectedNode:NodeNumber|
   return selectedNode ? game_player.proposals[selectedNode][selectedTurn-1] : undefined
 }
 
-export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
+export function maxTurns(selectedNode:NodeNumber, players:GamePlayers, playHead?:Date){
   let maxTurns = Object.entries(players).reduce((maxTurns, [key, player])=>{
-    let currentTurns = player?.proposals[selectedNode].length;
-    if(currentTurns !== undefined && currentTurns > maxTurns)
-      return currentTurns
+    let currentTurns = player?.proposals[selectedNode];
+    if(playHead)
+      currentTurns = currentTurns?.filter(t=>t.select_phase_start.log_time.valueOf() <= playHead.valueOf());
+    let numTurns = currentTurns?.length;
+    if(numTurns !== undefined && numTurns > maxTurns)
+      return numTurns
     return maxTurns;
   }, 1);
   return maxTurns;

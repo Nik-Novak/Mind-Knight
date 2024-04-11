@@ -17,9 +17,10 @@ type Props = {
 export default function Turns({ }: Props){
   const selectedNode = useStore(state=>state.selectedNode);
   const selectedTurn = useStore(state=>state.selectedTurn);
+  const playHead = useStore(state=>state.playHead);
   const setSelectedTurn = useStore(state=>state.setSelectedTurn);
   const game_players = useStore(state=>state.game?.game_players);
-  let numTurns = selectedNode && game_players ? maxTurns(selectedNode, game_players) : 1;
+  let numTurns = selectedNode && game_players ? maxTurns(selectedNode, game_players, playHead) : 1;
   let turnNodes:ReactNode[] = [];
   for(let i=1; i<=numTurns; i++){
     let bgcolor = i===selectedTurn ? 'white': undefined;

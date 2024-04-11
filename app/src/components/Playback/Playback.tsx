@@ -91,6 +91,5 @@ export default function Playback(){
         <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 1 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
       </IconButton>
     </Stack>
-   
   </>;
 }
