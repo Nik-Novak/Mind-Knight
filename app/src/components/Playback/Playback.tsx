@@ -3,10 +3,12 @@
 import { getTimeComponents } from "@/utils/functions/general";
 import { coloredText } from "@/utils/functions/jsx";
 import { useStore } from "@/zustand/store";
-import { IconButton, Slider, SliderMark, Tooltip } from "@mui/material";
+import { Badge, IconButton, Slider, SliderMark, Stack, Tooltip } from "@mui/material";
 import PlayIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import { ReactNode, useEffect, useState } from "react";
+import FastForwardIcon from "@mui/icons-material/FastForward";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
+import { ReactNode, useEffect, useReducer, useState } from "react";
 
 type Mark = {
   value: number,
@@ -19,6 +21,20 @@ export default function Playback(){
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
   const [isPlaying, setIsPlaying] = useState(false);
+  type SpeedMultiplier = 1|2|4|-1|-2|-4;
+  type Action = 'increase' | 'decrease' | 'reset';
+  function playbackSpeedReducer(state: SpeedMultiplier, action: Action): SpeedMultiplier {
+    switch (action) {
+      case 'increase':
+      return state < 0 ? 1 : Math.min(state*2, 4) as SpeedMultiplier;
+      case 'decrease':
+      return state > 0 ? -1 : Math.max(state*2, -4) as SpeedMultiplier;
+      case 'reset':
+      return 1;
+    }
+  }
+  const [playbackSpeed, updatePlaybackSpeed] = useReducer(playbackSpeedReducer, 1);
+  
   useEffect(()=>{
     setPlayHead(new Date('2024-04-07T20:03:59.000Z'));
     return ()=>setPlayHead(undefined)
@@ -27,11 +43,11 @@ export default function Playback(){
   useEffect(()=>{
     if(isPlaying){
       let playInterval = setInterval(()=>{
-        incrementPlayhead(1000)
-      }, 1000);
+        incrementPlayhead(Math.sign(playbackSpeed)*1000)
+      }, 1000 / Math.abs(playbackSpeed));
       return ()=>clearInterval(playInterval);
     }
-  }, [isPlaying]);
+  }, [isPlaying, playbackSpeed]);
   
   if(!game || !playHead)
     return <></>
@@ -66,6 +82,15 @@ export default function Playback(){
       value={playHead?.valueOf()} 
       onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(new Date(value))}}
     />
-    <IconButton onClick={()=>setIsPlaying(v=>!v)}>{isPlaying ? <PauseIcon /> : <PlayIcon /> }</IconButton>
+    <Stack direction='row'>
+      <IconButton onClick={()=>{updatePlaybackSpeed('decrease'); setIsPlaying(true)}}>
+        <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed < 0 ? playbackSpeed:undefined}><FastRewindIcon /></Badge>
+      </IconButton>
+      <IconButton onClick={()=>{updatePlaybackSpeed('reset'); setIsPlaying(v=>!v)}}>{isPlaying ? <PauseIcon /> : <PlayIcon /> }</IconButton>
+      <IconButton onClick={()=>{updatePlaybackSpeed('increase'); setIsPlaying(true)}}>
+        <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 0 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
+      </IconButton>
+    </Stack>
+   
   </>;
 }
