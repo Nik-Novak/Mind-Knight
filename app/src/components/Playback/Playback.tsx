@@ -84,11 +84,11 @@ export default function Playback(){
     />
     <Stack direction='row'>
       <IconButton onClick={()=>{updatePlaybackSpeed('decrease'); setIsPlaying(true)}}>
-        <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed < 0 ? playbackSpeed:undefined}><FastRewindIcon /></Badge>
+        <Badge anchorOrigin={{vertical:'bottom', horizontal:'left'}} badgeContent={playbackSpeed < 0 ? playbackSpeed:undefined}><FastRewindIcon /></Badge>
       </IconButton>
       <IconButton onClick={()=>{updatePlaybackSpeed('reset'); setIsPlaying(v=>!v)}}>{isPlaying ? <PauseIcon /> : <PlayIcon /> }</IconButton>
       <IconButton onClick={()=>{updatePlaybackSpeed('increase'); setIsPlaying(true)}}>
-        <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 0 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
+        <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 1 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
       </IconButton>
     </Stack>
    
