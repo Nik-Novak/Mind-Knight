@@ -42,7 +42,7 @@ function Chatbox({ chat, sendMessage}:Props){
   
   const game_players = useStore(state=>state.game?.game_players);
 
-  console.log('CHATBOX MN SESSION', mindnightSession);
+  // console.log('CHATBOX MN SESSION', mindnightSession);
 
   const [optimisticChat, addOptimisticChat] = useOptimistic(
     chat,

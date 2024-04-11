@@ -1,5 +1,5 @@
 import { NodeNumber, PlayerSlot } from "@/types/game"
-import { getCurrentMissionNumber, getPlayerAction, hasHappened, maxTurns } from "@/utils/functions/game";
+import { getCurrentMissionNumber, getLatestProposal, getPlayerAction, hasHappened, maxTurns } from "@/utils/functions/game";
 import { Game } from "@prisma/client";
 import { create } from 'zustand'
 
@@ -17,6 +17,8 @@ type Store = {
   incrementPlayHead: (by?:number)=>void
 }
 
+
+
 export const useStore = create<Store>((set)=>({
   game: undefined,
   selectedNode: undefined,
@@ -25,7 +27,7 @@ export const useStore = create<Store>((set)=>({
   playHead: undefined,
   setGame: (game:Game|undefined)=>set(state=>({game})),
   setSelectedNode: (newNode:NodeNumber|undefined)=>set(state=>{
-    if(newNode === undefined) 
+    if(newNode === undefined || newNode === 1) 
       return ({selectedNode: newNode});
     let currentMission = getCurrentMissionNumber(state.game?.missions);
     if(state.game && newNode <= currentMission){ //node exists
@@ -48,6 +50,25 @@ export const useStore = create<Store>((set)=>({
       return ({selectedSlot});
     return state; //default no changes
   }),
-  setPlayHead: (playHead:Date|undefined)=>set(state=>({playHead})),
-  incrementPlayHead: (by)=>set(state=>({playHead: state.playHead && new Date(state.playHead.valueOf()+(by||1000))})) //TODO add speed controller
+  setPlayHead: (playHead:Date|undefined)=>set(state=>modifyPlayhead(state, playHead)),
+  incrementPlayHead: (by=1000)=>set(state=>modifyPlayhead(state, state.playHead && new Date(state.playHead.valueOf()+(by)))) //TODO add speed controller
 }));
+
+function modifyPlayhead(state:Store, playHead:Date|undefined) {
+  {
+    let newState:Partial<Store> = {playHead}
+    if(state.game){
+      let currentMission = getCurrentMissionNumber(state.game.missions, playHead);
+      newState.selectedNode = currentMission;
+      let numTurns = maxTurns(state.selectedNode, state.game.game_players, playHead);
+      newState.selectedTurn = numTurns; //latest turn
+      let latestProposal = getLatestProposal(state.game.game_players, currentMission, playHead);
+      newState.selectedSlot = latestProposal?.playerSlot;
+      // let action = state.selectedSlot && getPlayerAction(state.game.game_players[state.selectedSlot], state.selectedNode, state.selectedTurn, playHead);
+      // if(!action)
+      //   newState.selectedSlot = undefined;
+        
+    }
+    return newState;
+  }
+}

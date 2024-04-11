@@ -25,14 +25,13 @@ export default function Players({ }:Props){
   const selectedNode = useStore(state=>state.selectedNode);
   const selectedSlot = useStore(state=>state.selectedSlot);
   const selectedTurn = useStore(state=>state.selectedTurn);
+  const playHead = useStore(state=>state.playHead);
   const game_players = useStore(state=>state.game?.game_players);
   const game_end = useStore(state=>state.game?.game_end);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   // const { selectedNode, selectedSlot, selectedTurn } = useControlsStore.getState()
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
   let propSlot = turnInfo && getPropIndex(turnInfo);
-
-  console.log('REFRESH', selectedSlot);
   
   return (
     <Box id="players-container" position='relative' width='100%' height='100%'>
@@ -43,7 +42,7 @@ export default function Players({ }:Props){
         let slot = game_player.Slot as PlayerSlot;
         const playerIdentity = game_end?.PlayerIdentities.find(pi=>pi.Slot == slot);
 
-        const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn);
+        const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn, playHead);
         let hammerPlayerSlot = numPlayers!=undefined && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
         let proppedIndex = playerAction && playerAction.select_phase_start.propNumber -1;

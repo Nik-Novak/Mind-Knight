@@ -65,7 +65,7 @@ export default function Player({ slot, numPlayers, username, color, playerIdenti
 
   return (
     <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${highlighted ? style.highlighted :''}`} data-index={slot}>
-      <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>setSelectedSlot(slot)}>
+      <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
         <img src={'/img/skin-default.png'} alt="" /*onClick={onClick}*//>
         <Tooltip title="This player has an action available to view" placement="left" arrow>
           {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}

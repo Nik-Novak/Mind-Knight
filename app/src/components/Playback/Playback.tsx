@@ -21,14 +21,14 @@ export default function Playback(){
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
   const [isPlaying, setIsPlaying] = useState(false);
-  type SpeedMultiplier = 1|2|4|-1|-2|-4;
+  type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
   type Action = 'increase' | 'decrease' | 'reset';
   function playbackSpeedReducer(state: SpeedMultiplier, action: Action): SpeedMultiplier {
     switch (action) {
       case 'increase':
-      return state < 0 ? 1 : Math.min(state*2, 4) as SpeedMultiplier;
+      return state < 0 ? 1 : Math.min(state*2, 8) as SpeedMultiplier;
       case 'decrease':
-      return state > 0 ? -1 : Math.max(state*2, -4) as SpeedMultiplier;
+      return state > 0 ? -1 : Math.max(state*2, -8) as SpeedMultiplier;
       case 'reset':
       return 1;
     }
@@ -73,7 +73,7 @@ export default function Playback(){
   });
   return <>
     <Slider 
-      sx={{maxWidth:'60%'}} 
+      sx={{maxWidth:'33.36vw'}} 
       valueLabelDisplay="auto" 
       valueLabelFormat={getLabel} 
       min={game.game_found.log_time.valueOf()} 
