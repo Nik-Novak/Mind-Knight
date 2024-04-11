@@ -34,3 +34,18 @@ export const dateTimeReviver = (key: any, value: any) => {
     }
     return value;
   };
+
+  export function getTimeComponents(from: Date | number, to?: Date | number) {
+    let fromDate = typeof from === 'number' ? new Date(from) : from;
+    let toDate = to ? (typeof to === 'number' ? new Date(to) : to) : new Date();
+
+    // Calculate the difference in milliseconds
+    let timeDifference = toDate.getTime() - fromDate.getTime();
+
+    // Convert milliseconds to seconds, minutes, and hours
+    let seconds = Math.floor((timeDifference / 1000) % 60);
+    let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+    let hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+
+    return { seconds, minutes, hours };
+}

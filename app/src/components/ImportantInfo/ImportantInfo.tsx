@@ -80,7 +80,7 @@ export default function ImportantInfo({}:Props){
         <Typography variant="h3">{selectedNode}</Typography>
       </Box>
       <Box className={style.right} component={Paper}>
-        <Typography>{action}</Typography>
+        <Typography>{turnInfo && action}</Typography>
         <Typography>{targets}</Typography>
       </Box>
     </Box>

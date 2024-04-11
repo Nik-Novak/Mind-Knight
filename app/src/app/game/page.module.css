@@ -40,10 +40,10 @@
     max-width: 400px;
   }
 
-  .center > *:nth-child(2) {
+  /* .center > *:nth-child(2) {
     order: 3;
   }
   .center > *:nth-child(3) {
     order: 2;
-  }
+  } */
 }

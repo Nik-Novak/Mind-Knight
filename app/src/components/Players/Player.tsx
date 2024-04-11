@@ -6,7 +6,7 @@ import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import HammerIcon from '@mui/icons-material/Hardware';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
-import { Player, PlayerIdentity } from "@prisma/client";
+import { Player as DBPlayer, PlayerIdentity } from "@prisma/client";
 import style from './players.module.css';
 import style5 from './position-css/5man.module.css';
 import style6 from './position-css/6man.module.css';
@@ -52,7 +52,7 @@ export default function Player({ slot, numPlayers, username, color, playerIdenti
   else if(accepted === false) //rejected
     voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red'}} />
 
-  const [dbPlayer, setDbPlayer] = useState<Player>();
+  const [dbPlayer, setDbPlayer] = useState<DBPlayer>();
   useEffect(()=>{
     if(playerIdentity)
       getDbPlayer(playerIdentity).then((dbPlayer)=>setDbPlayer(dbPlayer));

@@ -13,7 +13,8 @@ type Store = {
   setSelectedNode: (selectedNode:NodeNumber|undefined)=>void,
   setSelectedTurn: (selectedTurn:number)=>void,
   setSelectedSlot: (selectedSlot:PlayerSlot|undefined)=>void,
-  setPlayHead: (playHead:Date|undefined)=>void
+  setPlayHead: (playHead:Date|undefined)=>void,
+  incrementPlayHead: (by?:number)=>void
 }
 
 export const useStore = create<Store>((set)=>({
@@ -47,5 +48,6 @@ export const useStore = create<Store>((set)=>({
       return ({selectedSlot});
     return state; //default no changes
   }),
-  setPlayHead: (playHead:Date|undefined)=>set(state=>({playHead}))
+  setPlayHead: (playHead:Date|undefined)=>set(state=>({playHead})),
+  incrementPlayHead: (by)=>set(state=>({playHead: state.playHead && new Date(state.playHead.valueOf()+(by||1000))})) //TODO add speed controller
 }));
