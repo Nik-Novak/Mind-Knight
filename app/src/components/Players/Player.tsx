@@ -32,7 +32,8 @@ type Props = {
   username: string,
   color: string,
   playerIdentity?: PlayerIdentity,
-  highlighted?: boolean,
+  isPropped?: boolean,
+  isShadowed?: boolean,
   selected?: boolean,
   hasAction?: boolean,
   hasHammer?: boolean,
@@ -42,7 +43,7 @@ type Props = {
   // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<Player>
 }
 
-export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, highlighted=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
+export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   
@@ -64,7 +65,7 @@ export default function Player({ slot, numPlayers, username, color, playerIdenti
   // return <PlayerSkeleton slot={0} numPlayers={5} />
 
   return (
-    <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${highlighted ? style.highlighted :''}`} data-index={slot}>
+    <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
       <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
         <img src={'/img/skin-default.png'} alt="" /*onClick={onClick}*//>
         <Tooltip title="This player has an action available to view" placement="left" arrow>

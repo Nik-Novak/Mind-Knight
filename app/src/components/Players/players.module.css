@@ -71,15 +71,19 @@
   cursor:pointer;
 }
 
-.highlighted > .playerImg {
+
+.isShadowed > .playerImg {
+  border-radius: 0 0 20px 20px;
+}
+.isShadowed > .playerImg {
+  background: linear-gradient(to top, rgb(72, 51, 6), rgba(163,122,50, 0));
+  /*background: rgba(163,122,50, 0.7);*/
+}
+.isPropped > .playerImg {
   border-radius: 0 0 20px 20px;
 }
 
-.fa-times{
-  font-size: 20px;
-}
-
-.highlighted > .playerImg {
+.isPropped > .playerImg {
   background: linear-gradient(to top, rgba(173,132,50, 1), rgba(163,122,50, 0));
   /*background: rgba(163,122,50, 0.7);*/
 }

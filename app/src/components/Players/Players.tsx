@@ -2,7 +2,7 @@
 import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
 import type { GameEnd, GamePlayers, Player as PlayerData, PlayerIdentity } from "@prisma/client"; //TODO fiix figuring out typing on clientside
 import Player from "./Player";
-import { getHammerPlayerSlot, getPlayerAction, getPropIndex, getTurnInfo } from "@/utils/functions/game";
+import { getHammerPlayerSlot, getLatestSelectUpdate, getPlayerAction, getPropIndex, getTurnInfo, hasHappened } from "@/utils/functions/game";
 import { suspense } from "@/utils/hoc/suspense";
 import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
@@ -46,6 +46,8 @@ export default function Players({ }:Props){
         let hammerPlayerSlot = numPlayers!=undefined && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
         let proppedIndex = playerAction && playerAction.select_phase_start.propNumber -1;
+        let isPropped =  hasHappened(turnInfo?.select_phase_end?.log_time, playHead) && turnInfo?.select_phase_end?.SelectedTeam.includes(slot);
+        let isShadowed = getLatestSelectUpdate(turnInfo, playHead)?.Slots.includes(slot);
         return (
           // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
@@ -61,7 +63,8 @@ export default function Players({ }:Props){
               isDisconnected={false}
               accepted={accepted}
               proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex!=undefined ? proppedIndex : undefined}
-              highlighted={turnInfo?.select_phase_end?.SelectedTeam.includes(slot)}
+              isPropped={isPropped}
+              isShadowed={isShadowed}
             />
           // </Suspense>
         );

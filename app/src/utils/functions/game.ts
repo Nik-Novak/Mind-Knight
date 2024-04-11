@@ -1,5 +1,5 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
-import { GamePlayer, GamePlayers, Missions, Proposal } from "@prisma/client";
+import { GamePlayer, GamePlayers, Missions, Proposal, SelectUpdate } from "@prisma/client";
 
 // export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
 //   let maxTurns = 1;
@@ -101,4 +101,15 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
 
 export function hasHappened(log_time:Date|undefined, playHead:Date|undefined){
   return log_time && playHead ? log_time.valueOf() <= playHead.valueOf() : true;
+}
+
+export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playHead?:Date){
+  if(!turnInfo) return undefined;
+  let latest:SelectUpdate|undefined;
+  turnInfo.select_updates.forEach(selectUpdate=>{
+    if(!latest || selectUpdate.log_time.valueOf() > latest.log_time.valueOf())
+      if(hasHappened(selectUpdate.log_time, playHead))
+        latest = selectUpdate;
+  });
+  return latest;
 }
