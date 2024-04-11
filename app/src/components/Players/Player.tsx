@@ -1,6 +1,6 @@
 "use client";
 import { NumberOfPlayers, PlayerSlot } from "@/types/game";
-import { Tooltip, Typography } from "@mui/material";
+import { Tooltip, TooltipProps, Typography, tooltipClasses } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
 import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
@@ -40,10 +40,32 @@ type Props = {
   isDisconnected?: boolean,
   accepted?: boolean,
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
-  // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<Player>
+  chatMsg?: string
 }
 
-export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex }:Props){
+function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
+  switch(numPlayers){
+    case 5: {
+      if([0, 1].includes(slot))
+        return "right-start"
+    } break;
+    case 6: {
+      if([0, 1, 2].includes(slot))
+        return "right-start"
+    } break;
+    case 7: {
+      if([0, 1, 2].includes(slot))
+        return "right-start"
+    } break;
+    case 8: {
+      if([0, 1, 2, 3].includes(slot))
+        return "right-start"
+    } break;
+  }
+  return "left-start"
+}
+
+export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   
@@ -65,35 +87,37 @@ export default function Player({ slot, numPlayers, username, color, playerIdenti
   // return <PlayerSkeleton slot={0} numPlayers={5} />
 
   return (
-    <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
-      <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
-        <img src={'/img/skin-default.png'} alt="" /*onClick={onClick}*//>
-        <Tooltip title="This player has an action available to view" placement="left" arrow>
-          {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
-          <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} />
-        </Tooltip>
-        <Tooltip title="This player had hammer at the time of the shown proposal" placement="left" arrow>
-          {/* <i className={`hammer-icon fas fa-hammer ${hasHammer?'':'hidden'}`}></i> */}
-          <HammerIcon sx={{visibility: !hasHammer?'hidden':undefined}} className={style.hammerIcon} />
-        </Tooltip>
-        <Tooltip title="This player was disconnected at the time of the shown proposal" placement="right" arrow>
-          <PowerOffIcon sx={{visibility: !isDisconnected?'hidden':undefined}} className={style.disconnectIcon} />
-          {/* <i className={`disconnect-icon fas fa-plug ${isDisconnected ? '': 'hidden'}`}></i> */}
-        </Tooltip>
-        {voteIcon && <Tooltip title={`This player ${accepted===true?'accepted':'refused'} the shown proposal`} placement="right" arrow>
-          {voteIcon}
-          {/* <i className={`vote-icon fas ${voteIcon}`}></i> */}
-        </Tooltip>}
-        <Tooltip title={`This player proposed when there ${proppedIndex===1?'was':'were'} ${proppedIndex} node team${proppedIndex===1?'':'s'} rejected`} placement="right" arrow>
-          <Typography className={style.propNumberContainer} style={{visibility: proppedIndex===undefined?'hidden':undefined}}><span className="prop-number">{proppedIndex}</span>/5</Typography>
-        </Tooltip>
+    <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={chatMsg} open={!!chatMsg}>
+      <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
+        <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
+          <img src={'/img/skin-default.png'} alt="" /*onClick={onClick}*//>
+          <Tooltip title="This player has an action available to view" placement="left" arrow>
+            {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
+            <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} />
+          </Tooltip>
+          <Tooltip title="This player had hammer at the time of the shown proposal" placement="left" arrow>
+            {/* <i className={`hammer-icon fas fa-hammer ${hasHammer?'':'hidden'}`}></i> */}
+            <HammerIcon sx={{visibility: !hasHammer?'hidden':undefined}} className={style.hammerIcon} />
+          </Tooltip>
+          <Tooltip title="This player was disconnected at the time of the shown proposal" placement="right" arrow>
+            <PowerOffIcon sx={{visibility: !isDisconnected?'hidden':undefined}} className={style.disconnectIcon} />
+            {/* <i className={`disconnect-icon fas fa-plug ${isDisconnected ? '': 'hidden'}`}></i> */}
+          </Tooltip>
+          {voteIcon && <Tooltip title={`This player ${accepted===true?'accepted':'refused'} the shown proposal`} placement="right" arrow>
+            {voteIcon}
+            {/* <i className={`vote-icon fas ${voteIcon}`}></i> */}
+          </Tooltip>}
+          <Tooltip title={`This player proposed when there ${proppedIndex===1?'was':'were'} ${proppedIndex} node team${proppedIndex===1?'':'s'} rejected`} placement="right" arrow>
+            <Typography className={style.propNumberContainer} style={{visibility: proppedIndex===undefined?'hidden':undefined}}><span className="prop-number">{proppedIndex}</span>/5</Typography>
+          </Tooltip>
+        </div>
+        <div className={style.playerInfo}>
+          <Typography className="player-username">{coloredText(username, color)}</Typography>
+          { playerIdentity && <Typography className="player-steamname">{`${playerIdentity.Nickname} (${playerIdentity.Level})`}</Typography> }
+          <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} />
+        </div>
       </div>
-      <div className={style.playerInfo}>
-        <Typography className="player-username">{coloredText(username, color)}</Typography>
-        { playerIdentity && <Typography className="player-steamname">{`${playerIdentity.Nickname} (${playerIdentity.Level})`}</Typography> }
-        <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} />
-      </div>
-    </div>
+    </Tooltip>
   )
 }
 

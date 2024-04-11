@@ -82,7 +82,6 @@
 .isPropped > .playerImg {
   border-radius: 0 0 20px 20px;
 }
-
 .isPropped > .playerImg {
   background: linear-gradient(to top, rgba(173,132,50, 1), rgba(163,122,50, 0));
   /*background: rgba(163,122,50, 0.7);*/

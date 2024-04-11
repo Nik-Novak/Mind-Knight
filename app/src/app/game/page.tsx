@@ -28,7 +28,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
       await updateGameOnServer(game);
     }
   }
-
+  
   return (
     <>
       <main id='content' className={styles.main}>

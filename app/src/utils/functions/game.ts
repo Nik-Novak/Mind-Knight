@@ -99,8 +99,12 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
   return result;
 }
 
-export function hasHappened(log_time:Date|undefined, playHead:Date|undefined){
-  return log_time && playHead ? log_time.valueOf() <= playHead.valueOf() : true;
+export function hasHappened(log_time:Date|undefined, playHead:Date|undefined, expiresAfter:number=0){
+  if(!playHead || !log_time) return true;
+  let isBeforePlayhead = log_time.valueOf() <= playHead.valueOf();
+  if(isBeforePlayhead && expiresAfter)
+    return (playHead.valueOf() - expiresAfter) <= log_time.valueOf(); //check for expiration
+  return isBeforePlayhead; //otherwise just return isBeforePlayhead result
 }
 
 export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playHead?:Date){

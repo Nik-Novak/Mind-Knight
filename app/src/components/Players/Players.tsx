@@ -25,6 +25,7 @@ export default function Players({ }:Props){
   const selectedNode = useStore(state=>state.selectedNode);
   const selectedSlot = useStore(state=>state.selectedSlot);
   const selectedTurn = useStore(state=>state.selectedTurn);
+  const chat = useStore(state=>state.game?.chat);
   const playHead = useStore(state=>state.playHead);
   const game_players = useStore(state=>state.game?.game_players);
   const game_end = useStore(state=>state.game?.game_end);
@@ -44,10 +45,11 @@ export default function Players({ }:Props){
 
         const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn, playHead);
         let hammerPlayerSlot = numPlayers!=undefined && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
-        const accepted = turnInfo?.vote_phase_end?.VotesFor.includes(slot);
+        const accepted = hasHappened(turnInfo?.vote_phase_end?.log_time, playHead) ? turnInfo?.vote_phase_end?.VotesFor.includes(slot) : undefined;
         let proppedIndex = playerAction && playerAction.select_phase_start.propNumber -1;
         let isPropped =  hasHappened(turnInfo?.select_phase_end?.log_time, playHead) && turnInfo?.select_phase_end?.SelectedTeam.includes(slot);
         let isShadowed = getLatestSelectUpdate(turnInfo, playHead)?.Slots.includes(slot);
+        let msg = chat?.findLast(m=>m.Slot === slot && hasHappened(m.log_time, playHead, 5000));
         return (
           // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
@@ -65,6 +67,7 @@ export default function Players({ }:Props){
               proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex!=undefined ? proppedIndex : undefined}
               isPropped={isPropped}
               isShadowed={isShadowed}
+              chatMsg={msg?.Message}
             />
           // </Suspense>
         );
