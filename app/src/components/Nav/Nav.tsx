@@ -12,7 +12,7 @@ export default function Nav(){
   
   return (
     <nav style={{position:'fixed', top:5, left: 5}}>
-      {hasHistory && path!=='/' && <Button sx={{mr:'5px'}} variant="contained" className="pixel-corners-small" onClick={()=>router.back()}><BackIcon /></Button>}
+      <Button sx={{mr:'5px', display:hasHistory && path!=='/'?'inline-flex':'none'}} variant="contained" className="pixel-corners-small" onClick={()=>router.back()}><BackIcon /></Button>
       <Link href="/"><Button variant="contained" className="pixel-corners-small"><HomeIcon /></Button></Link>
     </nav>
   )
