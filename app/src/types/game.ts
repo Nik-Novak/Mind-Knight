@@ -7,7 +7,9 @@ export enum PlayerRole {
   hacker = 20
 }
 export enum GameMode {
-  default = 0
+  default = 0,
+  blind_hackers = 1,
+  mainframe = 2
 }
 export enum GameMap {
   sewer = 11 //idk if this is true, just an example

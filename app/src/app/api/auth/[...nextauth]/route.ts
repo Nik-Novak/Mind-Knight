@@ -13,6 +13,7 @@ declare module 'next-auth' {
       email?: string;
       image?: string;
       name?: string;
+      player_id: string;
       steam_id: string;
     }
     // Add other extra fields as needed
@@ -47,6 +48,7 @@ export const authOptions:NextAuthOptions = {
           }
         }
       );
+      session.user.player_id = player.id; //add player_id to session
       session.user.steam_id = player.steam_id; //add steam_id to session
       return session;
     }

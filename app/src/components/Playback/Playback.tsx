@@ -36,9 +36,9 @@ export default function Playback(){
   const [playbackSpeed, updatePlaybackSpeed] = useReducer(playbackSpeedReducer, 1);
   
   useEffect(()=>{
-    setPlayHead(new Date('2024-04-07T20:03:59.000Z'));
-    return ()=>setPlayHead(undefined)
-  }, []);
+    console.log('UPDATE GAMEFOUND')
+    setPlayHead(game?.game_found.log_time);
+  }, [game?.game_found.log_time.valueOf()]);
 
   useEffect(()=>{
     if(isPlaying){
@@ -77,7 +77,7 @@ export default function Playback(){
       valueLabelDisplay="auto" 
       valueLabelFormat={getLabel} 
       min={game.game_found.log_time.valueOf()} 
-      max={game.game_end?.log_time.valueOf()}
+      max={game.latest_log_time.valueOf()}
       marks={marks}
       value={playHead?.valueOf()} 
       onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(new Date(value))}}

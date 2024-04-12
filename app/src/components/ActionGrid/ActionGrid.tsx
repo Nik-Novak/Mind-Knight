@@ -34,6 +34,7 @@ type ActionGridProps<T extends GridRow> = {
   renderOptionsRef: RenderOptionsRef;
   previousPage: number | null;
   nextPage: number | null;
+  loading?: boolean;
   setCurrentPage: (state) => void;
 };
 export default function ActionGrid<T extends GridRow>({
@@ -50,6 +51,7 @@ export default function ActionGrid<T extends GridRow>({
   renderOptionsRef,
   previousPage,
   nextPage,
+  loading,
   setCurrentPage = () => {},
 }: ActionGridProps<T>) {
   const [sortModel, setSortModel] = useState<GridSortModel>([
@@ -201,6 +203,7 @@ export default function ActionGrid<T extends GridRow>({
       <Container style={{padding:0}} sx={sx} className={Styles.dataGridWrapper}>
         <DataGrid<T>
           rows={records}
+          loading={loading}
           columns={columns}
           sortModel={sortModel}
           onSortModelChange={(model) => {

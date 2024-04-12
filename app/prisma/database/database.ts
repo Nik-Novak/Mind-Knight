@@ -53,7 +53,8 @@ const prismaClientSingleton= ()=>{
                   update:{
                     [spawn_player.Slot]: {...spawn_player,  proposals:{}, log_time }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -65,7 +66,8 @@ const prismaClientSingleton= ()=>{
               let [game_start, log_time] = args;
               
               return database.game.update({where:{id:data.id}, data:{
-                game_start: {...game_start, log_time}
+                game_start: {...game_start, log_time},
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -80,7 +82,8 @@ const prismaClientSingleton= ()=>{
                 chat: {push:{
                   ...chat_message_receive,
                   log_time
-                }}
+                }},
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -118,7 +121,8 @@ const prismaClientSingleton= ()=>{
                       },
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -162,7 +166,8 @@ const prismaClientSingleton= ()=>{
                       },
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -207,7 +212,8 @@ const prismaClientSingleton= ()=>{
                       },
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -247,7 +253,8 @@ const prismaClientSingleton= ()=>{
                       },
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -304,7 +311,8 @@ const prismaClientSingleton= ()=>{
                       },
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -352,7 +360,8 @@ const prismaClientSingleton= ()=>{
                       },
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -369,7 +378,8 @@ const prismaClientSingleton= ()=>{
                       mission_phase_start: { ...mission_phase_start, log_time, chatIndex: data.chat.length }
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -399,7 +409,8 @@ const prismaClientSingleton= ()=>{
                       }
                     }
                   }
-                }
+                },
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
@@ -422,7 +433,8 @@ const prismaClientSingleton= ()=>{
               }))
               return database.game.update({where:{id:data.id}, data:{
                 game_end: { ...game_end, log_time, deltaT, chatIndex: data.chat.length },
-                player_ids: playerIds
+                player_ids: playerIds,
+                latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }

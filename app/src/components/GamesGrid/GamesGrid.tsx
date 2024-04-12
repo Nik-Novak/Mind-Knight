@@ -10,7 +10,7 @@ import { Button, SxProps } from "@mui/material";
 import DetailsDialog from "./DetailsDialog";
 import { LoadingButton } from '@mui/lab'
 import { Game } from "@prisma/client";
-import { PlayerRole } from "@/types/game";
+import { GameMode, PlayerRole } from "@/types/game";
 import { coloredText } from "@/utils/functions/jsx";
 import { copyToClipboard } from "@/utils/functions/general";
 import { useNotificationQueue } from "../NotificationQueue";
@@ -86,20 +86,27 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
     // },
   ];
 
-  const columns: GridColDef[] = [
+  const columns: GridColDef<DataType>[] = [
     //4. Define fields and any actions you want to show for individual records
     { field: "id", headerName: "ID", flex: 0.25, minWidth: 40 },
-    { field: "team", headerName: "Team", flex: 0.15, minWidth: 40, renderCell:(params)=>{
-      let row = params.row as DataType;
-      return row.game_found.GuyRole === PlayerRole.agent ? coloredText('agents', '#25A165') : coloredText('hackers', '#952C30');
-    } },
-    { field: "result", headerName: "Result", flex: 0.15, minWidth: 40, renderCell:(params)=>{
-      let row = params.row as DataType;
-      if(!row.game_end)
-        return "Unfinished";
-      return row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.hacker || !row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.agent ? coloredText('Won', '#25A165') : coloredText('Lost', '#952C30');
-    } },
-    { field: "created_at", headerName: "Date", flex: 0.5, minWidth: 40 },
+    { field:"gamemode", headerName: "Mode", flex: 0.15, minWidth: 40, 
+      valueGetter:(v, row)=>GameMode[row.game_found.Options.GameMode],
+    },
+    { field: "team", headerName: "Team", flex: 0.15, minWidth: 40, 
+      valueGetter:(v, row)=>row.game_found.GuyRole === PlayerRole.agent ? 'agents' : 'hackers', 
+      renderCell:(params)=>params.value === 'agents' ? coloredText('agents', '#25A165') : coloredText('hackers', '#952C30')
+    },
+    { field: "result", headerName: "Result", flex: 0.15, minWidth: 40,
+      valueGetter:(v, row)=>{
+        if(!row.game_end)
+          return "Unknown";
+        return row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.hacker || !row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.agent ? 'Won' : 'Lost';
+      },
+      renderCell: (params)=>params.value === 'Won' ? coloredText('Won', '#25A165') : params.value === 'Lost' ? coloredText('Lost', '#952C30') : params.value
+    },
+    { field: "date", headerName: "Date", flex: 0.5, minWidth: 40,
+      valueGetter:(v, row)=>row.game_found.log_time
+    },
     { field: "actions", headerName: "Actions", flex: 0.15, minWidth: 120,
       renderCell: (params: GridRenderCellParams<DataType>) =>
         renderOptionsRef.current.renderCell(
@@ -121,7 +128,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                 setShowDetails(params.row)
             },
           ], 
-          (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">Play</Button></Link>
+          (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>
         )
     },
   ];
@@ -152,6 +159,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
           renderOptionsRef={renderOptionsRef}
           previousPage={previousPage}
           nextPage={nextPage}
+          loading={isLoading}
           setCurrentPage={setCurrentPage}
         />
         <ConfirmDialog {...dialogProps} />

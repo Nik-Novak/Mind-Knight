@@ -43,16 +43,16 @@ export default async function HomePage() {
             steamSession?.user
             ? <> 
                 <Link href='/events'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Events</Button></Link>
-                <Link href='/replays'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Replays</Button></Link>
+                <Link href='/rewind'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Rewind</Button></Link>
               </>
             : <Link href={`${process.env.NEXTAUTH_URL}/api/auth/signin`}><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Sign In</Button></Link>
           }
         </Stack>
       </Stack>
       <Avatar sx={{bgcolor: grey[800], position: 'fixed', top:10, right:10}} />
-      <Panel title={"Global Chat"} containerSx={{position:'fixed', left:{ sm:undefined, md:10 }, bottom:10, maxWidth: { sm:'80%', md:'30%' }}}>
+      {/* <Panel title={"Global Chat"} containerSx={{position:'fixed', left:{ sm:undefined, md:10 }, bottom:10, maxWidth: { sm:'80%', md:'30%' }}}>
         <Chatbox chat={globalChat} sendMessage={sendGlobalMessage}/>
-      </Panel>
+      </Panel> */}
     </main>
     <Footer />
     </>

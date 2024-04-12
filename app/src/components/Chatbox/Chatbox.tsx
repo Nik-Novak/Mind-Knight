@@ -15,6 +15,7 @@ import { LogEvents } from "@/utils/classes/LogReader";
 import { provideMindnightSession } from "@/utils/hoc/provideMindnightSession";
 import { useMindnightSession } from "../MindnightSessionProvider";
 import { useStore } from "@/zustand/store";
+import { hasHappened } from "@/utils/functions/game";
 
 // type GameProps = {
 //   chat:(GlobalChatMessage|ChatMessage)[],
@@ -29,6 +30,7 @@ type Props = {
 }
 
 function Chatbox({ chat, sendMessage}:Props){
+  const playHead = useStore(state=>state.playHead);
   const [searchPattern, setSearchPattern] = useState('');
   const [showMatchingChatOnly, setShowMatchingChatOnly] = useState(true);
   const messageForm = useRef<HTMLFormElement>(null);
@@ -52,12 +54,19 @@ function Chatbox({ chat, sendMessage}:Props){
   );
 
   let processedChat = optimisticChat;
-  if (searchPattern && showMatchingChatOnly){
+  if (searchPattern && showMatchingChatOnly || playHead){ //any of these conditions triggers a filter;
     processedChat = optimisticChat.filter((c)=>{
-      if( c.Message.toLowerCase().includes(searchPattern.toLowerCase()) ) //message contains query
-        return true;
-      if( game_players && game_players[(c as ChatMessage).Slot as PlayerSlot]?.Username.toLowerCase().includes(searchPattern.toLowerCase()) ) //author contains query
-        return true;
+      if(playHead && game_players && !hasHappened((c as ChatMessage).log_time, playHead)){ //!has happened
+        return false;
+      }
+      if(searchPattern){
+        if( c.Message.toLowerCase().includes(searchPattern.toLowerCase()) ) //message contains query
+          return true;
+        if( game_players && game_players[(c as ChatMessage).Slot as PlayerSlot]?.Username.toLowerCase().includes(searchPattern.toLowerCase()) ) //author contains query
+          return true;
+        return false;
+      }
+      return true;
     }
     )
   }

@@ -1,6 +1,7 @@
 import { getMindnightSession } from "@/actions/mindnight-session";
 import { suspense } from "@/utils/hoc/suspense";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import Link from "next/link";
 
 async function Instructions() {
   const mnSession = await getMindnightSession();
@@ -9,6 +10,8 @@ async function Instructions() {
     instructions = 'game launched, awaiting main menu';
   else if(mnSession?.status==='ready')
     instructions = 'ready for a game';
+  else if(mnSession?.status === 'playing')
+    return <Link href="/game" ><Button variant="contained" className="pixel-corners" sx={{paddingX: '50px'}} >Go to Game</Button></Link>
   return(
     <Typography variant="h3">{instructions}</Typography>
   );

@@ -5,11 +5,10 @@ import { Game, PlayerIdentity } from "@prisma/client";
 import { ServerEventPacket } from "@/components/ServerEventsProvider";
 
 
-export async function getGames(playerId:string){
+export async function getGames(playerId?:string){
+  const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
   return await database.game.findMany({
-    where:{
-      player_ids: {has:playerId}
-    },
+    where: whereCondition,
     orderBy:{
       created_at:'desc'
     },
@@ -24,8 +23,9 @@ export async function getGames(playerId:string){
       missions:true,
       player_ids:true,
       players:true,
-      raw_games:true,
+      // raw_games:true,
       updated_at:true,
+      latest_log_time: true
     }
   })
 }

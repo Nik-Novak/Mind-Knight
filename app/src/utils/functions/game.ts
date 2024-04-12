@@ -94,7 +94,7 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
   let result:{playerSlot:PlayerSlot, value:Proposal, proposalIndex:number}|undefined;
   Object.entries(game_players).forEach(([slot, game_player])=>{
     let playerSlot = parseInt(slot) as PlayerSlot;
-    game_player?.proposals[missionNum].forEach((proposal, i)=>{
+    game_player?.proposals[missionNum]?.forEach((proposal, i)=>{
       if(!result || proposal.select_phase_start.log_time.valueOf() > result.value.select_phase_start.log_time.valueOf())
         if(hasHappened(proposal.select_phase_start.log_time, playHead))
           result = {playerSlot, value:proposal, proposalIndex:i};

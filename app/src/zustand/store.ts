@@ -54,21 +54,26 @@ export const useStore = create<Store>((set)=>({
   incrementPlayHead: (by=1000)=>set(state=>modifyPlayhead(state, state.playHead && new Date(state.playHead.valueOf()+(by)))) //TODO add speed controller
 }));
 
+function clamp(value:Date|undefined, min?:Date, max?:Date){
+  if(value === undefined) return undefined;
+  if(min && value.valueOf() < min.valueOf())
+    return min;
+  else if(max && value.valueOf() > max.valueOf())
+    return max;
+  return value;
+}
+
 function modifyPlayhead(state:Store, playHead:Date|undefined) {
-  {
-    let newState:Partial<Store> = {playHead}
-    if(state.game){
-      let currentMission = getCurrentMissionNumber(state.game.missions, playHead);
-      newState.selectedNode = currentMission;
-      let numTurns = maxTurns(state.selectedNode, state.game.game_players, playHead);
-      newState.selectedTurn = numTurns; //latest turn
-      let latestProposal = getLatestProposal(state.game.game_players, currentMission, playHead);
-      newState.selectedSlot = latestProposal?.playerSlot;
-      // let action = state.selectedSlot && getPlayerAction(state.game.game_players[state.selectedSlot], state.selectedNode, state.selectedTurn, playHead);
-      // if(!action)
-      //   newState.selectedSlot = undefined;
-        
-    }
+  if(state.game){
+    let newState:Partial<Store> = {playHead: clamp(playHead, state.game.game_found.log_time)}
+    // newState.playHead = clamp(newState.playHead, state.game.game_found.log_time, state.game.latest_log_time)
+    let currentMission = getCurrentMissionNumber(state.game.missions,  newState.playHead);
+    newState.selectedNode = currentMission;
+    let numTurns = maxTurns(state.selectedNode, state.game.game_players, newState.playHead);
+    newState.selectedTurn = numTurns; //latest turn
+    let latestProposal = getLatestProposal(state.game.game_players, currentMission, newState.playHead);
+    newState.selectedSlot = latestProposal?.playerSlot;
     return newState;
   }
+  return {};
 }

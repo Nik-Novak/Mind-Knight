@@ -146,6 +146,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         game_found: {...game_found, log_time},
         game_players:{},
         missions:{},
+        latest_log_time: log_time
       }});
       sendServerEvent('GameUpdate', game);
       cb && cb();

@@ -294,7 +294,8 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   missions      Missions
   game_end      GameEnd?  //also end condition?
   chat          ChatMessage[]
-  // local_slot    Int
+
+  latest_log_time  DateTime
   
   raw_games     RawGame[]
 
