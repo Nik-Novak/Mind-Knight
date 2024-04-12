@@ -89,6 +89,18 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   });
 
+  LogReader.on('GameClose', async ( packet )=>{
+    packetQueue.push(async (cb)=>{
+      let client = await getClient();
+      if(client.mindnight_session)
+        await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
+      // revalidateTag(Tags.session.toString());
+      sendServerEvent('MindnightSessionUpdate', undefined);
+      sendServerEvent('GameClose', packet);
+      cb && cb();
+    });
+  });
+
   LogReader.on('PlayerInfo', async ( packet )=>{
     packetQueue.push(async (cb)=>{
       let mindnightSession = await createMindnightSession(packet);
