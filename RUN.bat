@@ -1,1 +1,6 @@
-cmd /k PowerShell ./node server.js
+cd .\app
+if not exist ".\node_modules" (
+    call ..\npx --yes yarn install
+)
+call ..\npx --yes yarn windows
+pause
