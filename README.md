@@ -26,6 +26,8 @@ To access MindKnight rewind:
 * Your browser should redirect you to steam.com to login / authenticate. (This is done securely through steam)
 * When logged in, you should see a "Rewind" button in the main menu
 * If you don't see any games, uncheck "Show My Games Only"
+* Choose a game and click "View"
+![MindKnight-Replays-Login](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/971d48f7-e4ab-42fe-ad5a-79e22a9c928f)
 
 # Updating?
 Just download the latest version from above, then delete your old files and replace them!
