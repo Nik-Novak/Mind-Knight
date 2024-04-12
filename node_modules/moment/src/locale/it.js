@@ -61,8 +61,8 @@ export default moment.defineLocale('it', {
                         (this.hours() > 1
                             ? 'lle '
                             : this.hours() === 0
-                            ? ' '
-                            : "ll'") +
+                              ? ' '
+                              : "ll'") +
                         ']LT'
                     );
                 default:
@@ -71,8 +71,8 @@ export default moment.defineLocale('it', {
                         (this.hours() > 1
                             ? 'lle '
                             : this.hours() === 0
-                            ? ' '
-                            : "ll'") +
+                              ? ' '
+                              : "ll'") +
                         ']LT'
                     );
             }
@@ -90,6 +90,8 @@ export default moment.defineLocale('it', {
         hh: '%d ore',
         d: 'un giorno',
         dd: '%d giorni',
+        w: 'una settimana',
+        ww: '%d settimane',
         M: 'un mese',
         MM: '%d mesi',
         y: 'un anno',

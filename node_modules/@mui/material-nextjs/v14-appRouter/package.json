@@ -1,0 +1,6 @@
+{
+  "sideEffects": false,
+  "module": "./index.js",
+  "main": "../node/v14-appRouter/index.js",
+  "types": "./index.d.ts"
+}

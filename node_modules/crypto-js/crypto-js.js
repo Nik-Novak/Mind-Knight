@@ -27,6 +27,16 @@
 	        crypto = window.crypto;
 	    }
 
+	    // Native crypto in web worker (Browser)
+	    if (typeof self !== 'undefined' && self.crypto) {
+	        crypto = self.crypto;
+	    }
+
+	    // Native crypto from worker
+	    if (typeof globalThis !== 'undefined' && globalThis.crypto) {
+	        crypto = globalThis.crypto;
+	    }
+
 	    // Native (experimental IE 11) crypto from window (Browser)
 	    if (!crypto && typeof window !== 'undefined' && window.msCrypto) {
 	        crypto = window.msCrypto;
@@ -87,7 +97,7 @@
 
 	            return subtype;
 	        };
-	    }())
+	    }());
 
 	    /**
 	     * CryptoJS namespace.
@@ -298,8 +308,8 @@
 	                }
 	            } else {
 	                // Copy one word at a time
-	                for (var i = 0; i < thatSigBytes; i += 4) {
-	                    thisWords[(thisSigBytes + i) >>> 2] = thatWords[i >>> 2];
+	                for (var j = 0; j < thatSigBytes; j += 4) {
+	                    thisWords[(thisSigBytes + j) >>> 2] = thatWords[j >>> 2];
 	                }
 	            }
 	            this.sigBytes += thatSigBytes;
@@ -792,6 +802,481 @@
 	}(Math));
 
 
+	(function (undefined) {
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_lib = C.lib;
+	    var Base = C_lib.Base;
+	    var X32WordArray = C_lib.WordArray;
+
+	    /**
+	     * x64 namespace.
+	     */
+	    var C_x64 = C.x64 = {};
+
+	    /**
+	     * A 64-bit word.
+	     */
+	    var X64Word = C_x64.Word = Base.extend({
+	        /**
+	         * Initializes a newly created 64-bit word.
+	         *
+	         * @param {number} high The high 32 bits.
+	         * @param {number} low The low 32 bits.
+	         *
+	         * @example
+	         *
+	         *     var x64Word = CryptoJS.x64.Word.create(0x00010203, 0x04050607);
+	         */
+	        init: function (high, low) {
+	            this.high = high;
+	            this.low = low;
+	        }
+
+	        /**
+	         * Bitwise NOTs this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after negating.
+	         *
+	         * @example
+	         *
+	         *     var negated = x64Word.not();
+	         */
+	        // not: function () {
+	            // var high = ~this.high;
+	            // var low = ~this.low;
+
+	            // return X64Word.create(high, low);
+	        // },
+
+	        /**
+	         * Bitwise ANDs this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to AND with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after ANDing.
+	         *
+	         * @example
+	         *
+	         *     var anded = x64Word.and(anotherX64Word);
+	         */
+	        // and: function (word) {
+	            // var high = this.high & word.high;
+	            // var low = this.low & word.low;
+
+	            // return X64Word.create(high, low);
+	        // },
+
+	        /**
+	         * Bitwise ORs this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to OR with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after ORing.
+	         *
+	         * @example
+	         *
+	         *     var ored = x64Word.or(anotherX64Word);
+	         */
+	        // or: function (word) {
+	            // var high = this.high | word.high;
+	            // var low = this.low | word.low;
+
+	            // return X64Word.create(high, low);
+	        // },
+
+	        /**
+	         * Bitwise XORs this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to XOR with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after XORing.
+	         *
+	         * @example
+	         *
+	         *     var xored = x64Word.xor(anotherX64Word);
+	         */
+	        // xor: function (word) {
+	            // var high = this.high ^ word.high;
+	            // var low = this.low ^ word.low;
+
+	            // return X64Word.create(high, low);
+	        // },
+
+	        /**
+	         * Shifts this word n bits to the left.
+	         *
+	         * @param {number} n The number of bits to shift.
+	         *
+	         * @return {X64Word} A new x64-Word object after shifting.
+	         *
+	         * @example
+	         *
+	         *     var shifted = x64Word.shiftL(25);
+	         */
+	        // shiftL: function (n) {
+	            // if (n < 32) {
+	                // var high = (this.high << n) | (this.low >>> (32 - n));
+	                // var low = this.low << n;
+	            // } else {
+	                // var high = this.low << (n - 32);
+	                // var low = 0;
+	            // }
+
+	            // return X64Word.create(high, low);
+	        // },
+
+	        /**
+	         * Shifts this word n bits to the right.
+	         *
+	         * @param {number} n The number of bits to shift.
+	         *
+	         * @return {X64Word} A new x64-Word object after shifting.
+	         *
+	         * @example
+	         *
+	         *     var shifted = x64Word.shiftR(7);
+	         */
+	        // shiftR: function (n) {
+	            // if (n < 32) {
+	                // var low = (this.low >>> n) | (this.high << (32 - n));
+	                // var high = this.high >>> n;
+	            // } else {
+	                // var low = this.high >>> (n - 32);
+	                // var high = 0;
+	            // }
+
+	            // return X64Word.create(high, low);
+	        // },
+
+	        /**
+	         * Rotates this word n bits to the left.
+	         *
+	         * @param {number} n The number of bits to rotate.
+	         *
+	         * @return {X64Word} A new x64-Word object after rotating.
+	         *
+	         * @example
+	         *
+	         *     var rotated = x64Word.rotL(25);
+	         */
+	        // rotL: function (n) {
+	            // return this.shiftL(n).or(this.shiftR(64 - n));
+	        // },
+
+	        /**
+	         * Rotates this word n bits to the right.
+	         *
+	         * @param {number} n The number of bits to rotate.
+	         *
+	         * @return {X64Word} A new x64-Word object after rotating.
+	         *
+	         * @example
+	         *
+	         *     var rotated = x64Word.rotR(7);
+	         */
+	        // rotR: function (n) {
+	            // return this.shiftR(n).or(this.shiftL(64 - n));
+	        // },
+
+	        /**
+	         * Adds this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to add with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after adding.
+	         *
+	         * @example
+	         *
+	         *     var added = x64Word.add(anotherX64Word);
+	         */
+	        // add: function (word) {
+	            // var low = (this.low + word.low) | 0;
+	            // var carry = (low >>> 0) < (this.low >>> 0) ? 1 : 0;
+	            // var high = (this.high + word.high + carry) | 0;
+
+	            // return X64Word.create(high, low);
+	        // }
+	    });
+
+	    /**
+	     * An array of 64-bit words.
+	     *
+	     * @property {Array} words The array of CryptoJS.x64.Word objects.
+	     * @property {number} sigBytes The number of significant bytes in this word array.
+	     */
+	    var X64WordArray = C_x64.WordArray = Base.extend({
+	        /**
+	         * Initializes a newly created word array.
+	         *
+	         * @param {Array} words (Optional) An array of CryptoJS.x64.Word objects.
+	         * @param {number} sigBytes (Optional) The number of significant bytes in the words.
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.x64.WordArray.create();
+	         *
+	         *     var wordArray = CryptoJS.x64.WordArray.create([
+	         *         CryptoJS.x64.Word.create(0x00010203, 0x04050607),
+	         *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
+	         *     ]);
+	         *
+	         *     var wordArray = CryptoJS.x64.WordArray.create([
+	         *         CryptoJS.x64.Word.create(0x00010203, 0x04050607),
+	         *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
+	         *     ], 10);
+	         */
+	        init: function (words, sigBytes) {
+	            words = this.words = words || [];
+
+	            if (sigBytes != undefined) {
+	                this.sigBytes = sigBytes;
+	            } else {
+	                this.sigBytes = words.length * 8;
+	            }
+	        },
+
+	        /**
+	         * Converts this 64-bit word array to a 32-bit word array.
+	         *
+	         * @return {CryptoJS.lib.WordArray} This word array's data as a 32-bit word array.
+	         *
+	         * @example
+	         *
+	         *     var x32WordArray = x64WordArray.toX32();
+	         */
+	        toX32: function () {
+	            // Shortcuts
+	            var x64Words = this.words;
+	            var x64WordsLength = x64Words.length;
+
+	            // Convert
+	            var x32Words = [];
+	            for (var i = 0; i < x64WordsLength; i++) {
+	                var x64Word = x64Words[i];
+	                x32Words.push(x64Word.high);
+	                x32Words.push(x64Word.low);
+	            }
+
+	            return X32WordArray.create(x32Words, this.sigBytes);
+	        },
+
+	        /**
+	         * Creates a copy of this word array.
+	         *
+	         * @return {X64WordArray} The clone.
+	         *
+	         * @example
+	         *
+	         *     var clone = x64WordArray.clone();
+	         */
+	        clone: function () {
+	            var clone = Base.clone.call(this);
+
+	            // Clone "words" array
+	            var words = clone.words = this.words.slice(0);
+
+	            // Clone each X64Word object
+	            var wordsLength = words.length;
+	            for (var i = 0; i < wordsLength; i++) {
+	                words[i] = words[i].clone();
+	            }
+
+	            return clone;
+	        }
+	    });
+	}());
+
+
+	(function () {
+	    // Check if typed arrays are supported
+	    if (typeof ArrayBuffer != 'function') {
+	        return;
+	    }
+
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_lib = C.lib;
+	    var WordArray = C_lib.WordArray;
+
+	    // Reference original init
+	    var superInit = WordArray.init;
+
+	    // Augment WordArray.init to handle typed arrays
+	    var subInit = WordArray.init = function (typedArray) {
+	        // Convert buffers to uint8
+	        if (typedArray instanceof ArrayBuffer) {
+	            typedArray = new Uint8Array(typedArray);
+	        }
+
+	        // Convert other array views to uint8
+	        if (
+	            typedArray instanceof Int8Array ||
+	            (typeof Uint8ClampedArray !== "undefined" && typedArray instanceof Uint8ClampedArray) ||
+	            typedArray instanceof Int16Array ||
+	            typedArray instanceof Uint16Array ||
+	            typedArray instanceof Int32Array ||
+	            typedArray instanceof Uint32Array ||
+	            typedArray instanceof Float32Array ||
+	            typedArray instanceof Float64Array
+	        ) {
+	            typedArray = new Uint8Array(typedArray.buffer, typedArray.byteOffset, typedArray.byteLength);
+	        }
+
+	        // Handle Uint8Array
+	        if (typedArray instanceof Uint8Array) {
+	            // Shortcut
+	            var typedArrayByteLength = typedArray.byteLength;
+
+	            // Extract bytes
+	            var words = [];
+	            for (var i = 0; i < typedArrayByteLength; i++) {
+	                words[i >>> 2] |= typedArray[i] << (24 - (i % 4) * 8);
+	            }
+
+	            // Initialize this word array
+	            superInit.call(this, words, typedArrayByteLength);
+	        } else {
+	            // Else call normal init
+	            superInit.apply(this, arguments);
+	        }
+	    };
+
+	    subInit.prototype = WordArray;
+	}());
+
+
+	(function () {
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_lib = C.lib;
+	    var WordArray = C_lib.WordArray;
+	    var C_enc = C.enc;
+
+	    /**
+	     * UTF-16 BE encoding strategy.
+	     */
+	    var Utf16BE = C_enc.Utf16 = C_enc.Utf16BE = {
+	        /**
+	         * Converts a word array to a UTF-16 BE string.
+	         *
+	         * @param {WordArray} wordArray The word array.
+	         *
+	         * @return {string} The UTF-16 BE string.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var utf16String = CryptoJS.enc.Utf16.stringify(wordArray);
+	         */
+	        stringify: function (wordArray) {
+	            // Shortcuts
+	            var words = wordArray.words;
+	            var sigBytes = wordArray.sigBytes;
+
+	            // Convert
+	            var utf16Chars = [];
+	            for (var i = 0; i < sigBytes; i += 2) {
+	                var codePoint = (words[i >>> 2] >>> (16 - (i % 4) * 8)) & 0xffff;
+	                utf16Chars.push(String.fromCharCode(codePoint));
+	            }
+
+	            return utf16Chars.join('');
+	        },
+
+	        /**
+	         * Converts a UTF-16 BE string to a word array.
+	         *
+	         * @param {string} utf16Str The UTF-16 BE string.
+	         *
+	         * @return {WordArray} The word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.enc.Utf16.parse(utf16String);
+	         */
+	        parse: function (utf16Str) {
+	            // Shortcut
+	            var utf16StrLength = utf16Str.length;
+
+	            // Convert
+	            var words = [];
+	            for (var i = 0; i < utf16StrLength; i++) {
+	                words[i >>> 1] |= utf16Str.charCodeAt(i) << (16 - (i % 2) * 16);
+	            }
+
+	            return WordArray.create(words, utf16StrLength * 2);
+	        }
+	    };
+
+	    /**
+	     * UTF-16 LE encoding strategy.
+	     */
+	    C_enc.Utf16LE = {
+	        /**
+	         * Converts a word array to a UTF-16 LE string.
+	         *
+	         * @param {WordArray} wordArray The word array.
+	         *
+	         * @return {string} The UTF-16 LE string.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var utf16Str = CryptoJS.enc.Utf16LE.stringify(wordArray);
+	         */
+	        stringify: function (wordArray) {
+	            // Shortcuts
+	            var words = wordArray.words;
+	            var sigBytes = wordArray.sigBytes;
+
+	            // Convert
+	            var utf16Chars = [];
+	            for (var i = 0; i < sigBytes; i += 2) {
+	                var codePoint = swapEndian((words[i >>> 2] >>> (16 - (i % 4) * 8)) & 0xffff);
+	                utf16Chars.push(String.fromCharCode(codePoint));
+	            }
+
+	            return utf16Chars.join('');
+	        },
+
+	        /**
+	         * Converts a UTF-16 LE string to a word array.
+	         *
+	         * @param {string} utf16Str The UTF-16 LE string.
+	         *
+	         * @return {WordArray} The word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.enc.Utf16LE.parse(utf16Str);
+	         */
+	        parse: function (utf16Str) {
+	            // Shortcut
+	            var utf16StrLength = utf16Str.length;
+
+	            // Convert
+	            var words = [];
+	            for (var i = 0; i < utf16StrLength; i++) {
+	                words[i >>> 1] |= swapEndian(utf16Str.charCodeAt(i) << (16 - (i % 2) * 16));
+	            }
+
+	            return WordArray.create(words, utf16StrLength * 2);
+	        }
+	    };
+
+	    function swapEndian(word) {
+	        return ((word << 8) & 0xff00ff00) | ((word >>> 8) & 0x00ff00ff);
+	    }
+	}());
+
+
 	(function () {
 	    // Shortcuts
 	    var C = CryptoJS;
@@ -910,6 +1395,136 @@
 	}());
 
 
+	(function () {
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_lib = C.lib;
+	    var WordArray = C_lib.WordArray;
+	    var C_enc = C.enc;
+
+	    /**
+	     * Base64url encoding strategy.
+	     */
+	    var Base64url = C_enc.Base64url = {
+	        /**
+	         * Converts a word array to a Base64url string.
+	         *
+	         * @param {WordArray} wordArray The word array.
+	         *
+	         * @param {boolean} urlSafe Whether to use url safe
+	         *
+	         * @return {string} The Base64url string.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var base64String = CryptoJS.enc.Base64url.stringify(wordArray);
+	         */
+	        stringify: function (wordArray, urlSafe) {
+	            if (urlSafe === undefined) {
+	                urlSafe = true
+	            }
+	            // Shortcuts
+	            var words = wordArray.words;
+	            var sigBytes = wordArray.sigBytes;
+	            var map = urlSafe ? this._safe_map : this._map;
+
+	            // Clamp excess bits
+	            wordArray.clamp();
+
+	            // Convert
+	            var base64Chars = [];
+	            for (var i = 0; i < sigBytes; i += 3) {
+	                var byte1 = (words[i >>> 2]       >>> (24 - (i % 4) * 8))       & 0xff;
+	                var byte2 = (words[(i + 1) >>> 2] >>> (24 - ((i + 1) % 4) * 8)) & 0xff;
+	                var byte3 = (words[(i + 2) >>> 2] >>> (24 - ((i + 2) % 4) * 8)) & 0xff;
+
+	                var triplet = (byte1 << 16) | (byte2 << 8) | byte3;
+
+	                for (var j = 0; (j < 4) && (i + j * 0.75 < sigBytes); j++) {
+	                    base64Chars.push(map.charAt((triplet >>> (6 * (3 - j))) & 0x3f));
+	                }
+	            }
+
+	            // Add padding
+	            var paddingChar = map.charAt(64);
+	            if (paddingChar) {
+	                while (base64Chars.length % 4) {
+	                    base64Chars.push(paddingChar);
+	                }
+	            }
+
+	            return base64Chars.join('');
+	        },
+
+	        /**
+	         * Converts a Base64url string to a word array.
+	         *
+	         * @param {string} base64Str The Base64url string.
+	         *
+	         * @param {boolean} urlSafe Whether to use url safe
+	         *
+	         * @return {WordArray} The word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.enc.Base64url.parse(base64String);
+	         */
+	        parse: function (base64Str, urlSafe) {
+	            if (urlSafe === undefined) {
+	                urlSafe = true
+	            }
+
+	            // Shortcuts
+	            var base64StrLength = base64Str.length;
+	            var map = urlSafe ? this._safe_map : this._map;
+	            var reverseMap = this._reverseMap;
+
+	            if (!reverseMap) {
+	                reverseMap = this._reverseMap = [];
+	                for (var j = 0; j < map.length; j++) {
+	                    reverseMap[map.charCodeAt(j)] = j;
+	                }
+	            }
+
+	            // Ignore padding
+	            var paddingChar = map.charAt(64);
+	            if (paddingChar) {
+	                var paddingIndex = base64Str.indexOf(paddingChar);
+	                if (paddingIndex !== -1) {
+	                    base64StrLength = paddingIndex;
+	                }
+	            }
+
+	            // Convert
+	            return parseLoop(base64Str, base64StrLength, reverseMap);
+
+	        },
+
+	        _map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+	        _safe_map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_',
+	    };
+
+	    function parseLoop(base64Str, base64StrLength, reverseMap) {
+	        var words = [];
+	        var nBytes = 0;
+	        for (var i = 0; i < base64StrLength; i++) {
+	            if (i % 4) {
+	                var bits1 = reverseMap[base64Str.charCodeAt(i - 1)] << ((i % 4) * 2);
+	                var bits2 = reverseMap[base64Str.charCodeAt(i)] >>> (6 - (i % 4) * 2);
+	                var bitsCombined = bits1 | bits2;
+	                words[nBytes >>> 2] |= bitsCombined << (24 - (nBytes % 4) * 8);
+	                nBytes++;
+	            }
+	        }
+	        return WordArray.create(words, nBytes);
+	    }
+	}());
+
+
 	(function (Math) {
 	    // Shortcuts
 	    var C = CryptoJS;
@@ -972,7 +1587,7 @@
 	            var M_offset_14 = M[offset + 14];
 	            var M_offset_15 = M[offset + 15];
 
-	            // Working varialbes
+	            // Working variables
 	            var a = H[0];
 	            var b = H[1];
 	            var c = H[2];
@@ -1478,188 +2093,742 @@
 	    var C = CryptoJS;
 	    var C_lib = C.lib;
 	    var WordArray = C_lib.WordArray;
-	    var C_enc = C.enc;
+	    var C_algo = C.algo;
+	    var SHA256 = C_algo.SHA256;
 
 	    /**
-	     * UTF-16 BE encoding strategy.
+	     * SHA-224 hash algorithm.
 	     */
-	    var Utf16BE = C_enc.Utf16 = C_enc.Utf16BE = {
-	        /**
-	         * Converts a word array to a UTF-16 BE string.
-	         *
-	         * @param {WordArray} wordArray The word array.
-	         *
-	         * @return {string} The UTF-16 BE string.
-	         *
-	         * @static
-	         *
-	         * @example
-	         *
-	         *     var utf16String = CryptoJS.enc.Utf16.stringify(wordArray);
-	         */
-	        stringify: function (wordArray) {
-	            // Shortcuts
-	            var words = wordArray.words;
-	            var sigBytes = wordArray.sigBytes;
-
-	            // Convert
-	            var utf16Chars = [];
-	            for (var i = 0; i < sigBytes; i += 2) {
-	                var codePoint = (words[i >>> 2] >>> (16 - (i % 4) * 8)) & 0xffff;
-	                utf16Chars.push(String.fromCharCode(codePoint));
-	            }
-
-	            return utf16Chars.join('');
+	    var SHA224 = C_algo.SHA224 = SHA256.extend({
+	        _doReset: function () {
+	            this._hash = new WordArray.init([
+	                0xc1059ed8, 0x367cd507, 0x3070dd17, 0xf70e5939,
+	                0xffc00b31, 0x68581511, 0x64f98fa7, 0xbefa4fa4
+	            ]);
 	        },
 
-	        /**
-	         * Converts a UTF-16 BE string to a word array.
-	         *
-	         * @param {string} utf16Str The UTF-16 BE string.
-	         *
-	         * @return {WordArray} The word array.
-	         *
-	         * @static
-	         *
-	         * @example
-	         *
-	         *     var wordArray = CryptoJS.enc.Utf16.parse(utf16String);
-	         */
-	        parse: function (utf16Str) {
-	            // Shortcut
-	            var utf16StrLength = utf16Str.length;
+	        _doFinalize: function () {
+	            var hash = SHA256._doFinalize.call(this);
 
-	            // Convert
-	            var words = [];
-	            for (var i = 0; i < utf16StrLength; i++) {
-	                words[i >>> 1] |= utf16Str.charCodeAt(i) << (16 - (i % 2) * 16);
-	            }
+	            hash.sigBytes -= 4;
 
-	            return WordArray.create(words, utf16StrLength * 2);
+	            return hash;
 	        }
-	    };
+	    });
 
 	    /**
-	     * UTF-16 LE encoding strategy.
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA224('message');
+	     *     var hash = CryptoJS.SHA224(wordArray);
 	     */
-	    C_enc.Utf16LE = {
-	        /**
-	         * Converts a word array to a UTF-16 LE string.
-	         *
-	         * @param {WordArray} wordArray The word array.
-	         *
-	         * @return {string} The UTF-16 LE string.
-	         *
-	         * @static
-	         *
-	         * @example
-	         *
-	         *     var utf16Str = CryptoJS.enc.Utf16LE.stringify(wordArray);
-	         */
-	        stringify: function (wordArray) {
-	            // Shortcuts
-	            var words = wordArray.words;
-	            var sigBytes = wordArray.sigBytes;
+	    C.SHA224 = SHA256._createHelper(SHA224);
 
-	            // Convert
-	            var utf16Chars = [];
-	            for (var i = 0; i < sigBytes; i += 2) {
-	                var codePoint = swapEndian((words[i >>> 2] >>> (16 - (i % 4) * 8)) & 0xffff);
-	                utf16Chars.push(String.fromCharCode(codePoint));
-	            }
-
-	            return utf16Chars.join('');
-	        },
-
-	        /**
-	         * Converts a UTF-16 LE string to a word array.
-	         *
-	         * @param {string} utf16Str The UTF-16 LE string.
-	         *
-	         * @return {WordArray} The word array.
-	         *
-	         * @static
-	         *
-	         * @example
-	         *
-	         *     var wordArray = CryptoJS.enc.Utf16LE.parse(utf16Str);
-	         */
-	        parse: function (utf16Str) {
-	            // Shortcut
-	            var utf16StrLength = utf16Str.length;
-
-	            // Convert
-	            var words = [];
-	            for (var i = 0; i < utf16StrLength; i++) {
-	                words[i >>> 1] |= swapEndian(utf16Str.charCodeAt(i) << (16 - (i % 2) * 16));
-	            }
-
-	            return WordArray.create(words, utf16StrLength * 2);
-	        }
-	    };
-
-	    function swapEndian(word) {
-	        return ((word << 8) & 0xff00ff00) | ((word >>> 8) & 0x00ff00ff);
-	    }
+	    /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA224(message, key);
+	     */
+	    C.HmacSHA224 = SHA256._createHmacHelper(SHA224);
 	}());
 
 
 	(function () {
-	    // Check if typed arrays are supported
-	    if (typeof ArrayBuffer != 'function') {
-	        return;
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_lib = C.lib;
+	    var Hasher = C_lib.Hasher;
+	    var C_x64 = C.x64;
+	    var X64Word = C_x64.Word;
+	    var X64WordArray = C_x64.WordArray;
+	    var C_algo = C.algo;
+
+	    function X64Word_create() {
+	        return X64Word.create.apply(X64Word, arguments);
 	    }
 
+	    // Constants
+	    var K = [
+	        X64Word_create(0x428a2f98, 0xd728ae22), X64Word_create(0x71374491, 0x23ef65cd),
+	        X64Word_create(0xb5c0fbcf, 0xec4d3b2f), X64Word_create(0xe9b5dba5, 0x8189dbbc),
+	        X64Word_create(0x3956c25b, 0xf348b538), X64Word_create(0x59f111f1, 0xb605d019),
+	        X64Word_create(0x923f82a4, 0xaf194f9b), X64Word_create(0xab1c5ed5, 0xda6d8118),
+	        X64Word_create(0xd807aa98, 0xa3030242), X64Word_create(0x12835b01, 0x45706fbe),
+	        X64Word_create(0x243185be, 0x4ee4b28c), X64Word_create(0x550c7dc3, 0xd5ffb4e2),
+	        X64Word_create(0x72be5d74, 0xf27b896f), X64Word_create(0x80deb1fe, 0x3b1696b1),
+	        X64Word_create(0x9bdc06a7, 0x25c71235), X64Word_create(0xc19bf174, 0xcf692694),
+	        X64Word_create(0xe49b69c1, 0x9ef14ad2), X64Word_create(0xefbe4786, 0x384f25e3),
+	        X64Word_create(0x0fc19dc6, 0x8b8cd5b5), X64Word_create(0x240ca1cc, 0x77ac9c65),
+	        X64Word_create(0x2de92c6f, 0x592b0275), X64Word_create(0x4a7484aa, 0x6ea6e483),
+	        X64Word_create(0x5cb0a9dc, 0xbd41fbd4), X64Word_create(0x76f988da, 0x831153b5),
+	        X64Word_create(0x983e5152, 0xee66dfab), X64Word_create(0xa831c66d, 0x2db43210),
+	        X64Word_create(0xb00327c8, 0x98fb213f), X64Word_create(0xbf597fc7, 0xbeef0ee4),
+	        X64Word_create(0xc6e00bf3, 0x3da88fc2), X64Word_create(0xd5a79147, 0x930aa725),
+	        X64Word_create(0x06ca6351, 0xe003826f), X64Word_create(0x14292967, 0x0a0e6e70),
+	        X64Word_create(0x27b70a85, 0x46d22ffc), X64Word_create(0x2e1b2138, 0x5c26c926),
+	        X64Word_create(0x4d2c6dfc, 0x5ac42aed), X64Word_create(0x53380d13, 0x9d95b3df),
+	        X64Word_create(0x650a7354, 0x8baf63de), X64Word_create(0x766a0abb, 0x3c77b2a8),
+	        X64Word_create(0x81c2c92e, 0x47edaee6), X64Word_create(0x92722c85, 0x1482353b),
+	        X64Word_create(0xa2bfe8a1, 0x4cf10364), X64Word_create(0xa81a664b, 0xbc423001),
+	        X64Word_create(0xc24b8b70, 0xd0f89791), X64Word_create(0xc76c51a3, 0x0654be30),
+	        X64Word_create(0xd192e819, 0xd6ef5218), X64Word_create(0xd6990624, 0x5565a910),
+	        X64Word_create(0xf40e3585, 0x5771202a), X64Word_create(0x106aa070, 0x32bbd1b8),
+	        X64Word_create(0x19a4c116, 0xb8d2d0c8), X64Word_create(0x1e376c08, 0x5141ab53),
+	        X64Word_create(0x2748774c, 0xdf8eeb99), X64Word_create(0x34b0bcb5, 0xe19b48a8),
+	        X64Word_create(0x391c0cb3, 0xc5c95a63), X64Word_create(0x4ed8aa4a, 0xe3418acb),
+	        X64Word_create(0x5b9cca4f, 0x7763e373), X64Word_create(0x682e6ff3, 0xd6b2b8a3),
+	        X64Word_create(0x748f82ee, 0x5defb2fc), X64Word_create(0x78a5636f, 0x43172f60),
+	        X64Word_create(0x84c87814, 0xa1f0ab72), X64Word_create(0x8cc70208, 0x1a6439ec),
+	        X64Word_create(0x90befffa, 0x23631e28), X64Word_create(0xa4506ceb, 0xde82bde9),
+	        X64Word_create(0xbef9a3f7, 0xb2c67915), X64Word_create(0xc67178f2, 0xe372532b),
+	        X64Word_create(0xca273ece, 0xea26619c), X64Word_create(0xd186b8c7, 0x21c0c207),
+	        X64Word_create(0xeada7dd6, 0xcde0eb1e), X64Word_create(0xf57d4f7f, 0xee6ed178),
+	        X64Word_create(0x06f067aa, 0x72176fba), X64Word_create(0x0a637dc5, 0xa2c898a6),
+	        X64Word_create(0x113f9804, 0xbef90dae), X64Word_create(0x1b710b35, 0x131c471b),
+	        X64Word_create(0x28db77f5, 0x23047d84), X64Word_create(0x32caab7b, 0x40c72493),
+	        X64Word_create(0x3c9ebe0a, 0x15c9bebc), X64Word_create(0x431d67c4, 0x9c100d4c),
+	        X64Word_create(0x4cc5d4be, 0xcb3e42b6), X64Word_create(0x597f299c, 0xfc657e2a),
+	        X64Word_create(0x5fcb6fab, 0x3ad6faec), X64Word_create(0x6c44198c, 0x4a475817)
+	    ];
+
+	    // Reusable objects
+	    var W = [];
+	    (function () {
+	        for (var i = 0; i < 80; i++) {
+	            W[i] = X64Word_create();
+	        }
+	    }());
+
+	    /**
+	     * SHA-512 hash algorithm.
+	     */
+	    var SHA512 = C_algo.SHA512 = Hasher.extend({
+	        _doReset: function () {
+	            this._hash = new X64WordArray.init([
+	                new X64Word.init(0x6a09e667, 0xf3bcc908), new X64Word.init(0xbb67ae85, 0x84caa73b),
+	                new X64Word.init(0x3c6ef372, 0xfe94f82b), new X64Word.init(0xa54ff53a, 0x5f1d36f1),
+	                new X64Word.init(0x510e527f, 0xade682d1), new X64Word.init(0x9b05688c, 0x2b3e6c1f),
+	                new X64Word.init(0x1f83d9ab, 0xfb41bd6b), new X64Word.init(0x5be0cd19, 0x137e2179)
+	            ]);
+	        },
+
+	        _doProcessBlock: function (M, offset) {
+	            // Shortcuts
+	            var H = this._hash.words;
+
+	            var H0 = H[0];
+	            var H1 = H[1];
+	            var H2 = H[2];
+	            var H3 = H[3];
+	            var H4 = H[4];
+	            var H5 = H[5];
+	            var H6 = H[6];
+	            var H7 = H[7];
+
+	            var H0h = H0.high;
+	            var H0l = H0.low;
+	            var H1h = H1.high;
+	            var H1l = H1.low;
+	            var H2h = H2.high;
+	            var H2l = H2.low;
+	            var H3h = H3.high;
+	            var H3l = H3.low;
+	            var H4h = H4.high;
+	            var H4l = H4.low;
+	            var H5h = H5.high;
+	            var H5l = H5.low;
+	            var H6h = H6.high;
+	            var H6l = H6.low;
+	            var H7h = H7.high;
+	            var H7l = H7.low;
+
+	            // Working variables
+	            var ah = H0h;
+	            var al = H0l;
+	            var bh = H1h;
+	            var bl = H1l;
+	            var ch = H2h;
+	            var cl = H2l;
+	            var dh = H3h;
+	            var dl = H3l;
+	            var eh = H4h;
+	            var el = H4l;
+	            var fh = H5h;
+	            var fl = H5l;
+	            var gh = H6h;
+	            var gl = H6l;
+	            var hh = H7h;
+	            var hl = H7l;
+
+	            // Rounds
+	            for (var i = 0; i < 80; i++) {
+	                var Wil;
+	                var Wih;
+
+	                // Shortcut
+	                var Wi = W[i];
+
+	                // Extend message
+	                if (i < 16) {
+	                    Wih = Wi.high = M[offset + i * 2]     | 0;
+	                    Wil = Wi.low  = M[offset + i * 2 + 1] | 0;
+	                } else {
+	                    // Gamma0
+	                    var gamma0x  = W[i - 15];
+	                    var gamma0xh = gamma0x.high;
+	                    var gamma0xl = gamma0x.low;
+	                    var gamma0h  = ((gamma0xh >>> 1) | (gamma0xl << 31)) ^ ((gamma0xh >>> 8) | (gamma0xl << 24)) ^ (gamma0xh >>> 7);
+	                    var gamma0l  = ((gamma0xl >>> 1) | (gamma0xh << 31)) ^ ((gamma0xl >>> 8) | (gamma0xh << 24)) ^ ((gamma0xl >>> 7) | (gamma0xh << 25));
+
+	                    // Gamma1
+	                    var gamma1x  = W[i - 2];
+	                    var gamma1xh = gamma1x.high;
+	                    var gamma1xl = gamma1x.low;
+	                    var gamma1h  = ((gamma1xh >>> 19) | (gamma1xl << 13)) ^ ((gamma1xh << 3) | (gamma1xl >>> 29)) ^ (gamma1xh >>> 6);
+	                    var gamma1l  = ((gamma1xl >>> 19) | (gamma1xh << 13)) ^ ((gamma1xl << 3) | (gamma1xh >>> 29)) ^ ((gamma1xl >>> 6) | (gamma1xh << 26));
+
+	                    // W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16]
+	                    var Wi7  = W[i - 7];
+	                    var Wi7h = Wi7.high;
+	                    var Wi7l = Wi7.low;
+
+	                    var Wi16  = W[i - 16];
+	                    var Wi16h = Wi16.high;
+	                    var Wi16l = Wi16.low;
+
+	                    Wil = gamma0l + Wi7l;
+	                    Wih = gamma0h + Wi7h + ((Wil >>> 0) < (gamma0l >>> 0) ? 1 : 0);
+	                    Wil = Wil + gamma1l;
+	                    Wih = Wih + gamma1h + ((Wil >>> 0) < (gamma1l >>> 0) ? 1 : 0);
+	                    Wil = Wil + Wi16l;
+	                    Wih = Wih + Wi16h + ((Wil >>> 0) < (Wi16l >>> 0) ? 1 : 0);
+
+	                    Wi.high = Wih;
+	                    Wi.low  = Wil;
+	                }
+
+	                var chh  = (eh & fh) ^ (~eh & gh);
+	                var chl  = (el & fl) ^ (~el & gl);
+	                var majh = (ah & bh) ^ (ah & ch) ^ (bh & ch);
+	                var majl = (al & bl) ^ (al & cl) ^ (bl & cl);
+
+	                var sigma0h = ((ah >>> 28) | (al << 4))  ^ ((ah << 30)  | (al >>> 2)) ^ ((ah << 25) | (al >>> 7));
+	                var sigma0l = ((al >>> 28) | (ah << 4))  ^ ((al << 30)  | (ah >>> 2)) ^ ((al << 25) | (ah >>> 7));
+	                var sigma1h = ((eh >>> 14) | (el << 18)) ^ ((eh >>> 18) | (el << 14)) ^ ((eh << 23) | (el >>> 9));
+	                var sigma1l = ((el >>> 14) | (eh << 18)) ^ ((el >>> 18) | (eh << 14)) ^ ((el << 23) | (eh >>> 9));
+
+	                // t1 = h + sigma1 + ch + K[i] + W[i]
+	                var Ki  = K[i];
+	                var Kih = Ki.high;
+	                var Kil = Ki.low;
+
+	                var t1l = hl + sigma1l;
+	                var t1h = hh + sigma1h + ((t1l >>> 0) < (hl >>> 0) ? 1 : 0);
+	                var t1l = t1l + chl;
+	                var t1h = t1h + chh + ((t1l >>> 0) < (chl >>> 0) ? 1 : 0);
+	                var t1l = t1l + Kil;
+	                var t1h = t1h + Kih + ((t1l >>> 0) < (Kil >>> 0) ? 1 : 0);
+	                var t1l = t1l + Wil;
+	                var t1h = t1h + Wih + ((t1l >>> 0) < (Wil >>> 0) ? 1 : 0);
+
+	                // t2 = sigma0 + maj
+	                var t2l = sigma0l + majl;
+	                var t2h = sigma0h + majh + ((t2l >>> 0) < (sigma0l >>> 0) ? 1 : 0);
+
+	                // Update working variables
+	                hh = gh;
+	                hl = gl;
+	                gh = fh;
+	                gl = fl;
+	                fh = eh;
+	                fl = el;
+	                el = (dl + t1l) | 0;
+	                eh = (dh + t1h + ((el >>> 0) < (dl >>> 0) ? 1 : 0)) | 0;
+	                dh = ch;
+	                dl = cl;
+	                ch = bh;
+	                cl = bl;
+	                bh = ah;
+	                bl = al;
+	                al = (t1l + t2l) | 0;
+	                ah = (t1h + t2h + ((al >>> 0) < (t1l >>> 0) ? 1 : 0)) | 0;
+	            }
+
+	            // Intermediate hash value
+	            H0l = H0.low  = (H0l + al);
+	            H0.high = (H0h + ah + ((H0l >>> 0) < (al >>> 0) ? 1 : 0));
+	            H1l = H1.low  = (H1l + bl);
+	            H1.high = (H1h + bh + ((H1l >>> 0) < (bl >>> 0) ? 1 : 0));
+	            H2l = H2.low  = (H2l + cl);
+	            H2.high = (H2h + ch + ((H2l >>> 0) < (cl >>> 0) ? 1 : 0));
+	            H3l = H3.low  = (H3l + dl);
+	            H3.high = (H3h + dh + ((H3l >>> 0) < (dl >>> 0) ? 1 : 0));
+	            H4l = H4.low  = (H4l + el);
+	            H4.high = (H4h + eh + ((H4l >>> 0) < (el >>> 0) ? 1 : 0));
+	            H5l = H5.low  = (H5l + fl);
+	            H5.high = (H5h + fh + ((H5l >>> 0) < (fl >>> 0) ? 1 : 0));
+	            H6l = H6.low  = (H6l + gl);
+	            H6.high = (H6h + gh + ((H6l >>> 0) < (gl >>> 0) ? 1 : 0));
+	            H7l = H7.low  = (H7l + hl);
+	            H7.high = (H7h + hh + ((H7l >>> 0) < (hl >>> 0) ? 1 : 0));
+	        },
+
+	        _doFinalize: function () {
+	            // Shortcuts
+	            var data = this._data;
+	            var dataWords = data.words;
+
+	            var nBitsTotal = this._nDataBytes * 8;
+	            var nBitsLeft = data.sigBytes * 8;
+
+	            // Add padding
+	            dataWords[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
+	            dataWords[(((nBitsLeft + 128) >>> 10) << 5) + 30] = Math.floor(nBitsTotal / 0x100000000);
+	            dataWords[(((nBitsLeft + 128) >>> 10) << 5) + 31] = nBitsTotal;
+	            data.sigBytes = dataWords.length * 4;
+
+	            // Hash final blocks
+	            this._process();
+
+	            // Convert hash to 32-bit word array before returning
+	            var hash = this._hash.toX32();
+
+	            // Return final computed hash
+	            return hash;
+	        },
+
+	        clone: function () {
+	            var clone = Hasher.clone.call(this);
+	            clone._hash = this._hash.clone();
+
+	            return clone;
+	        },
+
+	        blockSize: 1024/32
+	    });
+
+	    /**
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA512('message');
+	     *     var hash = CryptoJS.SHA512(wordArray);
+	     */
+	    C.SHA512 = Hasher._createHelper(SHA512);
+
+	    /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA512(message, key);
+	     */
+	    C.HmacSHA512 = Hasher._createHmacHelper(SHA512);
+	}());
+
+
+	(function () {
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_x64 = C.x64;
+	    var X64Word = C_x64.Word;
+	    var X64WordArray = C_x64.WordArray;
+	    var C_algo = C.algo;
+	    var SHA512 = C_algo.SHA512;
+
+	    /**
+	     * SHA-384 hash algorithm.
+	     */
+	    var SHA384 = C_algo.SHA384 = SHA512.extend({
+	        _doReset: function () {
+	            this._hash = new X64WordArray.init([
+	                new X64Word.init(0xcbbb9d5d, 0xc1059ed8), new X64Word.init(0x629a292a, 0x367cd507),
+	                new X64Word.init(0x9159015a, 0x3070dd17), new X64Word.init(0x152fecd8, 0xf70e5939),
+	                new X64Word.init(0x67332667, 0xffc00b31), new X64Word.init(0x8eb44a87, 0x68581511),
+	                new X64Word.init(0xdb0c2e0d, 0x64f98fa7), new X64Word.init(0x47b5481d, 0xbefa4fa4)
+	            ]);
+	        },
+
+	        _doFinalize: function () {
+	            var hash = SHA512._doFinalize.call(this);
+
+	            hash.sigBytes -= 16;
+
+	            return hash;
+	        }
+	    });
+
+	    /**
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA384('message');
+	     *     var hash = CryptoJS.SHA384(wordArray);
+	     */
+	    C.SHA384 = SHA512._createHelper(SHA384);
+
+	    /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA384(message, key);
+	     */
+	    C.HmacSHA384 = SHA512._createHmacHelper(SHA384);
+	}());
+
+
+	(function (Math) {
 	    // Shortcuts
 	    var C = CryptoJS;
 	    var C_lib = C.lib;
 	    var WordArray = C_lib.WordArray;
+	    var Hasher = C_lib.Hasher;
+	    var C_x64 = C.x64;
+	    var X64Word = C_x64.Word;
+	    var C_algo = C.algo;
 
-	    // Reference original init
-	    var superInit = WordArray.init;
+	    // Constants tables
+	    var RHO_OFFSETS = [];
+	    var PI_INDEXES  = [];
+	    var ROUND_CONSTANTS = [];
 
-	    // Augment WordArray.init to handle typed arrays
-	    var subInit = WordArray.init = function (typedArray) {
-	        // Convert buffers to uint8
-	        if (typedArray instanceof ArrayBuffer) {
-	            typedArray = new Uint8Array(typedArray);
+	    // Compute Constants
+	    (function () {
+	        // Compute rho offset constants
+	        var x = 1, y = 0;
+	        for (var t = 0; t < 24; t++) {
+	            RHO_OFFSETS[x + 5 * y] = ((t + 1) * (t + 2) / 2) % 64;
+
+	            var newX = y % 5;
+	            var newY = (2 * x + 3 * y) % 5;
+	            x = newX;
+	            y = newY;
 	        }
 
-	        // Convert other array views to uint8
-	        if (
-	            typedArray instanceof Int8Array ||
-	            (typeof Uint8ClampedArray !== "undefined" && typedArray instanceof Uint8ClampedArray) ||
-	            typedArray instanceof Int16Array ||
-	            typedArray instanceof Uint16Array ||
-	            typedArray instanceof Int32Array ||
-	            typedArray instanceof Uint32Array ||
-	            typedArray instanceof Float32Array ||
-	            typedArray instanceof Float64Array
-	        ) {
-	            typedArray = new Uint8Array(typedArray.buffer, typedArray.byteOffset, typedArray.byteLength);
+	        // Compute pi index constants
+	        for (var x = 0; x < 5; x++) {
+	            for (var y = 0; y < 5; y++) {
+	                PI_INDEXES[x + 5 * y] = y + ((2 * x + 3 * y) % 5) * 5;
+	            }
 	        }
 
-	        // Handle Uint8Array
-	        if (typedArray instanceof Uint8Array) {
-	            // Shortcut
-	            var typedArrayByteLength = typedArray.byteLength;
+	        // Compute round constants
+	        var LFSR = 0x01;
+	        for (var i = 0; i < 24; i++) {
+	            var roundConstantMsw = 0;
+	            var roundConstantLsw = 0;
 
-	            // Extract bytes
-	            var words = [];
-	            for (var i = 0; i < typedArrayByteLength; i++) {
-	                words[i >>> 2] |= typedArray[i] << (24 - (i % 4) * 8);
+	            for (var j = 0; j < 7; j++) {
+	                if (LFSR & 0x01) {
+	                    var bitPosition = (1 << j) - 1;
+	                    if (bitPosition < 32) {
+	                        roundConstantLsw ^= 1 << bitPosition;
+	                    } else /* if (bitPosition >= 32) */ {
+	                        roundConstantMsw ^= 1 << (bitPosition - 32);
+	                    }
+	                }
+
+	                // Compute next LFSR
+	                if (LFSR & 0x80) {
+	                    // Primitive polynomial over GF(2): x^8 + x^6 + x^5 + x^4 + 1
+	                    LFSR = (LFSR << 1) ^ 0x71;
+	                } else {
+	                    LFSR <<= 1;
+	                }
 	            }
 
-	            // Initialize this word array
-	            superInit.call(this, words, typedArrayByteLength);
-	        } else {
-	            // Else call normal init
-	            superInit.apply(this, arguments);
+	            ROUND_CONSTANTS[i] = X64Word.create(roundConstantMsw, roundConstantLsw);
 	        }
-	    };
+	    }());
 
-	    subInit.prototype = WordArray;
-	}());
+	    // Reusable objects for temporary values
+	    var T = [];
+	    (function () {
+	        for (var i = 0; i < 25; i++) {
+	            T[i] = X64Word.create();
+	        }
+	    }());
+
+	    /**
+	     * SHA-3 hash algorithm.
+	     */
+	    var SHA3 = C_algo.SHA3 = Hasher.extend({
+	        /**
+	         * Configuration options.
+	         *
+	         * @property {number} outputLength
+	         *   The desired number of bits in the output hash.
+	         *   Only values permitted are: 224, 256, 384, 512.
+	         *   Default: 512
+	         */
+	        cfg: Hasher.cfg.extend({
+	            outputLength: 512
+	        }),
+
+	        _doReset: function () {
+	            var state = this._state = []
+	            for (var i = 0; i < 25; i++) {
+	                state[i] = new X64Word.init();
+	            }
+
+	            this.blockSize = (1600 - 2 * this.cfg.outputLength) / 32;
+	        },
+
+	        _doProcessBlock: function (M, offset) {
+	            // Shortcuts
+	            var state = this._state;
+	            var nBlockSizeLanes = this.blockSize / 2;
+
+	            // Absorb
+	            for (var i = 0; i < nBlockSizeLanes; i++) {
+	                // Shortcuts
+	                var M2i  = M[offset + 2 * i];
+	                var M2i1 = M[offset + 2 * i + 1];
+
+	                // Swap endian
+	                M2i = (
+	                    (((M2i << 8)  | (M2i >>> 24)) & 0x00ff00ff) |
+	                    (((M2i << 24) | (M2i >>> 8))  & 0xff00ff00)
+	                );
+	                M2i1 = (
+	                    (((M2i1 << 8)  | (M2i1 >>> 24)) & 0x00ff00ff) |
+	                    (((M2i1 << 24) | (M2i1 >>> 8))  & 0xff00ff00)
+	                );
+
+	                // Absorb message into state
+	                var lane = state[i];
+	                lane.high ^= M2i1;
+	                lane.low  ^= M2i;
+	            }
+
+	            // Rounds
+	            for (var round = 0; round < 24; round++) {
+	                // Theta
+	                for (var x = 0; x < 5; x++) {
+	                    // Mix column lanes
+	                    var tMsw = 0, tLsw = 0;
+	                    for (var y = 0; y < 5; y++) {
+	                        var lane = state[x + 5 * y];
+	                        tMsw ^= lane.high;
+	                        tLsw ^= lane.low;
+	                    }
+
+	                    // Temporary values
+	                    var Tx = T[x];
+	                    Tx.high = tMsw;
+	                    Tx.low  = tLsw;
+	                }
+	                for (var x = 0; x < 5; x++) {
+	                    // Shortcuts
+	                    var Tx4 = T[(x + 4) % 5];
+	                    var Tx1 = T[(x + 1) % 5];
+	                    var Tx1Msw = Tx1.high;
+	                    var Tx1Lsw = Tx1.low;
+
+	                    // Mix surrounding columns
+	                    var tMsw = Tx4.high ^ ((Tx1Msw << 1) | (Tx1Lsw >>> 31));
+	                    var tLsw = Tx4.low  ^ ((Tx1Lsw << 1) | (Tx1Msw >>> 31));
+	                    for (var y = 0; y < 5; y++) {
+	                        var lane = state[x + 5 * y];
+	                        lane.high ^= tMsw;
+	                        lane.low  ^= tLsw;
+	                    }
+	                }
+
+	                // Rho Pi
+	                for (var laneIndex = 1; laneIndex < 25; laneIndex++) {
+	                    var tMsw;
+	                    var tLsw;
+
+	                    // Shortcuts
+	                    var lane = state[laneIndex];
+	                    var laneMsw = lane.high;
+	                    var laneLsw = lane.low;
+	                    var rhoOffset = RHO_OFFSETS[laneIndex];
+
+	                    // Rotate lanes
+	                    if (rhoOffset < 32) {
+	                        tMsw = (laneMsw << rhoOffset) | (laneLsw >>> (32 - rhoOffset));
+	                        tLsw = (laneLsw << rhoOffset) | (laneMsw >>> (32 - rhoOffset));
+	                    } else /* if (rhoOffset >= 32) */ {
+	                        tMsw = (laneLsw << (rhoOffset - 32)) | (laneMsw >>> (64 - rhoOffset));
+	                        tLsw = (laneMsw << (rhoOffset - 32)) | (laneLsw >>> (64 - rhoOffset));
+	                    }
+
+	                    // Transpose lanes
+	                    var TPiLane = T[PI_INDEXES[laneIndex]];
+	                    TPiLane.high = tMsw;
+	                    TPiLane.low  = tLsw;
+	                }
+
+	                // Rho pi at x = y = 0
+	                var T0 = T[0];
+	                var state0 = state[0];
+	                T0.high = state0.high;
+	                T0.low  = state0.low;
+
+	                // Chi
+	                for (var x = 0; x < 5; x++) {
+	                    for (var y = 0; y < 5; y++) {
+	                        // Shortcuts
+	                        var laneIndex = x + 5 * y;
+	                        var lane = state[laneIndex];
+	                        var TLane = T[laneIndex];
+	                        var Tx1Lane = T[((x + 1) % 5) + 5 * y];
+	                        var Tx2Lane = T[((x + 2) % 5) + 5 * y];
+
+	                        // Mix rows
+	                        lane.high = TLane.high ^ (~Tx1Lane.high & Tx2Lane.high);
+	                        lane.low  = TLane.low  ^ (~Tx1Lane.low  & Tx2Lane.low);
+	                    }
+	                }
+
+	                // Iota
+	                var lane = state[0];
+	                var roundConstant = ROUND_CONSTANTS[round];
+	                lane.high ^= roundConstant.high;
+	                lane.low  ^= roundConstant.low;
+	            }
+	        },
+
+	        _doFinalize: function () {
+	            // Shortcuts
+	            var data = this._data;
+	            var dataWords = data.words;
+	            var nBitsTotal = this._nDataBytes * 8;
+	            var nBitsLeft = data.sigBytes * 8;
+	            var blockSizeBits = this.blockSize * 32;
+
+	            // Add padding
+	            dataWords[nBitsLeft >>> 5] |= 0x1 << (24 - nBitsLeft % 32);
+	            dataWords[((Math.ceil((nBitsLeft + 1) / blockSizeBits) * blockSizeBits) >>> 5) - 1] |= 0x80;
+	            data.sigBytes = dataWords.length * 4;
+
+	            // Hash final blocks
+	            this._process();
+
+	            // Shortcuts
+	            var state = this._state;
+	            var outputLengthBytes = this.cfg.outputLength / 8;
+	            var outputLengthLanes = outputLengthBytes / 8;
+
+	            // Squeeze
+	            var hashWords = [];
+	            for (var i = 0; i < outputLengthLanes; i++) {
+	                // Shortcuts
+	                var lane = state[i];
+	                var laneMsw = lane.high;
+	                var laneLsw = lane.low;
+
+	                // Swap endian
+	                laneMsw = (
+	                    (((laneMsw << 8)  | (laneMsw >>> 24)) & 0x00ff00ff) |
+	                    (((laneMsw << 24) | (laneMsw >>> 8))  & 0xff00ff00)
+	                );
+	                laneLsw = (
+	                    (((laneLsw << 8)  | (laneLsw >>> 24)) & 0x00ff00ff) |
+	                    (((laneLsw << 24) | (laneLsw >>> 8))  & 0xff00ff00)
+	                );
+
+	                // Squeeze state to retrieve hash
+	                hashWords.push(laneLsw);
+	                hashWords.push(laneMsw);
+	            }
+
+	            // Return final computed hash
+	            return new WordArray.init(hashWords, outputLengthBytes);
+	        },
+
+	        clone: function () {
+	            var clone = Hasher.clone.call(this);
+
+	            var state = clone._state = this._state.slice(0);
+	            for (var i = 0; i < 25; i++) {
+	                state[i] = state[i].clone();
+	            }
+
+	            return clone;
+	        }
+	    });
+
+	    /**
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA3('message');
+	     *     var hash = CryptoJS.SHA3(wordArray);
+	     */
+	    C.SHA3 = Hasher._createHelper(SHA3);
+
+	    /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA3(message, key);
+	     */
+	    C.HmacSHA3 = Hasher._createHmacHelper(SHA3);
+	}(Math));
 
 
 	/** @preserve
@@ -2045,7 +3214,7 @@
 	    var Base = C_lib.Base;
 	    var WordArray = C_lib.WordArray;
 	    var C_algo = C.algo;
-	    var SHA1 = C_algo.SHA1;
+	    var SHA256 = C_algo.SHA256;
 	    var HMAC = C_algo.HMAC;
 
 	    /**
@@ -2056,13 +3225,13 @@
 	         * Configuration options.
 	         *
 	         * @property {number} keySize The key size in words to generate. Default: 4 (128 bits)
-	         * @property {Hasher} hasher The hasher to use. Default: SHA1
-	         * @property {number} iterations The number of iterations to perform. Default: 1
+	         * @property {Hasher} hasher The hasher to use. Default: SHA256
+	         * @property {number} iterations The number of iterations to perform. Default: 250000
 	         */
 	        cfg: Base.extend({
 	            keySize: 128/32,
-	            hasher: SHA1,
-	            iterations: 1
+	            hasher: SHA256,
+	            iterations: 250000
 	        }),
 
 	        /**
@@ -2278,1035 +3447,6 @@
 	    C.EvpKDF = function (password, salt, cfg) {
 	        return EvpKDF.create(cfg).compute(password, salt);
 	    };
-	}());
-
-
-	(function () {
-	    // Shortcuts
-	    var C = CryptoJS;
-	    var C_lib = C.lib;
-	    var WordArray = C_lib.WordArray;
-	    var C_algo = C.algo;
-	    var SHA256 = C_algo.SHA256;
-
-	    /**
-	     * SHA-224 hash algorithm.
-	     */
-	    var SHA224 = C_algo.SHA224 = SHA256.extend({
-	        _doReset: function () {
-	            this._hash = new WordArray.init([
-	                0xc1059ed8, 0x367cd507, 0x3070dd17, 0xf70e5939,
-	                0xffc00b31, 0x68581511, 0x64f98fa7, 0xbefa4fa4
-	            ]);
-	        },
-
-	        _doFinalize: function () {
-	            var hash = SHA256._doFinalize.call(this);
-
-	            hash.sigBytes -= 4;
-
-	            return hash;
-	        }
-	    });
-
-	    /**
-	     * Shortcut function to the hasher's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     *
-	     * @return {WordArray} The hash.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hash = CryptoJS.SHA224('message');
-	     *     var hash = CryptoJS.SHA224(wordArray);
-	     */
-	    C.SHA224 = SHA256._createHelper(SHA224);
-
-	    /**
-	     * Shortcut function to the HMAC's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     * @param {WordArray|string} key The secret key.
-	     *
-	     * @return {WordArray} The HMAC.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hmac = CryptoJS.HmacSHA224(message, key);
-	     */
-	    C.HmacSHA224 = SHA256._createHmacHelper(SHA224);
-	}());
-
-
-	(function (undefined) {
-	    // Shortcuts
-	    var C = CryptoJS;
-	    var C_lib = C.lib;
-	    var Base = C_lib.Base;
-	    var X32WordArray = C_lib.WordArray;
-
-	    /**
-	     * x64 namespace.
-	     */
-	    var C_x64 = C.x64 = {};
-
-	    /**
-	     * A 64-bit word.
-	     */
-	    var X64Word = C_x64.Word = Base.extend({
-	        /**
-	         * Initializes a newly created 64-bit word.
-	         *
-	         * @param {number} high The high 32 bits.
-	         * @param {number} low The low 32 bits.
-	         *
-	         * @example
-	         *
-	         *     var x64Word = CryptoJS.x64.Word.create(0x00010203, 0x04050607);
-	         */
-	        init: function (high, low) {
-	            this.high = high;
-	            this.low = low;
-	        }
-
-	        /**
-	         * Bitwise NOTs this word.
-	         *
-	         * @return {X64Word} A new x64-Word object after negating.
-	         *
-	         * @example
-	         *
-	         *     var negated = x64Word.not();
-	         */
-	        // not: function () {
-	            // var high = ~this.high;
-	            // var low = ~this.low;
-
-	            // return X64Word.create(high, low);
-	        // },
-
-	        /**
-	         * Bitwise ANDs this word with the passed word.
-	         *
-	         * @param {X64Word} word The x64-Word to AND with this word.
-	         *
-	         * @return {X64Word} A new x64-Word object after ANDing.
-	         *
-	         * @example
-	         *
-	         *     var anded = x64Word.and(anotherX64Word);
-	         */
-	        // and: function (word) {
-	            // var high = this.high & word.high;
-	            // var low = this.low & word.low;
-
-	            // return X64Word.create(high, low);
-	        // },
-
-	        /**
-	         * Bitwise ORs this word with the passed word.
-	         *
-	         * @param {X64Word} word The x64-Word to OR with this word.
-	         *
-	         * @return {X64Word} A new x64-Word object after ORing.
-	         *
-	         * @example
-	         *
-	         *     var ored = x64Word.or(anotherX64Word);
-	         */
-	        // or: function (word) {
-	            // var high = this.high | word.high;
-	            // var low = this.low | word.low;
-
-	            // return X64Word.create(high, low);
-	        // },
-
-	        /**
-	         * Bitwise XORs this word with the passed word.
-	         *
-	         * @param {X64Word} word The x64-Word to XOR with this word.
-	         *
-	         * @return {X64Word} A new x64-Word object after XORing.
-	         *
-	         * @example
-	         *
-	         *     var xored = x64Word.xor(anotherX64Word);
-	         */
-	        // xor: function (word) {
-	            // var high = this.high ^ word.high;
-	            // var low = this.low ^ word.low;
-
-	            // return X64Word.create(high, low);
-	        // },
-
-	        /**
-	         * Shifts this word n bits to the left.
-	         *
-	         * @param {number} n The number of bits to shift.
-	         *
-	         * @return {X64Word} A new x64-Word object after shifting.
-	         *
-	         * @example
-	         *
-	         *     var shifted = x64Word.shiftL(25);
-	         */
-	        // shiftL: function (n) {
-	            // if (n < 32) {
-	                // var high = (this.high << n) | (this.low >>> (32 - n));
-	                // var low = this.low << n;
-	            // } else {
-	                // var high = this.low << (n - 32);
-	                // var low = 0;
-	            // }
-
-	            // return X64Word.create(high, low);
-	        // },
-
-	        /**
-	         * Shifts this word n bits to the right.
-	         *
-	         * @param {number} n The number of bits to shift.
-	         *
-	         * @return {X64Word} A new x64-Word object after shifting.
-	         *
-	         * @example
-	         *
-	         *     var shifted = x64Word.shiftR(7);
-	         */
-	        // shiftR: function (n) {
-	            // if (n < 32) {
-	                // var low = (this.low >>> n) | (this.high << (32 - n));
-	                // var high = this.high >>> n;
-	            // } else {
-	                // var low = this.high >>> (n - 32);
-	                // var high = 0;
-	            // }
-
-	            // return X64Word.create(high, low);
-	        // },
-
-	        /**
-	         * Rotates this word n bits to the left.
-	         *
-	         * @param {number} n The number of bits to rotate.
-	         *
-	         * @return {X64Word} A new x64-Word object after rotating.
-	         *
-	         * @example
-	         *
-	         *     var rotated = x64Word.rotL(25);
-	         */
-	        // rotL: function (n) {
-	            // return this.shiftL(n).or(this.shiftR(64 - n));
-	        // },
-
-	        /**
-	         * Rotates this word n bits to the right.
-	         *
-	         * @param {number} n The number of bits to rotate.
-	         *
-	         * @return {X64Word} A new x64-Word object after rotating.
-	         *
-	         * @example
-	         *
-	         *     var rotated = x64Word.rotR(7);
-	         */
-	        // rotR: function (n) {
-	            // return this.shiftR(n).or(this.shiftL(64 - n));
-	        // },
-
-	        /**
-	         * Adds this word with the passed word.
-	         *
-	         * @param {X64Word} word The x64-Word to add with this word.
-	         *
-	         * @return {X64Word} A new x64-Word object after adding.
-	         *
-	         * @example
-	         *
-	         *     var added = x64Word.add(anotherX64Word);
-	         */
-	        // add: function (word) {
-	            // var low = (this.low + word.low) | 0;
-	            // var carry = (low >>> 0) < (this.low >>> 0) ? 1 : 0;
-	            // var high = (this.high + word.high + carry) | 0;
-
-	            // return X64Word.create(high, low);
-	        // }
-	    });
-
-	    /**
-	     * An array of 64-bit words.
-	     *
-	     * @property {Array} words The array of CryptoJS.x64.Word objects.
-	     * @property {number} sigBytes The number of significant bytes in this word array.
-	     */
-	    var X64WordArray = C_x64.WordArray = Base.extend({
-	        /**
-	         * Initializes a newly created word array.
-	         *
-	         * @param {Array} words (Optional) An array of CryptoJS.x64.Word objects.
-	         * @param {number} sigBytes (Optional) The number of significant bytes in the words.
-	         *
-	         * @example
-	         *
-	         *     var wordArray = CryptoJS.x64.WordArray.create();
-	         *
-	         *     var wordArray = CryptoJS.x64.WordArray.create([
-	         *         CryptoJS.x64.Word.create(0x00010203, 0x04050607),
-	         *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
-	         *     ]);
-	         *
-	         *     var wordArray = CryptoJS.x64.WordArray.create([
-	         *         CryptoJS.x64.Word.create(0x00010203, 0x04050607),
-	         *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
-	         *     ], 10);
-	         */
-	        init: function (words, sigBytes) {
-	            words = this.words = words || [];
-
-	            if (sigBytes != undefined) {
-	                this.sigBytes = sigBytes;
-	            } else {
-	                this.sigBytes = words.length * 8;
-	            }
-	        },
-
-	        /**
-	         * Converts this 64-bit word array to a 32-bit word array.
-	         *
-	         * @return {CryptoJS.lib.WordArray} This word array's data as a 32-bit word array.
-	         *
-	         * @example
-	         *
-	         *     var x32WordArray = x64WordArray.toX32();
-	         */
-	        toX32: function () {
-	            // Shortcuts
-	            var x64Words = this.words;
-	            var x64WordsLength = x64Words.length;
-
-	            // Convert
-	            var x32Words = [];
-	            for (var i = 0; i < x64WordsLength; i++) {
-	                var x64Word = x64Words[i];
-	                x32Words.push(x64Word.high);
-	                x32Words.push(x64Word.low);
-	            }
-
-	            return X32WordArray.create(x32Words, this.sigBytes);
-	        },
-
-	        /**
-	         * Creates a copy of this word array.
-	         *
-	         * @return {X64WordArray} The clone.
-	         *
-	         * @example
-	         *
-	         *     var clone = x64WordArray.clone();
-	         */
-	        clone: function () {
-	            var clone = Base.clone.call(this);
-
-	            // Clone "words" array
-	            var words = clone.words = this.words.slice(0);
-
-	            // Clone each X64Word object
-	            var wordsLength = words.length;
-	            for (var i = 0; i < wordsLength; i++) {
-	                words[i] = words[i].clone();
-	            }
-
-	            return clone;
-	        }
-	    });
-	}());
-
-
-	(function (Math) {
-	    // Shortcuts
-	    var C = CryptoJS;
-	    var C_lib = C.lib;
-	    var WordArray = C_lib.WordArray;
-	    var Hasher = C_lib.Hasher;
-	    var C_x64 = C.x64;
-	    var X64Word = C_x64.Word;
-	    var C_algo = C.algo;
-
-	    // Constants tables
-	    var RHO_OFFSETS = [];
-	    var PI_INDEXES  = [];
-	    var ROUND_CONSTANTS = [];
-
-	    // Compute Constants
-	    (function () {
-	        // Compute rho offset constants
-	        var x = 1, y = 0;
-	        for (var t = 0; t < 24; t++) {
-	            RHO_OFFSETS[x + 5 * y] = ((t + 1) * (t + 2) / 2) % 64;
-
-	            var newX = y % 5;
-	            var newY = (2 * x + 3 * y) % 5;
-	            x = newX;
-	            y = newY;
-	        }
-
-	        // Compute pi index constants
-	        for (var x = 0; x < 5; x++) {
-	            for (var y = 0; y < 5; y++) {
-	                PI_INDEXES[x + 5 * y] = y + ((2 * x + 3 * y) % 5) * 5;
-	            }
-	        }
-
-	        // Compute round constants
-	        var LFSR = 0x01;
-	        for (var i = 0; i < 24; i++) {
-	            var roundConstantMsw = 0;
-	            var roundConstantLsw = 0;
-
-	            for (var j = 0; j < 7; j++) {
-	                if (LFSR & 0x01) {
-	                    var bitPosition = (1 << j) - 1;
-	                    if (bitPosition < 32) {
-	                        roundConstantLsw ^= 1 << bitPosition;
-	                    } else /* if (bitPosition >= 32) */ {
-	                        roundConstantMsw ^= 1 << (bitPosition - 32);
-	                    }
-	                }
-
-	                // Compute next LFSR
-	                if (LFSR & 0x80) {
-	                    // Primitive polynomial over GF(2): x^8 + x^6 + x^5 + x^4 + 1
-	                    LFSR = (LFSR << 1) ^ 0x71;
-	                } else {
-	                    LFSR <<= 1;
-	                }
-	            }
-
-	            ROUND_CONSTANTS[i] = X64Word.create(roundConstantMsw, roundConstantLsw);
-	        }
-	    }());
-
-	    // Reusable objects for temporary values
-	    var T = [];
-	    (function () {
-	        for (var i = 0; i < 25; i++) {
-	            T[i] = X64Word.create();
-	        }
-	    }());
-
-	    /**
-	     * SHA-3 hash algorithm.
-	     */
-	    var SHA3 = C_algo.SHA3 = Hasher.extend({
-	        /**
-	         * Configuration options.
-	         *
-	         * @property {number} outputLength
-	         *   The desired number of bits in the output hash.
-	         *   Only values permitted are: 224, 256, 384, 512.
-	         *   Default: 512
-	         */
-	        cfg: Hasher.cfg.extend({
-	            outputLength: 512
-	        }),
-
-	        _doReset: function () {
-	            var state = this._state = []
-	            for (var i = 0; i < 25; i++) {
-	                state[i] = new X64Word.init();
-	            }
-
-	            this.blockSize = (1600 - 2 * this.cfg.outputLength) / 32;
-	        },
-
-	        _doProcessBlock: function (M, offset) {
-	            // Shortcuts
-	            var state = this._state;
-	            var nBlockSizeLanes = this.blockSize / 2;
-
-	            // Absorb
-	            for (var i = 0; i < nBlockSizeLanes; i++) {
-	                // Shortcuts
-	                var M2i  = M[offset + 2 * i];
-	                var M2i1 = M[offset + 2 * i + 1];
-
-	                // Swap endian
-	                M2i = (
-	                    (((M2i << 8)  | (M2i >>> 24)) & 0x00ff00ff) |
-	                    (((M2i << 24) | (M2i >>> 8))  & 0xff00ff00)
-	                );
-	                M2i1 = (
-	                    (((M2i1 << 8)  | (M2i1 >>> 24)) & 0x00ff00ff) |
-	                    (((M2i1 << 24) | (M2i1 >>> 8))  & 0xff00ff00)
-	                );
-
-	                // Absorb message into state
-	                var lane = state[i];
-	                lane.high ^= M2i1;
-	                lane.low  ^= M2i;
-	            }
-
-	            // Rounds
-	            for (var round = 0; round < 24; round++) {
-	                // Theta
-	                for (var x = 0; x < 5; x++) {
-	                    // Mix column lanes
-	                    var tMsw = 0, tLsw = 0;
-	                    for (var y = 0; y < 5; y++) {
-	                        var lane = state[x + 5 * y];
-	                        tMsw ^= lane.high;
-	                        tLsw ^= lane.low;
-	                    }
-
-	                    // Temporary values
-	                    var Tx = T[x];
-	                    Tx.high = tMsw;
-	                    Tx.low  = tLsw;
-	                }
-	                for (var x = 0; x < 5; x++) {
-	                    // Shortcuts
-	                    var Tx4 = T[(x + 4) % 5];
-	                    var Tx1 = T[(x + 1) % 5];
-	                    var Tx1Msw = Tx1.high;
-	                    var Tx1Lsw = Tx1.low;
-
-	                    // Mix surrounding columns
-	                    var tMsw = Tx4.high ^ ((Tx1Msw << 1) | (Tx1Lsw >>> 31));
-	                    var tLsw = Tx4.low  ^ ((Tx1Lsw << 1) | (Tx1Msw >>> 31));
-	                    for (var y = 0; y < 5; y++) {
-	                        var lane = state[x + 5 * y];
-	                        lane.high ^= tMsw;
-	                        lane.low  ^= tLsw;
-	                    }
-	                }
-
-	                // Rho Pi
-	                for (var laneIndex = 1; laneIndex < 25; laneIndex++) {
-	                    var tMsw;
-	                    var tLsw;
-
-	                    // Shortcuts
-	                    var lane = state[laneIndex];
-	                    var laneMsw = lane.high;
-	                    var laneLsw = lane.low;
-	                    var rhoOffset = RHO_OFFSETS[laneIndex];
-
-	                    // Rotate lanes
-	                    if (rhoOffset < 32) {
-	                        tMsw = (laneMsw << rhoOffset) | (laneLsw >>> (32 - rhoOffset));
-	                        tLsw = (laneLsw << rhoOffset) | (laneMsw >>> (32 - rhoOffset));
-	                    } else /* if (rhoOffset >= 32) */ {
-	                        tMsw = (laneLsw << (rhoOffset - 32)) | (laneMsw >>> (64 - rhoOffset));
-	                        tLsw = (laneMsw << (rhoOffset - 32)) | (laneLsw >>> (64 - rhoOffset));
-	                    }
-
-	                    // Transpose lanes
-	                    var TPiLane = T[PI_INDEXES[laneIndex]];
-	                    TPiLane.high = tMsw;
-	                    TPiLane.low  = tLsw;
-	                }
-
-	                // Rho pi at x = y = 0
-	                var T0 = T[0];
-	                var state0 = state[0];
-	                T0.high = state0.high;
-	                T0.low  = state0.low;
-
-	                // Chi
-	                for (var x = 0; x < 5; x++) {
-	                    for (var y = 0; y < 5; y++) {
-	                        // Shortcuts
-	                        var laneIndex = x + 5 * y;
-	                        var lane = state[laneIndex];
-	                        var TLane = T[laneIndex];
-	                        var Tx1Lane = T[((x + 1) % 5) + 5 * y];
-	                        var Tx2Lane = T[((x + 2) % 5) + 5 * y];
-
-	                        // Mix rows
-	                        lane.high = TLane.high ^ (~Tx1Lane.high & Tx2Lane.high);
-	                        lane.low  = TLane.low  ^ (~Tx1Lane.low  & Tx2Lane.low);
-	                    }
-	                }
-
-	                // Iota
-	                var lane = state[0];
-	                var roundConstant = ROUND_CONSTANTS[round];
-	                lane.high ^= roundConstant.high;
-	                lane.low  ^= roundConstant.low;
-	            }
-	        },
-
-	        _doFinalize: function () {
-	            // Shortcuts
-	            var data = this._data;
-	            var dataWords = data.words;
-	            var nBitsTotal = this._nDataBytes * 8;
-	            var nBitsLeft = data.sigBytes * 8;
-	            var blockSizeBits = this.blockSize * 32;
-
-	            // Add padding
-	            dataWords[nBitsLeft >>> 5] |= 0x1 << (24 - nBitsLeft % 32);
-	            dataWords[((Math.ceil((nBitsLeft + 1) / blockSizeBits) * blockSizeBits) >>> 5) - 1] |= 0x80;
-	            data.sigBytes = dataWords.length * 4;
-
-	            // Hash final blocks
-	            this._process();
-
-	            // Shortcuts
-	            var state = this._state;
-	            var outputLengthBytes = this.cfg.outputLength / 8;
-	            var outputLengthLanes = outputLengthBytes / 8;
-
-	            // Squeeze
-	            var hashWords = [];
-	            for (var i = 0; i < outputLengthLanes; i++) {
-	                // Shortcuts
-	                var lane = state[i];
-	                var laneMsw = lane.high;
-	                var laneLsw = lane.low;
-
-	                // Swap endian
-	                laneMsw = (
-	                    (((laneMsw << 8)  | (laneMsw >>> 24)) & 0x00ff00ff) |
-	                    (((laneMsw << 24) | (laneMsw >>> 8))  & 0xff00ff00)
-	                );
-	                laneLsw = (
-	                    (((laneLsw << 8)  | (laneLsw >>> 24)) & 0x00ff00ff) |
-	                    (((laneLsw << 24) | (laneLsw >>> 8))  & 0xff00ff00)
-	                );
-
-	                // Squeeze state to retrieve hash
-	                hashWords.push(laneLsw);
-	                hashWords.push(laneMsw);
-	            }
-
-	            // Return final computed hash
-	            return new WordArray.init(hashWords, outputLengthBytes);
-	        },
-
-	        clone: function () {
-	            var clone = Hasher.clone.call(this);
-
-	            var state = clone._state = this._state.slice(0);
-	            for (var i = 0; i < 25; i++) {
-	                state[i] = state[i].clone();
-	            }
-
-	            return clone;
-	        }
-	    });
-
-	    /**
-	     * Shortcut function to the hasher's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     *
-	     * @return {WordArray} The hash.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hash = CryptoJS.SHA3('message');
-	     *     var hash = CryptoJS.SHA3(wordArray);
-	     */
-	    C.SHA3 = Hasher._createHelper(SHA3);
-
-	    /**
-	     * Shortcut function to the HMAC's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     * @param {WordArray|string} key The secret key.
-	     *
-	     * @return {WordArray} The HMAC.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hmac = CryptoJS.HmacSHA3(message, key);
-	     */
-	    C.HmacSHA3 = Hasher._createHmacHelper(SHA3);
-	}(Math));
-
-
-	(function () {
-	    // Shortcuts
-	    var C = CryptoJS;
-	    var C_lib = C.lib;
-	    var Hasher = C_lib.Hasher;
-	    var C_x64 = C.x64;
-	    var X64Word = C_x64.Word;
-	    var X64WordArray = C_x64.WordArray;
-	    var C_algo = C.algo;
-
-	    function X64Word_create() {
-	        return X64Word.create.apply(X64Word, arguments);
-	    }
-
-	    // Constants
-	    var K = [
-	        X64Word_create(0x428a2f98, 0xd728ae22), X64Word_create(0x71374491, 0x23ef65cd),
-	        X64Word_create(0xb5c0fbcf, 0xec4d3b2f), X64Word_create(0xe9b5dba5, 0x8189dbbc),
-	        X64Word_create(0x3956c25b, 0xf348b538), X64Word_create(0x59f111f1, 0xb605d019),
-	        X64Word_create(0x923f82a4, 0xaf194f9b), X64Word_create(0xab1c5ed5, 0xda6d8118),
-	        X64Word_create(0xd807aa98, 0xa3030242), X64Word_create(0x12835b01, 0x45706fbe),
-	        X64Word_create(0x243185be, 0x4ee4b28c), X64Word_create(0x550c7dc3, 0xd5ffb4e2),
-	        X64Word_create(0x72be5d74, 0xf27b896f), X64Word_create(0x80deb1fe, 0x3b1696b1),
-	        X64Word_create(0x9bdc06a7, 0x25c71235), X64Word_create(0xc19bf174, 0xcf692694),
-	        X64Word_create(0xe49b69c1, 0x9ef14ad2), X64Word_create(0xefbe4786, 0x384f25e3),
-	        X64Word_create(0x0fc19dc6, 0x8b8cd5b5), X64Word_create(0x240ca1cc, 0x77ac9c65),
-	        X64Word_create(0x2de92c6f, 0x592b0275), X64Word_create(0x4a7484aa, 0x6ea6e483),
-	        X64Word_create(0x5cb0a9dc, 0xbd41fbd4), X64Word_create(0x76f988da, 0x831153b5),
-	        X64Word_create(0x983e5152, 0xee66dfab), X64Word_create(0xa831c66d, 0x2db43210),
-	        X64Word_create(0xb00327c8, 0x98fb213f), X64Word_create(0xbf597fc7, 0xbeef0ee4),
-	        X64Word_create(0xc6e00bf3, 0x3da88fc2), X64Word_create(0xd5a79147, 0x930aa725),
-	        X64Word_create(0x06ca6351, 0xe003826f), X64Word_create(0x14292967, 0x0a0e6e70),
-	        X64Word_create(0x27b70a85, 0x46d22ffc), X64Word_create(0x2e1b2138, 0x5c26c926),
-	        X64Word_create(0x4d2c6dfc, 0x5ac42aed), X64Word_create(0x53380d13, 0x9d95b3df),
-	        X64Word_create(0x650a7354, 0x8baf63de), X64Word_create(0x766a0abb, 0x3c77b2a8),
-	        X64Word_create(0x81c2c92e, 0x47edaee6), X64Word_create(0x92722c85, 0x1482353b),
-	        X64Word_create(0xa2bfe8a1, 0x4cf10364), X64Word_create(0xa81a664b, 0xbc423001),
-	        X64Word_create(0xc24b8b70, 0xd0f89791), X64Word_create(0xc76c51a3, 0x0654be30),
-	        X64Word_create(0xd192e819, 0xd6ef5218), X64Word_create(0xd6990624, 0x5565a910),
-	        X64Word_create(0xf40e3585, 0x5771202a), X64Word_create(0x106aa070, 0x32bbd1b8),
-	        X64Word_create(0x19a4c116, 0xb8d2d0c8), X64Word_create(0x1e376c08, 0x5141ab53),
-	        X64Word_create(0x2748774c, 0xdf8eeb99), X64Word_create(0x34b0bcb5, 0xe19b48a8),
-	        X64Word_create(0x391c0cb3, 0xc5c95a63), X64Word_create(0x4ed8aa4a, 0xe3418acb),
-	        X64Word_create(0x5b9cca4f, 0x7763e373), X64Word_create(0x682e6ff3, 0xd6b2b8a3),
-	        X64Word_create(0x748f82ee, 0x5defb2fc), X64Word_create(0x78a5636f, 0x43172f60),
-	        X64Word_create(0x84c87814, 0xa1f0ab72), X64Word_create(0x8cc70208, 0x1a6439ec),
-	        X64Word_create(0x90befffa, 0x23631e28), X64Word_create(0xa4506ceb, 0xde82bde9),
-	        X64Word_create(0xbef9a3f7, 0xb2c67915), X64Word_create(0xc67178f2, 0xe372532b),
-	        X64Word_create(0xca273ece, 0xea26619c), X64Word_create(0xd186b8c7, 0x21c0c207),
-	        X64Word_create(0xeada7dd6, 0xcde0eb1e), X64Word_create(0xf57d4f7f, 0xee6ed178),
-	        X64Word_create(0x06f067aa, 0x72176fba), X64Word_create(0x0a637dc5, 0xa2c898a6),
-	        X64Word_create(0x113f9804, 0xbef90dae), X64Word_create(0x1b710b35, 0x131c471b),
-	        X64Word_create(0x28db77f5, 0x23047d84), X64Word_create(0x32caab7b, 0x40c72493),
-	        X64Word_create(0x3c9ebe0a, 0x15c9bebc), X64Word_create(0x431d67c4, 0x9c100d4c),
-	        X64Word_create(0x4cc5d4be, 0xcb3e42b6), X64Word_create(0x597f299c, 0xfc657e2a),
-	        X64Word_create(0x5fcb6fab, 0x3ad6faec), X64Word_create(0x6c44198c, 0x4a475817)
-	    ];
-
-	    // Reusable objects
-	    var W = [];
-	    (function () {
-	        for (var i = 0; i < 80; i++) {
-	            W[i] = X64Word_create();
-	        }
-	    }());
-
-	    /**
-	     * SHA-512 hash algorithm.
-	     */
-	    var SHA512 = C_algo.SHA512 = Hasher.extend({
-	        _doReset: function () {
-	            this._hash = new X64WordArray.init([
-	                new X64Word.init(0x6a09e667, 0xf3bcc908), new X64Word.init(0xbb67ae85, 0x84caa73b),
-	                new X64Word.init(0x3c6ef372, 0xfe94f82b), new X64Word.init(0xa54ff53a, 0x5f1d36f1),
-	                new X64Word.init(0x510e527f, 0xade682d1), new X64Word.init(0x9b05688c, 0x2b3e6c1f),
-	                new X64Word.init(0x1f83d9ab, 0xfb41bd6b), new X64Word.init(0x5be0cd19, 0x137e2179)
-	            ]);
-	        },
-
-	        _doProcessBlock: function (M, offset) {
-	            // Shortcuts
-	            var H = this._hash.words;
-
-	            var H0 = H[0];
-	            var H1 = H[1];
-	            var H2 = H[2];
-	            var H3 = H[3];
-	            var H4 = H[4];
-	            var H5 = H[5];
-	            var H6 = H[6];
-	            var H7 = H[7];
-
-	            var H0h = H0.high;
-	            var H0l = H0.low;
-	            var H1h = H1.high;
-	            var H1l = H1.low;
-	            var H2h = H2.high;
-	            var H2l = H2.low;
-	            var H3h = H3.high;
-	            var H3l = H3.low;
-	            var H4h = H4.high;
-	            var H4l = H4.low;
-	            var H5h = H5.high;
-	            var H5l = H5.low;
-	            var H6h = H6.high;
-	            var H6l = H6.low;
-	            var H7h = H7.high;
-	            var H7l = H7.low;
-
-	            // Working variables
-	            var ah = H0h;
-	            var al = H0l;
-	            var bh = H1h;
-	            var bl = H1l;
-	            var ch = H2h;
-	            var cl = H2l;
-	            var dh = H3h;
-	            var dl = H3l;
-	            var eh = H4h;
-	            var el = H4l;
-	            var fh = H5h;
-	            var fl = H5l;
-	            var gh = H6h;
-	            var gl = H6l;
-	            var hh = H7h;
-	            var hl = H7l;
-
-	            // Rounds
-	            for (var i = 0; i < 80; i++) {
-	                var Wil;
-	                var Wih;
-
-	                // Shortcut
-	                var Wi = W[i];
-
-	                // Extend message
-	                if (i < 16) {
-	                    Wih = Wi.high = M[offset + i * 2]     | 0;
-	                    Wil = Wi.low  = M[offset + i * 2 + 1] | 0;
-	                } else {
-	                    // Gamma0
-	                    var gamma0x  = W[i - 15];
-	                    var gamma0xh = gamma0x.high;
-	                    var gamma0xl = gamma0x.low;
-	                    var gamma0h  = ((gamma0xh >>> 1) | (gamma0xl << 31)) ^ ((gamma0xh >>> 8) | (gamma0xl << 24)) ^ (gamma0xh >>> 7);
-	                    var gamma0l  = ((gamma0xl >>> 1) | (gamma0xh << 31)) ^ ((gamma0xl >>> 8) | (gamma0xh << 24)) ^ ((gamma0xl >>> 7) | (gamma0xh << 25));
-
-	                    // Gamma1
-	                    var gamma1x  = W[i - 2];
-	                    var gamma1xh = gamma1x.high;
-	                    var gamma1xl = gamma1x.low;
-	                    var gamma1h  = ((gamma1xh >>> 19) | (gamma1xl << 13)) ^ ((gamma1xh << 3) | (gamma1xl >>> 29)) ^ (gamma1xh >>> 6);
-	                    var gamma1l  = ((gamma1xl >>> 19) | (gamma1xh << 13)) ^ ((gamma1xl << 3) | (gamma1xh >>> 29)) ^ ((gamma1xl >>> 6) | (gamma1xh << 26));
-
-	                    // W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16]
-	                    var Wi7  = W[i - 7];
-	                    var Wi7h = Wi7.high;
-	                    var Wi7l = Wi7.low;
-
-	                    var Wi16  = W[i - 16];
-	                    var Wi16h = Wi16.high;
-	                    var Wi16l = Wi16.low;
-
-	                    Wil = gamma0l + Wi7l;
-	                    Wih = gamma0h + Wi7h + ((Wil >>> 0) < (gamma0l >>> 0) ? 1 : 0);
-	                    Wil = Wil + gamma1l;
-	                    Wih = Wih + gamma1h + ((Wil >>> 0) < (gamma1l >>> 0) ? 1 : 0);
-	                    Wil = Wil + Wi16l;
-	                    Wih = Wih + Wi16h + ((Wil >>> 0) < (Wi16l >>> 0) ? 1 : 0);
-
-	                    Wi.high = Wih;
-	                    Wi.low  = Wil;
-	                }
-
-	                var chh  = (eh & fh) ^ (~eh & gh);
-	                var chl  = (el & fl) ^ (~el & gl);
-	                var majh = (ah & bh) ^ (ah & ch) ^ (bh & ch);
-	                var majl = (al & bl) ^ (al & cl) ^ (bl & cl);
-
-	                var sigma0h = ((ah >>> 28) | (al << 4))  ^ ((ah << 30)  | (al >>> 2)) ^ ((ah << 25) | (al >>> 7));
-	                var sigma0l = ((al >>> 28) | (ah << 4))  ^ ((al << 30)  | (ah >>> 2)) ^ ((al << 25) | (ah >>> 7));
-	                var sigma1h = ((eh >>> 14) | (el << 18)) ^ ((eh >>> 18) | (el << 14)) ^ ((eh << 23) | (el >>> 9));
-	                var sigma1l = ((el >>> 14) | (eh << 18)) ^ ((el >>> 18) | (eh << 14)) ^ ((el << 23) | (eh >>> 9));
-
-	                // t1 = h + sigma1 + ch + K[i] + W[i]
-	                var Ki  = K[i];
-	                var Kih = Ki.high;
-	                var Kil = Ki.low;
-
-	                var t1l = hl + sigma1l;
-	                var t1h = hh + sigma1h + ((t1l >>> 0) < (hl >>> 0) ? 1 : 0);
-	                var t1l = t1l + chl;
-	                var t1h = t1h + chh + ((t1l >>> 0) < (chl >>> 0) ? 1 : 0);
-	                var t1l = t1l + Kil;
-	                var t1h = t1h + Kih + ((t1l >>> 0) < (Kil >>> 0) ? 1 : 0);
-	                var t1l = t1l + Wil;
-	                var t1h = t1h + Wih + ((t1l >>> 0) < (Wil >>> 0) ? 1 : 0);
-
-	                // t2 = sigma0 + maj
-	                var t2l = sigma0l + majl;
-	                var t2h = sigma0h + majh + ((t2l >>> 0) < (sigma0l >>> 0) ? 1 : 0);
-
-	                // Update working variables
-	                hh = gh;
-	                hl = gl;
-	                gh = fh;
-	                gl = fl;
-	                fh = eh;
-	                fl = el;
-	                el = (dl + t1l) | 0;
-	                eh = (dh + t1h + ((el >>> 0) < (dl >>> 0) ? 1 : 0)) | 0;
-	                dh = ch;
-	                dl = cl;
-	                ch = bh;
-	                cl = bl;
-	                bh = ah;
-	                bl = al;
-	                al = (t1l + t2l) | 0;
-	                ah = (t1h + t2h + ((al >>> 0) < (t1l >>> 0) ? 1 : 0)) | 0;
-	            }
-
-	            // Intermediate hash value
-	            H0l = H0.low  = (H0l + al);
-	            H0.high = (H0h + ah + ((H0l >>> 0) < (al >>> 0) ? 1 : 0));
-	            H1l = H1.low  = (H1l + bl);
-	            H1.high = (H1h + bh + ((H1l >>> 0) < (bl >>> 0) ? 1 : 0));
-	            H2l = H2.low  = (H2l + cl);
-	            H2.high = (H2h + ch + ((H2l >>> 0) < (cl >>> 0) ? 1 : 0));
-	            H3l = H3.low  = (H3l + dl);
-	            H3.high = (H3h + dh + ((H3l >>> 0) < (dl >>> 0) ? 1 : 0));
-	            H4l = H4.low  = (H4l + el);
-	            H4.high = (H4h + eh + ((H4l >>> 0) < (el >>> 0) ? 1 : 0));
-	            H5l = H5.low  = (H5l + fl);
-	            H5.high = (H5h + fh + ((H5l >>> 0) < (fl >>> 0) ? 1 : 0));
-	            H6l = H6.low  = (H6l + gl);
-	            H6.high = (H6h + gh + ((H6l >>> 0) < (gl >>> 0) ? 1 : 0));
-	            H7l = H7.low  = (H7l + hl);
-	            H7.high = (H7h + hh + ((H7l >>> 0) < (hl >>> 0) ? 1 : 0));
-	        },
-
-	        _doFinalize: function () {
-	            // Shortcuts
-	            var data = this._data;
-	            var dataWords = data.words;
-
-	            var nBitsTotal = this._nDataBytes * 8;
-	            var nBitsLeft = data.sigBytes * 8;
-
-	            // Add padding
-	            dataWords[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
-	            dataWords[(((nBitsLeft + 128) >>> 10) << 5) + 30] = Math.floor(nBitsTotal / 0x100000000);
-	            dataWords[(((nBitsLeft + 128) >>> 10) << 5) + 31] = nBitsTotal;
-	            data.sigBytes = dataWords.length * 4;
-
-	            // Hash final blocks
-	            this._process();
-
-	            // Convert hash to 32-bit word array before returning
-	            var hash = this._hash.toX32();
-
-	            // Return final computed hash
-	            return hash;
-	        },
-
-	        clone: function () {
-	            var clone = Hasher.clone.call(this);
-	            clone._hash = this._hash.clone();
-
-	            return clone;
-	        },
-
-	        blockSize: 1024/32
-	    });
-
-	    /**
-	     * Shortcut function to the hasher's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     *
-	     * @return {WordArray} The hash.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hash = CryptoJS.SHA512('message');
-	     *     var hash = CryptoJS.SHA512(wordArray);
-	     */
-	    C.SHA512 = Hasher._createHelper(SHA512);
-
-	    /**
-	     * Shortcut function to the HMAC's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     * @param {WordArray|string} key The secret key.
-	     *
-	     * @return {WordArray} The HMAC.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hmac = CryptoJS.HmacSHA512(message, key);
-	     */
-	    C.HmacSHA512 = Hasher._createHmacHelper(SHA512);
-	}());
-
-
-	(function () {
-	    // Shortcuts
-	    var C = CryptoJS;
-	    var C_x64 = C.x64;
-	    var X64Word = C_x64.Word;
-	    var X64WordArray = C_x64.WordArray;
-	    var C_algo = C.algo;
-	    var SHA512 = C_algo.SHA512;
-
-	    /**
-	     * SHA-384 hash algorithm.
-	     */
-	    var SHA384 = C_algo.SHA384 = SHA512.extend({
-	        _doReset: function () {
-	            this._hash = new X64WordArray.init([
-	                new X64Word.init(0xcbbb9d5d, 0xc1059ed8), new X64Word.init(0x629a292a, 0x367cd507),
-	                new X64Word.init(0x9159015a, 0x3070dd17), new X64Word.init(0x152fecd8, 0xf70e5939),
-	                new X64Word.init(0x67332667, 0xffc00b31), new X64Word.init(0x8eb44a87, 0x68581511),
-	                new X64Word.init(0xdb0c2e0d, 0x64f98fa7), new X64Word.init(0x47b5481d, 0xbefa4fa4)
-	            ]);
-	        },
-
-	        _doFinalize: function () {
-	            var hash = SHA512._doFinalize.call(this);
-
-	            hash.sigBytes -= 16;
-
-	            return hash;
-	        }
-	    });
-
-	    /**
-	     * Shortcut function to the hasher's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     *
-	     * @return {WordArray} The hash.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hash = CryptoJS.SHA384('message');
-	     *     var hash = CryptoJS.SHA384(wordArray);
-	     */
-	    C.SHA384 = SHA512._createHelper(SHA384);
-
-	    /**
-	     * Shortcut function to the HMAC's object interface.
-	     *
-	     * @param {WordArray|string} message The message to hash.
-	     * @param {WordArray|string} key The secret key.
-	     *
-	     * @return {WordArray} The HMAC.
-	     *
-	     * @static
-	     *
-	     * @example
-	     *
-	     *     var hmac = CryptoJS.HmacSHA384(message, key);
-	     */
-	    C.HmacSHA384 = SHA512._createHmacHelper(SHA384);
 	}());
 
 
@@ -4077,14 +4217,19 @@
 	         *     var derivedParams = CryptoJS.kdf.OpenSSL.execute('Password', 256/32, 128/32);
 	         *     var derivedParams = CryptoJS.kdf.OpenSSL.execute('Password', 256/32, 128/32, 'saltsalt');
 	         */
-	        execute: function (password, keySize, ivSize, salt) {
+	        execute: function (password, keySize, ivSize, salt, hasher) {
 	            // Generate random salt
 	            if (!salt) {
 	                salt = WordArray.random(64/8);
 	            }
 
 	            // Derive key and IV
-	            var key = EvpKDF.create({ keySize: keySize + ivSize }).compute(password, salt);
+	            if (!hasher) {
+	                var key = EvpKDF.create({ keySize: keySize + ivSize }).compute(password, salt);
+	            } else {
+	                var key = EvpKDF.create({ keySize: keySize + ivSize, hasher: hasher }).compute(password, salt);
+	            }
+
 
 	            // Separate key and IV
 	            var iv = WordArray.create(key.words.slice(keySize), ivSize * 4);
@@ -4131,7 +4276,7 @@
 	            cfg = this.cfg.extend(cfg);
 
 	            // Derive key and other params
-	            var derivedParams = cfg.kdf.execute(password, cipher.keySize, cipher.ivSize);
+	            var derivedParams = cfg.kdf.execute(password, cipher.keySize, cipher.ivSize, cfg.salt, cfg.hasher);
 
 	            // Add IV to config
 	            cfg.iv = derivedParams.iv;
@@ -4170,7 +4315,7 @@
 	            ciphertext = this._parse(ciphertext, cfg.format);
 
 	            // Derive key and other params
-	            var derivedParams = cfg.kdf.execute(password, cipher.keySize, cipher.ivSize, ciphertext.salt);
+	            var derivedParams = cfg.kdf.execute(password, cipher.keySize, cipher.ivSize, ciphertext.salt, cfg.hasher);
 
 	            // Add IV to config
 	            cfg.iv = derivedParams.iv;
@@ -4243,6 +4388,180 @@
 	    }
 
 	    return CFB;
+	}());
+
+
+	/**
+	 * Counter block mode.
+	 */
+	CryptoJS.mode.CTR = (function () {
+	    var CTR = CryptoJS.lib.BlockCipherMode.extend();
+
+	    var Encryptor = CTR.Encryptor = CTR.extend({
+	        processBlock: function (words, offset) {
+	            // Shortcuts
+	            var cipher = this._cipher
+	            var blockSize = cipher.blockSize;
+	            var iv = this._iv;
+	            var counter = this._counter;
+
+	            // Generate keystream
+	            if (iv) {
+	                counter = this._counter = iv.slice(0);
+
+	                // Remove IV for subsequent blocks
+	                this._iv = undefined;
+	            }
+	            var keystream = counter.slice(0);
+	            cipher.encryptBlock(keystream, 0);
+
+	            // Increment counter
+	            counter[blockSize - 1] = (counter[blockSize - 1] + 1) | 0
+
+	            // Encrypt
+	            for (var i = 0; i < blockSize; i++) {
+	                words[offset + i] ^= keystream[i];
+	            }
+	        }
+	    });
+
+	    CTR.Decryptor = Encryptor;
+
+	    return CTR;
+	}());
+
+
+	/** @preserve
+	 * Counter block mode compatible with  Dr Brian Gladman fileenc.c
+	 * derived from CryptoJS.mode.CTR
+	 * Jan Hruby jhruby.web@gmail.com
+	 */
+	CryptoJS.mode.CTRGladman = (function () {
+	    var CTRGladman = CryptoJS.lib.BlockCipherMode.extend();
+
+		function incWord(word)
+		{
+			if (((word >> 24) & 0xff) === 0xff) { //overflow
+			var b1 = (word >> 16)&0xff;
+			var b2 = (word >> 8)&0xff;
+			var b3 = word & 0xff;
+
+			if (b1 === 0xff) // overflow b1
+			{
+			b1 = 0;
+			if (b2 === 0xff)
+			{
+				b2 = 0;
+				if (b3 === 0xff)
+				{
+					b3 = 0;
+				}
+				else
+				{
+					++b3;
+				}
+			}
+			else
+			{
+				++b2;
+			}
+			}
+			else
+			{
+			++b1;
+			}
+
+			word = 0;
+			word += (b1 << 16);
+			word += (b2 << 8);
+			word += b3;
+			}
+			else
+			{
+			word += (0x01 << 24);
+			}
+			return word;
+		}
+
+		function incCounter(counter)
+		{
+			if ((counter[0] = incWord(counter[0])) === 0)
+			{
+				// encr_data in fileenc.c from  Dr Brian Gladman's counts only with DWORD j < 8
+				counter[1] = incWord(counter[1]);
+			}
+			return counter;
+		}
+
+	    var Encryptor = CTRGladman.Encryptor = CTRGladman.extend({
+	        processBlock: function (words, offset) {
+	            // Shortcuts
+	            var cipher = this._cipher
+	            var blockSize = cipher.blockSize;
+	            var iv = this._iv;
+	            var counter = this._counter;
+
+	            // Generate keystream
+	            if (iv) {
+	                counter = this._counter = iv.slice(0);
+
+	                // Remove IV for subsequent blocks
+	                this._iv = undefined;
+	            }
+
+				incCounter(counter);
+
+				var keystream = counter.slice(0);
+	            cipher.encryptBlock(keystream, 0);
+
+	            // Encrypt
+	            for (var i = 0; i < blockSize; i++) {
+	                words[offset + i] ^= keystream[i];
+	            }
+	        }
+	    });
+
+	    CTRGladman.Decryptor = Encryptor;
+
+	    return CTRGladman;
+	}());
+
+
+
+
+	/**
+	 * Output Feedback block mode.
+	 */
+	CryptoJS.mode.OFB = (function () {
+	    var OFB = CryptoJS.lib.BlockCipherMode.extend();
+
+	    var Encryptor = OFB.Encryptor = OFB.extend({
+	        processBlock: function (words, offset) {
+	            // Shortcuts
+	            var cipher = this._cipher
+	            var blockSize = cipher.blockSize;
+	            var iv = this._iv;
+	            var keystream = this._keystream;
+
+	            // Generate keystream
+	            if (iv) {
+	                keystream = this._keystream = iv.slice(0);
+
+	                // Remove IV for subsequent blocks
+	                this._iv = undefined;
+	            }
+	            cipher.encryptBlock(keystream, 0);
+
+	            // Encrypt
+	            for (var i = 0; i < blockSize; i++) {
+	                words[offset + i] ^= keystream[i];
+	            }
+	        }
+	    });
+
+	    OFB.Decryptor = Encryptor;
+
+	    return OFB;
 	}());
 
 
@@ -4348,39 +4667,32 @@
 
 
 	/**
-	 * Output Feedback block mode.
+	 * Zero padding strategy.
 	 */
-	CryptoJS.mode.OFB = (function () {
-	    var OFB = CryptoJS.lib.BlockCipherMode.extend();
+	CryptoJS.pad.ZeroPadding = {
+	    pad: function (data, blockSize) {
+	        // Shortcut
+	        var blockSizeBytes = blockSize * 4;
 
-	    var Encryptor = OFB.Encryptor = OFB.extend({
-	        processBlock: function (words, offset) {
-	            // Shortcuts
-	            var cipher = this._cipher
-	            var blockSize = cipher.blockSize;
-	            var iv = this._iv;
-	            var keystream = this._keystream;
+	        // Pad
+	        data.clamp();
+	        data.sigBytes += blockSizeBytes - ((data.sigBytes % blockSizeBytes) || blockSizeBytes);
+	    },
 
-	            // Generate keystream
-	            if (iv) {
-	                keystream = this._keystream = iv.slice(0);
+	    unpad: function (data) {
+	        // Shortcut
+	        var dataWords = data.words;
 
-	                // Remove IV for subsequent blocks
-	                this._iv = undefined;
-	            }
-	            cipher.encryptBlock(keystream, 0);
-
-	            // Encrypt
-	            for (var i = 0; i < blockSize; i++) {
-	                words[offset + i] ^= keystream[i];
+	        // Unpad
+	        var i = data.sigBytes - 1;
+	        for (var i = data.sigBytes - 1; i >= 0; i--) {
+	            if (((dataWords[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff)) {
+	                data.sigBytes = i + 1;
+	                break;
 	            }
 	        }
-	    });
-
-	    OFB.Decryptor = Encryptor;
-
-	    return OFB;
-	}());
+	    }
+	};
 
 
 	/**
@@ -5541,104 +5853,6 @@
 	}());
 
 
-	/** @preserve
-	 * Counter block mode compatible with  Dr Brian Gladman fileenc.c
-	 * derived from CryptoJS.mode.CTR
-	 * Jan Hruby jhruby.web@gmail.com
-	 */
-	CryptoJS.mode.CTRGladman = (function () {
-	    var CTRGladman = CryptoJS.lib.BlockCipherMode.extend();
-
-		function incWord(word)
-		{
-			if (((word >> 24) & 0xff) === 0xff) { //overflow
-			var b1 = (word >> 16)&0xff;
-			var b2 = (word >> 8)&0xff;
-			var b3 = word & 0xff;
-
-			if (b1 === 0xff) // overflow b1
-			{
-			b1 = 0;
-			if (b2 === 0xff)
-			{
-				b2 = 0;
-				if (b3 === 0xff)
-				{
-					b3 = 0;
-				}
-				else
-				{
-					++b3;
-				}
-			}
-			else
-			{
-				++b2;
-			}
-			}
-			else
-			{
-			++b1;
-			}
-
-			word = 0;
-			word += (b1 << 16);
-			word += (b2 << 8);
-			word += b3;
-			}
-			else
-			{
-			word += (0x01 << 24);
-			}
-			return word;
-		}
-
-		function incCounter(counter)
-		{
-			if ((counter[0] = incWord(counter[0])) === 0)
-			{
-				// encr_data in fileenc.c from  Dr Brian Gladman's counts only with DWORD j < 8
-				counter[1] = incWord(counter[1]);
-			}
-			return counter;
-		}
-
-	    var Encryptor = CTRGladman.Encryptor = CTRGladman.extend({
-	        processBlock: function (words, offset) {
-	            // Shortcuts
-	            var cipher = this._cipher
-	            var blockSize = cipher.blockSize;
-	            var iv = this._iv;
-	            var counter = this._counter;
-
-	            // Generate keystream
-	            if (iv) {
-	                counter = this._counter = iv.slice(0);
-
-	                // Remove IV for subsequent blocks
-	                this._iv = undefined;
-	            }
-
-				incCounter(counter);
-
-				var keystream = counter.slice(0);
-	            cipher.encryptBlock(keystream, 0);
-
-	            // Encrypt
-	            for (var i = 0; i < blockSize; i++) {
-	                words[offset + i] ^= keystream[i];
-	            }
-	        }
-	    });
-
-	    CTRGladman.Decryptor = Encryptor;
-
-	    return CTRGladman;
-	}());
-
-
-
-
 	(function () {
 	    // Shortcuts
 	    var C = CryptoJS;
@@ -5810,46 +6024,6 @@
 	     *     var plaintext  = CryptoJS.Rabbit.decrypt(ciphertext, key, cfg);
 	     */
 	    C.Rabbit = StreamCipher._createHelper(Rabbit);
-	}());
-
-
-	/**
-	 * Counter block mode.
-	 */
-	CryptoJS.mode.CTR = (function () {
-	    var CTR = CryptoJS.lib.BlockCipherMode.extend();
-
-	    var Encryptor = CTR.Encryptor = CTR.extend({
-	        processBlock: function (words, offset) {
-	            // Shortcuts
-	            var cipher = this._cipher
-	            var blockSize = cipher.blockSize;
-	            var iv = this._iv;
-	            var counter = this._counter;
-
-	            // Generate keystream
-	            if (iv) {
-	                counter = this._counter = iv.slice(0);
-
-	                // Remove IV for subsequent blocks
-	                this._iv = undefined;
-	            }
-	            var keystream = counter.slice(0);
-	            cipher.encryptBlock(keystream, 0);
-
-	            // Increment counter
-	            counter[blockSize - 1] = (counter[blockSize - 1] + 1) | 0
-
-	            // Encrypt
-	            for (var i = 0; i < blockSize; i++) {
-	                words[offset + i] ^= keystream[i];
-	            }
-	        }
-	    });
-
-	    CTR.Decryptor = Encryptor;
-
-	    return CTR;
 	}());
 
 
@@ -6025,33 +6199,457 @@
 	}());
 
 
-	/**
-	 * Zero padding strategy.
-	 */
-	CryptoJS.pad.ZeroPadding = {
-	    pad: function (data, blockSize) {
-	        // Shortcut
-	        var blockSizeBytes = blockSize * 4;
+	(function () {
+	    // Shortcuts
+	    var C = CryptoJS;
+	    var C_lib = C.lib;
+	    var BlockCipher = C_lib.BlockCipher;
+	    var C_algo = C.algo;
 
-	        // Pad
-	        data.clamp();
-	        data.sigBytes += blockSizeBytes - ((data.sigBytes % blockSizeBytes) || blockSizeBytes);
-	    },
+	    const N = 16;
 
-	    unpad: function (data) {
-	        // Shortcut
-	        var dataWords = data.words;
+	    //Origin pbox and sbox, derived from PI
+	    const ORIG_P = [
+	        0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344,
+	        0xA4093822, 0x299F31D0, 0x082EFA98, 0xEC4E6C89,
+	        0x452821E6, 0x38D01377, 0xBE5466CF, 0x34E90C6C,
+	        0xC0AC29B7, 0xC97C50DD, 0x3F84D5B5, 0xB5470917,
+	        0x9216D5D9, 0x8979FB1B
+	    ];
 
-	        // Unpad
-	        var i = data.sigBytes - 1;
-	        for (var i = data.sigBytes - 1; i >= 0; i--) {
-	            if (((dataWords[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff)) {
-	                data.sigBytes = i + 1;
-	                break;
+	    const ORIG_S = [
+	        [   0xD1310BA6, 0x98DFB5AC, 0x2FFD72DB, 0xD01ADFB7,
+	            0xB8E1AFED, 0x6A267E96, 0xBA7C9045, 0xF12C7F99,
+	            0x24A19947, 0xB3916CF7, 0x0801F2E2, 0x858EFC16,
+	            0x636920D8, 0x71574E69, 0xA458FEA3, 0xF4933D7E,
+	            0x0D95748F, 0x728EB658, 0x718BCD58, 0x82154AEE,
+	            0x7B54A41D, 0xC25A59B5, 0x9C30D539, 0x2AF26013,
+	            0xC5D1B023, 0x286085F0, 0xCA417918, 0xB8DB38EF,
+	            0x8E79DCB0, 0x603A180E, 0x6C9E0E8B, 0xB01E8A3E,
+	            0xD71577C1, 0xBD314B27, 0x78AF2FDA, 0x55605C60,
+	            0xE65525F3, 0xAA55AB94, 0x57489862, 0x63E81440,
+	            0x55CA396A, 0x2AAB10B6, 0xB4CC5C34, 0x1141E8CE,
+	            0xA15486AF, 0x7C72E993, 0xB3EE1411, 0x636FBC2A,
+	            0x2BA9C55D, 0x741831F6, 0xCE5C3E16, 0x9B87931E,
+	            0xAFD6BA33, 0x6C24CF5C, 0x7A325381, 0x28958677,
+	            0x3B8F4898, 0x6B4BB9AF, 0xC4BFE81B, 0x66282193,
+	            0x61D809CC, 0xFB21A991, 0x487CAC60, 0x5DEC8032,
+	            0xEF845D5D, 0xE98575B1, 0xDC262302, 0xEB651B88,
+	            0x23893E81, 0xD396ACC5, 0x0F6D6FF3, 0x83F44239,
+	            0x2E0B4482, 0xA4842004, 0x69C8F04A, 0x9E1F9B5E,
+	            0x21C66842, 0xF6E96C9A, 0x670C9C61, 0xABD388F0,
+	            0x6A51A0D2, 0xD8542F68, 0x960FA728, 0xAB5133A3,
+	            0x6EEF0B6C, 0x137A3BE4, 0xBA3BF050, 0x7EFB2A98,
+	            0xA1F1651D, 0x39AF0176, 0x66CA593E, 0x82430E88,
+	            0x8CEE8619, 0x456F9FB4, 0x7D84A5C3, 0x3B8B5EBE,
+	            0xE06F75D8, 0x85C12073, 0x401A449F, 0x56C16AA6,
+	            0x4ED3AA62, 0x363F7706, 0x1BFEDF72, 0x429B023D,
+	            0x37D0D724, 0xD00A1248, 0xDB0FEAD3, 0x49F1C09B,
+	            0x075372C9, 0x80991B7B, 0x25D479D8, 0xF6E8DEF7,
+	            0xE3FE501A, 0xB6794C3B, 0x976CE0BD, 0x04C006BA,
+	            0xC1A94FB6, 0x409F60C4, 0x5E5C9EC2, 0x196A2463,
+	            0x68FB6FAF, 0x3E6C53B5, 0x1339B2EB, 0x3B52EC6F,
+	            0x6DFC511F, 0x9B30952C, 0xCC814544, 0xAF5EBD09,
+	            0xBEE3D004, 0xDE334AFD, 0x660F2807, 0x192E4BB3,
+	            0xC0CBA857, 0x45C8740F, 0xD20B5F39, 0xB9D3FBDB,
+	            0x5579C0BD, 0x1A60320A, 0xD6A100C6, 0x402C7279,
+	            0x679F25FE, 0xFB1FA3CC, 0x8EA5E9F8, 0xDB3222F8,
+	            0x3C7516DF, 0xFD616B15, 0x2F501EC8, 0xAD0552AB,
+	            0x323DB5FA, 0xFD238760, 0x53317B48, 0x3E00DF82,
+	            0x9E5C57BB, 0xCA6F8CA0, 0x1A87562E, 0xDF1769DB,
+	            0xD542A8F6, 0x287EFFC3, 0xAC6732C6, 0x8C4F5573,
+	            0x695B27B0, 0xBBCA58C8, 0xE1FFA35D, 0xB8F011A0,
+	            0x10FA3D98, 0xFD2183B8, 0x4AFCB56C, 0x2DD1D35B,
+	            0x9A53E479, 0xB6F84565, 0xD28E49BC, 0x4BFB9790,
+	            0xE1DDF2DA, 0xA4CB7E33, 0x62FB1341, 0xCEE4C6E8,
+	            0xEF20CADA, 0x36774C01, 0xD07E9EFE, 0x2BF11FB4,
+	            0x95DBDA4D, 0xAE909198, 0xEAAD8E71, 0x6B93D5A0,
+	            0xD08ED1D0, 0xAFC725E0, 0x8E3C5B2F, 0x8E7594B7,
+	            0x8FF6E2FB, 0xF2122B64, 0x8888B812, 0x900DF01C,
+	            0x4FAD5EA0, 0x688FC31C, 0xD1CFF191, 0xB3A8C1AD,
+	            0x2F2F2218, 0xBE0E1777, 0xEA752DFE, 0x8B021FA1,
+	            0xE5A0CC0F, 0xB56F74E8, 0x18ACF3D6, 0xCE89E299,
+	            0xB4A84FE0, 0xFD13E0B7, 0x7CC43B81, 0xD2ADA8D9,
+	            0x165FA266, 0x80957705, 0x93CC7314, 0x211A1477,
+	            0xE6AD2065, 0x77B5FA86, 0xC75442F5, 0xFB9D35CF,
+	            0xEBCDAF0C, 0x7B3E89A0, 0xD6411BD3, 0xAE1E7E49,
+	            0x00250E2D, 0x2071B35E, 0x226800BB, 0x57B8E0AF,
+	            0x2464369B, 0xF009B91E, 0x5563911D, 0x59DFA6AA,
+	            0x78C14389, 0xD95A537F, 0x207D5BA2, 0x02E5B9C5,
+	            0x83260376, 0x6295CFA9, 0x11C81968, 0x4E734A41,
+	            0xB3472DCA, 0x7B14A94A, 0x1B510052, 0x9A532915,
+	            0xD60F573F, 0xBC9BC6E4, 0x2B60A476, 0x81E67400,
+	            0x08BA6FB5, 0x571BE91F, 0xF296EC6B, 0x2A0DD915,
+	            0xB6636521, 0xE7B9F9B6, 0xFF34052E, 0xC5855664,
+	            0x53B02D5D, 0xA99F8FA1, 0x08BA4799, 0x6E85076A   ],
+	        [   0x4B7A70E9, 0xB5B32944, 0xDB75092E, 0xC4192623,
+	            0xAD6EA6B0, 0x49A7DF7D, 0x9CEE60B8, 0x8FEDB266,
+	            0xECAA8C71, 0x699A17FF, 0x5664526C, 0xC2B19EE1,
+	            0x193602A5, 0x75094C29, 0xA0591340, 0xE4183A3E,
+	            0x3F54989A, 0x5B429D65, 0x6B8FE4D6, 0x99F73FD6,
+	            0xA1D29C07, 0xEFE830F5, 0x4D2D38E6, 0xF0255DC1,
+	            0x4CDD2086, 0x8470EB26, 0x6382E9C6, 0x021ECC5E,
+	            0x09686B3F, 0x3EBAEFC9, 0x3C971814, 0x6B6A70A1,
+	            0x687F3584, 0x52A0E286, 0xB79C5305, 0xAA500737,
+	            0x3E07841C, 0x7FDEAE5C, 0x8E7D44EC, 0x5716F2B8,
+	            0xB03ADA37, 0xF0500C0D, 0xF01C1F04, 0x0200B3FF,
+	            0xAE0CF51A, 0x3CB574B2, 0x25837A58, 0xDC0921BD,
+	            0xD19113F9, 0x7CA92FF6, 0x94324773, 0x22F54701,
+	            0x3AE5E581, 0x37C2DADC, 0xC8B57634, 0x9AF3DDA7,
+	            0xA9446146, 0x0FD0030E, 0xECC8C73E, 0xA4751E41,
+	            0xE238CD99, 0x3BEA0E2F, 0x3280BBA1, 0x183EB331,
+	            0x4E548B38, 0x4F6DB908, 0x6F420D03, 0xF60A04BF,
+	            0x2CB81290, 0x24977C79, 0x5679B072, 0xBCAF89AF,
+	            0xDE9A771F, 0xD9930810, 0xB38BAE12, 0xDCCF3F2E,
+	            0x5512721F, 0x2E6B7124, 0x501ADDE6, 0x9F84CD87,
+	            0x7A584718, 0x7408DA17, 0xBC9F9ABC, 0xE94B7D8C,
+	            0xEC7AEC3A, 0xDB851DFA, 0x63094366, 0xC464C3D2,
+	            0xEF1C1847, 0x3215D908, 0xDD433B37, 0x24C2BA16,
+	            0x12A14D43, 0x2A65C451, 0x50940002, 0x133AE4DD,
+	            0x71DFF89E, 0x10314E55, 0x81AC77D6, 0x5F11199B,
+	            0x043556F1, 0xD7A3C76B, 0x3C11183B, 0x5924A509,
+	            0xF28FE6ED, 0x97F1FBFA, 0x9EBABF2C, 0x1E153C6E,
+	            0x86E34570, 0xEAE96FB1, 0x860E5E0A, 0x5A3E2AB3,
+	            0x771FE71C, 0x4E3D06FA, 0x2965DCB9, 0x99E71D0F,
+	            0x803E89D6, 0x5266C825, 0x2E4CC978, 0x9C10B36A,
+	            0xC6150EBA, 0x94E2EA78, 0xA5FC3C53, 0x1E0A2DF4,
+	            0xF2F74EA7, 0x361D2B3D, 0x1939260F, 0x19C27960,
+	            0x5223A708, 0xF71312B6, 0xEBADFE6E, 0xEAC31F66,
+	            0xE3BC4595, 0xA67BC883, 0xB17F37D1, 0x018CFF28,
+	            0xC332DDEF, 0xBE6C5AA5, 0x65582185, 0x68AB9802,
+	            0xEECEA50F, 0xDB2F953B, 0x2AEF7DAD, 0x5B6E2F84,
+	            0x1521B628, 0x29076170, 0xECDD4775, 0x619F1510,
+	            0x13CCA830, 0xEB61BD96, 0x0334FE1E, 0xAA0363CF,
+	            0xB5735C90, 0x4C70A239, 0xD59E9E0B, 0xCBAADE14,
+	            0xEECC86BC, 0x60622CA7, 0x9CAB5CAB, 0xB2F3846E,
+	            0x648B1EAF, 0x19BDF0CA, 0xA02369B9, 0x655ABB50,
+	            0x40685A32, 0x3C2AB4B3, 0x319EE9D5, 0xC021B8F7,
+	            0x9B540B19, 0x875FA099, 0x95F7997E, 0x623D7DA8,
+	            0xF837889A, 0x97E32D77, 0x11ED935F, 0x16681281,
+	            0x0E358829, 0xC7E61FD6, 0x96DEDFA1, 0x7858BA99,
+	            0x57F584A5, 0x1B227263, 0x9B83C3FF, 0x1AC24696,
+	            0xCDB30AEB, 0x532E3054, 0x8FD948E4, 0x6DBC3128,
+	            0x58EBF2EF, 0x34C6FFEA, 0xFE28ED61, 0xEE7C3C73,
+	            0x5D4A14D9, 0xE864B7E3, 0x42105D14, 0x203E13E0,
+	            0x45EEE2B6, 0xA3AAABEA, 0xDB6C4F15, 0xFACB4FD0,
+	            0xC742F442, 0xEF6ABBB5, 0x654F3B1D, 0x41CD2105,
+	            0xD81E799E, 0x86854DC7, 0xE44B476A, 0x3D816250,
+	            0xCF62A1F2, 0x5B8D2646, 0xFC8883A0, 0xC1C7B6A3,
+	            0x7F1524C3, 0x69CB7492, 0x47848A0B, 0x5692B285,
+	            0x095BBF00, 0xAD19489D, 0x1462B174, 0x23820E00,
+	            0x58428D2A, 0x0C55F5EA, 0x1DADF43E, 0x233F7061,
+	            0x3372F092, 0x8D937E41, 0xD65FECF1, 0x6C223BDB,
+	            0x7CDE3759, 0xCBEE7460, 0x4085F2A7, 0xCE77326E,
+	            0xA6078084, 0x19F8509E, 0xE8EFD855, 0x61D99735,
+	            0xA969A7AA, 0xC50C06C2, 0x5A04ABFC, 0x800BCADC,
+	            0x9E447A2E, 0xC3453484, 0xFDD56705, 0x0E1E9EC9,
+	            0xDB73DBD3, 0x105588CD, 0x675FDA79, 0xE3674340,
+	            0xC5C43465, 0x713E38D8, 0x3D28F89E, 0xF16DFF20,
+	            0x153E21E7, 0x8FB03D4A, 0xE6E39F2B, 0xDB83ADF7   ],
+	        [   0xE93D5A68, 0x948140F7, 0xF64C261C, 0x94692934,
+	            0x411520F7, 0x7602D4F7, 0xBCF46B2E, 0xD4A20068,
+	            0xD4082471, 0x3320F46A, 0x43B7D4B7, 0x500061AF,
+	            0x1E39F62E, 0x97244546, 0x14214F74, 0xBF8B8840,
+	            0x4D95FC1D, 0x96B591AF, 0x70F4DDD3, 0x66A02F45,
+	            0xBFBC09EC, 0x03BD9785, 0x7FAC6DD0, 0x31CB8504,
+	            0x96EB27B3, 0x55FD3941, 0xDA2547E6, 0xABCA0A9A,
+	            0x28507825, 0x530429F4, 0x0A2C86DA, 0xE9B66DFB,
+	            0x68DC1462, 0xD7486900, 0x680EC0A4, 0x27A18DEE,
+	            0x4F3FFEA2, 0xE887AD8C, 0xB58CE006, 0x7AF4D6B6,
+	            0xAACE1E7C, 0xD3375FEC, 0xCE78A399, 0x406B2A42,
+	            0x20FE9E35, 0xD9F385B9, 0xEE39D7AB, 0x3B124E8B,
+	            0x1DC9FAF7, 0x4B6D1856, 0x26A36631, 0xEAE397B2,
+	            0x3A6EFA74, 0xDD5B4332, 0x6841E7F7, 0xCA7820FB,
+	            0xFB0AF54E, 0xD8FEB397, 0x454056AC, 0xBA489527,
+	            0x55533A3A, 0x20838D87, 0xFE6BA9B7, 0xD096954B,
+	            0x55A867BC, 0xA1159A58, 0xCCA92963, 0x99E1DB33,
+	            0xA62A4A56, 0x3F3125F9, 0x5EF47E1C, 0x9029317C,
+	            0xFDF8E802, 0x04272F70, 0x80BB155C, 0x05282CE3,
+	            0x95C11548, 0xE4C66D22, 0x48C1133F, 0xC70F86DC,
+	            0x07F9C9EE, 0x41041F0F, 0x404779A4, 0x5D886E17,
+	            0x325F51EB, 0xD59BC0D1, 0xF2BCC18F, 0x41113564,
+	            0x257B7834, 0x602A9C60, 0xDFF8E8A3, 0x1F636C1B,
+	            0x0E12B4C2, 0x02E1329E, 0xAF664FD1, 0xCAD18115,
+	            0x6B2395E0, 0x333E92E1, 0x3B240B62, 0xEEBEB922,
+	            0x85B2A20E, 0xE6BA0D99, 0xDE720C8C, 0x2DA2F728,
+	            0xD0127845, 0x95B794FD, 0x647D0862, 0xE7CCF5F0,
+	            0x5449A36F, 0x877D48FA, 0xC39DFD27, 0xF33E8D1E,
+	            0x0A476341, 0x992EFF74, 0x3A6F6EAB, 0xF4F8FD37,
+	            0xA812DC60, 0xA1EBDDF8, 0x991BE14C, 0xDB6E6B0D,
+	            0xC67B5510, 0x6D672C37, 0x2765D43B, 0xDCD0E804,
+	            0xF1290DC7, 0xCC00FFA3, 0xB5390F92, 0x690FED0B,
+	            0x667B9FFB, 0xCEDB7D9C, 0xA091CF0B, 0xD9155EA3,
+	            0xBB132F88, 0x515BAD24, 0x7B9479BF, 0x763BD6EB,
+	            0x37392EB3, 0xCC115979, 0x8026E297, 0xF42E312D,
+	            0x6842ADA7, 0xC66A2B3B, 0x12754CCC, 0x782EF11C,
+	            0x6A124237, 0xB79251E7, 0x06A1BBE6, 0x4BFB6350,
+	            0x1A6B1018, 0x11CAEDFA, 0x3D25BDD8, 0xE2E1C3C9,
+	            0x44421659, 0x0A121386, 0xD90CEC6E, 0xD5ABEA2A,
+	            0x64AF674E, 0xDA86A85F, 0xBEBFE988, 0x64E4C3FE,
+	            0x9DBC8057, 0xF0F7C086, 0x60787BF8, 0x6003604D,
+	            0xD1FD8346, 0xF6381FB0, 0x7745AE04, 0xD736FCCC,
+	            0x83426B33, 0xF01EAB71, 0xB0804187, 0x3C005E5F,
+	            0x77A057BE, 0xBDE8AE24, 0x55464299, 0xBF582E61,
+	            0x4E58F48F, 0xF2DDFDA2, 0xF474EF38, 0x8789BDC2,
+	            0x5366F9C3, 0xC8B38E74, 0xB475F255, 0x46FCD9B9,
+	            0x7AEB2661, 0x8B1DDF84, 0x846A0E79, 0x915F95E2,
+	            0x466E598E, 0x20B45770, 0x8CD55591, 0xC902DE4C,
+	            0xB90BACE1, 0xBB8205D0, 0x11A86248, 0x7574A99E,
+	            0xB77F19B6, 0xE0A9DC09, 0x662D09A1, 0xC4324633,
+	            0xE85A1F02, 0x09F0BE8C, 0x4A99A025, 0x1D6EFE10,
+	            0x1AB93D1D, 0x0BA5A4DF, 0xA186F20F, 0x2868F169,
+	            0xDCB7DA83, 0x573906FE, 0xA1E2CE9B, 0x4FCD7F52,
+	            0x50115E01, 0xA70683FA, 0xA002B5C4, 0x0DE6D027,
+	            0x9AF88C27, 0x773F8641, 0xC3604C06, 0x61A806B5,
+	            0xF0177A28, 0xC0F586E0, 0x006058AA, 0x30DC7D62,
+	            0x11E69ED7, 0x2338EA63, 0x53C2DD94, 0xC2C21634,
+	            0xBBCBEE56, 0x90BCB6DE, 0xEBFC7DA1, 0xCE591D76,
+	            0x6F05E409, 0x4B7C0188, 0x39720A3D, 0x7C927C24,
+	            0x86E3725F, 0x724D9DB9, 0x1AC15BB4, 0xD39EB8FC,
+	            0xED545578, 0x08FCA5B5, 0xD83D7CD3, 0x4DAD0FC4,
+	            0x1E50EF5E, 0xB161E6F8, 0xA28514D9, 0x6C51133C,
+	            0x6FD5C7E7, 0x56E14EC4, 0x362ABFCE, 0xDDC6C837,
+	            0xD79A3234, 0x92638212, 0x670EFA8E, 0x406000E0  ],
+	        [   0x3A39CE37, 0xD3FAF5CF, 0xABC27737, 0x5AC52D1B,
+	            0x5CB0679E, 0x4FA33742, 0xD3822740, 0x99BC9BBE,
+	            0xD5118E9D, 0xBF0F7315, 0xD62D1C7E, 0xC700C47B,
+	            0xB78C1B6B, 0x21A19045, 0xB26EB1BE, 0x6A366EB4,
+	            0x5748AB2F, 0xBC946E79, 0xC6A376D2, 0x6549C2C8,
+	            0x530FF8EE, 0x468DDE7D, 0xD5730A1D, 0x4CD04DC6,
+	            0x2939BBDB, 0xA9BA4650, 0xAC9526E8, 0xBE5EE304,
+	            0xA1FAD5F0, 0x6A2D519A, 0x63EF8CE2, 0x9A86EE22,
+	            0xC089C2B8, 0x43242EF6, 0xA51E03AA, 0x9CF2D0A4,
+	            0x83C061BA, 0x9BE96A4D, 0x8FE51550, 0xBA645BD6,
+	            0x2826A2F9, 0xA73A3AE1, 0x4BA99586, 0xEF5562E9,
+	            0xC72FEFD3, 0xF752F7DA, 0x3F046F69, 0x77FA0A59,
+	            0x80E4A915, 0x87B08601, 0x9B09E6AD, 0x3B3EE593,
+	            0xE990FD5A, 0x9E34D797, 0x2CF0B7D9, 0x022B8B51,
+	            0x96D5AC3A, 0x017DA67D, 0xD1CF3ED6, 0x7C7D2D28,
+	            0x1F9F25CF, 0xADF2B89B, 0x5AD6B472, 0x5A88F54C,
+	            0xE029AC71, 0xE019A5E6, 0x47B0ACFD, 0xED93FA9B,
+	            0xE8D3C48D, 0x283B57CC, 0xF8D56629, 0x79132E28,
+	            0x785F0191, 0xED756055, 0xF7960E44, 0xE3D35E8C,
+	            0x15056DD4, 0x88F46DBA, 0x03A16125, 0x0564F0BD,
+	            0xC3EB9E15, 0x3C9057A2, 0x97271AEC, 0xA93A072A,
+	            0x1B3F6D9B, 0x1E6321F5, 0xF59C66FB, 0x26DCF319,
+	            0x7533D928, 0xB155FDF5, 0x03563482, 0x8ABA3CBB,
+	            0x28517711, 0xC20AD9F8, 0xABCC5167, 0xCCAD925F,
+	            0x4DE81751, 0x3830DC8E, 0x379D5862, 0x9320F991,
+	            0xEA7A90C2, 0xFB3E7BCE, 0x5121CE64, 0x774FBE32,
+	            0xA8B6E37E, 0xC3293D46, 0x48DE5369, 0x6413E680,
+	            0xA2AE0810, 0xDD6DB224, 0x69852DFD, 0x09072166,
+	            0xB39A460A, 0x6445C0DD, 0x586CDECF, 0x1C20C8AE,
+	            0x5BBEF7DD, 0x1B588D40, 0xCCD2017F, 0x6BB4E3BB,
+	            0xDDA26A7E, 0x3A59FF45, 0x3E350A44, 0xBCB4CDD5,
+	            0x72EACEA8, 0xFA6484BB, 0x8D6612AE, 0xBF3C6F47,
+	            0xD29BE463, 0x542F5D9E, 0xAEC2771B, 0xF64E6370,
+	            0x740E0D8D, 0xE75B1357, 0xF8721671, 0xAF537D5D,
+	            0x4040CB08, 0x4EB4E2CC, 0x34D2466A, 0x0115AF84,
+	            0xE1B00428, 0x95983A1D, 0x06B89FB4, 0xCE6EA048,
+	            0x6F3F3B82, 0x3520AB82, 0x011A1D4B, 0x277227F8,
+	            0x611560B1, 0xE7933FDC, 0xBB3A792B, 0x344525BD,
+	            0xA08839E1, 0x51CE794B, 0x2F32C9B7, 0xA01FBAC9,
+	            0xE01CC87E, 0xBCC7D1F6, 0xCF0111C3, 0xA1E8AAC7,
+	            0x1A908749, 0xD44FBD9A, 0xD0DADECB, 0xD50ADA38,
+	            0x0339C32A, 0xC6913667, 0x8DF9317C, 0xE0B12B4F,
+	            0xF79E59B7, 0x43F5BB3A, 0xF2D519FF, 0x27D9459C,
+	            0xBF97222C, 0x15E6FC2A, 0x0F91FC71, 0x9B941525,
+	            0xFAE59361, 0xCEB69CEB, 0xC2A86459, 0x12BAA8D1,
+	            0xB6C1075E, 0xE3056A0C, 0x10D25065, 0xCB03A442,
+	            0xE0EC6E0E, 0x1698DB3B, 0x4C98A0BE, 0x3278E964,
+	            0x9F1F9532, 0xE0D392DF, 0xD3A0342B, 0x8971F21E,
+	            0x1B0A7441, 0x4BA3348C, 0xC5BE7120, 0xC37632D8,
+	            0xDF359F8D, 0x9B992F2E, 0xE60B6F47, 0x0FE3F11D,
+	            0xE54CDA54, 0x1EDAD891, 0xCE6279CF, 0xCD3E7E6F,
+	            0x1618B166, 0xFD2C1D05, 0x848FD2C5, 0xF6FB2299,
+	            0xF523F357, 0xA6327623, 0x93A83531, 0x56CCCD02,
+	            0xACF08162, 0x5A75EBB5, 0x6E163697, 0x88D273CC,
+	            0xDE966292, 0x81B949D0, 0x4C50901B, 0x71C65614,
+	            0xE6C6C7BD, 0x327A140A, 0x45E1D006, 0xC3F27B9A,
+	            0xC9AA53FD, 0x62A80F00, 0xBB25BFE2, 0x35BDD2F6,
+	            0x71126905, 0xB2040222, 0xB6CBCF7C, 0xCD769C2B,
+	            0x53113EC0, 0x1640E3D3, 0x38ABBD60, 0x2547ADF0,
+	            0xBA38209C, 0xF746CE76, 0x77AFA1C5, 0x20756060,
+	            0x85CBFE4E, 0x8AE88DD8, 0x7AAAF9B0, 0x4CF9AA7E,
+	            0x1948C25C, 0x02FB8A8C, 0x01C36AE4, 0xD6EBE1F9,
+	            0x90D4F869, 0xA65CDEA0, 0x3F09252D, 0xC208E69F,
+	            0xB74E6132, 0xCE77E25B, 0x578FDFE3, 0x3AC372E6  ]
+	    ];
+
+	    var BLOWFISH_CTX = {
+	        pbox: [],
+	        sbox: []
+	    }
+
+	    function F(ctx, x){
+	        let a = (x >> 24) & 0xFF;
+	        let b = (x >> 16) & 0xFF;
+	        let c = (x >> 8) & 0xFF;
+	        let d = x & 0xFF;
+
+	        let y = ctx.sbox[0][a] + ctx.sbox[1][b];
+	        y = y ^ ctx.sbox[2][c];
+	        y = y + ctx.sbox[3][d];
+
+	        return y;
+	    }
+
+	    function BlowFish_Encrypt(ctx, left, right){
+	        let Xl = left;
+	        let Xr = right;
+	        let temp;
+
+	        for(let i = 0; i < N; ++i){
+	            Xl = Xl ^ ctx.pbox[i];
+	            Xr = F(ctx, Xl) ^ Xr;
+
+	            temp = Xl;
+	            Xl = Xr;
+	            Xr = temp;
+	        }
+
+	        temp = Xl;
+	        Xl = Xr;
+	        Xr = temp;
+
+	        Xr = Xr ^ ctx.pbox[N];
+	        Xl = Xl ^ ctx.pbox[N + 1];
+
+	        return {left: Xl, right: Xr};
+	    }
+
+	    function BlowFish_Decrypt(ctx, left, right){
+	        let Xl = left;
+	        let Xr = right;
+	        let temp;
+
+	        for(let i = N + 1; i > 1; --i){
+	            Xl = Xl ^ ctx.pbox[i];
+	            Xr = F(ctx, Xl) ^ Xr;
+
+	            temp = Xl;
+	            Xl = Xr;
+	            Xr = temp;
+	        }
+
+	        temp = Xl;
+	        Xl = Xr;
+	        Xr = temp;
+
+	        Xr = Xr ^ ctx.pbox[1];
+	        Xl = Xl ^ ctx.pbox[0];
+
+	        return {left: Xl, right: Xr};
+	    }
+
+	    /**
+	     * Initialization ctx's pbox and sbox.
+	     *
+	     * @param {Object} ctx The object has pbox and sbox.
+	     * @param {Array} key An array of 32-bit words.
+	     * @param {int} keysize The length of the key.
+	     *
+	     * @example
+	     *
+	     *     BlowFishInit(BLOWFISH_CTX, key, 128/32);
+	     */
+	    function BlowFishInit(ctx, key, keysize)
+	    {
+	        for(let Row = 0; Row < 4; Row++)
+	        {
+	            ctx.sbox[Row] = [];
+	            for(let Col = 0; Col < 256; Col++)
+	            {
+	                ctx.sbox[Row][Col] = ORIG_S[Row][Col];
 	            }
 	        }
+
+	        let keyIndex = 0;
+	        for(let index = 0; index < N + 2; index++)
+	        {
+	            ctx.pbox[index] = ORIG_P[index] ^ key[keyIndex];
+	            keyIndex++;
+	            if(keyIndex >= keysize)
+	            {
+	                keyIndex = 0;
+	            }
+	        }
+
+	        let Data1 = 0;
+	        let Data2 = 0;
+	        let res = 0;
+	        for(let i = 0; i < N + 2; i += 2)
+	        {
+	            res = BlowFish_Encrypt(ctx, Data1, Data2);
+	            Data1 = res.left;
+	            Data2 = res.right;
+	            ctx.pbox[i] = Data1;
+	            ctx.pbox[i + 1] = Data2;
+	        }
+
+	        for(let i = 0; i < 4; i++)
+	        {
+	            for(let j = 0; j < 256; j += 2)
+	            {
+	                res = BlowFish_Encrypt(ctx, Data1, Data2);
+	                Data1 = res.left;
+	                Data2 = res.right;
+	                ctx.sbox[i][j] = Data1;
+	                ctx.sbox[i][j + 1] = Data2;
+	            }
+	        }
+
+	        return true;
 	    }
-	};
+
+	    /**
+	     * Blowfish block cipher algorithm.
+	     */
+	    var Blowfish = C_algo.Blowfish = BlockCipher.extend({
+	        _doReset: function () {
+	            // Skip reset of nRounds has been set before and key did not change
+	            if (this._keyPriorReset === this._key) {
+	                return;
+	            }
+
+	            // Shortcuts
+	            var key = this._keyPriorReset = this._key;
+	            var keyWords = key.words;
+	            var keySize = key.sigBytes / 4;
+
+	            //Initialization pbox and sbox
+	            BlowFishInit(BLOWFISH_CTX, keyWords, keySize);
+	        },
+
+	        encryptBlock: function (M, offset) {
+	            var res = BlowFish_Encrypt(BLOWFISH_CTX, M[offset], M[offset + 1]);
+	            M[offset] = res.left;
+	            M[offset + 1] = res.right;
+	        },
+
+	        decryptBlock: function (M, offset) {
+	            var res = BlowFish_Decrypt(BLOWFISH_CTX, M[offset], M[offset + 1]);
+	            M[offset] = res.left;
+	            M[offset + 1] = res.right;
+	        },
+
+	        blockSize: 64/32,
+
+	        keySize: 128/32,
+
+	        ivSize: 64/32
+	    });
+
+	    /**
+	     * Shortcut functions to the cipher's object interface.
+	     *
+	     * @example
+	     *
+	     *     var ciphertext = CryptoJS.Blowfish.encrypt(message, key, cfg);
+	     *     var plaintext  = CryptoJS.Blowfish.decrypt(ciphertext, key, cfg);
+	     */
+	    C.Blowfish = BlockCipher._createHelper(Blowfish);
+	}());
 
 
 	return CryptoJS;

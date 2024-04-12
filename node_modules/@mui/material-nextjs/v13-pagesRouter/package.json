@@ -1,0 +1,6 @@
+{
+  "sideEffects": false,
+  "module": "./index.js",
+  "main": "../node/v13-pagesRouter/index.js",
+  "types": "./index.d.ts"
+}

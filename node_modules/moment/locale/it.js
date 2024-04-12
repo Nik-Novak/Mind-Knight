@@ -68,8 +68,8 @@
                             (this.hours() > 1
                                 ? 'lle '
                                 : this.hours() === 0
-                                ? ' '
-                                : "ll'") +
+                                  ? ' '
+                                  : "ll'") +
                             ']LT'
                         );
                     default:
@@ -78,8 +78,8 @@
                             (this.hours() > 1
                                 ? 'lle '
                                 : this.hours() === 0
-                                ? ' '
-                                : "ll'") +
+                                  ? ' '
+                                  : "ll'") +
                             ']LT'
                         );
                 }
@@ -97,6 +97,8 @@
             hh: '%d ore',
             d: 'un giorno',
             dd: '%d giorni',
+            w: 'una settimana',
+            ww: '%d settimane',
             M: 'un mese',
             MM: '%d mesi',
             y: 'un anno',

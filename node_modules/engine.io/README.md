@@ -1,7 +1,7 @@
 
 # Engine.IO: the realtime engine
 
-[![Build Status](https://travis-ci.org/socketio/engine.io.svg?branch=master)](http://travis-ci.org/socketio/engine.io)
+[![Build Status](https://github.com/socketio/engine.io/workflows/CI/badge.svg)](https://github.com/socketio/engine.io/actions)
 [![NPM version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
 
 `Engine.IO` is the implementation of transport-based
@@ -221,13 +221,13 @@ to a single process.
       - `Object`: optional, options object
     - **Options**
       - `pingTimeout` (`Number`): how many ms without a pong packet to
-        consider the connection closed (`5000`)
+        consider the connection closed (`20000`)
       - `pingInterval` (`Number`): how many ms before sending a new ping
         packet (`25000`)
       - `upgradeTimeout` (`Number`): how many ms before an uncompleted transport upgrade is cancelled (`10000`)
       - `maxHttpBufferSize` (`Number`): how many bytes or characters a message
         can be, before closing the session (to avoid DoS). Default
-        value is `10E7`.
+        value is `1e6` (1MB).
       - `allowRequest` (`Function`): A function that receives a given handshake
         or upgrade request as its first parameter, and can decide whether to
         continue or not. The second argument is a function that needs to be
@@ -239,7 +239,7 @@ to a single process.
       - `allowUpgrades` (`Boolean`): whether to allow transport upgrades
         (`true`)
       - `perMessageDeflate` (`Object|Boolean`): parameters of the WebSocket permessage-deflate extension
-        (see [ws module](https://github.com/einaros/ws) api docs). Set to `false` to disable. (`true`)
+        (see [ws module](https://github.com/einaros/ws) api docs). Set to `true` to enable. (`false`)
         - `threshold` (`Number`): data is compressed only if the byte size is above this value (`1024`)
       - `httpCompression` (`Object|Boolean`): parameters of the http compression for the polling transports
         (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable. (`true`)
