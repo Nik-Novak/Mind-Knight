@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "patch": "npx next-ws-cli@latest patch",
-    "windows": "set DOTENV_KEY=dotenv://:key_b136208af983ba2d80c3079045a59ced50bb98f2984e817facffd7bfaf72c1d1@dotenv.org/vault/.env.vault?environment=production& next dev",
+    "windows": "set /p DOTENV_KEY=<dek && next dev",
     "dev": "DOTENV_KEY=$(cat dek) next dev",
     "dev:prisma": "prisma generate ; next dev",
     "build": "next build",

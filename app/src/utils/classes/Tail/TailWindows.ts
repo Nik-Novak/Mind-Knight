@@ -19,7 +19,7 @@ export default class TailWindows extends Tail {
       // console.log('tailcommand', Object.keys(tailCommand));
       // fs.readFile(this.filepath).then(l=>console.log(l));
       tailCommand.stdout?.on('data', (data:string) => {
-        console.log('DATA', data);
+        // console.log('DATA', data);
           let lines = data.split('\n');
           lines.forEach( line => {
               if(line.length == 0)

@@ -89,7 +89,7 @@ class LogReader extends EventEmitter<LogEvents>{
       throw Error(`Sorry, Mind Knight does not yet support your platform: ${platform} ${osRelease}`);
     this.tail
       .addListener((line)=>{
-        console.log(line);
+        // console.log(line);
         try{
           if(!line.trim())
             return;
