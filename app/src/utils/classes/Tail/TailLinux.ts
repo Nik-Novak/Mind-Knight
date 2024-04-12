@@ -10,7 +10,7 @@ export default class TailLinux extends Tail{
   start(){
     if(!this.tail){
       this.tail = new LinuxTail(this.filepath, this.options)
-      this.tail.on('line', line=> console.log(line));
+      this.tail.on('line', line=> this.listeners.forEach(l=>l(line.trim())) );
     }
     else
       this.tail.watch();
