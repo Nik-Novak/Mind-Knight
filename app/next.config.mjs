@@ -1,3 +1,4 @@
+import "dotenv/config";
 // import {verifyPatch} from 'next-ws/server/index.js'
 // verifyPatch();
 

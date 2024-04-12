@@ -5,3 +5,7 @@ _archive
 
 __test__/data
 __test__/complete
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
