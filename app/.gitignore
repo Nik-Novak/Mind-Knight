@@ -1,0 +1,11 @@
+node_modules
+# Keep environment variables out of version control
+.env
+_archive
+
+__test__/data
+__test__/complete
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

@@ -20,7 +20,7 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 # How to get started
 * Download this folder and place it wherever you like
 * Extract the contents from the .zip
-* Run the RUN.bat (or RUN) file in the main/root directory. A console window should show up with a welcoming message if done correctly, and a window should open in your browser
+* Run the WINDOWS.bat (or WINDOWS) file in the main/root directory. A console window should show up with a welcoming message if done correctly, and a window should open in your browser
 * Now you have a choice, view the app on the same PC or on a different device.
   * Same: open a browser and visit localhost:8080
   * Different: Open a browser on any machine on your network and scan the QR code (has to be on the same wifi)

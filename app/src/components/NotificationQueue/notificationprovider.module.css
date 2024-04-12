@@ -1,0 +1,7 @@
+.backdrop {
+  position: fixed;
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 64px);
+  top: 64px;
+}

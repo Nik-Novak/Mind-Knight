@@ -1,5 +1,39 @@
-.idea/
-sample_games/
-.vs/
-logs/debug.log
-npm-debug.log
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+app/node_modules
+app/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+app/coverage
+
+# next.js
+app/.next/
+app/out/
+
+# production
+app/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+.env*
+!.env.vault
+!.env.project
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

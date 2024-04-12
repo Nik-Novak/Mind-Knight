@@ -1,0 +1,465 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type VotePhaseStart {
+  Duration          Int
+  Players           Int[]
+  Proposer          Int
+  Type              Int
+
+  chatIndex         Int
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type VoteMade {
+  Slot        Int
+  Type        Int
+
+  chatIndex   Int
+  deltaT      Int
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type VoteMades { //dimension = player slot
+  0     VoteMade?
+  1     VoteMade?
+  2     VoteMade?
+  3     VoteMade?
+  4     VoteMade?
+  5     VoteMade?
+  6     VoteMade?
+  7     VoteMade?
+}
+
+type VotePhaseEnd {
+  Passed            Boolean
+  Type              Int
+  VotesFor          Int[]
+  VotesAgainst      Int[]
+
+  chatIndex         Int
+  deltaT            Int
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type SelectPhaseStart {
+  Type                Int
+  Player              Int
+  NextPlayer          Int
+  Amount              Int
+  Duration            Int
+  Mission             Int
+
+  chatIndex           Int
+  propNumber          Int
+
+  log_time            DateTime
+  created_at          DateTime    @default(now())
+}
+type SelectUpdate {
+  Type                Int
+  Slots               Int[]
+  Submit              Boolean
+  Pass                Boolean
+
+  chatIndex           Int
+
+  log_time            DateTime
+  created_at          DateTime    @default(now())
+}
+type SelectPhaseEnd {
+  Type                Int
+  Proposer            Int
+  SelectedTeam        Int[]
+  Passed              Boolean
+
+  chatIndex           Int
+  deltaT              Int
+
+  log_time            DateTime
+  created_at          DateTime    @default(now())
+}
+
+type Proposal {
+  select_phase_start    SelectPhaseStart
+  select_updates        SelectUpdate[]
+  select_phase_end      SelectPhaseEnd?
+
+  vote_phase_start      VotePhaseStart?
+  vote_mades            VoteMades //vote times
+  vote_phase_end        VotePhaseEnd?
+
+  created_at        DateTime    @default(now())
+}
+
+type PlayerProposals { //LIMITATION: 5 nodes assumption
+  1             Proposal[]
+  2             Proposal[]
+  3             Proposal[]
+  4             Proposal[]
+  5             Proposal[]
+}
+
+type GamePlayer {
+  Color         Int
+  Female        Boolean
+  IsLocal       Boolean
+  Skin          String
+  Slot          Int
+  Type          Int
+  Username      String
+  // chat          Int[] //array of chat messages mapped to chat indices
+  proposals     PlayerProposals
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type GamePlayers {
+  0     GamePlayer?
+  1     GamePlayer?
+  2     GamePlayer?
+  3     GamePlayer?
+  4     GamePlayer?
+  5     GamePlayer?
+  6     GamePlayer?
+  7     GamePlayer?
+}
+
+type GameOptions {
+  GameMode                Int
+  HammerEnabled           Boolean
+  MapPickOption           Int
+  Maps                    Int[]
+  MaxPlayers              Int
+  NamingConvention        Int
+  SkipTalkingPhaseEnabled Boolean
+  Visibility              Int
+}
+
+type GameFound {
+  FirstPlayer       Int     //0, startingg pos
+  GuyRole           Int     //10 = agent, 20 = hacker ; local player's role
+  Hacker            Boolean //hacker team or agent team
+  Hackers           Int[]   //PlayerSlot[]
+  HackersAmount     Int
+  Map               Int
+  MatchType         Int     //MatchType 4 = mainframe, 0 = default, ? = blind hackers
+  MissionInfo       Int[]
+  MissionMinhacks   Int[]
+  Options           GameOptions
+  PlayerNumber      Int
+  Type              Int
+  VoiceChat         Boolean
+  VoiceChatChannel  String
+  VoiceChatName     String
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type GameStart {
+  Type          Int
+  AFK           Int[]
+  Disconnected  Int[]
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type MissionPhaseStart {
+  Duration    Int
+  Mission     Int
+  Players     Int[]
+  Type        Int
+
+  chatIndex   Int
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type MissionPhaseEnd {
+  Failed      Boolean
+  Mission     Int
+  NumHacks    Int
+  Proposer    Int
+  Type        Int
+  
+  chatIndex   Int
+  deltaT      Int
+  propNumber  Int
+
+  log_time    DateTime
+  created_at  DateTime    @default(now())
+}
+
+type Mission {
+  mission_phase_start MissionPhaseStart
+  mission_phase_end   MissionPhaseEnd?
+}
+
+type Missions { //LIMITATION: 5 nodes assumption
+  1   Mission?
+  2   Mission?
+  3   Mission?
+  4   Mission?
+  5   Mission?
+}
+
+type Role {
+  Slot    Int
+  Role    Int
+}
+
+type PlayerIdentity {
+  Slot      Int
+  Nickname  String
+  Steamid   String
+  Level     Int
+}
+
+type GameEnd {
+  Type              Int
+  Hacked            Boolean
+  Hackers           Int[]
+  Canceled          Boolean
+  Roles             Role[]
+  Timeout           Int
+  PlayerIdentities  PlayerIdentity[]
+  AfterGameLobby    String
+
+  deltaT            Int
+  chatIndex         Int
+  
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type ChatMessage {
+  Message   String    @default("")  //should be required=true, not sure why messages are being saved that have no content
+  Slot      Int       @default(-1)
+  Type      Int       @default(-1)
+  index     Int       @default(-1)
+  
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+// =========================
+// Global Chat
+// =========================
+
+model GlobalChatMessage {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+
+  Message   String
+  SteamId   String
+  Username  String  @default("")
+  Roles     Int[]
+  Timestamp Int
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("globalchatmessages")
+}
+
+// =========================
+// Game
+// =========================
+
+model Game { //unique: { timestamp &  } We want this to map 1 game to multiple rawgames (avoid duplicates)
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  game_found    GameFound
+  game_start    GameStart?
+  game_players  GamePlayers
+  missions      Missions
+  game_end      GameEnd?  //also end condition?
+  chat          ChatMessage[]
+
+  latest_log_time  DateTime
+  
+  raw_games     RawGame[]
+
+  players       Player[]   @relation(fields: [player_ids], references: [id])
+  player_ids    String[]   @db.ObjectId
+
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  @@map("games")
+}
+
+// =========================
+// RawGame
+// =========================
+enum RawGameUploadReason {
+  GameEnd
+  Error
+  Upload
+}
+model RawGame {
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  upload_reason   RawGameUploadReason
+  data            String
+  error           String?
+  context         String?
+  game            Game        @relation(fields: [game_id], references: [id])
+  game_id         String      @db.ObjectId
+
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+  @@map("rawgames")
+}
+
+// =========================
+// Player
+// =========================
+
+model Player {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  steam_id  String    @unique
+  name      String
+  level     Int       @default(1)
+  elo       Float     @default(1500)
+  games     Game[]    @relation(fields: [game_ids], references: [id])
+  game_ids  String[]  @db.ObjectId
+
+  clients   Client[]
+
+  user      User?     @relation(fields: [user_id], references: [id])
+  user_id   String?    @db.ObjectId @unique
+
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
+  @@map("players")
+}
+
+// =========================
+// Client
+// =========================
+
+model Client {
+  id                    String              @id @default(auto()) @map("_id") @db.ObjectId
+  uuid                  String              @unique
+
+  mindnight_session     MindnightSession?
+
+  player                Player?             @relation(fields: [player_id], references: [id])
+  player_id             String?             @db.ObjectId
+  
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("clients")
+}
+
+enum MindnightSessionStatus {
+  pending
+  authenticated
+  ready
+  searching
+  playing
+}
+model MindnightSession {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  steam_id    String
+  status      MindnightSessionStatus
+
+  client      Client  @relation(fields: [client_id], references: [id], onDelete: Cascade)
+  client_id   String  @db.ObjectId @unique
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("mindnightsessions")
+}
+
+// ############## AUTH JS ##################
+
+model Account {
+  id                  String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String  @map("user_id") @db.ObjectId
+  steamId             String  @map("steam_id")
+  type                String
+  provider            String
+  providerAccountId   String  @map("provider_account_id")
+  refresh_token       String?
+  access_token        String?
+  expires_at          Int?
+  token_type          String?
+  scope               String?
+  id_token            String?
+  session_state       String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken  String    @map("session_token") @unique 
+  userId        String    @map("user_id") @db.ObjectId
+  expires       DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("sessions")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  player        Player?
+  
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("users")
+}
+
+model VerificationToken {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  identifier    String
+  token         String   @unique
+  expires       DateTime
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+//TODO implement prismix: https://github.com/jamiepine/prismix
+
+
+//awesome post for features: https://github.com/prisma/prisma/issues/7161#issuecomment-1026317110
+//custom computed fields: https://www.prisma.io/docs/orm/prisma-client/queries/computed-fields
+//custom validation: https://www.prisma.io/docs/concepts/components/prisma-client/custom-validation
+//custom models: .findManyByDomain() : https://www.prisma.io/docs/concepts/components/prisma-client/custom-validation
