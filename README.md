@@ -13,8 +13,6 @@ https://discord.gg/wDjxM2u
 # Download
 https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 
-(if you get errors when trying to run, try installing thsi first: https://nodejs.org/en/download)
-
 # Install
 * Download this zip file and place it wherever you like
 * Extract the contents from the .zip
