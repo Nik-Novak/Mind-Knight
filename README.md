@@ -13,11 +13,12 @@ https://discord.gg/wDjxM2u
 # Download
 https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 
-# How to get started
+# Install
 * Download this zip file and place it wherever you like
 * Extract the contents from the .zip
 * Double click the WINDOWS.bat (or WINDOWS) file in the main/root directory. A console window should show up with a welcoming message if done correctly, and a window should open in your browser.
 * Scan the QR code to use it on your phone (has to be on the same wifi)
+![MindKnight-Install](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/e0ae4ee0-7819-4cd4-ab07-0288446406dd)
 
 # Rewind
 To access MindKnight rewind:
