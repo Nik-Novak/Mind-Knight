@@ -3,15 +3,11 @@
 
 Mind Knight is a companion app to [Mindnight](mindnightgame.com)
 
-It automatically tracks props, votes, passes, vote timing and more in a friendly/scalable UI. It can even connect via any device on the same network through its browser (a phone friendly layout is on the way).
-
-It's in early development and a few key features are still lacking.
+It automatically tracks props, votes, passes, vote timing and more in a friendly/scalable UI. It can even allow you to replay old games.
 
 This is a passion project of mine since I love Mindnight so much. I am in no way affiliated to the developers.
 
-*If people like this, I will port it to Mac/Linux(inferior peasantry) and also continue developing a bunch more planned features*
-
-Feel free to discuss/report bugs or request features here:
+Feel free to report bugs, ask for help or request features here:
 https://discord.gg/wDjxM2u
 
 # Download
@@ -20,15 +16,12 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 # How to get started
 * Download this folder and place it wherever you like
 * Extract the contents from the .zip
-* Run the WINDOWS.bat (or WINDOWS) file in the main/root directory. A console window should show up with a welcoming message if done correctly, and a window should open in your browser
-* Now you have a choice, view the app on the same PC or on a different device.
-  * Same: open a browser and visit localhost:8080
-  * Different: Open a browser on any machine on your network and scan the QR code (has to be on the same wifi)
-* You may go to localhost:8080, or your local IP 192.168.*.* on as many browsers/devices as you want
+* Double click the WINDOWS.bat (or WINDOWS) file in the main/root directory. A console window should show up with a welcoming message if done correctly, and a window should open in your browser.
+* Scan the QR code to use it on your phone (has to be on the same wifi)
 
 # Updating?
 Just download the latest version from above, then delete your old files and replace them!
-Or try updating on the main menu.
+Or try updating on the main menu (WIP).
 
 # Help with the interface
 
@@ -36,11 +29,11 @@ Or try updating on the main menu.
 
 ![MK help](https://image.ibb.co/idENnq/help.png)
 
-# Limitations
-* Currently only works on windows, it's pretty easy to port to Unix so if enough people want it I will. Check discord.
-* The project may have bugs/kinks to iron out since it has just been released and its more of a passion project than a professional release
-
 # Changelog
+* v1.0.0
+  * Mindnight Rewind - replay previous games
+  * Rewind live while in a game
+  * Major overhaul to nextjs
 * v0.5.0-1
   * Some games not uploading (temp hotfix)
 * v0.5.0-0
