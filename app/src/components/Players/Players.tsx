@@ -31,7 +31,7 @@ export default function Players({ }:Props){
   const game_end = useStore(state=>state.game?.game_end);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   // const { selectedNode, selectedSlot, selectedTurn } = useControlsStore.getState()
-  const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot);
+  const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot, playHead);
   let propSlot = turnInfo && getPropIndex(turnInfo);
   
   return (

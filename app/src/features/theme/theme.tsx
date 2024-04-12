@@ -66,6 +66,16 @@ const theme = createTheme({
           textTransform:'none',
           fontWeight: 'bold',
           fontSize: '1rem',
+          "&.Mui-disabled": {
+            backgroundColor: "#444"
+          }
+        },
+      },
+    },
+    MuiCheckbox:{
+      styleOverrides:{
+        root:{
+          color:'white'
         }
       }
     },

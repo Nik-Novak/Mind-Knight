@@ -1,17 +1,13 @@
 "use client";
-import { getMindnightSession } from "@/actions/mindnight-session";
 import styles from "./page.module.css";
-import { getGames, getPlayer } from "@/actions/game";
+import { getGames } from "@/actions/game";
 import GamesGrid from "@/components/GamesGrid";
 import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import HomeIcon from "@mui/icons-material/Home";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { Game } from "@prisma/client";
+import { useEffect } from "react";
 import useFetch from "@/hooks/useFetch";
 import { provideSession } from "@/utils/hoc/provideSession";
+import Link from "next/link";
 // import sampleGame from './sample-game3.json';
 
 function RewindPage() {
@@ -36,9 +32,10 @@ function RewindPage() {
   return (
     <>
       <main id='content' className={styles.main}>
-        <Typography variant="h2">Replays</Typography>
+        <Typography variant="h2">Rewind</Typography>
         <FormControlLabel control={<Checkbox defaultChecked onChange={(e, checked)=>fetchGames(checked)} />} label="Show My Games Only" />
         <GamesGrid records={games} isFetchingRecords={isFetchingGames} />
+        <Link href="/upload"><Button variant="contained" className="pixel-corners"> Upload Games</Button></Link>
       </main>
     </>
   );

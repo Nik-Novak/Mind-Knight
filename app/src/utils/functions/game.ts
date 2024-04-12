@@ -11,7 +11,7 @@ import { GamePlayer, GamePlayers, Missions, Proposal, SelectUpdate } from "@pris
 // }
 
 export function getPropIndex(turnInfo:Proposal){
-  return turnInfo && turnInfo.select_phase_end ? ( turnInfo.select_phase_end.Passed ? turnInfo.select_phase_start.propNumber-2 : turnInfo.select_phase_start.propNumber-1 ) : undefined; //IMPORTANT CONVERSION FOR PROP TRANSITION
+  return turnInfo ? ( turnInfo.select_phase_end?.Passed ? turnInfo.select_phase_start.propNumber-2 : turnInfo.select_phase_start.propNumber-1 ) : undefined; //IMPORTANT CONVERSION FOR PROP TRANSITION
 }
 
 export function getHammerPlayerSlot(propIndex:number|undefined, selectedSlot:PlayerSlot|undefined, numPlayers:number){
@@ -20,13 +20,13 @@ export function getHammerPlayerSlot(propIndex:number|undefined, selectedSlot:Pla
   return ( (4-propIndex) + selectedSlot ) % numPlayers as PlayerSlot
 }
 
-export function getTurnInfo(game_players:GamePlayers|undefined, selectedNode:NodeNumber|undefined, selectedTurn:number, selectedSlot:PlayerSlot|undefined){
-  return game_players && selectedNode && selectedSlot!=undefined ? game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1] : undefined;
+export function getTurnInfo(game_players:GamePlayers|undefined, selectedNode:NodeNumber|undefined, selectedTurn:number, selectedSlot:PlayerSlot|undefined, playHead?:Date){
+  return game_players && selectedNode && selectedSlot!=undefined /*&& hasHappened(game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1].select_phase_start.log_time, playHead)*/ ? game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1] : undefined;
 }
 
 export function getPlayerAction(game_player:GamePlayer|null, selectedNode:NodeNumber|undefined, selectedTurn:number, playHead?:Date){
   if(!game_player) return undefined;
-  let action = selectedNode ? game_player.proposals[selectedNode][selectedTurn-1] : undefined
+  let action = selectedNode ? game_player.proposals[selectedNode]?.[selectedTurn-1] : undefined
   if(playHead && action){
     if(!hasHappened(action.select_phase_start.log_time, playHead))
       action=undefined;
@@ -104,7 +104,8 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
 }
 
 export function hasHappened(log_time:Date|undefined, playHead:Date|undefined, expiresAfter:number=0){
-  if(!playHead || !log_time) return true;
+  if(!playHead ) return true;
+  if(!log_time) return false;
   let isBeforePlayhead = log_time.valueOf() <= playHead.valueOf();
   if(isBeforePlayhead && expiresAfter)
     return (playHead.valueOf() - expiresAfter) <= log_time.valueOf(); //check for expiration

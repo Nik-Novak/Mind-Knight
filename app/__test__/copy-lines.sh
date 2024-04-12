@@ -16,13 +16,18 @@ if [ ! -f "$source_file" ]; then
     exit 1
 fi
 
+# Flag to indicate if "GameFound" has been found
+found=false
+
 # Loop through each line in the source file
 while IFS= read -r line; do
-    echo "$line" >> "$destination_file"  # Append the line to the destination file
-    sleep 0.5
-    # if [ $time_s_between_lines -gt 0 ]; then
-    # sleep $time_s_between_lines  # Sleep for {time_s_between_lines} seconds if non-zero value provided
-    # fi
+    if [[ $line == *"Received GameFound"* ]]; then
+        found=true  # Set the flag to true once "GameFound" is found
+    fi
+    if [ "$found" = true ]; then
+        echo "$line" >> "$destination_file"  # Append the line to the destination file
+        sleep 0.5
+    fi
 done < "$source_file"
 
 echo "Copying complete."

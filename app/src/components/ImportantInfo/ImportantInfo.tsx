@@ -4,7 +4,7 @@ import { ColorCode, colors } from "@/utils/constants/colors";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import { GamePlayer, GamePlayers } from "@prisma/client";
 import {coloredText} from '@/utils/functions/jsx'
-import { getHammerPlayerSlot, getPropIndex, getTurnInfo } from "@/utils/functions/game";
+import { getHammerPlayerSlot, getPropIndex, getTurnInfo, hasHappened } from "@/utils/functions/game";
 import style from './importantinfo.module.css';
 import { useStore } from "@/zustand/store";
 type Props = {
@@ -36,14 +36,15 @@ export default function ImportantInfo({}:Props){
   const selectedNode = useStore(state=>state.selectedNode);
   const selectedSlot = useStore(state=>state.selectedSlot);
   const selectedTurn = useStore(state=>state.selectedTurn);
+  const playHead = useStore(state=>state.playHead);
   const game_players = useStore(state=>state.game?.game_players);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot)
-  const proposerSlot = turnInfo?.select_phase_end?.Proposer as PlayerSlot | undefined;
+  const proposerSlot = turnInfo?.select_phase_start?.Player as PlayerSlot | undefined;
   const proposer = game_players && proposerSlot!=undefined ? game_players[proposerSlot] as GamePlayer : undefined;
   const proposerColor = proposer && colors[proposer.Color as ColorCode].hex
   const nth = numSuffix(selectedTurn);
-  const action = turnInfo?.select_phase_end?.Passed ? 'passed hammer' : 'proposed';
+  const action = turnInfo?.select_phase_end?.Passed===undefined ? 'is proposing' : turnInfo.select_phase_end.Passed===true ? 'passed hammer' : 'proposed';
   const targets:React.ReactNode[] = [];
   if(turnInfo && game_players && numPlayers!=undefined)
     if(turnInfo.select_phase_end?.Passed){

@@ -27,15 +27,16 @@ export const useStore = create<Store>((set)=>({
   playHead: undefined,
   setGame: (game:Game|undefined)=>set(state=>({game})),
   setSelectedNode: (newNode:NodeNumber|undefined)=>set(state=>{
-    if(newNode === undefined || newNode === 1) 
+    if(newNode === undefined) 
       return ({selectedNode: newNode});
     let currentMission = getCurrentMissionNumber(state.game?.missions);
     if(state.game && newNode <= currentMission){ //node exists
       let prevNode = Math.max(newNode-1, 1) as NodeNumber;
-      if( hasHappened(state.game.missions[prevNode]?.mission_phase_start.log_time, state.playHead) ){
+      if( state.game.missions[prevNode]?.mission_phase_start ){
         let newMaxTurns = maxTurns(newNode, state.game.game_players);
         let selectedTurn = Math.min(newMaxTurns, state.selectedTurn, 1); //ensuring turn exists
-        return ({selectedNode: newNode, selectedTurn});
+        let newPlayhead = state.game.missions[newNode]?.mission_phase_end?.log_time || state.game.latest_log_time;
+        return ({selectedNode: newNode, selectedTurn, playHead:newPlayhead});
       }
     }
     return state; //default no changes

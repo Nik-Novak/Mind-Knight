@@ -313,6 +313,7 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 enum RawGameUploadReason {
   GameEnd
   Error
+  Upload
 }
 model RawGame {
   id              String     @id @default(auto()) @map("_id") @db.ObjectId

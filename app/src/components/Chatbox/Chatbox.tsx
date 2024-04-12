@@ -59,7 +59,7 @@ function Chatbox({ chat, sendMessage}:Props){
       if(playHead && game_players && !hasHappened((c as ChatMessage).log_time, playHead)){ //!has happened
         return false;
       }
-      if(searchPattern){
+      if(searchPattern && showMatchingChatOnly){
         if( c.Message.toLowerCase().includes(searchPattern.toLowerCase()) ) //message contains query
           return true;
         if( game_players && game_players[(c as ChatMessage).Slot as PlayerSlot]?.Username.toLowerCase().includes(searchPattern.toLowerCase()) ) //author contains query

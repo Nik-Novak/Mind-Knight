@@ -100,6 +100,8 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
       valueGetter:(v, row)=>{
         if(!row.game_end)
           return "Unknown";
+        if(row.game_end.Canceled)
+          return "Cancelled";
         return row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.hacker || !row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.agent ? 'Won' : 'Lost';
       },
       renderCell: (params)=>params.value === 'Won' ? coloredText('Won', '#25A165') : params.value === 'Lost' ? coloredText('Lost', '#952C30') : params.value

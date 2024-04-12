@@ -3,7 +3,8 @@ import { NodeNumber, PlayerSlot } from "@/types/game";
 import { database } from "../../prisma/database";
 import { Game, PlayerIdentity } from "@prisma/client";
 import { ServerEventPacket } from "@/components/ServerEventsProvider";
-
+import LogReader from "@/utils/classes/LogReader";
+import { getServerSession } from "next-auth";
 
 export async function getGames(playerId?:string){
   const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
@@ -28,6 +29,27 @@ export async function getGames(playerId?:string){
       latest_log_time: true
     }
   })
+}
+
+export async function uploadGames(){
+  let session = await getServerSession();
+  let firstLog = LogReader.readLog();
+  if(!firstLog)
+    throw Error('Something went wrong.');
+  await database.rawGame.create({data:{
+    data: firstLog,
+    upload_reason:'Upload',
+    context: `${session?.user.steam_id} Player.log`,
+    game_id: '000000000000000000000000'
+  }});
+  let secondLog = LogReader.readPrevLog();
+  if(secondLog)
+    await database.rawGame.create({data:{
+      data: secondLog,
+      upload_reason:'Upload',
+      context: `${session?.user.steam_id} Player-prev.log`,
+      game_id: '000000000000000000000000'
+    }});
 }
 
 export async function updateGameOnServer(game: Game){

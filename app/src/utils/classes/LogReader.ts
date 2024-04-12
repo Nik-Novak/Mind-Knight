@@ -6,6 +6,7 @@ import { PlayerIdentity, Role } from '@prisma/client';
 import FileTail from './FileTail';
 import { ColorCode } from '../constants/colors';
 import { logLineToISOTime } from '../functions/game';
+import path from 'path';
 
 export type LogSendEvents = {
   //GENERAL
@@ -60,7 +61,8 @@ export type LogEvents = LogSendEvents & LogReceiveEvents;
  * Subscribes to log based on platform and emits events
  */
 class LogReader extends EventEmitter<LogEvents>{
-  private filepath = '';
+  private logpath = '';
+  private prevLogpath = '';
   constructor(){
     super();
     let platform = os.platform();
@@ -68,16 +70,19 @@ class LogReader extends EventEmitter<LogEvents>{
     switch(platform){
       case 'linux': {
         osRelease = fs.readFileSync('/etc/os-release', 'utf8');
-        if(osRelease.toLowerCase().includes('ubuntu'))
-          this.filepath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
+        if(osRelease.toLowerCase().includes('ubuntu')){
+          this.logpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
+          this.prevLogpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`;
+        }
       } break;
       case 'win32': {
-        this.filepath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
+        this.logpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
+        this.prevLogpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player-prev.log`;
       } break;
     }
-    if(!this.filepath)
+    if(!this.logpath)
       throw Error(`Sorry, Mind Knight does not yet support your platform: ${platform} ${osRelease}`);
-    new FileTail(this.filepath, {})
+    new FileTail(this.logpath, {})
       .addListener((line)=>{
         try{
           if(!line.trim())
@@ -115,7 +120,10 @@ class LogReader extends EventEmitter<LogEvents>{
       .start();
   }
   readLog(){
-    return fs.readFileSync(this.filepath, 'utf8');
+    return fs.readFileSync(this.logpath, 'utf8');
+  }
+  readPrevLog(){
+    return fs.readFileSync(this.prevLogpath, 'utf8');
   }
   // emit(type: keyof LogSendEvents | keyof LogReceiveEvents, ...args: any[]): boolean {
   //   super.emit('*', type, ...args);
