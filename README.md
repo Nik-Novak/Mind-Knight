@@ -19,6 +19,14 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * Double click the WINDOWS.bat (or WINDOWS) file in the main/root directory. A console window should show up with a welcoming message if done correctly, and a window should open in your browser.
 * Scan the QR code to use it on your phone (has to be on the same wifi)
 
+# Rewind
+To access MindKnight rewind:
+* Launch (see How to get started)
+* Login by clicking the "Login" button
+* Your browser should redirect you to steam.com to login / authenticate. (This is done securely through steam)
+* When logged in, you should see a "Rewind" button in the main menu
+* If you don't see any games, uncheck "Show My Games Only"
+
 # Updating?
 Just download the latest version from above, then delete your old files and replace them!
 Or try updating on the main menu (WIP).
