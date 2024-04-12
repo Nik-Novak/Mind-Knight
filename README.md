@@ -35,10 +35,7 @@ Just download the latest version from above, then delete your old files and repl
 Or try updating on the main menu (WIP).
 
 # Help with the interface
-
-![MindKnight-guide](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/14f1ee47-2bb5-4ef4-af05-c4ea2879b647)
-
-![MK help](https://image.ibb.co/idENnq/help.png)
+![MindKnight-UI](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/0db114cb-a2b8-472d-83e7-1a9d2d6bf1b5)
 
 # Changelog
 * v1.0.0
