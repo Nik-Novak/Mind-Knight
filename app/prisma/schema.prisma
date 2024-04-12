@@ -318,6 +318,7 @@ model RawGame {
   upload_reason   RawGameUploadReason
   data            String
   error           String?
+  context         String?
   game            Game        @relation(fields: [game_id], references: [id])
   game_id         String      @db.ObjectId
 

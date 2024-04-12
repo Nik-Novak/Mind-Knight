@@ -83,7 +83,7 @@ class LogReader extends EventEmitter<LogEvents>{
           if(!line.trim())
             return;
           if(line.includes('Initialize engine version'))
-            this.emit('GameLaunch', logLineToISOTime(line));
+            this.emit('GameLaunch', new Date()); //don't use this timestamp, inconsistent
           else if(line.includes('GlobalChatHisotryRequest')){ //cmon marcel, why u gotta make my life hard. lol
             console.log('FOUND PACKET', 'GlobalChatHisotryRequest');
             console.log('\t', JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7)));

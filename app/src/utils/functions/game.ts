@@ -50,14 +50,18 @@ export function maxTurns(selectedNode:NodeNumber|undefined, players:GamePlayers,
   return maxTurns;
 }
 
-export function logLineToISOTime(line:string){
-  let formattedTimestamp = line.substring(0,19).replace(/\./g, '-').replace(' ', 'T') + "Z";
+export function logLineToISOTime(line:string, depth=0){
+  let formattedTimestamp = line.substring(0,19).replace(/\./g, '-').replace(' ', 'T');// + "Z";
+  let [datePart, timePart] = formattedTimestamp.split('T');//[1].replaceAll('-',':') + "Z";
+  formattedTimestamp = datePart +"T"+ timePart.replaceAll('-', ':') + "Z";
   let date = new Date(formattedTimestamp);
   if(isNaN(date.valueOf())){
     console.log('INVALID TIMESTAMP:', formattedTimestamp);
     console.log('\tTIMESTAMP LINE:', formattedTimestamp);
     console.log('RETRYING WITH FIRST CHARACTER RESTORED:', '2'+formattedTimestamp);
-    return logLineToISOTime('2'+formattedTimestamp);
+    if(depth==0)
+      return logLineToISOTime('2'+formattedTimestamp, 1);
+    else throw Error("INVALID TIMESTAMP: "+formattedTimestamp)
   }
   return new Date(formattedTimestamp);
 }

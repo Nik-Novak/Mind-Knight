@@ -167,7 +167,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$startGame(game_start, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'GameStart');
       }
       cb && cb()
     });
@@ -178,7 +178,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$addChatMessage(chat_message, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'ChatMessageReceive');
       }
       cb && cb()
     });
@@ -189,7 +189,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$startProposal(select_phase_start, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'SelectPhaseStart');
       }
       cb && cb()
     });
@@ -200,7 +200,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$updateProposalSelection(select_update, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'SelectUpdate');
       }
       cb && cb()
     });
@@ -211,7 +211,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$endProposal(select_phase_end, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'SelectPhaseEnd');
       }
       cb && cb()
     });
@@ -223,7 +223,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$startVote(vote_phase_start, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'VotePhaseStart');
       }
       cb && cb()
     });
@@ -234,7 +234,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$addVoteMade(vote_made, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'VoteMade');
       }
       cb && cb()
     });
@@ -245,7 +245,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$endVote(vote_phase_end, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'VotePhaseEnd');
       }
       cb && cb()
     });
@@ -256,7 +256,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$startMission(mission_phase_start, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'MissionPhaseStart');
       }
       cb && cb()
     });
@@ -267,7 +267,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         attempt(async ()=>{
           game = await game!.$endMission(mission_phase_end, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'MissionPhaseEnd');
       }
       cb && cb()
     });
@@ -276,7 +276,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     packetQueue.push(async (cb)=>{
       if(game) {
         attempt(async ()=>{
-          database.rawGame.create({
+          await database.rawGame.create({
             data: {
               upload_reason: 'GameEnd',
               data: LogReader.readLog(),
@@ -286,7 +286,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   
           game = await game!.$endGame(game_end, log_time);
           sendServerEvent('GameUpdate', game);
-        }, game.id);
+        }, game.id, 'GameEnd');
       }
       cb && cb()
     });
@@ -299,7 +299,15 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   let client = await getClient();
   if(client.mindnight_session)
     await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
+
+  // await database.rawGame.create({data:{
+  //   data:LogReader.readLog(),
+  //   upload_reason:'Error',
+  //   game_id: '6617bcb47c283b8bf9f518d3'
+  // }})
   }
+
+
 
 // let games = await database.game.findMany();
 // games.map(async game=>{
