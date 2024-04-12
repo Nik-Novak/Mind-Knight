@@ -3,7 +3,9 @@ import fs from 'fs';
 import EventEmitter from 'events';
 import { GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from '@/types/game';
 import { PlayerIdentity, Role } from '@prisma/client';
-import FileTail from './FileTail';
+import TailLinux from './Tail/TailLinux';
+import TailWindows from './Tail/TailWindows';
+import Tail from './Tail/Tail';
 import { ColorCode } from '../constants/colors';
 import { logLineToISOTime } from '../functions/game';
 import path from 'path';
@@ -63,6 +65,7 @@ export type LogEvents = LogSendEvents & LogReceiveEvents;
 class LogReader extends EventEmitter<LogEvents>{
   private logpath = '';
   private prevLogpath = '';
+  private tail:Tail|undefined;
   constructor(){
     super();
     let platform = os.platform();
@@ -73,17 +76,20 @@ class LogReader extends EventEmitter<LogEvents>{
         if(osRelease.toLowerCase().includes('ubuntu')){
           this.logpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
           this.prevLogpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`;
+          this.tail = new TailLinux(this.logpath);
         }
       } break;
       case 'win32': {
         this.logpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
         this.prevLogpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player-prev.log`;
+        this.tail = new TailWindows(this.logpath);
       } break;
     }
-    if(!this.logpath)
+    if(!this.logpath || !this.tail)
       throw Error(`Sorry, Mind Knight does not yet support your platform: ${platform} ${osRelease}`);
-    new FileTail(this.logpath, {})
+    this.tail
       .addListener((line)=>{
+        console.log(line);
         try{
           if(!line.trim())
             return;

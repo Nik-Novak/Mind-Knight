@@ -1,19 +1,13 @@
 import { exec } from "child_process";
 import fs from 'fs/promises';
+import Tail from "./Tail";
 
-type Callback = (line:string)=>void
 type Options = {maxBuffer: number, encoding:string}
 
-export default class Tail{
-  private listeners:Callback[] = [];
+export default class TailWindows extends Tail {
   private running = false;
-  constructor(private filepath:string, private options:Options={maxBuffer: 1024*1024*50, encoding:'utf8'}){
-  }
-
-  addListener(callback:Callback){
-    console.log('LISTENER ADDED')
-    this.listeners.push(callback);
-    return this;
+  constructor(filepath:string, private options:Options={maxBuffer: 1024*1024*50, encoding:'utf8'}){
+    super(filepath)
   }
 
   start(){
@@ -22,8 +16,8 @@ export default class Tail{
       this.running=true;
       // let exec = require('child_process').exec;
       let tailCommand = exec('PowerShell -Command Get-Content ' + this.filepath + ' –Wait -Tail 1 -Encoding UTF8', this.options);
-      console.log('tailcommand', Object.keys(tailCommand));
-      fs.readFile(this.filepath).then(l=>console.log(l));
+      // console.log('tailcommand', Object.keys(tailCommand));
+      // fs.readFile(this.filepath).then(l=>console.log(l));
       tailCommand.stdout?.on('data', (data:string) => {
         console.log('DATA', data);
           let lines = data.split('\n');
