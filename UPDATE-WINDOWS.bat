@@ -32,6 +32,25 @@ echo Extracting zip file...
 powershell -Command "Expand-Archive -Path '%TEMP_ZIP%' -DestinationPath '%TEMP%\temp_unzip' -Force"
 
 
+rem KILL ALL PROCESSES THAT ARENT US
+setlocal enabledelayedexpansion
+echo GET WriteLock PIDS
+for /f "delims=" %%i in ('call GetWritelockPIDs.bat') do (
+    if "%%i" neq "%PID%" (
+        set "PIDS=!PIDS!,%%i"
+    )
+)
+rem Remove leading comma and whitespace
+set "PIDS=%PIDS:~1%"
+rem Display the content of the PIDS variable
+echo %PIDS%
+for %%i in (%PIDS%) do (
+    echo Terminating process with PID: %%i
+    taskkill /PID %%i /F
+)
+endlocal
+
+
 REM Debugging: Echo contents of download directory
 echo Contents of download directory before cleanup:
 dir "%DOWNLOAD_DIR%"
@@ -94,7 +113,6 @@ rem Remove leading comma and whitespace
 set "PIDS=%PIDS:~1%"
 rem Display the content of the PIDS variable
 echo %PIDS%
-
 for %%i in (%PIDS%) do (
     echo Terminating process with PID: %%i
     taskkill /PID %%i /F
