@@ -64,5 +64,5 @@ del /Q "%TEMP_ZIP%"
 
 echo Done Updating.
 echo Launching...
-start call .\WINDOWS.bat
+start call .\RUN-WINDOWS.bat
 pause
