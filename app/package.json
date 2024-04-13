@@ -9,7 +9,7 @@
     "dev:windows": "set /p DOTENV_KEY=<dek && next dev",
     "dev:linux": "DOTENV_KEY=$(cat ./dek) next dev",
     "build:windows": "set /p DOTENV_KEY=<dek && next build",
-    "start:windows": "cross-env DOTENV_KEY=$(cat ./dek) START_BROWSER=true next start",
+    "start:windows": "set /p DOTENV_KEY=<dek && cross-env START_BROWSER=true next start",
     "build:linux": "DOTENV_KEY=$(cat ./dek) next build",
     "start:linux": "DOTENV_KEY=$(cat ./dek) next start",
     "lint": "next lint",
