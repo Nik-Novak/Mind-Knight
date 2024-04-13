@@ -2,9 +2,10 @@ set "PATH=%CD%;%PATH%"
 cd .\app
 call npx -v
 call node -v
-if not exist ".\node_modules" (
+REM if not exist ".\node_modules" (
     call npx yarn install
-)
+    call npx yarn prisma generate
+REM )
 if not exist ".\.next\BUILD_ID" (
     call npx yarn build:windows
 )
