@@ -122,7 +122,9 @@ del /Q "%TEMP_ZIP%"
 
 echo Done Updating.
 type .\ascii-knight.txt
+echo ################################
 echo UPDATE COMPLETE, PLEASE RELAUNCH
+echo ################################
 @REM echo Launching...
 @REM call .\RUN-WINDOWS.bat
 @REM cd ..
