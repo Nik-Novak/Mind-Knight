@@ -15,7 +15,7 @@ const Version:FC<Props> = async ({localPath, remotePath}) =>{
   // console.log(typeof version.local, typeof version.remote);
   return upToDate ? 
     <span>v{version.local} - (<Link style={{color: !upToDate ? 'red' : undefined}} href="/update">REINSTALL</Link>)</span>
-    : <span>v{version.local} - (<Link href="/update" style={{color:"red"}}>UPDATE</Link>)</span>
+    : <span>v{version.local} - (<Link href="/update" style={{color:"red"}}>UPDATE to {version.remote}</Link>)</span>
 };
 
 export default suspense(Version, 'checking version...');
