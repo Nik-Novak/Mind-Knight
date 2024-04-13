@@ -5,11 +5,12 @@ import Car from "./car";
 import Cradle from "./cradle";
 import Search from "./search";
 import Search2 from "./search-2";
+import { ReactNode } from "react";
 
 type LoadingOverlayProps = {
   open: boolean;
   type?: "car" | "cradle" | "circular" | "search" | "search2";
-  text?: string;
+  loadingContent?: ReactNode;
   opaque?: boolean;
   transitions?: {
     appear?: number;
@@ -23,7 +24,7 @@ type LoadingOverlayProps = {
 export default function LoadingOverlay({
   open,
   type = "circular",
-  text = "",
+  loadingContent = <></>,
   opaque = false,
   transitions = { enter: 0, exit: 500 },
 }: LoadingOverlayProps) {
@@ -46,7 +47,7 @@ export default function LoadingOverlay({
         {type === "circular" && <CircularProgress style={{ color: primaryColor }} />}
         {type === "search" && <Search />}
         {type === "search2" && <Search2 />}
-        {text.split('\n').map((line, i)=><Typography key={i} className={Styles.text}>{text}</Typography>)}
+        <div className={Styles.loadingContent}>{loadingContent}</div>
       </div>
     </Backdrop>
   );

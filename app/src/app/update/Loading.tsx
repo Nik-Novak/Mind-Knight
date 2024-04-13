@@ -7,9 +7,15 @@ export default function Loading(){
   const [startedLoading, setStartedLoading] = useState(false);
   const {pending} = useFormStatus();
   useEffect(()=>{
-    setStartedLoading(true);
+    if(pending)
+      setStartedLoading(true);
   }, [pending])
   return (
-    <LoadingOverlay open={startedLoading} type="cradle" text="MindKnight is updating. Don't touch anything until a new window opens in your browser.\nIf it takes more than 5 minutes try launching normally." />
+    <LoadingOverlay open={startedLoading} type="cradle" loadingContent={
+      <>
+        <Typography>"MindKnight is updating. Don't touch anything until a new window opens in your browser.</Typography>
+        <Typography>If it takes more than 5 minutes try launching normally.</Typography> 
+      </>
+    }/>
   )
 }
