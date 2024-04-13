@@ -123,3 +123,4 @@ endlocal
 echo Done Updating.
 echo Launching...
 call .\RUN-WINDOWS.bat
+start call .\RUN-WINDOWS.bat
