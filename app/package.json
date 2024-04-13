@@ -5,7 +5,7 @@
   "scripts": {
     "patch": "npx next-ws-cli@latest patch",
     "windows": "set /p DOTENV_KEY=<dek && next dev",
-    "dev": "DOTENV_KEY=$(cat dek) next dev",
+    "dev": "DOTENV_KEY=$(npx dotenv-vault keys development) next dev",
     "dev:prisma": "prisma generate ; next dev",
     "build": "next build",
     "start": "next start",

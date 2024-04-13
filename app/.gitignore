@@ -5,6 +5,7 @@ _archive
 
 __test__/data
 __test__/complete
+__test__/error
 .env*
 .flaskenv*
 !.env.project

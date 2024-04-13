@@ -37,7 +37,10 @@ const theme = createTheme({
     MuiDataGrid:{
       styleOverrides:{
         root:{
-          backgroundColor: '#2F2E2C'
+          backgroundColor: '#2F2E2C',
+          // '& .MuiPaper-root':{
+          //   backgroundColor: '#2F2E2C'
+          // }
         },
         columnHeader: {
           backgroundColor: '#222222'

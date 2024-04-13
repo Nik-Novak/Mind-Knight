@@ -33,7 +33,9 @@ li {
   list-style-type: none;
 }
 
-
+.MuiDataGrid-paper {
+  background-color: #444 !important;
+}
 
 .pixel-corners {
   clip-path: polygon(
