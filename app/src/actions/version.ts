@@ -21,12 +21,14 @@ export async function updateVersion(){
   console.log('Started update process...')
   await sleep(1000);
   console.log('Exiting...');
+  console.log(process.pid);
+  console.log('trying: SIGQUIT');
+  process.kill(process.pid, 'SIGQUIT');
   console.log('trying: SIGINT');
   process.kill(process.pid, 'SIGINT');
   console.log('trying: SIGHUP');
   process.kill(process.pid, 'SIGHUP');
   console.log('trying: SIGKILL');
   process.kill(process.pid, 'SIGKILL');
-  console.log('trying: SIGKILL');
   process.exit(1);
 }

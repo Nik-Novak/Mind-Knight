@@ -7,7 +7,7 @@ import Queue from 'queue';
 // import { getGame } from './actions/game'; //DO NOT IMPORT FROM HERE OR ANY ANNOTATED COMPONENT
 
 console.log('instrumentation.ts');
-
+console.log('PID:', process.pid);
 const packetQueue = new Queue({autostart:true, concurrency:1 });
 
 async function createGlobalChatMessage(message:GlobalChatMessage){
