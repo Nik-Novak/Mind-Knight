@@ -101,23 +101,23 @@ del /Q "%TEMP_ZIP%"
 
 
 
-rem KILL ALL PROCESSES THAT ARENT US
-setlocal enabledelayedexpansion
-echo GET WriteLock PIDS
-for /f "delims=" %%i in ('call GetWritelockPIDs.bat') do (
-    if "%%i" neq "%PID%" (
-        set "PIDS=!PIDS!,%%i"
-    )
-)
-rem Remove leading comma and whitespace
-set "PIDS=%PIDS:~1%"
-rem Display the content of the PIDS variable
-echo %PIDS%
-for %%i in (%PIDS%) do (
-    echo Terminating process with PID: %%i
-    taskkill /PID %%i /F
-)
-endlocal
+@REM rem KILL ALL PROCESSES THAT ARENT US
+@REM setlocal enabledelayedexpansion
+@REM echo GET WriteLock PIDS
+@REM for /f "delims=" %%i in ('call GetWritelockPIDs.bat') do (
+@REM     if "%%i" neq "%PID%" (
+@REM         set "PIDS=!PIDS!,%%i"
+@REM     )
+@REM )
+@REM rem Remove leading comma and whitespace
+@REM set "PIDS=%PIDS:~1%"
+@REM rem Display the content of the PIDS variable
+@REM echo %PIDS%
+@REM for %%i in (%PIDS%) do (
+@REM     echo Terminating process with PID: %%i
+@REM     taskkill /PID %%i /F
+@REM )
+@REM endlocal
 
 
 echo Done Updating.
