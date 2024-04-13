@@ -1,6 +1,7 @@
 "use client";
 import { updateVersion } from "@/actions/version";
 import FormButton from "@/components/FormButton";
+import Loading from "./Loading";
 
 export default async function Updater(){
   return (
@@ -9,6 +10,7 @@ export default async function Updater(){
         updateVersion();
       }}
     >
+      <Loading />
       <FormButton variant="contained" className="pixel-corners" sx={{paddingX:'50px'}}>Confirm Update</FormButton>
     </form>
   );

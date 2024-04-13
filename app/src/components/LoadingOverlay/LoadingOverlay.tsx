@@ -46,7 +46,7 @@ export default function LoadingOverlay({
         {type === "circular" && <CircularProgress style={{ color: primaryColor }} />}
         {type === "search" && <Search />}
         {type === "search2" && <Search2 />}
-        <Typography className={Styles.text}>{text}</Typography>
+        {text.split('\n').map((line, i)=><Typography key={i} className={Styles.text}>{text}</Typography>)}
       </div>
     </Backdrop>
   );
