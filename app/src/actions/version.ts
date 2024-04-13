@@ -16,9 +16,10 @@ export async function getVersion(localPath:string, remotePath:string):Promise<Ve
 }
 
 export async function updateVersion(){
-  console.log('Getting conhosts');
+  
   // Get the PIDs of the conhost processes
-  let PIDs = execSync('Get-Process | Where-Object { $_.ProcessName -eq "conhost" } | Select-Object -ExpandProperty Id', { encoding: 'utf8', shell: 'powershell' }).trim().split('\n');
+  console.log('Getting writelocks');
+  let PIDs = execSync('cd .. && call .\\GetWritelockPIDs.bat', { encoding: 'utf8', shell: 'powershell' }).trim().split('\n');
   console.log('Starting update process...')
   exec('cd .. && start call ./UPDATE-WINDOWS.bat', {encoding:'utf8'});
   console.log('Started update process...')

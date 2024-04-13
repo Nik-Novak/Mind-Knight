@@ -26,7 +26,11 @@ REM Clean up existing files in the download directory
 echo Cleaning up existing files...
 for /F "delims=" %%A in ('dir /B "%DOWNLOAD_DIR%"') do (
     if /I not "%%~nxA"=="UPDATE-WINDOWS.bat" (
-        del /q "%DOWNLOAD_DIR%\%%A"
+        if /I not "%%~nxA"=="handle.exe" (
+            if /I not "%%~nxA"=="getWritelockPIDs.bat" (
+                del /q "%DOWNLOAD_DIR%\%%A"
+            )
+        )
     )
 )
 
