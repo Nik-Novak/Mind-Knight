@@ -17,7 +17,7 @@ export async function getVersion(localPath:string, remotePath:string):Promise<Ve
 
 export async function updateVersion(){
   console.log('Starting update process...')
-  // exec('cd .. && start call ./UPDATE-WINDOWS.bat', {encoding:'utf8'});
+  exec('cd .. && start call ./UPDATE-WINDOWS.bat', {encoding:'utf8'});
   // console.log('Started update process...')
   await sleep(1000);
   console.log('Exiting...');
