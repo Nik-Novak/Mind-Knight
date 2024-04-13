@@ -3,7 +3,7 @@ cd .\app
 call npx -v
 call node -v
 if not exist ".\node_modules" (
-    call npx yarn install
+    call npx yarn install --network-timeout 100000
     call npx yarn prisma generate
 )
 if not exist ".\.next\BUILD_ID" (
