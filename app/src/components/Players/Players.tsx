@@ -9,7 +9,7 @@ import { ColorCode, colors } from "@/utils/constants/colors";
 import { Suspense } from "react";
 import PlayerSkeleton from "./PlayerSkeleton";
 import { useStore } from "@/zustand/store";
-import { database } from "../../../prisma/database";
+import { database } from "../../utils/database";
 
 type Props = {
   // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<PlayerData>

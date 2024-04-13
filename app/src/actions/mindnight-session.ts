@@ -1,6 +1,6 @@
 import { ServerEvents } from "@/components/ServerEventsProvider";
 import { post } from "@/lib/fetch";
-import { database } from "../../prisma/database";
+import { database } from "../utils/database";
 import { MindnightSessionStatus } from "@prisma/client";
 import { JsonObject } from "@prisma/client/runtime/library";
 import { machineId } from "node-machine-id";

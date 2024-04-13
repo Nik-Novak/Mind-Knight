@@ -1,6 +1,6 @@
 import { WebSocketServer } from 'ws';
 import type { ServerEventPacket, ServerEvents } from './components/ServerEventsProvider';
-import { database } from '../prisma/database';
+import { database } from './utils/database';
 import { GlobalChatMessage } from './types/game';
 import Queue from 'queue';
 

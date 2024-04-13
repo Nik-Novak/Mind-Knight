@@ -1,6 +1,6 @@
 "use server";
 import { NodeNumber, PlayerSlot } from "@/types/game";
-import { database } from "../../prisma/database";
+import { database } from "../utils/database";
 import { Game, PlayerIdentity } from "@prisma/client";
 import { ServerEventPacket } from "@/components/ServerEventsProvider";
 import LogReader from "@/utils/classes/LogReader";
