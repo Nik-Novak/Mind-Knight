@@ -121,7 +121,9 @@ endlocal
 
 
 echo Done Updating.
-echo Launching...
-call .\RUN-WINDOWS.bat
-cd ..
-start call .\RUN-WINDOWS.bat
+type .\ascii-knight.txt
+echo UPDATE COMPLETE, PLEASE RELAUNCH
+@REM echo Launching...
+@REM call .\RUN-WINDOWS.bat
+@REM cd ..
+@REM start call .\RUN-WINDOWS.bat
