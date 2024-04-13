@@ -19,7 +19,7 @@ export async function updateVersion(){
   
   // Get the PIDs of the conhost processes
   console.log('Getting writelocks');
-  let PIDs = execSync('cd .. && call .\\GetWritelockPIDs.bat', { encoding: 'utf8', shell: 'powershell' }).trim().split('\n');
+  let PIDs = execSync('cd ..; ./GetWritelockPIDs.bat', { encoding: 'utf8', shell: 'powershell' }).trim().split('\n');
   console.log('Starting update process...')
   exec('cd .. && start call ./UPDATE-WINDOWS.bat', {encoding:'utf8'});
   console.log('Started update process...')
