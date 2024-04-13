@@ -5,7 +5,7 @@ import { EventEmitter } from 'events';
 import { MindnightSession } from '@prisma/client';
 import { useServerEvents } from '../ServerEventsProvider';
 import { database } from '../../utils/database';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { revalidateTag } from 'next/cache';
 import { Tags } from '@/utils/cache/tags';
 
@@ -39,6 +39,12 @@ export function MindnightSessionProvider({ children }:Props) {
       router.refresh();
     })
   }, []);
+
+  useEffect(()=>{
+    if(mindnightSession?.status === 'playing')
+      redirect('/game'); //redirect to game page
+  }, [mindnightSession?.status === 'playing']); //when we first get the signal we're playing
+
   return (
     <MindnightSessionContext.Provider value={{ mindnightSession }}>
       {children}

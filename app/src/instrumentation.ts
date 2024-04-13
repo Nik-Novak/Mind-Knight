@@ -96,7 +96,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       if(client.mindnight_session)
         await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
       // revalidateTag(Tags.session.toString());
-      sendServerEvent('MindnightSessionUpdate', undefined);
+      sendServerEvent('MindnightSessionUpdate', null);
       sendServerEvent('GameClose', packet);
       cb && cb();
     });
@@ -161,6 +161,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         missions:{},
         latest_log_time: log_time
       }});
+      let mindnightSession = await getMindnightSession();
+      if(mindnightSession){
+        let readiedMindnightSession = await database.mindnightSession.playing(mindnightSession);
+        // revalidateTag(Tags.session);
+        sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
+      }
       sendServerEvent('GameUpdate', game);
       cb && cb();
     });

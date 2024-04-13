@@ -529,6 +529,9 @@ const prismaClientSingleton= ()=>{
         },
         async ready(session:MindnightSession){
           return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'ready'}});
+        },
+        async playing(session:MindnightSession){
+          return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'playing'}});
         }
       },
       

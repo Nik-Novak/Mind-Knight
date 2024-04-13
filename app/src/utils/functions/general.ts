@@ -11,7 +11,7 @@ export async function copyToClipboard(textToCopy:string) {
           
       // Move textarea out of the viewport so it's not visible
       textArea.style.position = "absolute";
-      textArea.style.left = "-999999px";
+      textArea.style.left = "0px";
           
       document.body.prepend(textArea);
       textArea.select();
