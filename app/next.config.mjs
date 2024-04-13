@@ -1,4 +1,9 @@
 import "dotenv/config";
+import open from 'open';
+
+if(process.env.NODE_ENV === 'production' && process.env.NEXTAUTH_URL)
+  open(process.env.NEXTAUTH_URL)
+  
 // import {verifyPatch} from 'next-ws/server/index.js'
 // verifyPatch();
 
