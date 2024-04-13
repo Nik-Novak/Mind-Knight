@@ -6,7 +6,7 @@
     "patch": "npx next-ws-cli@latest patch",
     "dev": "DOTENV_KEY=$(npx dotenv-vault keys development) next dev",
     "dev:prod": "DOTENV_KEY=$(npx dotenv-vault keys production) next dev",
-    "dev:windows": "set /p DOTENV_KEY=<dek && next dev",
+    "dev:windows": "set /p DOTENV_KEY=<dek && cross-env START_BROWSER=true && next dev",
     "dev:linux": "DOTENV_KEY=$(cat ./dek) next dev",
     "build:windows": "set /p DOTENV_KEY=<dek && cross-env BUILD=true next build",
     "start:windows": "set /p DOTENV_KEY=<dek && cross-env START_BROWSER=true next start",
