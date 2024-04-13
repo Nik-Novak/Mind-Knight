@@ -8,8 +8,8 @@
     "dev:prod": "DOTENV_KEY=$(npx dotenv-vault keys production) next dev",
     "dev:windows": "set /p DOTENV_KEY=<dek && next dev",
     "dev:linux": "DOTENV_KEY=$(cat ./dek) next dev",
-    "build:windows": "set /p DOTENV_KEY=<dek && cross-env BUILD=true next build",
-    "start:windows": "set /p DOTENV_KEY=<dek && cross-env START_BROWSER=true next start",
+    "build:windows": "set /p DOTENV_KEY=<dek && set BUILD=true && next build",
+    "start:windows": "set /p DOTENV_KEY=<dek && set START_BROWSER=true && next start",
     "build:linux": "DOTENV_KEY=$(cat ./dek) next build",
     "start:linux": "DOTENV_KEY=$(cat ./dek) next start",
     "lint": "next lint",
@@ -55,7 +55,6 @@
     "@types/steam-client": "^2.5.6",
     "@types/tail": "^2.2.3",
     "@types/ws": "^8.5.10",
-    "cross-env": "^7.0.3",
     "prisma": "^5.11.0",
     "typescript": "^5"
   }
