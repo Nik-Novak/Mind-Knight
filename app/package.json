@@ -55,6 +55,7 @@
     "@types/steam-client": "^2.5.6",
     "@types/tail": "^2.2.3",
     "@types/ws": "^8.5.10",
+    "cross-env": "^7.0.3",
     "prisma": "^5.11.0",
     "typescript": "^5"
   }
