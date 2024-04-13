@@ -3,7 +3,7 @@ import DiscordProvider from 'next-auth/providers/discord';
 import SteamProvider, { PROVIDER_ID, SteamProfile } from 'next-auth-steam';
 import { NextRequest } from 'next/server';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { database } from '../../../../utils/database';
+import { database } from '../../../../../prisma/database';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Adapter } from 'next-auth/adapters';
 

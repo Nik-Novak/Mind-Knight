@@ -1,4 +1,4 @@
-import { database } from "../database";
+import { database } from "../../../prisma/database";
 import LogReader from "../classes/LogReader";
 
 type AsyncThunk<R> = ()=>R|Promise<R>;
