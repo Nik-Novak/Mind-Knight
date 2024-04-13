@@ -1,0 +1,41 @@
+/* ######## CAR ######## */
+
+.carWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 150px;
+  box-sizing: border-box;
+}
+.carWrapper > img {
+  height: auto;
+  width: 100%;
+  animation: car 900ms infinite linear;
+}
+.carTires {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 47%;
+  margin-top: -10%;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+.carTires > img {
+  height: 24px;
+  width: auto;
+  animation: tires 1000ms infinite linear;
+}
+.carTires > img:nth-child(1) {
+  margin-left: 14.35%;
+}
+@keyframes car {
+  70% {
+    transform: translateY(7%);
+  }
+}
+@keyframes tires {
+  100% {
+    transform: rotate(360deg);
+  }
+}

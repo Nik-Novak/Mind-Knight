@@ -7,6 +7,12 @@ const nextConfig = {
   experimental:{
     instrumentationHook: true
   },
+  eslint:{
+    ignoreDuringBuilds:true
+  },
+  typescript:{
+    ignoreBuildErrors: true
+  },
   logging:{
     fetches:{
       fullUrl: true

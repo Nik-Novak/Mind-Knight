@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "patch": "npx next-ws-cli@latest patch",
-    "windows": "set /p DOTENV_KEY=<dek && next dev",
     "dev": "DOTENV_KEY=$(npx dotenv-vault keys development) next dev",
-    "dev:prisma": "prisma generate ; next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev:prod": "DOTENV_KEY=$(npx dotenv-vault keys production) next dev",
+    "dev:windows": "set /p DOTENV_KEY=<dek && next dev",
+    "dev:linux": "DOTENV_KEY=$(cat ./dek) next dev",
+    "build:windows": "set /p DOTENV_KEY=<dek && next build",
+    "start:windows": "set /p DOTENV_KEY=<dek && next start",
+    "build:linux": "DOTENV_KEY=$(cat ./dek) next build",
+    "start:linux": "DOTENV_KEY=$(cat ./dek) next start",
     "lint": "next lint",
     "add-translation": "ts-node src/translations/scripts/addTranslation.ts",
     "find-unused-translations": "ts-node src/translations/scripts/findUnused.ts"

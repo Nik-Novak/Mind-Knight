@@ -49,3 +49,9 @@ export const dateTimeReviver = (key: any, value: any) => {
 
     return { seconds, minutes, hours };
 }
+
+export function sleep(durationMs:number){
+  if(durationMs <=0)
+    throw Error("Cannot sleep for 0 or less ms");
+  return new Promise(res=>setTimeout(res, durationMs));
+}
