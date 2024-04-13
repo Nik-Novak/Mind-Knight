@@ -8,8 +8,7 @@ export default function UpdatePage() {
   return (
     <>
       <main id='content' className={styles.main}>
-        <h2 style={{color:'white', fontSize: '44px', position:'absolute', top:'40vh'}}>Updating...</h2>
-        <LoadingOverlay open={true} type="cradle" text="MindKnight is updating... Once complete a new window will launch and you can close this one." />
+        <h2 style={{color:'white', fontSize: '44px'}}>Updating...</h2>
         <Updater />
       </main>
     </>

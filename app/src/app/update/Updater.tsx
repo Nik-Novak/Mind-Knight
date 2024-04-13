@@ -1,11 +1,15 @@
-"use server";
-import { sleep } from "@/utils/functions/general";
-import { exec, execSync } from "child_process";
+"use client";
+import { updateVersion } from "@/actions/version";
+import FormButton from "@/components/FormButton";
 
 export default async function Updater(){
-  sleep(3000).then(()=>{
-    console.log(execSync('cd .. && ./UPDATE-WINDOWS.bat', {encoding:'utf8'}));
-    process.exit(0);
-  });
-  return null;
+  return (
+    <form 
+      action={()=>{
+        updateVersion();
+      }}
+    >
+      <FormButton variant="contained" className="pixel-corners" sx={{paddingX:'50px'}}>Confirm Update</FormButton>
+    </form>
+  );
 }
