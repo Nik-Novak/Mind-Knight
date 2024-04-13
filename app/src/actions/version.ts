@@ -26,13 +26,13 @@ export async function updateVersion(){
   console.log('Started update process...')
   await sleep(1000);
   console.log('Exiting...', PIDs.join(','));
-  exec(`Stop-Process -Id ${PIDs.join(',')} -Force`, { shell: 'powershell' });
+  exec(`start powershell -NoExit -Command "Stop-Process -Id ${PIDs.join(',')} -Force"`);
   // console.log('PPID:', process.pid);
   // console.log('PID:', process.pid);
-  // console.log('trying: SIGKILL PPID');
-  // process.kill(process.ppid, 'SIGKILL');
-  // console.log('trying: SIGKILL PID');
-  // process.kill(process.pid, 'SIGKILL');
+  console.log('trying: SIGKILL PPID');
+  process.kill(process.ppid, 'SIGKILL');
+  console.log('trying: SIGKILL PID');
+  process.kill(process.pid, 'SIGKILL');
   // console.log('trying: SIGQUIT');
   // process.kill(process.pid, 'SIGQUIT');
   // console.log('trying: SIGINT');
