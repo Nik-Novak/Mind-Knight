@@ -62,5 +62,7 @@ echo Cleaning up temporary files...
 rmdir /Q /S "%TEMP%\temp_unzip"
 del /Q "%TEMP_ZIP%"
 
-echo Done.
+echo Done Updating.
+echo Launching...
+start call .\WINDOWS.bat
 pause
