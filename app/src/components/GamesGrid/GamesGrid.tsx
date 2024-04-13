@@ -6,7 +6,7 @@ import { useModifyFieldRef, useRenderOptionsRef } from "@/components/ActionGrid/
 import ConfirmDialog from "@/components/ConfirmDialog";
 import { checkPagination } from "@/utils/functions/requests";
 import { SelectedAction } from "@/components/ActionGrid/types";
-import { Button, SxProps } from "@mui/material";
+import { Button, SxProps, Tooltip } from "@mui/material";
 import DetailsDialog from "./DetailsDialog";
 import { LoadingButton } from '@mui/lab'
 import { Game } from "@prisma/client";
@@ -106,8 +106,14 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
       },
       renderCell: (params)=>params.value === 'Won' ? coloredText('Won', '#25A165') : params.value === 'Lost' ? coloredText('Lost', '#952C30') : params.value
     },
-    { field: "date", headerName: "Date", flex: 0.5, minWidth: 40,
-      valueGetter:(v, row)=>row.game_found.log_time
+    { field: "players", headerName: "Players", flex: 0.35, minWidth: 40,
+      valueGetter:(v, row)=>{
+        return row.game_end?.PlayerIdentities.map(p=>p.Nickname);
+      },
+      renderCell: (params)=><Tooltip title={params.value.join('|')}>{params.value.join('|')}</Tooltip>
+    },
+    { field: "date", headerName: "Date", flex: 0.15, minWidth: 40,
+      valueGetter:(v, row)=>row.game_found.log_time.toDateString()
     },
     { field: "actions", headerName: "Actions", flex: 0.15, minWidth: 120,
       renderCell: (params: GridRenderCellParams<DataType>) =>
