@@ -32,7 +32,7 @@ export default async function HomePage() {
         main='Mind Knight'
         secondary={<>A companion tool for <Link href="http://www.mindnightgame.com/">Mindnight</Link></>}
         tertiary={
-          <Version localPath={'../mindknight.version'} remotePath={'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/react-ts/mindknight.version'} />
+          <Version localPath={'../mindknight.version'} remotePath={'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version'} />
         }
       />
       <Stack spacing={1}>
