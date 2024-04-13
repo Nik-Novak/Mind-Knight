@@ -1,7 +1,7 @@
 "use server";
 import { get } from "@/lib/fetch"
 import { sleep } from "@/utils/functions/general";
-import { exec } from "child_process";
+import { exec, execSync } from "child_process";
 import fs from 'fs/promises'
 
 type Version = {
@@ -16,12 +16,15 @@ export async function getVersion(localPath:string, remotePath:string):Promise<Ve
 }
 
 export async function updateVersion(){
+  console.log('Getting conhosts');
+  // Get the PIDs of the conhost processes
+  let PIDs = execSync('Get-Process | Where-Object { $_.ProcessName -eq "conhost" } | Select-Object -ExpandProperty Id', { encoding: 'utf8', shell: 'powershell' }).trim().split('\n');
   console.log('Starting update process...')
   exec('cd .. && start call ./UPDATE-WINDOWS.bat', {encoding:'utf8'});
-  // console.log('Started update process...')
+  console.log('Started update process...')
   await sleep(1000);
   console.log('Exiting...');
-  exec('Get-Process | Where-Object { $_.ProcessName -eq "conhost" } | Stop-Process -Force', {shell: 'powershell'});
+  exec(`Stop-Process -Id ${PIDs.join(',')} -Force`, { shell: 'powershell' });
   // console.log('PPID:', process.pid);
   // console.log('PID:', process.pid);
   // console.log('trying: SIGKILL PPID');
