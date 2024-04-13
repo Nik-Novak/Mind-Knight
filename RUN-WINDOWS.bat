@@ -8,7 +8,4 @@ if not exist ".\node_modules" (
 if not exist ".\.next\BUILD_ID" (
     call npx yarn build:windows
 )
-start call npx yarn start:windows
-timeout /t 5
-start "" cmd /c "start http://localhost:3000 && taskkill /f /im cmd.exe"
-pause
+call npx yarn start:windows
