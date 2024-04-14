@@ -19,7 +19,6 @@ async function createGlobalChatMessage(message:GlobalChatMessage){
   return chatMsg;
 }
 
-
 /**
  * This function runs once per server init. Other files run once per client usually.
  */
@@ -31,6 +30,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   // const {} = await import('@/actions/chat'); //for some reason we cant import from here
   console.log('i am running server side: ' + os.hostname);
   const { default:LogTail} = await import('./utils/classes/LogEvents/LogTailer');
+  // const { LogReader} = await import('./utils/classes/LogEvents/LogReader');
   const { attempt } = await import('./utils/functions/error');
 
   if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
