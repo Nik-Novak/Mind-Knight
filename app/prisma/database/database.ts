@@ -81,11 +81,99 @@ const prismaClientSingleton= ()=>{
               return database.game.update({where:{id:data.id}, data:{
                 chat: {push:{
                   ...chat_message_receive,
+                  index: data.chat.length,
                   log_time
                 }},
                 latest_log_time: log_time
               }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
+            }
+          },
+        },
+        $addChatUpdate: {
+          compute(data) {
+            return (...args:LogEvents['ChatUpdate'])=>{
+              let [chat_update, log_time] = args;
+              let game_player = data.game_players[chat_update.Slot];
+              if(!game_player)
+                throw Error("Something went wrong, no game_player found for chat_update")
+              // game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
+              // game.latest_log_time = log_time;
+              return database.game.update({where:{id:data.id}, data:{
+                game_players:{
+                    update:{
+                      ["0"]:{
+                        upsert:{
+                          update:{
+                            chat_updates: {push: { ...chat_update, log_time }}
+                          },
+                          set:{
+                            ...game_player
+                          }
+                        },
+                      }
+                    }
+                },
+                latest_log_time: log_time
+              }});
+            }
+          },
+        },
+        $addIdleStatusUpdate: {
+          compute(data) {
+            return (...args:LogEvents['IdleStatusUpdate'])=>{
+              let [idle_status_update, log_time] = args;
+              let game_player = data.game_players[idle_status_update.Player];
+              if(!game_player)
+                throw Error("Something went wrong, no game_player found for chat_update")
+              // game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
+              // game.latest_log_time = log_time;
+              return database.game.update({where:{id:data.id}, data:{
+                game_players:{
+                    update:{
+                      ["0"]:{
+                        upsert:{
+                          update:{
+                            idle_status_updates: {push: { ...idle_status_update, chatIndex:data.chat.length, log_time }}
+                          },
+                          set:{
+                            ...game_player
+                          }
+                        },
+                      }
+                    }
+                },
+                latest_log_time: log_time
+              }});
+            }
+          },
+        },
+        $addConnectionUpdate: {
+          compute(data) {
+            return (...args:LogEvents['Reconnected']|LogEvents['Disconnected'])=>{
+              let [connection_update, log_time] = args;
+              let game_player = data.game_players[connection_update.Player];
+              if(!game_player)
+                throw Error("Something went wrong, no game_player found for chat_update")
+              // game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
+              // game.latest_log_time = log_time;
+              return database.game.update({where:{id:data.id}, data:{
+                game_players:{
+                    update:{
+                      ["0"]:{
+                        upsert:{
+                          update:{
+                            connection_updates: {push: { ...connection_update, chatIndex:data.chat.length, log_time }}
+                          },
+                          set:{
+                            ...game_player
+                          }
+                        },
+                      }
+                    }
+                },
+                latest_log_time: log_time
+              }});
             }
           },
         },

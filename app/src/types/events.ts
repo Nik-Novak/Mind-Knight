@@ -33,6 +33,7 @@ export type LogReceiveEvents = {
   KeepAlive: [{Type:-1}, Date], //send
   //GAME
   ChatMessageReceive: [{"Type":205,"Message":string,"Slot":PlayerSlot}, Date],
+  ChatUpdate: [{"Type":405,"Slot":PlayerSlot,"Typing":boolean}, Date],
   GameFound: [{"Type":102,"PlayerNumber":NumberOfPlayers,"Hacker":boolean,"GuyRole":PlayerRole,"HackersAmount":number,"MissionInfo":NumberOfPlayers[],"MissionMinhacks":number[],"Hackers":[],"MatchType":GameMode,"FirstPlayer":PlayerSlot,"Map":GameMap,"Options":{"GameMode":GameMode,"MaxPlayers":NumberOfPlayers,"Visibility":number,"NamingConvention":NamingConvention,"HammerEnabled":boolean,"SkipTalkingPhaseEnabled":boolean,"MapPickOption":GameMap/* ? */,"Maps":GameMap[]},"VoiceChat":boolean,"VoiceChatName":string,"VoiceChatChannel":string}, Date],
   CancelSearch: [{"Type":104}, Date],
   SpawnPlayer: [{"Type":202,"Slot":PlayerSlot,"Color":ColorCode,"Username":string,"Female":boolean,"IsLocal":boolean,"Skin":string}, Date],
@@ -47,6 +48,8 @@ export type LogReceiveEvents = {
   MissionPhaseEnd: [{"Type":311,"Mission":NodeNumber,"Failed":boolean,"NumHacks":number,"Proposer":PlayerSlot}, Date],
   IdleStatusUpdate: [{"Type":403,"Idle":boolean,"Player":PlayerSlot}, Date]
   GameEnd: [{"Type":203,"Hacked":boolean,"Hackers":PlayerSlot[],"Canceled":boolean,"Roles":Role[],"Timeout":number/*ms*/,"PlayerIdentities":PlayerIdentity[],"AfterGameLobby":string}, Date]
+  Disconnected: [{"Type":402,"Player":PlayerSlot,"ByNetwork":boolean}, Date],
+  Reconnected: [{"Type":406,"Player":PlayerSlot}, Date],
 }
 
 export type LogEvents = LogSendEvents & LogReceiveEvents;

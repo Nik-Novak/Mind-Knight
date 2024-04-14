@@ -159,6 +159,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         game_found: {...game_found, log_time},
         game_players:{},
         missions:{},
+        source: 'live',
         latest_log_time: log_time
       }});
       let mindnightSession = await getMindnightSession();
@@ -203,6 +204,45 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
+  LogTail.on('ChatUpdate', async (chat_update, log_time)=>{
+    packetQueue.push(async (cb)=>{
+      if(game){
+        attempt(async ()=>{
+          await game!.$addChatUpdate(chat_update, log_time); //purposely no attempt
+        }, game.id)
+      }
+      cb && cb()
+    });
+  });
+  
+  LogTail.on('IdleStatusUpdate', async (idle_status_update, log_time)=>{
+    packetQueue.push(async (cb)=>{
+      if(game){
+        attempt(async ()=>{
+          await game!.$addIdleStatusUpdate(idle_status_update, log_time); //purposely no attempt
+        }, game.id)
+      }
+      cb && cb()
+    });
+  });
+
+  LogTail.on('Disconnected', async (disconnected, log_time)=>{
+    packetQueue.push(async (cb)=>{
+      if(game){
+        await game.$addConnectionUpdate(disconnected, log_time);
+      }
+      cb && cb()
+    });
+  });
+  LogTail.on('Reconnected', async (reconnected, log_time)=>{
+    packetQueue.push(async (cb)=>{
+      if(game){
+        await game.$addConnectionUpdate(reconnected, log_time);
+      }
+      cb && cb()
+    });
+  });
+
   LogTail.on('SelectPhaseStart', async (select_phase_start, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){

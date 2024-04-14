@@ -118,16 +118,50 @@ type PlayerProposals { //LIMITATION: 5 nodes assumption
   5             Proposal[]
 }
 
+type ChatUpdate {
+  Type              Int
+  Slot              Int
+  Typing            Boolean
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type IdleStatusUpdate {
+  Type              Int
+  Player            Int
+  Idle              Boolean
+
+  chatIndex         Int
+
+  log_time          DateTime
+  created_at        DateTime    @default(now())
+}
+
+type ConnectionUpdate {
+  Type        Int //402=disconnected 406 = reconnected
+  Player      Int
+  ByNetwork   Boolean? //only for disconnected
+
+  chatIndex   Int
+
+  log_time    DateTime
+  created_at  DateTime    @default(now())
+}
+
 type GamePlayer {
-  Color         Int
-  Female        Boolean
-  IsLocal       Boolean
-  Skin          String
-  Slot          Int
-  Type          Int
-  Username      String
+  Color               Int
+  Female              Boolean
+  IsLocal             Boolean
+  Skin                String
+  Slot                Int
+  Type                Int
+  Username            String
   // chat          Int[] //array of chat messages mapped to chat indices
-  proposals     PlayerProposals
+  proposals           PlayerProposals
+  chat_updates        ChatUpdate[]
+  idle_status_updates IdleStatusUpdate[]
+  connection_updates  ConnectionUpdate[]
 
   log_time          DateTime
   created_at        DateTime    @default(now())
@@ -285,7 +319,10 @@ model GlobalChatMessage {
 // =========================
 // Game
 // =========================
-
+enum Source {
+  live
+  upload
+}
 model Game { //unique: { timestamp &  } We want this to map 1 game to multiple rawgames (avoid duplicates)
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
   game_found    GameFound
@@ -301,7 +338,8 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 
   players       Player[]   @relation(fields: [player_ids], references: [id])
   player_ids    String[]   @db.ObjectId
-
+  
+  source        Source //when source is 'live', created_ats are db generated. When 'upload' then they're locally generated with new Date()
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
   @@map("games")
@@ -314,6 +352,7 @@ enum RawGameUploadReason {
   GameEnd
   Error
   Upload
+  Transfer
 }
 model RawGame {
   id              String     @id @default(auto()) @map("_id") @db.ObjectId
