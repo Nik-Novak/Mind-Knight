@@ -2,8 +2,24 @@ import { LogEvents } from "@/types/events";
 import EventEmitter from "events";
 import { OSInfo } from "../OSInfo";
 import LineListener from "../LineListeners/LineListener";
-import { logLineToISOTime } from "@/utils/functions/game";
+// import { logLineToISOTime } from "@/utils/functions/game";
 import fs from 'fs';
+
+export function logLineToISOTime(line:string, depth=0){
+  let formattedTimestamp = line.substring(0,19).replace(/\./g, '-').replace(' ', 'T');// + "Z";
+  let [datePart, timePart] = formattedTimestamp.split('T');//[1].replaceAll('-',':') + "Z";
+  formattedTimestamp = datePart +"T"+ timePart.replaceAll('-', ':') + "Z";
+  let date = new Date(formattedTimestamp);
+  if(isNaN(date.valueOf())){
+    console.log('INVALID TIMESTAMP:', formattedTimestamp);
+    console.log('\tTIMESTAMP LINE:', formattedTimestamp);
+    console.log('RETRYING WITH FIRST CHARACTER RESTORED:', '2'+formattedTimestamp);
+    if(depth==0)
+      return logLineToISOTime('2'+formattedTimestamp, 1);
+    else throw Error("INVALID TIMESTAMP: "+formattedTimestamp)
+  }
+  return new Date(formattedTimestamp);
+}
 
 export default class LogEventEmitter extends EventEmitter<LogEvents> {
   protected logpath = '';
