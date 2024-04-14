@@ -12,4 +12,4 @@ call node -v
 @REM     @REM rmdir /s /q .\.next
 @REM     call npx yarn build:windows
 @REM )
-call npx yarn dev:windows
+call set COMPATIBILITY_MODE=true && npx yarn dev:windows

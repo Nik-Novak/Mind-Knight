@@ -1,6 +1,8 @@
 import "dotenv/config";
 import open from 'open';
 
+console.log('COMPATIBILITY_MODE:', !!process.env.COMPATIBILITY_MODE);
+
 if(process.env.START_BROWSER === 'true' && !process.env.BUILD && process.env.NEXTAUTH_URL)
   open(process.env.NEXTAUTH_URL)
   

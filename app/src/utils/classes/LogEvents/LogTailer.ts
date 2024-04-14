@@ -1,4 +1,4 @@
-import TailLinux from '../LineListeners/TailLinux';
+import Tail from '../LineListeners/Tail';
 import TailWindows from '../LineListeners/TailWindows';
 import LineListener from '../LineListeners/LineListener';
 import { OSInfo } from '../OSInfo';
@@ -10,18 +10,15 @@ import LogEventEmitter from './LogEventEmitter';
 class LogTailer extends LogEventEmitter{
   constructor(){
     super();
-    let lineListener:LineListener|undefined;
+    let lineListener:LineListener;
     let osInfo = new OSInfo();
     switch (osInfo.platform){
-      case 'linux': {
-        lineListener = new TailLinux(this.logpath);
-      } break;
       case 'win32': {
-        lineListener = new TailWindows(this.logpath);
+        lineListener = process.env.COMPATIBILITY_MODE ? new Tail(this.logpath, {useWatchFile:true}) : new TailWindows(this.logpath);
       } break;
+      default: lineListener = new Tail(this.logpath);
     }
-    if(!lineListener)
-        throw Error('Unsupported platf');
+    
     this.start(lineListener);
   }
 }

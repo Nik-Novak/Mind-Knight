@@ -27,7 +27,7 @@ export default class LogEventEmitter extends EventEmitter<LogEvents> {
       } break;
     }
     if(!this.logpath)
-      throw Error(`Sorry, Mind Knight does not yet support your platform: ${osInfo.platform} ${osInfo.release}`);
+      throw Error(`Sorry, Mind Knight does not yet support your platform: ${osInfo.platform} ${osInfo.release}.\nClick here to request support: ${process.env.NEXT_PUBLIC_SUPPORT_URL}`);
   }
 
   start(lineListener:LineListener){
