@@ -1,4 +1,4 @@
-import { LogEvents } from '@/utils/classes/LogReader';
+import { LogEvents } from '@/types/events';
 import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from '@/utils/functions/game';
 import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, MindnightSessionStatus,  } from '@prisma/client'
 // let modelnames = Prisma.dmmf.datamodel.models.map(m=>m.name); Value `in` modelnames

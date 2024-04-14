@@ -1,5 +1,5 @@
 import { WebSocketServer } from 'ws';
-import type { ServerEventPacket, ServerEvents } from './components/ServerEventsProvider';
+import type { ServerEventPacket, ServerEvents } from '@/types/events';
 import { database } from '../prisma/database';
 import { GlobalChatMessage } from './types/game';
 import Queue from 'queue';
@@ -30,7 +30,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   const {getClient, getMindnightSession, sendToMindnight, createMindnightSession} = await import('@/actions/mindnight-session');
   // const {} = await import('@/actions/chat'); //for some reason we cant import from here
   console.log('i am running server side: ' + os.hostname);
-  const { default:LogReader} = await import('./utils/classes/LogReader');
+  const { default:LogTail} = await import('./utils/classes/LogEvents/LogTailer');
   const { attempt } = await import('./utils/functions/error');
 
   if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
@@ -82,7 +82,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   }
   
-  LogReader.on('ReceiveGlobalChatMessage', async (packet)=>{
+  LogTail.on('ReceiveGlobalChatMessage', async (packet)=>{
     packetQueue.push(async (cb)=>{
       await createGlobalChatMessage(packet.Message);
       sendServerEvent('ReceiveGlobalChatMessage', packet);
@@ -90,7 +90,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   });
 
-  LogReader.on('GameClose', async ( packet )=>{
+  LogTail.on('GameClose', async ( packet )=>{
     packetQueue.push(async (cb)=>{
       let client = await getClient();
       if(client.mindnight_session)
@@ -102,7 +102,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   });
 
-  LogReader.on('PlayerInfo', async ( packet )=>{
+  LogTail.on('PlayerInfo', async ( packet )=>{
     packetQueue.push(async (cb)=>{
       let mindnightSession = await createMindnightSession(packet);
       // revalidateTag(Tags.session.toString());
@@ -112,7 +112,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   });
 
-  LogReader.on('AuthorizationRequest', async (packet)=>{
+  LogTail.on('AuthorizationRequest', async (packet)=>{
     packetQueue.push(async (cb)=>{
       await sendToMindnight(packet);
       sendServerEvent('AuthorizationRequest', packet);
@@ -120,7 +120,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   });
 
-  LogReader.on('AuthResponse', async (packet)=>{
+  LogTail.on('AuthResponse', async (packet)=>{
     packetQueue.push(async (cb)=>{
       let mindnightSession = await getMindnightSession();
       if(mindnightSession){
@@ -135,7 +135,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   });
 
 
-  LogReader.on('GlobalChatHistoryResponse', async (packet)=>{
+  LogTail.on('GlobalChatHistoryResponse', async (packet)=>{
     packetQueue.push(async (cb)=>{
       let mindnightSession = await getMindnightSession();
       if(mindnightSession){
@@ -153,7 +153,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   });
 
   //building the game
-  LogReader.on('GameFound', async (game_found, log_time)=>{
+  LogTail.on('GameFound', async (game_found, log_time)=>{
     packetQueue.push(async (cb)=>{
         game = await database.game.create({data:{
         game_found: {...game_found, log_time},
@@ -172,7 +172,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
     
   });
-  LogReader.on('SpawnPlayer', async (spawn_player, log_time)=>{
+  LogTail.on('SpawnPlayer', async (spawn_player, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         game = await game.$spawnPlayer(spawn_player, log_time);
@@ -181,7 +181,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb();
     });
   });
-  LogReader.on('GameStart', async (game_start, log_time)=>{
+  LogTail.on('GameStart', async (game_start, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -192,7 +192,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('ChatMessageReceive', async (chat_message, log_time)=>{
+  LogTail.on('ChatMessageReceive', async (chat_message, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -203,7 +203,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('SelectPhaseStart', async (select_phase_start, log_time)=>{
+  LogTail.on('SelectPhaseStart', async (select_phase_start, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -214,7 +214,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('SelectUpdate', async (select_update, log_time)=>{
+  LogTail.on('SelectUpdate', async (select_update, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -225,7 +225,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('SelectPhaseEnd', async (select_phase_end, log_time)=>{
+  LogTail.on('SelectPhaseEnd', async (select_phase_end, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -237,7 +237,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
     
   });
-  LogReader.on('VotePhaseStart', async (vote_phase_start, log_time)=>{
+  LogTail.on('VotePhaseStart', async (vote_phase_start, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -248,7 +248,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('VoteMade', async (vote_made, log_time)=>{
+  LogTail.on('VoteMade', async (vote_made, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -259,7 +259,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('VotePhaseEnd', async (vote_phase_end, log_time)=>{
+  LogTail.on('VotePhaseEnd', async (vote_phase_end, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -270,7 +270,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('MissionPhaseStart', async (mission_phase_start, log_time)=>{
+  LogTail.on('MissionPhaseStart', async (mission_phase_start, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
@@ -281,7 +281,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('MissionPhaseEnd', async (mission_phase_end, log_time)=>{
+  LogTail.on('MissionPhaseEnd', async (mission_phase_end, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game) {
         attempt(async ()=>{
@@ -292,14 +292,14 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       cb && cb()
     });
   });
-  LogReader.on('GameEnd', async (game_end, log_time)=>{
+  LogTail.on('GameEnd', async (game_end, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game) {
         attempt(async ()=>{
           await database.rawGame.create({
             data: {
               upload_reason: 'GameEnd',
-              data: LogReader.readLog(),
+              data: LogTail.readLog(),
               game_id: game!.id
             }
           })

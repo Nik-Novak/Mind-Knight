@@ -1,45 +1,10 @@
 "use client";
-import { LogEvents } from '@/utils/classes/LogReader';
 import React, { createContext, useContext, useEffect } from 'react';
 import { EventEmitter } from 'events';
 import { Game, MindnightSession } from '@prisma/client';
 import { useStore } from '@/zustand/store';
 import { dateTimeReviver } from '@/utils/functions/general';
-
-type SessionEvents = {
-  MindnightSessionUpdate: [MindnightSession|null]
-}
-
-type GameEvents = {
-  GameUpdate: [Game|undefined]
-}
-
-
-export type ServerEvents = LogEvents & SessionEvents & GameEvents & {
-  ClientInit: []
-}; //add new events here
-
-export type ServerEventPacket = {
-  type: keyof ServerEvents,
-  payload: any
-}
-// export type ServerEventPacket<T extends keyof ServerEvents> = { //TODO add proper typing
-//   type: T,
-//   payload: ServerEvents[T]
-// }
-
-// const dateTimeReviver = function (key:string, value:string) {
-//   var a;
-//   if (typeof value === 'string') {
-//       a = /\/Date\((\d*)\)\//.exec(value);
-//       console.log('A', a);
-//       if (a) {
-//           return new Date(+a[1]);
-//       }
-//   }
-//   return value;
-// }
-
+import { ServerEventPacket, ServerEvents } from '@/types/events';
 
 const serverEvents = new EventEmitter<ServerEvents>();
 

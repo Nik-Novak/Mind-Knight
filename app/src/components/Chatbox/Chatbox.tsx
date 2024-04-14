@@ -1,18 +1,15 @@
 "use client";
-import { Box, Button, IconButton, InputAdornment, Stack, TextField, Tooltip } from "@mui/material";
+import { Button, IconButton, InputAdornment, Stack, TextField, Tooltip } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import ClearIcon from '@mui/icons-material/Clear';
 import React, { useRef, useState, useOptimistic, useEffect } from "react";
-import { ChatMessage, GamePlayers } from "@prisma/client";
+import { ChatMessage } from "@prisma/client";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { GlobalChatMessage, PlayerSlot } from "@/types/game";
 import Message from "./Message";
 import { useRouter } from "next/navigation";
-import { provideLogEvents } from "@/utils/hoc/provideLogEvents";
 import { useServerEvents } from "../ServerEventsProvider";
-import { LogEvents } from "@/utils/classes/LogReader";
-import { provideMindnightSession } from "@/utils/hoc/provideMindnightSession";
 import { useMindnightSession } from "../MindnightSessionProvider";
 import { useStore } from "@/zustand/store";
 import { hasHappened } from "@/utils/functions/game";
@@ -85,14 +82,14 @@ function Chatbox({ chat, sendMessage}:Props){
     }
   }, [processedChat.length]);
 
-  useEffect(()=>{
-    let onReceiveGlobalChatMessage = (data:LogEvents['ReceiveGlobalChatMessage'][0])=> {
-      router.refresh();
-    };
-    serverEvents.on('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage );
-    //cleanup event listener
-    return ()=> {serverEvents.removeListener('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage )};
-  }, []);
+  // useEffect(()=>{
+  //   let onReceiveGlobalChatMessage = ()=> {
+  //     router.refresh();
+  //   };
+  //   serverEvents.on('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage );
+  //   //cleanup event listener
+  //   return ()=> {serverEvents.removeListener('ReceiveGlobalChatMessage', onReceiveGlobalChatMessage )};
+  // }, []);
   
   return (
     <Stack>

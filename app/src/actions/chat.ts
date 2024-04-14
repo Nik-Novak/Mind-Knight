@@ -1,10 +1,10 @@
 "use server";
 import { GlobalChatMessage } from "@/types/game";
-import { LogEvents } from "@/utils/classes/LogReader";
 import { revalidateTag, unstable_cache as cache, revalidatePath } from "next/cache";
 import { database } from "../../prisma/database";
 import { Tags } from "@/utils/cache/tags";
 import { getMindnightSession, sendToMindnight } from "./mindnight-session";
+import { LogEvents } from "@/types/events";
 
 
 

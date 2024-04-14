@@ -1,7 +1,7 @@
 import {Tail as LinuxTail, TailOptions} from 'tail';
-import Tail from './Tail';
+import LineListener from './LineListener';
 
-export default class TailLinux extends Tail{
+export default class TailLinux extends LineListener{
   private tail: LinuxTail|undefined
   constructor(filepath:string, private options:TailOptions = {fromBeginning:false, encoding:'utf8', flushAtEOF:true}){
     super(filepath);

@@ -2,9 +2,9 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
 import { database } from "../../prisma/database";
 import { Game, PlayerIdentity } from "@prisma/client";
-import { ServerEventPacket } from "@/components/ServerEventsProvider";
-import LogReader from "@/utils/classes/LogReader";
 import { getServerSession } from "next-auth";
+import LogTailer from "@/utils/classes/LogEvents/LogTailer";
+import { ServerEventPacket } from "@/types/events";
 
 export async function getGames(playerId?:string){
   const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
@@ -33,7 +33,7 @@ export async function getGames(playerId?:string){
 
 export async function uploadGames(){
   let session = await getServerSession();
-  let firstLog = LogReader.readLog();
+  let firstLog = LogTailer.readLog();
   if(!firstLog)
     throw Error('Something went wrong.');
   await database.rawGame.create({data:{
@@ -42,7 +42,7 @@ export async function uploadGames(){
     context: `${session?.user.steam_id} Player.log`,
     game_id: '000000000000000000000000'
   }});
-  let secondLog = LogReader.readPrevLog();
+  let secondLog = LogTailer.readPrevLog();
   if(secondLog)
     await database.rawGame.create({data:{
       data: secondLog,

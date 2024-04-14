@@ -1,20 +1,8 @@
 "use client";
-import { LogEvents } from '@/utils/classes/LogReader';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { EventEmitter } from 'events';
 import { MindnightSession } from '@prisma/client';
 import { useServerEvents } from '../ServerEventsProvider';
-import { database } from '../../../prisma/database';
 import { redirect, useRouter } from 'next/navigation';
-import { revalidateTag } from 'next/cache';
-import { Tags } from '@/utils/cache/tags';
-
-export type ServerEvents = LogEvents; //add new events here
-
-export type ServerEventPacket = {
-  type: keyof ServerEvents,
-  payload: any
-}
 
 // const serverEvents = new EventEmitter<ServerEvents>();
 

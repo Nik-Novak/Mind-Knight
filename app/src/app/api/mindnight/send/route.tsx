@@ -1,4 +1,4 @@
-import { LogEvents } from "@/utils/classes/LogReader";
+import { LogEvents } from "@/types/events";
 import { JsonObject } from "@prisma/client/runtime/library";
 import { NextRequest, NextResponse } from "next/server";
 

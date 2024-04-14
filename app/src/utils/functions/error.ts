@@ -1,5 +1,5 @@
 import { database } from "../../../prisma/database";
-import LogReader from "../classes/LogReader";
+import LogTailer from "../classes/LogEvents/LogTailer";
 
 type AsyncThunk<R> = ()=>R|Promise<R>;
 export async function attempt<R>(thunk:AsyncThunk<R>, game_id:string, context?:string){
@@ -9,7 +9,7 @@ export async function attempt<R>(thunk:AsyncThunk<R>, game_id:string, context?:s
         if(err instanceof Error)
           await database.rawGame.create({
             data:{
-              data: LogReader.readLog(),
+              data: LogTailer.readLog(),
               upload_reason:'Error',
               error: err.message + '\n' + err.stack,
               context,

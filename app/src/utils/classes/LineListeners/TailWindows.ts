@@ -1,10 +1,10 @@
 import { exec } from "child_process";
 import fs from 'fs/promises';
-import Tail from "./Tail";
+import LineListener from "./LineListener";
 
 type Options = {maxBuffer: number, encoding:string}
 
-export default class TailWindows extends Tail {
+export default class TailWindows extends LineListener {
   private running = false;
   constructor(filepath:string, private options:Options={maxBuffer: 1024*1024*50, encoding:'utf8'}){
     super(filepath)

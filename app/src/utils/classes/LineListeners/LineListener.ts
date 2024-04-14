@@ -1,8 +1,6 @@
-import {Tail as LinuxTail, TailOptions} from 'tail';
-
 type Callback = (line:string)=>void
 
-export default abstract class Tail {
+export default abstract class LineListener {
   protected listeners:Callback[] = [];
   constructor(protected filepath:string){
   }

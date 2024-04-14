@@ -1,14 +1,6 @@
-import os from 'os';
-import fs from 'fs';
-import EventEmitter from 'events';
-import { GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from '@/types/game';
-import { PlayerIdentity, Role } from '@prisma/client';
-import TailLinux from './Tail/TailLinux';
-import TailWindows from './Tail/TailWindows';
-import Tail from './Tail/Tail';
-import { ColorCode } from '../constants/colors';
-import { logLineToISOTime } from '../functions/game';
-import path from 'path';
+import { ColorCode } from "@/utils/constants/colors"
+import { GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from "./game"
+import { Game, MindnightSession, PlayerIdentity, Role } from "@prisma/client"
 
 export type LogSendEvents = {
   //GENERAL
@@ -59,88 +51,20 @@ export type LogReceiveEvents = {
 
 export type LogEvents = LogSendEvents & LogReceiveEvents;
 
-/**
- * Subscribes to log based on platform and emits events
- */
-class LogReader extends EventEmitter<LogEvents>{
-  private logpath = '';
-  private prevLogpath = '';
-  private tail:Tail|undefined;
-  constructor(){
-    super();
-    let platform = os.platform();
-    let osRelease = os.release();
-    switch(platform){
-      case 'linux': {
-        osRelease = fs.readFileSync('/etc/os-release', 'utf8');
-        if(osRelease.toLowerCase().includes('ubuntu')){
-          this.logpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
-          this.prevLogpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`;
-          this.tail = new TailLinux(this.logpath);
-        }
-      } break;
-      case 'win32': {
-        this.logpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
-        this.prevLogpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player-prev.log`;
-        this.tail = new TailWindows(this.logpath);
-      } break;
-    }
-    if(!this.logpath || !this.tail)
-      throw Error(`Sorry, Mind Knight does not yet support your platform: ${platform} ${osRelease}`);
-    this.tail
-      .addListener((line)=>{
-        // console.log(line);
-        try{
-          if(!line.trim())
-            return;
-          if(line.includes('Initialize engine version'))
-            this.emit('GameLaunch', new Date()); //don't use this timestamp, inconsistent
-          else if(line.includes('GlobalChatHisotryRequest')){ //cmon marcel, why u gotta make my life hard. lol
-            console.log('FOUND PACKET', 'GlobalChatHisotryRequest');
-            console.log('\t', JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7)));
-            this.emit('GlobalChatHistoryRequest', JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7)), logLineToISOTime(line));
-          }
-          else if(line.includes('Connection was closed'))
-            this.emit('GameClose', logLineToISOTime(line))
-          else { //check for `Received .* packet:` pattern.
-            let packetType = /Received (.*) packet:/i.exec(line)?.[1].trim() as keyof LogEvents | undefined; //catch all Received packets
-            if(!packetType)
-              packetType = /Sending (.*)Packet:/i.exec(line)?.[1].trim() as keyof LogEvents | undefined; //catch all Sending packets
-            if(packetType){
-              // if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse']).includes(packetType))
-              console.log(`FOUND PACKET`, packetType)
-              let packet = JSON.parse(line.substring(line.toLowerCase().indexOf('packet:', 20) + 7).trim());// as LogEvents[keyof LogEvents]['0'];
-              if((['ReceiveGlobalChatMessage', 'PlayerInfo', 'AuthResponse', 'GameEnd', 'SpawnPlayer']).includes(packetType))
-                console.log('\t', packet);
-              this.emit(packetType, packet, logLineToISOTime(line));
-            }
-          }
-        } catch(err){
-          if(err instanceof SyntaxError){
-            console.log('ERROR parsing JSON.')
-            console.log('\tLine:', line);
-          }
-          throw err;
-        }
-      })
-      .start();
-  }
-  readLog(){
-    return fs.readFileSync(this.logpath, 'utf8');
-  }
-  readPrevLog(){
-    return fs.readFileSync(this.prevLogpath, 'utf8');
-  }
-  // emit(type: keyof LogSendEvents | keyof LogReceiveEvents, ...args: any[]): boolean {
-  //   super.emit('*', type, ...args);
-  //   return super.emit(type, ...args) || super.emit('', ...args);
-  // }
-  // onAny(listener:(eventName?:keyof LogEvents, ...args: any[]) => void ){
-  //   console.log('evt names', this.emit);
-  //   this.eventNames().forEach(eventName=>{
-  //     this.on(eventName, (...args:any[])=>listener(eventName, ...args));
-  //   })
-  // }
+type SessionEvents = {
+  MindnightSessionUpdate: [MindnightSession|null]
 }
 
-export default new LogReader();
+type GameEvents = {
+  GameUpdate: [Game|undefined]
+}
+
+
+export type ServerEvents = LogEvents & SessionEvents & GameEvents & {
+  ClientInit: []
+}; //add new events here
+
+export type ServerEventPacket = {
+  type: keyof ServerEvents,
+  payload: any
+}
