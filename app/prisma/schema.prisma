@@ -339,7 +339,7 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   players       Player[]   @relation(fields: [player_ids], references: [id])
   player_ids    String[]   @db.ObjectId
   
-  source        Source //when source is 'live', created_ats are db generated. When 'upload' then they're locally generated with new Date()
+  source        Source? //when source is 'live', created_ats are db generated. When 'upload' then they're locally generated with new Date()
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
   @@map("games")
