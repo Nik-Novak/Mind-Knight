@@ -5,7 +5,8 @@ import { sleep } from "@/utils/functions/general";
 
 export type ReadLineOptions = {
   timeBetweenLinesMS: number,
-  startAtLineContaining?:string
+  startAtLineContaining?:string,
+  onComplete?:(num_lines_read:number)=>void
 }
 
 export class ReadLine extends LineListener{
@@ -26,13 +27,18 @@ export class ReadLine extends LineListener{
   private async doRead(){
     let foundStartingPoint = !this.options.startAtLineContaining;
     for await (const line of this.rl) {
+      // console.log(line);
       if(line.includes(this.options.startAtLineContaining!))
         foundStartingPoint = true;
       if(foundStartingPoint){
         this.listeners.forEach(l => l(line));
+        ++this.lines_read;
         await sleep(this.options.timeBetweenLinesMS);
       }
     }
+    // console.log('DONE');
+    if(this.options.onComplete)
+      this.options.onComplete(this.lines_read);
   }
 
   async start() {

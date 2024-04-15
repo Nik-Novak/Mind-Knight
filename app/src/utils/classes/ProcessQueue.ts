@@ -57,4 +57,8 @@ export default class ProcessQueue {
   start(){
     this.process();
   }
+
+  get numJobs(){
+    return this.jobQueue.length;
+  }
 }

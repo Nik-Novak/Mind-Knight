@@ -6,6 +6,9 @@ _archive
 __transfer__/data
 __transfer__/complete
 __transfer__/error
+__test__/data
+__test__/complete
+__test__/error
 .env*
 .flaskenv*
 !.env.project

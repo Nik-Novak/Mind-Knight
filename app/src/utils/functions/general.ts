@@ -55,3 +55,20 @@ export function sleep(durationMs:number){
     throw Error("Cannot sleep for 0 or less ms");
   return new Promise(res=>setTimeout(res, durationMs));
 }
+
+type Predicate = (...args:any[])=>boolean;
+export function waitUntil(predicate:Predicate, timeout?:number, checkEvery = 1000){
+  if(checkEvery <=0) throw Error("checkEvery must be a positive number");
+  if(timeout && timeout <=0) throw Error("timeout must be a positive number");
+  return new Promise<void>((resolve, reject)=>{
+    let checkInterval = setInterval(()=>{
+      console.log('CHECKING:', predicate());
+      if(predicate()){
+        clearInterval(checkInterval);
+        resolve()
+      }
+    }, checkEvery);
+    if(timeout)
+      setTimeout(()=>reject(`waitUntil reached timeout of ${timeout}ms`), timeout);
+  });
+}

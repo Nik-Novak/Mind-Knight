@@ -2,14 +2,15 @@ import { WebSocketServer } from 'ws';
 import type { ServerEventPacket, ServerEvents } from '@/types/events';
 import { database } from '../prisma/database';
 import { GlobalChatMessage } from './types/game';
-import Queue from 'queue';
+import ProcessQueue from './utils/classes/ProcessQueue';
+
 
 // import { getGame } from './actions/game'; //DO NOT IMPORT FROM HERE OR ANY ANNOTATED COMPONENT
 
 console.log('instrumentation.ts');
 console.log('PPID:', process.ppid);
 console.log('PID:', process.pid);
-const packetQueue = new Queue({autostart:true, concurrency:1 });
+const packetQueue = new ProcessQueue({autostart:true});
 
 async function createGlobalChatMessage(message:GlobalChatMessage){
   let chatMsg = await database.globalChatMessage.create({
@@ -83,273 +84,315 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   }
   
   LogTail.on('ReceiveGlobalChatMessage', async (packet)=>{
-    packetQueue.push(async (cb)=>{
-      await createGlobalChatMessage(packet.Message);
-      sendServerEvent('ReceiveGlobalChatMessage', packet);
-      cb && cb();
-    });
+    packetQueue.push(
+        async ()=>{
+        await createGlobalChatMessage(packet.Message);
+        sendServerEvent('ReceiveGlobalChatMessage', packet);
+      },
+      'ReceiveGlobalChatmessage'
+    );
   });
 
   LogTail.on('GameClose', async ( packet )=>{
-    packetQueue.push(async (cb)=>{
-      let client = await getClient();
-      if(client.mindnight_session)
-        await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
-      // revalidateTag(Tags.session.toString());
-      sendServerEvent('MindnightSessionUpdate', null);
-      sendServerEvent('GameClose', packet);
-      cb && cb();
-    });
+    packetQueue.push(
+        async ()=>{
+        let client = await getClient();
+        if(client.mindnight_session)
+          await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
+        // revalidateTag(Tags.session.toString());
+        sendServerEvent('MindnightSessionUpdate', null);
+        sendServerEvent('GameClose', packet);
+      },
+      'GameClose'
+    );
   });
 
   LogTail.on('PlayerInfo', async ( packet )=>{
-    packetQueue.push(async (cb)=>{
-      let mindnightSession = await createMindnightSession(packet);
-      // revalidateTag(Tags.session.toString());
-      sendServerEvent('MindnightSessionUpdate', mindnightSession);
-      sendServerEvent('PlayerInfo', packet);
-      cb && cb();
-    });
+    packetQueue.push(
+        async ()=>{
+        let mindnightSession = await createMindnightSession(packet);
+        // revalidateTag(Tags.session.toString());
+        sendServerEvent('MindnightSessionUpdate', mindnightSession);
+        sendServerEvent('PlayerInfo', packet);
+      }
+    );
   });
 
   LogTail.on('AuthorizationRequest', async (packet)=>{
-    packetQueue.push(async (cb)=>{
-      await sendToMindnight(packet);
-      sendServerEvent('AuthorizationRequest', packet);
-      cb && cb();
-    });
+    packetQueue.push(
+        async ()=>{
+        await sendToMindnight(packet);
+        sendServerEvent('AuthorizationRequest', packet);
+      },
+      'AuthorizationRequest'
+    );
   });
 
   LogTail.on('AuthResponse', async (packet)=>{
-    packetQueue.push(async (cb)=>{
-      let mindnightSession = await getMindnightSession();
-      if(mindnightSession){
-        let authedMindnightSession = await database.mindnightSession.authenticate(mindnightSession);
-        console.log('Authenticated MNSession', mindnightSession);
-        // revalidateTag(Tags.session);
-        sendServerEvent('MindnightSessionUpdate', authedMindnightSession);
-      }
-      sendServerEvent('AuthResponse', packet);
-      cb && cb();
-    });
+    packetQueue.push(
+      async ()=>{
+        let mindnightSession = await getMindnightSession();
+        if(mindnightSession){
+          let authedMindnightSession = await database.mindnightSession.authenticate(mindnightSession);
+          console.log('Authenticated MNSession', mindnightSession);
+          // revalidateTag(Tags.session);
+          sendServerEvent('MindnightSessionUpdate', authedMindnightSession);
+        }
+        sendServerEvent('AuthResponse', packet);
+      },
+      'AuthResponse'
+    );
   });
 
 
   LogTail.on('GlobalChatHistoryResponse', async (packet)=>{
-    packetQueue.push(async (cb)=>{
-      let mindnightSession = await getMindnightSession();
-      if(mindnightSession){
-        let readiedMindnightSession = await database.mindnightSession.ready(mindnightSession);
-        // revalidateTag(Tags.session);
-        sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
-      }
-      for (let message of packet.Messages){
-        await database.globalChatMessage.findOrCreate({data:message});
-      }
-      sendServerEvent('GlobalChatHistoryResponse', packet);
-      cb && cb();
-    });
-    
+    packetQueue.push(
+      async ()=>{
+        let mindnightSession = await getMindnightSession();
+        if(mindnightSession){
+          let readiedMindnightSession = await database.mindnightSession.ready(mindnightSession);
+          // revalidateTag(Tags.session);
+          sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
+        }
+        for (let message of packet.Messages){
+          await database.globalChatMessage.findOrCreate({data:message});
+        }
+        sendServerEvent('GlobalChatHistoryResponse', packet);
+      },
+      'GlobalChatHistoryResponse'
+    );
   });
 
   //building the game
   LogTail.on('GameFound', async (game_found, log_time)=>{
-    packetQueue.push(async (cb)=>{
+    packetQueue.push(
+      async ()=>{
         game = await database.game.create({data:{
-        game_found: {...game_found, log_time},
-        game_players:{},
-        missions:{},
-        source: 'live',
-        latest_log_time: log_time
-      }});
-      let mindnightSession = await getMindnightSession();
-      if(mindnightSession){
-        let readiedMindnightSession = await database.mindnightSession.playing(mindnightSession);
-        // revalidateTag(Tags.session);
-        sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
-      }
-      sendServerEvent('GameUpdate', game);
-      cb && cb();
-    });
-    
+          game_found: {...game_found, log_time},
+          game_players:{},
+          missions:{},
+          source: 'live',
+          latest_log_time: log_time
+        }});
+        let mindnightSession = await getMindnightSession();
+        if(mindnightSession){
+          let readiedMindnightSession = await database.mindnightSession.playing(mindnightSession);
+          // revalidateTag(Tags.session);
+          sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
+        }
+        sendServerEvent('GameUpdate', game);
+      },
+      'GameFound'
+    );
   });
   LogTail.on('SpawnPlayer', async (spawn_player, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        game = await game.$spawnPlayer(spawn_player, log_time);
-        sendServerEvent('GameUpdate', game);
-      }
-      cb && cb();
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          game = await game.$spawnPlayer(spawn_player, log_time);
+          sendServerEvent('GameUpdate', game);
+        }
+      },
+      'SpawnPlayer'
+    );
   });
   LogTail.on('GameStart', async (game_start, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$startGame(game_start, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'GameStart');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$startGame(game_start, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'GameStart');
+        }
+      },
+      'GameStart'
+    );
   });
   LogTail.on('ChatMessageReceive', async (chat_message, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$addChatMessage(chat_message, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'ChatMessageReceive');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$addChatMessage(chat_message, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'ChatMessageReceive');
+        }
+      },
+      'ChatMessageReceive'
+    );
   });
   LogTail.on('ChatUpdate', async (chat_update, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$addChatUpdate(chat_update, log_time); //purposely no attempt
-        }, game.id)
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$addChatUpdate(chat_update, log_time); //purposely no attempt
+          }, game.id)
+        }
+      },
+      'ChatUpdate'
+    );
   });
   
   LogTail.on('IdleStatusUpdate', async (idle_status_update, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$addIdleStatusUpdate(idle_status_update, log_time); //purposely no attempt
-        }, game.id)
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$addIdleStatusUpdate(idle_status_update, log_time); //purposely no attempt
+          }, game.id)
+        }
+      },
+      'IdleStatusUpdate'
+    );
   });
 
   LogTail.on('Disconnected', async (disconnected, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        game = await game.$addConnectionUpdate(disconnected, log_time);
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          game = await game.$addConnectionUpdate(disconnected, log_time);
+        }
+      },
+      'Disconnected'
+    );
   });
   LogTail.on('Reconnected', async (reconnected, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        game = await game.$addConnectionUpdate(reconnected, log_time);
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          game = await game.$addConnectionUpdate(reconnected, log_time);
+        }
+      },
+      'Reconnected'
+    );
   });
 
   LogTail.on('SelectPhaseStart', async (select_phase_start, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$startProposal(select_phase_start, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'SelectPhaseStart');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$startProposal(select_phase_start, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'SelectPhaseStart');
+        }
+      },
+      'SelectPhaseStart'
+    );
   });
   LogTail.on('SelectUpdate', async (select_update, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$updateProposalSelection(select_update, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'SelectUpdate');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$updateProposalSelection(select_update, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'SelectUpdate');
+        }
+      },
+      'SelectUpdate'
+    );
   });
   LogTail.on('SelectPhaseEnd', async (select_phase_end, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$endProposal(select_phase_end, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'SelectPhaseEnd');
-      }
-      cb && cb()
-    });
-    
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$endProposal(select_phase_end, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'SelectPhaseEnd');
+        }
+      },
+      'SelectPhaseEnd'
+    );
   });
   LogTail.on('VotePhaseStart', async (vote_phase_start, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$startVote(vote_phase_start, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'VotePhaseStart');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$startVote(vote_phase_start, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'VotePhaseStart');
+        }
+      },
+      'VotePhaseStart'
+    );
   });
   LogTail.on('VoteMade', async (vote_made, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$addVoteMade(vote_made, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'VoteMade');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$addVoteMade(vote_made, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'VoteMade');
+        }
+      },
+      'VoteMade'
+    );
   });
   LogTail.on('VotePhaseEnd', async (vote_phase_end, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$endVote(vote_phase_end, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'VotePhaseEnd');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$endVote(vote_phase_end, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'VotePhaseEnd');
+        }
+      },
+      'VotePhaseEnd'
+    );
   });
   LogTail.on('MissionPhaseStart', async (mission_phase_start, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game){
-        attempt(async ()=>{
-          game = await game!.$startMission(mission_phase_start, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'MissionPhaseStart');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game){
+          attempt(async ()=>{
+            game = await game!.$startMission(mission_phase_start, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'MissionPhaseStart');
+        }
+      },
+      'MissionPhaseStart'
+    );
   });
   LogTail.on('MissionPhaseEnd', async (mission_phase_end, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game) {
-        attempt(async ()=>{
-          game = await game!.$endMission(mission_phase_end, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'MissionPhaseEnd');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game) {
+          attempt(async ()=>{
+            game = await game!.$endMission(mission_phase_end, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'MissionPhaseEnd');
+        }
+      },
+      'MissionPhaseEnd'
+    );
   });
   LogTail.on('GameEnd', async (game_end, log_time)=>{
-    packetQueue.push(async (cb)=>{
-      if(game) {
-        attempt(async ()=>{
-          await database.rawGame.create({
-            data: {
-              upload_reason: 'GameEnd',
-              data: LogTail.readLog(),
-              game_id: game!.id
-            }
-          })
-  
-          game = await game!.$endGame(game_end, log_time);
-          sendServerEvent('GameUpdate', game);
-        }, game.id, 'GameEnd');
-      }
-      cb && cb()
-    });
+    packetQueue.push(
+      async ()=>{
+        if(game) {
+          attempt(async ()=>{
+            await database.rawGame.create({
+              data: {
+                upload_reason: 'GameEnd',
+                data: LogTail.readLog(),
+                game_id: game!.id
+              }
+            })
+    
+            game = await game!.$endGame(game_end, log_time);
+            sendServerEvent('GameUpdate', game);
+          }, game.id, 'GameEnd');
+        }
+      },
+      'GameEnd'
+    );
     
   });
 
