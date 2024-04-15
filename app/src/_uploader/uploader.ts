@@ -11,13 +11,13 @@ import { moveDirectorySync } from "@/utils/functions/fs";
 
 const basepath = './__transfer__/data';
 // let games_to_transfer = fs.readdirSync(basepath);
-let games_to_transfer = [fs.readdirSync(basepath)[0]];
+let games_to_transfer = fs.readdirSync(basepath);
 for( let legacy_gameid of games_to_transfer){
   // let logpath = path.join(basepath, legacy_gameid, 'Player.log');
-  let dirpath =  path.join(basepath, 'coin_gods')
+  let dirpath =  path.join(basepath, legacy_gameid)
   let logpath = path.join(dirpath, 'Player.log');
   await processGame(logpath);
-  let new_dirpath = path.join(basepath, '..', 'complete', 'coin_gods');
+  let new_dirpath = path.join(basepath, '..', 'complete', legacy_gameid);
   moveDirectorySync(dirpath, new_dirpath);
 };
 
