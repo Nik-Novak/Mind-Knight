@@ -1,3 +1,4 @@
+"use client";
 import { getRemoteSettings, updateRemoteSettings } from "@/actions/settings";
 import { ClientSettings } from "@prisma/client";
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useReducer, useState } from "react";

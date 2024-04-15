@@ -1,5 +1,5 @@
 "use client";
-import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
+import { NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
 import type { GameEnd, GamePlayers, Player as PlayerData, PlayerIdentity } from "@prisma/client"; //TODO fiix figuring out typing on clientside
 import Player from "./Player";
 import { getHammerPlayerSlot, getLatestSelectUpdate, getPlayerAction, getPropIndex, getTurnInfo, hasHappened } from "@/utils/functions/game";
@@ -10,6 +10,8 @@ import { Suspense } from "react";
 import PlayerSkeleton from "./PlayerSkeleton";
 import { useStore } from "@/zustand/store";
 import { database } from "../../../prisma/database";
+import { useSettings } from "../SettingsProvider";
+import { provideSettings } from "@/utils/hoc/provideSettings";
 
 type Props = {
   // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<PlayerData>
@@ -30,7 +32,7 @@ export default function Players({ }:Props){
   const game_players = useStore(state=>state.game?.game_players);
   const game_end = useStore(state=>state.game?.game_end);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
-  // const { selectedNode, selectedSlot, selectedTurn } = useControlsStore.getState()
+  const {settings} = useSettings();
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot, playHead);
   let propSlot = turnInfo && getPropIndex(turnInfo);
   
@@ -42,7 +44,6 @@ export default function Players({ }:Props){
           return null;
         let slot = game_player.Slot as PlayerSlot;
         const playerIdentity = game_end?.PlayerIdentities.find(pi=>pi.Slot == slot);
-
         const playerAction = getPlayerAction(game_player, selectedNode, selectedTurn, playHead);
         let hammerPlayerSlot = numPlayers!=undefined && getHammerPlayerSlot(propSlot, selectedSlot, numPlayers);
         const accepted = hasHappened(turnInfo?.vote_phase_end?.log_time, playHead) ? turnInfo?.vote_phase_end?.VotesFor.includes(slot) : undefined;
@@ -50,11 +51,13 @@ export default function Players({ }:Props){
         let isPropped =  hasHappened(turnInfo?.select_phase_end?.log_time, playHead) && turnInfo?.select_phase_end?.SelectedTeam.includes(slot);
         let isShadowed = getLatestSelectUpdate(turnInfo, playHead)?.Slots.includes(slot);
         let msg = chat?.findLast(m=>m.Slot === slot && hasHappened(m.log_time, playHead, 5000));
+        let role = settings.streamer_mode ? undefined : game_end?.Roles.find(r=>r.Slot === slot)?.Role as PlayerRole;
         return (
           // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
               key={k} 
               slot={slot}
+              role={role}
               numPlayers={numPlayers || 5}
               username={game_player.Username}
               color={colors[game_player.Color as ColorCode].hex}

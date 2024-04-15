@@ -11,6 +11,12 @@
   width: 4vh;
 }
 
+.badge {
+  position: absolute;
+  left: 41%;
+  top: 29%;
+}
+
 .actionExistsIcon {
   position: absolute;
   left: -30%;

@@ -5,6 +5,7 @@ import { NotificationProvider } from "../NotificationQueue";
 import EventNotifications from "../EventNotifications";
 import { ServerEventsProvider } from "../ServerEventsProvider";
 import { MindnightSessionProvider } from "../MindnightSessionProvider";
+import { SettingsProvider } from "../SettingsProvider";
 // import { SessionProvider } from 'next-auth/react' //Guess this cant be 
 
 type Props = {
@@ -16,14 +17,16 @@ export default function Providers({children}:Props){
   <AppRouterCacheProvider>
     {/* <SessionProvider> Guess this cant be used here since it converts all children to client components */}
     <ServerEventsProvider>
-      <MindnightSessionProvider>
-        <NotificationProvider>
-          <ThemeProvider theme={theme}>
-            <EventNotifications />
-            {children}
-          </ThemeProvider>
-        </NotificationProvider>
-      </MindnightSessionProvider>
+      <SettingsProvider>
+        <MindnightSessionProvider>
+          <NotificationProvider>
+            <ThemeProvider theme={theme}>
+              <EventNotifications />
+              {children}
+            </ThemeProvider>
+          </NotificationProvider>
+        </MindnightSessionProvider>
+      </SettingsProvider>
     </ServerEventsProvider>
     {/* </SessionProvider> */}
   </AppRouterCacheProvider>

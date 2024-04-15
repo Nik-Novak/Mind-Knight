@@ -1,5 +1,5 @@
 "use client";
-import { NumberOfPlayers, PlayerSlot } from "@/types/game";
+import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
 import { Tooltip, TooltipProps, Typography, tooltipClasses } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
 import RefuseIcon from '@mui/icons-material/Close';
@@ -17,6 +17,14 @@ import Elo from "../Elo";
 import { useStore } from "@/zustand/store";
 import { useEffect, useState } from "react";
 import { getDbPlayer } from "@/actions/game";
+
+import agentBadge from './agent_badge.png';
+import hackerBadge from './hacker_badge.png';
+
+const roleToBadgeMap = {
+  [PlayerRole.agent]: agentBadge,
+  [PlayerRole.hacker]: hackerBadge,
+}
 
 export const styleMap = {
   5: style5,
@@ -40,7 +48,8 @@ type Props = {
   isDisconnected?: boolean,
   accepted?: boolean,
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
-  chatMsg?: string
+  chatMsg?: string,
+  role?: PlayerRole
 }
 
 function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
@@ -65,10 +74,9 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ slot, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg }:Props){
+export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
-  
   let voteIcon; //undefined=novote
   if(accepted===true) //accepted
     voteIcon = <AcceptIcon className={style.voteIcon} sx={{color:'green'}} />
@@ -90,7 +98,8 @@ export default function Player({ slot, numPlayers, username, color, playerIdenti
     <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={chatMsg} open={!!chatMsg}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
-          <img src={'/img/skin-default.png'} alt="" /*onClick={onClick}*//>
+          <img src={'/img/skin-default.png'} alt="player" /*onClick={onClick}*//>
+          { role && <img style={{width:'10px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /> }
           <Tooltip title="This player has an action available to view" placement="left" arrow>
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
             <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} />
