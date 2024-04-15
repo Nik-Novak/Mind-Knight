@@ -3,9 +3,9 @@ node_modules
 .env
 _archive
 
-__test__/data
-__test__/complete
-__test__/error
+__transfer__/data
+__transfer__/complete
+__transfer__/error
 .env*
 .flaskenv*
 !.env.project

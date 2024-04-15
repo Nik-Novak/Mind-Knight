@@ -208,7 +208,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
-          await game!.$addChatUpdate(chat_update, log_time); //purposely no attempt
+          game = await game!.$addChatUpdate(chat_update, log_time); //purposely no attempt
         }, game.id)
       }
       cb && cb()
@@ -219,7 +219,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     packetQueue.push(async (cb)=>{
       if(game){
         attempt(async ()=>{
-          await game!.$addIdleStatusUpdate(idle_status_update, log_time); //purposely no attempt
+          game = await game!.$addIdleStatusUpdate(idle_status_update, log_time); //purposely no attempt
         }, game.id)
       }
       cb && cb()
@@ -229,7 +229,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   LogTail.on('Disconnected', async (disconnected, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
-        await game.$addConnectionUpdate(disconnected, log_time);
+        game = await game.$addConnectionUpdate(disconnected, log_time);
       }
       cb && cb()
     });
@@ -237,7 +237,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   LogTail.on('Reconnected', async (reconnected, log_time)=>{
     packetQueue.push(async (cb)=>{
       if(game){
-        await game.$addConnectionUpdate(reconnected, log_time);
+        game = await game.$addConnectionUpdate(reconnected, log_time);
       }
       cb && cb()
     });

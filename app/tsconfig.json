@@ -1,4 +1,4 @@
-{
+{ //https://github.com/TypeStrong/ts-node/discussions/1450#discussioncomment-1806115
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -7,6 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
+    "target": "ESNext", //Added this for migrations top level await
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -28,8 +29,10 @@
     // these options are overrides used only by ts-node
     // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
     "compilerOptions": {
-      "module": "CommonJS",
-      "moduleResolution": "node"
+      "module": "ESNext",
+      // "moduleResolution": "node",
+      "esModuleInterop": true,
+      "allowImportingTsExtensions": true,
     }
   },
 }

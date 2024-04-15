@@ -26,7 +26,8 @@ export async function getGames(playerId?:string){
       players:true,
       // raw_games:true,
       updated_at:true,
-      latest_log_time: true
+      latest_log_time: true,
+      source:true,
     }
   })
 }

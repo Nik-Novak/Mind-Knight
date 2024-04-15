@@ -4,7 +4,8 @@ import fs from 'fs';
 import { sleep } from "@/utils/functions/general";
 
 export type ReadLineOptions = {
-  timeBetweenLinesMS: number
+  timeBetweenLinesMS: number,
+  startAtLineContaining?:string
 }
 
 export class ReadLine extends LineListener{
@@ -19,13 +20,18 @@ export class ReadLine extends LineListener{
       crlfDelay: Infinity,
     });
     this.rl.pause();
-    this.startRead();
+    this.doRead();
   }
 
-  private async startRead(){
+  private async doRead(){
+    let foundStartingPoint = !this.options.startAtLineContaining;
     for await (const line of this.rl) {
-      this.listeners.forEach(l => l(line));
-      await sleep(this.options.timeBetweenLinesMS);
+      if(line.includes(this.options.startAtLineContaining!))
+        foundStartingPoint = true;
+      if(foundStartingPoint){
+        this.listeners.forEach(l => l(line));
+        await sleep(this.options.timeBetweenLinesMS);
+      }
     }
   }
 
