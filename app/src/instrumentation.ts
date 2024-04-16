@@ -155,7 +155,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
           sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
         }
         for (let message of packet.Messages){
-          await database.globalChatMessage.findOrCreate({data:message});
+          await database.globalChatMessage.createOrFind({data:message});
         }
         sendServerEvent('GlobalChatHistoryResponse', packet);
       },

@@ -78,7 +78,7 @@ export async function getPlayer(steamId:string){
 }
 
 export async function getDbPlayer(playerIdentity: PlayerIdentity){
-   return await database.player.findOrCreate({data:{
+   return await database.player.createOrFind({data:{
     name:playerIdentity.Nickname,
     steam_id: playerIdentity.Steamid,
     level: playerIdentity.Level,

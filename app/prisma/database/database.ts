@@ -605,7 +605,7 @@ const prismaClientSingleton= ()=>{
                 throw Error("Something went wrong, game_start not found");
               let deltaT = log_time.valueOf() - game.game_start.log_time.valueOf();
               let playerIds = await Promise.all(game_end.PlayerIdentities.map(async playerIdentity=>{
-                let player = await database.player.findOrCreate({data:{
+                let player = await database.player.createOrFind({data:{
                   name:playerIdentity.Nickname,
                   steam_id: playerIdentity.Steamid,
                   level: playerIdentity.Level,
@@ -679,7 +679,7 @@ const prismaClientSingleton= ()=>{
     // },
     model: {
       $allModels:{
-        async findOrCreate<T, A extends Prisma.Args<T, 'create'>>(
+        async createOrFind<T, A extends Prisma.Args<T, 'create'>>(
           this: T,
           createArgs: A,
           queryArgs?: Prisma.Args<T, 'findFirst'>,

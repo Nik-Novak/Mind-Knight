@@ -36,7 +36,7 @@ export const authOptions:NextAuthOptions = {
           userId: user.id
         }
       });
-      let player = await database.player.findOrCreate({ //create or find existing player
+      let player = await database.player.createOrFind({ //create or find existing player
           data:{
             name: user.name || '',
             steam_id: matchingAccount.steamId
