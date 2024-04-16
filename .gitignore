@@ -37,7 +37,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-__test__/data
-__test__/complete
-__test__/error

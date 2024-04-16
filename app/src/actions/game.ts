@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import LogTailer from "@/utils/classes/LogEvents/LogTailer";
 import { ServerEventPacket } from "@/types/events";
 
-export async function getGames(playerId?:string){
+export async function getGames(playerId?:string, offset:number=0, limit:number=50){
   const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
   return await database.game.findMany({
     where: whereCondition,
@@ -15,20 +15,22 @@ export async function getGames(playerId?:string){
     },
     select:{
       id:true,
-      chat:true,
+      // chat:true,
       created_at:true,
       game_end:true,
       game_found:true,
-      game_players:true,
-      game_start:true,
-      missions:true,
+      // game_players:true,
+      // game_start:true,
+      // missions:true,
       player_ids:true,
       players:true,
       // raw_games:true,
       updated_at:true,
       latest_log_time: true,
       source:true,
-    }
+    },
+    skip:offset,
+    take:limit,
   })
 }
 

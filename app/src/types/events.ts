@@ -50,6 +50,39 @@ export type LogReceiveEvents = {
   GameEnd: [{"Type":203,"Hacked":boolean,"Hackers":PlayerSlot[],"Canceled":boolean,"Roles":Role[],"Timeout":number/*ms*/,"PlayerIdentities":PlayerIdentity[],"AfterGameLobby":string}, Date]
   Disconnected: [{"Type":402,"Player":PlayerSlot,"ByNetwork":boolean}, Date],
   Reconnected: [{"Type":406,"Player":PlayerSlot}, Date],
+  MatchUpdatePacket: [{"Type":112, "Chat":MatchUpdateChat[], "MatchHistorySlots":{ nodes:MatchUpdateNode[], matchState:MatchState }}, Date],
+}
+
+enum MatchUpdateChatType {
+  Player=0,
+  System=1,
+}
+type MatchUpdateChat = {
+  PlayerSlot: PlayerSlot,
+  Message: string,
+  ChatMessageType: MatchUpdateChatType
+}
+enum MatchState {
+  InProgress=1,
+  // Complete=2?
+}
+enum MatchUpdateNodeState {
+  InComplete=1,
+  InProgress=2,
+  Complete=3
+}
+type MatchUpdateNode = {
+  nodeNumber: NodeNumber,
+  state: MatchUpdateNodeState,
+  numHacks:	number,
+  proposals: MatchUpdateNodeProposal[]
+}
+type MatchUpdateNodeProposal = {
+  proposer:	PlayerSlot
+  accepted:	boolean
+  proposedPlayers: PlayerSlot[]
+	agreedGuys: PlayerSlot[]
+	refusedGuys: PlayerSlot[]
 }
 
 export type LogEvents = LogSendEvents & LogReceiveEvents;

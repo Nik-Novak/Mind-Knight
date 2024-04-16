@@ -229,7 +229,8 @@ const prismaClientSingleton= ()=>{
                   vote_phase_end: null,
                   created_at: new Date()
                 }
-                game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal); //= {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
+                console.log('Mission:', select_phase_start.Mission);
+                game_player.proposals[select_phase_start.Mission].push(proposal); //= {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
                 game.latest_log_time = log_time;
                 return game;
               }
@@ -269,6 +270,7 @@ const prismaClientSingleton= ()=>{
             return ({args, local=false}:{args:LogEvents['SelectUpdate'], local?:boolean})=>{
               let [select_update, log_time] = args;
               let missionNum = getCurrentMissionNumber(game.missions);
+              console.log('Mission:', missionNum);
               let latestProposal = getLatestProposal(game.game_players, missionNum);
               if(!latestProposal)
                 throw Error("Something went wrong. Could not find the latest proposal..");
@@ -324,6 +326,7 @@ const prismaClientSingleton= ()=>{
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
               let missionNum = getCurrentMissionNumber(game.missions);
+              console.log('Mission:', missionNum);
               let proposals = game_player.proposals[missionNum];
               let latestProposal = proposals[proposals.length-1];
               let deltaT = log_time.valueOf() - latestProposal.select_phase_start.log_time.valueOf();
@@ -377,6 +380,7 @@ const prismaClientSingleton= ()=>{
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
               let missionNum = getCurrentMissionNumber(game.missions);
+              console.log('Mission:', missionNum);
               let latestProposal = game_player.proposals[missionNum][ game_player.proposals[missionNum].length-1 ];
               if(local){
                 latestProposal.vote_phase_start = { ...vote_phase_start, chatIndex:game.chat.length, log_time, created_at:new Date() }
@@ -419,6 +423,7 @@ const prismaClientSingleton= ()=>{
             return ({args, local=false}:{args:LogEvents['VoteMade'], local?:boolean})=>{
               let [vote_made, log_time] = args;
               let missionNum = getCurrentMissionNumber(game.missions);
+              console.log('Mission:', missionNum);
               let latestProposal = getLatestProposal(game.game_players, missionNum);
               if(!latestProposal)
                 throw Error("Something went wrong. Could not find the latest proposal..");
@@ -484,6 +489,7 @@ const prismaClientSingleton= ()=>{
               let [vote_phase_end, log_time] = args;
               //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
               let missionNum = getCurrentMissionNumber(game.missions);
+              console.log('Mission:', missionNum);
               let latestProposal = getLatestProposal(game.game_players,missionNum);
               if(!latestProposal)
                 throw Error("Something went wrong, latestProposal not found.");

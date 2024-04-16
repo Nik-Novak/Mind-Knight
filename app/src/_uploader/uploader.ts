@@ -1,19 +1,20 @@
 import "dotenv/config";
 import { LogReader } from "@/utils/classes/LogEvents/LogReader";
 import { database } from "@/database";
-import { Game, Proposal } from "@prisma/client";
-import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from "@/utils/functions/game";
 import ProcessQueue from "@/utils/classes/ProcessQueue";
 import fs from 'fs';
 import path from "path";
 import { waitUntil } from "@/utils/functions/general";
 import { moveDirectorySync } from "@/utils/functions/fs";
 
+console.log("TEST");
+// throw Error("STOP");
+
 const basepath = './__transfer__/data';
 // let games_to_transfer = fs.readdirSync(basepath);
 let games_to_transfer = fs.readdirSync(basepath);
 
-games_to_transfer = [games_to_transfer.find(g=>g=='coin_gods')!];  //TEST ONE GAME
+// games_to_transfer = [games_to_transfer.find(g=>g=='coin_gods')!];  //TEST ONE GAME
 
 for( let legacy_gameid of games_to_transfer){
   // let logpath = path.join(basepath, legacy_gameid, 'Player.log');
@@ -25,13 +26,15 @@ for( let legacy_gameid of games_to_transfer){
     let new_dirpath = path.join(basepath, '..', 'complete', legacy_gameid);
     moveDirectorySync(dirpath, new_dirpath);
   }catch(err){
-    console.log(`ERROR ON ${legacy_gameid}`);
-    console.log(`ERROR: ${JSON.stringify(err, null, 2)}`);
-    let new_dirpath = path.join(basepath, '..', 'error', legacy_gameid);
-    moveDirectorySync(dirpath, new_dirpath);
-    let errorPath = path.join(new_dirpath, 'error.log');
-    fs.writeFileSync(errorPath, JSON.stringify(err, null, 2), {encoding:'utf8'});
-    console.log(`Wrote error to ${errorPath}`);
+    if(err instanceof Error){
+      console.log(`ERROR ON ${legacy_gameid}`);
+      console.log(`ERROR: `, err);
+      let new_dirpath = path.join(basepath, '..', err.message.includes('PARTIAL') ? 'partial':'error', legacy_gameid);
+      moveDirectorySync(dirpath, new_dirpath);
+      let errorPath = path.join(new_dirpath, 'error.log');
+      fs.writeFileSync(errorPath, JSON.stringify({name:err.name, cause: err.cause, message: err.message, stack: err.stack}, null, 2), {encoding:'utf8'});
+      console.log(`Wrote error to ${errorPath}`);
+    }
   }
 };
 
@@ -165,6 +168,7 @@ function processGame(logpath: string, legacy_gameid?:string) {
         'Disconnected'
       );
     });
+    
     logReader.on('Reconnected', async (...args)=>{
       packetQueue.push(
           async()=>{
@@ -210,7 +214,16 @@ function processGame(logpath: string, legacy_gameid?:string) {
       packetQueue.push(
         async()=>{
           if(game){
-            await game.$updateProposalSelection({args, local:true});
+            try{
+              await game.$updateProposalSelection({args, local:true});
+            }
+            catch(err){
+              console.log('Upload halted on ID:', legacy_gameid);
+              console.error(err);
+              reject(err);
+              throw err;
+            }
+          
             // console.log('SelectUpdate');
             // let missionNum = getCurrentMissionNumber(game.missions);
             // let latestProposal = getLatestProposal(game.game_players, missionNum);
@@ -228,7 +241,15 @@ function processGame(logpath: string, legacy_gameid?:string) {
       packetQueue.push(
         async()=>{
           if(game){
-            await game.$endProposal({args, local:true});
+            try{
+              await game.$endProposal({args, local:true});
+            }
+            catch(err){
+              console.log('Upload halted on ID:', legacy_gameid);
+              console.error(err);
+              reject(err);
+              throw err;
+            }
             // console.log('SelectPhaseEnd');
             // let game_player = game.game_players[select_phase_end.Proposer];
             // if(!game_player)
@@ -270,7 +291,15 @@ function processGame(logpath: string, legacy_gameid?:string) {
       packetQueue.push(
         async()=>{
           if(game){
-            await game.$addVoteMade({args, local:true});
+            try{
+              await game.$addVoteMade({args, local:true});
+            }
+            catch(err){
+              console.log('Upload halted on ID:', legacy_gameid);
+              console.error(err);
+              reject(err);
+              throw err;
+            }
             // console.log('VoteMade');
             // let missionNum = getCurrentMissionNumber(game.missions);
             // let latestProposal = getLatestProposal(game.game_players, missionNum);
@@ -291,7 +320,15 @@ function processGame(logpath: string, legacy_gameid?:string) {
       packetQueue.push(
         async()=>{
           if(game){
-            await game.$endVote({args, local:true});
+            try{
+              await game.$endVote({args, local:true});
+            }
+            catch(err){
+              console.log('Upload halted on ID:', legacy_gameid);
+              console.error(err);
+              reject(err);
+              throw err;
+            }
           }
         },
         'VotePhaseEnd'
@@ -366,5 +403,26 @@ function processGame(logpath: string, legacy_gameid?:string) {
         'GameClose'
       );
     });
+
+    // logReader.on('MatchUpdatePacket', async (match_update_packet, log_time)=>{
+    //   packetQueue.push(
+    //     async()=>{
+    //       console.log('MATCH UPDATE PACKET', match_update_packet);
+    //     },
+    //     'MatchUpdatePacket'
+    //   );
+    // });
+
+  //   logReader.on('MatchUpdatePacket', async(match_update_packet, log_time)=>{
+  //     packetQueue.push(
+  //       async ()=>{
+  //         let message = "THIS IS A PARTIAL/RECONNECTED MATCH, try to find the matching disconnect.";
+  //         reject(message);
+  //         throw Error(message);
+  //       },
+  //       'MatchUpdatePacket'
+  //     );
+  //   });
+
   });
 }

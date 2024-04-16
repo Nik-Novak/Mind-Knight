@@ -5,6 +5,7 @@ _archive
 
 __transfer__/data
 __transfer__/complete
+__transfer__/partial
 __transfer__/error
 __test__/data
 __test__/complete
