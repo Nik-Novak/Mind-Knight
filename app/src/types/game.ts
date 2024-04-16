@@ -4,7 +4,10 @@ export type NumberOfPlayers = 5|6|7|8;
 export type NodeNumber = keyof Missions
 export enum PlayerRole {
   agent = 10,
-  hacker = 20
+  admin = 11,
+  hacker = 20,
+  scriptie = 21,
+  nuker = 22
 }
 export enum GameMode {
   default = 0,

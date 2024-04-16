@@ -23,7 +23,10 @@ import hackerBadge from './hacker_badge.png';
 
 const roleToBadgeMap = {
   [PlayerRole.agent]: agentBadge,
+  [PlayerRole.admin]: agentBadge,
   [PlayerRole.hacker]: hackerBadge,
+  [PlayerRole.scriptie]: hackerBadge,
+  [PlayerRole.nuker]: hackerBadge,
 }
 
 export const styleMap = {
@@ -93,13 +96,13 @@ export default function Player({ slot, role, numPlayers, username, color, player
 
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
-
+  console.log('HERE', role);
   return (
     <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={chatMsg} open={!!chatMsg}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <img src={'/img/skin-default.png'} alt="player" /*onClick={onClick}*//>
-          { role && <img style={{width:'10px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /> }
+          { role && roleToBadgeMap[role] && <img style={{width:'10px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /> }
           <Tooltip title="This player has an action available to view" placement="left" arrow>
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
             <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} />

@@ -14,8 +14,8 @@
 
 .playerContainer[data-index='2']{
   left: 23%;
-  /* bottom: 11%; */
-  bottom: 75%;
+  bottom: 11%;
+  /* bottom: 75%; */
 }
 
 .playerContainer[data-index='3']{
