@@ -320,11 +320,13 @@ model GlobalChatMessage {
 // Game
 // =========================
 enum Source {
-  live
-  upload
+  Live
+  Upload
+  Transfer
 }
 model Game { //unique: { timestamp &  } We want this to map 1 game to multiple rawgames (avoid duplicates)
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  title         String?
   game_found    GameFound
   game_start    GameStart?
   game_players  GamePlayers
@@ -340,6 +342,7 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   player_ids    String[]   @db.ObjectId
   
   source        Source? //when source is 'live', created_ats are db generated. When 'upload' then they're locally generated with new Date()
+  context       String?
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
   @@map("games")

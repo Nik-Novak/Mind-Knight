@@ -1,6 +1,6 @@
 import { LogEvents } from '@/types/events';
 import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from '@/utils/functions/game';
-import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, MindnightSessionStatus,  } from '@prisma/client'
+import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, MindnightSessionStatus, Proposal,  } from '@prisma/client'
 // let modelnames = Prisma.dmmf.datamodel.models.map(m=>m.name); Value `in` modelnames
 
 type NonNull<T> = Exclude<T, null | undefined>;
@@ -42,128 +42,214 @@ const prismaClientSingleton= ()=>{
     result:{
       game:{
         $spawnPlayer: {
-          compute(data) {
-            return (...spawnPlayerArgs:LogEvents['SpawnPlayer'])=>{
-              let [spawn_player, log_time] = spawnPlayerArgs;
-
-              console.log('db spawn', spawn_player);
-              
-              return database.game.update({where:{id:data.id}, data:{
-                game_players: {
-                  update:{
-                    [spawn_player.Slot]: {...spawn_player,  proposals:{}, log_time }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['SpawnPlayer'], local?:boolean})=>{
+              let [spawn_player, log_time] = args;
+              if(local){
+                game.game_players = {
+                  ...game.game_players,
+                  // "0": {...spawn_player, proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, chat_updates:[], connection_updates:[], idle_status_updates:[], log_time, created_at:new Date(), } //UNCOMMENT FOR TYPE CHECKING
+                  [spawn_player.Slot]: {...spawn_player, proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, chat_updates:[], connection_updates:[], idle_status_updates:[], log_time, created_at:new Date(), }
+                }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players: {
+                    update:{
+                      [spawn_player.Slot]: {...spawn_player,  proposals:{}, log_time }
+                    }
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $startGame: {
-          compute(data) {
-            return (...args:LogEvents['GameStart'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['GameStart'], local?:boolean})=>{
               let [game_start, log_time] = args;
-              
-              return database.game.update({where:{id:data.id}, data:{
-                game_start: {...game_start, log_time},
-                latest_log_time: log_time
-              }});
+              if(local){
+                game.game_start = { ...game_start, log_time, created_at: new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_start: {...game_start, log_time},
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $addChatMessage: {
-          compute(data) {
-            return (...args:LogEvents['ChatMessageReceive'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['ChatMessageReceive'], local?:boolean})=>{
               let [chat_message_receive, log_time] = args;
-              
-              return database.game.update({where:{id:data.id}, data:{
-                chat: {push:{
-                  ...chat_message_receive,
-                  index: data.chat.length,
-                  log_time
-                }},
-                latest_log_time: log_time
-              }});
+              if(local){
+                game.chat.push({...chat_message_receive, index:game.chat.length, log_time, created_at: new Date()})
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  chat: {push:{
+                    ...chat_message_receive,
+                    index: game.chat.length,
+                    log_time
+                  }},
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $addChatUpdate: {
-          compute(data) {
-            return (...args:LogEvents['ChatUpdate'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['ChatUpdate'], local?:boolean})=>{
               let [chat_update, log_time] = args;
-              let game_player = data.game_players[chat_update.Slot];
+              let game_player = game.game_players[chat_update.Slot];
               if(!game_player)
                 throw Error("Something went wrong, no game_player found for chat_update")
               // game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
               // game.latest_log_time = log_time;
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                    update:{
-                      ["0"]:{
-                        upsert:{
-                          update:{
-                            chat_updates: {push: { ...chat_update, log_time }}
+              if(local){
+                game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
+                game.latest_log_time = log_time;
+                return game
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                      update:{
+                        [game_player.Slot]:{
+                          upsert:{
+                            update:{
+                              chat_updates: {push: { ...chat_update, log_time }}
+                            },
+                            set:{
+                              ...game_player
+                            }
                           },
-                          set:{
-                            ...game_player
-                          }
-                        },
+                        }
                       }
-                    }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
             }
           },
         },
         $addIdleStatusUpdate: {
-          compute(data) {
-            return (...args:LogEvents['IdleStatusUpdate'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['IdleStatusUpdate'], local?:boolean})=>{
               let [idle_status_update, log_time] = args;
-              let game_player = data.game_players[idle_status_update.Player];
+              let game_player = game.game_players[idle_status_update.Player];
               if(!game_player)
                 throw Error("Something went wrong, no game_player found for chat_update")
               // game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
               // game.latest_log_time = log_time;
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                    update:{
-                      ["0"]:{
-                        upsert:{
-                          update:{
-                            idle_status_updates: {push: { ...idle_status_update, chatIndex:data.chat.length, log_time }}
+              if(local){
+                game_player.idle_status_updates.push({ ...idle_status_update, chatIndex:game.chat.length, log_time, created_at:new Date() })
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                      update:{
+                        ["0"]:{
+                          upsert:{
+                            update:{
+                              idle_status_updates: {push: { ...idle_status_update, chatIndex:game.chat.length, log_time }}
+                            },
+                            set:{
+                              ...game_player
+                            }
                           },
-                          set:{
-                            ...game_player
-                          }
-                        },
+                        }
                       }
-                    }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
             }
           },
         },
         $addConnectionUpdate: {
-          compute(data) {
-            return (...args:LogEvents['Reconnected']|LogEvents['Disconnected'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['Reconnected']|LogEvents['Disconnected'], local?:boolean})=>{
               let [connection_update, log_time] = args;
-              let game_player = data.game_players[connection_update.Player];
+              let game_player = game.game_players[connection_update.Player];
               if(!game_player)
                 throw Error("Something went wrong, no game_player found for chat_update")
-              // game_player.chat_updates.push({ ...chat_update, log_time, created_at:new Date() })
-              // game.latest_log_time = log_time;
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
+              if(local){
+                game_player.connection_updates.push({ ByNetwork:null, ...connection_update, chatIndex:game.chat.length, log_time, created_at:new Date() })
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                      update:{
+                        ["0"]:{
+                          upsert:{
+                            update:{
+                              connection_updates: {push: { ...connection_update, chatIndex:game.chat.length, log_time }}
+                            },
+                            set:{
+                              ...game_player
+                            }
+                          },
+                        }
+                      }
+                  },
+                  latest_log_time: log_time
+                }});
+            }
+          },
+        },
+        $startProposal: {
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['SelectPhaseStart'], local?:boolean})=>{
+              let [select_phase_start, log_time] = args;
+              let propNumber = getCurrentNumProposals(game.game_players, select_phase_start.Mission) + 1; 
+              //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
+              let game_player = game.game_players[select_phase_start.Player];
+              if(!game_player)
+                throw Error("Somethign went wrong, game_player was not found.");
+              if(local){
+                let proposal:Proposal = {
+                  select_phase_start: {...select_phase_start, chatIndex: game.chat.length, log_time, propNumber, created_at:new Date()},
+                  select_updates: [],
+                  select_phase_end: null,
+                  vote_phase_start: null,
+                  vote_mades: { 0:null, 1:null, 2:null, 3:null, 4:null, 5:null, 6:null, 7:null },
+                  vote_phase_end: null,
+                  created_at: new Date()
+                }
+                game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal); //= {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
                     update:{
-                      ["0"]:{
+                      [game_player.Slot]:{
                         upsert:{
                           update:{
-                            connection_updates: {push: { ...connection_update, chatIndex:data.chat.length, log_time }}
+                            proposals:{
+                              update:{
+                                [select_phase_start.Mission]:{
+                                  push: {
+                                    select_phase_start: {...select_phase_start, chatIndex: game.chat.length, log_time, propNumber},
+                                    vote_mades: {}
+                                  }
+                                }
+                              }
+                            }
                           },
                           set:{
                             ...game_player
@@ -171,193 +257,173 @@ const prismaClientSingleton= ()=>{
                         },
                       }
                     }
-                },
-                latest_log_time: log_time
-              }});
-            }
-          },
-        },
-        $startProposal: {
-          compute(data) {
-            return (...args:LogEvents['SelectPhaseStart'])=>{
-              let [select_phase_start, log_time] = args;
-              let propNumber = getCurrentNumProposals(data.game_players, select_phase_start.Mission) + 1; 
-              //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
-              let game_player = data.game_players[select_phase_start.Player];
-              if(!game_player)
-                throw Error("Somethign went wrong, game_player was not found.");
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                  update:{
-                    [game_player.Slot]:{
-                      upsert:{
-                        update:{
-                          proposals:{
-                            update:{
-                              [select_phase_start.Mission]:{
-                                push: {
-                                  select_phase_start: {...select_phase_start, chatIndex: data.chat.length, log_time, propNumber},
-                                  vote_mades: {}
-                                }
-                              }
-                            }
-                          }
-                        },
-                        set:{
-                          ...game_player
-                        }
-                      },
-                    }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $updateProposalSelection: {
-          compute(data) {
-            return (...args:LogEvents['SelectUpdate'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['SelectUpdate'], local?:boolean})=>{
               let [select_update, log_time] = args;
-              let missionNum = getCurrentMissionNumber(data.missions);
-              let latestProposal = getLatestProposal(data.game_players, missionNum);
+              let missionNum = getCurrentMissionNumber(game.missions);
+              let latestProposal = getLatestProposal(game.game_players, missionNum);
               if(!latestProposal)
                 throw Error("Something went wrong. Could not find the latest proposal..");
               //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
-              let game_player = data.game_players[latestProposal.playerSlot];
+              let game_player = game.game_players[latestProposal.playerSlot];
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
               // let newProposals = [ ...game_player.proposals[missionNum] ];
               // latestProposal.select_updates.push({...select_update, chatIndex: game.chat.length, log_time, created_at:new Date()});
               // newProposals[latestProposal.proposalIndex].select_updates.push({ ...select_update, chatIndex: data.chat.length, log_time })
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                  update:{
-                    [game_player.Slot]:{
-                      upsert:{
-                        update:{
-                          proposals:{
-                            update:{
-                              [missionNum]:{
-                                updateMany:{ //should only update the latest proposal
-                                  where:{created_at: latestProposal.value.created_at}, 
-                                  data:{ select_updates:{ push: { ...select_update, chatIndex: data.chat.length, log_time }} } 
+              if(local){
+                latestProposal.value.select_updates.push({...select_update, chatIndex: game.chat.length, log_time, created_at:new Date()});
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                    update:{
+                      [game_player.Slot]:{
+                        upsert:{
+                          update:{
+                            proposals:{
+                              update:{
+                                [missionNum]:{
+                                  updateMany:{ //should only update the latest proposal
+                                    where:{created_at: latestProposal.value.created_at}, 
+                                    data:{ select_updates:{ push: { ...select_update, chatIndex: game.chat.length, log_time }} } 
+                                  }
                                 }
                               }
                             }
+                          },
+                          set:{
+                            ...game_player,
                           }
                         },
-                        set:{
-                          ...game_player,
-                        }
-                      },
+                      }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $endProposal: {
-          compute(data) {
-            return (...args:LogEvents['SelectPhaseEnd'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['SelectPhaseEnd'], local?:boolean})=>{
               let [select_phase_end, log_time] = args;
               //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
-              let game_player = data.game_players[select_phase_end.Proposer];
+              let game_player = game.game_players[select_phase_end.Proposer];
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
-              let missionNum = getCurrentMissionNumber(data.missions);
+              let missionNum = getCurrentMissionNumber(game.missions);
               let proposals = game_player.proposals[missionNum];
               let latestProposal = proposals[proposals.length-1];
               let deltaT = log_time.valueOf() - latestProposal.select_phase_start.log_time.valueOf();
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                  update:{
-                    [game_player.Slot]:{
-                      upsert:{
-                        update:{
-                          proposals:{
-                            update:{
-                              [missionNum]:{
-                                updateMany: {
-                                  where: { created_at: latestProposal.created_at },
-                                  data: {
-                                    select_phase_end:{
-                                      ...select_phase_end, chatIndex: data.chat.length, log_time, deltaT
+              if(local){
+                latestProposal.select_phase_end = { ...select_phase_end, chatIndex: game.chat.length, log_time, deltaT, created_at: new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                    update:{
+                      [game_player.Slot]:{
+                        upsert:{
+                          update:{
+                            proposals:{
+                              update:{
+                                [missionNum]:{
+                                  updateMany: {
+                                    where: { created_at: latestProposal.created_at },
+                                    data: {
+                                      select_phase_end:{
+                                        ...select_phase_end, chatIndex: game.chat.length, log_time, deltaT
+                                      }
                                     }
-                                  }
-                                },
+                                  },
+                                }
                               }
                             }
+                          },
+                          set:{
+                            ...game_player,
                           }
                         },
-                        set:{
-                          ...game_player,
-                        }
-                      },
+                      }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $startVote: {
-          compute(data) {
-            return (...args:LogEvents['VotePhaseStart'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['VotePhaseStart'], local?:boolean})=>{
               let [vote_phase_start, log_time] = args;
               // let propNumber = getCurrentNumProposals(data.game_players, select_phase_start.Mission) + 1; 
               //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
-              let game_player = data.game_players[vote_phase_start.Proposer];
+              let game_player = game.game_players[vote_phase_start.Proposer];
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
-              let missionNum = getCurrentMissionNumber(data.missions);
+              let missionNum = getCurrentMissionNumber(game.missions);
               let latestProposal = game_player.proposals[missionNum][ game_player.proposals[missionNum].length-1 ];
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                  update:{
-                    [game_player.Slot]:{
-                      upsert:{
-                        update:{
-                          proposals:{
-                            update:{
-                              [missionNum]:{
-                                updateMany:{
-                                  where: { created_at: latestProposal.created_at },
-                                  data: { vote_phase_start: { ...vote_phase_start, chatIndex:data.chat.length, log_time } }
+              if(local){
+                latestProposal.vote_phase_start = { ...vote_phase_start, chatIndex:game.chat.length, log_time, created_at:new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                    update:{
+                      [game_player.Slot]:{
+                        upsert:{
+                          update:{
+                            proposals:{
+                              update:{
+                                [missionNum]:{
+                                  updateMany:{
+                                    where: { created_at: latestProposal.created_at },
+                                    data: { vote_phase_start: { ...vote_phase_start, chatIndex:game.chat.length, log_time } }
+                                  }
                                 }
                               }
                             }
+                          },
+                          set:{
+                            ...game_player,
                           }
                         },
-                        set:{
-                          ...game_player,
-                        }
-                      },
+                      }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $addVoteMade: {
-          compute(data) {
-            return (...args:LogEvents['VoteMade'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['VoteMade'], local?:boolean})=>{
               let [vote_made, log_time] = args;
-              let missionNum = getCurrentMissionNumber(data.missions);
-              let latestProposal = getLatestProposal(data.game_players, missionNum);
+              let missionNum = getCurrentMissionNumber(game.missions);
+              let latestProposal = getLatestProposal(game.game_players, missionNum);
               if(!latestProposal)
                 throw Error("Something went wrong. Could not find the latest proposal..");
               //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
-              let game_player = data.game_players[latestProposal.playerSlot];
+              let game_player = game.game_players[latestProposal.playerSlot];
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
               // let newProposals = [ ...game_player.proposals[missionNum] ];
@@ -366,151 +432,178 @@ const prismaClientSingleton= ()=>{
               if(!latestProposal.value.vote_phase_start)
                 throw Error("Somethign went wrong, no vote_phase_start.")
               let deltaT = log_time.valueOf() - latestProposal.value.vote_phase_start.log_time.valueOf();
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                  update:{
-                    [game_player.Slot]:{
-                      upsert:{
-                        update:{
-                          proposals:{
-                            update:{
-                              [missionNum]:{
-                                updateMany:{ //should only update the latest proposal
-                                  where:{created_at: latestProposal.value.created_at}, 
-                                  data:{ 
-                                    vote_mades:{
-                                      update: {
-                                        [vote_made.Slot]: {
-                                          set:{
-                                            ...vote_made, chatIndex:data.chat.length, log_time, deltaT
+              if(local){
+                latestProposal.value.vote_mades[vote_made.Slot] = { ...vote_made, chatIndex:game.chat.length, log_time, deltaT, created_at: new Date() };
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                    update:{
+                      [game_player.Slot]:{
+                        upsert:{
+                          update:{
+                            proposals:{
+                              update:{
+                                [missionNum]:{
+                                  updateMany:{ //should only update the latest proposal
+                                    where:{created_at: latestProposal.value.created_at}, 
+                                    data:{ 
+                                      vote_mades:{
+                                        update: {
+                                          [vote_made.Slot]: {
+                                            set:{
+                                              ...vote_made, chatIndex:game.chat.length, log_time, deltaT
+                                            }
                                           }
                                         }
-                                      }
+                                      } 
                                     } 
-                                  } 
+                                  }
                                 }
                               }
                             }
+                          },
+                          set:{
+                            ...game_player,
                           }
                         },
-                        set:{
-                          ...game_player,
-                        }
-                      },
+                      }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $endVote: {
-          compute(data) {
-            return (...args:LogEvents['VotePhaseEnd'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['VotePhaseEnd'], local?:boolean})=>{
               let [vote_phase_end, log_time] = args;
               //game.game_players[select_phase_start.Player]?.proposals[select_phase_start.Mission].push(proposal)
-              let missionNum = getCurrentMissionNumber(data.missions);
-              let latestProposal = getLatestProposal(data.game_players,missionNum);
+              let missionNum = getCurrentMissionNumber(game.missions);
+              let latestProposal = getLatestProposal(game.game_players,missionNum);
               if(!latestProposal)
                 throw Error("Something went wrong, latestProposal not found.");
-              let game_player = data.game_players[latestProposal.playerSlot];
+              let game_player = game.game_players[latestProposal.playerSlot];
               if(!game_player)
                 throw Error("Somethign went wrong, game_player was not found.");
               if(!latestProposal.value.vote_phase_start)
                 throw Error("Something went wrong, no vote_phase_start for latest proposal.");
               let deltaT = log_time.valueOf() - latestProposal.value.vote_phase_start.log_time.valueOf();
-              return database.game.update({where:{id:data.id}, data:{
-                game_players:{
-                  update:{
-                    [latestProposal.playerSlot]:{
-                      upsert:{
-                        update:{
-                          proposals:{
-                            update:{
-                              [missionNum]:{
-                                updateMany: {
-                                  where: { created_at: latestProposal.value.created_at },
-                                  data: {
-                                    vote_phase_end:{
-                                      ...vote_phase_end, chatIndex: data.chat.length, log_time, deltaT
+              if(local){
+                latestProposal.value.vote_phase_end = { ...vote_phase_end, chatIndex: game.chat.length, log_time, deltaT, created_at: new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_players:{
+                    update:{
+                      [latestProposal.playerSlot]:{
+                        upsert:{
+                          update:{
+                            proposals:{
+                              update:{
+                                [missionNum]:{
+                                  updateMany: {
+                                    where: { created_at: latestProposal.value.created_at },
+                                    data: {
+                                      vote_phase_end:{
+                                        ...vote_phase_end, chatIndex: game.chat.length, log_time, deltaT
+                                      }
                                     }
-                                  }
-                                },
+                                  },
+                                }
                               }
                             }
+                          },
+                          set:{
+                            ...game_player,
                           }
                         },
-                        set:{
-                          ...game_player,
-                        }
-                      },
+                      }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $startMission: {
-          compute(data) {
-            return (...args:LogEvents['MissionPhaseStart'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['MissionPhaseStart'], local?:boolean})=>{
               let [mission_phase_start, log_time] = args;
-              return database.game.update({where:{id:data.id}, data:{
-                missions:{
-                  update:{
-                    [mission_phase_start.Mission]:{
-                      mission_phase_start: { ...mission_phase_start, log_time, chatIndex: data.chat.length }
+              if(local){
+                game.missions[mission_phase_start.Mission] = { 
+                  mission_phase_start: { ...mission_phase_start, log_time, chatIndex: game.chat.length, created_at: new Date() },
+                  mission_phase_end: null
+                }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  missions:{
+                    update:{
+                      [mission_phase_start.Mission]:{
+                        mission_phase_start: { ...mission_phase_start, log_time, chatIndex: game.chat.length }
+                      }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $endMission: {
-          compute(data) {
-            return (...args:LogEvents['MissionPhaseEnd'])=>{
+          compute(game) {
+            return ({args, local=false}:{args:LogEvents['MissionPhaseEnd'], local?:boolean})=>{
               let [mission_phase_end, log_time] = args;
-              let mission = data.missions[mission_phase_end.Mission];
+              let mission = game.missions[mission_phase_end.Mission];
               if(!mission)
                 throw Error("Something went wrong, no mission found.");
-              let propNumber = getCurrentNumProposals(data.game_players, mission_phase_end.Mission);
-              let deltaT = log_time.valueOf() - mission.mission_phase_start.log_time.valueOf()
-              return database.game.update({where:{id:data.id}, data:{
-                missions:{
-                  update:{
-                    [mission_phase_end.Mission]:{ //[mission_phase_end.Mission]
-                      upsert:{
-                        update:{
-                          mission_phase_end: { ...mission_phase_end, log_time, chatIndex:data.chat.length, deltaT, propNumber }
-                        },
-                        set:{
-                          mission_phase_start: mission.mission_phase_start,
-                          mission_phase_end: { ...mission_phase_end, log_time, chatIndex:data.chat.length, deltaT, propNumber }
+              let propNumber = getCurrentNumProposals(game.game_players, mission_phase_end.Mission);
+              let deltaT = log_time.valueOf() - mission.mission_phase_start.log_time.valueOf();
+              if(local){
+                mission.mission_phase_end = { ...mission_phase_end, log_time, chatIndex:game.chat.length, deltaT, propNumber, created_at:new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  missions:{
+                    update:{
+                      [mission_phase_end.Mission]:{ //[mission_phase_end.Mission]
+                        upsert:{
+                          update:{
+                            mission_phase_end: { ...mission_phase_end, log_time, chatIndex:game.chat.length, deltaT, propNumber }
+                          },
+                          set:{
+                            mission_phase_start: mission.mission_phase_start,
+                            mission_phase_end: { ...mission_phase_end, log_time, chatIndex:game.chat.length, deltaT, propNumber }
+                          }
                         }
                       }
                     }
-                  }
-                },
-                latest_log_time: log_time
-              }});
+                  },
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
         $endGame: {
-          compute(data) {
-            return async (...args:LogEvents['GameEnd'])=>{
+          compute(game) {
+            return async ({args, local=false}:{args:LogEvents['GameEnd'], local?:boolean})=>{
               let [game_end, log_time] = args;
-              if(!data.game_start)
+              if(!game.game_start)
                 throw Error("Something went wrong, game_start not found");
-              let deltaT = log_time.valueOf() - data.game_start.log_time.valueOf();
+              let deltaT = log_time.valueOf() - game.game_start.log_time.valueOf();
               let playerIds = await Promise.all(game_end.PlayerIdentities.map(async playerIdentity=>{
                 let player = await database.player.findOrCreate({data:{
                   name:playerIdentity.Nickname,
@@ -518,16 +611,45 @@ const prismaClientSingleton= ()=>{
                   level: playerIdentity.Level,
                 }}, {where:{steam_id:playerIdentity.Steamid}});
                 return player.id
-              }))
-              return database.game.update({where:{id:data.id}, data:{
-                game_end: { ...game_end, log_time, deltaT, chatIndex: data.chat.length },
-                player_ids: playerIds,
-                latest_log_time: log_time
-              }});
+              }));
+              if(local){
+                game.player_ids = playerIds;
+                game.game_end = { ...game_end, log_time, deltaT, chatIndex: game.chat.length, created_at: new Date() }
+                game.latest_log_time = log_time;
+                return game;
+              }
+              else
+                return database.game.update({where:{id:game.id}, data:{
+                  game_end: { ...game_end, log_time, deltaT, chatIndex: game.chat.length },
+                  player_ids: playerIds,
+                  latest_log_time: log_time
+                }});
               // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
             }
           },
         },
+        $syncLocal: {
+          compute(game) {
+            return ()=>{
+              let prepForUpload = { ...database.game.polish(game), id:undefined }
+              return database.game.update({where:{id:game.id}, data:prepForUpload});
+              // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
+            }
+          },
+        },
+      },
+      globalChatMessage:{
+        $test:{
+          compute(data) {
+            return ({local}:{local?:boolean})=>{
+              // let [spawn_player, log_time] = spawnPlayerArgs;
+              console.log('db', data.Message);
+              data.Message = "yooo";
+              return data;
+              // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
+            }
+          },
+        }
       },
       // $allModels:{
       //   $toJson:{

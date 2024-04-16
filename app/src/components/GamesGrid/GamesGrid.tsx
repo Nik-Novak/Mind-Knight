@@ -88,7 +88,26 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
 
   const columns: GridColDef<DataType>[] = [
     //4. Define fields and any actions you want to show for individual records
-    { field: "id", headerName: "ID", flex: 0.25, minWidth: 40 },
+    { field: "id", headerName: "ID/Title", flex: 0.25, minWidth: 40,
+      valueGetter: (v, row) => row.title || row.id,
+      renderCell: params => renderOptionsRef.current.renderCell(
+        params,
+        [
+          {
+            name: "Set Title",
+            value: "title",
+            onClick: () =>
+              setDialogProps({
+                open:true,
+                title: `Set the title for ${params.row.id}`,
+                text:'test',
+                onConfirm:()=>console.log('CONFIRM'),
+                onClose:()=>console.log('CLOSE'),
+              })
+          },
+        ]
+      )
+     },
     { field:"gamemode", headerName: "Mode", flex: 0.15, minWidth: 40, 
       valueGetter:(v, row)=>GameMode[row.game_found.Options.GameMode],
     },
@@ -110,7 +129,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
       valueGetter:(v, row)=>{
         return row.game_end?.PlayerIdentities.map(p=>p.Nickname);
       },
-      renderCell: (params)=><Tooltip title={params.value.join('|')}>{params.value.join('|')}</Tooltip>
+      renderCell: (params)=><Tooltip title={Array.isArray(params.value) ? params.value.join('|') : 'Unknown'}><span>{Array.isArray(params.value) ? params.value.join('|') : 'Unknown'}</span></Tooltip>
     },
     { field: "date", headerName: "Date", flex: 0.15, minWidth: 40,
       valueGetter:(v, row)=>row.game_found.log_time,
@@ -138,6 +157,12 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
               value: "details",
               onClick: () =>
                 setShowDetails(params.row)
+            },
+            {
+              name: "Report Duplicate",
+              value: "report_duplicate",
+              onClick: () =>
+                console.log('report_duplicate')
             },
           ], 
           (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>

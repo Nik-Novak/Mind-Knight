@@ -11,6 +11,7 @@ console.log('instrumentation.ts');
 console.log('PPID:', process.ppid);
 console.log('PID:', process.pid);
 const packetQueue = new ProcessQueue({autostart:true});
+//const packetQueue = new Queue({autostart:true});
 
 async function createGlobalChatMessage(message:GlobalChatMessage){
   let chatMsg = await database.globalChatMessage.create({
@@ -43,6 +44,16 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   });
 
   let game:Awaited<ReturnType<typeof database.game.create>>|undefined;
+
+  // // TEST extensions
+  // let test = await database.globalChatMessage.create({data:{Message: "TEst", SteamId:"123",Timestamp:121}});
+  // // test.$toJson()
+  // console.log(Object.keys(test));
+  // test.Message = "heyo"
+  // let returned = await test.$test({local:true});
+  // console.log(Object.keys(returned));
+  // console.log(test.Message); //confirmed that the data sis mutable on both sides
+  // throw Error("STOP");
   
   //RECEIVE from clients;
   clientsWss.on('connection', async (socket)=>{
@@ -93,20 +104,6 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     );
   });
 
-  LogTail.on('GameClose', async ( packet )=>{
-    packetQueue.push(
-        async ()=>{
-        let client = await getClient();
-        if(client.mindnight_session)
-          await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
-        // revalidateTag(Tags.session.toString());
-        sendServerEvent('MindnightSessionUpdate', null);
-        sendServerEvent('GameClose', packet);
-      },
-      'GameClose'
-    );
-  });
-
   LogTail.on('PlayerInfo', async ( packet )=>{
     packetQueue.push(
         async ()=>{
@@ -121,7 +118,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   LogTail.on('AuthorizationRequest', async (packet)=>{
     packetQueue.push(
         async ()=>{
-        await sendToMindnight(packet);
+        // await sendToMindnight(packet); //TODO re-enable and deal with duplicate mindnightsessions
         sendServerEvent('AuthorizationRequest', packet);
       },
       'AuthorizationRequest'
@@ -131,6 +128,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   LogTail.on('AuthResponse', async (packet)=>{
     packetQueue.push(
       async ()=>{
+        console.log('SHOULD AUTHENTICATE')
         let mindnightSession = await getMindnightSession();
         if(mindnightSession){
           let authedMindnightSession = await database.mindnightSession.authenticate(mindnightSession);
@@ -148,6 +146,8 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   LogTail.on('GlobalChatHistoryResponse', async (packet)=>{
     packetQueue.push(
       async ()=>{
+        if(game)
+          game = await game.$syncLocal(); //REMOTE UPDATE CHECKPOINT
         let mindnightSession = await getMindnightSession();
         if(mindnightSession){
           let readiedMindnightSession = await database.mindnightSession.ready(mindnightSession);
@@ -163,6 +163,22 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     );
   });
 
+  LogTail.on('GameClose', async ( packet )=>{
+    packetQueue.push(
+        async ()=>{
+          if(game)
+            game = await game.$syncLocal(); //REMOTE UPDATE CHECKPOINT
+        let client = await getClient();
+        if(client.mindnight_session)
+          await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
+        // revalidateTag(Tags.session.toString());
+        sendServerEvent('MindnightSessionUpdate', null);
+        sendServerEvent('GameClose', packet);
+      },
+      'GameClose'
+    );
+  });
+
   //building the game
   LogTail.on('GameFound', async (game_found, log_time)=>{
     packetQueue.push(
@@ -171,7 +187,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
           game_found: {...game_found, log_time},
           game_players:{},
           missions:{},
-          source: 'live',
+          source: 'Live',
           latest_log_time: log_time
         }});
         let mindnightSession = await getMindnightSession();
@@ -185,23 +201,23 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'GameFound'
     );
   });
-  LogTail.on('SpawnPlayer', async (spawn_player, log_time)=>{
+  LogTail.on('SpawnPlayer', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
-          game = await game.$spawnPlayer(spawn_player, log_time);
+          game = await game.$spawnPlayer({args}) as Awaited<ReturnType<typeof database.game.create>>|undefined; //TODO figure out dyankmic typing for local:false
           sendServerEvent('GameUpdate', game);
         }
       },
       'SpawnPlayer'
     );
   });
-  LogTail.on('GameStart', async (game_start, log_time)=>{
+  LogTail.on('GameStart', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$startGame(game_start, log_time);
+            game = await game!.$startGame({args}) as Awaited<ReturnType<typeof database.game.create>>|undefined; //TODO figure out dyankmic typing for local:false
             sendServerEvent('GameUpdate', game);
           }, game.id, 'GameStart');
         }
@@ -209,12 +225,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'GameStart'
     );
   });
-  LogTail.on('ChatMessageReceive', async (chat_message, log_time)=>{
+  LogTail.on('ChatMessageReceive', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$addChatMessage(chat_message, log_time);
+            /*game = */ await game!.$addChatMessage({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'ChatMessageReceive');
         }
@@ -222,12 +238,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'ChatMessageReceive'
     );
   });
-  LogTail.on('ChatUpdate', async (chat_update, log_time)=>{
+  LogTail.on('ChatUpdate', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$addChatUpdate(chat_update, log_time); //purposely no attempt
+            /*game =*/ await game!.$addChatUpdate({args:args, local:true}); //purposely no attempt
           }, game.id)
         }
       },
@@ -235,12 +251,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     );
   });
   
-  LogTail.on('IdleStatusUpdate', async (idle_status_update, log_time)=>{
+  LogTail.on('IdleStatusUpdate', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$addIdleStatusUpdate(idle_status_update, log_time); //purposely no attempt
+            /*game =*/ await game!.$addIdleStatusUpdate({args, local:true}); //purposely no attempt
           }, game.id)
         }
       },
@@ -248,33 +264,33 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     );
   });
 
-  LogTail.on('Disconnected', async (disconnected, log_time)=>{
+  LogTail.on('Disconnected', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
-          game = await game.$addConnectionUpdate(disconnected, log_time);
+          /*game =*/ await game.$addConnectionUpdate({args, local:true});
         }
       },
       'Disconnected'
     );
   });
-  LogTail.on('Reconnected', async (reconnected, log_time)=>{
+  LogTail.on('Reconnected', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
-          game = await game.$addConnectionUpdate(reconnected, log_time);
+          /*game =*/ await game.$addConnectionUpdate({args, local:true});
         }
       },
       'Reconnected'
     );
   });
 
-  LogTail.on('SelectPhaseStart', async (select_phase_start, log_time)=>{
+  LogTail.on('SelectPhaseStart', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$startProposal(select_phase_start, log_time);
+            /*game =*/ await game!.$startProposal({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'SelectPhaseStart');
         }
@@ -282,12 +298,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'SelectPhaseStart'
     );
   });
-  LogTail.on('SelectUpdate', async (select_update, log_time)=>{
+  LogTail.on('SelectUpdate', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$updateProposalSelection(select_update, log_time);
+            /*game =*/ await game!.$updateProposalSelection({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'SelectUpdate');
         }
@@ -295,12 +311,13 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'SelectUpdate'
     );
   });
-  LogTail.on('SelectPhaseEnd', async (select_phase_end, log_time)=>{
+  LogTail.on('SelectPhaseEnd', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$endProposal(select_phase_end, log_time);
+            /*game =*/ await game!.$endProposal({args, local:true});
+            game = await game!.$syncLocal(); // REMOTE UPDATE CHECKPOINT
             sendServerEvent('GameUpdate', game);
           }, game.id, 'SelectPhaseEnd');
         }
@@ -308,12 +325,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'SelectPhaseEnd'
     );
   });
-  LogTail.on('VotePhaseStart', async (vote_phase_start, log_time)=>{
+  LogTail.on('VotePhaseStart', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$startVote(vote_phase_start, log_time);
+            /*game =*/ await game!.$startVote({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'VotePhaseStart');
         }
@@ -321,12 +338,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'VotePhaseStart'
     );
   });
-  LogTail.on('VoteMade', async (vote_made, log_time)=>{
+  LogTail.on('VoteMade', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$addVoteMade(vote_made, log_time);
+            /*game =*/ await game!.$addVoteMade({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'VoteMade');
         }
@@ -334,12 +351,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'VoteMade'
     );
   });
-  LogTail.on('VotePhaseEnd', async (vote_phase_end, log_time)=>{
+  LogTail.on('VotePhaseEnd', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$endVote(vote_phase_end, log_time);
+            /*game =*/ await game!.$endVote({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'VotePhaseEnd');
         }
@@ -347,12 +364,12 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'VotePhaseEnd'
     );
   });
-  LogTail.on('MissionPhaseStart', async (mission_phase_start, log_time)=>{
+  LogTail.on('MissionPhaseStart', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game){
           attempt(async ()=>{
-            game = await game!.$startMission(mission_phase_start, log_time);
+            /*game =*/ await game!.$startMission({args, local:true});
             sendServerEvent('GameUpdate', game);
           }, game.id, 'MissionPhaseStart');
         }
@@ -360,12 +377,13 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'MissionPhaseStart'
     );
   });
-  LogTail.on('MissionPhaseEnd', async (mission_phase_end, log_time)=>{
+  LogTail.on('MissionPhaseEnd', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game) {
           attempt(async ()=>{
-            game = await game!.$endMission(mission_phase_end, log_time);
+            /*game =*/ await game!.$endMission({args, local:true});
+            game = await game!.$syncLocal(); // REMOTE UPDATE CHECKPOINT
             sendServerEvent('GameUpdate', game);
           }, game.id, 'MissionPhaseEnd');
         }
@@ -373,11 +391,14 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       'MissionPhaseEnd'
     );
   });
-  LogTail.on('GameEnd', async (game_end, log_time)=>{
+  LogTail.on('GameEnd', async (...args)=>{
     packetQueue.push(
       async ()=>{
         if(game) {
           attempt(async ()=>{
+            /*game =*/ await game!.$endGame({args, local:true});
+            game = await game!.$syncLocal(); //REMOTE UPDATE CHECKPOINT
+
             await database.rawGame.create({
               data: {
                 upload_reason: 'GameEnd',
@@ -385,8 +406,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
                 game_id: game!.id
               }
             })
-    
-            game = await game!.$endGame(game_end, log_time);
+
             sendServerEvent('GameUpdate', game);
           }, game.id, 'GameEnd');
         }
@@ -400,6 +420,8 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
 
   // //INIT
   let client = await getClient();
+  console.log('CLEINT', client.id);
+  console.log('SESH', client.mindnight_session);
   if(client.mindnight_session)
     await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
 
