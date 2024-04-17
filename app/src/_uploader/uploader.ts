@@ -4,7 +4,7 @@ import { database } from "@/database";
 import ProcessQueue from "@/utils/classes/ProcessQueue";
 import fs from 'fs';
 import path from "path";
-import { waitUntil } from "@/utils/functions/general";
+import { sleep, waitUntil } from "@/utils/functions/general";
 import { moveDirectorySync } from "@/utils/functions/fs";
 
 console.log("TEST");
@@ -14,8 +14,8 @@ const basepath = './__transfer__/data';
 // let games_to_transfer = fs.readdirSync(basepath);
 let games_to_transfer = fs.readdirSync(basepath);
 
-// games_to_transfer = [games_to_transfer.find(g=>g=='coin_gods')!];  //TEST ONE GAME
-
+// games_to_transfer = [games_to_transfer.find(g=>g=='5f0775154a537432883f18c9')!];  //TEST ONE GAME __transfer__/error/5f077a1f4a537432883f1a25/error.log
+console.log('Transferring', games_to_transfer.length, 'games...');
 for( let legacy_gameid of games_to_transfer){
   // let logpath = path.join(basepath, legacy_gameid, 'Player.log');
   let dirpath =  path.join(basepath, legacy_gameid)
@@ -190,6 +190,7 @@ function processGame(logpath: string, legacy_gameid?:string) {
       packetQueue.push(
         async()=>{
           if(game){
+            await sleep(2);
             await game.$startProposal({args, local:true});
             // console.log('SelectPhaseStart');
             // let propNumber = getCurrentNumProposals(game.game_players, select_phase_start.Mission) + 1;

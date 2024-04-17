@@ -90,18 +90,95 @@ export function getCurrentMissionNumber(missions: Missions|null|undefined, playH
   return currentMission + 1 as NodeNumber;
 }
 
+// export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumber, playHead?:Date){
+//   let result:{playerSlot:PlayerSlot, value:Proposal, proposalIndex:number}|undefined;
+//   Object.entries(game_players).forEach(([slot, game_player])=>{
+//     let playerSlot = parseInt(slot) as PlayerSlot;
+//     game_player?.proposals[missionNum]?.forEach((proposal, i)=>{
+//       if(!result || proposal.select_phase_start.log_time.valueOf() > result.value.select_phase_start.log_time.valueOf())
+//         if(hasHappened(proposal.select_phase_start.log_time, playHead))
+//           result = {playerSlot, value:proposal, proposalIndex:i};
+//     })
+//   });
+//   return result;
+// }
 export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumber, playHead?:Date){
   let result:{playerSlot:PlayerSlot, value:Proposal, proposalIndex:number}|undefined;
   Object.entries(game_players).forEach(([slot, game_player])=>{
     let playerSlot = parseInt(slot) as PlayerSlot;
     game_player?.proposals[missionNum]?.forEach((proposal, i)=>{
-      if(!result || proposal.select_phase_start.log_time.valueOf() > result.value.select_phase_start.log_time.valueOf())
+      if(!result || proposal.select_phase_start.created_at.valueOf() > result.value.select_phase_start.created_at.valueOf())
         if(hasHappened(proposal.select_phase_start.log_time, playHead))
           result = {playerSlot, value:proposal, proposalIndex:i};
     })
   });
   return result;
 }
+// export function getLatestProposal(game_players:GamePlayers,numPlayers:number, missions:Missions, missionNum:NodeNumber, playHead?:Date){
+//   let latestTurnIndex = maxTurns(missionNum, game_players) -1;
+//   let anyLatestTurnProposal = Object.values(game_players).find(g=>g?.proposals[missionNum][latestTurnIndex])?.proposals[missionNum][latestTurnIndex];
+//   if(!anyLatestTurnProposal)
+//     throw Error("Something went wrong, should have found a proposal...");
+//   function traceProposals(current:Proposal, turnIndex:number, traceCount:number=1){
+//     if(traceCount > numPlayers){ //special case for when there's a full circle of props. In this case, we have to know the starting proposer.
+//       let lastMission = Math.max(missionNum-1, 1) as NodeNumber;
+//       let lastMissionProposer = missions[lastMission]?.mission_phase_end?.Proposer as PlayerSlot|undefined;
+//       if(!lastMissionProposer)
+//         lastMissionProposer = 0;
+//       let latestProposal = game_players[lastMissionProposer]?.proposals[missionNum][latestTurnIndex];
+//       if(!latestProposal)
+//         throw Error("Somethign went wrong, there's no way we shouldn't have a proposal here.");
+//       console.log('WE WENT FULL CIRCLE, last proposer:', lastMissionProposer);
+//       return {playerSlot:current.select_phase_start.Player as PlayerSlot, value:current, proposalIndex:turnIndex}
+//     }
+//     console.log('CURRENT PROPOSAL:');
+//     console.log('\tproposer:', current.select_phase_start.Player);
+//     console.log('\tselect_phase_start:', current.select_phase_start);
+//     console.log('\select_phase_end:', current.select_phase_end);
+//     let nextPlayer = current.select_phase_start.NextPlayer as PlayerSlot;
+//     let nextProposal = game_players[nextPlayer]?.proposals[missionNum][turnIndex];
+//     if(nextProposal)
+//       return traceProposals(nextProposal, turnIndex, traceCount+1); //dig deeper to the next proposal
+//     else
+//       return {playerSlot:current.select_phase_start.Player as PlayerSlot, value:current, proposalIndex:turnIndex}; //otherwise there's no newer proposal. Return current;
+//   }
+//   return traceProposals(anyLatestTurnProposal, latestTurnIndex);
+// }
+// export function getLatestProposal(game_players:GamePlayers, missions:Missions, missionNum:NodeNumber, playHead?:Date){
+//   let lastMission = Math.max(missionNum-1, 1) as NodeNumber;
+//   let proposerOfLastMission = missions[lastMission]?.mission_phase_end?.Proposer as PlayerSlot|undefined;
+//   if(!proposerOfLastMission)
+//     proposerOfLastMission = 0;
+//   let lastMissionProposerProposals = game_players[proposerOfLastMission]?.proposals[lastMission];
+//   let firstProposalOfMission:Proposal;
+//   if(!lastMissionProposerProposals){
+//     console.log('NODE 1 DETECTED, default to first player first prop');
+//     firstProposalOfMission = game_players[0]?.proposals[1]![0]!; //has to be node 1 the first players first prop
+//   }
+//   else { //otherwise get the next players first proposal of this node
+//     let nextPlayer = lastMissionProposerProposals[lastMissionProposerProposals.length-1].select_phase_start.NextPlayer as PlayerSlot
+//     let fpom = game_players[nextPlayer]?.proposals[missionNum][0];
+//     if(!fpom)
+//       throw Error("There should be a proposal for this player... Since they're next in line after the last mission");
+//     firstProposalOfMission = fpom;
+//   }
+
+//   function traceProposals(current:Proposal, initialMissionProposer:PlayerSlot, turnIndex:number=0){
+//     console.log('CURRENT PROPOSAL:');
+//     console.log('\tproposer:', current.select_phase_start.Player);
+//     console.log('\tselect_phase_start:', current.select_phase_start);
+//     console.log('\select_phase_end:', current.select_phase_end);
+//     let nextPlayer = current.select_phase_start.NextPlayer as PlayerSlot;
+//     let newTurnIndex = nextPlayer === initialMissionProposer ? turnIndex+1 : turnIndex; //increment turns if we wnt all the way around
+//     let nextProposal = game_players[nextPlayer]?.proposals[missionNum][newTurnIndex];
+//     if(nextProposal)
+//       return traceProposals(nextProposal, initialMissionProposer, newTurnIndex); //dig deeper to the next proposal
+//     else
+//       return {playerSlot:current.select_phase_start.Player as PlayerSlot, value:current, proposalIndex:turnIndex}; //otherwise there's no newer proposal. Return current;
+//   }
+
+//   return traceProposals(firstProposalOfMission, firstProposalOfMission.select_phase_start.Player as PlayerSlot);
+// }
 
 export function hasHappened(log_time:Date|undefined, playHead:Date|undefined, expiresAfter:number=0){
   if(!playHead ) return true;

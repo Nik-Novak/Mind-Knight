@@ -33,10 +33,12 @@ async function efficientGamesQuery(playerId?:string, offset:number=0, limit:numb
     take:limit,
   });
   return {games, total_records};
+
+  // RAW
   // const [{ games, total_records }] = await database.game.aggregateRaw({
   //   pipeline:
   //     [
-  //       { $match: playerId ? { player_ids: playerId } : {} },
+  //       { $match: playerId ? { player_ids: { $in:[playerId] } } : {} },
   //       { $sort: { created_at: -1 } },
   //       { $project: {
   //           id: 1,
@@ -65,7 +67,7 @@ export async function getGames(playerId?:string, offset:number=0, limit:number=5
   // const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
   
   let {games, total_records} = await efficientGamesQuery(playerId, offset, limit);
-  console.log('HERE', games[0].game_found.log_time);
+  // console.log('HERE', games[0].game_found.log_time);
   let response:PaginatedResponse<typeof games[0]> = {
     items: games,
     metadata: {
