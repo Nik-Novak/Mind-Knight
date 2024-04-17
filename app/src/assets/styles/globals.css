@@ -17,7 +17,8 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   min-height: 100vh;
-  background: url(/img/background.png) no-repeat center;
+  background-color: #222;
+  /* background: url(/img/background.png) no-repeat center; */
 }
 
 /* p {

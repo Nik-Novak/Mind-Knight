@@ -15,6 +15,7 @@
 }
 
 .badge {
+  user-select: none;
   position: absolute;
   /* left: 40.5%;
   top: 30%; */
@@ -54,6 +55,7 @@
 }
 
 .propNumberContainer {
+  user-select: none;
   position: absolute;
   left: 102%;
   bottom: 0%;

@@ -4,5 +4,6 @@
   align-items: center;
   text-align: center;
   justify-content: space-around;
-  flex:1
+  flex:1;
+  background: url(/img/background.png) no-repeat center;
 }

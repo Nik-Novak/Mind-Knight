@@ -54,7 +54,7 @@ export default async function HomePage() {
         <Chatbox chat={globalChat} sendMessage={sendGlobalMessage}/>
       </Panel> */}
     </main>
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 }

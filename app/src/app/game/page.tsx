@@ -17,6 +17,7 @@ import Settings from "@/components/Settings";
 import { redirect } from "next/navigation";
 import { getDbPlayer, updateGameOnServer } from "@/actions/game";
 import Playback from "@/components/Playback";
+import Background from "@/components/Background";
 
 //React server component that securely runs on the server by default
 export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
@@ -31,7 +32,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
   
   return (
     <>
-      <main id='content' className={styles.main}>
+      <Background className={styles.main}>
         <Stack className={styles.left}>
           <Settings />
           <Panel title="Chat" defaultExpanded > <Chatbox /> </Panel>
@@ -46,7 +47,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
           <Nodes />
           <NodeTeamRejects />
         </Stack>
-      </main>
+      </Background>
     </>
   );
 }

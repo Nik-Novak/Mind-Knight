@@ -36,7 +36,6 @@ export default function Playback(){
   const [playbackSpeed, updatePlaybackSpeed] = useReducer(playbackSpeedReducer, 1);
   
   useEffect(()=>{
-    console.log('UPDATE GAMEFOUND')
     setPlayHead(game?.game_found.log_time);
   }, [game?.game_found.log_time.valueOf()]);
 
@@ -71,9 +70,8 @@ export default function Playback(){
         label:<Tooltip arrow title={`Node ${nodeNum}`}>{coloredText(nodeNum, mission?.mission_phase_end?.Failed ?'#851C20':'#159155' )}</Tooltip>
       });
   });
-  return <>
+  return <Stack sx={{width:'100%', maxWidth:'33.36vw', alignItems:'center', backgroundColor:'rgba(47,46,44,0.5)', padding: '5px', borderRadius:'5px'}}>
     <Slider 
-      sx={{maxWidth:'33.36vw'}} 
       valueLabelDisplay="auto" 
       valueLabelFormat={getLabel} 
       min={game.game_found.log_time.valueOf()} 
@@ -91,5 +89,5 @@ export default function Playback(){
         <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 1 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
       </IconButton>
     </Stack>
-  </>;
+  </Stack>;
 }

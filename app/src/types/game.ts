@@ -15,7 +15,17 @@ export enum GameMode {
   mainframe = 2
 }
 export enum GameMap {
-  sewer = 11 //idk if this is true, just an example
+  subway = 11,
+  backalley = 21,
+  subway_winter = 12,
+  backalley_winter = 22,
+  hideout_hacked = 31,
+  skatepark = 41,
+  sewer = 51,
+  ntf_agency = 61,
+  desert = 71,
+  // hideout = 4,
+  hong_kong = 81,
 }
 export enum NamingConvention {
   default = 0
