@@ -6,15 +6,20 @@
   width: 4vh;
 }
 
-.playerImg img {
+.playerImg img:nth-child(1) {
   user-select: none;
+  image-rendering: pixelated;
   width: 4vh;
+  height: 10.719vh;
+  transform: scaleX(2) scaleY(1.4) translateY(-0.5vh); /* Adjust for new uncropped image size of skins */
 }
 
 .badge {
   position: absolute;
-  left: 40.5%;
-  top: 30%;
+  /* left: 40.5%;
+  top: 30%; */
+  left: 42.5%;
+  top: 31%;
 }
 
 .actionExistsIcon {

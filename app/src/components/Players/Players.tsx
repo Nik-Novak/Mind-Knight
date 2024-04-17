@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { useStore } from "@/zustand/store";
 import { useSettings } from "../SettingsProvider";
+import { Skin } from "@/types/skins";
 
 type Props = {
 }
@@ -58,6 +59,7 @@ export default function Players({ }:Props){
               isPropped={isPropped}
               isShadowed={isShadowed}
               chatMsg={msg?.Message}
+              skin={settings.josh_mode ? Skin.HoloSan : Skin.NTFAgent}
             />
           // </Suspense>
         );

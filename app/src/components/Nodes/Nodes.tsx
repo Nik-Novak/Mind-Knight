@@ -5,14 +5,17 @@ import { useStore } from "@/zustand/store";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { GameFound, Missions } from "@prisma/client";
 import { useEffect } from "react";
+import { useSettings } from "../SettingsProvider";
 
 type NodeProps = {
   hacked:boolean|undefined,
   numPlayers: number,
   selected?: boolean,
+  joshBluffed?:boolean
   onClick?: ()=>void
 }
-function Node({ numPlayers, hacked, selected, onClick=()=>{}}:NodeProps){
+function Node({ numPlayers, hacked, selected, joshBluffed, onClick=()=>{}}:NodeProps){
+  
   let bgColor = '#696969' //default
   let hoverColor = '#595959' //default
   if(hacked===true){
@@ -26,7 +29,7 @@ function Node({ numPlayers, hacked, selected, onClick=()=>{}}:NodeProps){
   return <IconButton onClick={onClick} sx={{ padding:0, border:selected?'2px solid white':undefined, width:'15vh', height:'15vh', maxWidth:80, maxHeight:80, bgcolor:bgColor, '&:hover': {
     bgcolor: hoverColor, // Keep the background red on hover
   }}}>
-    <Typography sx={{fontWeight:'bold'}}>{numPlayers}</Typography>
+    <Typography sx={{fontWeight:'bold'}}>{joshBluffed ? 'BLUFFED' : numPlayers}</Typography>
   </IconButton>
 }
 
@@ -42,6 +45,7 @@ export default function Nodes({}:Props){
   const game_found = useStore(state=>state.game?.game_found);
   const missions = useStore(state=>state.game?.missions);
   const playHead = useStore(state=>state.playHead);
+  const {settings} = useSettings();
 
   return (
     <Stack m={'10%'} height={'80vh'} maxHeight={'637px'} justifyContent={'space-between'}>
@@ -52,7 +56,7 @@ export default function Nodes({}:Props){
           // if( missions?.[n]?.mission_phase_end?.log_time && missions[n]!.mission_phase_end!.log_time.valueOf() > new Date('2024-04-07T20:01:48.000Z').valueOf() )
           //   return null;
           let hacked = missions?.[n]?.mission_phase_end?.Failed
-          return <Node key={n} hacked={ hasHappened ? hacked : undefined} numPlayers={numPlayers} selected={selectedNode === i+1} onClick={()=>setSelectedNode(n)} />
+          return <Node key={n} joshBluffed={settings.josh_mode && n==1} hacked={ hasHappened ? hacked : undefined} numPlayers={numPlayers} selected={selectedNode === i+1} onClick={()=>setSelectedNode(n)} />
         })
       }
     </Stack>

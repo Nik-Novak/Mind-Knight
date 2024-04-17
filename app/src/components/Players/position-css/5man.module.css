@@ -43,7 +43,7 @@
 }
 
 /*******FLIP IMAGES*******/
-.playerContainer[data-index='2'] /* > .player-img > */ img, .playerContainer[data-index='3'] /* > .player-img > */ img, .playerContainer[data-index='4'] /* > .player-img > */ img {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+.playerContainer[data-index='0'] /* > .player-img > */ img:nth-child(1), .playerContainer[data-index='1'] /* > .player-img > */ img:nth-child(1) {
+  -webkit-transform: scaleX(-2) scaleY(1.4) translateY(-0.5vh);
+  transform: scaleX(-2) scaleY(1.4) translateY(-0.5vh);
 }

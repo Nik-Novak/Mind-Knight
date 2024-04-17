@@ -45,7 +45,7 @@
 }
 
 /*******FLIP IMAGES*******/
-.playerContainer[data-index='3'] img, .playerContainer[data-index='4'] img, .playerContainer[data-index='5'] img{
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+.playerContainer[data-index='0'] img:nth-child(1), .playerContainer[data-index='1'] img:nth-child(1), .playerContainer[data-index='2'] img:nth-child(1) {
+  -webkit-transform: scaleX(-2) scaleY(1.4) translateY(-0.5vh);
+  transform: scaleX(-2) scaleY(1.4) translateY(-0.5vh);
 }
