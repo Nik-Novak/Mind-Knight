@@ -199,3 +199,8 @@ export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playHead?:Dat
   });
   return latest;
 }
+
+// export function chatMessageMiddleware(message:string){
+//   const spriteRegex = /<sprite\s+name="([^"]+)"\s*\/?>/g;
+//   return message.replace(spriteRegex, '<img src="/img/emojis/$1.png" alt="emoji" />');
+// }

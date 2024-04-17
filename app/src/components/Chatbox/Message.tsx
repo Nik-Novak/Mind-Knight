@@ -7,6 +7,7 @@ import { useState } from "react";
 import { copyToClipboard } from "@/utils/functions/general";
 import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
+import { chatMessageMiddleware } from "@/utils/functions/chat";
 
 type Props = {
   author: string,
@@ -21,7 +22,7 @@ export default function Message({author, color, message, searchPattern}:Props){
   if(author === 'system')
     return <li className={style.message} >{`------- ${coloredText(message, color)} -------`}</li>
   else{
-    let text = <span>{'['}{coloredText(author, color)}{']: '}<Highlighter searchWords={[searchPattern]} textToHighlight={message}/></span> //`[${coloredText(author, color)}]: ${message}`; //
+    let text = <span>{'['}{coloredText(author, color)}{']: '}{chatMessageMiddleware(message, searchPattern)}</span> //`[${coloredText(author, color)}]: ${message}`; //
     return (
       <li className={style.message} onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
         <Typography display={'flex'} justifyContent={'space-between'}>

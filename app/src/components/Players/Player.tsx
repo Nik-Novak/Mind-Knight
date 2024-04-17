@@ -22,6 +22,7 @@ import agentBadge from './agent_badge.png';
 import hackerBadge from './hacker_badge.png';
 import skinToUrlMap from './skin-to-url-map.json';
 import { Skin } from "@/types/skins";
+import { chatMessageMiddleware } from "@/utils/functions/chat";
 
 const roleToBadgeMap = {
   [PlayerRole.agent]: agentBadge,
@@ -100,7 +101,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
   return (
-    <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={chatMsg} open={!!chatMsg}>
+    <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={chatMessageMiddleware(chatMsg, undefined, '12px')} open={!!chatMsg}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <img className="skin" src={skinToUrlMap[skin || 0]} alt="player" /*onClick={onClick}*//>
