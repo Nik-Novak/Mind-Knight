@@ -27,7 +27,7 @@
 .playerContainer[data-index='4']{
   right:35%;
   /* bottom: 0%; */
-  bottom: 86%;
+  bottom: 0%;
 }
 
 .playerContainer[data-index='5']{
