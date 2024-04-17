@@ -48,6 +48,20 @@ const theme = createTheme({
         }
       }
     },
+    MuiDialogTitle:{
+      styleOverrides:{
+        root:{
+          backgroundColor: '#222222'
+        }
+      }
+    },
+    MuiDialogContent:{
+      styleOverrides:{
+        root:{
+          paddingTop: '20px !important'
+        }
+      }
+    },
     MuiTypography:{
       styleOverrides:{
         h1:{

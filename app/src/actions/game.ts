@@ -101,6 +101,17 @@ export async function updateGameTitle(gameId:string, title:string){
   });
 }
 
+export async function reportGameIssue(gameId:string, issue:string){
+  await database.game.update({
+    where:{
+      id:gameId
+    },
+    data:{
+      issues:{push:issue}
+    }
+  });
+}
+
 export async function uploadGames(){
   let session = await getServerSession();
   let firstLog = LogTailer.readLog();

@@ -2,7 +2,7 @@
 import styles from "./page.module.css";
 import { getGames } from "@/actions/game";
 import GamesGrid from "@/components/GamesGrid";
-import { Button, Checkbox, FormControlLabel, Stack, Typography } from "@mui/material";
+import { Button, Checkbox, FormControlLabel, Stack, Tooltip, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useFetch from "@/hooks/useFetch";
@@ -33,8 +33,8 @@ function RewindPage() {
       <main id='content' className={styles.main}>
         <Typography variant="h2">Rewind</Typography>
         <Stack alignItems={'flex-start'}>
-          <FormControlLabel control={<Checkbox defaultChecked onChange={(e, checked)=>setMyGamesOnly(checked)} />} label="Show My Games Only" />
-          <FormControlLabel control={<Checkbox checked={settings.josh_mode} onChange={(e, checked)=>updateSettings({josh_mode:checked})} />} label="Josh Mode" />
+          <Tooltip title="Only show games that you played"><FormControlLabel control={<Checkbox defaultChecked onChange={(e, checked)=>setMyGamesOnly(checked)} />} label="Show My Games Only" /></Tooltip>
+          <Tooltip title="Only show games that joshua.cunningham played"><FormControlLabel control={<Checkbox checked={settings.josh_mode} onChange={(e, checked)=>updateSettings({josh_mode:checked})} />} label="Josh Mode" /></Tooltip>
         </Stack>
         <GamesGrid records={games} isFetchingRecords={isFetchingGames} fetchRecords={(model)=>fetchGames(model.page*model.pageSize, model.pageSize)} paginationMetadata={paginationMetadata} playerId={session?.user.player_id} />
         <Link href="/upload"><Button variant="contained" className="pixel-corners"> Upload Games</Button></Link>

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "debug": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./src/_debugger/debugger.ts",
-    "migrate": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./prisma/migrations/add_client_settings.ts",
+    "migrate": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./prisma/migrations/add_game_issues.ts",
     "transfer": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./src/_uploader/uploader.ts",
     "patch": "npx next-ws-cli@latest patch",
     "dev": "DOTENV_KEY=$(npx dotenv-vault keys development) next dev",

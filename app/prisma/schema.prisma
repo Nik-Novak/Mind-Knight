@@ -343,6 +343,7 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
   
   source        Source? //when source is 'live', created_ats are db generated. When 'upload' then they're locally generated with new Date()
   context       String?
+  issues        String[]
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
   @@map("games")

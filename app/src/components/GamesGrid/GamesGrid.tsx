@@ -16,7 +16,7 @@ import { copyToClipboard } from "@/utils/functions/general";
 import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 import Link from "next/link";
-import { updateGameTitle } from "@/actions/game";
+import { reportGameIssue, updateGameTitle } from "@/actions/game";
 
 const DEFAULT_ITEMS_PER_PAGE = 11;
 
@@ -110,6 +110,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                         onConfirm:async (newTitle)=>{
                           await updateGameTitle(params.row.id, newTitle); 
                           params.row.title = newTitle;
+                          pushNotification(<Notification>Set title for {params.row.id}</Notification>)
                           updateInputDialogProps({open:false})
                         },
                         onClose: () => {updateInputDialogProps({open:false})},
@@ -170,10 +171,25 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                 setShowDetails(params.row)
             },
             {
-              name: "Report Duplicate",
-              value: "report_duplicate",
+              name: "Report Issue/Duplicate",
+              value: "report_issue",
               onClick: () =>
-                console.log('report_duplicate')
+                updateInputDialogProps({
+                  open:true,
+                  title: `Report Issue/Duplicate for ${params.row.id}`,
+                  text: "Please describe the issue. If it's a duplicate, please provide the ID of the other game.",
+                  showInput:true,
+                  inputProps:{
+                    label:'Issue',
+                    placeholder: 'This game is a duplicate of game with ID: 5f13954e2c2bdb29d0d310c0',
+                    multiline:true,
+                  },
+                  onConfirm:async (text)=>{
+                    await reportGameIssue(params.row.id, text);
+                    updateInputDialogProps({open:false});
+                    pushNotification(<Notification>Issue Reported</Notification>)
+                  }
+                })
             },
           ], 
           (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>
