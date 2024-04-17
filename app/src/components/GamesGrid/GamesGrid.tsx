@@ -16,6 +16,7 @@ import { copyToClipboard } from "@/utils/functions/general";
 import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 import Link from "next/link";
+import { updateGameTitle } from "@/actions/game";
 
 const DEFAULT_ITEMS_PER_PAGE = 11;
 
@@ -28,10 +29,11 @@ type GridProps<DataType> = {
   fetchRecords?:(model:GridPaginationModel)=>Promise<DataType[]>, 
   isFetchingRecords?:boolean,
   paginationMetadata: PaginationMetadata,
-  onSelectionChange?:(records:GridRowSelectionModel)=>void
-  onRecordsChange?:(records:DataType[]|( (currentRecords:DataType[])=>DataType[]) )=>void
+  onSelectionChange?:(records:GridRowSelectionModel)=>void,
+  onRecordsChange?:(records:DataType[]|( (currentRecords:DataType[])=>DataType[]) )=>void,
+  playerId?:string,
 };
-export default function DataGrid<DataType extends GridValidRowModel>({ sx, records, fetchRecords, isFetchingRecords, paginationMetadata, onSelectionChange=()=>{}, onRecordsChange=()=>{} }: GridProps<DataType>) {
+export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords, paginationMetadata, onSelectionChange=()=>{}, onRecordsChange=()=>{}, playerId }: GridProps<DataType>) {
 
   const {pushNotification} = useNotificationQueue();
 
@@ -88,27 +90,34 @@ export default function DataGrid<DataType extends GridValidRowModel>({ sx, recor
   const columns: GridColDef<DataType>[] = [
     //4. Define fields and any actions you want to show for individual records
     { field: "id", headerName: "ID/Title", flex: 0.25, minWidth: 40,
-      valueGetter: (v, row) => row.title || row.id,
-      renderCell: params => renderOptionsRef.current.renderCell(
-        params,
-        [
-          {
-            name: "Set Title",
-            value: "title",
-            onClick: () =>
-              updateInputDialogProps({
-                open:true,
-                title: `Set the title for ${params.row.id}`,
-                inputProps:{ 
-                  label:'New Title',
-                  placeholder: 'MMS Day 1 Heat 3'
-                },
-                onConfirm:(newTitle)=>{console.log('CONFIRM', newTitle); updateInputDialogProps({open:false})},
-                onClose: () => {updateInputDialogProps({open:false})},
-              })
-          },
-        ]
-      )
+      valueGetter: (v, row) => { row.id=='661ff13b56f2cee2049114bf' && console.log('HERE', row.title, row.id); return row.title || row.id },
+      renderCell: params => 
+        playerId && params.row.player_ids.includes(playerId) //if we were in the game
+            ? renderOptionsRef.current.renderCell(
+                params,
+                [
+                  {
+                    name: "Set Title",
+                    value: "title",
+                    onClick: () =>
+                      updateInputDialogProps({
+                        open:true,
+                        title: `Set the title for ${params.row.id}`,
+                        inputProps:{ 
+                          label:'New Title',
+                          placeholder: 'MMS Day 1 Heat 3',
+                        },
+                        onConfirm:async (newTitle)=>{
+                          await updateGameTitle(params.row.id, newTitle); 
+                          params.row.title = newTitle;
+                          updateInputDialogProps({open:false})
+                        },
+                        onClose: () => {updateInputDialogProps({open:false})},
+                      })
+                  },
+                ]
+              )
+            : params.value
      },
     { field:"gamemode", headerName: "Mode", flex: 0.15, minWidth: 40, 
       valueGetter:(v, row)=>GameMode[row.game_found.Options.GameMode],

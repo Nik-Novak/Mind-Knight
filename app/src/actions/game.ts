@@ -23,6 +23,7 @@ async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, off
     // },
     select:{
       id:true,
+      title:true,
       // chat:true,
       created_at:true,
       game_end:true,
@@ -87,6 +88,17 @@ export async function getGames(playerId?:string, joshMode:boolean=false, offset:
     }
   }
   return response;
+}
+
+export async function updateGameTitle(gameId:string, title:string){
+  await database.game.update({
+    where:{
+      id:gameId
+    },
+    data:{
+      title
+    }
+  });
 }
 
 export async function uploadGames(){
