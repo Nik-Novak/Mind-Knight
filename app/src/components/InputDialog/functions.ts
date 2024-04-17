@@ -8,7 +8,7 @@
 
 import { Timer } from "@util/Timer";
 import { Dispatch, SetStateAction } from "react";
-import { ConfirmDialogProps } from "./ConfirmDialog";
+import { ConfirmDialogProps } from "./InputDialog";
 
 const setDialogOpen = (isOpen: boolean, setDialogProps: Dispatch<SetStateAction<ConfirmDialogProps>>) => {
   setDialogProps((dialogProps) => ({ ...dialogProps, open: isOpen }));

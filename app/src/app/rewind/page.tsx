@@ -28,8 +28,6 @@ function RewindPage() {
       fetchGames(); //initial fetch
   }, [session?.user.player_id, myGamesOnly, settings.josh_mode]);
 
-  console.log('JOSH MODE', settings);
-
   return (
     <>
       <main id='content' className={styles.main}>

@@ -179,7 +179,6 @@ export default function ActionGrid<T extends GridValidRowModel>({
   }
 
   function renderComponent() {
-    console.log(pageSizeOptions);
     return (
       <Container style={{padding:0}} sx={sx} className={Styles.dataGridWrapper}>
         <DataGrid<T>

@@ -1,9 +1,9 @@
 "use client";
 import type { GridRowSelectionModel, GridColDef, GridRenderCellParams, GridValidRowModel, GridPaginationModel } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { ActionGrid } from "@/components/ActionGrid";
 import { useModifyFieldRef, useRenderOptionsRef } from "@/components/ActionGrid/hooks";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/InputDialog";
 import { checkPagination } from "@/utils/functions/requests";
 import { SelectedAction } from "@/components/ActionGrid/types";
 import { Button, SxProps, Tooltip } from "@mui/material";
@@ -37,17 +37,16 @@ export default function DataGrid<DataType extends GridValidRowModel>({ sx, recor
 
   const [showDetails, setShowDetails] = useState<DataType | null>(null);
 
-  // const [paginationMetadata, setPaginationMetadata] = useState<PaginationMetadata>();
-  // const [currentPage, setCurrentPage] = useState<number>(1);
-  // const [previousPage, nextPage] = checkPagination(paginationMetadata);
-
-  const [dialogProps, setDialogProps] = useState<React.ComponentProps<typeof ConfirmDialog>>({
+  const inputDialogReducer = (state:React.ComponentProps<typeof ConfirmDialog>, update:Partial<React.ComponentProps<typeof ConfirmDialog>>)=>{
+    return {...state, ...update};
+  }
+  const [inputDialogProps, updateInputDialogProps] = useReducer(inputDialogReducer, {
     open: false,
     title: "",
     text: "",
     showInput: true,
     onConfirm: (input) => {},
-    onClose: () => {setDialogProps(current=>({...current, open:false}))},
+    onClose: () => {updateInputDialogProps({open:false})},
   });
 
   const [selected, setSelected] = useState<GridRowSelectionModel>([]);
@@ -97,12 +96,15 @@ export default function DataGrid<DataType extends GridValidRowModel>({ sx, recor
             name: "Set Title",
             value: "title",
             onClick: () =>
-              setDialogProps({
+              updateInputDialogProps({
                 open:true,
                 title: `Set the title for ${params.row.id}`,
-                text:'test',
-                onConfirm:()=>console.log('CONFIRM'),
-                onClose:()=>console.log('CLOSE'),
+                inputProps:{ 
+                  label:'New Title',
+                  placeholder: 'MMS Day 1 Heat 3'
+                },
+                onConfirm:(newTitle)=>{console.log('CONFIRM', newTitle); updateInputDialogProps({open:false})},
+                onClose: () => {updateInputDialogProps({open:false})},
               })
           },
         ]
@@ -195,7 +197,7 @@ export default function DataGrid<DataType extends GridValidRowModel>({ sx, recor
               fetchRecords(model);
           }}
         />
-        <ConfirmDialog {...dialogProps} />
+        <ConfirmDialog {...inputDialogProps} />
       </>
     );
   }

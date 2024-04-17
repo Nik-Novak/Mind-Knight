@@ -1,28 +1,31 @@
 import { useLang } from "@/hooks/LangContext";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, TextFieldProps } from "@mui/material";
 
 import { useRef } from "react";
 
 export type ConfirmDialogProps = {
   open: boolean;
   title: string;
-  text: string;
+  text?: string;
   showInput?: boolean;
-  onConfirm: (input: string) => void;
-  onClose: () => void;
+  inputProps?:TextFieldProps;
+  // inputLabel?:string;
+  // inputPlaceholder?:string;
+  onConfirm?: (input: string) => void;
+  onClose?: () => void;
 };
 
-export default function ConfirmDialog({ open, title, text, showInput, onConfirm = () => {}, onClose = () => {} }: ConfirmDialogProps) {
+export default function ConfirmDialog({ open, title, text, showInput=true, inputProps, onConfirm = () => {}, onClose = () => {} }: ConfirmDialogProps) {
   // const { t } = useLang();
   const dialogInputRef = useRef<HTMLInputElement>();
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
-        {text.split("\n").map((line, i) => (
+        {text && text.split("\n").map((line, i) => (
           <DialogContentText key={i}>{line}</DialogContentText>
         ))}
-        <TextField autoFocus margin="dense" label={'Confirm'} type="text" fullWidth variant="standard" inputRef={dialogInputRef} />
+        {showInput && <TextField autoFocus margin="dense" label={'confirm'/*default*/} placeholder={'confirm'/*default*/} type="text" fullWidth variant="standard" {...inputProps} inputRef={dialogInputRef} />}
       </DialogContent>
       <DialogActions>
         <Button
