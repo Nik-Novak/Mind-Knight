@@ -3,9 +3,10 @@ import { getRemoteSettings, updateRemoteSettings } from "@/actions/settings";
 import { ClientSettings } from "@prisma/client";
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useReducer, useState } from "react";
 
-const DefaultSettings = {
+const DefaultSettings:ClientSettings = {
   streamer_mode:false, 
-  alpha_mode:false
+  alpha_mode:false,
+  josh_mode: false
 };
 
 const SettingsContext = createContext<{

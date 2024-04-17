@@ -401,6 +401,7 @@ model Player {
 type ClientSettings {
   alpha_mode      Boolean @default(false)
   streamer_mode   Boolean @default(false)
+  josh_mode       Boolean @default(false)
 }
 model Client {
   id                    String              @id @default(auto()) @map("_id") @db.ObjectId

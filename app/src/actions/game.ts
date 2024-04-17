@@ -6,10 +6,18 @@ import { getServerSession } from "next-auth";
 import LogTailer from "@/utils/classes/LogEvents/LogTailer";
 import { ServerEventPacket } from "@/types/events";
 
-async function efficientGamesQuery(playerId?:string, offset:number=0, limit:number=50){
-  const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
+let joshId:string|undefined;
+async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, offset:number=0, limit:number=50){
+  let filterIds:string[] = [];
+  if(playerId) filterIds.push(playerId);
+  if(joshMode) {
+    if(!joshId)
+      joshId = (await database.player.findFirstOrThrow({where:{steam_id:'76561198814206069'}})).id; //fetch and cache josh's id
+    filterIds.push(joshId);
+  }
+  
   let [games, total_records] = await database.game.findManyAndCount({
-    where: whereCondition,
+    where: filterIds.length ? { player_ids: { hasEvery: filterIds } } : {},
     // orderBy:{
     //   created_at:'desc'
     // },
@@ -63,10 +71,10 @@ async function efficientGamesQuery(playerId?:string, offset:number=0, limit:numb
   // return { games, total_records: total_records[0]?.total || 0 } as {games:Game[], total_records:number};
 }
 
-export async function getGames(playerId?:string, offset:number=0, limit:number=50){
+export async function getGames(playerId?:string, joshMode:boolean=false, offset:number=0, limit:number=50){
   // const whereCondition = playerId ? { player_ids: { has: playerId } } : {};
   
-  let {games, total_records} = await efficientGamesQuery(playerId, offset, limit);
+  let {games, total_records} = await efficientGamesQuery(playerId, joshMode, offset, limit);
   // console.log('HERE', games[0].game_found.log_time);
   let response:PaginatedResponse<typeof games[0]> = {
     items: games,
