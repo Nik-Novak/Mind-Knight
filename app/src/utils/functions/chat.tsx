@@ -1,6 +1,6 @@
 import Highlighter from "react-highlight-words";
 
-export function chatMessageMiddleware(message:string|undefined, searchPattern?:string, fontSize?:string|number){
+export function chatMessageMiddleware(message:string|undefined, searchPattern?:string){
   if(message == undefined) return undefined;
   // Define a regular expression to match <sprite name="..."> tags
   const spriteRegex = /<sprite\s+name="([^"]+)"\s*\/?>/g;
@@ -19,5 +19,5 @@ export function chatMessageMiddleware(message:string|undefined, searchPattern?:s
   });
 
   // Return the React node containing processed parts
-  return <span style={{display:'flex', alignItems:'center', fontSize}}>{processedParts}</span>;
+  return <>{processedParts}</>;
 }
