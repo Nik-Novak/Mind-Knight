@@ -1,15 +1,13 @@
 import Styles from "./actiongrid.module.css";
 import { DataGrid, GridCallbackDetails, GridFooter } from "@mui/x-data-grid";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import type { GridSortModel, GridSelectionModel, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import type { GridSortModel, GridRowSelectionModel, GridColDef, GridRenderCellParams, GridTreeNodeWithRender, GridValidRowModel, GridFeatureMode, GridPaginationModel } from "@mui/x-data-grid";
 import { Dispatch, MouseEventHandler, SetStateAction, SyntheticEvent, useEffect, useState } from "react";
 import _, { partition } from "lodash";
 import IconButton from "@mui/material/IconButton";
 import { Button, Container, Menu, MenuItem, SxProps } from "@mui/material";
 import { ModifyFieldRef, RenderOptionsRef, RequestThunk } from "./hooks";
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import { GridRow, SelectedAction } from "./types";
+import { RenderCellMenuOption, SelectedAction } from "./types";
 
 interface ActionMenuOption {
   name: string;
@@ -18,26 +16,24 @@ interface ActionMenuOption {
 
 const ITEM_HEIGHT = 48;
 
-type ActionGridProps<T extends GridRow> = {
+type ActionGridProps<T extends GridValidRowModel> = {
   sx?: SxProps,
   records: T[];
   setRecords: Dispatch<SetStateAction<T[]>>;
-  selected: GridSelectionModel;
-  onSelectionModelChange?: ((selectionModel: GridSelectionModel, details: GridCallbackDetails<any>) => void) | undefined;
+  selected: GridRowSelectionModel;
+  onSelectionModelChange?: ((selectionModel: GridRowSelectionModel, details: GridCallbackDetails<any>) => void) | undefined;
   columns: GridColDef[];
   selectedActions?: SelectedAction<T>[];
-  // updateRecord?: (newRecord:T) => Promise<T|void> | T|void;
-  // deleteRecords: (ids:T['id'][]) => Promise<T[]|void> | T[]|void;
-  onInfo?: (info: string) => void;
-  onError?: (err: string) => void;
   modifyFieldRef: ModifyFieldRef<T>;
   renderOptionsRef: RenderOptionsRef;
-  previousPage: number | null;
-  nextPage: number | null;
   loading?: boolean;
-  setCurrentPage: (state) => void;
+  pageSizeOptions?:readonly (number | {value: number;label: string;})[] | undefined
+  recordCount?:number;
+  paginationMode?: GridFeatureMode;
+  paginationModel?: GridPaginationModel;
+  onPaginationModelChange?: ((model: GridPaginationModel, details: GridCallbackDetails<any>) => void);
 };
-export default function ActionGrid<T extends GridRow>({
+export default function ActionGrid<T extends GridValidRowModel>({
   sx,
   records,
   setRecords,
@@ -45,14 +41,14 @@ export default function ActionGrid<T extends GridRow>({
   onSelectionModelChange = () => {},
   columns,
   selectedActions = [],
-  onInfo = () => {},
-  onError = () => {},
   modifyFieldRef,
   renderOptionsRef,
-  previousPage,
-  nextPage,
   loading,
-  setCurrentPage = () => {},
+  pageSizeOptions=[25, 50, 100],
+  recordCount,
+  paginationMode,
+  paginationModel,
+  onPaginationModelChange
 }: ActionGridProps<T>) {
   const [sortModel, setSortModel] = useState<GridSortModel>([
     /*{field:'searchMisses', sort:'desc'}*/
@@ -81,9 +77,11 @@ export default function ActionGrid<T extends GridRow>({
             return record;
           })
         );
-        onInfo(`Successfully updated ${String(field)} to ${value} for records ${rowIds.join(",")}`);
+        // onInfo(`Successfully updated ${String(field)} to ${value} for records ${rowIds.join(",")}`);
       } catch (err: any) {
-        onError(err.message || "An error occurred");
+        console.error(err);
+        throw err;
+        // onError(err.message || "An error occurred");
       }
     } as ModifyFieldRef<T>["current"]["updateFields"];
   }, [modifyFieldRef?.current?.updateFields, records]);
@@ -97,9 +95,11 @@ export default function ActionGrid<T extends GridRow>({
         remoteDeleteThunk && (await remoteDeleteThunk(rowsToDelete));
         // let newRecords = records.filter(record => !rowIds.includes(record.id));
         setRecords(remaining);
-        onInfo(`Successfully deleted records ${rowIds.join(", ")}`);
+        // onInfo(`Successfully deleted records ${rowIds.join(", ")}`);
       } catch (err: any) {
-        onError(err.message || "An error occurred");
+        console.error(err);
+        throw err;
+        // onError(err.message || "An error occurred");
       }
     } as ModifyFieldRef<T>["current"]["deleteFields"];
   }, [modifyFieldRef?.current?.deleteFields, records]);
@@ -140,7 +140,7 @@ export default function ActionGrid<T extends GridRow>({
     };
   }, [renderOptionsRef?.current?.renderCell, records]);
 
-  const onMenuOpen = (evt: SyntheticEvent<HTMLElement>, params, options) => {
+  const onMenuOpen = (evt: SyntheticEvent<HTMLElement>, params:GridRenderCellParams<T, string, string, GridTreeNodeWithRender>, options:RenderCellMenuOption[]) => {
     let anchorEl = evt.currentTarget;
     setActionMenuAnchor(anchorEl);
     setIsActionMenuOpen(true);
@@ -174,35 +174,17 @@ export default function ActionGrid<T extends GridRow>({
       <div className={Styles.customFooterWrapper}>
         <div className={Styles.customFooterSelectedActions}>{renderSelectedActions()}</div>
         <GridFooter className={Styles.gridFooter} />
-        {(previousPage || nextPage) && (
-          <div style={{ flexDirection: "row" }}>
-            <IconButton
-              onClick={() => {
-                setCurrentPage(previousPage);
-              }}
-              disabled={!previousPage}
-            >
-              <ArrowCircleLeftIcon />
-            </IconButton>
-            <IconButton
-              onClick={() => {
-                setCurrentPage(nextPage);
-              }}
-              disabled={!nextPage}
-            >
-              <ArrowCircleRightIcon />
-            </IconButton>
-          </div>
-        )}
       </div>
     );
   }
 
   function renderComponent() {
+    console.log(pageSizeOptions);
     return (
       <Container style={{padding:0}} sx={sx} className={Styles.dataGridWrapper}>
         <DataGrid<T>
           rows={records}
+          rowCount={recordCount}
           loading={loading}
           columns={columns}
           sortModel={sortModel}
@@ -211,10 +193,15 @@ export default function ActionGrid<T extends GridRow>({
           }}
           checkboxSelection
           disableRowSelectionOnClick
-          onSelectionModelChange={onSelectionModelChange}
+          onRowSelectionModelChange={onSelectionModelChange}
           editMode="row"
-          components={{ Footer: customFooter }}
+          slots={{footer:customFooter}}
+          // components={{ Footer: customFooter }}
           getRowId={(r)=>r.id || r._id.toString()}
+          pageSizeOptions={pageSizeOptions}
+          paginationMode={paginationMode}
+          paginationModel={paginationModel}
+          onPaginationModelChange={onPaginationModelChange}
         />
         <Menu
           id={"long-menu"}
@@ -224,12 +211,12 @@ export default function ActionGrid<T extends GridRow>({
           anchorEl={actionMenuAnchor}
           open={isActionMenuOpen}
           onClose={onMenuClose}
-          PaperProps={{
+          slotProps={{paper:{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: "20ch",
             },
-          }}
+          }}}
         >
           {actionMenuOptions.map((option) => (
             <MenuItem

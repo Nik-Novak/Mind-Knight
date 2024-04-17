@@ -1,5 +1,5 @@
 "use client";
-import type { GridRowSelectionModel, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import type { GridRowSelectionModel, GridColDef, GridRenderCellParams, GridValidRowModel, GridPaginationModel } from "@mui/x-data-grid";
 import { useState } from "react";
 import { ActionGrid } from "@/components/ActionGrid";
 import { useModifyFieldRef, useRenderOptionsRef } from "@/components/ActionGrid/hooks";
@@ -22,24 +22,24 @@ const DEFAULT_ITEMS_PER_PAGE = 11;
 //1. Create a types.d.ts file in the services directory and create your flattened admin-specific type
 type DataType = Game; //2. change this to the type you want
 
-type GridProps = {
+type GridProps<DataType> = {
   sx?: SxProps,
   records: DataType[],
-  fetchRecords?:()=>Promise<DataType[]>, 
-  isFetchingRecords?:boolean, 
-  fetchRecordsError?:string,
+  fetchRecords?:(model:GridPaginationModel)=>Promise<DataType[]>, 
+  isFetchingRecords?:boolean,
+  paginationMetadata: PaginationMetadata,
   onSelectionChange?:(records:GridRowSelectionModel)=>void
   onRecordsChange?:(records:DataType[]|( (currentRecords:DataType[])=>DataType[]) )=>void
 };
-export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords, fetchRecordsError, onSelectionChange=()=>{}, onRecordsChange=()=>{} }: GridProps) {
+export default function DataGrid<DataType extends GridValidRowModel>({ sx, records, fetchRecords, isFetchingRecords, paginationMetadata, onSelectionChange=()=>{}, onRecordsChange=()=>{} }: GridProps<DataType>) {
 
   const {pushNotification} = useNotificationQueue();
 
   const [showDetails, setShowDetails] = useState<DataType | null>(null);
 
-  const [paginationMetadata, setPaginationMetadata] = useState<PaginationMetadata>();
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [previousPage, nextPage] = checkPagination(paginationMetadata);
+  // const [paginationMetadata, setPaginationMetadata] = useState<PaginationMetadata>();
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+  // const [previousPage, nextPage] = checkPagination(paginationMetadata);
 
   const [dialogProps, setDialogProps] = useState<React.ComponentProps<typeof ConfirmDialog>>({
     open: false,
@@ -67,10 +67,10 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
     //   onClick: (selectedRows) => onBuildReport(selectedRows)
     // },
     {
-      name: "Share",
+      name: "Stats",
       color: "primary",
       // showIf: (selectedRows) => true,
-      onClick: (selectedRows) => {console.log('SHARE')}
+      onClick: (selectedRows) => {alert('Not yet implemented')}
     },
     // {
     //   name: "Export CSV",
@@ -174,14 +174,6 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
     return (
       <>
       <DetailsDialog title={`Details for ${showDetails?.id}`} data={showDetails} excludeFields={['chat']} onClose={()=>setShowDetails(null)} />
-        {/* <Modal
-          open={!!showDetails}
-          onClose={()=>setShowDetails(null)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          {<p>{showDetails ? JSON.stringify(showDetails) : ''}</p>}
-        </Modal> */}
         <ActionGrid<DataType>
           sx={sx}
           records={records}
@@ -190,14 +182,18 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
           onSelectionModelChange={(selectionModel)=>{setSelected(selectionModel); onSelectionChange(selectionModel)}}
           columns={columns}
           selectedActions={selectedActions}
-          // onInfo={onInfo}
-          // onError={onError}
           modifyFieldRef={modifyFieldRef}
           renderOptionsRef={renderOptionsRef}
-          previousPage={previousPage}
-          nextPage={nextPage}
           loading={isLoading}
-          setCurrentPage={setCurrentPage}
+          pageSizeOptions={[25, 50]}
+          recordCount={paginationMetadata.total_items}
+          paginationMode="server"
+          paginationModel={{page: paginationMetadata.current_page, pageSize: paginationMetadata.items_per_page}}
+          onPaginationModelChange={(model, details)=>{
+            // console.log(model);
+            if(fetchRecords)
+              fetchRecords(model);
+          }}
         />
         <ConfirmDialog {...dialogProps} />
       </>

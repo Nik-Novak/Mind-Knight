@@ -7,7 +7,7 @@ type SelectedAction<T> = {
   onClick: (selectedRows: T[]) => void;
 };
 // let t:SelectedAction; t.color = ''
-type GridRow = { id: string|mongoose.Types.ObjectId; [key: string | number]: any };
+// type GridRow = { id: string|mongoose.Types.ObjectId; [key: string | number]: any };
 
 type RenderCellMenuOption = {
   name: string;

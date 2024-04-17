@@ -1,26 +1,13 @@
 "use client";
-import { NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
-import type { GameEnd, GamePlayers, Player as PlayerData, PlayerIdentity } from "@prisma/client"; //TODO fiix figuring out typing on clientside
+import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
 import Player from "./Player";
 import { getHammerPlayerSlot, getLatestSelectUpdate, getPlayerAction, getPropIndex, getTurnInfo, hasHappened } from "@/utils/functions/game";
-import { suspense } from "@/utils/hoc/suspense";
 import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
-import { Suspense } from "react";
-import PlayerSkeleton from "./PlayerSkeleton";
 import { useStore } from "@/zustand/store";
-import { database } from "../../../prisma/database";
 import { useSettings } from "../SettingsProvider";
-import { provideSettings } from "@/utils/hoc/provideSettings";
 
 type Props = {
-  // getDbPlayer: (playerIdentity: PlayerIdentity)=> Promise<PlayerData>
-  // selectedNode: NodeNumber|undefined;
-  // selectedTurn: number; //1..many
-  // selectedSlot: PlayerSlot|undefined;
-  // numPlayers: NumberOfPlayers;
-  // game_players: GamePlayers;
-  // game_end?: GameEnd;
 }
 
 export default function Players({ }:Props){

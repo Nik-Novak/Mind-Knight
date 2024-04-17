@@ -698,6 +698,15 @@ const prismaClientSingleton= ()=>{
             record = await (ctx as any).create(createArgs);
           return record;
         },
+        findManyAndCount<Model, Args>(
+          this: Model,
+          args: Prisma.Exact<Args, Prisma.Args<Model, 'findMany'>>
+        ): Promise<[Prisma.Result<Model, Args, 'findMany'>, number]> {
+          return prisma.$transaction([
+            (this as any).findMany(args),
+            (this as any).count({ where: (args as any).where })
+          ]) as any;
+        },
         findById<T>(
           this: T,
           id: string
