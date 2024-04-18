@@ -1,5 +1,5 @@
 "use client";
-import { uploadCustomSkin } from "@/actions/skin";
+import { uploadCustomSkin } from "@/actions/skins";
 import FormButton from "@/components/FormButton";
 import Notification from "@/components/Notification";
 import { useNotificationQueue } from "@/components/NotificationQueue";

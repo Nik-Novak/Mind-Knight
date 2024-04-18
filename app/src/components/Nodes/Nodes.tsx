@@ -30,7 +30,6 @@ function Node({ numPlayers, hacked, selected, joshBluffed, proposer, players, on
     bgColor = '#25A165';
     hoverColor = '#159155';
   }
-  console.log(proposer)
   return (
     <Tooltip placement="left" disableHoverListener={proposer===undefined} title={<Stack fontSize='18px' direction='row' spacing={1}>{players}&nbsp;by{proposer}</Stack>}>
       <IconButton onClick={onClick} sx={{ padding:0, border:selected?'2px solid white':undefined, width:'15vh', height:'15vh', maxWidth:80, maxHeight:80, bgcolor:bgColor, '&:hover': {
@@ -72,7 +71,6 @@ export default function Nodes({}:Props){
           let coloredPlayers = hasHappened ? playerSlots?.map(p=>{
             let player = getPlayer(game_players, p);
             let color = getPlayerColor(game_players, player?.Slot as PlayerSlot|undefined);
-            console.log(player?.Username, player?.Slot, color);
             return coloredText(player?.Username, color);
           }) : undefined
           let hacked = missions?.[n]?.mission_phase_end?.Failed

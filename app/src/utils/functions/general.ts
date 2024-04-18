@@ -77,3 +77,8 @@ export function waitUntil(predicate:Predicate, timeout?:number, checkEvery = 100
       setTimeout(()=>reject(`waitUntil reached timeout of ${timeout}ms`), timeout);
   });
 }
+
+export async function checkResourceExists(path:string){
+  const response = await fetch(path, { method: 'HEAD' });
+  return response.ok;
+}

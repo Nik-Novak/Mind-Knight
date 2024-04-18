@@ -15,14 +15,13 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Avatar from '../Avatar';
-import { CustomSkin, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import _ from 'lodash';
 import { Button } from '@mui/material';
-import FormButton from '../FormButton';
 import { equipSkin } from '@/actions/skins';
 import { useNotificationQueue } from '../NotificationQueue';
 import Notification from '../Notification';
-import { revalidatePath } from 'next/cache';
+import FormButton from '../FormButton';
 import { useRouter } from 'next/navigation';
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -42,15 +41,15 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 type Props = {
-  customSkin:Prisma.CustomSkinGetPayload<{include:{owner:true}}>,
-  equipped?: boolean
+  skin: string;
+  equipped?: boolean;
 }
-export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
+export default function SkinCard({ skin, equipped }:Props) {
   const [expanded, setExpanded] = React.useState(false);
   const { pushNotification } = useNotificationQueue();
   const router = useRouter();
 
-  const casedSkinName =_.startCase(customSkin.name);
+  const casedSkinName =_.startCase(skin.substring(5));
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -58,7 +57,7 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
 
   return (
     <Card sx={{ maxWidth: 345, boxShadow: equipped ? '0 0 5px 2px grey' : undefined }}>
-      <CardHeader
+      {/* <CardHeader
         avatar={
           <Avatar />
         }
@@ -69,11 +68,11 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
         }
         title={casedSkinName}
         subheader={customSkin.created_at.toDateString()}
-      />
+      /> */}
       <CardMedia
         sx={{imageRendering:'pixelated'}}
         component="img"
-        image={customSkin.base64_data}
+        image={`/img/skins/${skin}.png`}
         alt="Paella dish"
       />
       <CardContent>
@@ -84,25 +83,25 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
           {customSkin.description}
         </Typography> */}
       </CardContent>
+      {/* <CardActions>
+        <Button variant='contained' className='pixel-corners-small'>Equip</Button>
+      </CardActions> */}
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
         <form action={async (data)=>{
           try{
-            await equipSkin(customSkin.name);
-            pushNotification(<Notification>Equipped {casedSkinName}</Notification>);
-            //revalidatePath('/skins') //TODO: fix
+            await equipSkin(skin);
+            pushNotification(<Notification>Equipped {casedSkinName}</Notification>)
+            //revalidatePath('/skins');
             router.refresh();
           } catch(err){
             if(err instanceof Error)
             pushNotification(<Notification severity='error'>Something went wrong: {err.message}</Notification>)
           }
         }}>
-          <FormButton disabled={equipped} variant='contained' className='pixel-corners-small'>Equip</FormButton>
+          <FormButton variant='contained' className='pixel-corners-small'>Equip</FormButton>
         </form>
         <ExpandMore
           expand={expanded}
@@ -115,7 +114,7 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{customSkin.description}</Typography>
+          <Typography paragraph>(can someone please help me get all the descriptions from ingame skins? ty)</Typography>
         </CardContent>
       </Collapse>
     </Card>

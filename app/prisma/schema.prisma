@@ -387,8 +387,8 @@ model CustomSkin {
   owner         Player    @relation(name: "owned_custom_skins", fields: [owner_id], references: [id])
   owner_id      String    @db.ObjectId
 
-  players       Player[]  @relation(name: "unlocked_custom_skins", fields: [player_ids], references: [id])
-  player_ids    String[]  @db.ObjectId
+  unlocked_players       Player[]  @relation(name: "unlocked_custom_skins", fields: [unlocked_player_ids], references: [id])
+  unlocked_player_ids    String[]  @db.ObjectId
   
   created_at      DateTime    @default(now())
   updated_at      DateTime    @updatedAt
@@ -407,6 +407,8 @@ model Player {
   owned_custom_skins         CustomSkin[] @relation("owned_custom_skins")
   unlocked_custom_skins      CustomSkin[] @relation(name: "unlocked_custom_skins", fields: [unlocked_custom_skin_ids], references: [id])
   unlocked_custom_skin_ids   String[]     @db.ObjectId
+
+  equipped_skin              String?
 
   clients                 Client[]
 
