@@ -20,7 +20,7 @@ https://github.com/Nik-Novak/Mind-Knight/archive/master.zip
 * Scan the QR code to use it on your phone (has to be on the same wifi)
 ![MindKnight-Install](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/e0ae4ee0-7819-4cd4-ab07-0288446406dd)
 
-# Rewind (reqatch your old games)
+# Rewind (replay your old games)
 To access MindKnight rewind:
 * Launch (see How to get started)
 * Login by clicking the "Login" button
