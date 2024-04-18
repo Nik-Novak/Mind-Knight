@@ -1,5 +1,6 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
 import { GamePlayer, GamePlayers, Missions, Proposal, SelectUpdate } from "@prisma/client";
+import { ColorCode, colors } from "../constants/colors";
 
 // export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
 //   let maxTurns = 1;
@@ -198,6 +199,19 @@ export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playHead?:Dat
         latest = selectUpdate;
   });
   return latest;
+}
+
+export function getPlayerColor(game_players?:GamePlayers, slot?:PlayerSlot){
+  if(!game_players || slot === undefined) return undefined;
+  let colorCode = game_players?.[slot]?.Color as ColorCode|undefined
+  if(colorCode === undefined) return undefined;
+  let proposerColor = colors[ colorCode ].hex
+  return proposerColor;
+}
+
+export function getPlayer(game_players?:GamePlayers, slot?:PlayerSlot){
+  if(slot===undefined || !game_players) return undefined
+  return game_players[slot];
 }
 
 // export function chatMessageMiddleware(message:string){
