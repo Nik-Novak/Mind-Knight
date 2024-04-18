@@ -38,6 +38,22 @@ Or try updating on the main menu (WIP).
 ![MindKnight-UI](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/0db114cb-a2b8-472d-83e7-1a9d2d6bf1b5)
 
 # Changelog
+* v1.1.1
+  * Josh Mode
+  * Linux/Mac support (needs to be verified)
+  * Title games (set a title for games you were in, everyone will see these)
+  * Report duplicate/game issues
+  * Agent/hacker indicators (if the game has ended)
+  * Streamer mode
+  * Emojis!
+  * Game maps
+  * Skins now work
+  * Share games with friends: You can now share a game by copying a link. Anyone running the client can view that game in Rewinds.
+  * Sorting / filtering
+  * Many fixes / improvements
+  * Support other game modes
+  * Compatibility mode
+  * Remote settings
 * v1.0.0
   * Mindnight Rewind - replay previous games
   * Rewind live while in a game
