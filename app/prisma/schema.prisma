@@ -409,7 +409,7 @@ model Client {
   uuid                  String              @unique
 
   mindnight_session     MindnightSession?
-  settings              ClientSettings
+  settings              ClientSettings?
 
   player                Player?             @relation(fields: [player_id], references: [id])
   player_id             String?             @db.ObjectId
