@@ -377,22 +377,44 @@ model RawGame {
 // Player
 // =========================
 
+model CustomSkin {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String    @unique
+  description   String    
+  base64_data   String
+  approved      Boolean   @default(false)
+
+  owner         Player    @relation(name: "owned_custom_skins", fields: [owner_id], references: [id])
+  owner_id      String    @db.ObjectId
+
+  players       Player[]  @relation(name: "unlocked_custom_skins", fields: [player_ids], references: [id])
+  player_ids    String[]  @db.ObjectId
+  
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+  @@map("customskins")
+}
+
 model Player {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  steam_id  String    @unique
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
+  steam_id  String        @unique
   name      String
-  level     Int       @default(1)
-  elo       Float     @default(1500)
-  games     Game[]    @relation(fields: [game_ids], references: [id])
-  game_ids  String[]  @db.ObjectId
+  level     Int           @default(1)
+  elo       Float         @default(1500)
+  games     Game[]        @relation(fields: [game_ids], references: [id])
+  game_ids  String[]      @db.ObjectId
 
-  clients   Client[]
+  owned_custom_skins         CustomSkin[] @relation("owned_custom_skins")
+  unlocked_custom_skins      CustomSkin[] @relation(name: "unlocked_custom_skins", fields: [unlocked_custom_skin_ids], references: [id])
+  unlocked_custom_skin_ids   String[]     @db.ObjectId
 
-  user      User?     @relation(fields: [user_id], references: [id])
-  user_id   String?    @db.ObjectId @unique
+  clients                 Client[]
 
-  created_at        DateTime    @default(now())
-  updated_at        DateTime    @updatedAt
+  user                    User?     @relation(fields: [user_id], references: [id])
+  user_id                 String?    @db.ObjectId @unique
+
+  created_at              DateTime    @default(now())
+  updated_at              DateTime    @updatedAt
   @@map("players")
 }
 

@@ -9,6 +9,7 @@ import useFetch from "@/hooks/useFetch";
 import { provideSession } from "@/utils/hoc/provideSession";
 import Link from "next/link";
 import { useSettings } from "@/components/SettingsProvider";
+import Background from "@/components/Background";
 // import sampleGame from './sample-game3.json';
 
 function RewindPage() {
@@ -30,7 +31,7 @@ function RewindPage() {
 
   return (
     <>
-      <main id='content' className={styles.main}>
+      <Background id='content' className={styles.main}>
         <Typography variant="h2">Rewind</Typography>
         <Stack alignItems={'flex-start'}>
           <Tooltip title="Only show games that you played"><FormControlLabel control={<Checkbox defaultChecked onChange={(e, checked)=>setMyGamesOnly(checked)} />} label="Show My Games Only" /></Tooltip>
@@ -38,7 +39,7 @@ function RewindPage() {
         </Stack>
         <GamesGrid records={games} isFetchingRecords={isFetchingGames} fetchRecords={(model)=>fetchGames(model.page*model.pageSize, model.pageSize)} paginationMetadata={paginationMetadata} playerId={session?.user.player_id} />
         <Link href="/upload"><Button variant="contained" className="pixel-corners"> Upload Games</Button></Link>
-      </main>
+      </Background>
     </>
   );
 }
