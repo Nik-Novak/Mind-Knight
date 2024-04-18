@@ -10,7 +10,7 @@ export async function uploadCustomSkin(name:string, description:string, base64_d
   const owner_id = session?.user.player_id;
   if(!owner_id)
     throw Error("Must be logged in to upload skins.");
-  return database.customSkin.create({data:{ owner_id, unlocked_player_ids:[owner_id], name:name.toLowerCase().replaceAll(' ', '_'), description, base64_data}})
+  return database.customSkin.create({data:{ approved:true, owner_id, unlocked_player_ids:[owner_id], name:name.toLowerCase().replaceAll(' ', '_'), description, base64_data}})
 }
 
 export async function getUnlockedCustomSkins(){
@@ -31,11 +31,15 @@ export async function getSkins(){
 }
 
 export async function getSkinSrc(name:string):Promise<SkinSrc|undefined>{
+  const session = await getServerSession(authOptions);
+  const player_id = session?.user.player_id;
   let gameskinPath = 'public/img/skins/'+name+'.png';
   if(fs.existsSync(gameskinPath))
     return {name, src:gameskinPath.substring(gameskinPath.indexOf('/'))};
   let customSkin = await database.customSkin.findFirst({where:{name},include:{owner:true}});
   if(!customSkin) return undefined;
+  let notApprovedAndNotYours = !customSkin.approved && customSkin.owner_id!==player_id ;
+  if(notApprovedAndNotYours) return undefined;
   return { src:customSkin?.base64_data, name, owner:customSkin.owner.name, created_at:customSkin.created_at, stolen:'never' }
 }
 
