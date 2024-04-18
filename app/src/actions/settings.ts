@@ -21,7 +21,10 @@ export async function updateRemoteSettings(update:Partial<ClientSettings>){
   let client = await getClient();
   let {settings} = await database.client.update({where:{id: client.id}, data:{
     settings:{
-      update
+      upsert:{
+        update,
+        set:{alpha_mode:false, josh_mode: false, streamer_mode: false, ...update}
+      }
     }
   }});
   return settings;
