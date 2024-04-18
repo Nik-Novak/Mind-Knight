@@ -106,7 +106,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
           { role && roleToBadgeMap[role] && <img style={{width:'12px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /> }
           <Tooltip title="This player has an action available to view" placement="left" arrow>
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
-            <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} />
+            <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} onClick={()=>hasAction && setSelectedSlot(slot)} />
           </Tooltip>
           <Tooltip title="This player had hammer at the time of the shown proposal" placement="left" arrow>
             {/* <i className={`hammer-icon fas fa-hammer ${hasHammer?'':'hidden'}`}></i> */}
