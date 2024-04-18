@@ -7,13 +7,18 @@ export async function copyToClipboard(textToCopy:string) {
   } else {
       // Use the 'out of viewport hidden text area' trick
       const textArea = document.createElement("textarea");
+      textArea.id = 'hello-copy'
       textArea.value = textToCopy;
           
       // Move textarea out of the viewport so it's not visible
       textArea.style.position = "absolute";
-      textArea.style.left = "0px";
+      textArea.style.left = "-9999px";
           
       document.body.prepend(textArea);
+      textArea.select();
+
+      await sleep(40); //ensure focus is lost from other events
+
       textArea.select();
 
       try {

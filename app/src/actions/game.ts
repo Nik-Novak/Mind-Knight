@@ -18,9 +18,9 @@ async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, off
   
   let [games, total_records] = await database.game.findManyAndCount({
     where: filterIds.length ? { player_ids: { hasEvery: filterIds } } : {},
-    // orderBy:{
-    //   created_at:'desc'
-    // },
+    orderBy:{
+      created_at:'desc'
+    },
     select:{
       id:true,
       title:true,

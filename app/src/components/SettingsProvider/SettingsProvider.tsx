@@ -14,11 +14,13 @@ const SettingsContext = createContext<{
   updateSettings:Dispatch<Partial<ClientSettings>>
 }|null>(null);
 
+const settingsReducer = (state:ClientSettings, update:Partial<ClientSettings>)=>{
+  updateRemoteSettings(update);
+  return {...state, ...update};
+}
+
 export function SettingsProvider({children}:{children:ReactNode}){
-  const settingsReducer = (state:ClientSettings, update:Partial<ClientSettings>)=>{
-    updateRemoteSettings(update);
-    return {...state, ...update};
-  }
+  
   const [settings, updateSettings] = useReducer(settingsReducer, DefaultSettings);
   useEffect(()=>{
     getRemoteSettings().then(s=>updateSettings(s));

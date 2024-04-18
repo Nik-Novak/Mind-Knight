@@ -160,8 +160,9 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
               value: "share",
               onClick: async () =>
                 {
-                  await copyToClipboard(params.row.id);
-                  pushNotification(<Notification>Copied GameID to Clipboard!</Notification>);
+                  let link = `${window.location.protocol}//${window.location.host}/game?id=${params.row.id}`;
+                  await copyToClipboard(link);
+                  pushNotification(<Notification>Copied Share Link to Clipboard!</Notification>);
                 }
             },
             {
