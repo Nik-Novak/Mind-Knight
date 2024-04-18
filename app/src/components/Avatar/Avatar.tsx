@@ -9,10 +9,11 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { provideSession } from '@/utils/hoc/provideSession';
 type Props = {
-  sx?: SxProps<Theme>
+  sx?: SxProps<Theme>,
+  actions?:boolean
 }
 
-function Avatar({sx}:Props){
+function Avatar({sx, actions=false}:Props){
   const [open, setOpen] = useState(false);
   const avatarRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -36,7 +37,7 @@ function Avatar({sx}:Props){
 
   return (
     <>
-      <Menu
+      { actions && <Menu
           id="basic-menu"
           anchorEl={avatarRef.current}
           open={open}
@@ -51,7 +52,8 @@ function Avatar({sx}:Props){
           ? <MenuItem onClick={handleLogout}>Logout</MenuItem>
           : <MenuItem onClick={handleLogin}>Login</MenuItem>
         }
-      </Menu>
+      </Menu> 
+      }
       <MUIAvatar src={session?.user?.image || undefined} sx={{cursor:'pointer', ...sx}} variant="square" onClick={()=>setOpen(true)} ref={avatarRef}>
           { session?.user?.name?.charAt(0).toUpperCase() }
           {/* { session?.user?.name?.split(' ').map(segment=>segment.charAt(0).toUpperCase()).join(' ') } */}
