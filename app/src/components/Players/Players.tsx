@@ -40,6 +40,7 @@ export default function Players({ }:Props){
         let isShadowed = getLatestSelectUpdate(turnInfo, playHead)?.Slots.includes(slot);
         let msg = chat?.findLast(m=>m.Slot === slot && hasHappened(m.log_time, playHead, 5000));
         let role = settings.streamer_mode ? undefined : game_end?.Roles.find(r=>r.Slot === slot)?.Role as PlayerRole;
+
         return (
           // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
@@ -59,7 +60,7 @@ export default function Players({ }:Props){
               isPropped={isPropped}
               isShadowed={isShadowed}
               chatMsg={msg?.Message}
-              skin={settings.josh_mode ? Skin.HoloSan : Skin.NTFAgent}
+              skin={settings.josh_mode ? 'skin_holo_san' : game_player.Skin}
             />
           // </Suspense>
         );

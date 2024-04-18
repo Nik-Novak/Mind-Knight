@@ -20,8 +20,6 @@ import { getDbPlayer } from "@/actions/game";
 
 import agentBadge from './agent_badge.png';
 import hackerBadge from './hacker_badge.png';
-import skinToUrlMap from './skin-to-url-map.json';
-import { Skin } from "@/types/skins";
 import { chatMessageMiddleware } from "@/utils/functions/chat";
 
 const roleToBadgeMap = {
@@ -56,7 +54,7 @@ type Props = {
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
   chatMsg?: string,
   role?: PlayerRole,
-  skin?: Skin
+  skin?: string
 }
 
 function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
@@ -104,7 +102,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
     <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={<span style={{display:'flex', alignItems:'center', fontSize:'12px', padding:'5px'}}>{chatMessageMiddleware(chatMsg, undefined)}</span>} open={!!chatMsg}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
-          <img className="skin" src={skinToUrlMap[skin || 0]} alt="player" /*onClick={onClick}*//>
+          <img className="skin" src={`/img/skins/${skin}.png`} alt="player" /*onClick={onClick}*//>
           { role && roleToBadgeMap[role] && <img style={{width:'12px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /> }
           <Tooltip title="This player has an action available to view" placement="left" arrow>
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
