@@ -1,3 +1,4 @@
+@echo off
 set "PATH=%CD%;%PATH%"
 cd .\app
 call npx -v
