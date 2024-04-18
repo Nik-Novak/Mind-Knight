@@ -18,7 +18,7 @@ import Avatar from '../Avatar';
 import { Prisma } from '@prisma/client';
 import _ from 'lodash';
 import { Button } from '@mui/material';
-import { equipSkin } from '@/actions/skins';
+import { equipSkin, unequipSkin } from '@/actions/skins';
 import { useNotificationQueue } from '../NotificationQueue';
 import Notification from '../Notification';
 import FormButton from '../FormButton';
@@ -92,16 +92,18 @@ export default function SkinCard({ skin, equipped }:Props) {
         </IconButton>
         <form action={async (data)=>{
           try{
-            await equipSkin(skin);
-            pushNotification(<Notification>Equipped {casedSkinName}</Notification>)
-            //revalidatePath('/skins');
+            if(!equipped)
+              await equipSkin(skin);
+            else await unequipSkin();
+            pushNotification(<Notification>{equipped ? 'Unequipped' :'Equipped'} {casedSkinName}</Notification>);
+            //revalidatePath('/skins') //TODO: fix
             router.refresh();
           } catch(err){
             if(err instanceof Error)
             pushNotification(<Notification severity='error'>Something went wrong: {err.message}</Notification>)
           }
         }}>
-          <FormButton variant='contained' className='pixel-corners-small'>Equip</FormButton>
+          <FormButton variant='contained' className='pixel-corners-small'>{equipped ? 'Unequip' : 'Equip'}</FormButton>
         </form>
         <ExpandMore
           expand={expanded}

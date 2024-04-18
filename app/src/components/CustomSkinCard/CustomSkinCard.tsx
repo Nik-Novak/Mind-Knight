@@ -19,7 +19,7 @@ import { CustomSkin, Prisma } from '@prisma/client';
 import _ from 'lodash';
 import { Button } from '@mui/material';
 import FormButton from '../FormButton';
-import { equipSkin } from '@/actions/skins';
+import { equipSkin, unequipSkin } from '@/actions/skins';
 import { useNotificationQueue } from '../NotificationQueue';
 import Notification from '../Notification';
 import { revalidatePath } from 'next/cache';
@@ -93,8 +93,10 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
         </IconButton>
         <form action={async (data)=>{
           try{
-            await equipSkin(customSkin.name);
-            pushNotification(<Notification>Equipped {casedSkinName}</Notification>);
+            if(!equipped)
+              await equipSkin(customSkin.name);
+            else await unequipSkin();
+            pushNotification(<Notification>{equipped ? 'Unequipped' :'Equipped'} {casedSkinName}</Notification>);
             //revalidatePath('/skins') //TODO: fix
             router.refresh();
           } catch(err){
@@ -102,7 +104,7 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
             pushNotification(<Notification severity='error'>Something went wrong: {err.message}</Notification>)
           }
         }}>
-          <FormButton disabled={equipped} variant='contained' className='pixel-corners-small'>Equip</FormButton>
+          <FormButton variant='contained' className='pixel-corners-small'>{equipped ? 'Unequip' :'Equip'}</FormButton>
         </form>
         <ExpandMore
           expand={expanded}

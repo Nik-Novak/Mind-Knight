@@ -56,5 +56,5 @@ export async function unequipSkin(){
   const player_id = session?.user.player_id;
   if(!player_id)
       throw Error("Must be logged in to unequip a skin.");
-  await database.player.update({where:{id:player_id}, data:{ equipped_skin: undefined }});
+  await database.player.update({where:{id:player_id}, data:{ equipped_skin: null }});
 }
