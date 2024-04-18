@@ -6,7 +6,6 @@ import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { useStore } from "@/zustand/store";
 import { useSettings } from "../SettingsProvider";
-import { Skin } from "@/types/skins";
 
 type Props = {
 }
