@@ -7,7 +7,7 @@
 }
 
 .playerImg img:nth-child(1) {
-  user-select: none;
+  /* user-select: none; */
   image-rendering: pixelated;
   width: 4vh;
   height: 10.719vh;

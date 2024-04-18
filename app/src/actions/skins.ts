@@ -3,6 +3,7 @@ import fs from 'fs';
 import { getServerSession } from "next-auth";
 import { database } from "../../prisma/database/database";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { SkinSrc } from '@/types/skins';
 
 export async function uploadCustomSkin(name:string, description:string, base64_data:string){
   const session = await getServerSession(authOptions);
@@ -29,11 +30,13 @@ export async function getSkins(){
   return skins;
 }
 
-export async function getSkin(name:string){
+export async function getSkinSrc(name:string):Promise<SkinSrc|undefined>{
   let gameskinPath = 'public/img/skins/'+name+'.png';
   if(fs.existsSync(gameskinPath))
-    return gameskinPath.substring(gameskinPath.indexOf('/'));
-  return (await database.customSkin.findFirst({where:{name}}))?.base64_data;
+    return {name, src:gameskinPath.substring(gameskinPath.indexOf('/'))};
+  let customSkin = await database.customSkin.findFirst({where:{name},include:{owner:true}});
+  if(!customSkin) return undefined;
+  return { src:customSkin?.base64_data, name, owner:customSkin.owner.name, created_at:customSkin.created_at, stolen:'never' }
 }
 
 export async function equipSkin(name:string){

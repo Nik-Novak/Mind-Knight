@@ -1,6 +1,6 @@
 "use client";
 import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
-import { Tooltip, TooltipProps, Typography, tooltipClasses } from "@mui/material";
+import { Stack, Tooltip, TooltipProps, Typography, tooltipClasses } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
 import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
@@ -22,8 +22,9 @@ import agentBadge from './agent_badge.png';
 import hackerBadge from './hacker_badge.png';
 import { chatMessageMiddleware } from "@/utils/functions/chat";
 import { checkResourceExists } from "@/utils/functions/general";
-import { getSkin, getSkins } from "@/actions/skins";
+import { getSkinSrc, getSkins } from "@/actions/skins";
 import _ from "lodash";
+import { SkinSrc } from "@/types/skins";
 
 const roleToBadgeMap = {
   [PlayerRole.agent]: agentBadge,
@@ -92,7 +93,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
     voteIcon = <RefuseIcon className={style.voteIcon} sx={{color:'red'}} />
 
   const [dbPlayer, setDbPlayer] = useState<DBPlayer>();
-  const [customSkinSrc, setCustomSkinSrc] = useState<string>();
+  const [skinSrc, setSkinSrc] = useState<SkinSrc>();
   useEffect(()=>{
     if(playerIdentity)
       (async ()=>{
@@ -100,9 +101,8 @@ export default function Player({ slot, role, numPlayers, username, color, player
           if(dbPlayer)
             setDbPlayer(dbPlayer);
           if(dbPlayer.equipped_skin){
-            let skinSrc = await getSkin(dbPlayer.equipped_skin);
-            console.log('SKIN', skinSrc);
-            setCustomSkinSrc(skinSrc);
+            let skinSrc = await getSkinSrc(dbPlayer.equipped_skin);
+            setSkinSrc(skinSrc);
           }
       })();
   }, [playerIdentity?.Steamid])
@@ -115,7 +115,20 @@ export default function Player({ slot, role, numPlayers, username, color, player
     <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={<span style={{display:'flex', alignItems:'center', fontSize:'12px', padding:'5px'}}>{chatMessageMiddleware(chatMsg, undefined)}</span>} open={!!chatMsg}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
-          <img className="skin" src={customSkinSrc || `/img/skins/${skin}.png`} alt="player" /*onClick={onClick}*//>
+          <Tooltip
+            placement="bottom"
+            disableInteractive
+            disableHoverListener={!skinSrc?.owner}
+            title={<Stack>
+                <Typography variant="h5">Custom Skin</Typography>
+                <Typography>name: {skinSrc?.name}</Typography>
+                <Typography>owner: {skinSrc?.owner}</Typography>
+                <Typography>stolen: {skinSrc?.stolen}</Typography>
+                <Typography>created: {skinSrc?.created_at?.toDateString()}</Typography>
+              </Stack>
+            }>
+              <img className="skin" src={skinSrc?.src || `/img/skins/${skin}.png`} alt="player" /*onClick={onClick}*//>
+          </Tooltip>
           { role && roleToBadgeMap[role] && <Tooltip title={_.capitalize(PlayerRole[role])} disableInteractive><img style={{width:'12px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /></Tooltip>}
           <Tooltip title="This player has an action available to view" placement="left" arrow>
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}

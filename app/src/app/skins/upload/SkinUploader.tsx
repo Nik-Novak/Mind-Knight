@@ -6,6 +6,7 @@ import { useNotificationQueue } from "@/components/NotificationQueue";
 import { provideSession } from "@/utils/hoc/provideSession";
 import { Checkbox, FormControlLabel, Paper, Stack, TextField, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { FileUploader } from 'react-drag-drop-files';
 
@@ -20,6 +21,7 @@ function SkinUploader(){
   const formRef = useRef<HTMLFormElement>(null);
   const { pushNotification } = useNotificationQueue();
   const {data:session} = useSession();
+  const router = useRouter();
 
   if(!session)
     return <Typography color={'red'} variant="h2">You must be logged in to upload skins</Typography>
@@ -73,6 +75,7 @@ function SkinUploader(){
           await uploadCustomSkin(name, description, imgBase64);
           pushNotification(<Notification>Successfully Added Skin</Notification>);
           formRef.current?.reset();
+          router.refresh();
         } catch(err){
           console.error(err);
           if(err instanceof Error)
