@@ -3,20 +3,21 @@ import {Avatar as MUIAvatar, Menu, MenuItem, SxProps, Theme} from '@mui/material
 import { deepOrange } from '@mui/material/colors'
 import { getServerSession } from 'next-auth';
 import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react';
-import { redirect, usePathname } from 'next/navigation';
+import { redirect, usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image'
 
-import { useRef, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import { provideSession } from '@/utils/hoc/provideSession';
 type Props = {
   sx?: SxProps<Theme>,
-  actions?:boolean
+  isAdmin?:boolean,
+  enableActions?:boolean
 }
 
-function Avatar({sx, actions=false}:Props){
+function Avatar({sx, enableActions=false, isAdmin}:Props){
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   const avatarRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
 
   // const session = await getServerSession()  //NextAuth server component
   const { data:session } = useSession({
@@ -35,9 +36,21 @@ function Avatar({sx, actions=false}:Props){
     signOut();
   }
 
+  const actions:ReactNode[] = [];
+
+  if(enableActions){
+    if(session){
+      if(isAdmin)
+        actions.push(<MenuItem key='admin' onClick={()=>router.push('/admin')}>Admin</MenuItem>);
+      actions.push(<MenuItem key='logout' onClick={handleLogout}>Logout</MenuItem>);
+    }
+    else
+      actions.push(<MenuItem key='login' onClick={handleLogin}>Login</MenuItem>);
+  }
+
   return (
     <>
-      { actions && <Menu
+      { enableActions && <Menu
           id="basic-menu"
           anchorEl={avatarRef.current}
           open={open}
@@ -48,10 +61,7 @@ function Avatar({sx, actions=false}:Props){
         >
         {/* <MenuItem onClick={()=>setOpen(false)}>Profile</MenuItem>
         <MenuItem onClick={()=>setOpen(false)}>My account</MenuItem> */}
-        { session 
-          ? <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          : <MenuItem onClick={handleLogin}>Login</MenuItem>
-        }
+        {actions}
       </Menu> 
       }
       <MUIAvatar src={session?.user?.image || undefined} sx={{cursor:'pointer', ...sx}} variant="square" onClick={()=>setOpen(true)} ref={avatarRef}>

@@ -15,15 +15,14 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { database } from "../../prisma/database";
 import { MindnightSessionStatus } from "@prisma/client";
+import { verifyIsAdmin } from "@/actions/admin";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {
-
-  const globalChat: GlobalChatMessage[] = await getGlobalChat();
+  // const globalChat: GlobalChatMessage[] = await getGlobalChat();
   // console.log('RERENDER AND REFETCH GLOBAL CHAT', globalChat[globalChat.length-1].Message);
   const steamSession = await getServerSession(authOptions);
-
-  console.log('SS', steamSession);
+  const isAdmin = await verifyIsAdmin();
 
   return (
     <>
@@ -49,7 +48,7 @@ export default async function HomePage() {
           }
         </Stack>
       </Stack>
-      <Avatar actions sx={{bgcolor: grey[800], position: 'fixed', top:10, right:10}} />
+      <Avatar enableActions sx={{bgcolor: grey[800], position: 'fixed', top:10, right:10}} isAdmin={isAdmin} />
       {/* <Panel title={"Global Chat"} containerSx={{position:'fixed', left:{ sm:undefined, md:10 }, bottom:10, maxWidth: { sm:'80%', md:'30%' }}}>
         <Chatbox chat={globalChat} sendMessage={sendGlobalMessage}/>
       </Panel> */}

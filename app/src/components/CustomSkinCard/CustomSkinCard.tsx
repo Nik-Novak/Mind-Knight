@@ -19,11 +19,12 @@ import { CustomSkin, Prisma } from '@prisma/client';
 import _ from 'lodash';
 import { Button } from '@mui/material';
 import FormButton from '../FormButton';
-import { equipSkin, unequipSkin } from '@/actions/skins';
+import { approveSkin, equipSkin, revokeSkinApproval, unequipSkin } from '@/actions/skins';
 import { useNotificationQueue } from '../NotificationQueue';
 import Notification from '../Notification';
 import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
+import { ReactNode } from 'react';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -43,9 +44,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 type Props = {
   customSkin:Prisma.CustomSkinGetPayload<{include:{owner:true}}>,
-  equipped?: boolean
+  equipped?: boolean,
+  renderContext?: 'admin'
 }
-export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
+export default function CustomSkinCard({ customSkin, equipped=false, renderContext }:Props) {
   const [expanded, setExpanded] = React.useState(false);
   const { pushNotification } = useNotificationQueue();
   const router = useRouter();
@@ -55,6 +57,57 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const actions:ReactNode[] = [];
+  if(renderContext === 'admin'){
+    actions.push(
+    <form key='approve' action={async (data)=>{
+      try{
+        if(!customSkin.approved)
+          await approveSkin(customSkin.name);
+        else 
+          await revokeSkinApproval(customSkin.name);
+        pushNotification(<Notification>{!customSkin.approved ? 'Approved' :'Revoked approval'} {casedSkinName}</Notification>);
+        //revalidatePath('/skins') //TODO: fix
+        router.refresh();
+      } catch(err){
+        if(err instanceof Error)
+        pushNotification(<Notification severity='error'>Something went wrong: {err.message}</Notification>)
+      }
+    }}>
+      <FormButton variant='contained' className='pixel-corners-small'>{!customSkin.approved ? 'Approve' :'Revoke Approval'}</FormButton>
+    </form>
+    );
+  }
+  else {
+    actions.push(
+    <IconButton key='favorite' aria-label="add to favorites">
+      <FavoriteIcon />
+    </IconButton>
+    );
+    actions.push(
+    <IconButton key='share' aria-label="share">
+      <ShareIcon />
+    </IconButton>
+    );
+    actions.push(
+    <form key='equip' action={async (data)=>{
+      try{
+        if(!equipped)
+          await equipSkin(customSkin.name);
+        else await unequipSkin();
+        pushNotification(<Notification>{equipped ? 'Unequipped' :'Equipped'} {casedSkinName}</Notification>);
+        //revalidatePath('/skins') //TODO: fix
+        router.refresh();
+      } catch(err){
+        if(err instanceof Error)
+        pushNotification(<Notification severity='error'>Something went wrong: {err.message}</Notification>)
+      }
+    }}>
+      <FormButton variant='contained' className='pixel-corners-small'>{equipped ? 'Unequip' :'Equip'}</FormButton>
+    </form>
+    );
+  }
 
   return (
     <Card sx={{ maxWidth: 345, boxShadow: equipped ? '0 0 5px 2px grey' : undefined }}>
@@ -67,14 +120,14 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={casedSkinName}
+        title={customSkin.owner.name}
         subheader={customSkin.created_at.toDateString()}
       />
       <CardMedia
         sx={{imageRendering:'pixelated'}}
         component="img"
         image={customSkin.base64_data}
-        alt="Paella dish"
+        alt="Skin"
       />
       <CardContent>
         <Typography textAlign={'center'} variant="body1">
@@ -85,27 +138,7 @@ export default function CustomSkinCard({ customSkin, equipped=false }:Props) {
         </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <form action={async (data)=>{
-          try{
-            if(!equipped)
-              await equipSkin(customSkin.name);
-            else await unequipSkin();
-            pushNotification(<Notification>{equipped ? 'Unequipped' :'Equipped'} {casedSkinName}</Notification>);
-            //revalidatePath('/skins') //TODO: fix
-            router.refresh();
-          } catch(err){
-            if(err instanceof Error)
-            pushNotification(<Notification severity='error'>Something went wrong: {err.message}</Notification>)
-          }
-        }}>
-          <FormButton variant='contained' className='pixel-corners-small'>{equipped ? 'Unequip' :'Equip'}</FormButton>
-        </form>
+        { actions }
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

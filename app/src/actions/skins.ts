@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { database } from "../../prisma/database/database";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { SkinSrc } from '@/types/skins';
+import { verifyIsAdmin } from './admin';
 
 export async function uploadCustomSkin(name:string, description:string, base64_data:string){
   const session = await getServerSession(authOptions);
@@ -19,10 +20,14 @@ export async function getUnlockedCustomSkins(){
   return database.customSkin.findMany({where:{owner_id}, include:{ owner:true }})
 }
 
+export async function getCustomSkins(){
+  return database.customSkin.findMany({include:{ owner:true }});
+}
+
 export async function getEquippedSkin(){
   const session = await getServerSession(authOptions);
   const player_id = session?.user.player_id;
-  return player_id && (await database.player.findById(player_id)).equipped_skin
+  return player_id && (await database.player.findById(player_id)).equipped_skin || undefined
 }
 
 export async function getSkins(){
@@ -41,6 +46,18 @@ export async function getSkinSrc(name:string):Promise<SkinSrc|undefined>{
   let notApprovedAndNotYours = !customSkin.approved && customSkin.owner_id!==player_id ;
   if(notApprovedAndNotYours) return undefined;
   return { src:customSkin?.base64_data, name, owner:customSkin.owner.name, created_at:customSkin.created_at, stolen:'never' }
+}
+
+export async function approveSkin(name:string){
+  if(!verifyIsAdmin())
+    throw Error("Must have a valid NTF Admin badge to approve skins");
+  await database.customSkin.update({where:{name}, data:{ approved:true }});
+}
+
+export async function revokeSkinApproval(name:string){
+  if(!verifyIsAdmin())
+    throw Error("Must have a valid NTF Admin badge to approve skins");
+  await database.customSkin.update({where:{name}, data:{ approved:false }});
 }
 
 export async function equipSkin(name:string){
