@@ -1,6 +1,8 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
-import { GamePlayer, GamePlayers, Missions, Proposal, SelectUpdate } from "@prisma/client";
+import { GamePlayer, GamePlayers, Mission, Missions, Proposal, SelectUpdate } from "@prisma/client";
 import { ColorCode, colors } from "../constants/colors";
+import { coloredText } from "./jsx";
+import { Key } from "react";
 
 // export function maxTurns(selectedNode:NodeNumber, players:GamePlayers){
 //   let maxTurns = 1;
@@ -190,6 +192,11 @@ export function hasHappened(log_time:Date|undefined, playHead:Date|undefined, ex
   return isBeforePlayhead; //otherwise just return isBeforePlayhead result
 }
 
+export function isHappening(start_log_time:Date|undefined, playHead:Date|undefined, end_log_time:Date|undefined){
+  if(!start_log_time || !end_log_time || !playHead) return false;
+  return hasHappened(start_log_time, playHead, end_log_time.valueOf()-start_log_time.valueOf()); //otherwise just return isBeforePlayhead result
+}
+
 export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playHead?:Date){
   if(!turnInfo) return undefined;
   let latest:SelectUpdate|undefined;
@@ -214,7 +221,16 @@ export function getPlayer(game_players?:GamePlayers, slot?:PlayerSlot){
   return game_players[slot];
 }
 
-// export function chatMessageMiddleware(message:string){
-//   const spriteRegex = /<sprite\s+name="([^"]+)"\s*\/?>/g;
-//   return message.replace(spriteRegex, '<img src="/img/emojis/$1.png" alt="emoji" />');
-// }
+export function getHappeningMission(missions?:Missions, playHead?:Date){
+  return missions && Object.values(missions).reduce<Mission|undefined>((accum, mission)=>{
+    if(accum)
+      return accum;
+    return isHappening(mission?.mission_phase_start.log_time, playHead, mission?.mission_phase_end?.log_time) && mission || undefined;
+  }, undefined);
+}
+
+export function getColoredUsername(game_players:GamePlayers, slot:PlayerSlot, key?: Key){
+  let game_player = game_players[slot];
+  let color = game_player?.Color!=undefined ? colors[game_player.Color as ColorCode].hex : '#fff'
+  return coloredText(game_player?.Username, color, key);
+}

@@ -14,6 +14,7 @@ import Settings from "@/components/Settings";
 import { updateGameOnServer } from "@/actions/game";
 import Playback from "@/components/Playback";
 import Background from "@/components/Background";
+import Controls from "@/components/Controls";
 
 //React server component that securely runs on the server by default
 export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
@@ -38,6 +39,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
           <Playback />
           <Players />
           <Turns />
+          <Controls />
         </Stack>
         <Stack className={styles.right}>
           <Nodes />

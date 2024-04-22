@@ -31,7 +31,7 @@ function Node({ numPlayers, hacked, selected, joshBluffed, proposer, players, on
     hoverColor = '#159155';
   }
   return (
-    <Tooltip placement="left" disableHoverListener={proposer===undefined} title={<Stack fontSize='18px' direction='row' spacing={1}>{players}&nbsp;by{proposer}</Stack>}>
+    <Tooltip arrow placement="left" disableHoverListener={proposer===undefined} title={<Stack p={'5px'} fontSize='18px' direction='row' spacing={1}>{players}&nbsp;by{proposer}</Stack>}>
       <IconButton onClick={onClick} sx={{ padding:0, border:selected?'2px solid white':undefined, width:'15vh', height:'15vh', maxWidth:80, maxHeight:80, bgcolor:bgColor, '&:hover': {
         bgcolor: hoverColor, // Keep the background red on hover
       }}}>
@@ -71,7 +71,7 @@ export default function Nodes({}:Props){
           let coloredPlayers = hasHappened ? playerSlots?.map(p=>{
             let player = getPlayer(game_players, p);
             let color = getPlayerColor(game_players, player?.Slot as PlayerSlot|undefined);
-            return coloredText(player?.Username, color);
+            return coloredText(player?.Username, color, p);
           }) : undefined
           let hacked = missions?.[n]?.mission_phase_end?.Failed
           return <Node key={n} joshBluffed={settings.josh_mode && n==1} hacked={ hasHappened ? hacked : undefined} numPlayers={numPlayers} proposer={ proposerName ? coloredText(proposerName, proposerColor) : undefined } players={coloredPlayers} selected={selectedNode === i+1} onClick={()=>setSelectedNode(n)} />

@@ -3,6 +3,25 @@
 import { Roboto,  } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 
+declare module "@mui/material/styles" {
+  interface Palette {
+    custom: {
+      secured: string,
+      securedDark: string,
+      hacked: string,
+      hackedDark: string,
+    };
+  }
+  interface PaletteOptions {
+    custom?: {
+      secured: string,
+      securedDark: string,
+      hacked: string,
+      hackedDark: string,
+    };
+  }
+}
+
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
@@ -24,7 +43,12 @@ const theme = createTheme({
     action:{ //icon buttons, etc.
       active: '#F0F0F0',
     },
-    
+    custom:{
+      secured: '#25A165',
+      securedDark: '#159155',
+      hacked: '#952C30',
+      hackedDark: '#851C20',
+    }
   },
   typography: {
     fontFamily: `Munro, ${roboto.style.fontFamily}, sans-serif`,

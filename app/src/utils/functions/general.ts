@@ -82,3 +82,13 @@ export async function checkResourceExists(path:string){
   const response = await fetch(path, { method: 'HEAD' });
   return response.ok;
 }
+
+export function insertBetween(array:any[], element:any) {
+  return array.reduce((acc, curr, index) => {
+      acc.push(curr);
+      if (index < array.length - 1) {
+          acc.push(element);
+      }
+      return acc;
+  }, []);
+}

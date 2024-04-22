@@ -6,6 +6,8 @@ import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import HammerIcon from '@mui/icons-material/Hardware';
 import PowerOffIcon from '@mui/icons-material/PowerOff';
+import NoVoteIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import VotedIcon from '@mui/icons-material/HelpCenter';
 import { Player as DBPlayer, PlayerIdentity } from "@prisma/client";
 import style from './players.module.css';
 import style5 from './position-css/5man.module.css';
@@ -55,6 +57,7 @@ type Props = {
   hasAction?: boolean,
   hasHammer?: boolean,
   isDisconnected?: boolean,
+  voted?: boolean,
   accepted?: boolean,
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
   chatMsg?: string,
@@ -86,9 +89,15 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg, typing, idle, skin }:Props){
+export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
+  const chatPlacement = getChatPlacement(slot, numPlayers);
+  let votedIcon; //undefined=novote
+  if(voted===true) //accepted
+    votedIcon = <VotedIcon className={style.votedIcon} sx={{color:'#BC883C', left:chatPlacement === 'right-start' ? '75%' : ''}} />
+  else if(voted === false) //rejected
+    votedIcon = <NoVoteIcon className={style.votedIcon} sx={{color:'#ADADAD', left:chatPlacement === 'right-start' ? '75%' : ''}} />
   let voteIcon; //undefined=novote
   if(accepted===true) //accepted
     voteIcon = <AcceptIcon className={style.voteIcon} sx={{color:'green'}} />
@@ -115,7 +124,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
   return (
-    <ChatBubble placement={getChatPlacement(slot, numPlayers)} typing={typing} chatMsg={chatMsg} idle={idle}>
+    <ChatBubble placement={chatPlacement} typing={typing} chatMsg={chatMsg} idle={idle}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <Tooltip
@@ -144,6 +153,9 @@ export default function Player({ slot, role, numPlayers, username, color, player
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
             <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} onClick={()=>hasAction && setSelectedSlot(slot)} />
           </Tooltip>
+          {votedIcon && <Tooltip title={`This player has ${voted ? 'voted' : 'NOT voted yet'}`} placement={chatPlacement === 'right-start' ? 'right' : 'left'} arrow>
+            {votedIcon}
+          </Tooltip>}
           <Tooltip title="This player had hammer at the time of the shown proposal" placement="left" arrow>
             {/* <i className={`hammer-icon fas fa-hammer ${hasHammer?'':'hidden'}`}></i> */}
             <HammerIcon sx={{visibility: !hasHammer?'hidden':undefined}} className={style.hammerIcon} />

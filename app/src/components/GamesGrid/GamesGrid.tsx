@@ -214,7 +214,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
           renderOptionsRef={renderOptionsRef}
           loading={isLoading}
           pageSizeOptions={[25, 50]}
-          recordCount={paginationMetadata.total_items}
+          recordCount={paginationMetadata.total_items || 0}
           paginationMode="server"
           paginationModel={{page: paginationMetadata.current_page, pageSize: paginationMetadata.items_per_page}}
           onPaginationModelChange={(model, details)=>{

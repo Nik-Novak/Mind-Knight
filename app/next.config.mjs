@@ -11,6 +11,10 @@ if(process.env.START_BROWSER === 'true' && !process.env.BUILD && process.env.NEX
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // compiler:{
+  //   styledComponents: true,
+  //   emotion:true
+  // },
   experimental:{
     instrumentationHook: true
   },

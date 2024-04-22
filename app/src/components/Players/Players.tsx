@@ -1,7 +1,7 @@
 "use client";
 import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
 import Player from "./Player";
-import { getHammerPlayerSlot, getLatestSelectUpdate, getPlayerAction, getPropIndex, getTurnInfo, hasHappened } from "@/utils/functions/game";
+import { getHammerPlayerSlot, getLatestSelectUpdate, getPlayerAction, getPropIndex, getTurnInfo, hasHappened, isHappening } from "@/utils/functions/game";
 import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { useStore } from "@/zustand/store";
@@ -41,7 +41,10 @@ export default function Players({ }:Props){
         let typing = game_player.chat_updates.findLast(tu=>hasHappened(tu.log_time, playHead))?.Typing;
         let idle = game_player.idle_status_updates.findLast(tu=>hasHappened(tu.log_time, playHead))?.Idle;
         let role = settings.streamer_mode ? undefined : game_end?.Roles.find(r=>r.Slot === slot)?.Role as PlayerRole;
-
+        const voted = isHappening(turnInfo?.vote_phase_start?.log_time, playHead, turnInfo?.vote_phase_end?.log_time) ? hasHappened(turnInfo?.vote_mades[slot]?.log_time, playHead) : undefined;
+        
+        // const latestProposal = game_players && selectedNode!=undefined && getLatestProposal(game_players, selectedNode, playHead)?.value || undefined;
+        // const isVoting = isHappening(latestProposal?.vote_phase_start?.log_time, playHead, latestProposal?.vote_phase_end?.log_time);
         return (
           // <Suspense key={k} fallback={<PlayerSkeleton key={k} slot={slot} numPlayers={numPlayers} />} >
             <Player 
@@ -56,6 +59,7 @@ export default function Players({ }:Props){
               selected={slot === selectedSlot}
               hasHammer={slot === hammerPlayerSlot}
               isDisconnected={false}
+              voted={voted}
               accepted={accepted}
               proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex!=undefined ? proppedIndex : undefined}
               isPropped={isPropped}
