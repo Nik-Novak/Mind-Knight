@@ -25,6 +25,7 @@ import { checkResourceExists } from "@/utils/functions/general";
 import { getSkinSrc, getSkins } from "@/actions/skins";
 import _ from "lodash";
 import { SkinSrc } from "@/types/skins";
+import ChatBubble from "./ChatBubble";
 
 const roleToBadgeMap = {
   [PlayerRole.agent]: agentBadge,
@@ -57,6 +58,7 @@ type Props = {
   accepted?: boolean,
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
   chatMsg?: string,
+  typing?: boolean,
   role?: PlayerRole,
   skin?: string
 }
@@ -83,7 +85,7 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg, skin }:Props){
+export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg, typing, skin }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   let voteIcon; //undefined=novote
@@ -112,7 +114,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
   return (
-    <Tooltip placement={getChatPlacement(slot, numPlayers)} arrow title={<span style={{display:'flex', alignItems:'center', fontSize:'12px', padding:'5px'}}>{chatMessageMiddleware(chatMsg, undefined)}</span>} open={!!chatMsg}>
+    <ChatBubble placement={getChatPlacement(slot, numPlayers)} typing={typing} chatMsg={chatMsg}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <Tooltip
@@ -132,7 +134,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
                 src={skinSrc?.src || `/img/skins/${skin}.png`}
                 alt="player"
                 onError={(e) => {
-                  e.target.src = '/img/skins/skin_upload_template.png'; // Replace '/img/fallback.png' with your fallback URL
+                  e.currentTarget.src = '/img/skins/skin_upload_template.png'; // Replace '/img/fallback.png' with your fallback URL
                 }}
               />
           </Tooltip>
@@ -163,7 +165,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
           <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} />
         </div>
       </div>
-    </Tooltip>
+    </ChatBubble>
   )
 }
 
