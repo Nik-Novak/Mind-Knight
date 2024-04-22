@@ -2,9 +2,9 @@
 
 
 REM Get the PID of OUR process
-title mycmd
+title MindKnightUpdater
 echo Getting current PID
-for /f %%a in ('tasklist /v /fo csv ^| findstr /i "mycmd"') do (
+for /f %%a in ('tasklist /v /fo csv ^| findstr /i "MindKnightUpdater"') do (
     for /f "tokens=2 delims=," %%b in ("%%a") do (
         set PID=%%b
     )
