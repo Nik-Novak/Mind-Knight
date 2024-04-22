@@ -20,7 +20,7 @@ export default function Playback(){
   const setPlayHead = useStore(state=>state.setPlayHead);
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
   type Action = 'increase' | 'decrease' | 'reset';
   function playbackSpeedReducer(state: SpeedMultiplier, action: Action): SpeedMultiplier {
