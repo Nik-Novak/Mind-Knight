@@ -127,7 +127,14 @@ export default function Player({ slot, role, numPlayers, username, color, player
                 <Typography>created: {skinSrc?.created_at?.toDateString()}</Typography>
               </Stack>
             }>
-              <img className="skin" src={skinSrc?.src || `/img/skins/${skin}.png`} alt="player" /*onClick={onClick}*//>
+              <img
+                className="skin"
+                src={skinSrc?.src || `/img/skins/${skin}.png`}
+                alt="player"
+                onError={(e) => {
+                  e.target.src = '/img/skins/skin_upload_template.png'; // Replace '/img/fallback.png' with your fallback URL
+                }}
+              />
           </Tooltip>
           { role && roleToBadgeMap[role] && <Tooltip title={_.capitalize(PlayerRole[role])} disableInteractive><img style={{width:'12px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /></Tooltip>}
           <Tooltip title="This player has an action available to view" placement="left" arrow>
