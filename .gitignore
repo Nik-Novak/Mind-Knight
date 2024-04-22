@@ -37,3 +37,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# App folder
+app/_archive
+app/__transfer__/data
+app/__transfer__/complete
+app/__transfer__/partial
+app/__transfer__/error
+app/__test__/data
+app/__test__/complete
+app/__test__/error
+app/_temp/*
+!app/_temp/.gitkeep
+app/.env*
+app/.flaskenv*
+!app/.env.project
+!app/.env.vault
