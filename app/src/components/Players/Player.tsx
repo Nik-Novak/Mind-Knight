@@ -59,6 +59,7 @@ type Props = {
   proppedIndex?: number, //true=accepted, false=rejected, undefined=novote
   chatMsg?: string,
   typing?: boolean,
+  idle?: boolean,
   role?: PlayerRole,
   skin?: string
 }
@@ -85,7 +86,7 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg, typing, skin }:Props){
+export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, accepted, proppedIndex, chatMsg, typing, idle, skin }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   let voteIcon; //undefined=novote
@@ -114,7 +115,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
   return (
-    <ChatBubble placement={getChatPlacement(slot, numPlayers)} typing={typing} chatMsg={chatMsg}>
+    <ChatBubble placement={getChatPlacement(slot, numPlayers)} typing={typing} chatMsg={chatMsg} idle={idle}>
       <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <Tooltip
