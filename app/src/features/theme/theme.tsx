@@ -79,6 +79,10 @@ const theme = createTheme({
       }
     },
     MuiButton: {
+      defaultProps:{
+        className:'pixel-corners',
+        variant: 'contained'
+      },
       styleOverrides: {
         root: {
           textTransform:'none',

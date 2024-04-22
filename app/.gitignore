@@ -10,6 +10,8 @@ __transfer__/error
 __test__/data
 __test__/complete
 __test__/error
+_temp/*
+!_temp/.gitkeep
 .env*
 .flaskenv*
 !.env.project

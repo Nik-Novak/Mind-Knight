@@ -1,10 +1,11 @@
 "use client";
-
 import { verifyIsAdmin } from "@/actions/admin";
 import FormButton from "@/components/FormButton";
 import { Stack, SxProps, Theme, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ScanIcon from '@mui/icons-material/QrCodeScanner';
+
 type Props = {
   sx?: SxProps<Theme>
 }
@@ -25,7 +26,7 @@ export default function BadgeScanner({sx}:Props){
           setTimeout(()=>router.replace('/'), 3000);
         }
       }}>
-        <FormButton variant="contained" className="pixel-corners" sx={{paddingX: '40px'}}>Scan</FormButton>
+        <FormButton variant="contained" className="pixel-corners" sx={{paddingX: '40px'}}><ScanIcon sx={{mr:1}} />Scan</FormButton>
       </form>
     </Stack>
   )

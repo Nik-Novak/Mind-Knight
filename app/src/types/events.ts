@@ -92,7 +92,8 @@ type SessionEvents = {
 }
 
 type GameEvents = {
-  GameUpdate: [Game|undefined]
+  GameUpdate: [Game|undefined],
+  Simulate: [string, number]//filepath, timeBetweenLinesMS
 }
 
 

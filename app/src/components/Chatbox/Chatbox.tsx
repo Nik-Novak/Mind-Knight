@@ -72,7 +72,7 @@ function Chatbox({ chat, sendMessage}:Props){
     const chatContainer = chatContainerRef.current;
     if (chatContainer) {
       // Check if the scroll is at the bottom
-      const isAtBottom = chatContainer.scrollHeight - chatContainer.clientHeight <= chatContainer.scrollTop + 30;
+      const isAtBottom = chatContainer.scrollHeight - chatContainer.clientHeight <= chatContainer.scrollTop + 150;
 
       // console.log(isAtBottom, chatContainer.scrollHeight, chatContainer.clientHeight, chatContainer.scrollHeight - chatContainer.clientHeight, chatContainer.scrollTop + 30);
       // If it's at the bottom, scroll to the bottom after new content is added

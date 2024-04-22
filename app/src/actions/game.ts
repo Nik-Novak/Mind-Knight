@@ -1,10 +1,12 @@
 "use server";
-import { NodeNumber, PlayerSlot } from "@/types/game";
+import fs from 'fs';
 import { database } from "../../prisma/database";
 import { Game, PlayerIdentity } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import LogTailer from "@/utils/classes/LogEvents/LogTailer";
 import { ServerEventPacket } from "@/types/events";
+import { LogReader } from "@/utils/classes/LogEvents/LogReader";
+import { GameBuilder } from '@/utils/classes/GameBuilder';
 
 let joshId:string|undefined;
 async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, offset:number=0, limit:number=50){
@@ -148,6 +150,21 @@ export async function updateGameOnServer(game: Game){
     }
   });
 }
+async function requestServerSimulation(gameFilepath: string, timeBetweenLinesMS:number){
+  return new Promise<void>((resolve, reject)=>{
+    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
+        throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
+    const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+    tempSocket.onopen = ()=>{
+      let packet:ServerEventPacket = {
+        type:'Simulate',
+        payload: [gameFilepath, timeBetweenLinesMS]
+      }
+      tempSocket.send(JSON.stringify(packet));
+      resolve()
+    }
+  });
+}
 
 export async function getPlayer(steamId:string){
   return await database.player.findFirstOrThrow({
@@ -163,4 +180,13 @@ export async function getDbPlayer(playerIdentity: PlayerIdentity){
     steam_id: playerIdentity.Steamid,
     level: playerIdentity.Level,
   }}, {where:{steam_id:playerIdentity.Steamid}});
+}
+
+export async function simulate(data:FormData){
+  let log = data.get('file') as File;
+  let timeBetweenLinesMS = data.get('time-between-lines-ms')?.toString();
+  if(!log || !timeBetweenLinesMS)
+    throw Error('No log uploaded.');
+  fs.writeFileSync('_temp/Player.log', await log.text());
+  await requestServerSimulation('_temp/Player.log', parseInt(timeBetweenLinesMS));
 }

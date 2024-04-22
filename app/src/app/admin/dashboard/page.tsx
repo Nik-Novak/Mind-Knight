@@ -4,9 +4,9 @@ import Background from "@/components/Background";
 import { redirect } from "next/navigation";
 import Title from "@/components/Title";
 import { verifyIsAdmin } from "@/actions/admin";
-import AdminCustomSkins from "./AdminCustomSkins";
 import { getCustomSkins } from "@/actions/skins";
 import SkinGrid from "@/components/SkinGrid";
+import GameSimulator from "./GameSimulator";
 
 
 export default async function AdminDashboardPage() {
@@ -20,7 +20,9 @@ export default async function AdminDashboardPage() {
       <Background id='content' className={styles.main}>
         <Title sx={{mt:20}} main='Admin Dashboard' secondary='Welcome to the command center' />
         <Typography sx={{mt:20}} variant="h2">Skins</Typography>
-        <SkinGrid skins={customSkins} renderContext='admin' />
+        <SkinGrid sx={{mt:1}} skins={customSkins} renderContext='admin' />
+        <Typography sx={{mt:20}} variant="h2">Game Simulator</Typography>
+        <GameSimulator sx={{mt:2}} />
       </Background>
     </>
   );

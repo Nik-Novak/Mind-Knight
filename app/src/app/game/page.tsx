@@ -1,21 +1,17 @@
 "use server";
 import Panel from "@/components/Panel";
 import styles from "./page.module.css";
-import { Stack, Typography } from "@mui/material";
-import { Game } from "@prisma/client";
+import { Stack } from "@mui/material";
 // import sampleGame from './sample-game3.json';
 import ImportantInfo from "@/components/ImportantInfo";
-import { NodeNumber, NumberOfPlayers, PlayerSlot } from "@/types/game";
 import Nodes from "@/components/Nodes";
 import NodeTeamRejects from "@/components/NodeTeamRejects";
 import Players from "@/components/Players";
 import Turns from "@/components/Turns";
 import { database } from "../../../prisma/database";
-import { Prisma } from "@prisma/client";
 import Chatbox from "@/components/Chatbox";
 import Settings from "@/components/Settings";
-import { redirect } from "next/navigation";
-import { getDbPlayer, updateGameOnServer } from "@/actions/game";
+import { updateGameOnServer } from "@/actions/game";
 import Playback from "@/components/Playback";
 import Background from "@/components/Background";
 

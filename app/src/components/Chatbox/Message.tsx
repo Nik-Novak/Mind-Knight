@@ -22,7 +22,7 @@ export default function Message({author, color, message, searchPattern}:Props){
   if(author === 'system')
     return <li className={style.message} >{`------- ${coloredText(message, color)} -------`}</li>
   else{
-    let text = <span style={{display:'inline-flex', alignItems:'center'}}>{'['}{coloredText(author, color)}{']: '}{chatMessageMiddleware(message, searchPattern)}</span> //`[${coloredText(author, color)}]: ${message}`; //
+    let text = <span style={{ alignItems:'center'}}>{'['}{coloredText(author, color)}{']: '}{chatMessageMiddleware(message, searchPattern)}</span> //`[${coloredText(author, color)}]: ${message}`; //
     return (
       <li className={style.message} onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
         <Typography display={'flex'} justifyContent={'space-between'}>

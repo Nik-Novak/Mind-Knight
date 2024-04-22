@@ -1,6 +1,3 @@
-import { database } from "../../../prisma/database";
-import LogTailer from "../classes/LogEvents/LogTailer";
-
 type AsyncThunk<R> = ()=>R|Promise<R>;
 export async function attempt<R>(thunk:AsyncThunk<R>, game_id:string, context?:string){
     try{
