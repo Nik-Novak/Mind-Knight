@@ -40,19 +40,44 @@ export const dateTimeReviver = (key: any, value: any) => {
     return value;
   };
 
-  export function getTimeComponents(from: Date | number, to?: Date | number) {
-    let fromDate = typeof from === 'number' ? new Date(from) : from;
-    let toDate = to ? (typeof to === 'number' ? new Date(to) : to) : new Date();
+export function getTimeComponents(from: Date | number, to?: Date | number) {
+  let fromDate = typeof from === 'number' ? new Date(from) : from;
+  let toDate = to ? (typeof to === 'number' ? new Date(to) : to) : new Date();
 
-    // Calculate the difference in milliseconds
-    let timeDifference = toDate.getTime() - fromDate.getTime();
+  // Calculate the difference in milliseconds
+  let timeDifference = toDate.getTime() - fromDate.getTime();
 
-    // Convert milliseconds to seconds, minutes, and hours
-    let seconds = Math.floor((timeDifference / 1000) % 60);
-    let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-    let hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+  // Convert milliseconds to seconds, minutes, and hours
+  let seconds = Math.floor((timeDifference / 1000) % 60);
+  let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+  let hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
 
-    return { seconds, minutes, hours };
+  return { seconds, minutes, hours };
+}
+
+export function getTimeDifferenceFromString(timeString?: string|null, from?: Date) {
+  if(!timeString || !from) return undefined;
+  const regex = /(?:(\d+)\s*h)?\s*(?:(\d+)\s*m)?\s*(\d+)\s*s/;
+  const match = timeString.match(regex);
+  if (!match) {
+    // return undefined;
+    throw new Error('Invalid time string format');
+  }
+  const hours = match[1] ? parseInt(match[1], 10) : 0;
+  const minutes = match[2] ? parseInt(match[2], 10) : 0;
+  const seconds = parseInt(match[3], 10);
+  const totalMilliseconds = hours * 60 * 60 * 1000 + minutes * 60 * 1000 + seconds * 1000;
+  return new Date(from.getTime() + totalMilliseconds);
+}
+
+export function getTimeString({hours, minutes, seconds}: {hours?:number, minutes?:number, seconds:number}){
+  let label = '';
+  if(hours)
+    label += `${hours}h `
+  if(minutes)
+    label += `${minutes}m `
+  label += `${seconds}s`;
+  return label;
 }
 
 export function sleep(durationMs:number){

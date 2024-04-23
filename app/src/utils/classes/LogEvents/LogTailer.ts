@@ -7,9 +7,15 @@ import LogEventEmitter from './LogEventEmitter';
 /**
  * Subscribes to log based on platform and emits events
  */
-class LogTailer extends LogEventEmitter{
-  constructor(){
-    super();
+export class LogTailer extends LogEventEmitter{
+  /**
+   * @param logpath Optional logpath. Defaults to system logpath
+   */
+  constructor(logpath=''){
+    if(logpath)
+      super(logpath, '');
+    else 
+      super();
     let lineListener:LineListener;
     let osInfo = new OSInfo();
     switch (osInfo.platform){
@@ -23,4 +29,4 @@ class LogTailer extends LogEventEmitter{
   }
 }
 
-export default new LogTailer();
+// export default new LogTailer();

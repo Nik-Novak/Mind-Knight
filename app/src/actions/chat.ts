@@ -36,7 +36,7 @@ export async function sendGlobalMessage(message:string){
     Type: 901,
     Message: message
   }
-  await sendToMindnight(payload)
+  await sendToMindnight(payload);
   let chatMsg = await createGlobalChatMessage({
     Message: message,
     SteamId: mindnightSession.steam_id,

@@ -4,9 +4,16 @@ import { MindnightSessionStatus } from "@prisma/client";
 import { JsonObject } from "@prisma/client/runtime/library";
 import { machineId } from "node-machine-id";
 import { ServerEvents } from "@/types/events";
+import { SocketConnection } from "@/utils/classes/LogEvents/SocketConnection";
 
+// export async function sendToMindnight(packet:JsonObject){
+//   await post('/mindnight/send', packet);
+// }
+if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
+  throw Error("Must provide env NEXT_PUBLIC_SERVEREVENTS_WS");
+let serverWs = new SocketConnection(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
 export async function sendToMindnight(packet:JsonObject){
-  await post('/mindnight/send', packet);
+  serverWs.send(packet);
 }
 
 let cachedUUID:string | undefined;

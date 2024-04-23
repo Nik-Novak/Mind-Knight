@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FileUploader } from 'react-drag-drop-files';
-import { Box, Button, Slider, Stack, SxProps, Theme, Typography } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Slider, Stack, SxProps, Theme, Typography } from "@mui/material";
 import FormButton from "@/components/FormButton";
 import { simulate } from "@/actions/game";
 import { useRouter } from "next/navigation";
@@ -32,6 +32,7 @@ export default function GameSimulator({sx}:Props){
             <Typography >Time between lines (ms)</Typography>
             <Slider name="time-between-lines-ms" min={1} max={1000} defaultValue={100} valueLabelDisplay="auto" />
           </Stack> }
+          {log && <FormControlLabel control={<Checkbox name="start-at-gamefound" defaultChecked />} label="Start at GameFound" />}
           {log && <FormButton variant="contained" className="pixel-corners">Simulate</FormButton>}
         </Stack>
       </form>

@@ -28,11 +28,12 @@ export async function register(){
 if (process.env.NEXT_RUNTIME === 'nodejs') {
 
   const os = await import('os');
-  const {getClient, getMindnightSession, sendToMindnight, createMindnightSession} = await import('@/actions/mindnight-session');
+  const {getClient, getMindnightSession, createMindnightSession} = await import('@/actions/mindnight-session');
   // const {} = await import('@/actions/chat'); //for some reason we cant import from here
   console.log('i am running server side: ' + os.hostname);
-  const { default:LogTail} = await import('./utils/classes/LogEvents/LogTailer');
+  const { LogTailer } = await import('./utils/classes/LogEvents/LogTailer');
   const { LogReader} = await import('./utils/classes/LogEvents/LogReader');
+  const { MindnightConnection } = await import('./utils/classes/LogEvents/MindnightConnection');
   // const { LogReader} = await import('./utils/classes/LogEvents/LogReader');
   const { attempt } = await import('./utils/functions/error');
 
@@ -65,45 +66,65 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     socket.on('message', async (data)=>{
       // if(data.toString().startsWith('ping'))
       //   return;
-      let packet = JSON.parse(data.toString()) as ServerEventPacket;
+      let packet = JSON.parse(data.toString()) as ServerEventPacket<keyof ServerEvents>;
       if(packet.type === 'GameUpdate'){
-        let game_id = packet.payload.id as unknown;
-        if(!game_id || typeof game_id !== 'string')
+        let [updated_game] = packet.payload as ServerEventPacket<'GameUpdate'>['payload'];
+        if(!updated_game?.id || typeof updated_game.id !== 'string')
             throw Error('Could not retrieve game_id from packet payload');
-        game = await database.game.findById(game_id);
-        sendServerEvent('GameUpdate', game);
+        game = await database.game.findById(updated_game.id);
+        sendServerEvent('GameUpdate', [game]);
       }
       if(packet.type === 'Simulate'){
-        let [logpath, timeBetweenLinesMS] = packet.payload;
-        let logReader = new LogReader({logpath, startAtLineContaining:'GameFound', timeBetweenLinesMS, onComplete:nLines=>console.log('Finished Simulation, read', nLines, 'lines')});
+        let [logpath, timeBetweenLinesMS, startAtGameFound] = packet.payload as ServerEventPacket<'Simulate'>['payload'];
+        let logReader = new LogReader({logpath, startAtLineContaining:startAtGameFound?'GameFound':undefined, timeBetweenLinesMS, onComplete:nLines=>console.log('Finished Simulation, read', nLines, 'lines')});
         new GameBuilder(logReader, 'checkpoints', sendServerEvent, createMindnightSession, getMindnightSession, getClient );
       }
 
       if(packet.type === 'ClientInit'){
         let mindnightSession = await getMindnightSession();
         if(mindnightSession)
-          sendServerEvent('MindnightSessionUpdate', mindnightSession);
+          sendServerEvent('MindnightSessionUpdate', [mindnightSession]);
         // game = await database.game.findById('66144a8f577750ccbfab6f00');
         if(game)
-          sendServerEvent('GameUpdate', game);
+          sendServerEvent('GameUpdate', [game]);
+      }
+      if(packet.type === 'SendToMindnight'){
+        let [data] = packet.payload as ServerEventPacket<'SendToMindnight'>['payload'];
+        await mnConnection.sendToMindnight(data);
       }
     });
   });
   //END RECEIVE from clients;
 
-  const sendServerEvent = <T extends keyof ServerEvents>(eventName:T, payload:ServerEvents[T][0] )=>{
+  const sendServerEvent = <T extends keyof ServerEvents>(eventName:T, payload:ServerEvents[T] )=>{
     clientsWss?.clients.forEach(client=>{
-      let packet:ServerEventPacket = {
+      let packet:ServerEventPacket<T> = {
         type: eventName,
         payload: payload
       }
       client.send(JSON.stringify(packet));
     });
   }
-  
-  new GameBuilder(LogTail, 'checkpoints', sendServerEvent, createMindnightSession, getMindnightSession, getClient );
-  
-  }
 
+  let mnConnection = new MindnightConnection('_temp/Player.log');
+
+  let logTailer = new LogTailer();
+  // let logTailer = new LogTailer('_temp/Player.log');
+  new GameBuilder(logTailer, 'checkpoints', sendServerEvent, createMindnightSession, getMindnightSession, getClient );
+
+  logTailer.on('AuthorizationRequest', (auth)=>{
+    console.log('INTERCEPTED AUTH', auth);
+    mnConnection.sendToMindnight(auth);
+  });
+  mnConnection.on('AuthResponse', ()=>{
+    console.log('AUTHENTICATED WITH MN!!!');
+  });
+
+  //INIT
+  let client = await getClient();
+  if(client.mindnight_session)
+    await database.mindnightSession.delete({where:{id:client.mindnight_session.id}});
+  
+}
 }
 

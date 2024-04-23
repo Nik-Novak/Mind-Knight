@@ -1,6 +1,6 @@
 "use client";
 
-import { getTimeComponents } from "@/utils/functions/general";
+import { getTimeComponents, getTimeDifferenceFromString, getTimeString } from "@/utils/functions/general";
 import { coloredText } from "@/utils/functions/jsx";
 import { useStore } from "@/zustand/store";
 import { Badge, IconButton, Slider, SliderMark, Stack, Tooltip } from "@mui/material";
@@ -9,6 +9,8 @@ import PauseIcon from "@mui/icons-material/Pause";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import { ReactNode, useEffect, useReducer, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import {useQueryState} from 'nuqs'
 
 type Mark = {
   value: number,
@@ -20,7 +22,10 @@ export default function Playback(){
   const setPlayHead = useStore(state=>state.setPlayHead);
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
-  const [isPlaying, setIsPlaying] = useState(true);
+  // const searchParams = useSearchParams();
+  const [t, setT] = useQueryState('t');
+  const router = useRouter();
+  const [isPlaying, setIsPlaying] = useState(false);
   type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
   type Action = 'increase' | 'decrease' | 'reset';
   function playbackSpeedReducer(state: SpeedMultiplier, action: Action): SpeedMultiplier {
@@ -34,10 +39,26 @@ export default function Playback(){
     }
   }
   const [playbackSpeed, updatePlaybackSpeed] = useReducer(playbackSpeedReducer, 1);
-  
-  useEffect(()=>{
-    setPlayHead(game?.game_found.log_time);
+
+  useEffect(()=>{ //sync playhead with url time
+    let timeDiff = getTimeDifferenceFromString(t, game?.game_found?.log_time);
+    if(timeDiff){
+      setPlayHead(timeDiff);
+      setIsPlaying(false);
+    }
+    else{
+      setPlayHead(game?.game_found.log_time);
+      setIsPlaying(true);
+    }
   }, [game?.game_found.log_time.valueOf()]);
+
+  useEffect(()=>{ //sync url time with playhead
+    if(game?.game_found.log_time){
+      const {hours, minutes, seconds} = getTimeComponents(game?.game_found.log_time, playHead);
+      let timeString = getTimeString({hours, minutes, seconds});
+      setT(timeString);
+    }
+  }, [playHead]);
 
   useEffect(()=>{
     if(isPlaying){
@@ -51,15 +72,10 @@ export default function Playback(){
   if(!game || !playHead)
     return <></>
 
+  
   const getLabel = (value:number, index:number)=>{
-    let label = '';
     let {hours, minutes, seconds} = getTimeComponents(game.game_found.log_time, value);
-    if(hours)
-      label += `${hours}h `
-    if(minutes)
-      label += `${minutes}m `
-    label += `${seconds}s`;
-    return label;
+    return getTimeString({hours, minutes, seconds});
   }
   const marks:Mark[] = [];
   Object.entries(game.missions).forEach(([nodeNum, mission])=>{

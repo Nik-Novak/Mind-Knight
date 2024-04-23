@@ -5,7 +5,7 @@ import { database } from "../../../prisma/database/database";
 import ProcessQueue from "./ProcessQueue";
 import { attempt } from "../functions/error";
 type SyncStrategy = 'local'|'checkpoints'|'remote';
-type SendServerEventFnc = <T extends keyof LogSendEvents | keyof LogReceiveEvents | "MindnightSessionUpdate" | "GameUpdate" | "ClientInit">(eventName: T, payload: ServerEvents[T][0]) => void;
+type SendServerEventFnc = <T extends keyof LogSendEvents | keyof LogReceiveEvents | "MindnightSessionUpdate" | "GameUpdate" | "ClientInit">(eventName: T, payload: ServerEvents[T]) => void;
 type CreateMindnightSessionFnc = (packet:ServerEvents['PlayerInfo'][0]) => Promise<MindnightSession>;
 async function createGlobalChatMessage(message:LogEvents['ReceiveGlobalChatMessage']['0']['Message']){
   let chatMsg = await database.globalChatMessage.create({
@@ -31,7 +31,7 @@ export class GameBuilder {
       packetQueue.push(
           async ()=>{
           await createGlobalChatMessage(packet.Message);
-          sendServerEvent('ReceiveGlobalChatMessage', packet);
+          sendServerEvent('ReceiveGlobalChatMessage', [packet, new Date()]);
         },
         'ReceiveGlobalChatmessage'
       );
@@ -42,8 +42,8 @@ export class GameBuilder {
           async ()=>{
           let mindnightSession = await createMindnightSession(packet);
           // revalidateTag(Tags.session.toString());
-          sendServerEvent('MindnightSessionUpdate', mindnightSession);
-          sendServerEvent('PlayerInfo', packet);
+          sendServerEvent('MindnightSessionUpdate', [mindnightSession]);
+          sendServerEvent('PlayerInfo', [packet, new Date()]);
         }
       );
     });
@@ -52,7 +52,7 @@ export class GameBuilder {
       packetQueue.push(
           async ()=>{
           // await sendToMindnight(packet); //TODO re-enable and deal with duplicate mindnightsessions
-          sendServerEvent('AuthorizationRequest', packet);
+          sendServerEvent('AuthorizationRequest', [packet, new Date()]);
         },
         'AuthorizationRequest'
       );
@@ -61,15 +61,15 @@ export class GameBuilder {
     logInput.on('AuthResponse', async (packet)=>{
       packetQueue.push(
         async ()=>{
-          console.log('SHOULD AUTHENTICATE')
+          // console.log('SHOULD AUTHENTICATE')
           let mindnightSession = await getMindnightSession();
           if(mindnightSession){
             let authedMindnightSession = await database.mindnightSession.authenticate(mindnightSession);
-            console.log('Authenticated MNSession', mindnightSession);
+            // console.log('Authenticated MNSession', mindnightSession);
             // revalidateTag(Tags.session);
-            sendServerEvent('MindnightSessionUpdate', authedMindnightSession);
+            sendServerEvent('MindnightSessionUpdate', [authedMindnightSession]);
           }
-          sendServerEvent('AuthResponse', packet);
+          sendServerEvent('AuthResponse', [packet, new Date()]);
         },
         'AuthResponse'
       );
@@ -84,12 +84,12 @@ export class GameBuilder {
           if(mindnightSession){
             let readiedMindnightSession = await database.mindnightSession.ready(mindnightSession);
             // revalidateTag(Tags.session);
-            sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
+            sendServerEvent('MindnightSessionUpdate', [readiedMindnightSession]);
           }
           for (let message of packet.Messages){
             await database.globalChatMessage.createOrFind({data:message});
           }
-          sendServerEvent('GlobalChatHistoryResponse', packet);
+          sendServerEvent('GlobalChatHistoryResponse', [packet, new Date()]);
         },
         'GlobalChatHistoryResponse'
       );
@@ -104,8 +104,8 @@ export class GameBuilder {
           if(client.mindnight_session)
             await database.mindnightSession.delete({where:{id:client.mindnight_session?.id}})
           // revalidateTag(Tags.session.toString());
-          sendServerEvent('MindnightSessionUpdate', null);
-          sendServerEvent('GameClose', packet);
+          sendServerEvent('MindnightSessionUpdate', [null]);
+          sendServerEvent('GameClose', [packet]);
         },
         'GameClose'
       );
@@ -126,9 +126,9 @@ export class GameBuilder {
           if(mindnightSession){
             let readiedMindnightSession = await database.mindnightSession.playing(mindnightSession);
             // revalidateTag(Tags.session);
-            sendServerEvent('MindnightSessionUpdate', readiedMindnightSession);
+            sendServerEvent('MindnightSessionUpdate', [readiedMindnightSession]);
           }
-          sendServerEvent('GameUpdate', game);
+          sendServerEvent('GameUpdate', [game]);
         },
         'GameFound'
       );
@@ -139,7 +139,7 @@ export class GameBuilder {
         async ()=>{
           if(game){
             game = await game.$spawnPlayer({args}) as Awaited<ReturnType<typeof database.game.create>>|undefined; //TODO figure out dyankmic typing for local:false
-            sendServerEvent('GameUpdate', game);
+            sendServerEvent('GameUpdate', [game]);
           }
         },
         'SpawnPlayer'
@@ -151,7 +151,7 @@ export class GameBuilder {
           if(game){
             attempt(async ()=>{
               game = await game!.$startGame({args}) as Awaited<ReturnType<typeof database.game.create>>|undefined; //TODO figure out dyankmic typing for local:false
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'GameStart');
           }
         },
@@ -165,7 +165,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$addChatMessage({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'ChatMessageReceive');
           }
         },
@@ -230,7 +230,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$startProposal({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'SelectPhaseStart');
           }
         },
@@ -244,7 +244,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$updateProposalSelection({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'SelectUpdate');
           }
         },
@@ -259,7 +259,7 @@ export class GameBuilder {
               let updates = await game!.$endProposal({args, local:true});
               // Object.assign(game!, updates);
               await game!.$syncRemote(); // REMOTE UPDATE CHECKPOINT
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'SelectPhaseEnd');
           }
         },
@@ -273,7 +273,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$startVote({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'VotePhaseStart');
           }
         },
@@ -287,7 +287,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$addVoteMade({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'VoteMade');
           }
         },
@@ -301,7 +301,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$endVote({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'VotePhaseEnd');
           }
         },
@@ -315,7 +315,7 @@ export class GameBuilder {
             attempt(async ()=>{
               let updates = await game!.$startMission({args, local:true});
               // Object.assign(game!, updates);
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'MissionPhaseStart');
           }
         },
@@ -330,7 +330,7 @@ export class GameBuilder {
               let updates = await game!.$endMission({args, local:true});
               // Object.assign(game!, updates);
               await game!.$syncRemote(); // REMOTE UPDATE CHECKPOINT
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'MissionPhaseEnd');
           }
         },
@@ -354,7 +354,7 @@ export class GameBuilder {
                 }
               })
   
-              sendServerEvent('GameUpdate', game);
+              sendServerEvent('GameUpdate', [game]);
             }, game.id, 'GameEnd');
           }
         },

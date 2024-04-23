@@ -9,8 +9,11 @@ type LogReaderOptions = ReadLineOptions & {
  */
 export class LogReader extends LogEventEmitter{
   constructor(options?:Partial<LogReaderOptions>){
-    super();
-    let lineListener = new ReadLine(options?.logpath || this.logpath, options);
+    if(options?.logpath)
+      super(options.logpath, '');
+    else
+      super();
+    let lineListener = new ReadLine(this.logpath, options);
     this.start(lineListener);
   }
 }

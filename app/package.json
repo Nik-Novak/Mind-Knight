@@ -41,6 +41,7 @@
     "next-auth-steam": "^0.3.0",
     "next-ws": "^1.0.1",
     "node-machine-id": "^1.1.12",
+    "nuqs": "^1.17.1",
     "open": "^10.1.0",
     "react": "^18",
     "react-dom": "^18",

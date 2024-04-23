@@ -26,17 +26,17 @@ export function ServerEventsProvider({ children }:Props) {
     const ws = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
     ws.onopen = (t)=>{
       console.log('Connected to server WS');
-      let packet:ServerEventPacket = {
+      let packet:ServerEventPacket<'ClientInit'> = {
         type: 'ClientInit',
-        payload:undefined
+        payload:[]
       }
       ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
     }
-    ws.onmessage = (e)=>{
-      let packet = JSON.parse(e.data, dateTimeReviver) as ServerEventPacket;
-      
+    ws.onmessage = <T extends keyof ServerEvents>(e:MessageEvent<any>)=>{
+      let packet = JSON.parse(e.data, dateTimeReviver) as ServerEventPacket<T>;
       //TODO: fix typing
-      serverEvents.emit(packet.type, packet.payload);
+      //@ts-expect-error
+      serverEvents.emit(packet.type, ...packet.payload);
     }
 
     serverEvents.on('GameUpdate', game=>{

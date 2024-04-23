@@ -7,23 +7,30 @@ import fs from 'fs';
 import { logLineToISOTime } from "@/utils/functions/game";
 
 export default class LogEventEmitter extends EventEmitter<LogEvents> {
-  protected logpath = '';
-  protected prevLogpath = '';
 
-  constructor(){
+  /**
+   * 
+   * @param logpath Optional logpath. Defaults to system logpath
+   * @param prevLogpath Optional prevLogpath. Defaults to system prevLogpath
+   */
+  constructor(protected logpath='', protected prevLogpath=''){
     super();
     let osInfo = new OSInfo();
     switch(osInfo.platform){
       case 'linux': {
         if(osInfo.distribution?.includes('ubuntu')){
-          this.logpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
-          this.prevLogpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`;
+          if(!this.logpath)
+            this.logpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
+          if(!this.prevLogpath)
+            this.prevLogpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`;
           // this.tail = new TailLinux(this.logpath);
         }
       } break;
       case 'win32': {
-        this.logpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
-        this.prevLogpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player-prev.log`;
+        if(!this.logpath)
+          this.logpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player.log`;
+        if(!this.prevLogpath)
+          this.prevLogpath = `${process.env.USERPROFILE}/appdata/LocalLow/Nomoon/Mindnight/Player-prev.log`;
         // this.tail = new TailWindows(this.logpath);
       } break;
     }

@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { useStore } from "@/zustand/store";
 import { useSettings } from "../SettingsProvider";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 type Props = {
 }
@@ -41,6 +43,7 @@ export default function Players({ }:Props){
         let typing = game_player.chat_updates.findLast(tu=>hasHappened(tu.log_time, playHead))?.Typing;
         let idle = game_player.idle_status_updates.findLast(tu=>hasHappened(tu.log_time, playHead))?.Idle;
         let role = settings.streamer_mode ? undefined : game_end?.Roles.find(r=>r.Slot === slot)?.Role as PlayerRole;
+        let disconnected = game_player.connection_updates.findLast(cu=>hasHappened(cu.log_time, playHead))?.Type === 402;
         const voted = isHappening(turnInfo?.vote_phase_start?.log_time, playHead, turnInfo?.vote_phase_end?.log_time) ? hasHappened(turnInfo?.vote_mades[slot]?.log_time, playHead) : undefined;
         
         // const latestProposal = game_players && selectedNode!=undefined && getLatestProposal(game_players, selectedNode, playHead)?.value || undefined;
@@ -58,7 +61,7 @@ export default function Players({ }:Props){
               hasAction={playerAction!==undefined}
               selected={slot === selectedSlot}
               hasHammer={slot === hammerPlayerSlot}
-              isDisconnected={false}
+              isDisconnected={disconnected}
               voted={voted}
               accepted={accepted}
               proppedIndex={playerAction && !playerAction.select_phase_end?.Passed && proppedIndex!=undefined ? proppedIndex : undefined}

@@ -156,11 +156,11 @@ export default function Player({ slot, role, numPlayers, username, color, player
           {votedIcon && <Tooltip title={`This player has ${voted ? 'voted' : 'NOT voted yet'}`} placement={chatPlacement === 'right-start' ? 'right' : 'left'} arrow>
             {votedIcon}
           </Tooltip>}
-          <Tooltip title="This player had hammer at the time of the shown proposal" placement="left" arrow>
+          <Tooltip title="This player has hammer" placement="left" arrow>
             {/* <i className={`hammer-icon fas fa-hammer ${hasHammer?'':'hidden'}`}></i> */}
             <HammerIcon sx={{visibility: !hasHammer?'hidden':undefined}} className={style.hammerIcon} />
           </Tooltip>
-          <Tooltip title="This player was disconnected at the time of the shown proposal" placement="right" arrow>
+          <Tooltip title="This player is disconnected" placement="right" arrow>
             <PowerOffIcon sx={{visibility: !isDisconnected?'hidden':undefined}} className={style.disconnectIcon} />
             {/* <i className={`disconnect-icon fas fa-plug ${isDisconnected ? '': 'hidden'}`}></i> */}
           </Tooltip>
