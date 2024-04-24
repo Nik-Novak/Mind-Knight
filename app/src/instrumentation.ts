@@ -77,7 +77,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       if(packet.type === 'Simulate'){
         let [logpath, timeBetweenLinesMS, startAtGameFound] = packet.payload as ServerEventPacket<'Simulate'>['payload'];
         let logReader = new LogReader({logpath, startAtLineContaining:startAtGameFound?'GameFound':undefined, timeBetweenLinesMS, onComplete:nLines=>console.log('Finished Simulation, read', nLines, 'lines')});
-        new GameBuilder(logReader, 'checkpoints', sendServerEvent, createMindnightSession, getMindnightSession, getClient );
+        new GameBuilder(logReader, game, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
       }
 
       if(packet.type === 'ClientInit'){
@@ -110,7 +110,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
 
   let logTailer = new LogTailer();
   // let logTailer = new LogTailer('_temp/Player.log');
-  new GameBuilder(logTailer, 'checkpoints', sendServerEvent, createMindnightSession, getMindnightSession, getClient );
+  new GameBuilder(logTailer, game, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
 
   logTailer.on('AuthorizationRequest', (auth)=>{
     console.log('INTERCEPTED AUTH', auth);

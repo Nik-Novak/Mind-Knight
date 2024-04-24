@@ -18,13 +18,14 @@ async function createGlobalChatMessage(message:LogEvents['ReceiveGlobalChatMessa
 export class GameBuilder {
   constructor(
     logInput:LogEventEmitter, 
-    strategy:SyncStrategy, 
+    game:Awaited<ReturnType<typeof database.game.create>>|undefined,
+    // strategy:SyncStrategy, 
     sendServerEvent:SendServerEventFnc, 
     createMindnightSession:CreateMindnightSessionFnc,
     getMindnightSession:()=>Promise<MindnightSession|null>,
     getClient:()=>Promise<Prisma.ClientGetPayload<{include:{mindnight_session:true}}>>
   ){
-    let game:Awaited<ReturnType<typeof database.game.create>>|undefined;
+    // let game:Awaited<ReturnType<typeof database.game.create>>|undefined;
     const packetQueue = new ProcessQueue({autostart:true});
     
     logInput.on('ReceiveGlobalChatMessage', async (packet)=>{
