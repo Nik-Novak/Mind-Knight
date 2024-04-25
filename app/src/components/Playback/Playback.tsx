@@ -9,23 +9,25 @@ import PauseIcon from "@mui/icons-material/Pause";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import { ReactNode, useEffect, useReducer, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import ContentCutIcon from '@mui/icons-material/ContentCut';
+import ShareIcon from '@mui/icons-material/IosShare';
 import {useQueryState} from 'nuqs'
+import ShareDialog from "./ShareDialog";
 
 type Mark = {
   value: number,
   label?: ReactNode
 }
 
-export default function Playback(){
+export default function Playback({}){
   const playHead = useStore(state=>state.playHead);
   const setPlayHead = useStore(state=>state.setPlayHead);
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
   // const searchParams = useSearchParams();
   const [t, setT] = useQueryState('t');
-  const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
   type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
   type Action = 'increase' | 'decrease' | 'reset';
   function playbackSpeedReducer(state: SpeedMultiplier, action: Action): SpeedMultiplier {
@@ -86,24 +88,41 @@ export default function Playback(){
         label:<Tooltip arrow title={`Node ${nodeNum}`}>{coloredText(nodeNum, mission?.mission_phase_end?.Failed ?'#851C20':'#159155' )}</Tooltip>
       });
   });
-  return <Stack sx={{width:'100%', maxWidth:'33.36vw', alignItems:'center', backgroundColor:'rgba(47,46,44,0.5)', padding: '5px', borderRadius:'5px'}}>
-    <Slider 
-      valueLabelDisplay="auto" 
-      valueLabelFormat={getLabel} 
-      min={game.game_found.log_time.valueOf()} 
-      max={game.latest_log_time.valueOf()}
-      marks={marks}
-      value={playHead?.valueOf()} 
-      onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(new Date(value))}}
-    />
-    <Stack direction='row'>
-      <IconButton onClick={()=>{updatePlaybackSpeed('decrease'); setIsPlaying(true)}}>
-        <Badge anchorOrigin={{vertical:'bottom', horizontal:'left'}} badgeContent={playbackSpeed < 0 ? playbackSpeed:undefined}><FastRewindIcon /></Badge>
-      </IconButton>
-      <IconButton onClick={()=>{updatePlaybackSpeed('reset'); setIsPlaying(v=>!v)}}>{isPlaying ? <PauseIcon /> : <PlayIcon /> }</IconButton>
-      <IconButton onClick={()=>{updatePlaybackSpeed('increase'); setIsPlaying(true)}}>
-        <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 1 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
-      </IconButton>
+  return (
+    <>
+    <Stack sx={{width:'100%', maxWidth:'33.36vw', alignItems:'center', backgroundColor:'rgba(47,46,44,0.5)', padding: '5px', borderRadius:'5px'}}>
+      <Slider 
+        valueLabelDisplay="auto" 
+        valueLabelFormat={getLabel} 
+        min={game.game_found.log_time.valueOf()} 
+        max={game.latest_log_time.valueOf()}
+        marks={marks}
+        value={playHead?.valueOf()} 
+        onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(new Date(value))}}
+      />
+      <Stack width='100%' direction='row' justifyContent='space-between'>
+        <Stack aria-label="left" direction='row'>
+          <IconButton onClick={()=>setIsShareOpen(true)}>
+            <ShareIcon />
+          </IconButton>
+        </Stack>
+        <Stack aria-label="center" direction='row'>
+          <IconButton onClick={()=>{updatePlaybackSpeed('decrease'); setIsPlaying(true)}}>
+            <Badge anchorOrigin={{vertical:'bottom', horizontal:'left'}} badgeContent={playbackSpeed < 0 ? playbackSpeed:undefined}><FastRewindIcon /></Badge>
+          </IconButton>
+          <IconButton onClick={()=>{updatePlaybackSpeed('reset'); setIsPlaying(v=>!v)}}>{isPlaying ? <PauseIcon /> : <PlayIcon /> }</IconButton>
+          <IconButton onClick={()=>{updatePlaybackSpeed('increase'); setIsPlaying(true)}}>
+            <Badge anchorOrigin={{vertical:'bottom', horizontal:'right'}} badgeContent={playbackSpeed > 1 ? playbackSpeed:undefined}><FastForwardIcon /></Badge>
+          </IconButton>
+        </Stack>
+        <Stack aria-label="right" direction='row'>
+          <IconButton>
+            <ContentCutIcon />
+          </IconButton>
+        </Stack>
+      </Stack>
     </Stack>
-  </Stack>;
+    <ShareDialog open={isShareOpen} onShare={()=>setIsShareOpen(false)} onClose={()=>setIsShareOpen(false)} />
+    </>
+  );
 }

@@ -12,16 +12,20 @@ export async function copyToClipboard(textToCopy:string) {
           
       // Move textarea out of the viewport so it's not visible
       textArea.style.position = "absolute";
-      textArea.style.left = "-9999px";
+      // textArea.style.left = "-9999px";
           
       document.body.prepend(textArea);
+      textArea.focus();
       textArea.select();
 
       await sleep(40); //ensure focus is lost from other events
 
+      textArea.focus();
       textArea.select();
 
       try {
+          textArea.focus();
+          textArea.select();
           document.execCommand('copy');
           console.log('Copied', textToCopy, 'Successfully');
       } catch (error) {
@@ -116,4 +120,12 @@ export function insertBetween(array:any[], element:any) {
       }
       return acc;
   }, []);
+}
+
+export function removeSearchParam(url:string, paramToRemove:string) {
+  const urlObject = new URL(url);
+  const searchParams = new URLSearchParams(urlObject.search);
+  searchParams.delete(paramToRemove);
+  urlObject.search = searchParams.toString();
+  return urlObject.toString();
 }
