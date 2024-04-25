@@ -15,6 +15,7 @@ import { updateGameOnServer } from "@/actions/game";
 import Playback from "@/components/Playback";
 import Background from "@/components/Background";
 import Controls from "@/components/Controls";
+import { sendMessage } from "@/actions/chat";
 
 //React server component that securely runs on the server by default
 export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
@@ -32,7 +33,7 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
       <Background className={styles.main}>
         <Stack className={styles.left}>
           <Settings />
-          <Panel title="Chat" defaultExpanded > <Chatbox /> </Panel>
+          <Panel title="Chat" defaultExpanded > <Chatbox sendMessage={sendMessage} /> </Panel>
         </Stack>
         <Stack className={styles.center}>
           <ImportantInfo />

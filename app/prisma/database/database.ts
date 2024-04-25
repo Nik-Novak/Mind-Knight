@@ -1,6 +1,7 @@
 import { LogEvents } from '@/types/events';
 import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from '@/utils/functions/game';
 import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, MindnightSessionStatus, Proposal,  } from '@prisma/client'
+import { DefaultArgs, DynamicResultExtensionNeeds, InternalArgs } from '@prisma/client/runtime/library';
 // let modelnames = Prisma.dmmf.datamodel.models.map(m=>m.name); Value `in` modelnames
 
 type NonNull<T> = Exclude<T, null | undefined>;
@@ -37,6 +38,16 @@ const prismaClientSingleton= ()=>{
       $allOperations({ model, operation, args, query }) {
         /* your custom logic for modifying all Prisma Client operations here */
         return query(args)
+      }
+    },
+    client:{
+      $polish<T extends Record<string, any>>(data:T){
+        let result = {} as OmitStartsWith<T, '$'>;
+        Object.entries(data).forEach(([key, val])=>{
+          if(!key.startsWith('$'))
+            result[key as keyof typeof result] = val;
+        });
+        return result;
       }
     },
     result:{
@@ -656,24 +667,55 @@ const prismaClientSingleton= ()=>{
           },
         },
       },
-      globalChatMessage:{
-        $test:{
-          compute(data) {
-            return ({local}:{local?:boolean})=>{
-              // let [spawn_player, log_time] = spawnPlayerArgs;
-              console.log('db', data.Message);
-              data.Message = "yooo";
-              return data;
-              // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
-            }
+      // globalChatMessage:{
+      //   $test:{
+      //     compute(data) {
+      //       return ({local}:{local?:boolean})=>{
+      //         // let [spawn_player, log_time] = spawnPlayerArgs;
+      //         console.log('db', data.Message);
+      //         data.Message = "yooo";
+      //         return data;
+      //         // data.game_players[spawn_player.Slot] = {...spawn_player, chat:[], proposals:{1:[], 2:[], 3:[], 4:[], 5:[]}, log_time, created_at:new Date() }
+      //       }
+      //     },
+      //   }
+      // },
+      mindnightSession: {
+        $authenticate: { 
+          compute(session){
+            return ()=>database.mindnightSession.update({where:{id:session.id}, data:{status:'authenticated'}});
           },
-        }
+        },
+        $ready: { 
+          compute(session){
+            return ()=>database.mindnightSession.update({where:{id:session.id}, data:{status:'ready'}});
+          },
+        },
+        $playing: { 
+          compute(session){
+            return ()=>database.mindnightSession.update({where:{id:session.id}, data:{status:'playing'}});
+          },
+        },
+        $authDirectly: { 
+          compute(session){
+            return ()=>database.mindnightSession.update({where:{id:session.id}, data:{authenticated_directly: true}});
+          },
+        },
       },
+      // $allModels:{ //hint? DynamicResultExtensionNeeds<Prisma.TypeMap<InternalArgs & DefaultArgs>, "$allModels", unknown> | undefined
+      //   $toJson:{
+      //     compute<R>(data:R) {
+      //       return function<T>(this:T){
+      //         return {} as T;
+      //       }
+      //     },
+      //   }
+      // }
       // $allModels:{
       //   $toJson:{
-      //     compute(data) {
+      //     compute<T>(this:T, data:Prisma.Result<T, undefined, 'create'>) {
       //       return ()=>{
-      //         return data;
+      //         return data as T;
       //       }
       //     },
       //   }
@@ -760,17 +802,17 @@ const prismaClientSingleton= ()=>{
           return polishedData;
         }
       },
-      mindnightSession:{
-        async authenticate(session:MindnightSession){
-          return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'authenticated'}});
-        },
-        async ready(session:MindnightSession){
-          return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'ready'}});
-        },
-        async playing(session:MindnightSession){
-          return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'playing'}});
-        }
-      },
+      // mindnightSession:{
+      //   async authenticate(session:MindnightSession){
+      //     return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'authenticated'}});
+      //   },
+      //   async ready(session:MindnightSession){
+      //     return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'ready'}});
+      //   },
+      //   async playing(session:MindnightSession){
+      //     return await prisma.mindnightSession.update({where:{id:session.id}, data:{status:'playing'}});
+      //   },
+      // },
       
     },
   })

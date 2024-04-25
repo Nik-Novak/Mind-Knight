@@ -1,12 +1,14 @@
 import { LogEvents, LogReceiveEvents, LogSendEvents, ServerEvents } from "@/types/events";
 import LogEventEmitter from "./LogEvents/LogEventEmitter";
-import { GlobalChatMessage, MindnightSession, Prisma } from "@prisma/client";
+import { GlobalChatMessage, MindnightSession, Prisma, PrismaClient,  } from "@prisma/client";
 import { database } from "../../../prisma/database/database";
 import ProcessQueue from "./ProcessQueue";
 import { attempt } from "../functions/error";
+import { PrismaResult } from "@/types/prisma";
+import { MindnightConnection } from "./LogEvents/MindnightConnection";
 type SyncStrategy = 'local'|'checkpoints'|'remote';
 type SendServerEventFnc = <T extends keyof LogSendEvents | keyof LogReceiveEvents | "MindnightSessionUpdate" | "GameUpdate" | "ClientInit">(eventName: T, payload: ServerEvents[T]) => void;
-type CreateMindnightSessionFnc = (packet:ServerEvents['PlayerInfo'][0]) => Promise<MindnightSession>;
+type CreateMindnightSessionFnc = (packet:ServerEvents['PlayerInfo'][0], direct:boolean) => Promise<PrismaResult<typeof database.mindnightSession>>;
 async function createGlobalChatMessage(message:LogEvents['ReceiveGlobalChatMessage']['0']['Message']){
   let chatMsg = await database.globalChatMessage.create({
     data:message
@@ -19,10 +21,11 @@ export class GameBuilder {
   constructor(
     logInput:LogEventEmitter, 
     game:Awaited<ReturnType<typeof database.game.create>>|undefined,
+    mnConnection: MindnightConnection,
     // strategy:SyncStrategy, 
     sendServerEvent:SendServerEventFnc, 
     createMindnightSession:CreateMindnightSessionFnc,
-    getMindnightSession:()=>Promise<MindnightSession|null>,
+    getMindnightSession:()=>Promise<PrismaResult<typeof database.mindnightSession>|null>,
     getClient:()=>Promise<Prisma.ClientGetPayload<{include:{mindnight_session:true}}>>
   ){
     // let game:Awaited<ReturnType<typeof database.game.create>>|undefined;
@@ -41,9 +44,9 @@ export class GameBuilder {
     logInput.on('PlayerInfo', async ( packet )=>{
       packetQueue.push(
           async ()=>{
-          let mindnightSession = await createMindnightSession(packet);
+          let mindnightSession = await createMindnightSession(packet, mnConnection.authenticated);
           // revalidateTag(Tags.session.toString());
-          sendServerEvent('MindnightSessionUpdate', [mindnightSession]);
+          sendServerEvent('MindnightSessionUpdate', [database.$polish(mindnightSession)]);
           sendServerEvent('PlayerInfo', [packet, new Date()]);
         }
       );
@@ -65,10 +68,10 @@ export class GameBuilder {
           // console.log('SHOULD AUTHENTICATE')
           let mindnightSession = await getMindnightSession();
           if(mindnightSession){
-            let authedMindnightSession = await database.mindnightSession.authenticate(mindnightSession);
+            let authedMindnightSession = await mindnightSession.$authenticate();
             // console.log('Authenticated MNSession', mindnightSession);
             // revalidateTag(Tags.session);
-            sendServerEvent('MindnightSessionUpdate', [authedMindnightSession]);
+            sendServerEvent('MindnightSessionUpdate', [database.$polish(authedMindnightSession)]);
           }
           sendServerEvent('AuthResponse', [packet, new Date()]);
         },
@@ -83,9 +86,11 @@ export class GameBuilder {
             await game.$syncRemote(); //REMOTE UPDATE CHECKPOINT
           let mindnightSession = await getMindnightSession();
           if(mindnightSession){
-            let readiedMindnightSession = await database.mindnightSession.ready(mindnightSession);
+            let readiedMindnightSession = await mindnightSession.$ready();
+            readiedMindnightSession
             // revalidateTag(Tags.session);
-            sendServerEvent('MindnightSessionUpdate', [readiedMindnightSession]);
+            // let t = database.$polish(readiedMindnightSession);
+            sendServerEvent('MindnightSessionUpdate', [database.$polish(readiedMindnightSession)]);
           }
           for (let message of packet.Messages){
             await database.globalChatMessage.createOrFind({data:message});
@@ -125,9 +130,9 @@ export class GameBuilder {
           }});
           let mindnightSession = await getMindnightSession();
           if(mindnightSession){
-            let readiedMindnightSession = await database.mindnightSession.playing(mindnightSession);
+            let readiedMindnightSession = await mindnightSession.$playing();
             // revalidateTag(Tags.session);
-            sendServerEvent('MindnightSessionUpdate', [readiedMindnightSession]);
+            sendServerEvent('MindnightSessionUpdate', [database.$polish(readiedMindnightSession)]);
           }
           sendServerEvent('GameUpdate', [game]);
         },

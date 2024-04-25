@@ -35,8 +35,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
   const { LogReader} = await import('./utils/classes/LogEvents/LogReader');
   const { MindnightConnection } = await import('./utils/classes/LogEvents/MindnightConnection');
   // const { LogReader} = await import('./utils/classes/LogEvents/LogReader');
-  const { attempt } = await import('./utils/functions/error');
-
+  
   if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
     throw Error("Must provide env NEXT_PUBLIC_SERVEREVENTS_WS");
   let wsUrl = new URL(process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
@@ -77,7 +76,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       if(packet.type === 'Simulate'){
         let [logpath, timeBetweenLinesMS, startAtGameFound] = packet.payload as ServerEventPacket<'Simulate'>['payload'];
         let logReader = new LogReader({logpath, startAtLineContaining:startAtGameFound?'GameFound':undefined, timeBetweenLinesMS, onComplete:nLines=>console.log('Finished Simulation, read', nLines, 'lines')});
-        new GameBuilder(logReader, game, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
+        new GameBuilder(logReader, game, mnConnection, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
       }
 
       if(packet.type === 'ClientInit'){
@@ -110,15 +109,25 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
 
   let logTailer = new LogTailer();
   // let logTailer = new LogTailer('_temp/Player.log');
-  new GameBuilder(logTailer, game, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
+  new GameBuilder(logTailer, game, mnConnection, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
 
-  logTailer.on('AuthorizationRequest', (auth)=>{
-    console.log('INTERCEPTED AUTH', auth);
-    mnConnection.sendToMindnight(auth);
+  logTailer.on('AuthorizationRequest', async (auth)=>{
+    await mnConnection.authenticate(auth);
   });
-  mnConnection.on('AuthResponse', ()=>{
-    console.log('AUTHENTICATED WITH MN!!!');
+  mnConnection.on('AuthResponse', async ()=>{
+    let mindnightSession = await getMindnightSession();
+    if(mindnightSession){
+      mindnightSession = await mindnightSession.$authDirectly();
+      sendServerEvent('MindnightSessionUpdate', [database.$polish(mindnightSession)]);
+    }
   });
+
+  mnConnection.on('RoomInfo', (room_info, log_time)=>{
+    sendServerEvent('RoomInfo', [room_info, log_time]);
+  });
+
+  //GameBuilder specifically for mnConnection
+  new GameBuilder(mnConnection, game, mnConnection, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
 
   //INIT
   let client = await getClient();

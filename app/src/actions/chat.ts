@@ -3,8 +3,9 @@ import { GlobalChatMessage } from "@/types/game";
 import { revalidateTag, unstable_cache as cache, revalidatePath } from "next/cache";
 import { database } from "../../prisma/database";
 import { Tags } from "@/utils/cache/tags";
-import { getMindnightSession, sendToMindnight } from "./mindnight-session";
-import { LogEvents } from "@/types/events";
+import { getMindnightSession } from "./mindnight-session";
+import { LogEvents, LogSendEvents } from "@/types/events";
+import { sendToMindnight } from "./mindnight-connection";
 
 
 
@@ -19,7 +20,7 @@ export async function createGlobalChatMessage(message:GlobalChatMessage){
 }
 
 export const getGlobalChat = cache( async function (){
-    let chat = await database.globalChatMessage.findMany({orderBy:{Timestamp:'asc'}});
+    let chat = await database.globalChatMessage.findMany({orderBy:{Timestamp:'asc'}, take:20});
     return chat;
   }, 
   [Tags.chat],
@@ -27,12 +28,15 @@ export const getGlobalChat = cache( async function (){
 );
 
 export async function sendGlobalMessage(message:string){
+  "use server";
   if(!message)
     throw Error('Cannot send empty message');
   let mindnightSession = await getMindnightSession();
   if(!mindnightSession)
     throw Error("Cannot send global chat with no mindnight_session");
-  let payload:LogEvents['SendGlobalChatMessage'][0] = {
+  if(!mindnightSession.authenticated_directly)
+    throw Error("Cannot send global chat message without a direct mindnight authentication");
+  let payload:LogSendEvents['SendGlobalChatMessage'][0] = {
     Type: 901,
     Message: message
   }
@@ -45,4 +49,20 @@ export async function sendGlobalMessage(message:string){
     Timestamp: Date.now()
   });
   return chatMsg;
+}
+
+export async function sendMessage(message:string){
+  "use server";
+  if(!message)
+    throw Error('Cannot send empty message');
+  let mindnightSession = await getMindnightSession();
+  if(!mindnightSession)
+    throw Error("Cannot send global chat with no mindnight_session");
+  if(!mindnightSession.authenticated_directly)
+    throw Error("Cannot send global chat message without a direct mindnight authentication");
+  let payload:LogSendEvents['SendChat'][0] = {
+    Type: 204,
+    Message: message
+  }
+  await sendToMindnight(payload);
 }

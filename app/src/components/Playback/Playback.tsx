@@ -56,6 +56,7 @@ export default function Playback(){
     if(game?.game_found.log_time){
       const {hours, minutes, seconds} = getTimeComponents(game?.game_found.log_time, playHead);
       let timeString = getTimeString({hours, minutes, seconds});
+      // if(document.readyState === "complete")
       setT(timeString);
     }
   }, [playHead]);

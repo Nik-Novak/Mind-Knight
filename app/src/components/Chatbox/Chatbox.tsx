@@ -13,6 +13,7 @@ import { useServerEvents } from "../ServerEventsProvider";
 import { useMindnightSession } from "../MindnightSessionProvider";
 import { useStore } from "@/zustand/store";
 import { hasHappened } from "@/utils/functions/game";
+import FormButton from "../FormButton";
 
 // type GameProps = {
 //   chat:(GlobalChatMessage|ChatMessage)[],
@@ -23,7 +24,7 @@ import { hasHappened } from "@/utils/functions/game";
 type Props = {
   chat?:(GlobalChatMessage|ChatMessage)[],
   // game_players?: GamePlayers //will treat as global chat if no game_players
-  sendMessage?: (message:string)=>Promise<GlobalChatMessage|ChatMessage>
+  sendMessage?: (message:string)=>Promise<GlobalChatMessage|ChatMessage|void>
 }
 
 function Chatbox({ chat, sendMessage}:Props){
@@ -120,22 +121,23 @@ function Chatbox({ chat, sendMessage}:Props){
       { sendMessage && <form action={async (data)=>{
         let msg = data.get('message')?.toString();
         if(!msg || !mindnightSession) return;
-        addOptimisticChat({
-          Message: msg,
-          SteamId: mindnightSession.steam_id,
-          Username: mindnightSession.name,
-          Roles: [0],
-          Timestamp: Date.now()
-        })
+        // addOptimisticChat({
+        //   Message: msg,
+        //   SteamId: mindnightSession.steam_id,
+        //   Username: mindnightSession.name,
+        //   Roles: [0],
+        //   Timestamp: Date.now()
+        // })
         await sendMessage(msg);
+        console.log('CHAT SENT:', msg);
         messageForm.current?.reset();
         // router.refresh();
       }} style={{display:'flex'}} ref={messageForm}>
-        <TextField disabled={mindnightSession?.status!=='ready'} name="message" style={{flexGrow:1}} variant="standard" placeholder="Message" 
+        <TextField disabled={!mindnightSession?.authenticated_directly} name="message" style={{flexGrow:1}} variant="standard" placeholder="Message" 
           InputProps={{ endAdornment: <InputAdornment position="end">
-              <Button type="submit" disabled={mindnightSession?.status!=='ready'} sx={{fontSize:12, padding: '2px'}} variant="contained" className="pixel-corners-small">
+              <FormButton disabled={!mindnightSession?.authenticated_directly} sx={{fontSize:12, padding: '2px'}} variant="contained" className="pixel-corners-small">
                 Send
-              </Button>
+              </FormButton>
             </InputAdornment>}}
         />
       </form>

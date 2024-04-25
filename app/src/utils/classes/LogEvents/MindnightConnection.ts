@@ -4,25 +4,38 @@ import EventEmitter from "events";
 import { WriteStream, fstat } from "fs";
 import fs from 'fs';
 import { SocketConnection } from "./SocketConnection";
+import LogEventEmitter from "./LogEventEmitter";
 
-export class MindnightConnection extends EventEmitter<LogEvents>{
+export class MindnightConnection extends LogEventEmitter{
   private mindnightWs:SocketConnection;
   private logStream:WriteStream;
+  public authenticated = false;
   constructor(logPath:string){
-    super();
+    super(logPath, '');
     if(!process.env.MINDNIGHT_WS) throw Error('Must provide env MINDNIGHT_WS');
     this.mindnightWs = new SocketConnection(process.env.MINDNIGHT_WS);
-    this.mindnightWs.addEventListener('message', (ev)=>this.processPacket(ev));
+    this.mindnightWs.ws.addEventListener('message', (ev)=>this.processPacket(ev));
     this.logStream = fs.createWriteStream(logPath, {encoding:'utf8'});
   }
 
-  sendToMindnight(packet: LogSendEvents[keyof LogSendEvents]['0']) {
-    this.mindnightWs.send(packet);
+  async authenticate(packet: LogSendEvents['AuthorizationRequest']['0']){
+    this.on('AuthResponse', ()=>this.authenticated = true)
+    await this.sendToMindnight(packet);
+    // this.mindnightWs.ws.addEventListener('open', ()=>{ //if we lose connection and reopen for whatever reason
+    //   this.sendToMindnight(packet);
+    // });
+  }
+
+  async sendToMindnight(packet: LogSendEvents[keyof LogSendEvents]['0']) {
+    await this.mindnightWs.send(packet);
     let packetType = getLogSendType(packet.Type);
     this.logStream.write(`${this.logFormatDate(new Date())}: Sending ${packetType}Packet:${JSON.stringify(packet)}\n`);
+    console.log('SENT:', JSON.stringify(packet));
   }
 
   private processPacket(ev:MessageEvent<any>){
+    console.log('RECEIVED:', ev.data.toString());
+
     try{
       let packet = JSON.parse(ev.data.toString());
       let log_time = new Date();

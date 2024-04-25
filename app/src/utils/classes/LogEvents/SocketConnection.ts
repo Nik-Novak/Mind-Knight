@@ -2,27 +2,34 @@ import { JsonObject } from "@prisma/client/runtime/library";
 
 type KeepAlivePacket = {Type:-1};
 
-export class SocketConnection extends WebSocket {
-  private ws:WebSocket|undefined;
-  constructor(wsUrl:string, protocols?:string|string[]){
-    super(wsUrl,protocols);
+export class SocketConnection {
+  public ws!:WebSocket;
+  constructor(private wsUrl:string, private protocols?:string|string[]){
+    this.init();
     let keepAlivePacket:KeepAlivePacket = {Type:-1};
     this.send(keepAlivePacket);
+  }
+
+  private init(){
+    this.ws = new WebSocket(this.wsUrl, this.protocols);
+    this.ws.addEventListener('open', ()=>{ //standard opening sequence
+      console.log(`Successfully connected to ${this.ws.url}.`);
+      let keepAlivePacket:KeepAlivePacket = {Type:-1};
+      setInterval(()=>{
+        this.send(keepAlivePacket); //console.log('SENT KEEPALIVE')
+      }, 10_000);
+    });
+    // this.ws.addEventListener('open', ()=>this.send(packet).then(resolve)); //queue the packet send
+    this.ws.addEventListener('close', async (ev)=>{
+      console.log(`Disconnected from ${this.ws.url}, reason: ${ev.reason}`);
+    });
   }
 
   send(packet: string | ArrayBufferLike | Blob | ArrayBufferView | JsonObject) {
     return new Promise<void>((resolve, reject)=>{
       if(this.ws === undefined || this.ws.readyState === WebSocket.CLOSED || this.ws.readyState === WebSocket.CLOSING){
-        this.ws = new WebSocket(process.env.MINDNIGHT_WS!);
-        this.ws.addEventListener('open', ()=>{ //standard opening sequence
-          console.log(`Successfully connected to ${this.url}.`);
-          let keepAlivePacket:KeepAlivePacket = {Type:-1};
-          setInterval(()=>this.send(keepAlivePacket), 10_000);
-        });
+        this.init();
         this.ws.addEventListener('open', ()=>this.send(packet).then(resolve)); //queue the packet send
-        this.ws.addEventListener('close', async (ev)=>{
-          console.log(`Disconnected from ${this.url}, reason: ${ev.reason}`);
-        });
       }
       else if(this.ws.readyState === WebSocket.OPEN) { //connected, simply send
         this.ws.send(JSON.stringify(packet));

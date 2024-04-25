@@ -366,7 +366,7 @@ function processGame(logpath: string, legacy_gameid?:string) {
             console.log('GAME END', game?.id);
             console.log('#######################');
             await game.$endGame({args, local:true});
-            await game.$syncLocal();
+            await game.$syncRemote();
             console.log('#######################');
             console.log('GAME UPLOADED', game.id);
             console.log('#######################');

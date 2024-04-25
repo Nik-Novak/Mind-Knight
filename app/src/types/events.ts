@@ -13,6 +13,9 @@ export const LogSendEventCodes = {
   KeepAlive: -1,
   SendTyping: 404,
   SendChat: 204,
+  SendGlobalChatMessage: 901,
+  CancelSearch: 104,
+  AcceptMatch: 105
 } as const;
 export type LogSendEventCode = typeof LogSendEventCodes[keyof typeof LogSendEventCodes];
 export function getLogSendType(code:LogSendEventCode){
@@ -33,6 +36,9 @@ export type LogSendEvents = {
   JoinGame: [{"Type":typeof LogSendEventCodes['JoinGame'],"ID":string}, Date],
   RandomSkin: [{"Type":typeof LogSendEventCodes['RandomSkin'],"RandomSkin":boolean}, Date],
   KeepAlive: [{"Type":typeof LogSendEventCodes['KeepAlive']}, Date],
+  SendGlobalChatMessage: [{Type:typeof LogSendEventCodes['SendGlobalChatMessage'], Message:string}, Date],
+  CancelSearch: [{Type:typeof LogSendEventCodes['CancelSearch']}, Date],
+  Acceptmatch: [{Type:typeof LogSendEventCodes['AcceptMatch']}, Date],
   //GAME
   SendTyping: [{"Type":typeof LogSendEventCodes['SendTyping'],"Typing":boolean}, Date], //TODO
   SendChat: [{"Type":typeof LogSendEventCodes['SendChat'],"Message":string}, Date], //TODO
@@ -43,7 +49,6 @@ export const LogReceiveEventCodes = {
   PlayerStats: 602,
   ServerInfo: 2,
   GlobalChatHistoryResponse: 904,
-  SendGlobalChatMessage: 901,
   ReceiveGlobalChatMessage: 902,
   LeaderBoard: 618,
   RoomInfo: 103,
@@ -86,7 +91,6 @@ export type LogReceiveEvents = {
   PlayerStats: [{"Type":typeof LogReceiveEventCodes['PlayerStats'],"Stats":{"TimePlayed":number,"Credits":number,"Level":number,"MaxLevel":number,"EXP":number,"MaxEXP":number,"GamesPlayedHacker":number,"GamesPlayedAgent":number,"GamesWonHacker":number,"GamesWonAgent":number,"GamesLostHacker":number,"GamesLostAgent":number,"WordsWritten":number,"BadWordsWritten":number,"CurrentWinStreak":number,"BestWinStreak":number,"MaxAchievements":number,"MaxSkins":number,"MaxEmojis":number,"MaxGestures":number,"ClaimedItems":string[],"ClaimedAchievements":string[],"CurrentSkin":string,"RandomNamePreference":number,"AccountRoles":number[],"Muted":number,"LongestGame":number,"ShortestGame":number,"CustomGamesPlayed":number,"CreditsObtained":string,"PlayersReported":number,"ReportsReceived":number,"LeavePenalties":number,"BansReceived":number,"BanAppreciation":false,"ItemOfTheWeek":number,"ItemOfTheWeekTimeLeft":number,"ItemOfTheWeekSKU":number}}, Date],
   ServerInfo: [{"Type":typeof LogReceiveEventCodes['ServerInfo'],"PlayersOnline":number,"PlayersPlaying":number,"PublicCustomGames"?:number,"PlayersSearching":number,"MaintenanceIn"?:number}, Date],
   GlobalChatHistoryResponse: [{"Type":typeof LogReceiveEventCodes['GlobalChatHistoryResponse'],"Messages":{"Message":string,"SteamId":string,"Username":string,"Roles":number[],"Timestamp":number}[]}, Date]
-  SendGlobalChatMessage: [{Type:typeof LogReceiveEventCodes['SendGlobalChatMessage'], Message:string}, Date],
   ReceiveGlobalChatMessage: [{"Type":typeof LogReceiveEventCodes['ReceiveGlobalChatMessage'],"Message":{"Message":string,"SteamId":string,"Username":string,"Roles":number[],"Timestamp":number}}, Date],
   LeaderBoard: [{"Type":typeof LogReceiveEventCodes['LeaderBoard'], Entries:{"Rank":number,"User":string,"Level":number,"PlayTime":number,"Wins":number,"Losses":number,"WLRate":string}[], "SelfEntry":{"Rank":number,"User":string,"Level":number,"PlayTime":number,"Wins":number,"Losses":number,"WLRate":string}}, Date]
   RoomInfo: [{"Type":typeof LogReceiveEventCodes['RoomInfo'],"PlayersCount":NumberOfPlayers,"MaxPlayers":NumberOfPlayers,"AcceptedPlayers":NumberOfPlayers,"StartIn":number/*-1 = tbd*/}, Date],
