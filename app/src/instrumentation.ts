@@ -88,10 +88,10 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
         if(game)
           sendServerEvent('GameUpdate', [game]);
       }
-      if(packet.type === 'SendToMindnight'){
-        let [data] = packet.payload as ServerEventPacket<'SendToMindnight'>['payload'];
-        await mnConnection.sendToMindnight(data);
-      }
+      // if(packet.type === 'SendToMindnight'){
+      //   let [data] = packet.payload as ServerEventPacket<'SendToMindnight'>['payload'];
+      //   await mnConnection.sendToMindnight(data);
+      // }
     });
   });
   //END RECEIVE from clients;
@@ -106,19 +106,19 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
     });
   }
 
-  let mnConnection = new MindnightConnection('_temp/Player.log');
+  // let mnConnection = new MindnightConnection('_temp/Player.log');
 
   let logTailer = new LogTailer();
   // let logTailer = new LogTailer('_temp/Player.log');
   new GameBuilder(logTailer, game, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
 
-  logTailer.on('AuthorizationRequest', (auth)=>{
-    console.log('INTERCEPTED AUTH', auth);
-    mnConnection.sendToMindnight(auth);
-  });
-  mnConnection.on('AuthResponse', ()=>{
-    console.log('AUTHENTICATED WITH MN!!!');
-  });
+  // logTailer.on('AuthorizationRequest', (auth)=>{
+  //   console.log('INTERCEPTED AUTH', auth);
+  //   mnConnection.sendToMindnight(auth);
+  // });
+  // mnConnection.on('AuthResponse', ()=>{
+  //   console.log('AUTHENTICATED WITH MN!!!');
+  // });
 
   //INIT
   let client = await getClient();
