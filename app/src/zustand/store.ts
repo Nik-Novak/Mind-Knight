@@ -14,7 +14,7 @@ type Store = {
   setSelectedTurn: (selectedTurn:number)=>void,
   setSelectedSlot: (selectedSlot:PlayerSlot|undefined)=>void,
   setPlayHead: (playHead:Date|undefined)=>void,
-  incrementPlayHead: (by?:number)=>void
+  incrementPlayHead: (by?:number, limits?:[number, number], loop?:boolean)=>void
 }
 
 
@@ -52,21 +52,24 @@ export const useStore = create<Store>((set)=>({
     return state; //default no changes
   }),
   setPlayHead: (playHead:Date|undefined)=>set(state=>modifyPlayhead(state, playHead)),
-  incrementPlayHead: (by=1000)=>set(state=>modifyPlayhead(state, state.playHead && new Date(state.playHead.valueOf()+(by)))) //TODO add speed controller
+  incrementPlayHead: (by=1000, limits, loop=false)=>set(state=>modifyPlayhead(state, state.playHead && new Date(state.playHead.valueOf()+(by)), limits, loop)) //TODO add speed controller
 }));
 
-function clamp(value:Date|undefined, min?:Date, max?:Date){
+function clamp(value:Date|undefined, min?:Date|number, max?:Date|number, loop=false){
   if(value === undefined) return undefined;
   if(min && value.valueOf() < min.valueOf())
-    return min;
-  else if(max && value.valueOf() > max.valueOf())
-    return max;
+    return typeof min === 'number' ? new Date(min) : min;
+  else if(max && value.valueOf() > max.valueOf()){
+    if(loop)
+      return typeof min === 'number' ? new Date(min) : min;
+    return typeof max === 'number' ? new Date(max) : max;
+  }
   return value;
 }
 
-function modifyPlayhead(state:Store, playHead:Date|undefined) {
+function modifyPlayhead(state:Store, playHead:Date|undefined, limits?:[number, number], loop=false) {
   if(state.game){
-    let newState:Partial<Store> = {playHead: clamp(playHead, state.game.game_found.log_time)}
+    let newState:Partial<Store> = {playHead: limits ? clamp(playHead, ...limits, loop) : clamp(playHead, state.game.game_found.log_time, undefined, loop)}
     // newState.playHead = clamp(newState.playHead, state.game.game_found.log_time, state.game.latest_log_time)
     let currentMission = getCurrentMissionNumber(state.game.missions,  newState.playHead);
     newState.selectedNode = currentMission;
