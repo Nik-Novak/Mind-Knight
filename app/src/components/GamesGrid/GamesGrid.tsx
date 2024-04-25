@@ -145,7 +145,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
     },
     { field: "date", headerName: "Date", flex: 0.15, minWidth: 40,
       valueGetter:(v, row)=>row.game_found.log_time,
-      renderCell: (params)=>params.value?.toDateString(),
+      renderCell: (params)=><Tooltip title={params.value.toString()}>{params.value?.toDateString()}</Tooltip>,
       // sortComparator:(v1, v2, cellParams1, cellParams2)=> {
       //   cellParams1.
       // }
