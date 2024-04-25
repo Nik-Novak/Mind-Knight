@@ -1,6 +1,6 @@
 "use client";
 
-import { getTimeComponents, getTimeDifferenceFromString, getTimeString } from "@/utils/functions/general";
+import { copyToClipboard, getTimeComponents, getTimeDifferenceFromString, getTimeString } from "@/utils/functions/general";
 import { coloredText } from "@/utils/functions/jsx";
 import { useStore } from "@/zustand/store";
 import { Badge, Button, IconButton, Slider, SliderMark, Stack, Tooltip } from "@mui/material";
@@ -13,6 +13,10 @@ import ClipIcon from '@mui/icons-material/ContentCut';
 import ShareIcon from '@mui/icons-material/IosShare';
 import {useQueryState} from 'nuqs'
 import ShareDialog from "./ShareDialog";
+import FormButton from "../FormButton";
+import { createClip } from "@/actions/game";
+import { useNotificationQueue } from "../NotificationQueue";
+import Notification from "../Notification";
 
 type Mark = {
   value: number,
@@ -24,6 +28,7 @@ export default function Playback({}){
   const setPlayHead = useStore(state=>state.setPlayHead);
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
+  const { pushNotification } = useNotificationQueue();
   // const searchParams = useSearchParams();
   const [t, setT] = useQueryState('t');
   const [isPlaying, setIsPlaying] = useState(false);
@@ -152,7 +157,18 @@ export default function Playback({}){
             </IconButton>
           </Stack> 
         : 
-          <Button sx={{paddingX:'40px'}} color="warning"><ClipIcon sx={{mr:1}} /> Clip</Button>
+          <form action={async ()=>{
+            let clip = await createClip(game.id, clipTimes[0]-game.game_found.log_time.valueOf(), clipTimes[1]-game.game_found.log_time.valueOf());
+            let link = `${window.location.protocol}//${window.location.host}/clip?id=${clip.id}`;
+            await copyToClipboard(link);
+            pushNotification(<Notification>Copied Clip Link!</Notification>);
+            window.open(link, '_blank');
+            setIsClipping(false);
+            setIsPlaying(false);
+            updatePlaybackSpeed({type:'reset'});
+          }}>
+            <FormButton variant="contained" className="pixel-corners-small" sx={{paddingX:'30px'}} color="warning"><ClipIcon sx={{mr:1}} /> Clip</FormButton>
+          </form>
         }
         <Stack aria-label="right" direction='row'>
           <IconButton onClick={()=>{

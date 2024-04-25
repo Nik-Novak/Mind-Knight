@@ -317,6 +317,24 @@ model GlobalChatMessage {
 }
 
 // =========================
+// Clips
+// =========================
+
+model Clip {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+
+  offset_start    Int
+  offset_end      Int
+
+  game          Game        @relation(fields: [game_id], references: [id])
+  game_id       String      @db.ObjectId
+
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  @@map("clips")
+}
+
+// =========================
 // Game
 // =========================
 enum Source {
@@ -340,6 +358,7 @@ model Game { //unique: { timestamp &  } We want this to map 1 game to multiple r
 
   players       Player[]   @relation(fields: [player_ids], references: [id])
   player_ids    String[]   @db.ObjectId
+  clips         Clip[]
   
   source        Source? //when source is 'live', created_ats are db generated. When 'upload' then they're locally generated with new Date()
   context       String?

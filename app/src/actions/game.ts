@@ -190,3 +190,11 @@ export async function simulate(data:FormData){
   fs.writeFileSync('_temp/Player.log', await log.text());
   await requestServerSimulation('_temp/Player.log', parseInt(timeBetweenLinesMS), startAtGameFound);
 }
+
+export async function createClip(game_id:string, offset_start:number, offset_end:number){
+  return await database.clip.create({data:{
+    game_id,
+    offset_start,
+    offset_end
+  }});
+}
