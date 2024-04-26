@@ -34,7 +34,7 @@ console.log(clips);
   return (
     <>
       <Background id='content' className={styles.main}>
-        <Typography variant="h2">Clips</Typography>
+        <Typography variant="h2"><img style={{marginRight:10, borderRadius:20}} width={30} src="/img/icy.webp" />Clips<img style={{marginLeft:10, borderRadius:20}} width={30} src="/img/icy.webp" /></Typography>
         <Stack alignItems={'flex-start'}>
           <Tooltip title="Only show clips featuring you"><FormControlLabel control={<Checkbox defaultChecked onChange={(e, checked)=>setMyClipsOnly(checked)} />} label="Show Clips with Me Only" /></Tooltip>
           <Tooltip title="Only show clips featuring joshua.cunningham"><FormControlLabel control={<Checkbox checked={settings.josh_mode} onChange={(e, checked)=>updateSettings({josh_mode:checked})} />} label="Josh Mode" /></Tooltip>
