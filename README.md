@@ -42,8 +42,8 @@ To create a MindKnight clip:
 
 
 # Updating?
-Just download the latest version from above, then delete your old files and replace them!
-Or try updating on the main menu (Look for the UPDATE/REINSTALL link).
+* Just download the latest version from above, then delete your old files and replace them!
+* Or try updating on the main menu (Look for the UPDATE/REINSTALL link).
 
 # Help with the interface
 ![MindKnight-UI](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/0db114cb-a2b8-472d-83e7-1a9d2d6bf1b5)
