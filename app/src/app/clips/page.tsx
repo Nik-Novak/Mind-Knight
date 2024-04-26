@@ -40,7 +40,7 @@ console.log(clips);
           <Tooltip title="Only show clips featuring joshua.cunningham"><FormControlLabel control={<Checkbox checked={settings.josh_mode} onChange={(e, checked)=>updateSettings({josh_mode:checked})} />} label="Josh Mode" /></Tooltip>
         </Stack>
         <ClipsGrid records={clips} isFetchingRecords={isFetchingClips} fetchRecords={(model)=>fetchClips(model.page*model.pageSize, model.pageSize)} paginationMetadata={paginationMetadata} playerId={session?.user.player_id} />
-        <Link href="/rewind"><Button variant="contained" className="pixel-corners" sx={{paddingX:'30px'}}>Create Clips</Button></Link>
+        <Link href="/rewinds"><Button variant="contained" className="pixel-corners" sx={{paddingX:'30px'}}>Create Clips</Button></Link>
       </Background>
     </>
   );

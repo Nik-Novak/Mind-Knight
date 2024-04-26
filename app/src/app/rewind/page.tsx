@@ -1,47 +1,54 @@
-"use client";
+"use server";
+import Panel from "@/components/Panel";
 import styles from "./page.module.css";
-import { getGames } from "@/actions/game";
-import GamesGrid from "@/components/GamesGrid";
-import { Button, Checkbox, FormControlLabel, Stack, Tooltip, Typography } from "@mui/material";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import useFetch from "@/hooks/useFetch";
-import { provideSession } from "@/utils/hoc/provideSession";
-import Link from "next/link";
-import { useSettings } from "@/components/SettingsProvider";
-import Background from "@/components/Background";
+import { Stack } from "@mui/material";
 // import sampleGame from './sample-game3.json';
+import ImportantInfo from "@/components/ImportantInfo";
+import Nodes from "@/components/Nodes";
+import NodeTeamRejects from "@/components/NodeTeamRejects";
+import Players from "@/components/Players";
+import Turns from "@/components/Turns";
+import { database } from "../../../prisma/database";
+import Chatbox from "@/components/Chatbox";
+import Settings from "@/components/Settings";
+import Playback from "@/components/Playback";
+import Background from "@/components/Background";
+import Controls from "@/components/Controls";
+import { notFound } from "next/navigation";
+import GameAssigner from "./GameAssigner";
 
-function RewindPage() {
-  const {data:session} = useSession();
-  const {settings, updateSettings} = useSettings();
-  const [paginationMetadata, setPaginationMetadata] = useState<PaginationMetadata>({current_page:0, has_next_page:false, items_per_page:50});
-  const [myGamesOnly, setMyGamesOnly] = useState(true);
-  const [games, fetchGames, isFetchingGames] = useFetch(async (offset?:number, limit?:number)=>{
-    if(myGamesOnly && !session) return [];
-    let response = await getGames(myGamesOnly && session ? session.user.player_id : undefined, settings.josh_mode, offset, limit);
-    setPaginationMetadata(response.metadata);
-    return response.items;
-  }, [], {});
+//React server component that securely runs on the server by default
+export default async function RewindPage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
+  let gameId = searchParams.id;
+  
+  if(!gameId)
+    return notFound();
 
-  useEffect(()=>{
-    if(session?.user.player_id)
-      fetchGames(); //initial fetch
-  }, [session?.user.player_id, myGamesOnly, settings.josh_mode]);
-
+  let game = await database.game.findFirst({where:{id:gameId}});
+  if(!game)
+    return notFound();
+  
   return (
     <>
-      <Background id='content' className={styles.main}>
-        <Typography variant="h2">Rewind</Typography>
-        <Stack alignItems={'flex-start'}>
-          <Tooltip title="Only show games that you played"><FormControlLabel control={<Checkbox defaultChecked onChange={(e, checked)=>setMyGamesOnly(checked)} />} label="Show My Games Only" /></Tooltip>
-          <Tooltip title="Only show games that joshua.cunningham played"><FormControlLabel control={<Checkbox checked={settings.josh_mode} onChange={(e, checked)=>updateSettings({josh_mode:checked})} />} label="Josh Mode" /></Tooltip>
+      <GameAssigner game={database.$polish(game)} />
+      <Background className={styles.main}>
+        <Stack className={styles.left}>
+          <Settings />
+          <Panel title="Chat" defaultExpanded > <Chatbox /> </Panel>
         </Stack>
-        <GamesGrid records={games} isFetchingRecords={isFetchingGames} fetchRecords={(model)=>fetchGames(model.page*model.pageSize, model.pageSize)} paginationMetadata={paginationMetadata} playerId={session?.user.player_id} />
-        <Link href="/upload"><Button variant="contained" className="pixel-corners"> Upload Games</Button></Link>
+        <Stack className={styles.center}>
+          <ImportantInfo />
+          <Playback 
+          />
+          <Players />
+          <Turns />
+          <Controls />
+        </Stack>
+        <Stack className={styles.right}>
+          <Nodes />
+          <NodeTeamRejects />
+        </Stack>
       </Background>
     </>
   );
 }
-
-export default provideSession(RewindPage)

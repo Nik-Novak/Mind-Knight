@@ -171,7 +171,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
               name: "Original Game",
               value: "original_game",
               onClick: () =>
-                router.push(`/game?id=${params.row.game_id}`)
+                router.push(`/rewind?id=${params.row.game_id}`)
             }
           ], 
           (params)=><Link href={`/clip?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>

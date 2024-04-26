@@ -160,7 +160,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
               value: "share",
               onClick: async () =>
                 {
-                  let link = `${window.location.protocol}//${window.location.host}/game?id=${params.row.id}`;
+                  let link = `${window.location.protocol}//${window.location.host}/rewind?id=${params.row.id}`;
                   await copyToClipboard(link);
                   pushNotification(<Notification>Copied Share Link to Clipboard!</Notification>);
                 }
@@ -193,7 +193,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                 })
             },
           ], 
-          (params)=><Link href={`/game?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>
+          (params)=><Link href={`/rewind?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>
         )
     },
   ];
