@@ -1,13 +1,13 @@
 .main {
   display: flex;
-  /* flex-direction: column; */
-  justify-content: space-between;
-  /* align-items: center; */
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   /* text-align: center; */
   /* justify-content: space-around; */
   flex:1;
   
-  /* background:url(/img/maps/backalley.png) no-repeat center; */
+  /* background-color: #222; */
 }
 
 .left {
@@ -19,8 +19,6 @@
   flex:1;
   align-items: center;
   max-width: 100vh;
-  /* margin-left: calc(-1*min(25%, 400px)); */
-  margin-left: calc(-1*min(15%, 350px));
 }
 
 .right {
@@ -42,14 +40,10 @@
     max-width: 400px;
   }
 
-  .center {
-    margin-left: 0;
-  }
-
-  /* .center > *:nth-child(2) {
+  .center > *:nth-child(2) {
     order: 3;
   }
   .center > *:nth-child(3) {
     order: 2;
-  } */
+  }
 }

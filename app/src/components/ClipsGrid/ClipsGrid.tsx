@@ -9,19 +9,21 @@ import { SelectedAction } from "@/components/ActionGrid/types";
 import { Button, SxProps, Tooltip } from "@mui/material";
 import DetailsDialog from "./DetailsDialog";
 import { LoadingButton } from '@mui/lab'
-import { Game } from "@prisma/client";
+import { Clip, Game, Prisma } from "@prisma/client";
 import { GameMode, PlayerRole } from "@/types/game";
 import { coloredText } from "@/utils/functions/jsx";
-import { copyToClipboard } from "@/utils/functions/general";
+import { copyToClipboard, getTimeComponents, getTimeString } from "@/utils/functions/general";
 import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 import Link from "next/link";
 import { reportGameIssue, updateGameTitle } from "@/actions/game";
+import { useRouter } from "next/navigation";
+import { updateClipTitle } from "@/actions/clip";
 
 const DEFAULT_ITEMS_PER_PAGE = 11;
 
 //1. Create a types.d.ts file in the services directory and create your flattened admin-specific type
-type DataType = Game; //2. change this to the type you want
+type DataType = Prisma.ClipGetPayload<{include:{game:true, player:true}}>; //2. change this to the type you want
 
 type GridProps<DataType> = {
   sx?: SxProps,
@@ -34,7 +36,7 @@ type GridProps<DataType> = {
   playerId?:string,
 };
 export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords, paginationMetadata, onSelectionChange=()=>{}, onRecordsChange=()=>{}, playerId }: GridProps<DataType>) {
-
+  const router = useRouter();
   const {pushNotification} = useNotificationQueue();
 
   const [showDetails, setShowDetails] = useState<DataType | null>(null);
@@ -92,7 +94,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
     { field: "id", headerName: "ID/Title", flex: 0.25, minWidth: 40,
       valueGetter: (v, row) => { row.id=='661ff13b56f2cee2049114bf' && console.log('HERE', row.title, row.id); return row.title || row.id },
       renderCell: params => 
-        playerId && params.row.player_ids.includes(playerId) //if we were in the game
+        playerId && params.row.player_id === playerId //if we made the clip
             ? renderOptionsRef.current.renderCell(
                 params,
                 [
@@ -105,10 +107,10 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                         title: `Set the title for ${params.row.id}`,
                         inputProps:{ 
                           label:'New Title',
-                          placeholder: 'MMS Day 1 Heat 3',
+                          placeholder: 'Noobs Gone Wrong 2',
                         },
                         onConfirm:async (newTitle)=>{
-                          await updateGameTitle(params.row.id, newTitle); 
+                          await updateClipTitle(params.row.id, newTitle); 
                           params.row.title = newTitle;
                           pushNotification(<Notification>Set title for {params.row.id}</Notification>)
                           updateInputDialogProps({open:false})
@@ -121,30 +123,23 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
             : params.value
      },
     { field:"gamemode", headerName: "Mode", flex: 0.15, minWidth: 40, 
-      valueGetter:(v, row)=>GameMode[row.game_found.Options.GameMode],
+      valueGetter:(v, row)=>GameMode[row.game.game_found.Options.GameMode],
     },
-    { field: "team", headerName: "Team", flex: 0.15, minWidth: 40, 
-      valueGetter:(v, row)=>row.game_found.GuyRole === PlayerRole.agent ? 'agents' : 'hackers', 
-      renderCell:(params)=>params.value === 'agents' ? coloredText('agents', '#25A165') : coloredText('hackers', '#952C30')
+    { field:"length", headerName: "Length", flex: 0.15, minWidth: 40, 
+      valueGetter:(v, row)=>getTimeString(getTimeComponents(row.offset_start, row.offset_end)),
     },
-    { field: "result", headerName: "Result", flex: 0.15, minWidth: 40,
-      valueGetter:(v, row)=>{
-        if(!row.game_end)
-          return "Unknown";
-        if(row.game_end.Canceled)
-          return "Cancelled";
-        return row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.hacker || !row.game_end.Hacked && row.game_found.GuyRole === PlayerRole.agent ? 'Won' : 'Lost';
-      },
-      renderCell: (params)=>params.value === 'Won' ? coloredText('Won', '#25A165') : params.value === 'Lost' ? coloredText('Lost', '#952C30') : params.value
-    },
+    // { field: "by", headerName: "By", flex: 0.15, minWidth: 40, 
+    //   valueGetter:(v, row)=>row.player.name, 
+    //   renderCell:(params)=>params.row.player_id === playerId ? coloredText(params.value, '#0000EE') : params.value
+    // },
     { field: "players", headerName: "Players", flex: 0.35, minWidth: 40,
       valueGetter:(v, row)=>{
-        return row.game_end?.PlayerIdentities.map(p=>p.Nickname);
+        return row.game.game_end?.PlayerIdentities.map(p=>p.Nickname);
       },
       renderCell: (params)=><Tooltip title={Array.isArray(params.value) ? params.value.join('|') : 'Unknown'}><span>{Array.isArray(params.value) ? params.value.join('|') : 'Unknown'}</span></Tooltip>
     },
     { field: "date", headerName: "Date", flex: 0.15, minWidth: 40,
-      valueGetter:(v, row)=>row.game_found.log_time,
+      valueGetter:(v, row)=>row.game.game_found.log_time,
       renderCell: (params)=><Tooltip title={params.value.toString()}>{params.value?.toDateString()}</Tooltip>,
       // sortComparator:(v1, v2, cellParams1, cellParams2)=> {
       //   cellParams1.
@@ -160,8 +155,9 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
               value: "share",
               onClick: async () =>
                 {
-                  let link = `${window.location.protocol}//${window.location.host}/rewind?id=${params.row.id}`;
-                  await copyToClipboard(link);
+                  let link = `${window.location.protocol}//${window.location.host}/clip?id=${params.row.id}`;
+                  let embedLink = `[${params.row.title}](${link})`;
+                  await copyToClipboard(embedLink);
                   pushNotification(<Notification>Copied Share Link to Clipboard!</Notification>);
                 }
             },
@@ -172,28 +168,13 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
                 setShowDetails(params.row)
             },
             {
-              name: "Report Issue/Duplicate",
-              value: "report_issue",
+              name: "Original Game",
+              value: "original_game",
               onClick: () =>
-                updateInputDialogProps({
-                  open:true,
-                  title: `Report Issue/Duplicate for ${params.row.id}`,
-                  text: "Please describe the issue. If it's a duplicate, please provide the ID of the other game.",
-                  showInput:true,
-                  inputProps:{
-                    label:'Issue',
-                    placeholder: 'This game is a duplicate of game with ID: 5f13954e2c2bdb29d0d310c0',
-                    multiline:true,
-                  },
-                  onConfirm:async (text)=>{
-                    await reportGameIssue(params.row.id, text);
-                    updateInputDialogProps({open:false});
-                    pushNotification(<Notification>Issue Reported</Notification>)
-                  }
-                })
-            },
+                router.push(`/rewind?id=${params.row.game_id}`)
+            }
           ], 
-          (params)=><Link href={`/rewind?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>
+          (params)=><Link href={`/clip?id=${params.row.id}`}><Button variant="contained" className="pixel-corners-small">View</Button></Link>
         )
     },
   ];

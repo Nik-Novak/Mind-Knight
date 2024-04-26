@@ -53,7 +53,7 @@ export default function Nodes({}:Props){
   const game_found = useStore(state=>state.game?.game_found);
   const missions = useStore(state=>state.game?.missions);
   const game_players = useStore(state=>state.game?.game_players);
-  const playHead = useStore(state=>state.playHead);
+  const playhead = useStore(state=>state.playhead);
   const {settings} = useSettings();
 
   return (
@@ -61,7 +61,7 @@ export default function Nodes({}:Props){
       {
         game_found?.MissionInfo.map((numPlayers, i)=>{
           let n = i+1 as NodeNumber;
-          let hasHappened = checkHasHappened(missions?.[n]?.mission_phase_end?.log_time, playHead); //playHead && missions?.[n]?.mission_phase_end?.log_time ? missions[n]!.mission_phase_end!.log_time.valueOf() < playHead.valueOf() : true;
+          let hasHappened = checkHasHappened(missions?.[n]?.mission_phase_end?.log_time, playhead); //playHead && missions?.[n]?.mission_phase_end?.log_time ? missions[n]!.mission_phase_end!.log_time.valueOf() < playHead.valueOf() : true;
           // if( missions?.[n]?.mission_phase_end?.log_time && missions[n]!.mission_phase_end!.log_time.valueOf() > new Date('2024-04-07T20:01:48.000Z').valueOf() )
           //   return null;
           let proposerSlot = missions?.[n]?.mission_phase_end?.Proposer as PlayerSlot|undefined;

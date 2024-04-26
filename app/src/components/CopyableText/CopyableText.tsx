@@ -5,13 +5,15 @@ import { useState } from "react";
 import { copyToClipboard } from "@/utils/functions/general";
 
 type Props = {
-  label?:string
-  value:string
+  label?:string,
+  value:string,
+  onCopy?: (value:string)=>void
 }
-export default function CopyableText({label="click to copy", value}:Props){
+export default function CopyableText({label="click to copy", value, onCopy=()=>{}}:Props){
   const [copied, setCopied] = useState(false)
   const handleCopy = async ()=>{
     await copyToClipboard(value);
+    onCopy(value)
     setCopied(true);
     setTimeout(()=>setCopied(false), 3000);
   }

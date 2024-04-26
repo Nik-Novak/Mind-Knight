@@ -39,6 +39,16 @@ const prismaClientSingleton= ()=>{
         return query(args)
       }
     },
+    client:{
+      $polish<T extends Record<string, any>>(data:T){
+        let result = {} as OmitStartsWith<T, '$'>;
+        Object.entries(data).forEach(([key, val])=>{
+          if(!key.startsWith('$'))
+            result[key as keyof typeof result] = val;
+        });
+        return result;
+      }
+    },
     result:{
       game:{
         $spawnPlayer: {

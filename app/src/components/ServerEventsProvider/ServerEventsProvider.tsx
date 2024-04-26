@@ -5,6 +5,7 @@ import { Game, MindnightSession } from '@prisma/client';
 import { useStore } from '@/zustand/store';
 import { dateTimeReviver } from '@/utils/functions/general';
 import { ServerEventPacket, ServerEvents } from '@/types/events';
+import { useRouter } from 'next/navigation';
 
 const serverEvents = new EventEmitter<ServerEvents>();
 
@@ -40,7 +41,8 @@ export function ServerEventsProvider({ children }:Props) {
     }
 
     serverEvents.on('GameUpdate', game=>{
-      setGame(game);
+      if(window.location.pathname !== '/clip' && window.location.pathname !== '/rewind')
+        setGame(game);
     });
   }, []);
   

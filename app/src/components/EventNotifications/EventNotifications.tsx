@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { useNotificationQueue } from "../NotificationQueue";
-import { ServerEvents, useServerEvents } from "../ServerEventsProvider";
+import { useServerEvents } from "../ServerEventsProvider";
 import Notification from "../Notification";
+import { ServerEvents } from "@/types/events";
 
 export default function EventNotifications(){
   const { pushNotification } = useNotificationQueue();

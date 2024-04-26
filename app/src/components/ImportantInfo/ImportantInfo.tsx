@@ -36,7 +36,6 @@ export default function ImportantInfo({}:Props){
   const selectedNode = useStore(state=>state.selectedNode);
   const selectedSlot = useStore(state=>state.selectedSlot);
   const selectedTurn = useStore(state=>state.selectedTurn);
-  const playHead = useStore(state=>state.playHead);
   const game_players = useStore(state=>state.game?.game_players);
   const numPlayers = useStore(state=>state.game?.game_found.PlayerNumber as NumberOfPlayers|undefined);
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot)

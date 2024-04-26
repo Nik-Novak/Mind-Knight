@@ -18,19 +18,19 @@ import { notFound } from "next/navigation";
 import GameAssigner from "./GameAssigner";
 
 //React server component that securely runs on the server by default
-export default async function RewindPage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
-  let gameId = searchParams.id;
+export default async function ClipPage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
+  let clipId = searchParams.id;
   
-  if(!gameId)
+  if(!clipId)
     return notFound();
 
-  let game = await database.game.findFirst({where:{id:gameId}});
-  if(!game)
+  let clip = await database.clip.findFirst({where:{id:clipId}, include:{game:true}});
+  if(!clip)
     return notFound();
   
   return (
     <>
-      <GameAssigner game={database.$polish(game)} />
+      <GameAssigner game={database.$polish(clip.game)} time={clip.offset_start + clip.game.game_found.log_time.valueOf()} />
       <Background className={styles.main}>
         <Stack className={styles.left}>
           <Settings />
@@ -39,6 +39,9 @@ export default async function RewindPage({searchParams}:ServerSideComponentProp<
         <Stack className={styles.center}>
           <ImportantInfo />
           <Playback 
+            minTimestamp={clip.game.game_found.log_time.valueOf() + clip.offset_start} 
+            maxTimestamp={clip.game.game_found.log_time.valueOf() + clip.offset_end}
+            loop={true}
           />
           <Players />
           <Turns />

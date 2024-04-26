@@ -23,28 +23,28 @@ export function getHammerPlayerSlot(propIndex:number|undefined, selectedSlot:Pla
   return ( (4-propIndex) + selectedSlot ) % numPlayers as PlayerSlot
 }
 
-export function getTurnInfo(game_players:GamePlayers|undefined, selectedNode:NodeNumber|undefined, selectedTurn:number, selectedSlot:PlayerSlot|undefined, playHead?:Date){
+export function getTurnInfo(game_players:GamePlayers|undefined, selectedNode:NodeNumber|undefined, selectedTurn:number, selectedSlot:PlayerSlot|undefined, playHead?:number){
   return game_players && selectedNode && selectedSlot!=undefined /*&& hasHappened(game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1].select_phase_start.log_time, playHead)*/ ? game_players[selectedSlot]?.proposals[selectedNode][selectedTurn-1] : undefined;
 }
 
-export function getPlayerAction(game_player:GamePlayer|null, selectedNode:NodeNumber|undefined, selectedTurn:number, playHead?:Date){
+export function getPlayerAction(game_player:GamePlayer|null, selectedNode:NodeNumber|undefined, selectedTurn:number, playhead?:number){
   if(!game_player) return undefined;
   let action = selectedNode ? game_player.proposals[selectedNode]?.[selectedTurn-1] : undefined
-  if(playHead && action){
-    if(!hasHappened(action.select_phase_start.log_time, playHead))
+  if(playhead!==undefined && action){
+    if(!hasHappened(action.select_phase_start.log_time, playhead))
       action=undefined;
   }
   return action;
 }
 
 
-export function maxTurns(selectedNode:NodeNumber|undefined, players:GamePlayers, playHead?:Date){
+export function maxTurns(selectedNode:NodeNumber|undefined, players:GamePlayers, playhead?:number){
   if(!selectedNode)
     return 1;
   let maxTurns = Object.entries(players).reduce((maxTurns, [key, player])=>{
     let currentTurns = player?.proposals[selectedNode];
-    if(playHead)
-      currentTurns = currentTurns?.filter(t=>t.select_phase_start.log_time.valueOf() <= playHead.valueOf());
+    if(playhead!==undefined)
+      currentTurns = currentTurns?.filter(t=>t.select_phase_start.log_time.valueOf() <= playhead.valueOf());
     let numTurns = currentTurns?.length;
     if(numTurns !== undefined && numTurns > maxTurns)
       return numTurns
@@ -82,11 +82,11 @@ export function getCurrentNumProposals(game_players: GamePlayers, node:NodeNumbe
   return numProposals;
 }
 
-export function getCurrentMissionNumber(missions: Missions|null|undefined, playHead?:Date){
+export function getCurrentMissionNumber(missions: Missions|null|undefined, playhead?:number){
   let currentMission = 0// as NodeNumber;
   missions && Object.entries(missions).forEach(([missionNum, mission])=>{
     if(mission?.mission_phase_start){
-      if(!playHead || mission.mission_phase_start.log_time.valueOf() <= playHead.valueOf())
+      if(playhead===undefined || mission.mission_phase_start.log_time.valueOf() <= playhead.valueOf())
         currentMission = parseInt(missionNum) as NodeNumber;
     }
   });
@@ -105,13 +105,13 @@ export function getCurrentMissionNumber(missions: Missions|null|undefined, playH
 //   });
 //   return result;
 // }
-export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumber, playHead?:Date){
+export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumber, playhead?:number){
   let result:{playerSlot:PlayerSlot, value:Proposal, proposalIndex:number}|undefined;
   Object.entries(game_players).forEach(([slot, game_player])=>{
     let playerSlot = parseInt(slot) as PlayerSlot;
     game_player?.proposals[missionNum]?.forEach((proposal, i)=>{
       if(!result || proposal.select_phase_start.created_at.valueOf() > result.value.select_phase_start.created_at.valueOf())
-        if(hasHappened(proposal.select_phase_start.log_time, playHead))
+        if(hasHappened(proposal.select_phase_start.log_time, playhead))
           result = {playerSlot, value:proposal, proposalIndex:i};
     })
   });
@@ -183,26 +183,26 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
 //   return traceProposals(firstProposalOfMission, firstProposalOfMission.select_phase_start.Player as PlayerSlot);
 // }
 
-export function hasHappened(log_time:Date|undefined, playHead:Date|undefined, expiresAfter:number=0){
-  if(!playHead ) return true;
-  if(!log_time) return false;
-  let isBeforePlayhead = log_time.valueOf() <= playHead.valueOf();
+export function hasHappened(log_time:Date|number|undefined, playhead:number|undefined, expiresAfter:number=0):boolean{
+  if(playhead===undefined ) return true;
+  if(log_time===undefined) return false;
+  let isBeforePlayhead = log_time.valueOf() <= playhead;
   if(isBeforePlayhead && expiresAfter)
-    return (playHead.valueOf() - expiresAfter) <= log_time.valueOf(); //check for expiration
+    return (playhead - expiresAfter) <= log_time.valueOf(); //check for expiration
   return isBeforePlayhead; //otherwise just return isBeforePlayhead result
 }
 
-export function isHappening(start_log_time:Date|undefined, playHead:Date|undefined, end_log_time:Date|undefined){
-  if(!start_log_time || !end_log_time || !playHead) return false;
-  return hasHappened(start_log_time, playHead, end_log_time.valueOf()-start_log_time.valueOf()); //otherwise just return isBeforePlayhead result
+export function isHappening(start_log_time:Date|number|undefined, playhead:number|undefined, end_log_time:Date|number|undefined, end_buffer=0){
+  if(start_log_time===undefined || end_log_time===undefined || playhead===undefined) return false;
+  return hasHappened(start_log_time, playhead, end_log_time.valueOf()-start_log_time.valueOf() + end_buffer); //otherwise just return isBeforePlayhead result
 }
 
-export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playHead?:Date){
+export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playhead?:number){
   if(!turnInfo) return undefined;
   let latest:SelectUpdate|undefined;
   turnInfo.select_updates.forEach(selectUpdate=>{
     if(!latest || selectUpdate.log_time.valueOf() > latest.log_time.valueOf())
-      if(hasHappened(selectUpdate.log_time, playHead))
+      if(hasHappened(selectUpdate.log_time, playhead))
         latest = selectUpdate;
   });
   return latest;
@@ -221,11 +221,11 @@ export function getPlayer(game_players?:GamePlayers, slot?:PlayerSlot){
   return game_players[slot];
 }
 
-export function getHappeningMission(missions?:Missions, playHead?:Date){
+export function getHappeningMission(missions?:Missions, playhead?:number, afterMissionBuffer=5000){
   return missions && Object.values(missions).reduce<Mission|undefined>((accum, mission)=>{
     if(accum)
       return accum;
-    return isHappening(mission?.mission_phase_start.log_time, playHead, mission?.mission_phase_end?.log_time) && mission || undefined;
+    return isHappening(mission?.mission_phase_start.log_time, playhead, mission?.mission_phase_end?.log_time.valueOf(), afterMissionBuffer) && mission || undefined;
   }, undefined);
 }
 

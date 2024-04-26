@@ -33,7 +33,7 @@ export default function LoadingOverlay({
 
   return (
     <Backdrop
-      className={Styles.backdrop}
+      className={`${Styles.backdrop} loading-overlay`}
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
         backgroundColor: opaque ? '#444' : undefined,
