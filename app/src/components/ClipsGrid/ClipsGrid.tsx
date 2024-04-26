@@ -138,8 +138,8 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
       },
       renderCell: (params)=><Tooltip title={Array.isArray(params.value) ? params.value.join('|') : 'Unknown'}><span>{Array.isArray(params.value) ? params.value.join('|') : 'Unknown'}</span></Tooltip>
     },
-    { field: "created_at", headerName: "Date", flex: 0.15, minWidth: 40,
-      // valueGetter:(v, row)=>row.game_found.log_time,
+    { field: "date", headerName: "Date", flex: 0.15, minWidth: 40,
+      valueGetter:(v, row)=>row.game.game_found.log_time,
       renderCell: (params)=><Tooltip title={params.value.toString()}>{params.value?.toDateString()}</Tooltip>,
       // sortComparator:(v1, v2, cellParams1, cellParams2)=> {
       //   cellParams1.
