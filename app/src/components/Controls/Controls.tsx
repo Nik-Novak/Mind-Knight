@@ -21,7 +21,7 @@ export default function Controls(){
   const happeningMission = getHappeningMission(missions, playhead);
   const inMission = localPlayer ? happeningMission?.mission_phase_start.Players.includes(localPlayer.Slot) : false;
   const latestProposal = game_players && selectedNode!=undefined && getLatestProposal(game_players, selectedNode, playhead)?.value || undefined;
-  const isVoting = isHappening(latestProposal?.vote_phase_start?.log_time, playhead, latestProposal?.vote_phase_end?.log_time);
+  const isVoting = isHappening(latestProposal?.vote_phase_start?.log_time, playhead, latestProposal?.vote_phase_end?.log_time, 5000);
   return (
     <>
       <MissionControls mission={happeningMission} inMission={inMission} isHacker={hacker} />

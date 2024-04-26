@@ -1,6 +1,6 @@
 "use client";
 
-import { copyToClipboard, getTimeComponents, getTimeDifferenceFromString, getTimeString } from "@/utils/functions/general";
+import { copyToClipboard, download, getTimeComponents, getTimeDifferenceFromString, getTimeString } from "@/utils/functions/general";
 import { coloredText } from "@/utils/functions/jsx";
 import { useStore } from "@/zustand/store";
 import { Badge, Button, IconButton, Slider, SliderMark, Stack, Tooltip } from "@mui/material";
@@ -17,6 +17,7 @@ import FormButton from "../FormButton";
 import { createClip } from "@/actions/game";
 import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
+import GIFRecorder from "../GIFRecorder";
 
 type Mark = {
   value: number,
@@ -41,6 +42,7 @@ export default function Playback(props:Props){
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isClipping, setIsClipping] = useState(false);
   const [clipTimes, setClipTimes] = useState<[number, number]>([0, 0]);
+  const [recording, setRecording] = useState(false);
   const minTimestamp = props.minTimestamp!=undefined ? props.minTimestamp : game?.game_found.log_time.valueOf() || 0;
   const maxTimestamp = props.maxTimestamp!=undefined ? props.maxTimestamp : game?.latest_log_time.valueOf() || 0;
   type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
@@ -202,7 +204,23 @@ export default function Playback(props:Props){
         </Stack>
       </Stack>
     </Stack>
-    <ShareDialog open={isShareOpen} minTimestamp={minTimestamp} t={t} maxTimestamp={maxTimestamp} onClose={()=>setIsShareOpen(false)} />
+    <ShareDialog 
+      open={isShareOpen} 
+      minTimestamp={minTimestamp} 
+      t={t} 
+      maxTimestamp={maxTimestamp}
+      onShare={async ()=>{
+        setRecording(true);
+        setIsShareOpen(false);
+      }} 
+      onClose={()=>setIsShareOpen(false)} 
+    />
+    <GIFRecorder recording={recording} minTimestamp={minTimestamp} maxTimestamp={maxTimestamp} onFinish={(blob)=>{
+      console.log('FINISHED RECORDING');
+      console.log(blob);
+      setRecording(false);
+      download(blob, 'clip.gif');
+    }} />
     </>
   );
 }

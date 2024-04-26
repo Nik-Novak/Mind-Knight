@@ -183,18 +183,18 @@ export function getLatestProposal(game_players:GamePlayers, missionNum:NodeNumbe
 //   return traceProposals(firstProposalOfMission, firstProposalOfMission.select_phase_start.Player as PlayerSlot);
 // }
 
-export function hasHappened(log_time:Date|undefined, playhead:number|undefined, expiresAfter:number=0){
+export function hasHappened(log_time:Date|number|undefined, playhead:number|undefined, expiresAfter:number=0):boolean{
   if(playhead===undefined ) return true;
-  if(!log_time) return false;
+  if(log_time===undefined) return false;
   let isBeforePlayhead = log_time.valueOf() <= playhead;
   if(isBeforePlayhead && expiresAfter)
     return (playhead - expiresAfter) <= log_time.valueOf(); //check for expiration
   return isBeforePlayhead; //otherwise just return isBeforePlayhead result
 }
 
-export function isHappening(start_log_time:Date|undefined, playhead:number|undefined, end_log_time:Date|undefined){
-  if(!start_log_time || !end_log_time || playhead===undefined) return false;
-  return hasHappened(start_log_time, playhead, end_log_time.valueOf()-start_log_time.valueOf()); //otherwise just return isBeforePlayhead result
+export function isHappening(start_log_time:Date|number|undefined, playhead:number|undefined, end_log_time:Date|number|undefined, end_buffer=0){
+  if(start_log_time===undefined || end_log_time===undefined || playhead===undefined) return false;
+  return hasHappened(start_log_time, playhead, end_log_time.valueOf()-start_log_time.valueOf() + end_buffer); //otherwise just return isBeforePlayhead result
 }
 
 export function getLatestSelectUpdate(turnInfo:Proposal|undefined, playhead?:number){
@@ -221,11 +221,11 @@ export function getPlayer(game_players?:GamePlayers, slot?:PlayerSlot){
   return game_players[slot];
 }
 
-export function getHappeningMission(missions?:Missions, playhead?:number){
+export function getHappeningMission(missions?:Missions, playhead?:number, afterMissionBuffer=5000){
   return missions && Object.values(missions).reduce<Mission|undefined>((accum, mission)=>{
     if(accum)
       return accum;
-    return isHappening(mission?.mission_phase_start.log_time, playhead, mission?.mission_phase_end?.log_time) && mission || undefined;
+    return isHappening(mission?.mission_phase_start.log_time, playhead, mission?.mission_phase_end?.log_time.valueOf(), afterMissionBuffer) && mission || undefined;
   }, undefined);
 }
 

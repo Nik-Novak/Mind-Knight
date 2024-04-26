@@ -53,6 +53,7 @@ const theme = createTheme({
   typography: {
     fontFamily: `Munro, ${roboto.style.fontFamily}, sans-serif`,
     allVariants:{
+      // fontFamily: `Munro, ${roboto.style.fontFamily}, sans-serif`,
       color: '#FFF'
       // lineHeight: 1
     }

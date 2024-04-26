@@ -128,3 +128,14 @@ export function removeSearchParam(url:string, paramToRemove:string) {
   urlObject.search = searchParams.toString();
   return urlObject.toString();
 }
+
+export function download(blob:Blob, filename:string){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
