@@ -219,7 +219,8 @@ export default function Playback(props:Props){
       clipTimes={clipTimes}
       onComplete={async (clip)=>{
         let link = `${window.location.protocol}//${window.location.host}/clip?id=${clip.id}`;
-          await copyToClipboard(link);
+        let embedLink = `[${clip.title}](${link})`;
+          await copyToClipboard(embedLink);
           pushNotification(<Notification>Copied Clip Link!</Notification>);
           window.open(link, '_blank');
           setIsClipping(false);
