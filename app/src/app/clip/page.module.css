@@ -20,7 +20,7 @@
   align-items: center;
   max-width: 100vh;
   /* margin-left: calc(-1*min(25%, 400px)); */
-  margin-left: calc(-1*min(10%, 300px));
+  margin-left: calc(-1*min(15%, 350px));
 }
 
 .right {
