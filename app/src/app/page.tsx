@@ -43,6 +43,7 @@ export default async function HomePage() {
             ? <> 
                 <Link href='/skins'><Button className="pixel-corners" sx={{paddingX: '55px'}} variant="contained">Skins</Button></Link>
                 <Link href='/rewind'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Rewind</Button></Link>
+                <Link href='/clips'><Button className="pixel-corners" sx={{paddingX: '55px'}} variant="contained">Clips</Button></Link>
               </>
             : <Link href={`${process.env.NEXTAUTH_URL}/api/auth/signin`}><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Sign In</Button></Link>
           }

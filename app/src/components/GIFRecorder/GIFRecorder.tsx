@@ -17,6 +17,7 @@ export default function GIFRecorder({recording, minTimestamp, maxTimestamp, onFi
   const playhead = useStore(state=>state.playhead);
   const setPlayhead = useStore(state=>state.setPlayHead);
   const incrementPlayHead = useStore(state=>state.incrementPlayHead);
+  const [fallbackTrigger, setFallbackTrigger] = useState(false);
   const gif = useRef<GIF|null>(null);
   useEffect(()=>{
     if(!recording) return;
@@ -47,11 +48,10 @@ export default function GIFRecorder({recording, minTimestamp, maxTimestamp, onFi
 
     
   })();
-  }, [playhead]);
+  }, [playhead, fallbackTrigger]);
 
   useEffect(()=>{
     if(recording){
-      
       let workerScript = `${window.location.protocol}//${window.location.host}/gif.worker.js`;
       gif.current = new GIF({
         workerScript
@@ -60,7 +60,10 @@ export default function GIFRecorder({recording, minTimestamp, maxTimestamp, onFi
         console.log('FINISHED GIF GEN!');
         onFinish(blob);
       });
-      setPlayhead(minTimestamp);
+      if(playhead!=minTimestamp)
+        setPlayhead(minTimestamp);
+      else
+        setFallbackTrigger(t=>!t); //trigger start in the case that time is already at 0
     }
   }, [recording])
 

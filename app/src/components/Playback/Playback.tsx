@@ -13,8 +13,6 @@ import ClipIcon from '@mui/icons-material/ContentCut';
 import ShareIcon from '@mui/icons-material/IosShare';
 import {useQueryState} from 'nuqs'
 import ShareDialog from "./ShareDialog";
-import FormButton from "../FormButton";
-import { createClip } from "@/actions/game";
 import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 import GIFRecorder from "../GIFRecorder";
@@ -205,6 +203,7 @@ export default function Playback(props:Props){
           setIsClipping(false);
           setIsPlaying(false);
           updatePlaybackSpeed({type:'reset'});
+          setIsClipTitleOpen(false);
       }} 
       onClose={()=>setIsClipTitleOpen(false)} 
     />

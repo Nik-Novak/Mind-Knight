@@ -1,5 +1,4 @@
 "use client";
-import { createClip } from "@/actions/game";
 import { useStore } from "@/zustand/store";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Stack, TextField, Typography } from "@mui/material";
 import { useSession, signIn } from "next-auth/react";
@@ -10,6 +9,9 @@ import { Clip } from "@prisma/client";
 import { TransitionProps } from "@mui/material/transitions";
 import { provideSession } from "@/utils/hoc/provideSession";
 import Link from "next/link";
+import { createClip } from "@/actions/clip";
+import { useNotificationQueue } from "../NotificationQueue";
+import Notification from "../Notification";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -28,6 +30,7 @@ type Props = {
 }
 
 function ClipTitleDialog({open, clipTimes, onComplete=()=>{}, onClose=()=>{}}:Props){
+  const {pushNotification} = useNotificationQueue();
   const game = useStore(state=>state.game)!;
   const { data:session } = useSession();
   const [title, setTitle] = useState('');
@@ -41,13 +44,21 @@ function ClipTitleDialog({open, clipTimes, onComplete=()=>{}, onClose=()=>{}}:Pr
       <DialogTitle>Title the clip</DialogTitle>
       <DialogContent sx={{display:'flex', flexDirection:'column', '& > *':{mt: 1} }}>
         <form action={async (data)=>{
-          if(!title)
-            throw Error("Must provide a title");
-          if(!session?.user.player_id)
-            throw Error("Must be signed in to create a clip")
-          let baseTime = game.game_found.log_time.valueOf(); //has to be from game_found.log_time for clips of clips
-          let clip = await createClip(title, game.id, session.user.player_id, clipTimes[0]-baseTime, clipTimes[1]-baseTime);
-          onComplete(clip);
+          try{
+            if(!title)
+              throw Error("Must provide a title");
+            if(!session?.user.player_id)
+              throw Error("Must be signed in to create a clip")
+            let baseTime = game.game_found.log_time.valueOf(); //has to be from game_found.log_time for clips of clips
+            let clip = await createClip(title, game.id, session.user.player_id, clipTimes[0]-baseTime, clipTimes[1]-baseTime);
+            onComplete(clip);
+          } catch(err){
+            if(err instanceof Error){
+              console.error(err);
+              pushNotification(<Notification severity="error">Something went wrong: {err.message}</Notification>);
+            }
+          }
+          
         }}>
           {!session?.user.player_id && <Typography color="error">Must be <Link href='#' onClick={()=>signIn()}>signed in</Link></Typography>}
           <TextField fullWidth value={title} onChange={(evt)=>{

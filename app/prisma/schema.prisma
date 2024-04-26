@@ -335,6 +335,7 @@ model Clip {
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
   @@map("clips")
+  @@index(fields: [created_at])
 }
 
 // =========================

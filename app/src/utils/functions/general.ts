@@ -12,13 +12,13 @@ export async function copyToClipboard(textToCopy:string) {
           
       // Move textarea out of the viewport so it's not visible
       textArea.style.position = "absolute";
-      // textArea.style.left = "-9999px";
+      textArea.style.left = "-9999px";
           
       document.body.prepend(textArea);
       textArea.focus();
       textArea.select();
 
-      await sleep(40); //ensure focus is lost from other events
+      await sleep(80); //ensure focus is lost from other events
 
       textArea.focus();
       textArea.select();
