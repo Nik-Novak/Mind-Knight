@@ -38,6 +38,7 @@ To create a MindKnight clip:
 * Click the clips icon
 * Select the time range you want to clip
 * Title, and publish your clip
+* You can generate a GIF using the Share button (left of the player)
 ![MindKnight-Create-Clip-compressed](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/c9acd559-41d8-4c93-ae79-03944e31940e)
 
 
