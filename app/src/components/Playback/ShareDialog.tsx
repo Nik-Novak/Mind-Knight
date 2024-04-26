@@ -20,43 +20,45 @@ const Transition = React.forwardRef(function Transition(
 
 type Props = {
   open:boolean,
+  minTimestamp:number,
+  t:string|null,
+  maxTimestamp:number,
   onShare?:()=>void
   onClose?:()=>void
 }
 
-export default function ShareDialog({open, onShare=()=>{}, onClose=()=>{}}:Props){
-  const playHead = useStore(state=>state.playHead);
+export default function ShareDialog({open, minTimestamp, t, maxTimestamp, onShare=()=>{}, onClose=()=>{}}:Props){
+  const playHead = useStore(state=>state.playhead);
   const setPlayHead = useStore(state=>state.setPlayHead);
-  const game = useStore(state=>state.game);
   const [shareTimestamp, setShareTimestamp] = useState(false);
-  const [t, setT] = useQueryState('t');
+  const context = window.location.pathname === '/clip' ? 'clip' : 
+    window.location.pathname === '/game' ? 'game' : undefined;
   return (
     <Dialog
       open={open}
       TransitionComponent={Transition}
       keepMounted
       onClose={onClose}
-      aria-describedby="alert-dialog-slide-description"
     >
-      <DialogTitle>Share a link to this game</DialogTitle>
+      <DialogTitle>Share {context}</DialogTitle>
       <DialogContent sx={{display:'flex', flexDirection:'column', '& > *':{mt: 1} }}>
         <FormControlLabel control={<Checkbox value={shareTimestamp} onChange={(e,c)=>setShareTimestamp(c)} />} label={`Share with timestamp: ${t}`} />
-        { shareTimestamp && game && <Slider 
+        { shareTimestamp && <Slider 
           valueLabelDisplay="auto" 
-          valueLabelFormat={(value)=>getTimeString(getTimeComponents(game.game_found.log_time, value))} 
-          min={game.game_found.log_time.valueOf()} 
-          max={game.latest_log_time.valueOf()}
+          valueLabelFormat={(value)=>getTimeString(getTimeComponents(minTimestamp, value))} 
+          min={minTimestamp} 
+          max={maxTimestamp}
           // marks={marks}
           value={playHead?.valueOf()} 
-          onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(new Date(value))}}
+          onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(value)}}
         /> }
         {/* <DialogContentText> */}
           <CopyableText value={shareTimestamp ? window.location.href : removeSearchParam(window.location.href, 't')} />
         {/* </DialogContentText> */}
       </DialogContent>
-      <DialogActions>
-        {/* <Button sx={{paddingX:'50px'}} onClick={onShare}>Share</Button> */}
-        <Button sx={{paddingX:'50px'}} onClick={onClose}>Close</Button>
+      <DialogActions sx={{display:'flex', justifyContent:'center'}}>
+        {context === 'clip' && <Button sx={{width:'130px'}} onClick={onShare}>Create GIF</Button>}
+        <Button sx={{width:'130px'}} onClick={onClose}>Close</Button>
       </DialogActions>
     </Dialog>
   )

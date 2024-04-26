@@ -23,8 +23,14 @@ type Mark = {
   label?: ReactNode
 }
 
-export default function Playback({}){
-  const playHead = useStore(state=>state.playHead);
+type Props = {
+  minTimestamp?: number,
+  maxTimestamp?: number,
+  loop?:boolean
+}
+
+export default function Playback(props:Props){
+  const playhead = useStore(state=>state.playhead);
   const setPlayHead = useStore(state=>state.setPlayHead);
   const incrementPlayhead = useStore(state=>state.incrementPlayHead);
   const game = useStore(state=>state.game);
@@ -35,6 +41,8 @@ export default function Playback({}){
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isClipping, setIsClipping] = useState(false);
   const [clipTimes, setClipTimes] = useState<[number, number]>([0, 0]);
+  const minTimestamp = props.minTimestamp!=undefined ? props.minTimestamp : game?.game_found.log_time.valueOf() || 0;
+  const maxTimestamp = props.maxTimestamp!=undefined ? props.maxTimestamp : game?.latest_log_time.valueOf() || 0;
   type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
   type Action = {type:'increase'} | {type:'decrease'} | {type:'reset'} | {type:'set', to:SpeedMultiplier};
   function playbackSpeedReducer(state: SpeedMultiplier, action: Action): SpeedMultiplier {
@@ -52,39 +60,41 @@ export default function Playback({}){
   const [playbackSpeed, updatePlaybackSpeed] = useReducer(playbackSpeedReducer, 1);
 
   useEffect(()=>{ //sync playhead with url time
-    let timeDiff = getTimeDifferenceFromString(t, game?.game_found?.log_time);
+    let timeDiff = getTimeDifferenceFromString(t, minTimestamp);
     if(timeDiff){
-      setPlayHead(timeDiff);
+      setPlayHead(timeDiff.valueOf());
       setIsPlaying(false);
     }
     else{
-      setPlayHead(game?.game_found.log_time);
-      setIsPlaying(true);
+      if(game){
+        setPlayHead(minTimestamp);
+        setIsPlaying(true);
+      }
     }
-  }, [game?.game_found.log_time.valueOf()]);
+  }, [minTimestamp]);
 
   useEffect(()=>{ //sync url time with playhead
-    if(game?.game_found.log_time){
-      const {hours, minutes, seconds} = getTimeComponents(game?.game_found.log_time, playHead);
+    if(minTimestamp!==undefined){
+      const {hours, minutes, seconds} = getTimeComponents(minTimestamp, playhead);
       let timeString = getTimeString({hours, minutes, seconds});
       setT(timeString);
     }
-  }, [playHead]);
+  }, [playhead]);
 
   useEffect(()=>{
     if(isPlaying){
       let playInterval = setInterval(()=>{
-        incrementPlayhead(Math.sign(playbackSpeed)*1000, clipTimes, isClipping)
+        incrementPlayhead(Math.sign(playbackSpeed)*1000, isClipping ? clipTimes : [minTimestamp, props.loop? maxTimestamp : undefined], props.loop || isClipping)
       }, 1000 / Math.abs(playbackSpeed));
       return ()=>clearInterval(playInterval);
     }
   }, [isPlaying, playbackSpeed]);
   
-  if(!game || !playHead)
+  if(!game || playhead===undefined)
     return <></>
 
   
-  const getLabel = (value:number, from:number = game.game_found.log_time.valueOf())=>{
+  const getLabel = (value:number, from:number = minTimestamp)=>{
     let {hours, minutes, seconds} = getTimeComponents(from, value);
     return getTimeString({hours, minutes, seconds});
   }
@@ -97,7 +107,8 @@ export default function Playback({}){
         label:<Tooltip arrow title={`Node ${nodeNum}`}>{coloredText(nodeNum, mission?.mission_phase_end?.Failed ?'#851C20':'#159155' )}</Tooltip>
       });
     if(isClipping)
-      marks.push({value:playHead.valueOf(), label: getLabel(playHead.valueOf(), Math.min(...clipTimes))})
+      marks.push({value:playhead
+    , label: getLabel(playhead, Math.min(...clipTimes))})
   });
   return (
     <>
@@ -110,7 +121,7 @@ export default function Playback({}){
             if(!isClipping) return;
             let minClipTime = Math.min(...clipTimes);
             let maxClipTime = Math.max(...clipTimes)
-            setPlayHead(new Date(minClipTime));
+            setPlayHead(minClipTime);
             setClipTimes([minClipTime, maxClipTime]);
             setIsPlaying(true);
           },
@@ -121,20 +132,20 @@ export default function Playback({}){
         }}}
         valueLabelDisplay="auto" 
         valueLabelFormat={value=>getLabel(value)} 
-        min={game.game_found.log_time.valueOf()} 
-        max={game.latest_log_time.valueOf()}
+        min={minTimestamp} 
+        max={maxTimestamp}
         marks={marks}
-        value={isClipping ? clipTimes : playHead.valueOf() } 
+        value={isClipping ? clipTimes : playhead } 
         onChange={(evt, value, activeThumb)=>{
           if(typeof value === 'number')
-            setPlayHead(new Date(value));
+            setPlayHead(value);
           else {
             if(activeThumb === 0){
-              setPlayHead(new Date(value[0]));
+              setPlayHead(value[0]);
               setClipTimes((clipTimes)=>[value[0], clipTimes[1]]);
             }
             else {
-              setPlayHead(new Date(value[1]));
+              setPlayHead(value[1]);
               setClipTimes((clipTimes)=>[clipTimes[0], value[1]]);
             }
           }
@@ -158,7 +169,8 @@ export default function Playback({}){
           </Stack> 
         : 
           <form action={async ()=>{
-            let clip = await createClip(game.id, clipTimes[0]-game.game_found.log_time.valueOf(), clipTimes[1]-game.game_found.log_time.valueOf());
+            let baseTime = game.game_found.log_time.valueOf(); //has to be from game_found.log_time for clips of clips
+            let clip = await createClip(game.id, clipTimes[0]-baseTime, clipTimes[1]-baseTime);
             let link = `${window.location.protocol}//${window.location.host}/clip?id=${clip.id}`;
             await copyToClipboard(link);
             pushNotification(<Notification>Copied Clip Link!</Notification>);
@@ -174,7 +186,7 @@ export default function Playback({}){
           <IconButton onClick={()=>{
             setIsClipping(c=>{
               if(!c){
-                setClipTimes(c=>[playHead.valueOf(), playHead.valueOf()+60_000]); //default cliptimes
+                setClipTimes(c=>[playhead, Math.min(playhead+60_000, maxTimestamp)]); //default cliptimes
                 setIsPlaying(true);
                 updatePlaybackSpeed({type:'set', to:4 });
               }
@@ -190,7 +202,7 @@ export default function Playback({}){
         </Stack>
       </Stack>
     </Stack>
-    <ShareDialog open={isShareOpen} onClose={()=>setIsShareOpen(false)} />
+    <ShareDialog open={isShareOpen} minTimestamp={minTimestamp} t={t} maxTimestamp={maxTimestamp} onClose={()=>setIsShareOpen(false)} />
     </>
   );
 }

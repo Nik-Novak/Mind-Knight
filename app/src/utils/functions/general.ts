@@ -45,11 +45,10 @@ export const dateTimeReviver = (key: any, value: any) => {
   };
 
 export function getTimeComponents(from: Date | number, to?: Date | number) {
-  let fromDate = typeof from === 'number' ? new Date(from) : from;
-  let toDate = to ? (typeof to === 'number' ? new Date(to) : to) : new Date();
+  let toStamp = to!==undefined ? to.valueOf() : new Date().valueOf();
 
   // Calculate the difference in milliseconds
-  let timeDifference = toDate.getTime() - fromDate.getTime();
+  let timeDifference = toStamp - from.valueOf();
 
   // Convert milliseconds to seconds, minutes, and hours
   let seconds = Math.floor((timeDifference / 1000) % 60);
@@ -59,8 +58,8 @@ export function getTimeComponents(from: Date | number, to?: Date | number) {
   return { seconds, minutes, hours };
 }
 
-export function getTimeDifferenceFromString(timeString?: string|null, from?: Date) {
-  if(!timeString || !from) return undefined;
+export function getTimeDifferenceFromString(timeString?: string|null, from?: Date|number) {
+  if(!timeString || from===undefined) return undefined;
   const regex = /(?:(\d+)\s*h)?\s*(?:(\d+)\s*m)?\s*(\d+)\s*s/;
   const match = timeString.match(regex);
   if (!match) {
@@ -71,7 +70,7 @@ export function getTimeDifferenceFromString(timeString?: string|null, from?: Dat
   const minutes = match[2] ? parseInt(match[2], 10) : 0;
   const seconds = parseInt(match[3], 10);
   const totalMilliseconds = hours * 60 * 60 * 1000 + minutes * 60 * 1000 + seconds * 1000;
-  return new Date(from.getTime() + totalMilliseconds);
+  return from.valueOf() + totalMilliseconds;
 }
 
 export function getTimeString({hours, minutes, seconds}: {hours?:number, minutes?:number, seconds:number}){
