@@ -19,6 +19,8 @@
   flex:1;
   align-items: center;
   max-width: 100vh;
+  /* margin-left: calc(-1*min(25%, 400px)); */
+  margin-left: calc(-1*min(10%, 300px));
 }
 
 .right {
@@ -38,6 +40,10 @@
     transform: translateX(-50%); /* Translate back by half of its own width */
     z-index: 100;
     max-width: 400px;
+  }
+
+  .center {
+    margin-left: 0;
   }
 
   /* .center > *:nth-child(2) {
