@@ -323,9 +323,12 @@ model GlobalChatMessage {
 model Clip {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
 
+  title           String
   offset_start    Int
   offset_end      Int
 
+  player        Player      @relation(fields: [game_id], references: [id])
+  player_id     String      @db.ObjectId
   game          Game        @relation(fields: [game_id], references: [id])
   game_id       String      @db.ObjectId
 
@@ -420,6 +423,7 @@ model Player {
   name      String
   level     Int           @default(1)
   elo       Float         @default(1500)
+  clips     Clip[]
   games     Game[]        @relation(fields: [game_ids], references: [id])
   game_ids  String[]      @db.ObjectId
 

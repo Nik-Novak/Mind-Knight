@@ -191,8 +191,10 @@ export async function simulate(data:FormData){
   await requestServerSimulation('_temp/Player.log', parseInt(timeBetweenLinesMS), startAtGameFound);
 }
 
-export async function createClip(game_id:string, offset_start:number, offset_end:number){
+export async function createClip(title:string, game_id:string, player_id:string, offset_start:number, offset_end:number){
   return await database.clip.create({data:{
+    title,
+    player_id,
     game_id,
     offset_start,
     offset_end

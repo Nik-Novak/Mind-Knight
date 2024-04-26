@@ -32,7 +32,7 @@ export default function MissionControls({mission, inMission, isHacker}:Props){
     return (
       <Stack alignItems='center' sx={{position:'absolute', top:'45%'}}>
       <Typography color={mission.mission_phase_end?.Failed ? palette.custom.hacked : palette.custom.secured} variant="h5">Node {mission.mission_phase_start.Mission} {mission.mission_phase_end?.Failed ? 'COMPROMISED' : 'SECURED'}</Typography>
-      <Typography variant="h6">{ numHacks || 'No'} hacker{numHacks>1?'s':''} detected.</Typography>
+      <Typography variant="h6">{ numHacks || 'No'} hacker{numHacks==1?'':'s'} detected.</Typography>
     </Stack>
     )
   }
