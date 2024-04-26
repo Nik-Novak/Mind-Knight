@@ -30,9 +30,20 @@ To access MindKnight rewind:
 * Choose a game and click "View"
 ![MindKnight-Replays-Login](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/971d48f7-e4ab-42fe-ad5a-79e22a9c928f)
 
+# Clips
+To create a MindKnight clip:
+* Launch (see How to get started)
+* Login by clicking the "Login" button
+* When logged in, view any game
+* Click the clips icon
+* Select the time range you want to clip
+* Title, and publish your clip
+![MindKnight-Create-Clip-compressed](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/c9acd559-41d8-4c93-ae79-03944e31940e)
+
+
 # Updating?
 Just download the latest version from above, then delete your old files and replace them!
-Or try updating on the main menu (WIP).
+Or try updating on the main menu (Look for the UPDATE/REINSTALL link).
 
 # Help with the interface
 ![MindKnight-UI](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/0db114cb-a2b8-472d-83e7-1a9d2d6bf1b5)
