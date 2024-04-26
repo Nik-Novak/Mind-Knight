@@ -118,20 +118,40 @@ export default function Playback(props:Props){
       <Slider 
         size={isClipping ? "small" : "medium"}
         color={isClipping ? "warning" : "primary"}
-        slotProps={{thumb:{
-          onMouseUp:()=>{
-            if(!isClipping) return;
-            let minClipTime = Math.min(...clipTimes);
-            let maxClipTime = Math.max(...clipTimes)
-            setPlayHead(minClipTime);
-            setClipTimes([minClipTime, maxClipTime]);
-            setIsPlaying(true);
-          },
-          onMouseDown:()=>{
-            if(!isClipping) return;
-            setIsPlaying(false);
+        slotProps={{
+          // thumb:{
+          //   onMouseUp:()=>{
+          //     console.log('mu')
+          //     if(!isClipping) return;
+          //     let minClipTime = Math.min(...clipTimes);
+          //     let maxClipTime = Math.max(...clipTimes)
+          //     setPlayHead(minClipTime);
+          //     setClipTimes([minClipTime, maxClipTime]);
+          //     setIsPlaying(true);
+          //   },
+          //   onMouseDown:()=>{
+          //     console.log('md')
+          //     if(!isClipping) return;
+          //     setIsPlaying(false);
+          //   }
+          // },
+          root:{
+            onMouseUp:()=>{
+              // console.log('mu')
+              if(!isClipping) return;
+              let minClipTime = Math.min(...clipTimes);
+              let maxClipTime = Math.max(...clipTimes)
+              setPlayHead(minClipTime);
+              setClipTimes([minClipTime, maxClipTime]);
+              setIsPlaying(true);
+            },
+            onMouseDown:()=>{
+              // console.log('md')
+              if(!isClipping) return;
+              setIsPlaying(false);
+            }
           }
-        }}}
+        }}
         valueLabelDisplay="auto" 
         valueLabelFormat={value=>getLabel(value)} 
         min={minTimestamp} 
@@ -139,6 +159,8 @@ export default function Playback(props:Props){
         marks={marks}
         value={isClipping ? clipTimes : playhead } 
         onChange={(evt, value, activeThumb)=>{
+          console.log('c')
+          // setIsPlaying(false);
           if(typeof value === 'number')
             setPlayHead(value);
           else {
