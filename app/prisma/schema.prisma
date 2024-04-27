@@ -480,8 +480,6 @@ model MindnightSession {
   steam_id    String
   status      MindnightSessionStatus
 
-  authenticated_directly  Boolean
-
   client      Client  @relation(fields: [client_id], references: [id], onDelete: Cascade)
   client_id   String  @db.ObjectId @unique
 
