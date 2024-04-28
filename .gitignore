@@ -44,9 +44,6 @@ app/__transfer__/data
 app/__transfer__/complete*
 app/__transfer__/partial
 app/__transfer__/error
-app/__test__/data
-app/__test__/complete*
-app/__test__/error
 app/_temp/*
 !app/_temp/.gitkeep
 app/.env*
