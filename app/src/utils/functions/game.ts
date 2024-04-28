@@ -228,9 +228,3 @@ export function getHappeningMission(missions?:Missions, playhead?:number, afterM
     return isHappening(mission?.mission_phase_start.log_time, playhead, mission?.mission_phase_end?.log_time.valueOf(), afterMissionBuffer) && mission || undefined;
   }, undefined);
 }
-
-export function getColoredUsername(game_players:GamePlayers, slot:PlayerSlot, key?: Key){
-  let game_player = game_players[slot];
-  let color = game_player?.Color!=undefined ? colors[game_player.Color as ColorCode].hex : '#fff'
-  return coloredText(game_player?.Username, color, key);
-}

@@ -1,11 +1,12 @@
 "use client";
 import { PlayerSlot } from "@/types/game";
-import { getColoredUsername, hasHappened } from "@/utils/functions/game";
+import { hasHappened } from "@/utils/functions/game";
 import { insertBetween } from "@/utils/functions/general";
 import { useStore } from "@/zustand/store";
 import { IconButton, Stack, Typography, useTheme } from "@mui/material";
 import { Mission } from "@prisma/client";
 import { useSettings } from "../SettingsProvider";
+import { getColoredUsername } from "@/utils/functions/jsx";
 
 type Props = {
   mission?: Mission,
