@@ -1,4 +1,5 @@
 import { LogEvents } from '@/types/events';
+import { OmitStartsWith } from '@/types/general';
 import { getCurrentMissionNumber, getCurrentNumProposals, getLatestProposal } from '@/utils/functions/game';
 import { PrismaClient, PlayerIdentity, Prisma, Game, Client, MindnightSession, MindnightSessionStatus, Proposal,  } from '@prisma/client'
 // let modelnames = Prisma.dmmf.datamodel.models.map(m=>m.name); Value `in` modelnames
