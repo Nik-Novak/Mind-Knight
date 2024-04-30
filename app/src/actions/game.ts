@@ -134,21 +134,35 @@ export async function uploadGames(){
     }});
 }
 
-export async function updateGameOnServer(game: Game){
+export async function requestClientInit(){
   return new Promise<void>((resolve, reject)=>{
-    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
-        throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
-    const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
-    tempSocket.onopen = ()=>{
-      let packet:ServerEventPacket<'GameUpdate'> = {
-        type:'GameUpdate',
-        payload: [game]
+    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS) throw reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS (connection to server ws for log events)');
+    const ws = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+    ws.onopen = (t)=>{
+      let packet:ServerEventPacket<'ClientInit'> = {
+        type: 'ClientInit',
+        payload:[]
       }
-      tempSocket.send(JSON.stringify(packet));
+      ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
       resolve()
     }
   });
 }
+// export async function updateGameOnServer(game: Game){
+//   return new Promise<void>((resolve, reject)=>{
+//     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
+//         throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
+//     const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+//     tempSocket.onopen = ()=>{
+//       let packet:ServerEventPacket<'GameUpdate'> = {
+//         type:'GameUpdate',
+//         payload: [game]
+//       }
+//       tempSocket.send(JSON.stringify(packet));
+//       resolve()
+//     }
+//   });
+// }
 async function requestServerSimulation(gameFilepath: string, timeBetweenLinesMS:number=100, startAtGameFound:boolean=false){
   return new Promise<void>((resolve, reject)=>{
     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)

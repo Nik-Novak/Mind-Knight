@@ -41,11 +41,51 @@ export async function getSkinSrc(name:string):Promise<SkinSrc|undefined>{
   let gameskinPath = 'public/img/skins/'+name+'.png';
   if(fs.existsSync(gameskinPath))
     return {name, src:gameskinPath.substring(gameskinPath.indexOf('/'))};
-  let customSkin = await database.customSkin.findFirst({where:{name},include:{owner:true}});
+  let customSkin = await database.customSkin.findFirst({
+    where:{name},
+    select:{
+      approved:true,
+      base64_data:true,
+      created_at:true,
+      description:true,
+      id:true,
+      name:true,
+      owner:true,
+      owner_id:true,
+      unlocked_game_ids:true,
+      updated_at:true,
+      unlocked_games:{
+        omit:{
+          $addChatMessage:true,
+          $addChatUpdate:true,
+          $addConnectionUpdate:true,
+          $addIdleStatusUpdate:true,
+          $addVoteMade:true,
+          $endGame:true,
+          $endMission:true,
+          $endProposal:true,
+          $endVote:true,
+          $spawnPlayer:true,
+          $startGame:true,
+          $startMission:true,
+          $startProposal:true,
+          $startVote:true,
+          $syncRemote:true,
+          $updateProposalSelection:true,
+          chat:true,
+          context:true,
+          game_end:true,
+          game_players:true,
+          game_start:true,
+          missions:true
+        }
+      }
+    }
+  });
   if(!customSkin) return undefined;
   let notApprovedAndNotYours = !customSkin.approved && customSkin.owner_id!==player_id ;
   if(notApprovedAndNotYours) return undefined;
-  return { src:customSkin?.base64_data, name, owner:customSkin.owner.name, created_at:customSkin.created_at, stolen:'never' }
+  return { src:customSkin?.base64_data, name, custom_skin:customSkin }
 }
 
 export async function approveSkin(name:string){

@@ -40,7 +40,7 @@ export function ServerEventsProvider({ children }:Props) {
       serverEvents.emit(packet.type, ...packet.payload);
     }
 
-    serverEvents.on('GameUpdate', game=>{
+    serverEvents.on('GameUpdate', (game)=>{
       if(window.location.pathname !== '/clip' && window.location.pathname !== '/rewind')
         setGame(game);
     });

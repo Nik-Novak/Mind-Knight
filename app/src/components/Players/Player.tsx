@@ -1,6 +1,6 @@
 "use client";
 import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
-import { Stack, Tooltip, TooltipProps, Typography, tooltipClasses } from "@mui/material";
+import { Stack, Tooltip, TooltipProps, Typography } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
 import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
@@ -22,9 +22,7 @@ import { getDbPlayer } from "@/actions/game";
 
 import agentBadge from './agent_badge.png';
 import hackerBadge from './hacker_badge.png';
-import { chatMessageMiddleware } from "@/utils/functions/chat";
-import { checkResourceExists } from "@/utils/functions/general";
-import { getSkinSrc, getSkins } from "@/actions/skins";
+import { getSkinSrc } from "@/actions/skins";
 import _ from "lodash";
 import { SkinSrc } from "@/types/skins";
 import ChatBubble from "./ChatBubble";
@@ -130,13 +128,13 @@ export default function Player({ slot, role, numPlayers, username, color, player
           <Tooltip
             placement="bottom"
             disableInteractive
-            disableHoverListener={!skinSrc?.owner}
+            disableHoverListener={!skinSrc?.custom_skin}
             title={<Stack>
                 <Typography variant="h5">Custom Skin</Typography>
                 <Typography>name: {skinSrc?.name}</Typography>
-                <Typography>owner: {skinSrc?.owner}</Typography>
-                <Typography>stolen: {skinSrc?.stolen}</Typography>
-                <Typography>created: {skinSrc?.created_at?.toDateString()}</Typography>
+                <Typography>owner: {skinSrc?.custom_skin?.owner.name}</Typography>
+                <Typography>stolen: {skinSrc?.custom_skin?.unlocked_games[0]?.game_found.log_time.toDateString() || 'never'}</Typography>
+                <Typography>created: {skinSrc?.custom_skin?.created_at.toDateString()}</Typography>
               </Stack>
             }>
               <img
