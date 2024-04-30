@@ -26,6 +26,7 @@ import { getSkinSrc } from "@/actions/skins";
 import _ from "lodash";
 import { SkinSrc } from "@/types/skins";
 import ChatBubble from "./ChatBubble";
+import CustomSkinStats from "../CustomSkinStats";
 
 const roleToBadgeMap = {
   [PlayerRole.agent]: agentBadge,
@@ -127,14 +128,12 @@ export default function Player({ slot, role, numPlayers, username, color, player
         <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <Tooltip
             placement="bottom"
-            disableInteractive
+            // disableInteractive
             disableHoverListener={!skinSrc?.custom_skin}
-            title={<Stack>
+            arrow
+            title={<Stack alignItems={'center'}>
                 <Typography variant="h5">Custom Skin</Typography>
-                <Typography>name: {skinSrc?.name}</Typography>
-                <Typography>owner: {skinSrc?.custom_skin?.owner.name}</Typography>
-                <Typography>stolen: {skinSrc?.custom_skin?.unlocked_games[0]?.game_found.log_time.toDateString() || 'never'}</Typography>
-                <Typography>created: {skinSrc?.custom_skin?.created_at.toDateString()}</Typography>
+                {skinSrc?.custom_skin && <CustomSkinStats customSkin={skinSrc.custom_skin} /> }
               </Stack>
             }>
               <img

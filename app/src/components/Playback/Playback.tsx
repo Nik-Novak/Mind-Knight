@@ -31,8 +31,8 @@ type Props = {
 
 export default function Playback(props:Props){
   const playhead = useStore(state=>state.playhead);
-  const setPlayHead = useStore(state=>state.setPlayHead);
-  const incrementPlayhead = useStore(state=>state.incrementPlayHead);
+  const setPlayhead = useStore(state=>state.setPlayhead);
+  const incrementPlayhead = useStore(state=>state.incrementPlayhead);
   const game = useStore(state=>state.game);
   const { pushNotification } = useNotificationQueue();
   // const searchParams = useSearchParams();
@@ -64,12 +64,12 @@ export default function Playback(props:Props){
   useEffect(()=>{ //sync playhead with url time
     let timeDiff = getTimeDifferenceFromString(t, minTimestamp);
     if(timeDiff){
-      setPlayHead(timeDiff.valueOf());
+      setPlayhead(timeDiff.valueOf());
       setIsPlaying(false);
     }
     else{
       if(game){
-        setPlayHead(minTimestamp);
+        setPlayhead(minTimestamp);
         setIsPlaying(true);
       }
     }
@@ -141,7 +141,7 @@ export default function Playback(props:Props){
               if(!isClipping) return;
               let minClipTime = Math.min(...clipTimes);
               let maxClipTime = Math.max(...clipTimes)
-              setPlayHead(minClipTime);
+              setPlayhead(minClipTime);
               setClipTimes([minClipTime, maxClipTime]);
               setIsPlaying(true);
             },
@@ -162,14 +162,14 @@ export default function Playback(props:Props){
           console.log('c')
           // setIsPlaying(false);
           if(typeof value === 'number')
-            setPlayHead(value);
+            setPlayhead(value);
           else {
             if(activeThumb === 0){
-              setPlayHead(value[0]);
+              setPlayhead(value[0]);
               setClipTimes((clipTimes)=>[value[0], clipTimes[1]]);
             }
             else {
-              setPlayHead(value[1]);
+              setPlayhead(value[1]);
               setClipTimes((clipTimes)=>[clipTimes[0], value[1]]);
             }
           }

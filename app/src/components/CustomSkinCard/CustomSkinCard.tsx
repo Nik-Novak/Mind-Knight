@@ -9,22 +9,21 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Avatar from '../Avatar';
-import { CustomSkin, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import _ from 'lodash';
-import { Button } from '@mui/material';
 import FormButton from '../FormButton';
 import { approveSkin, equipSkin, revokeSkinApproval, unequipSkin } from '@/actions/skins';
 import { useNotificationQueue } from '../NotificationQueue';
 import Notification from '../Notification';
-import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { ReactNode } from 'react';
+import CustomSkinStats from '../CustomSkinStats';
+import { CustomSkinInfoPayload } from '@/types/skins';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -43,7 +42,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 type Props = {
-  customSkin:Prisma.CustomSkinGetPayload<{include:{owner:true}}>,
+  customSkin:CustomSkinInfoPayload,
   equipped?: boolean,
   renderContext?: 'admin'
 }
@@ -151,6 +150,7 @@ export default function CustomSkinCard({ customSkin, equipped=false, renderConte
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>{customSkin.description}</Typography>
+          <CustomSkinStats customSkin={customSkin} />
         </CardContent>
       </Collapse>
     </Card>

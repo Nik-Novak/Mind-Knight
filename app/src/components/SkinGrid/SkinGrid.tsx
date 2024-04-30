@@ -2,9 +2,10 @@ import { Grid, SxProps, Theme } from "@mui/material";
 import { CustomSkin, Prisma } from "@prisma/client";
 import CustomSkinCard from "../CustomSkinCard";
 import SkinCard from "../SkinCard";
+import { CustomSkinInfoPayload } from "@/types/skins";
 type Props = {
   sx?: SxProps<Theme>
-  skins:Prisma.CustomSkinGetPayload<{include:{owner:true}}>[] | string[];
+  skins:CustomSkinInfoPayload[] | string[]; //accepts both custom skins and game skins
   equippedSkin?:string;
   renderContext?:'admin';
 }

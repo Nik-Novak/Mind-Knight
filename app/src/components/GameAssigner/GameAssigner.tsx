@@ -9,13 +9,13 @@ type Props = {
 }
 export default function GameAssigner({game, time}:Props){
   const setGame = useStore(state=>state.setGame);
-  const setPlayHead = useStore(state=>state.setPlayHead);
+  const setPlayhead = useStore(state=>state.setPlayhead);
   useEffect(()=>{
     if(game){
       setGame(game);
       if(time){
         console.log('SET PLAYHEAD TO', time);
-        setPlayHead(time);
+        setPlayhead(time);
       }
     }
   }, [game.id]);
