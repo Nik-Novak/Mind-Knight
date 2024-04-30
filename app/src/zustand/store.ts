@@ -36,7 +36,7 @@ export const useStore = create<Store>((set)=>({
         let newMaxTurns = maxTurns(newNode, state.game.game_players);
         let selectedTurn = Math.min(newMaxTurns, state.selectedTurn, 1); //ensuring turn exists
         let newPlayhead = state.game.missions[newNode]?.mission_phase_end?.log_time.valueOf() || state.game.latest_log_time.valueOf();
-        return ({selectedNode: newNode, selectedTurn, playHead:newPlayhead});
+        return ({selectedNode: newNode, selectedTurn, playhead:newPlayhead});
       }
     }
     return state; //default no changes
