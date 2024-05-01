@@ -30,7 +30,6 @@ function RewindPage() {
     if(session?.user.player_id)
       fetchClips(); //initial fetch
   }, [session?.user.player_id, myClipsOnly, settings.josh_mode]);
-console.log(clips);
   return (
     <>
       <Background id='content' className={styles.main}>

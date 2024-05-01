@@ -3,17 +3,22 @@ import fs from 'fs';
 import { getServerSession } from "next-auth";
 import { database } from "../../prisma/database/database";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { SkinSrc } from '@/types/skins';
+import { CustomSkinInfoSelect, SkinSrc } from '@/types/skins';
 import { verifyIsAdmin } from './admin';
+import { Prisma } from '@prisma/client';
 
-const customSkinSelect/* TODO type this properly :Prisma.CustomSkinSelect<InternalArgs & Prisma.Result<typeof database.customSkin, undefined, 'create'>>*/ = {
+const customSkinSelect:CustomSkinInfoSelect/* TODO type this properly :Prisma.CustomSkinSelect<InternalArgs & Prisma.Result<typeof database.customSkin, undefined, 'create'>>*/ = {
   approved:true,
   base64_data:true,
   created_at:true,
   description:true,
   id:true,
   name:true,
-  owner:true,
+  owner:{
+    include:{
+      user:true
+    }
+  },
   owner_id:true,
   unlocked_game_ids:true,
   updated_at:true,
@@ -54,15 +59,21 @@ export async function uploadCustomSkin(name:string, description:string, base64_d
   return database.customSkin.create({data:{ approved:true, owner_id, unlocked_player_ids:[owner_id], name:name.toLowerCase().replaceAll(' ', '_'), description, base64_data}})
 }
 
-export async function getUnlockedCustomSkins(){
+export async function getCustomSkins(){
   const session = await getServerSession(authOptions);
   const owner_id = session?.user.player_id;
-  return database.customSkin.findMany({where:{owner_id}, select:customSkinSelect})
+  let unlocked = await database.customSkin.findMany({where:{unlocked_player_ids:{has:owner_id}}, select:customSkinSelect});
+  let locked = await database.customSkin.findMany({where:{NOT:{unlocked_player_ids:{has:owner_id}}}, select:customSkinSelect});
+  return {unlocked, locked}
 }
 
-export async function getCustomSkins(){
-  return database.customSkin.findMany({select:customSkinSelect});
+export async function getTotalCustomSkins(){
+  return database.customSkin.count();
 }
+
+// export async function getCustomSkins(){
+//   return database.customSkin.findMany({select:customSkinSelect});
+// }
 
 export async function getEquippedSkin(){
   const session = await getServerSession(authOptions);

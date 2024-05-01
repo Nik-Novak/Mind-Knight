@@ -5,6 +5,25 @@ import { Game, PlayerIdentity } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { ServerEventPacket } from "@/types/events";
 import LogEventEmitter from '@/utils/classes/LogEvents/LogEventEmitter';
+import { GamesInfoSelect } from '@/types/games';
+
+const gamesInfoSelect:GamesInfoSelect = {
+  id:true,
+  title:true,
+  // chat:true,
+  created_at:true,
+  game_end:true,
+  game_found:true,
+  // game_players:true,
+  // game_start:true,
+  // missions:true,
+  player_ids:true,
+  players:true,
+  // raw_games:true,
+  updated_at:true,
+  latest_log_time: true,
+  source:true
+};
 
 let joshId:string|undefined;
 async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, offset:number=0, limit:number=50){
@@ -21,23 +40,7 @@ async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, off
     orderBy:{
       created_at:'desc'
     },
-    select:{
-      id:true,
-      title:true,
-      // chat:true,
-      created_at:true,
-      game_end:true,
-      game_found:true,
-      // game_players:true,
-      // game_start:true,
-      // missions:true,
-      player_ids:true,
-      players:true,
-      // raw_games:true,
-      updated_at:true,
-      latest_log_time: true,
-      source:true
-    },
+    select:gamesInfoSelect,
     skip:offset,
     take:limit,
   });

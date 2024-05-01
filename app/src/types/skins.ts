@@ -1,13 +1,17 @@
 import { CustomSkin, Prisma } from "@prisma/client"
 
-export type CustomSkinInfoPayload = Prisma.CustomSkinGetPayload<{select:{
+export type CustomSkinInfoSelect = {
   approved:true,
   base64_data:true,
   created_at:true,
   description:true,
   id:true,
   name:true,
-  owner:true,
+  owner:{
+    include:{
+      user:true
+    }
+  },
   owner_id:true,
   unlocked_game_ids:true,
   updated_at:true,
@@ -38,7 +42,9 @@ export type CustomSkinInfoPayload = Prisma.CustomSkinGetPayload<{select:{
       missions:true
     }
   }
-}}>
+}
+
+export type CustomSkinInfoPayload = Prisma.CustomSkinGetPayload<{select:CustomSkinInfoSelect}>
 
 export type SkinSrc = {
   src:string,

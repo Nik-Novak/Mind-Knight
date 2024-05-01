@@ -17,11 +17,12 @@ import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 import Link from "next/link";
 import { reportGameIssue, updateGameTitle } from "@/actions/game";
+import { GamesInfoPayload } from "@/types/games";
 
 const DEFAULT_ITEMS_PER_PAGE = 11;
 
 //1. Create a types.d.ts file in the services directory and create your flattened admin-specific type
-type DataType = Game; //2. change this to the type you want
+type DataType = GamesInfoPayload; //2. change this to the type you want
 
 type GridProps<DataType> = {
   sx?: SxProps,
