@@ -1,10 +1,7 @@
 "use client";
 import {Avatar as MUIAvatar, Menu, MenuItem, SxProps, Theme} from '@mui/material'
-import { deepOrange } from '@mui/material/colors'
-import { getServerSession } from 'next-auth';
-import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react';
-import { redirect, usePathname, useRouter } from 'next/navigation';
-import Image from 'next/image'
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 import { ReactNode, useRef, useState } from 'react'
 import { provideSession } from '@/utils/hoc/provideSession';

@@ -15,8 +15,8 @@ type Props = {
 
 export default function GIFRecorder({recording, minTimestamp, maxTimestamp, onFinish}:Props){
   const playhead = useStore(state=>state.playhead);
-  const setPlayhead = useStore(state=>state.setPlayHead);
-  const incrementPlayHead = useStore(state=>state.incrementPlayHead);
+  const setPlayhead = useStore(state=>state.setPlayhead);
+  const incrementPlayhead = useStore(state=>state.incrementPlayhead);
   const [fallbackTrigger, setFallbackTrigger] = useState(false);
   const gif = useRef<GIF|null>(null);
   useEffect(()=>{
@@ -43,7 +43,7 @@ export default function GIFRecorder({recording, minTimestamp, maxTimestamp, onFi
         gif.current.render();
       }
       else
-        incrementPlayHead(1000, [minTimestamp, maxTimestamp]);
+        incrementPlayhead(1000, [minTimestamp, maxTimestamp]);
     }
 
     

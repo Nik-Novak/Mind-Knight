@@ -29,7 +29,7 @@ type Props = {
 
 export default function ShareDialog({open, minTimestamp, t, maxTimestamp, onShare=()=>{}, onClose=()=>{}}:Props){
   const playHead = useStore(state=>state.playhead);
-  const setPlayHead = useStore(state=>state.setPlayHead);
+  const setPlayhead = useStore(state=>state.setPlayhead);
   const [shareTimestamp, setShareTimestamp] = useState(false);
   const context = window.location.pathname === '/clip' ? 'clip' : 
     window.location.pathname === '/game' ? 'game' : undefined;
@@ -50,7 +50,7 @@ export default function ShareDialog({open, minTimestamp, t, maxTimestamp, onShar
           max={maxTimestamp}
           // marks={marks}
           value={playHead?.valueOf()} 
-          onChange={(evt, value)=>{typeof value === 'number' && setPlayHead(value)}}
+          onChange={(evt, value)=>{typeof value === 'number' && setPlayhead(value)}}
         /> }
         {/* <DialogContentText> */}
           <CopyableText value={shareTimestamp ? window.location.href : removeSearchParam(window.location.href, 't')} />

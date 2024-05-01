@@ -5,6 +5,25 @@ import { Game, PlayerIdentity } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { ServerEventPacket } from "@/types/events";
 import LogEventEmitter from '@/utils/classes/LogEvents/LogEventEmitter';
+import { GamesInfoSelect } from '@/types/games';
+
+const gamesInfoSelect:GamesInfoSelect = {
+  id:true,
+  title:true,
+  // chat:true,
+  created_at:true,
+  game_end:true,
+  game_found:true,
+  // game_players:true,
+  // game_start:true,
+  // missions:true,
+  player_ids:true,
+  players:true,
+  // raw_games:true,
+  updated_at:true,
+  latest_log_time: true,
+  source:true
+};
 
 let joshId:string|undefined;
 async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, offset:number=0, limit:number=50){
@@ -21,23 +40,7 @@ async function efficientGamesQuery(playerId?:string, joshMode:boolean=false, off
     orderBy:{
       created_at:'desc'
     },
-    select:{
-      id:true,
-      title:true,
-      // chat:true,
-      created_at:true,
-      game_end:true,
-      game_found:true,
-      // game_players:true,
-      // game_start:true,
-      // missions:true,
-      player_ids:true,
-      players:true,
-      // raw_games:true,
-      updated_at:true,
-      latest_log_time: true,
-      source:true
-    },
+    select:gamesInfoSelect,
     skip:offset,
     take:limit,
   });
@@ -134,21 +137,35 @@ export async function uploadGames(){
     }});
 }
 
-export async function updateGameOnServer(game: Game){
+export async function requestClientInit(){
   return new Promise<void>((resolve, reject)=>{
-    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
-        throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
-    const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
-    tempSocket.onopen = ()=>{
-      let packet:ServerEventPacket<'GameUpdate'> = {
-        type:'GameUpdate',
-        payload: [game]
+    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS) throw reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS (connection to server ws for log events)');
+    const ws = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+    ws.onopen = (t)=>{
+      let packet:ServerEventPacket<'ClientInit'> = {
+        type: 'ClientInit',
+        payload:[]
       }
-      tempSocket.send(JSON.stringify(packet));
+      ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
       resolve()
     }
   });
 }
+// export async function updateGameOnServer(game: Game){
+//   return new Promise<void>((resolve, reject)=>{
+//     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
+//         throw Error('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
+//     const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+//     tempSocket.onopen = ()=>{
+//       let packet:ServerEventPacket<'GameUpdate'> = {
+//         type:'GameUpdate',
+//         payload: [game]
+//       }
+//       tempSocket.send(JSON.stringify(packet));
+//       resolve()
+//     }
+//   });
+// }
 async function requestServerSimulation(gameFilepath: string, timeBetweenLinesMS:number=100, startAtGameFound:boolean=false){
   return new Promise<void>((resolve, reject)=>{
     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)

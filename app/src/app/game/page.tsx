@@ -11,21 +11,24 @@ import Turns from "@/components/Turns";
 import { database } from "../../../prisma/database";
 import Chatbox from "@/components/Chatbox";
 import Settings from "@/components/Settings";
-import { updateGameOnServer } from "@/actions/game";
+// import { updateGameOnServer } from "@/actions/game";
 import Playback from "@/components/Playback";
 import Background from "@/components/Background";
 import Controls from "@/components/Controls";
+import { requestClientInit } from "@/actions/game";
 
 //React server component that securely runs on the server by default
 export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
-  let gameId = searchParams.id;
+  // let gameId = searchParams.id;
   
-  if(gameId){
-    let game = await database.game.findById(gameId);
-    if(game){
-      await updateGameOnServer(game);
-    }
-  }
+  // if(gameId){
+  //   let game = await database.game.findById(gameId);
+  //   if(game){
+  //     await updateGameOnServer(game);
+  //   }
+  // }
+
+  await requestClientInit();
   
   return (
     <>

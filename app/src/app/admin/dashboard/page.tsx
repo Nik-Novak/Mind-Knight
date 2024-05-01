@@ -13,14 +13,14 @@ export default async function AdminDashboardPage() {
   if(!verifyIsAdmin()){
     redirect('/');
   }
-  const customSkins = await getCustomSkins();
+  const {locked, unlocked} = await getCustomSkins();
 
   return (
     <>
       <Background id='content' className={styles.main}>
         <Title sx={{mt:20}} main='Admin Dashboard' secondary='Welcome to the command center' />
         <Typography sx={{mt:20}} variant="h2">Skins</Typography>
-        <SkinGrid sx={{mt:1}} skins={customSkins} renderContext='admin' />
+        <SkinGrid sx={{mt:1}} skins={[...locked, ...unlocked]} renderContext='admin' />
         <Typography sx={{mt:20}} variant="h2">Game Simulator</Typography>
         <GameSimulator sx={{mt:2}} />
       </Background>

@@ -29,8 +29,8 @@ export function MindnightSessionProvider({ children }:Props) {
   }, []);
 
   useEffect(()=>{
-    // if(mindnightSession?.status === 'playing')
-    //   redirect('/game'); //redirect to game page
+    if(mindnightSession?.status === 'playing' && window.location.pathname !== '/game')
+      redirect('/game'); //redirect to game page
   }, [mindnightSession?.status === 'playing']); //when we first get the signal we're playing
 
   return (

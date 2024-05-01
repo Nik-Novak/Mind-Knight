@@ -405,14 +405,14 @@ function processGame(logpath: string, legacy_gameid?:string) {
       );
     });
 
-    logReader.on('MatchUpdatePacket', async (match_update_packet, log_time)=>{
-      packetQueue.push(
-        async()=>{
-          console.log('MATCH UPDATE PACKET', match_update_packet);
-        },
-        'MatchUpdatePacket'
-      );
-    });
+    // logReader.on('MatchUpdatePacket', async (match_update_packet, log_time)=>{
+    //   packetQueue.push(
+    //     async()=>{
+    //       console.log('MATCH UPDATE PACKET', match_update_packet);
+    //     },
+    //     'MatchUpdatePacket'
+    //   );
+    // });
 
     logReader.on('MatchUpdatePacket', async(match_update_packet, log_time)=>{
       packetQueue.push(

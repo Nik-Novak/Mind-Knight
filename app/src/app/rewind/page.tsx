@@ -15,7 +15,7 @@ import Playback from "@/components/Playback";
 import Background from "@/components/Background";
 import Controls from "@/components/Controls";
 import { notFound } from "next/navigation";
-import GameAssigner from "./GameAssigner";
+import GameAssigner from "@/components/GameAssigner/GameAssigner";
 
 //React server component that securely runs on the server by default
 export default async function RewindPage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {

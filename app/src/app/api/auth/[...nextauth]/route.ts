@@ -39,12 +39,14 @@ export const authOptions:NextAuthOptions = {
       let player = await database.player.createOrFind({ //create or find existing player
           data:{
             name: user.name || '',
-            steam_id: matchingAccount.steamId
+            steam_id: matchingAccount.steamId,
+            user_id: user.id
           },
         },
         {
           where:{
-            steam_id: matchingAccount.steamId
+            steam_id: matchingAccount.steamId,
+            user_id: user.id
           }
         }
       );
