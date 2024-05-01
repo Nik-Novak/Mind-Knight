@@ -19,11 +19,12 @@ import Link from "next/link";
 import { reportGameIssue, updateGameTitle } from "@/actions/game";
 import { useRouter } from "next/navigation";
 import { updateClipTitle } from "@/actions/clip";
+import { ClipsInfoPayload } from "@/types/clips";
 
 const DEFAULT_ITEMS_PER_PAGE = 11;
 
 //1. Create a types.d.ts file in the services directory and create your flattened admin-specific type
-type DataType = Prisma.ClipGetPayload<{include:{game:true, player:true}}>; //2. change this to the type you want
+type DataType = ClipsInfoPayload; //2. change this to the type you want
 
 type GridProps<DataType> = {
   sx?: SxProps,

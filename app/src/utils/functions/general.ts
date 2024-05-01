@@ -139,3 +139,72 @@ export function download(blob:Blob, filename:string){
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
+export function clamp(value:Date|number, min?:Date|number, max?:Date|number, loop=false){
+  if(min!==undefined && value.valueOf() < min.valueOf()){
+    return min.valueOf();
+  }
+  else if(max!==undefined && value.valueOf() > max.valueOf()){
+    if(loop && min!=undefined){
+      return min.valueOf();
+    }
+    return max.valueOf();
+  }
+  return value.valueOf();
+}
+
+export function map(value:number, fromMin:number, fromMax:number, toMin:number, toMax:number ){
+  return (toMax - toMin) / (fromMax - fromMin) * value + toMin;
+}
+
+export function getDarkenedImage(base64Image:string){
+  // Create an image element
+  const img = new Image();
+  // Set the source of the image to the base64 string
+  img.src = base64Image;
+  // Create a canvas element
+  const canvas = document.createElement('canvas');
+  // Wait for the image to load
+  return new Promise<string>((resolve, reject)=>{
+    img.onload = () => {
+      // Set canvas dimensions to match image dimensions
+      canvas.width = img.width;
+      canvas.height = img.height;
+      // Get context of the canvas
+      const ctx = canvas.getContext('2d')!;
+      // Draw the image onto the canvas
+      ctx.drawImage(img, 0, 0);
+      
+      // Get image data (pixel data)
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      // Iterate over each pixel
+      for (let i = 0; i < data.length; i += 4) {
+        // Check alpha channel (transparency)
+        const alpha = data[i + 3];
+        // If not transparent, darken the pixel
+        if (alpha !== 0) {
+          // You can adjust the amount of darkening here by modifying the values
+          data[i] *= 0.01; // Red channel
+          data[i + 1] *= 0.05; // Green channel
+          data[i + 2] *= 0.05; // Blue channel
+        }
+      }
+      // Put the modified image data back onto the canvas
+      ctx.putImageData(imageData, 0, 0);
+      // Draw a large white question mark in the middle of the image
+      const questionMarkSize = Math.min(canvas.width, canvas.height) * 0.7;
+      ctx.fillStyle = '#ffffff'; // White color
+      ctx.font = `${questionMarkSize}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('?', canvas.width / 2, canvas.height / 2);
+      // Convert canvas to base64 string
+      const modifiedBase64 = canvas.toDataURL();
+      // Do something with modifiedBase64 (return it or pass it to another function)
+      return resolve(modifiedBase64);
+    };
+    img.onerror = reject;
+  })
+  
+}

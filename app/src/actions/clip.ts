@@ -1,5 +1,26 @@
 "use server";
 import { database } from "@/database";
+import { ClipsInfoSelect } from "@/types/clips";
+
+const clipsInfoSelect:ClipsInfoSelect = {
+  created_at: true,
+  game:{
+    select:{
+      players:true,
+      player_ids:true,
+      game_found:true,
+      game_end:true
+    }
+  },
+  game_id:true,
+  id:true,
+  offset_end:true,
+  offset_start:true,
+  // player:true,
+  player_id:true,
+  title:true,
+  updated_at:true,
+};
 
 let joshId:string|undefined;
 async function efficientQuery(playerId?:string, joshMode:boolean=false, offset:number=0, limit:number=50){
@@ -16,25 +37,7 @@ async function efficientQuery(playerId?:string, joshMode:boolean=false, offset:n
     orderBy:{
       created_at:'desc'
     },
-    select:{
-      created_at: true,
-      game:{
-        select:{
-          players:true,
-          player_ids:true,
-          game_found:true,
-          game_end:true
-        }
-      },
-      game_id:true,
-      id:true,
-      offset_end:true,
-      offset_start:true,
-      // player:true,
-      player_id:true,
-      title:true,
-      updated_at:true,
-    },
+    select:clipsInfoSelect,
     skip:offset,
     take:limit,
   });

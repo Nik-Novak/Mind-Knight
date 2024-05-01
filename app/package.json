@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
     "debug": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./src/_debugger/debugger.ts",
-    "migrate": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./prisma/migrations/add_game_issues.ts",
+    "migrate": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./prisma/migrations/add_skin_unlock_arrays.ts",
     "transfer": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./src/_uploader/uploader.ts",
     "patch": "npx next-ws-cli@latest patch",
     "dev": "DOTENV_KEY=$(npx dotenv-vault keys development) next dev",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@prisma/client": "^5.11.0",
+    "@prisma/client": "^5.13.0",
     "@types/dom-to-image": "^2.6.7",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20",
@@ -70,7 +70,7 @@
     "@types/tail": "^2.2.3",
     "@types/ws": "^8.5.10",
     "jest": "^29.7.0",
-    "prisma": "^5.11.0",
+    "prisma": "^5.13.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
