@@ -19,7 +19,7 @@ export default function GameUploader(){
         await uploadGames();
         setAgreed(false);
         formRef.current?.reset();
-        pushNotification(<Notification>Successfully Queued Uploads. They may take a day or two.</Notification>);
+        pushNotification(<Notification>Successfully Queued Uploads. Ping me to make sure I got them.</Notification>);
       }}
       ref={formRef}
       style={{display:'flex', flexDirection:'column', alignItems:'center'}}
