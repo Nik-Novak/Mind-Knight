@@ -82,7 +82,7 @@ export async function getEquippedSkin(){
 }
 
 export async function getSkins(){
-  let skins = fs.readdirSync('public/img/skins').map(s=>s.replaceAll('.png', ''));
+  let skins = fs.readdirSync('public/img/skins').filter(s=>!s.startsWith('_')).map(s=>s.replaceAll('.png', ''));
   return skins;
 }
 

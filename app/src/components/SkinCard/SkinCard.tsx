@@ -26,6 +26,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import CustomSkinStats from '../CustomSkinStats';
 import { CustomSkinInfoPayload } from '@/types/skins';
 import { getDarkenedImage } from '@/utils/functions/general';
+import { Tooltip } from '@mui/material';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -137,11 +138,11 @@ export default function SkinCard({ skin, isLocked=false, equipped=false, renderC
       );
   }
   else{
-    actions.push(<IconButton><LockIcon color='error' /></IconButton>)
+    actions.push(<Tooltip placement='right' arrow title="To Unlock: Beat this player in a 1v1"><IconButton><LockIcon color='error' /></IconButton></Tooltip>)
   }
 
   return (
-    <Card sx={{ maxWidth: 345, boxShadow: equipped ? '0 0 5px 2px grey' : undefined }}>
+    <Card sx={{ width: expanded ? undefined : isCustom ? 220 : 200, maxWidth:345, boxShadow: equipped ? '0 0 5px 2px grey' : undefined }}>
       { isCustom && 
         <CardHeader
           avatar={
@@ -168,11 +169,7 @@ export default function SkinCard({ skin, isLocked=false, equipped=false, renderC
         <Typography textAlign={'center'} variant="body1">
           {casedSkinName}
         </Typography>
-        {isLocked && 
-          <Typography textAlign={'center'} variant="body1">
-            (beat this player in a 1v1)
-          </Typography>
-        }
+        
         {/* <Typography sx={{mt:2}} variant="body2" color="text.secondary">
           {customSkin.description}
         </Typography> */}

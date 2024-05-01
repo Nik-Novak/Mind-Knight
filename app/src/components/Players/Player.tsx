@@ -141,7 +141,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
                 src={skinSrc?.src || `/img/skins/${skin}.png`}
                 alt="player"
                 onError={(e) => {
-                  e.currentTarget.src = '/img/skins/skin_upload_template.png'; // Replace '/img/fallback.png' with your fallback URL
+                  e.currentTarget.src = '/img/skins/_locked.png'; // Replace '/img/fallback.png' with your fallback URL
                 }}
               />
           </Tooltip>
