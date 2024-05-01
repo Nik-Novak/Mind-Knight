@@ -140,6 +140,23 @@ export function download(blob:Blob, filename:string){
   URL.revokeObjectURL(url);
 }
 
+export function clamp(value:Date|number, min?:Date|number, max?:Date|number, loop=false){
+  if(min!==undefined && value.valueOf() < min.valueOf()){
+    return min.valueOf();
+  }
+  else if(max!==undefined && value.valueOf() > max.valueOf()){
+    if(loop && min!=undefined){
+      return min.valueOf();
+    }
+    return max.valueOf();
+  }
+  return value.valueOf();
+}
+
+export function map(value:number, fromMin:number, fromMax:number, toMin:number, toMax:number ){
+  return (toMax - toMin) / (fromMax - fromMin) * value + toMin;
+}
+
 export function getDarkenedImage(base64Image:string){
   // Create an image element
   const img = new Image();

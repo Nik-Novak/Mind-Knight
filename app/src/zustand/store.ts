@@ -1,5 +1,6 @@
 import { NodeNumber, PlayerSlot } from "@/types/game"
 import { getCurrentMissionNumber, getLatestProposal, getPlayerAction, hasHappened, maxTurns } from "@/utils/functions/game";
+import { clamp } from "@/utils/functions/general";
 import { Game } from "@prisma/client";
 import { create } from 'zustand'
 
@@ -54,19 +55,6 @@ export const useStore = create<Store>((set)=>({
   setPlayhead: (playhead:number)=>set(state=>modifyPlayhead(state, playhead)),
   incrementPlayhead: (by=1000, limits, loop=false)=>set(state=>modifyPlayhead(state, state.playhead+(by), limits, loop)) //TODO add speed controller
 }));
-
-function clamp(value:Date|number, min?:Date|number, max?:Date|number, loop=false){
-  if(min!==undefined && value.valueOf() < min.valueOf()){
-    return min.valueOf();
-  }
-  else if(max!==undefined && value.valueOf() > max.valueOf()){
-    if(loop && min!=undefined){
-      return min.valueOf();
-    }
-    return max.valueOf();
-  }
-  return value.valueOf();
-}
 
 function modifyPlayhead(state:Store, playhead:number, limits?:[number|undefined, number|undefined], loop=false) {
   if(state.game){

@@ -14,6 +14,8 @@ const customSkinSelect:CustomSkinInfoSelect/* TODO type this properly :Prisma.Cu
   description:true,
   id:true,
   name:true,
+  badge_coords:true,
+  badge_width:true,
   owner:{
     include:{
       user:true
@@ -51,12 +53,13 @@ const customSkinSelect:CustomSkinInfoSelect/* TODO type this properly :Prisma.Cu
   }
 }
 
-export async function uploadCustomSkin(name:string, description:string, base64_data:string){
+export async function uploadCustomSkin(name:string, description:string, base64_data:string, badge_coords?:[number, number], badge_width?:number){
   const session = await getServerSession(authOptions);
   const owner_id = session?.user.player_id;
   if(!owner_id)
     throw Error("Must be logged in to upload skins.");
-  return database.customSkin.create({data:{ approved:true, owner_id, unlocked_player_ids:[owner_id], name:name.toLowerCase().replaceAll(' ', '_'), description, base64_data}})
+  console.log('HJERE', badge_coords, badge_width);
+  return database.customSkin.create({data:{ approved:true, owner_id, unlocked_player_ids:[owner_id], name:name.toLowerCase().replaceAll(' ', '_'), description, base64_data, badge_coords, badge_width}})
 }
 
 export async function getCustomSkins(){

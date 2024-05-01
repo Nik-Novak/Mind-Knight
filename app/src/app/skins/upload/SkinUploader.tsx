@@ -4,16 +4,30 @@ import FormButton from "@/components/FormButton";
 import Notification from "@/components/Notification";
 import { useNotificationQueue } from "@/components/NotificationQueue";
 import { provideSession } from "@/utils/hoc/provideSession";
-import { Checkbox, FormControlLabel, Paper, Stack, TextField, Typography } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Paper, Slider, Stack, TextField, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { FileUploader } from 'react-drag-drop-files';
+import agentBadge from './agent_badge.png';
+import { recordTraceEvents } from "next/dist/trace";
+import { clamp, map } from "@/utils/functions/general";
+
+function toDisplayWidth(normalizedWidth:number, canvas:HTMLCanvasElement ){
+  return normalizedWidth * canvas.clientWidth / canvas.width;
+}
+function toDisplayHeight(normalizedHeight:number, canvas:HTMLCanvasElement ){
+  return normalizedHeight * canvas.clientHeight / canvas.height;
+}
 
 function SkinUploader(){
   const [agreed1, setAgreed1] = useState(false);
   const [agreed2, setAgreed2] = useState(false);
   const [agreed3, setAgreed3] = useState(false);
+  const [isDraggingBadge, setIsDraggingBadge] = useState(false);
+  const [badgeCoords, setBadgeCoords] = useState<[number, number]>([14, 20]);
+  const [badgeWidth, setBadgeWidth] = useState(3);
+  const minBadgeX=7, maxBadgeX=23-badgeWidth, minBadgeY=9, maxBadgeY=44-badgeWidth;
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [imgBase64, setImgbase64] = useState<string>();
@@ -72,7 +86,7 @@ function SkinUploader(){
         if(!imgBase64)
           throw Error("Missing file.");
         try{
-          await uploadCustomSkin(name, description, imgBase64);
+          await uploadCustomSkin(name, description, imgBase64, badgeCoords, badgeWidth);
           pushNotification(<Notification>Successfully Added Skin</Notification>);
           formRef.current?.reset();
           router.refresh();
@@ -98,7 +112,54 @@ function SkinUploader(){
           name="file"
           types={['JPG', 'PNG']}
         />
-        <canvas style={{imageRendering:'pixelated'}} ref={imgCanvasRef} />
+        <Stack position='relative'>
+          <canvas style={{imageRendering:'pixelated', cursor:isDraggingBadge ? 'grabbing' : 'grab'}} ref={imgCanvasRef}
+            onMouseDown={(e)=>{
+              setIsDraggingBadge(true);
+            }}
+            onMouseMove={(e)=>{
+              if(!isDraggingBadge) return;
+              // const rect = imgCanvasRef.current!.getBoundingClientRect();
+              // const x = (e.clientX - rect.left) * rect.width/30;
+              // const y = (e.clientY - rect.top) * rect.height/51;
+              // console.log('X', x, e.clientX, rect.left);
+              // console.log('Y', y, e.clientY, rect.top);
+              // setBadgeCoords([clamp(x, 0, 30), clamp(y, 0, 51)]);
+              const canvas = imgCanvasRef.current!;
+              const rect = canvas.getBoundingClientRect();
+              const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const pageXRelativeToCanvas = (e.pageX - rect.left) - scrollLeft;
+              const pageYRelativeToCanvas = (e.pageY - rect.top) - scrollTop;
+
+              let normalizedX = map(pageXRelativeToCanvas-toDisplayWidth(badgeWidth, canvas)/2, 0, canvas.clientWidth, 0, canvas.width);
+              let normalizedY = map(pageYRelativeToCanvas-toDisplayWidth(badgeWidth, canvas)/2, 0, canvas.clientHeight, 0, canvas.height);
+
+              console.log(normalizedX, normalizedY);
+              // console.log(e.pageY, rect.top);
+              setBadgeCoords([ clamp(normalizedX, minBadgeX, maxBadgeX), clamp(normalizedY, minBadgeY, maxBadgeY) ]);
+            }}
+            onMouseUp={(e)=>{
+              setIsDraggingBadge(false);
+            }}
+          />
+          {imgBase64 && <>
+            <img 
+              style={{position:'absolute', userSelect:'none', pointerEvents:'none', left:`calc(100%/${imgCanvasRef.current!.width}*${badgeCoords[0]})`, top:`calc(100%/${imgCanvasRef.current!.height}*${badgeCoords[1]})`}} 
+              src={agentBadge.src} 
+              width={toDisplayWidth(badgeWidth, imgCanvasRef.current!)}
+            /> 
+          
+            <Typography>Badge Width:</Typography>
+            <Slider
+              valueLabelDisplay="auto"
+              value={badgeWidth}
+              min={3}
+              max={6}
+              onChange={(e,v)=>typeof v === 'number' && setBadgeWidth(v)}
+            />
+          </>}
+        </Stack>
         <Stack spacing={2}>
           <TextField value={name} onChange={(evt)=>{
             const newValue = evt.target.value;

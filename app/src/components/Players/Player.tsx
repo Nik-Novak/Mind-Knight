@@ -63,7 +63,8 @@ type Props = {
   typing?: boolean,
   idle?: boolean,
   role?: PlayerRole,
-  skin?: string
+  skin?: string,
+
 }
 
 function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
@@ -105,6 +106,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
 
   const [dbPlayer, setDbPlayer] = useState<DBPlayer>();
   const [skinSrc, setSkinSrc] = useState<SkinSrc>();
+  const [imgWidth, setImgWidth] = useState(0);
   useEffect(()=>{
     if(playerIdentity)
       (async ()=>{
@@ -116,7 +118,8 @@ export default function Player({ slot, role, numPlayers, username, color, player
             setSkinSrc(skinSrc);
           }
       })();
-  }, [playerIdentity?.Steamid])
+  }, [playerIdentity?.Steamid]);
+  const isFacingRight = getChatPlacement(slot, numPlayers) === 'left-start';
 
   let eloIncrement:number|undefined = 12;
 
@@ -145,7 +148,23 @@ export default function Player({ slot, role, numPlayers, username, color, player
                 }}
               />
           </Tooltip>
-          { role && roleToBadgeMap[role] && <Tooltip title={_.capitalize(PlayerRole[role])} disableInteractive><img style={{width:'12px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /></Tooltip>}
+          { role && roleToBadgeMap[role] && 
+            <Tooltip title={_.capitalize(PlayerRole[role])} disableInteractive>
+              {/* <img style={{width:'12px'}} src={roleToBadgeMap[role].src} alt="badge" className={style.badge} /> */}
+              <img style={{
+                  position:'absolute',
+                  userSelect: 'none',
+                  width:skinSrc?.custom_skin ? skinSrc.custom_skin.badge_width*12/3 : '12px', 
+                  left:skinSrc?.custom_skin ? isFacingRight ? `${(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%` : `${100-skinSrc.custom_skin.badge_width*14/3-(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%`: '42.5%',
+                  // right:getChatPlacement(slot, numPlayers) === 'left-start' ? skinSrc?.custom_skin ? `${(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%`: '42.5%' : undefined,
+                  top:skinSrc?.custom_skin ? `${skinSrc.custom_skin.badge_coords[1]*31/20}%` : '31%',
+                }} 
+                src={roleToBadgeMap[role].src} 
+                alt="badge"
+                onResize={(e)=>console.log(e.currentTarget.width)}
+              />
+            </Tooltip>
+          }
           <Tooltip title="This player has an action available to view" placement="left" arrow>
             {/* <i className={`action-exists-icon fas fa-exclamation ${hasAction?'':'hidden'}`}></i> */}
             <PriorityHighIcon sx={{visibility: !hasAction?'hidden':undefined,}} className={style.actionExistsIcon} onClick={()=>hasAction && setSelectedSlot(slot)} />

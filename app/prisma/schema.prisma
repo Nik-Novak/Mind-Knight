@@ -410,6 +410,8 @@ model CustomSkin {
   description   String    
   base64_data   String
   approved      Boolean   @default(false)
+  badge_coords  Float[]   @default([14,20])
+  badge_width   Float     @default(3)
 
   owner         Player    @relation(name: "owned_custom_skins", fields: [owner_id], references: [id])
   owner_id      String    @db.ObjectId

@@ -7,6 +7,8 @@ export type CustomSkinInfoSelect = {
   description:true,
   id:true,
   name:true,
+  badge_coords:true,
+  badge_width:true,
   owner:{
     include:{
       user:true
