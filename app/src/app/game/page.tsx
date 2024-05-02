@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import Panel from "@/components/Panel";
 import styles from "./page.module.css";
 import { Stack } from "@mui/material";
@@ -16,10 +16,12 @@ import Playback from "@/components/Playback";
 import Background from "@/components/Background";
 import Controls from "@/components/Controls";
 import { requestClientInit } from "@/actions/game";
+import { useEffect } from "react";
 
 //React server component that securely runs on the server by default
-export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
-  let gameId = searchParams.id; //this has to be here or build fails....
+// export default function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
+export default function GamePage() {
+  // let gameId = searchParams.id; //this has to be here or build fails....
   
   // if(gameId){
     // let game = await database.game.findById(gameId);
@@ -28,7 +30,11 @@ export default async function GamePage({searchParams}:ServerSideComponentProp<{}
     // }
   // }
 
-  await requestClientInit();
+  // await requestClientInit();
+
+  useEffect(()=>{
+    requestClientInit();
+  }, []);
   
   return (
     <>

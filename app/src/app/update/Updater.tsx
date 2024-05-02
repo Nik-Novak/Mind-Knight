@@ -1,4 +1,3 @@
-"use client";
 import { updateVersion } from "@/actions/version";
 import FormButton from "@/components/FormButton";
 import Loading from "./Loading";

@@ -76,6 +76,7 @@ if (process.env.NEXT_RUNTIME === 'nodejs') {
       }
       if(packet.type === 'Simulate'){
         let [logpath, timeBetweenLinesMS, startAtGameFound] = packet.payload as ServerEventPacket<'Simulate'>['payload'];
+        console.log('START AT GF', startAtGameFound);
         let logReader = new LogReader({logpath, startAtLineContaining:startAtGameFound?'GameFound':undefined, timeBetweenLinesMS, onComplete:nLines=>console.log('Finished Simulation, read', nLines, 'lines')});
         new GameBuilder(logReader, game, sendServerEvent, createMindnightSession, getMindnightSession, getClient );
       }

@@ -6,8 +6,6 @@ import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { useStore } from "@/zustand/store";
 import { useSettings } from "../SettingsProvider";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 type Props = {
 }

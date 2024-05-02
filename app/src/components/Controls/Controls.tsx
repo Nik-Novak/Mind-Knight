@@ -1,7 +1,7 @@
 "use client";
 import { PlayerSlot } from "@/types/game";
 import { ColorCode, colors } from "@/utils/constants/colors";
-import { getColoredUsername, getHappeningMission, getLatestProposal, isHappening } from "@/utils/functions/game";
+import { getHappeningMission, getLatestProposal, isHappening } from "@/utils/functions/game";
 import { insertBetween } from "@/utils/functions/general";
 import { coloredText } from "@/utils/functions/jsx";
 import { useStore } from "@/zustand/store";

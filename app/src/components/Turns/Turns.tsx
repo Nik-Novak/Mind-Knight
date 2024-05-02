@@ -1,7 +1,5 @@
 "use client";
 import { Box, IconButton } from "@mui/material";
-import { NodeNumber } from "@/types/game";
-import { GamePlayers } from "@prisma/client";
 import { ReactNode } from "react";
 import { useStore } from "@/zustand/store";
 import { maxTurns } from "@/utils/functions/game";

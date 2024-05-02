@@ -1,7 +1,7 @@
 'use client';
 import { Button, Stack, TextField } from "@mui/material";
 import style from './form.module.css';
-import { login } from "@/actions/login";
+// import { login } from "@/actions/login";
 import { redirect } from "next/navigation";
 import { useRef } from "react";
 
@@ -13,7 +13,7 @@ export default function LoginForm(){
       let password = data.get('password')?.toString();
       if(!username || !password) throw Error('Username or Password field was empty.');
       loginForm.current?.reset();
-      await login(username, password);
+      // await login(username, password);
       redirect('/');
     }}>
       <Stack spacing={2}>

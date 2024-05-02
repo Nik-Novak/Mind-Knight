@@ -1,7 +1,7 @@
 "use client";
 import { getRemoteSettings, updateRemoteSettings } from "@/actions/settings";
 import { ClientSettings } from "@prisma/client";
-import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useReducer, useState } from "react";
+import { Dispatch, ReactNode, createContext, useContext, useEffect, useReducer } from "react";
 
 const DefaultSettings:ClientSettings = {
   streamer_mode:false, 

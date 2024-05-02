@@ -1,12 +1,9 @@
 "use client";
-import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, Slide, Slider, TextField } from "@mui/material";
+import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, Slide, Slider } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import CopyableText from "../CopyableText";
 import { getTimeComponents, getTimeString, removeSearchParam } from "@/utils/functions/general";
-import { useQueryState } from "nuqs";
-import Playback from "./Playback";
 import { useStore } from "@/zustand/store";
 
 const Transition = React.forwardRef(function Transition(

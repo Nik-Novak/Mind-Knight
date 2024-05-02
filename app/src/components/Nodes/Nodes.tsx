@@ -2,12 +2,10 @@
 import { NodeNumber, PlayerSlot } from "@/types/game";
 import { hasHappened as checkHasHappened, getPlayer, getPlayerColor } from "@/utils/functions/game";
 import { useStore } from "@/zustand/store";
-import { Box, Button, IconButton, Stack, Tooltip, Typography } from "@mui/material";
-import { GameFound, Missions } from "@prisma/client";
-import { ReactNode, useEffect } from "react";
+import { IconButton, Stack, Tooltip, Typography } from "@mui/material";
+import { ReactNode } from "react";
 import { useSettings } from "../SettingsProvider";
 import { coloredText } from "@/utils/functions/jsx";
-import { ColorCode, colors } from "@/utils/constants/colors";
 
 type NodeProps = {
   hacked:boolean|undefined,

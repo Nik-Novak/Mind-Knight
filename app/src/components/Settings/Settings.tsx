@@ -1,9 +1,5 @@
 "use client";
-import { getClient } from "@/actions/mindnight-session";
-import { provideSettings } from "@/utils/hoc/provideSettings";
 import { Checkbox, FormControlLabel, Stack, Tooltip } from "@mui/material";
-import { ClientSettings } from "@prisma/client";
-import { useState } from "react";
 import { useSettings } from "../SettingsProvider";
 
 export default function Settings(){

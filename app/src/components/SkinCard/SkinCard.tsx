@@ -14,8 +14,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import LockIcon from '@mui/icons-material/Lock';
-import Avatar from '../Avatar';
-import { Prisma } from '@prisma/client';
 import _ from 'lodash';
 import FormButton from '../FormButton';
 import { approveSkin, equipSkin, revokeSkinApproval, unequipSkin } from '@/actions/skins';

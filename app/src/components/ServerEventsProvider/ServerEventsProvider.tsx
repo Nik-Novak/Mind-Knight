@@ -1,11 +1,9 @@
 "use client";
 import React, { createContext, useContext, useEffect } from 'react';
 import { EventEmitter } from 'events';
-import { Game, MindnightSession } from '@prisma/client';
 import { useStore } from '@/zustand/store';
 import { dateTimeReviver } from '@/utils/functions/general';
 import { ServerEventPacket, ServerEvents } from '@/types/events';
-import { useRouter } from 'next/navigation';
 
 const serverEvents = new EventEmitter<ServerEvents>();
 

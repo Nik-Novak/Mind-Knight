@@ -216,7 +216,9 @@ export async function getDbPlayer(playerIdentity: PlayerIdentity){
 export async function simulate(data:FormData){
   let log = data.get('file') as File;
   let timeBetweenLinesMS = data.get('time-between-lines-ms')?.toString();
-  let startAtGameFound = Boolean(data.get('start-at-game-found'));
+  let startAtGameFound = Boolean(data.get('start-at-gamefound'));
+  console.log('HERE', startAtGameFound);
+  console.log('HERE', data.entries());
   if(!log || !timeBetweenLinesMS)
     throw Error('No log uploaded.');
   fs.writeFileSync('_temp/Player.log', await log.text());

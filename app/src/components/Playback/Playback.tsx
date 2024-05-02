@@ -66,12 +66,12 @@ function Playback(props:Props){
     let timeDiff = getTimeDifferenceFromString(t, minTimestamp);
     if(timeDiff){
       setPlayhead(timeDiff.valueOf());
-      setIsPlaying(false);
+      setIsPlaying(true); //autoplay (was false)
     }
     else{
       if(game){
         setPlayhead(minTimestamp);
-        setIsPlaying(true);
+        setIsPlaying(true); //autoplay
       }
     }
   }, [minTimestamp]);
