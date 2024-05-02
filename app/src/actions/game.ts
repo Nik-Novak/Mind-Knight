@@ -137,16 +137,31 @@ export async function uploadGames(){
     }});
 }
 
-export async function requestClientInit(){
+// export async function requestClientInit(){
+//   return new Promise<void>((resolve, reject)=>{
+//     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS) throw reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS (connection to server ws for log events)');
+//     const ws = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+//     ws.onopen = (t)=>{
+//       let packet:ServerEventPacket<'ClientInit'> = {
+//         type: 'ClientInit',
+//         payload:[]
+//       }
+//       ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
+//       resolve()
+//     }
+//   });
+// }
+export async function requestClientInit(){ //holy this is sensitive
   return new Promise<void>((resolve, reject)=>{
-    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS) throw reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS (connection to server ws for log events)');
-    const ws = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
-    ws.onopen = (t)=>{
+    if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
+        reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
+    const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
+    tempSocket.onopen = ()=>{
       let packet:ServerEventPacket<'ClientInit'> = {
-        type: 'ClientInit',
-        payload:[]
+        type:'ClientInit',
+        payload: []
       }
-      ws.send(JSON.stringify(packet)); //request init latest gamedata and session, etc.
+      tempSocket.send(JSON.stringify(packet));
       resolve()
     }
   });

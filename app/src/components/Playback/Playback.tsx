@@ -17,6 +17,7 @@ import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 import GIFRecorder from "../GIFRecorder";
 import ClipTitleDialog from "./ClipTitleDialog";
+import { suspense } from "@/utils/hoc/suspense";
 
 type Mark = {
   value: number,
@@ -29,7 +30,7 @@ type Props = {
   loop?:boolean
 }
 
-export default function Playback(props:Props){
+function Playback(props:Props){
   const playhead = useStore(state=>state.playhead);
   const setPlayhead = useStore(state=>state.setPlayhead);
   const incrementPlayhead = useStore(state=>state.incrementPlayhead);
@@ -250,3 +251,5 @@ export default function Playback(props:Props){
     </>
   );
 }
+
+export default suspense(Playback, <></>);

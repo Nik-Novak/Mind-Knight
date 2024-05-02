@@ -19,13 +19,13 @@ import { requestClientInit } from "@/actions/game";
 
 //React server component that securely runs on the server by default
 export default async function GamePage({searchParams}:ServerSideComponentProp<{}, {id: string}>) {
-  // let gameId = searchParams.id;
+  let gameId = searchParams.id; //this has to be here or build fails....
   
   // if(gameId){
-  //   let game = await database.game.findById(gameId);
-  //   if(game){
-  //     await updateGameOnServer(game);
-  //   }
+    // let game = await database.game.findById(gameId);
+    // if(game){
+      // await updateGameOnServer(game);
+    // }
   // }
 
   await requestClientInit();
