@@ -4,6 +4,7 @@ import "@/assets/styles/reset.css";
 import "@/assets/styles/globals.css";
 import Providers from "@/components/Providers";
 import Nav from "@/components/Nav";
+import { verifyIsAdmin } from "@/actions/admin";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,16 +13,17 @@ export const metadata: Metadata = {
   description: "A companion tool for Mindnight",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isAdmin = await verifyIsAdmin();
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Nav />
+          <Nav isAdmin={isAdmin} />
           {children}
         </Providers>
       </body>

@@ -51,7 +51,7 @@ export default async function HomePage() {
           }
         </Stack>
       </Stack>
-      <AvatarWithActions isAdmin={isAdmin} />
+      
       {/* <Panel title={"Global Chat"} containerSx={{position:'fixed', left:{ sm:undefined, md:10 }, bottom:10, maxWidth: { sm:'80%', md:'30%' }}}>
         <Chatbox chat={globalChat} sendMessage={sendGlobalMessage}/>
       </Panel> */}
