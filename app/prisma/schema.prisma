@@ -567,6 +567,7 @@ model Bug {
   name          String
   description   String
   console_log   String
+  game_log      String
   user          User?      @relation(fields: [user_id], references: [id])
   user_id       String?    @db.ObjectId
 

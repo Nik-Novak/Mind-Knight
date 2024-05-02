@@ -25,11 +25,11 @@ export default function AvatarWithActions({isAdmin}:Props){
             name: 'Report Bug',
             callback:()=>setIsBugDialogOpen(true)
           },
-          {
-            requiredContexts:['loggedin', 'admin'],
-            name: 'Admin',
-            callback:()=>router.push('/admin')
-          },
+          // {
+          //   requiredContexts:['loggedin', 'admin'],
+          //   name: 'Admin',
+          //   callback:()=>router.push('/admin')
+          // },
           {
             requiredContexts:['loggedout'],
             name: 'Login',
