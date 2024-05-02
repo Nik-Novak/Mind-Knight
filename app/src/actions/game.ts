@@ -154,7 +154,7 @@ export async function uploadGames(){
 export async function requestClientInit(){ //holy this is sensitive
   return new Promise<void>((resolve, reject)=>{
     if(!process.env.NEXT_PUBLIC_SERVEREVENTS_WS)
-        reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
+        return reject('Must provide env NEXT_PUBLIC_SERVEREVENTS_WS');
     const tempSocket = new WebSocket(process.env.NEXT_PUBLIC_SERVEREVENTS_WS);
     tempSocket.onopen = ()=>{
       let packet:ServerEventPacket<'ClientInit'> = {
