@@ -11,7 +11,7 @@ type Props = {
 
 export default function Panel({title, defaultExpanded=false, containerSx, children}:Props){
   return (
-    <Accordion sx={containerSx} defaultExpanded={defaultExpanded}>
+    <Accordion sx={{zIndex:30, ...containerSx}} defaultExpanded={defaultExpanded}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}><Typography variant="h5">{title}</Typography></AccordionSummary>
       <AccordionDetails>{children}</AccordionDetails>
     </Accordion>
