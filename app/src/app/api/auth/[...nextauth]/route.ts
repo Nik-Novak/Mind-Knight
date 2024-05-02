@@ -10,6 +10,7 @@ import { Adapter } from 'next-auth/adapters';
 declare module 'next-auth' {
   interface Session {
     user: {
+      id: string;
       email?: string;
       image?: string;
       name?: string;
@@ -50,6 +51,7 @@ export const authOptions:NextAuthOptions = {
           }
         }
       );
+      session.user.id = user.id;
       session.user.player_id = player.id; //add player_id to session
       session.user.steam_id = player.steam_id; //add steam_id to session
       return session;

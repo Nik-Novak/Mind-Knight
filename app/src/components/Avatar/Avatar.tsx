@@ -5,15 +5,20 @@ import { useRouter } from 'next/navigation';
 
 import { ReactNode, useRef, useState } from 'react'
 import { provideSession } from '@/utils/hoc/provideSession';
+type ActionContext = 'admin'|'loggedin'|'loggedout';
+type Action = {
+  requiredContexts?:ActionContext[],
+  name: string,
+  callback: ()=>void|Promise<void>
+}
 type Props = {
   sx?: SxProps<Theme>,
   isAdmin?:boolean,
-  enableActions?:boolean
+  actions?: Action[]
 }
 
-function Avatar({sx, enableActions=false, isAdmin}:Props){
+function Avatar({sx, actions, isAdmin}:Props){
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const avatarRef = useRef<HTMLDivElement>(null);
 
   // const session = await getServerSession()  //NextAuth server component
@@ -24,30 +29,26 @@ function Avatar({sx, enableActions=false, isAdmin}:Props){
     // }
   });
 
-  const handleLogin = ()=>{
-    setOpen(false);
-    signIn();
-  }
-  const handleLogout = ()=>{
-    setOpen(false);
-    signOut();
-  }
+  const renderActions:ReactNode[] = [];
 
-  const actions:ReactNode[] = [];
-
-  if(enableActions){
-    if(session){
-      if(isAdmin)
-        actions.push(<MenuItem key='admin' onClick={()=>router.push('/admin')}>Admin</MenuItem>);
-      actions.push(<MenuItem key='logout' onClick={handleLogout}>Logout</MenuItem>);
+  if(actions?.length){
+    for( let action of actions ){
+      const isContextValid = !action.requiredContexts || action.requiredContexts.reduce((isValid, currentContext)=>{
+        switch(currentContext){
+          case 'admin': return isValid && !!isAdmin;
+          case 'loggedin': return isValid && !!session;
+          case 'loggedout': return isValid && !session;
+        }
+      }, true);
+      if(isContextValid){
+        renderActions.push(<MenuItem key={action.name} onClick={()=>{setOpen(false); action.callback()}}>{action.name}</MenuItem>)
+      }
     }
-    else
-      actions.push(<MenuItem key='login' onClick={handleLogin}>Login</MenuItem>);
   }
 
   return (
     <>
-      { enableActions && <Menu
+      { actions?.length && <Menu
           id="basic-menu"
           anchorEl={avatarRef.current}
           open={open}
@@ -56,9 +57,7 @@ function Avatar({sx, enableActions=false, isAdmin}:Props){
             'aria-labelledby': 'basic-button',
           }}
         >
-        {/* <MenuItem onClick={()=>setOpen(false)}>Profile</MenuItem>
-        <MenuItem onClick={()=>setOpen(false)}>My account</MenuItem> */}
-        {actions}
+        {renderActions}
       </Menu> 
       }
       <MUIAvatar src={session?.user?.image || undefined} sx={{cursor:'pointer', ...sx}} variant="square" onClick={()=>setOpen(true)} ref={avatarRef}>

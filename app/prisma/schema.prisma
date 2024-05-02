@@ -541,6 +541,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  bugs          Bug[]
 
   player        Player?
   
@@ -559,6 +560,19 @@ model VerificationToken {
   updated_at  DateTime    @updatedAt
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+model Bug {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  description   String
+  console_log   String
+  user          User?      @relation(fields: [user_id], references: [id])
+  user_id       String?    @db.ObjectId
+
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  @@map("bugs")
 }
 
 //TODO implement prismix: https://github.com/jamiepine/prismix
