@@ -5,6 +5,7 @@ import "@/assets/styles/globals.css";
 import Providers from "@/components/Providers";
 import Nav from "@/components/Nav";
 import { verifyIsAdmin } from "@/actions/admin";
+import { getMyElo } from "@/actions/leaderboard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isAdmin = await verifyIsAdmin();
+  // const elo = await getMyElo();
   return (
     <html lang="en">
       <body className={inter.className}>

@@ -22,6 +22,7 @@ export default async function Leaderboards(){
           let latestGameSkin = p.latest_game?.game_players[slot]?.Skin;
           return (
             <SimplePlayer 
+              key={i}
               sx={{top: i===0 ? 106 : i==1 ? 135 : 167, left:i===0 ? 'calc(50% - 25px)' : i===1 ? 'calc(50% - 140px - 25px)' : 'calc(50% + 140px - 25px)', width:51, height:193}} 
               // playerImgSx={{ width:103, height:193 }}
               playerImgSx={{ width:51, height:137 }}

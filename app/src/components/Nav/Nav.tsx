@@ -7,10 +7,11 @@ import { usePathname, useRouter } from "next/navigation";
 import AvatarWithActions from "../AvatarWithActions";
 
 type Props = {
-  isAdmin: boolean
+  isAdmin: boolean,
+  elo?: number
 }
 
-export default function Nav({isAdmin}:Props){
+export default function Nav({isAdmin, elo}:Props){
   const router = useRouter();
   const path = usePathname();
   const hasHistory = typeof window === 'undefined' ? false : !!window.history.length;
@@ -21,7 +22,7 @@ export default function Nav({isAdmin}:Props){
         <Button sx={{mr:'5px', display:hasHistory && path!=='/'?'inline-flex':'none'}} variant="contained" className="pixel-corners-small" onClick={()=>router.back()}><BackIcon /></Button>
         <Link href="/"><Button variant="contained" className="pixel-corners-small"><HomeIcon /></Button></Link>
       </div>
-      <AvatarWithActions isAdmin={isAdmin} />
+      <AvatarWithActions isAdmin={isAdmin} elo={elo} />
     </nav>
   )
 }
