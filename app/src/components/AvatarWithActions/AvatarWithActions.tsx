@@ -10,16 +10,17 @@ import { useNotificationQueue } from "../NotificationQueue";
 import Notification from "../Notification";
 
 type Props = {
-  isAdmin?:boolean
+  isAdmin?:boolean,
+  elo?:number
 }
 
-export default function AvatarWithActions({isAdmin}:Props){
+export default function AvatarWithActions({isAdmin, elo}:Props){
   const router = useRouter();
   const {pushNotification} = useNotificationQueue();
   const [isBugDialogOpen, setIsBugDialogOpen] = useState(false);
   return (
     <>
-      <Avatar sx={{bgcolor: grey[800], position: 'fixed', top:10, right:10}} isAdmin={isAdmin}
+      <Avatar sx={{bgcolor: grey[800], position: 'fixed', top:10, right:10}} isAdmin={isAdmin} elo={elo}
         actions={[
           {
             requiredContexts:['loggedin', 'admin'],

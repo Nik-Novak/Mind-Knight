@@ -1,5 +1,5 @@
 "use client";
-import {Avatar as MUIAvatar, Menu, MenuItem, SxProps, Theme} from '@mui/material'
+import {Badge, Avatar as MUIAvatar, Menu, MenuItem, SxProps, Theme} from '@mui/material'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -13,11 +13,12 @@ type Action = {
 }
 type Props = {
   sx?: SxProps<Theme>,
+  elo?:number,
   isAdmin?:boolean,
   actions?: Action[]
 }
 
-function Avatar({sx, actions, isAdmin}:Props){
+function Avatar({sx, elo, actions, isAdmin}:Props){
   const [open, setOpen] = useState(false);
   const avatarRef = useRef<HTMLDivElement>(null);
 
@@ -60,10 +61,12 @@ function Avatar({sx, actions, isAdmin}:Props){
         {renderActions}
       </Menu> 
       }
-      <MUIAvatar src={session?.user?.image || undefined} sx={{cursor:'pointer', ...sx}} variant="square" onClick={()=>setOpen(true)} ref={avatarRef}>
-          { session?.user?.name?.charAt(0).toUpperCase() }
-          {/* { session?.user?.name?.split(' ').map(segment=>segment.charAt(0).toUpperCase()).join(' ') } */}
-      </MUIAvatar>
+      {/* <Badge  badgeContent={elo?.toFixed(0)} max={9999} color='warning' anchorOrigin={{horizontal:'left', vertical:'bottom'}}> */}
+        <MUIAvatar src={session?.user?.image || undefined} sx={{cursor:'pointer', ...sx}} variant="square" onClick={()=>setOpen(true)} ref={avatarRef}>
+            { session?.user?.name?.charAt(0).toUpperCase() }
+            {/* { session?.user?.name?.split(' ').map(segment=>segment.charAt(0).toUpperCase()).join(' ') } */}
+        </MUIAvatar>
+      {/* </Badge> */}
     </>
   )
 }
