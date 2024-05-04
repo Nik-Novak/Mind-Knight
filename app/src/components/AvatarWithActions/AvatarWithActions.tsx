@@ -22,14 +22,14 @@ export default function AvatarWithActions({isAdmin}:Props){
       <Avatar sx={{bgcolor: grey[800], position: 'fixed', top:10, right:10}} isAdmin={isAdmin}
         actions={[
           {
+            requiredContexts:['loggedin', 'admin'],
+            name: 'Admin',
+            callback:()=>router.push('/admin')
+          },
+          {
             name: 'Report Bug',
             callback:()=>setIsBugDialogOpen(true)
           },
-          // {
-          //   requiredContexts:['loggedin', 'admin'],
-          //   name: 'Admin',
-          //   callback:()=>router.push('/admin')
-          // },
           {
             requiredContexts:['loggedout'],
             name: 'Login',
