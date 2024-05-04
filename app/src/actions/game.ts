@@ -1,7 +1,7 @@
 "use server";
 import fs from 'fs';
 import { database } from "../../prisma/database";
-import { Game, PlayerIdentity } from "@prisma/client";
+import { Game, Player, PlayerIdentity } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { ServerEventPacket } from "@/types/events";
 import LogEventEmitter from '@/utils/classes/LogEvents/LogEventEmitter';
@@ -15,6 +15,23 @@ const gamesInfoSelect:GamesInfoSelect = {
   game_end:true,
   game_found:true,
   // game_players:true,
+  // game_start:true,
+  // missions:true,
+  player_ids:true,
+  players:true,
+  // raw_games:true,
+  updated_at:true,
+  latest_log_time: true,
+  source:true
+};
+const gamesInfoSelectWPlayer:GamesInfoSelect & { game_players:true } = {
+  id:true,
+  title:true,
+  // chat:true,
+  created_at:true,
+  game_end:true,
+  game_found:true,
+  game_players:true,
   // game_start:true,
   // missions:true,
   player_ids:true,
@@ -91,6 +108,10 @@ export async function getGames(playerId?:string, joshMode:boolean=false, offset:
     }
   }
   return response;
+}
+
+export async function getLastGameWith(player:Player){
+  return database.game.findFirst({where:{player_ids:{has:player.id}}, orderBy:{created_at:'desc'}, select:gamesInfoSelectWPlayer});
 }
 
 export async function updateGameTitle(gameId:string, title:string){

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
     "debug": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./src/_debugger/debugger.ts",
-    "migrate": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./prisma/migrations/add_skin_unlock_arrays.ts",
+    "migrate": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./prisma/migrations/calculate_elo_all.ts",
     "transfer": "cross-env node --experimental-specifier-resolution=node --loader ./loader.js ./src/_uploader/uploader.ts",
     "patch": "npx next-ws-cli@latest patch",
     "dev": "DOTENV_KEY=$(npx dotenv-vault keys development) next dev",

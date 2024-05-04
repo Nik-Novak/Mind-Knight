@@ -18,13 +18,13 @@ import { MindnightSessionStatus } from "@prisma/client";
 import { verifyIsAdmin } from "@/actions/admin";
 import { signIn, signOut } from "next-auth/react";
 import AvatarWithActions from "@/components/AvatarWithActions";
+import Leaderboards from "@/components/Leaderboards";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {
   // const globalChat: GlobalChatMessage[] = await getGlobalChat();
   // console.log('RERENDER AND REFETCH GLOBAL CHAT', globalChat[globalChat.length-1].Message);
   const steamSession = await getServerSession(authOptions);
-  const isAdmin = await verifyIsAdmin();
 
   return (
     <>
@@ -36,6 +36,7 @@ export default async function HomePage() {
           <Version localPath={'../mindknight.version'} remotePath={'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version'} />
         }
       />
+      <Leaderboards />
       <Stack spacing={1}>
         <Instructions />
         <Typography variant="h3">OR</Typography>

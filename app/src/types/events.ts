@@ -1,5 +1,5 @@
 import { ColorCode } from "@/utils/constants/colors"
-import { GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from "./game"
+import { EloUpdates, GameMap, GameMode, NamingConvention, NodeNumber, NumberOfPlayers, PlayerRole, PlayerSlot } from "./game"
 import { Game, MindnightSession, PlayerIdentity, Role } from "@prisma/client"
 export const LogSendEventCodes = {
   PlayerInfo: 601,
@@ -154,6 +154,7 @@ type SessionEvents = {
 
 type GameEvents = {
   GameUpdate: [Game|undefined],
+  EloUpdates: [EloUpdates]
   Simulate: [string, number, boolean]//filepath, timeBetweenLinesMS, startAtGameFound
 }
 
