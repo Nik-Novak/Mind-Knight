@@ -37,3 +37,10 @@ export type GlobalChatMessage = {
   Roles:number[], //[0],
   Timestamp:number, //1711309357
 }
+
+export type EloUpdates = {
+  [key: number]: {
+      elo: number;
+      eloIncrement: number;
+  };
+}

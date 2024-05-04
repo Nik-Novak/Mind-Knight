@@ -1,6 +1,6 @@
 "use client";
 import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
-import { Stack, Tooltip, TooltipProps, Typography } from "@mui/material";
+import { Stack, SxProps, Theme, Tooltip, TooltipProps, Typography } from "@mui/material";
 import AcceptIcon from '@mui/icons-material/Check';
 import RefuseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
@@ -17,7 +17,7 @@ import style8 from './position-css/8man.module.css';
 import { coloredText } from "@/utils/functions/jsx";
 import Elo from "../Elo";
 import { useStore } from "@/zustand/store";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { getDbPlayer } from "@/actions/game";
 
 import agentBadge from './agent_badge.png';
@@ -25,7 +25,7 @@ import hackerBadge from './hacker_badge.png';
 import { getSkinSrc } from "@/actions/skins";
 import _ from "lodash";
 import { SkinSrc } from "@/types/skins";
-import ChatBubble from "./ChatBubble";
+import ChatBubble from "../ChatBubble/ChatBubble";
 import CustomSkinStats from "../CustomSkinStats";
 
 const roleToBadgeMap = {
@@ -45,6 +45,9 @@ export const styleMap = {
 
 
 type Props = {
+  sx?: CSSProperties,
+  playerImgSx?: CSSProperties,
+  playerInfoSx?: CSSProperties,
   slot: PlayerSlot,
   numPlayers: NumberOfPlayers,
   username: string,
@@ -64,7 +67,7 @@ type Props = {
   idle?: boolean,
   role?: PlayerRole,
   skin?: string,
-
+  eloIncrement?: number;
 }
 
 function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
@@ -89,7 +92,7 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin }:Props){
+export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin, eloIncrement }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   const chatPlacement = getChatPlacement(slot, numPlayers);
@@ -121,14 +124,12 @@ export default function Player({ slot, role, numPlayers, username, color, player
   }, [playerIdentity?.Steamid]);
   const isFacingRight = getChatPlacement(slot, numPlayers) === 'left-start';
 
-  let eloIncrement:number|undefined = 12;
-
   // await new Promise((res)=>setTimeout(res, 10000));
   // return <PlayerSkeleton slot={0} numPlayers={5} />
   return (
     <ChatBubble placement={chatPlacement} typing={typing} chatMsg={chatMsg} idle={idle}>
-      <div className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
-        <div className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
+      <div style={sx} className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
+        <div style={playerImgSx} className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <Tooltip
             placement="bottom"
             // disableInteractive
@@ -140,6 +141,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
               </Stack>
             }>
               <img
+              style={playerImgSx}
                 className="skin"
                 src={skinSrc?.src || `/img/skins/${skin}.png`}
                 alt="player"
@@ -188,7 +190,7 @@ export default function Player({ slot, role, numPlayers, username, color, player
             <Typography className={style.propNumberContainer} style={{visibility: proppedIndex===undefined?'hidden':undefined}}><span className="prop-number">{proppedIndex}</span>/5</Typography>
           </Tooltip>
         </div>
-        <div className={style.playerInfo}>
+        <div style={playerInfoSx} className={style.playerInfo}>
           <Typography className="player-username">{coloredText(username, color)}</Typography>
           { playerIdentity && <Typography className="player-steamname">{`${playerIdentity.Nickname} (${playerIdentity.Level})`}</Typography> }
           <Elo elo={dbPlayer?.elo} eloIncrement={eloIncrement} />

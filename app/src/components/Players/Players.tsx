@@ -1,11 +1,13 @@
 "use client";
-import { NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
+import { EloUpdates, NumberOfPlayers, PlayerRole, PlayerSlot } from "@/types/game";
 import Player from "./Player";
 import { getHammerPlayerSlot, getLatestSelectUpdate, getPlayerAction, getPropIndex, getTurnInfo, hasHappened, isHappening } from "@/utils/functions/game";
 import { Box } from "@mui/material";
 import { ColorCode, colors } from "@/utils/constants/colors";
 import { useStore } from "@/zustand/store";
 import { useSettings } from "../SettingsProvider";
+import { useState } from "react";
+import { useServerEvents } from "../ServerEventsProvider";
 
 type Props = {
 }
@@ -22,7 +24,14 @@ export default function Players({ }:Props){
   const {settings} = useSettings();
   const turnInfo = getTurnInfo(game_players, selectedNode, selectedTurn, selectedSlot, playhead);
   let propSlot = turnInfo && getPropIndex(turnInfo);
+  const [eloUpdates, setEloUpdates] = useState<EloUpdates>();
+
+  const {serverEvents} = useServerEvents();
   
+  serverEvents.on('EloUpdates', (eloUpdates)=>{
+    setEloUpdates(eloUpdates);
+  });
+
   return (
     <Box id="players-container" position='relative' width='100%' height='100%'>
     {
@@ -43,7 +52,7 @@ export default function Players({ }:Props){
         let role = settings.streamer_mode ? undefined : game_end?.Roles.find(r=>r.Slot === slot)?.Role as PlayerRole;
         let disconnected = game_player.connection_updates.findLast(cu=>hasHappened(cu.log_time, playhead))?.Type === 402;
         const voted = isHappening(turnInfo?.vote_phase_start?.log_time, playhead, turnInfo?.vote_phase_end?.log_time) ? hasHappened(turnInfo?.vote_mades[slot]?.log_time, playhead) : undefined;
-        
+        const eloIncrement = eloUpdates?.[slot].eloIncrement;
         // const latestProposal = game_players && selectedNode!=undefined && getLatestProposal(game_players, selectedNode, playHead)?.value || undefined;
         // const isVoting = isHappening(latestProposal?.vote_phase_start?.log_time, playHead, latestProposal?.vote_phase_end?.log_time);
         return (
@@ -69,11 +78,12 @@ export default function Players({ }:Props){
               typing={typing}
               idle={idle}
               skin={settings.josh_mode ? 'skin_holo_san' : game_player.Skin}
+              eloIncrement={eloIncrement}
             />
           // </Suspense>
         );
       })
     }
     </Box>
-  )
+  );
 }

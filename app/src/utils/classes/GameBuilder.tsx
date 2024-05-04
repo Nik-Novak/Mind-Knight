@@ -4,8 +4,11 @@ import { GlobalChatMessage, MindnightSession, Prisma } from "@prisma/client";
 import { database } from "../../../prisma/database/database";
 import ProcessQueue from "./ProcessQueue";
 import { attempt } from "../functions/error";
+import { EloUpdates } from "@/types/game";
+import { Elo } from "./Elo";
+import { waitUntil } from "../functions/general";
 type SyncStrategy = 'local'|'checkpoints'|'remote';
-type SendServerEventFnc = <T extends keyof LogSendEvents | keyof LogReceiveEvents | "MindnightSessionUpdate" | "GameUpdate" | "ClientInit">(eventName: T, payload: ServerEvents[T]) => void;
+type SendServerEventFnc = <T extends keyof ServerEvents>(eventName: T, payload: ServerEvents[T]) => void;
 type CreateMindnightSessionFnc = (packet:ServerEvents['PlayerInfo'][0]) => Promise<MindnightSession>;
 async function createGlobalChatMessage(message:LogEvents['ReceiveGlobalChatMessage']['0']['Message']){
   let chatMsg = await database.globalChatMessage.create({
@@ -361,7 +364,14 @@ export class GameBuilder {
         },
         'GameEnd'
       );
-      
+    });
+
+    logInput.on('GameEnd', async (game_end)=>{
+      await waitUntil(()=>!!game?.game_end);
+      packetQueue.push(async ()=>{
+        let eloUpdates:EloUpdates = await new Elo(game_end).updateElo();
+        sendServerEvent('EloUpdates', [eloUpdates]);
+      }, 'EloUpdates');
     });
   }
 }
