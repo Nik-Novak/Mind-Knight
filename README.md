@@ -41,6 +41,13 @@ To create a MindKnight clip:
 * You can generate a GIF using the Share button (left of the player)
 ![MindKnight-Create-Clip-compressed](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/c9acd559-41d8-4c93-ae79-03944e31940e)
 
+# Elo
+To view your elo:
+* View any Rewind featuring you
+* Play a game
+* Your elo will appear at your feet
+
+![image](https://github.com/Nik-Novak/Mind-Knight/assets/26068682/bca20ddb-ad1d-42f8-ad6e-32233a669a91)
 
 # Updating?
 * Just download the latest version from above, then delete your old files and replace them!
