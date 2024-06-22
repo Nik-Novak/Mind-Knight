@@ -16,8 +16,8 @@
     "build:windows": "set /p DOTENV_KEY=<dek && cross-env BUILD=true next build",
     "start:windows": "set /p DOTENV_KEY=<dek && cross-env START_BROWSER=true next start",
     "build": "yarn build:linux",
-    "build:linux": "DOTENV_KEY=$(cat ./dek) next build",
-    "start:linux": "DOTENV_KEY=$(cat ./dek) next start",
+    "build:linux": "DOTENV_KEY=$(cat ./dek) START_BROWSER=true  next build",
+    "start:linux": "DOTENV_KEY=$(cat ./dek) START_BROWSER=true next start",
     "lint": "next lint",
     "add-translation": "ts-node src/translations/scripts/addTranslation.ts",
     "find-unused-translations": "ts-node src/translations/scripts/findUnused.ts"
