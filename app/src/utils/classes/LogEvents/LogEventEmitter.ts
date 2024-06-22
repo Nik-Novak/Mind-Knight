@@ -22,8 +22,8 @@ export default class LogEventEmitter extends EventEmitter<LogEvents> {
           if(!this.logpath){
             let paths = [
               `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`,
-              `${process.env.HOME}/.config/unity3d/Nomoon/Mindnight/Player.log`,
               `${process.env.HOME}/.local/share/Steam/steamapps/compatdata/667870/pfx/drive_c/users/steamuser/AppData/LocalLow/Nomoon/Mindnight/Player.log`,
+              `${process.env.HOME}/.config/unity3d/Nomoon/Mindnight/Player.log`,
             ]
             for(let potentialPath of paths){
               if(fs.existsSync(potentialPath)){
