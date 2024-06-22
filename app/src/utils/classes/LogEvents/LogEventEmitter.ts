@@ -19,10 +19,32 @@ export default class LogEventEmitter extends EventEmitter<LogEvents> {
     switch(osInfo.platform){
       case 'linux': {
         if(osInfo.distribution?.includes('ubuntu')){
-          if(!this.logpath)
-            this.logpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`;
-          if(!this.prevLogpath)
-            this.prevLogpath = `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`;
+          if(!this.logpath){
+            let paths = [
+              `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player.log`,
+              `${process.env.HOME}/.config/unity3d/Nomoon/Mindnight/Player.log`,
+              `${process.env.HOME}/.local/share/Steam/steamapps/compatdata/667870/pfx/drive_c/users/steamuser/AppData/LocalLow/Nomoon/Mindnight/Player.log`,
+            ]
+            for(let potentialPath of paths){
+              if(fs.existsSync(potentialPath)){
+                this.logpath = potentialPath;
+                break;
+              }
+            };
+          }
+          if(!this.prevLogpath){
+            let paths = [
+              `${process.env.HOME}/snap/steam/common/.config/unity3d/Nomoon/Mindnight/Player-prev.log`,
+              `${process.env.HOME}/.config/unity3d/Nomoon/Mindnight/Player-prev.log`,
+              `${process.env.HOME}/.local/share/Steam/steamapps/compatdata/667870/pfx/drive_c/users/steamuser/AppData/LocalLow/Nomoon/Mindnight/Player-prev.log`,
+            ]
+            for(let potentialPath of paths){
+              if(fs.existsSync(potentialPath)){
+                this.prevLogpath = potentialPath;
+                break;
+              }
+            };
+          }
           // this.tail = new TailLinux(this.logpath);
         }
       } break;
@@ -36,6 +58,7 @@ export default class LogEventEmitter extends EventEmitter<LogEvents> {
     }
     if(!this.logpath)
       throw Error(`Sorry, Mind Knight does not yet support your platform: ${osInfo.platform} ${osInfo.release}.\nClick here to request support: ${process.env.NEXT_PUBLIC_SUPPORT_URL}`);
+    console.log('Found Log:\n', this.logpath,'\n',this.prevLogpath);
   }
 
   start(lineListener:LineListener){
