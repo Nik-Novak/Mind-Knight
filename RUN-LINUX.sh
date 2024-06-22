@@ -1,3 +1,5 @@
+export PATH=$PWD/node-binaries/linux/bin:$PATH
+
 cd app
 
 ../node-binaries/linux/bin/npx yarn install -y --network-timeout 100000
