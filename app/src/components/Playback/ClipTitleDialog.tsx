@@ -29,7 +29,7 @@ type Props = {
   onClose?:()=>void
 }
 
-function ClipTitleDialog({open, clipTimes, onComplete=()=>{}, onClose=()=>{}}:Props){
+export default function ClipTitleDialog({open, clipTimes, onComplete=()=>{}, onClose=()=>{}}:Props){
   const {pushNotification} = useNotificationQueue();
   const game = useStore(state=>state.game)!;
   const { data:session } = useSession();
@@ -75,5 +75,3 @@ function ClipTitleDialog({open, clipTimes, onComplete=()=>{}, onClose=()=>{}}:Pr
     </Dialog>
   );
 }
-
-export default provideSession(ClipTitleDialog);

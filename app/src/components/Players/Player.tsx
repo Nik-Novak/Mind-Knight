@@ -17,7 +17,7 @@ import style8 from './position-css/8man.module.css';
 import { coloredText } from "@/utils/functions/jsx";
 import Elo from "../Elo";
 import { useStore } from "@/zustand/store";
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, LegacyRef, ReactNode, useEffect, useState } from "react";
 import { getDbPlayer } from "@/actions/game";
 
 import agentBadge from './agent_badge.png';
@@ -67,7 +67,8 @@ type Props = {
   idle?: boolean,
   role?: PlayerRole,
   skin?: string,
-  eloIncrement?: number;
+  eloIncrement?: number,
+  children?:ReactNode
 }
 
 function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
@@ -92,7 +93,7 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin, eloIncrement }:Props){
+export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin, eloIncrement, children }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   const chatPlacement = getChatPlacement(slot, numPlayers);
@@ -129,6 +130,7 @@ export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numP
   return (
     <ChatBubble placement={chatPlacement} typing={typing} chatMsg={chatMsg} idle={idle}>
       <div style={sx} className={`${style.playerContainer} ${positionalStyle.playerContainer} ${selected ? style.selected :''} ${isPropped ? style.isPropped :''} ${isShadowed ? style.isShadowed :''}`} data-index={slot}>
+        {children}
         <div style={playerImgSx} className={style.playerImg} /*onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}*/ onClick={()=>hasAction && setSelectedSlot(slot)}>
           <Tooltip
             placement="bottom"

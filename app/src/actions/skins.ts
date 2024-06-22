@@ -1,11 +1,9 @@
 "use server";
 import fs from 'fs';
-import { getServerSession } from "next-auth";
+import { auth } from '@/auth';
 import { database } from "../../prisma/database/database";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { CustomSkinInfoSelect, SkinSrc } from '@/types/skins';
 import { verifyIsAdmin } from './admin';
-import { Prisma } from '@prisma/client';
 
 const customSkinSelect:CustomSkinInfoSelect/* TODO type this properly :Prisma.CustomSkinSelect<InternalArgs & Prisma.Result<typeof database.customSkin, undefined, 'create'>>*/ = {
   approved:true,
@@ -54,7 +52,7 @@ const customSkinSelect:CustomSkinInfoSelect/* TODO type this properly :Prisma.Cu
 }
 
 export async function uploadCustomSkin(name:string, description:string, base64_data:string, badge_coords?:[number, number], badge_width?:number){
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const owner_id = session?.user.player_id;
   if(!owner_id)
     throw Error("Must be logged in to upload skins.");
@@ -63,7 +61,7 @@ export async function uploadCustomSkin(name:string, description:string, base64_d
 }
 
 export async function getCustomSkins(){
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const owner_id = session?.user.player_id;
   let unlocked = await database.customSkin.findMany({where:{unlocked_player_ids:{has:owner_id}}, select:customSkinSelect});
   let locked = await database.customSkin.findMany({where:{NOT:{unlocked_player_ids:{has:owner_id}}}, select:customSkinSelect});
@@ -79,7 +77,7 @@ export async function getTotalCustomSkins(){
 // }
 
 export async function getEquippedSkin(){
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const player_id = session?.user.player_id;
   return player_id && (await database.player.findById(player_id)).equipped_skin || undefined
 }
@@ -90,7 +88,7 @@ export async function getSkins(){
 }
 
 export async function getSkinSrc(name:string):Promise<SkinSrc|undefined>{
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const player_id = session?.user.player_id;
   let gameskinPath = 'public/img/skins/'+name+'.png';
   if(fs.existsSync(gameskinPath))
@@ -118,7 +116,7 @@ export async function revokeSkinApproval(name:string){
 }
 
 export async function equipSkin(name:string){
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const player_id = session?.user.player_id;
   if(!player_id)
       throw Error("Must be logged in to equip a skin.");
@@ -126,7 +124,7 @@ export async function equipSkin(name:string){
 }
 
 export async function unequipSkin(){
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const player_id = session?.user.player_id;
   if(!player_id)
       throw Error("Must be logged in to unequip a skin.");

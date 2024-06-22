@@ -15,5 +15,5 @@ export default function Panel({title, defaultExpanded=false, containerSx, childr
       <AccordionSummary expandIcon={<ExpandMoreIcon />}><Typography variant="h5">{title}</Typography></AccordionSummary>
       <AccordionDetails>{children}</AccordionDetails>
     </Accordion>
-  )
+  );
 }

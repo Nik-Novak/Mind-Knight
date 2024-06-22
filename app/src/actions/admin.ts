@@ -1,10 +1,9 @@
 "use server";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+import { auth } from '@/auth';
 
 export async function verifyIsAdmin(){
-  let session = await getServerSession(authOptions);
+  let session = await auth();
   if(!session?.user.steam_id)
     return false;
   let adminIds = process.env.ADMIN_STEAMIDS?.split(';');

@@ -2,10 +2,10 @@
 import fs from 'fs';
 import { database } from "../../prisma/database";
 import { Game, Player, PlayerIdentity } from "@prisma/client";
-import { getServerSession } from "next-auth";
 import { ServerEventPacket } from "@/types/events";
 import LogEventEmitter from '@/utils/classes/LogEvents/LogEventEmitter';
 import { GamesInfoSelect } from '@/types/games';
+import { auth } from '@/auth';
 
 const gamesInfoSelect:GamesInfoSelect = {
   id:true,
@@ -138,7 +138,7 @@ export async function reportGameIssue(gameId:string, issue:string){
 
 const USINGFORLOGREADINGONLY = new LogEventEmitter();
 export async function uploadGames(){
-  let session = await getServerSession();
+  let session = await auth();
   let firstLog = USINGFORLOGREADINGONLY.readLog(); //TODO globalize/consolidate?
   if(!firstLog)
     throw Error('Something went wrong.');
@@ -238,8 +238,8 @@ export async function simulate(data:FormData){
   let log = data.get('file') as File;
   let timeBetweenLinesMS = data.get('time-between-lines-ms')?.toString();
   let startAtGameFound = Boolean(data.get('start-at-gamefound'));
-  console.log('HERE', startAtGameFound);
-  console.log('HERE', data.entries());
+  // console.log('HERE', startAtGameFound);
+  // console.log('HERE', data.entries());
   if(!log || !timeBetweenLinesMS)
     throw Error('No log uploaded.');
   fs.writeFileSync('_temp/Player.log', await log.text());

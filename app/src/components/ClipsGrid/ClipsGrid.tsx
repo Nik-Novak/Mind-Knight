@@ -93,7 +93,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
   const columns: GridColDef<DataType>[] = [
     //4. Define fields and any actions you want to show for individual records
     { field: "id", headerName: "ID/Title", flex: 0.25, minWidth: 40,
-      valueGetter: (v, row) => { row.id=='661ff13b56f2cee2049114bf' && console.log('HERE', row.title, row.id); return row.title || row.id },
+      valueGetter: (v, row) => row.title || row.id,
       renderCell: params => 
         playerId && params.row.player_id === playerId //if we made the clip
             ? renderOptionsRef.current.renderCell(

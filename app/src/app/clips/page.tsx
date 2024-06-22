@@ -14,7 +14,7 @@ import ClipsGrid from "@/components/ClipsGrid";
 import { getClips } from "@/actions/clip";
 // import sampleGame from './sample-game3.json';
 
-function RewindPage() {
+export default function RewindPage() {
   const {data:session} = useSession();
   const {settings, updateSettings} = useSettings();
   const [paginationMetadata, setPaginationMetadata] = useState<PaginationMetadata>({current_page:0, has_next_page:false, items_per_page:50});
@@ -44,5 +44,3 @@ function RewindPage() {
     </>
   );
 }
-
-export default provideSession(RewindPage)

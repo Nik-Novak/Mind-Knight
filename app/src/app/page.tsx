@@ -11,20 +11,22 @@ import { GlobalChatMessage } from "@/types/game";
 import { getGlobalChat, sendGlobalMessage } from "@/actions/chat";
 import { grey } from "@mui/material/colors";
 import Avatar from "@/components/Avatar";
-import { getServerSession } from "next-auth";
+import { auth } from '@/auth';
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { database } from "../../prisma/database";
 import { MindnightSessionStatus } from "@prisma/client";
 import { verifyIsAdmin } from "@/actions/admin";
 import { signIn, signOut } from "next-auth/react";
 import AvatarWithActions from "@/components/AvatarWithActions";
-import Leaderboards from "@/components/Leaderboards";
+import Leaderboards from "@/components/LeaderboardsPedestal";
+import { getTop3Players } from "@/actions/leaderboard";
 
 //React server component that securely runs on the server by default
 export default async function HomePage() {
   // const globalChat: GlobalChatMessage[] = await getGlobalChat();
   // console.log('RERENDER AND REFETCH GLOBAL CHAT', globalChat[globalChat.length-1].Message);
-  const steamSession = await getServerSession(authOptions);
+  const session = await auth();
+  const top3Players = await getTop3Players();
 
   return (
     <>
@@ -36,13 +38,15 @@ export default async function HomePage() {
           <Version localPath={'../mindknight.version'} remotePath={'https://raw.githubusercontent.com/Nik-Novak/Mind-Knight/master/mindknight.version'} />
         }
       />
-      <Leaderboards />
+      {/* <Link href={'/leaderboards'}> */}
+        <Leaderboards top3Players={top3Players} sessionPlayerId={session?.user.player_id} />
+        {/* </Link> */}
       <Stack spacing={1}>
         <Instructions />
         <Typography variant="h3">OR</Typography>
         <Stack spacing={2} direction={'row'} justifyContent={'center'}>
           { 
-            steamSession?.user
+            session?.user
             ? <> 
                 <Link href='/skins'><Button className="pixel-corners" sx={{paddingX: '55px'}} variant="contained">Skins</Button></Link>
                 <Link href='/rewinds'><Button className="pixel-corners" sx={{paddingX: '50px'}} variant="contained">Rewinds</Button></Link>

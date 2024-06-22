@@ -1,15 +1,14 @@
 import styles from "./page.module.css";
 import { Stack, Typography } from "@mui/material";
 import Background from "@/components/Background";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { auth } from '@/auth';
 import { redirect } from "next/navigation";
 import BadgeScanner from "./BadgeScanner";
 import Title from "@/components/Title";
 
 
 export default async function AdminPage() {
-  let session = await getServerSession(authOptions);
+  let session = await auth();
   if(!session?.user.steam_id){
     redirect('/');
   }

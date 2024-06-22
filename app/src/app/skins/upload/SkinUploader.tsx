@@ -20,7 +20,7 @@ function toDisplayHeight(normalizedHeight:number, canvas:HTMLCanvasElement ){
   return normalizedHeight * canvas.clientHeight / canvas.height;
 }
 
-function SkinUploader(){
+export default function SkinUploader(){
   const [agreed1, setAgreed1] = useState(false);
   const [agreed2, setAgreed2] = useState(false);
   const [agreed3, setAgreed3] = useState(false);
@@ -180,5 +180,3 @@ function SkinUploader(){
     </form>
   )
 }
-
-export default provideSession(SkinUploader);

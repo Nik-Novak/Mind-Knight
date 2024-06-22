@@ -427,20 +427,21 @@ model CustomSkin {
 }
 
 model Player {
-  id        String        @id @default(auto()) @map("_id") @db.ObjectId
-  steam_id  String        @unique
-  name      String
-  level     Int           @default(1)
-  elo       Float         @default(1500)
-  clips     Clip[]
-  games     Game[]        @relation(fields: [game_ids], references: [id])
-  game_ids  String[]      @db.ObjectId
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  steam_id        String        @unique
+  name            String
+  level           Int           @default(1)
+  elo             Float         @default(1500)
+  victory_phrase  String?
+  clips           Clip[]
+  games           Game[]        @relation(fields: [game_ids], references: [id])
+  game_ids        String[]      @db.ObjectId
 
   owned_custom_skins         CustomSkin[] @relation("owned_custom_skins")
   unlocked_custom_skins      CustomSkin[] @relation(name: "unlocked_custom_skins", fields: [unlocked_custom_skin_ids], references: [id])
   unlocked_custom_skin_ids   String[]     @db.ObjectId
 
-  equipped_skin              String?
+  equipped_skin           String?
 
   clients                 Client[]
 

@@ -634,11 +634,13 @@ const prismaClientSingleton= ()=>{
                 throw Error("Something went wrong, game_start not found");
               let deltaT = log_time.valueOf() - game.game_start.log_time.valueOf();
               let playerIds = await Promise.all(game_end.PlayerIdentities.map(async playerIdentity=>{
+                console.log('GAME END PLAYER IDENTITY:', playerIdentity);
                 let player = await database.player.createOrFind({data:{
                   name:playerIdentity.Nickname,
                   steam_id: playerIdentity.Steamid,
                   level: playerIdentity.Level,
                 }}, {where:{steam_id:playerIdentity.Steamid}});
+                console.log('GAME END PLAYER', player);
                 return player.id
               }));
               if(local){
@@ -736,6 +738,14 @@ const prismaClientSingleton= ()=>{
         ):Promise< Prisma.Result<T, undefined, 'findFirstOrThrow'> >{
           const ctx = Prisma.getExtensionContext(this);
           return  (ctx as any).findFirstOrThrow({where:{id}});
+        },
+        updateById<T, A extends Omit<Prisma.Args<T, 'update'>, 'where' >>(
+          this: T,
+          id: string,
+          update: A
+        ):Promise< Prisma.Result<T, A, 'update'> >{
+          const ctx = Prisma.getExtensionContext(this);
+          return  (ctx as any).update({where:{id}, ...update});
         },
         polish<T>(
           this:T, 
