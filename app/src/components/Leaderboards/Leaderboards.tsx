@@ -12,10 +12,10 @@ export default async function Leaderboards(){
         <img style={{position:'absolute', bottom:0, left:'calc(50% - 221px)' }} src="/img/leaderboard_pedestals.png" />
         {top3Players.map((p, i)=>{
           let playerIdentity = p.latest_game?.game_end?.PlayerIdentities.find(pi=>{
-            console.log(p.player.name, pi.Steamid, p.player.steam_id, pi.Steamid === p.player.steam_id)
+            // console.log(p.player.name, pi.Steamid, p.player.steam_id, pi.Steamid === p.player.steam_id)
             return pi.Steamid === p.player.steam_id;
           });
-          console.log(p.latest_game?.game_end?.PlayerIdentities);
+          // console.log(p.latest_game?.game_end?.PlayerIdentities);
           if(!playerIdentity)
             throw Error("Failed to get player identity for latest game. steam_id: " + p.player.steam_id);
           let slot = playerIdentity.Slot as PlayerSlot;
