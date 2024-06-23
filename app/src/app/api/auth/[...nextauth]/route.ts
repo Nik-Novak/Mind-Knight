@@ -47,10 +47,15 @@ export const authOptions:NextAuthOptions = {
         {
           where:{
             steam_id: matchingAccount.steamId,
-            user_id: user.id
+            // user_id: user.id
           }
         }
       );
+      if(!player.user_id){
+        player = await database.player.updateById(player.id, {data:{
+          user_id: user.id
+        }})
+      }
       session.user.id = user.id;
       session.user.player_id = player.id; //add player_id to session
       session.user.steam_id = player.steam_id; //add steam_id to session

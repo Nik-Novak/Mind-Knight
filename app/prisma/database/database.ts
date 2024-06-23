@@ -737,6 +737,14 @@ const prismaClientSingleton= ()=>{
           const ctx = Prisma.getExtensionContext(this);
           return  (ctx as any).findFirstOrThrow({where:{id}});
         },
+        updateById<T, A extends Omit<Prisma.Args<T, 'update'>, 'where' >>(
+          this: T,
+          id: string,
+          update: A
+        ):Promise< Prisma.Result<T, A, 'update'> >{
+          const ctx = Prisma.getExtensionContext(this);
+          return  (ctx as any).update({where:{id}, ...update});
+        },
         polish<T>(
           this:T, 
           valueToPolish:Prisma.Args<T, 'create'>['data'], //corresponding model input type
