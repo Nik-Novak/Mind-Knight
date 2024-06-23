@@ -162,7 +162,7 @@ export default function DataGrid({ sx, records, fetchRecords, isFetchingRecords,
               onClick: async () =>
                 {
                   let link = `${window.location.protocol}//${window.location.host}/rewind?id=${params.row.id}`;
-                  await copyToClipboard(link);
+                  await copyToClipboard(params.row.title ? `[${params.row.title}](${link})` : link);
                   pushNotification(<Notification>Copied Share Link to Clipboard!</Notification>);
                 }
             },
