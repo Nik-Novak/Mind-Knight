@@ -53,6 +53,7 @@ export default function Players({ }:Props){
         let disconnected = game_player.connection_updates.findLast(cu=>hasHappened(cu.log_time, playhead))?.Type === 402;
         const voted = isHappening(turnInfo?.vote_phase_start?.log_time, playhead, turnInfo?.vote_phase_end?.log_time) ? hasHappened(turnInfo?.vote_mades[slot]?.log_time, playhead) : undefined;
         const eloIncrement = eloUpdates?.[slot].eloIncrement;
+        const gameEnded = game_end && hasHappened(game_end.log_time, playhead);
         // const latestProposal = game_players && selectedNode!=undefined && getLatestProposal(game_players, selectedNode, playHead)?.value || undefined;
         // const isVoting = isHappening(latestProposal?.vote_phase_start?.log_time, playHead, latestProposal?.vote_phase_end?.log_time);
         return (
@@ -79,6 +80,7 @@ export default function Players({ }:Props){
               idle={idle}
               skin={settings.josh_mode ? 'skin_holo_san' : game_player.Skin}
               eloIncrement={eloIncrement}
+              badgeSizeMultiplier={gameEnded ? 3 : undefined}
             />
           // </Suspense>
         );

@@ -68,6 +68,7 @@ type Props = {
   role?: PlayerRole,
   skin?: string,
   eloIncrement?: number;
+  badgeSizeMultiplier?:number;
 }
 
 function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipProps['placement']{
@@ -92,7 +93,7 @@ function getChatPlacement(slot:PlayerSlot, numPlayers:NumberOfPlayers):TooltipPr
   return "left-start"
 }
 
-export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin, eloIncrement }:Props){
+export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numPlayers, username, color, playerIdentity, selected=false, isPropped=false, isShadowed=false, hasAction=false, hasHammer=false, isDisconnected=false, voted, accepted, proppedIndex, chatMsg, typing, idle, skin, eloIncrement, badgeSizeMultiplier }:Props){
   const positionalStyle = styleMap[numPlayers];
   const setSelectedSlot = useStore(state=>state.setSelectedSlot);
   const chatPlacement = getChatPlacement(slot, numPlayers);
@@ -156,8 +157,8 @@ export default function Player({ sx, playerImgSx, playerInfoSx, slot, role, numP
               <img style={{
                   position:'absolute',
                   userSelect: 'none',
-                  width:skinSrc?.custom_skin ? skinSrc.custom_skin.badge_width*12/3 : '12px', 
-                  left:skinSrc?.custom_skin ? isFacingRight ? `${(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%` : `${100-skinSrc.custom_skin.badge_width*14/3-(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%`: '42.5%',
+                  width:skinSrc?.custom_skin ? skinSrc.custom_skin.badge_width*12/3*(badgeSizeMultiplier||1) : 12*(badgeSizeMultiplier||1), 
+                  left:skinSrc?.custom_skin ? isFacingRight ? `${(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%` : `${100-skinSrc.custom_skin.badge_width*(badgeSizeMultiplier||1)*14/3-(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%`: '42.5%',
                   // right:getChatPlacement(slot, numPlayers) === 'left-start' ? skinSrc?.custom_skin ? `${(skinSrc.custom_skin.badge_coords[0]*42.5/14)}%`: '42.5%' : undefined,
                   top:skinSrc?.custom_skin ? `${skinSrc.custom_skin.badge_coords[1]*31/20}%` : '31%',
                 }} 
