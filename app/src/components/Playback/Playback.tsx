@@ -18,6 +18,7 @@ import Notification from "../Notification";
 import GIFRecorder from "../GIFRecorder";
 import ClipTitleDialog from "./ClipTitleDialog";
 import { suspense } from "@/utils/hoc/suspense";
+import { useSettings } from "../SettingsProvider";
 
 type Mark = {
   value: number,
@@ -44,6 +45,7 @@ function Playback(props:Props){
   const [isClipping, setIsClipping] = useState(false);
   const [clipTimes, setClipTimes] = useState<[number, number]>([0, 0]);
   const [recording, setRecording] = useState(false);
+  const {settings} = useSettings();
   const minTimestamp = props.minTimestamp!=undefined ? props.minTimestamp : game?.game_found.log_time.valueOf() || 0;
   const maxTimestamp = props.maxTimestamp!=undefined ? props.maxTimestamp : game?.latest_log_time.valueOf() || 0;
   type SpeedMultiplier = 1|2|4|8|-1|-2|-4|-8;
@@ -107,7 +109,7 @@ function Playback(props:Props){
     if(missionEndTime)
       marks.push({
         value:missionEndTime.valueOf(), 
-        label:<Tooltip arrow title={`Node ${nodeNum}`}>{coloredText(nodeNum, mission?.mission_phase_end?.Failed ?'#851C20':'#159155' )}</Tooltip>
+        label:<Tooltip arrow title={`Node ${nodeNum}`}>{coloredText(nodeNum, settings.streamer_mode ? '#FFFFFF' : mission?.mission_phase_end?.Failed ?'#A53C40':'#159155' )}</Tooltip>
       });
     if(isClipping)
       marks.push({value:playhead
