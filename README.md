@@ -58,7 +58,7 @@ To view your elo:
 
 # Changelog
 * v?.?.?
-  * I stopped updating this awhile back. Which is good news for you because there's probably a ton of other cool features :)
+  * I stopped updating this changelog awhile back. Which is good news for you because there's probably a ton of other cool features :)
 * v1.1.1
   * Josh Mode
   * Linux/Mac support (needs to be verified)
