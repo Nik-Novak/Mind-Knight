@@ -5,7 +5,7 @@ Mind Knight is a companion app to [Mindnight](mindnightgame.com)
 
 It automatically tracks props, votes, passes, vote timing and more in a friendly/scalable UI. It can even allow you to replay old games.
 
-This is a passion project of mine since I love Mindnight so much. I am in no way affiliated to the developers.
+This is a passion project of mine since I love Mindnight so much.
 
 Feel free to report bugs, ask for help or request features here:
 https://discord.gg/wDjxM2u
