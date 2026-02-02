@@ -27,7 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.env*
+.env.*
 !.env.vault
 !.env.project
 
@@ -48,7 +48,7 @@ app/__transfer__/partial
 app/__transfer__/error
 app/_temp/*
 !app/_temp/.gitkeep
-app/.env*
+app/.env.*
 app/.flaskenv*
 !app/.env.project
 !app/.env.vault
